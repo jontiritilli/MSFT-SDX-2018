@@ -1,0 +1,356 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.Foundation;
+
+using Windows.UI;
+using Windows.UI.Text;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
+
+using SpokeDemoApp.Helpers;
+
+// The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
+
+namespace SpokeDemoApp.Controls
+{
+    public enum ColorSelectorColors
+    {
+        Burgundy,
+        Cobalt,
+        Black,
+        Silver
+    }
+
+    public sealed class ColorSelector : Control
+    {
+        #region Private Constants
+
+        private const string URI_BURGUNDY_SELECTED = "ms-appx:///Assets/ColorSelector/burgundy-selected.png";
+        private const string URI_BURGUNDY_NOTSEL = "ms-appx:///Assets/ColorSelector/burgundy.png";
+        private const string URI_COBALT_SELECTED = "ms-appx:///Assets/ColorSelector/cobalt-selected.png";
+        private const string URI_COBALT_NOTSEL = "ms-appx:///Assets/ColorSelector/cobalt.png";
+        private const string URI_BLACK_SELECTED = "ms-appx:///Assets/ColorSelector/black-selected.png";
+        private const string URI_BLACK_NOTSEL = "ms-appx:///Assets/ColorSelector/black.png";
+        private const string URI_SILVER_SELECTED = "ms-appx:///Assets/ColorSelector/silver-selected.png";
+        private const string URI_SILVER_NOTSEL = "ms-appx:///Assets/ColorSelector/silver.png";
+
+        private const double WIDTH_GRID = 340d;
+        private const double WIDTH_GRID_COLUMNSPACING = 10d;
+        private const double WIDTH_IMAGE_SELECTED = 62d;
+        private const double WIDTH_IMAGE_NOTSEL = 50d;
+
+        #endregion
+
+
+        #region Private Members
+
+        private Border _layoutRoot = null;
+        private Grid _layoutGrid = null;
+        private Button _buttonBurgundy = null;
+        private Image _imageBurgundy = null;
+        private Button _buttonCobalt = null;
+        private Image _imageCobalt = null;
+        private Button _buttonBlack = null;
+        private Image _imageBlack = null;
+        private Button _buttonSilver = null;
+        private Image _imageSilver = null;
+
+        private BitmapImage _bitmapBurgundySelected = null;
+        private BitmapImage _bitmapBurgundy = null;
+        private BitmapImage _bitmapCobaltSelected = null;
+        private BitmapImage _bitmapCobalt = null;
+        private BitmapImage _bitmapBlackSelected = null;
+        private BitmapImage _bitmapBlack = null;
+        private BitmapImage _bitmapSilverSelected = null;
+        private BitmapImage _bitmapSilver = null;
+
+        private ColorSelectorColors _previousColor = ColorSelectorColors.Burgundy;
+
+        #endregion
+
+
+        #region Construction
+
+        public ColorSelector()
+        {
+            this.DefaultStyleKey = typeof(ColorSelector);
+
+            this.Loaded += OnLoaded;
+
+            Initialization = PreLoadImages();
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.RenderUI();
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        #endregion
+
+        #region Dependency Properties
+
+        // SelectedColor
+        public static readonly DependencyProperty SelectedColorProperty =
+            DependencyProperty.Register("SelectedColor", typeof(ColorSelectorColors), typeof(ColorSelector), new PropertyMetadata(ColorSelectorColors.Burgundy, OnSelectedColorChanged));
+
+        public ColorSelectorColors SelectedColor
+        {
+            get { return (ColorSelectorColors)GetValue(SelectedColorProperty); }
+            set { SetValue(SelectedColorProperty, value); }
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        // used for async image loading
+        public Task Initialization { get; private set; }
+
+        #endregion
+
+        #region Public Methods
+
+        #endregion
+
+        #region Private Methods
+
+        private async Task PreLoadImages()
+        {
+            _bitmapBurgundySelected = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BURGUNDY_SELECTED), (int)WIDTH_IMAGE_SELECTED);
+            _bitmapBurgundy = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BURGUNDY_NOTSEL), (int)WIDTH_IMAGE_NOTSEL);
+
+            _bitmapCobaltSelected = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_COBALT_SELECTED), (int)WIDTH_IMAGE_SELECTED);
+            _bitmapCobalt = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_COBALT_NOTSEL), (int)WIDTH_IMAGE_NOTSEL);
+
+            _bitmapBlackSelected = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BLACK_SELECTED), (int)WIDTH_IMAGE_SELECTED);
+            _bitmapBlack = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BLACK_NOTSEL), (int)WIDTH_IMAGE_NOTSEL);
+
+            _bitmapSilverSelected = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_SILVER_SELECTED), (int)WIDTH_IMAGE_SELECTED);
+            _bitmapSilver = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_SILVER_NOTSEL), (int)WIDTH_IMAGE_NOTSEL);
+        }
+
+        #endregion
+
+        #region Custom Events
+
+        public delegate void OnSelectedColorChangedEvent(object sender, EventArgs e);
+
+        public event OnSelectedColorChangedEvent OnSelectionChanged;
+
+        private void RaiseSelectedColorChangedEvent(ColorSelector colorSelector, EventArgs e)
+        {
+            OnSelectionChanged?.Invoke(colorSelector, e);
+        }
+
+        private void RaiseSelectedColorChangedEvent(ColorSelector colorSelector)
+        {
+            this.RaiseSelectedColorChangedEvent(colorSelector, new EventArgs());
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private static void OnSelectedColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is ColorSelector selector)
+            {
+                selector.UpdateUI();
+
+                selector.RaiseSelectedColorChangedEvent(selector);
+            }
+        }
+
+        private void ColorSelector_BurgundyClick(object sender, RoutedEventArgs e)
+        {
+            this.SelectedColor = ColorSelectorColors.Burgundy;
+        }
+
+        private void ColorSelector_CobaltClick(object sender, RoutedEventArgs e)
+        {
+            this.SelectedColor = ColorSelectorColors.Cobalt;
+        }
+
+        private void ColorSelector_BlackClick(object sender, RoutedEventArgs e)
+        {
+            this.SelectedColor = ColorSelectorColors.Black;
+        }
+
+        private void ColorSelector_SilverClick(object sender, RoutedEventArgs e)
+        {
+            this.SelectedColor = ColorSelectorColors.Silver;
+        }
+
+
+        #endregion
+
+
+        #region Render UI
+
+        private void RenderUI()
+        {
+            // get the layout base (a canvas here)
+            _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
+
+            // if we can't get the layout root, we can't do anything
+            if (null == _layoutRoot) { return; }
+
+            // create the grid
+            _layoutGrid = new Grid()
+            {
+                Name = "ColorSelectorGrid",
+                Width = WIDTH_GRID,
+                ColumnSpacing = WIDTH_GRID_COLUMNSPACING
+            };
+            _layoutGrid.RowDefinitions.Add(new RowDefinition());
+            _layoutGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.25, GridUnitType.Star) });
+            _layoutGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.25, GridUnitType.Star) });
+            _layoutGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.25, GridUnitType.Star) });
+            _layoutGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.25, GridUnitType.Star) });
+
+            // add it to the root
+            _layoutRoot.Child = _layoutGrid;
+
+            // create the button style
+            Style buttonStyle = null;
+            try
+            {
+                buttonStyle = (Style)Application.Current.Resources["ColorSelectorButton"];
+            }
+            catch (Exception)
+            {
+
+            }
+
+            // burgundy
+            _imageBurgundy = new Image()
+            {
+                Source = _bitmapBurgundySelected,
+                Width = WIDTH_IMAGE_SELECTED
+            };
+
+            _buttonBurgundy = new Button()
+            {
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = _imageBurgundy
+            };
+            if (null != buttonStyle) { _buttonBurgundy.Style = buttonStyle; };
+            _buttonBurgundy.Click += ColorSelector_BurgundyClick;
+            Grid.SetRow(_buttonBurgundy, 0);
+            Grid.SetColumn(_buttonBurgundy, 0);
+            _layoutGrid.Children.Add(_buttonBurgundy);
+
+            // cobalt
+            _imageCobalt = new Image()
+            {
+                Source = _bitmapCobalt,
+                Width = WIDTH_IMAGE_NOTSEL
+            };
+
+            _buttonCobalt = new Button()
+            {
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = _imageCobalt
+            };
+            if (null != buttonStyle) { _buttonCobalt.Style = buttonStyle; };
+            _buttonCobalt.Click += ColorSelector_CobaltClick;
+            Grid.SetRow(_buttonCobalt, 0);
+            Grid.SetColumn(_buttonCobalt, 1);
+            _layoutGrid.Children.Add(_buttonCobalt);
+
+            // black
+            _imageBlack = new Image()
+            {
+                Source = _bitmapBlack,
+                Width = WIDTH_IMAGE_NOTSEL
+            };
+
+            _buttonBlack = new Button()
+            {
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = _imageBlack
+            };
+            if (null != buttonStyle) { _buttonBlack.Style = buttonStyle; };
+            _buttonBlack.Click += ColorSelector_BlackClick;
+            Grid.SetRow(_buttonBlack, 0);
+            Grid.SetColumn(_buttonBlack, 2);
+            _layoutGrid.Children.Add(_buttonBlack);
+
+            // silver
+            _imageSilver = new Image()
+            {
+                Source = _bitmapSilver,
+                Width = WIDTH_IMAGE_NOTSEL
+            };
+
+            _buttonSilver = new Button()
+            {
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = _imageSilver
+            };
+            if (null != buttonStyle) { _buttonSilver.Style = buttonStyle; };
+            _buttonSilver.Click += ColorSelector_SilverClick;
+            Grid.SetRow(_buttonSilver, 0);
+            Grid.SetColumn(_buttonSilver, 3);
+            _layoutGrid.Children.Add(_buttonSilver);
+
+        }
+
+        private void UpdateUI()
+        {
+            // set the images and width for each of the swatches
+            _imageBurgundy.Source = (ColorSelectorColors.Burgundy == this.SelectedColor) ? _bitmapBurgundySelected : _bitmapBurgundy;
+            _imageBurgundy.Width = (ColorSelectorColors.Burgundy == this.SelectedColor) ? WIDTH_IMAGE_SELECTED : WIDTH_IMAGE_NOTSEL;
+
+            _imageCobalt.Source = (ColorSelectorColors.Cobalt == this.SelectedColor) ? _bitmapCobaltSelected : _bitmapCobalt;
+            _imageCobalt.Width = (ColorSelectorColors.Cobalt == this.SelectedColor) ? WIDTH_IMAGE_SELECTED : WIDTH_IMAGE_NOTSEL;
+
+            _imageBlack.Source = (ColorSelectorColors.Black == this.SelectedColor) ? _bitmapBlackSelected : _bitmapBlack;
+            _imageBlack.Width = (ColorSelectorColors.Black == this.SelectedColor) ? WIDTH_IMAGE_SELECTED : WIDTH_IMAGE_NOTSEL;
+
+            _imageSilver.Source = (ColorSelectorColors.Silver == this.SelectedColor) ? _bitmapSilverSelected : _bitmapSilver;
+            _imageSilver.Width = (ColorSelectorColors.Silver == this.SelectedColor) ? WIDTH_IMAGE_SELECTED : WIDTH_IMAGE_NOTSEL;
+        }
+
+        #endregion
+
+
+        #region UI Helpers
+
+        #endregion
+
+
+        #region Code Helpers
+
+        #endregion
+    }
+}

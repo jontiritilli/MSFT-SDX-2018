@@ -1,0 +1,271 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.Foundation;
+
+using Windows.UI;
+using Windows.UI.Text;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
+
+using SpokeDemoApp.Helpers;
+
+// The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
+
+namespace SpokeDemoApp.Controls
+{
+    public enum ImageStyles
+    {
+        ShowLeftHalf,
+        ShowRightHalf
+    }
+
+    public sealed class ColorSelectorImage : Control
+    {
+        #region Private Constants
+
+        private const string URI_BURGUNDY_LEFT = "ms-appx:///Assets/ColorSelectorImage/device-left-burgundy.png";
+        private const string URI_BURGUNDY_RIGHT = "ms-appx:///Assets/ColorSelectorImage/device-right-burgundy.png";
+        private const string URI_COBALT_LEFT = "ms-appx:///Assets/ColorSelectorImage/device-left-cobalt.png";
+        private const string URI_COBALT_RIGHT = "ms-appx:///Assets/ColorSelectorImage/device-right-cobalt.png";
+        private const string URI_BLACK_LEFT = "ms-appx:///Assets/ColorSelectorImage/device-left-black.png";
+        private const string URI_BLACK_RIGHT = "ms-appx:///Assets/ColorSelectorImage/device-right-black.png";
+        private const string URI_SILVER_LEFT = "ms-appx:///Assets/ColorSelectorImage/device-left-silver.png";
+        private const string URI_SILVER_RIGHT = "ms-appx:///Assets/ColorSelectorImage/device-right-silver.png";
+
+        //private static readonly Rect BOUNDS = new Rect(0, 0, 3333.33, 922);
+        //private static readonly Rect BOUNDS = ApplicationView.GetForCurrentView().VisibleBounds;
+        private static readonly Size BOUNDS = PageHelper.GetScreenResolutionInfo();
+
+        private static readonly double WIDTH_ORIGINAL = 4956d;
+        private static readonly double HEIGHT_ORIGINAL = 4572d;
+        private static readonly double WIDTH_IMAGE = BOUNDS.Width * 0.6;
+        private static readonly double HEIGHT_IMAGE = WIDTH_IMAGE / WIDTH_ORIGINAL * HEIGHT_ORIGINAL;
+
+        #endregion
+
+
+        #region Private Members
+
+        private Border _layoutRoot = null;
+        public Grid _layoutGrid = null;
+        private Image _image = null;
+
+        private BitmapImage _bitmapBurgundyLeft = null;
+        private BitmapImage _bitmapCobaltLeft = null;
+        private BitmapImage _bitmapBlackLeft = null;
+        private BitmapImage _bitmapSilverLeft = null;
+
+        private BitmapImage _bitmapBurgundyRight = null;
+        private BitmapImage _bitmapCobaltRight = null;
+        private BitmapImage _bitmapBlackRight = null;
+        private BitmapImage _bitmapSilverRight = null;
+
+        private ColorSelector _previousColorSelector = null;
+
+        #endregion
+
+
+        #region Construction
+
+        public ColorSelectorImage()
+        {
+            this.DefaultStyleKey = typeof(ColorSelectorImage);
+
+            this.Loaded += OnLoaded;
+
+            Initialization = PreLoadImages();
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.RenderUI();
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        #endregion
+
+        #region Dependency Properties
+
+        // ColorSelector
+        public static readonly DependencyProperty ColorSelectorProperty =
+            DependencyProperty.Register("ColorSelector", typeof(ColorSelector), typeof(ColorSelectorImage), new PropertyMetadata(null, OnColorSelectorChanged));
+
+        public ColorSelector ColorSelector
+        {
+            get { return (ColorSelector)GetValue(ColorSelectorProperty); }
+            set { SetValue(ColorSelectorProperty, value); }
+        }
+
+        // ImageStyle
+        public static readonly DependencyProperty ImageStyleProperty =
+            DependencyProperty.Register("ImageStyle", typeof(ImageStyles), typeof(ColorSelectorImage), new PropertyMetadata(ImageStyles.ShowLeftHalf, OnImageStyleChanged));
+
+        public ImageStyles ImageStyle
+        {
+            get { return (ImageStyles)GetValue(ImageStyleProperty); }
+            set { SetValue(ImageStyleProperty, value); }
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        // used for async image loading
+        public Task Initialization { get; private set; }
+
+        #endregion
+
+        #region Public Methods
+
+        #endregion
+
+        #region Private Methods
+
+        private async Task PreLoadImages()
+        {
+            _bitmapBurgundyLeft = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BURGUNDY_LEFT), (int)WIDTH_IMAGE);
+            _bitmapBurgundyRight = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BURGUNDY_RIGHT), (int)WIDTH_IMAGE);
+
+            _bitmapCobaltLeft = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_COBALT_LEFT), (int)WIDTH_IMAGE);
+            _bitmapCobaltRight = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_COBALT_RIGHT), (int)WIDTH_IMAGE);
+
+            _bitmapBlackLeft = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BLACK_LEFT), (int)WIDTH_IMAGE);
+            _bitmapBlackRight = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_BLACK_RIGHT), (int)WIDTH_IMAGE);
+
+            _bitmapSilverLeft = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_SILVER_LEFT), (int)WIDTH_IMAGE);
+            _bitmapSilverRight = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_SILVER_RIGHT), (int)WIDTH_IMAGE);
+        }
+
+        #endregion
+
+        #region Custom Events
+
+        #endregion
+
+        #region Event Handlers
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private static void OnColorSelectorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is ColorSelectorImage image)
+            {
+                // clean up event handler from previous colorselector
+                if (null != image._previousColorSelector)
+                {
+                    image._previousColorSelector.OnSelectionChanged -= image.ColorSelector_OnSelectionChanged;
+                }
+
+                // save this as the previous
+                image._previousColorSelector = image.ColorSelector;
+
+                // add new event handler
+                if (null != image.ColorSelector)
+                {
+                    image.ColorSelector.OnSelectionChanged += image.ColorSelector_OnSelectionChanged;
+                }
+            }
+        }
+
+        private void ColorSelector_OnSelectionChanged(object sender, EventArgs e)
+        {
+            if (sender is ColorSelector selector)
+            {
+                this.UpdateUI();
+            }
+        }
+
+        private static void OnImageStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region Render UI
+
+        private void RenderUI()
+        {
+            // get the layout base (a border here)
+            _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
+
+            // if we can't get the layout root, we can't do anything
+            if (null == _layoutRoot) { return; }
+
+            // create a grid
+            _layoutGrid = new Grid()
+            {
+                Margin = new Thickness(0),
+                Padding = new Thickness(0)
+            };
+            _layoutRoot.Child = _layoutGrid;
+
+            // create the image
+            _image = new Image()
+            {
+                //Source = (ImageStyles.ShowLeftHalf == this.ImageStyle) ? _bitmapBurgundyLeft : _bitmapBurgundyRight,
+                Width = WIDTH_IMAGE
+                //Stretch = Stretch.UniformToFill
+            };
+            _layoutGrid.Children.Add(_image);
+
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            switch (this.ColorSelector.SelectedColor)
+            {
+                case ColorSelectorColors.Burgundy:
+                default:
+                    _image.Source = (ImageStyles.ShowLeftHalf == this.ImageStyle) ? _bitmapBurgundyLeft : _bitmapBurgundyRight;
+                    break;
+
+                case ColorSelectorColors.Cobalt:
+                    _image.Source = (ImageStyles.ShowLeftHalf == this.ImageStyle) ? _bitmapCobaltLeft : _bitmapCobaltRight;
+                    break;
+
+                case ColorSelectorColors.Black:
+                    _image.Source = (ImageStyles.ShowLeftHalf == this.ImageStyle) ? _bitmapBlackLeft : _bitmapBlackRight;
+                    break;
+
+                case ColorSelectorColors.Silver:
+                    _image.Source = (ImageStyles.ShowLeftHalf == this.ImageStyle) ? _bitmapSilverLeft : _bitmapSilverRight;
+                    break;
+
+            }
+        }
+
+        #endregion
+
+
+        #region UI Helpers
+
+        #endregion
+
+
+        #region Code Helpers
+
+        #endregion
+    }
+}
