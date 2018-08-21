@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="SurfaceTestBed.Views.PivotPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding PivotViewModel, Source={StaticResource Locator}}"
+    Style="{StaticResource PageStyle}"
+    xmlns:behaviors="using:SurfaceTestBed.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:model="using:SurfaceTestBed.Models"
+    xmlns:views="using:SurfaceTestBed.Views"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Pivot x:Uid="PivotPage">
+            <i:Interaction.Behaviors>
+                <behaviors:PivotBehavior />
+            </i:Interaction.Behaviors>
+            <PivotItem x:Uid="PivotItem_FlipView">
+                <Frame>
+                    <views:FlipViewPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_Page1">
+                <Frame>
+                    <views:Page1Page/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_Page2">
+                <Frame>
+                    <views:Page2Page/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_Page3">
+                <Frame>
+                    <views:Page3Page/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_Page4">
+                <Frame>
+                    <views:Page4Page/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_Page5">
+                <Frame>
+                    <views:Page5Page/>
+                </Frame>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
