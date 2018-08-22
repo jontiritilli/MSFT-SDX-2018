@@ -1,0 +1,42 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDX.Toolkit.Styles">
+
+    <!--Hero,               // Segoe UI Light, 480px, white
+        Headline,           // Segoe UI Light, 200px, white
+        Lede,               // Segoe UI Regular, 86px, white
+        ListHeadline,       // Segoe UI Regular, 110px, White
+        ListLede,           // Segoe UI Regular, 86px, White
+        CTAText,            // Segoe UI Bold, 60px, #454545
+        PopupText,          // Segoe UI Regular, 86px, Black
+        NavBarActive,       // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
+        NavBarInactive,     // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
+        SwipeLeft,          // Segoe UI Bold, 60px, White
+        SwipeToContinue,    // Segoe UI Semibold, 70px, White
+        ButtonText,         // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
+        SliderText,         // Segoe UI Bold, 60px, White
+        TouchHere,          // Segoe UI Bold, 60px, White
+        FastChargeHeader,   // Segoe UI Regular, 100px, Black
+        FastChargeLede,     // Segoe UI Regular, 86px, Black
+        FastChargePercent,  // Segoe UI Light, 300px, White
+        FastChargeTimeline, // Segoe UI Bold, 60px, Black
+        GaugePoint,         // Segoe UI Bold, 60px, White
+        GaugePointBullet,   // Segoe UI Bold, 60px, White
+        Footnote,           // Segoe UI Regular, 60px, #5C5C5C
+        LearnMore,          // Segoe UI Bold, 60px, #454545
+        CompareHeader,      // Segoe UI Light, 200px, Black
+        CompareTitle,       // Segoe UI Bold, 80px, Black
+        CompareText,        // Segoe UI Regular, 80px, Black
+        CompareLegal        // Segoe UI Regular, 70px, #5C5C5C-->
+
+    <Style x:Key="TKHeaderStyle" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="FontSize" Value="{StaticResource  LargeFontSize}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="Margin" Value="{StaticResource PageTitleMargin}" />
+    </Style>
+
+</ResourceDictionary>
