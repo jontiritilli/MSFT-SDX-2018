@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
+    <Compile Include="Controls\Hero.cs" />
     <Compile Include="Controls\TextLine.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
