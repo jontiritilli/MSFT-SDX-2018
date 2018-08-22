@@ -20,7 +20,7 @@ namespace SurfaceTestBed.Views
         {
             InitializeComponent();
 
-            TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
+            //TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
         }
 
     }
