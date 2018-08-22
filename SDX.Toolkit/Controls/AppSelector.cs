@@ -1,0 +1,531 @@
+﻿
+using SDX.Toolkit.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
+namespace SDX.Toolkit.Controls
+{
+    public sealed class AppSelector : Control
+    {
+        #region Private Constants
+        
+        private const double WIDTH_GRID = 340d;
+        private const double WIDTH_GRID_COLUMNSPACING = 10d;
+        private const double WIDTH_IMAGE_SELECTED = 62d;
+        private const double WIDTH_IMAGE_NOTSEL = 50d;
+
+        #endregion
+
+
+        #region Private Members
+
+        private Grid _layoutRoot = null;
+        public List<AppSelectorData> URIs;
+        private Dictionary<int, ImagePair> ImagePairs;
+        public Orientation Orientation = Orientation.Horizontal;
+        public bool ShowMessages = false;
+
+        private Storyboard _storyboardFadeIn = null;
+        private Storyboard _storyboardFadeOut = null;
+
+        private int _syncID = 0;
+
+        #endregion
+
+
+        #region Construction
+
+
+        #region classes
+        public class AppSelectorButton : Button
+        {
+            public int ID = 0;
+        }
+        public class AppSelectorData
+        {
+            public string URI_SelectedImage = "";
+            public string URI_NotSelectedImage = "";
+            public string Message;
+        }
+        public class ImagePair
+        {
+            public int ID = 0;
+            public Image Selected = new Image();
+            public Image UnSelected = new Image();
+
+        }
+        #endregion
+        /*  NOTE FOR DEVELOPER USING THIS*** POP POP
+        // up to the consumer (u) to feed the data for messages and images shown
+        // set orientation to vertical to put buttons on top of each other
+        // set ShowMessages to true to show messages
+        // width/height is also up to the consumer to handle b/c # of buttons 
+        // can cause the h/w to vary. 
+        // use AppSelectorData class to house selected and not selected images
+        //        TelemetryId = TelemetryService.TELEMETRY_KEYBOARDVIEWCOLOR,
+        //        HorizontalAlignment = HorizontalAlignment.Left,
+        //        VerticalAlignment = VerticalAlignment.Top,
+        //        DurationInMilliseconds = 200d,
+        //        StaggerDelayInMilliseconds = 200d,
+        //        AutoStart = false,
+        //        Orientation = Orientation.Vertical,
+        //        ShowMessages = true,
+        //        URIs = new List<AppSelector.AppSelectorData>        
+        //        {
+        //            new AppSelector.AppSelectorData
+        //            {
+        //                URI_NotSelectedImage="ms-appx:///Assets/Selector/silver.png",
+        //                URI_SelectedImage ="ms-appx:///Assets/Selector/silver-selected.png",
+        //                Message= "first"
+        //            },
+        //            new AppSelector.AppSelectorData
+        //            {
+        //                URI_NotSelectedImage="ms-appx:///Assets/Selector/silver.png",
+        //                URI_SelectedImage ="ms-appx:///Assets/Selector/silver-selected.png",
+        //                Message= "second"
+        //            },
+        //            new AppSelector.AppSelectorData
+        //            {
+        //                URI_NotSelectedImage="ms-appx:///Assets/Selector/silver.png",
+        //                URI_SelectedImage ="ms-appx:///Assets/Selector/silver-selected.png",
+        //                Message= "third"
+        //            },
+        //            new AppSelector.AppSelectorData
+        //            {
+        //                URI_NotSelectedImage="ms-appx:///Assets/Selector/silver.png",
+        //                URI_SelectedImage ="ms-appx:///Assets/Selector/silver-selected.png",
+        //                Message= "fourth"
+        //            },
+        //            new AppSelector.AppSelectorData
+        //            {
+        //                URI_NotSelectedImage="ms-appx:///Assets/Selector/silver.png",
+        //                URI_SelectedImage ="ms-appx:///Assets/Selector/silver-selected.png",
+        //                Message= "fif"
+        //            }
+
+        //        }
+        */
+        public AppSelector()
+        {
+            this.DefaultStyleKey = typeof(AppSelector);
+            this.Loaded += OnLoaded;
+            this.ImagePairs = new Dictionary<int, ImagePair>();
+
+
+            // inherited dependency property
+            new PropertyChangeEventSource<double>(
+                this, "Opacity", BindingMode.OneWay).ValueChanged +=
+                OnOpacityChanged;
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.RenderUI();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public void StartFadeIn()
+        {
+            // start the textblock
+            if (null != _storyboardFadeIn)
+            {
+                _storyboardFadeIn.Begin();
+            }
+        }
+
+        public void StartFadeOut()
+        {
+            // start the textblock
+            if (null != _storyboardFadeOut)
+            {
+                _storyboardFadeOut.Begin();
+            }
+        }
+
+        public void ResetAnimation()
+        {
+            // reset the textblock
+            if (null != _storyboardFadeIn)
+            {
+                _storyboardFadeIn.Stop();
+            }
+            if (null != _storyboardFadeOut)
+            {
+                _storyboardFadeOut.Stop();
+            }
+
+            // reset opacity to starting point
+            if (null != _layoutRoot)
+            {
+                _layoutRoot.Opacity = 0.0;
+            }
+        }
+
+        public void SetOpacity(double opacity)
+        {
+            if ((opacity < 0.0) || (opacity > 1.0)) { return; }
+
+            if (null != _layoutRoot)
+            {
+                _layoutRoot.Opacity = opacity;
+            }
+        }
+
+        public void SyncSelectedID(int ID)
+        {
+            // save this color so the handler will know we changed it
+            _syncID = ID;
+
+            this.SelectedID = ID;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        public string TelemetryId { get; set; }
+
+        #endregion
+
+        #region Dependency Properties
+
+        // SelectedID
+        public static readonly DependencyProperty SelectedIDProperty =
+            DependencyProperty.Register("SelectedID", typeof(int), typeof(AppSelector), new PropertyMetadata(0, OnSelectedIDChanged));
+
+        public int SelectedID
+        {
+            get { return (int)GetValue(SelectedIDProperty); }
+            set { SetValue(SelectedIDProperty, value); }
+        }
+
+        // DurationInMilliseconds
+        public static readonly DependencyProperty DurationInMillisecondsProperty =
+            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(AppSelector), new PropertyMetadata(200d, OnDurationInMillisecondsChanged));
+
+        public double DurationInMilliseconds
+        {
+            get { return (double)GetValue(DurationInMillisecondsProperty); }
+            set { SetValue(DurationInMillisecondsProperty, value); }
+        }
+
+        // FadeInCompletedHandler
+        public static readonly DependencyProperty FadeInCompletedHandlerProperty =
+            DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(AppSelector), new PropertyMetadata(null));
+
+        public EventHandler<object> FadeInCompletedHandler
+        {
+            get { return (EventHandler<object>)GetValue(FadeInCompletedHandlerProperty); }
+            set { SetValue(FadeInCompletedHandlerProperty, value); }
+        }
+
+        // FadeOutCompletedHandler
+        public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
+            DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(AppSelector), new PropertyMetadata(null));
+
+        public EventHandler<object> FadeOutCompletedHandler
+        {
+            get { return (EventHandler<object>)GetValue(FadeOutCompletedHandlerProperty); }
+            set { SetValue(FadeOutCompletedHandlerProperty, value); }
+        }
+
+        // StaggerDelayInMilliseconds
+        public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
+            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(AppSelector), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
+
+        public double StaggerDelayInMilliseconds
+        {
+            get { return (double)GetValue(StaggerDelayInMillisecondsProperty); }
+            set { SetValue(StaggerDelayInMillisecondsProperty, value); }
+        }
+
+        // AutoStart
+        public static readonly DependencyProperty AutoStartProperty =
+        DependencyProperty.Register("AutoStart", typeof(bool), typeof(AppSelector), new PropertyMetadata(true, OnAutoStartChanged));
+
+        public bool AutoStart
+        {
+            get { return (bool)GetValue(AutoStartProperty); }
+            set { SetValue(AutoStartProperty, value); }
+        }
+
+        #endregion
+
+        #region Custom Events
+
+        public delegate void OnSelectedIDChangedEvent(object sender, EventArgs e);
+
+        public event OnSelectedIDChangedEvent SelectedIDChanged;
+
+        private void RaiseSelectedIDChangedEvent(AppSelector Selector, EventArgs e)
+        {
+            SelectedIDChanged?.Invoke(Selector, e);
+        }
+
+        private void RaiseSelectedIDChangedEvent(AppSelector Selector)
+        {
+            this.RaiseSelectedIDChangedEvent(Selector, new EventArgs());
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (this.AutoStart)
+            {
+                this.StartFadeIn();
+            }
+        }
+
+        private static void OnSelectedIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is AppSelector selector)
+            {
+                // update the UI with the new color
+                selector.UpdateUI();
+
+                // only raise the event if this was NOT a sync change
+                if (selector.SelectedID != selector._syncID)
+                {
+                    // reset the sync ID
+                    selector._syncID = 0;
+
+                    // raise the selected color changed event
+                    selector.RaiseSelectedIDChangedEvent(selector);
+                }
+            }
+        }
+
+        private void OnOpacityChanged(object sender, double e)
+        {
+            double opacity = e;
+
+            if (null != _layoutRoot)
+            {
+                // correct opacity range
+                opacity = Math.Max(0.0, opacity);
+                opacity = Math.Min(1.0, opacity);
+
+                // set opacity
+                _layoutRoot.Opacity = opacity;
+            }
+        }
+
+        private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private static void OnStaggerDelayInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+        #region Render UI
+
+        private void RenderUI()
+        {
+            // get the layout base (a canvas here)
+            _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
+
+            // if we can't get the layout root, we can't do anything
+            if (null == _layoutRoot) { return; }
+
+            // update the grid
+            _layoutRoot.Name = "AppSelectorGrid";
+            _layoutRoot.Opacity = 1;// why is this 0 instead of 1?
+            //if (this.ShowMessages && this.Orientation == Orientation.Vertical)
+            //{
+            //    _layoutRoot.Width = WIDTH_GRID * 2;// this needs to expand if we have message boxes
+            //}
+            //else
+            //{
+            //    _layoutRoot.Width = 425;// this needs to expand if we have message boxes
+            //}
+
+
+            _layoutRoot.ColumnSpacing = 0;// WIDTH_GRID_COLUMNSPACING;
+
+            // must construct additional columns or rows based on orientation and number
+            // keep 1.0 so it creates a ratio (double) for the width/height definitions
+            double ratio = 1.0 / URIs.Count;
+            if (this.Orientation == Orientation.Horizontal)
+            {
+                _layoutRoot.RowDefinitions.Add(new RowDefinition());
+                for (int i = 0; i < this.URIs.Count; i++)
+                {
+                    _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ratio, GridUnitType.Star) });
+                }
+            }
+            else
+            {
+                _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition());
+                for (int i = 0; i < this.URIs.Count; i++)
+                {
+                    _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ratio, GridUnitType.Star) });
+                }
+            }
+
+            // create the button style
+            Style buttonStyle = StyleHelper.GetApplicationStyle("AppSelectorButton");
+            // JN loop this area to create images and buttons based on list
+
+            for (int i = 0; i < this.URIs.Count; i++)
+            {
+                Grid grid = new Grid()
+                {
+                    Margin = new Thickness(0),
+                    Padding = new Thickness(0)
+                };
+                if (this.ShowMessages && this.Orientation == Orientation.Vertical)
+                {
+                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                }
+                // burgundy not selected image
+                ImagePair images = new ImagePair()
+                {
+                    //ID = i,
+                    Selected = new Image()
+                    {
+                        Source = new BitmapImage() { UriSource = new Uri(URIs[i].URI_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED },
+                        Width = WIDTH_IMAGE_SELECTED,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Opacity = 1.0
+                    },
+                    UnSelected = new Image()
+                    {
+                        Source = new BitmapImage() { UriSource = new Uri(URIs[i].URI_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL },
+                        Width = WIDTH_IMAGE_NOTSEL,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Opacity = 1.0
+                    }
+                };
+                Grid.SetRow(images.UnSelected, 0);
+                Grid.SetColumn(images.UnSelected, 0);
+                grid.Children.Add(images.UnSelected);
+                Grid.SetRow(images.Selected, 0);
+                Grid.SetColumn(images.Selected, 0);
+                grid.Children.Add(images.Selected);
+
+                if (this.Orientation == Orientation.Vertical && this.ShowMessages)
+                {
+                    TextBlock tbMessage = new TextBlock()
+                    {
+                        Text = URIs[i].Message,
+                        FontSize = 20,
+                        Opacity = 1,
+                        VerticalAlignment= VerticalAlignment.Center
+                    };
+                    Grid.SetRow(tbMessage, 0);
+                    Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
+                    grid.Children.Add(tbMessage);
+                }
+
+                this.ImagePairs.Add(i, images);
+                HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
+                // if we need to show messages then align left 
+                if (this.Orientation == Orientation.Vertical && this.ShowMessages)
+                {
+                    horizontalAlignment = HorizontalAlignment.Left;
+                }
+
+                AppSelectorButton sbButton = new AppSelectorButton()
+                {
+                    ID = i,
+                    Background = new SolidColorBrush(Colors.Transparent),
+                    HorizontalAlignment = horizontalAlignment,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Content = grid
+                };
+
+                if (null != buttonStyle) { sbButton.Style = buttonStyle; };
+                sbButton.Click += Selector_ButtonClick;
+                if (this.Orientation == Orientation.Horizontal)
+                {
+                    Grid.SetRow(sbButton, 0);
+                    Grid.SetColumn(sbButton, i);
+                }
+                else // vertical
+                {
+                    Grid.SetColumn(sbButton, 0);
+                    Grid.SetRow(sbButton, i);
+                }
+
+                _layoutRoot.Children.Add(sbButton);
+            }
+
+            // set up animations
+            _storyboardFadeIn = AnimationHelper.CreateEasingAnimation(_layoutRoot, "Opacity", 0.0, 0.0, 1.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+            _storyboardFadeOut = AnimationHelper.CreateEasingAnimation(_layoutRoot, "Opacity", 1.0, 1.0, 0.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+
+            this.UpdateUI();
+        }
+
+        private void Selector_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            AppSelectorButton sbButton = (AppSelectorButton)sender;
+            this.SelectedID = sbButton.ID;
+
+            // telemetry
+            //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+
+        }
+
+        private void UpdateUI()
+        {
+            // test the first image and return if it hasn't been created
+            if (null == this.ImagePairs[0].UnSelected) { return; }
+
+            for (int i = 0; i < this.ImagePairs.Count; i++)
+            {
+                if (this.SelectedID == i)
+                { // selected change opacity to 1 and unselected to 0
+                    this.ImagePairs[i].Selected.Opacity = 1;
+                    this.ImagePairs[i].UnSelected.Opacity = 0;
+                }
+                else
+                { // opposite
+                    this.ImagePairs[i].Selected.Opacity = 0;
+                    this.ImagePairs[i].UnSelected.Opacity = 1;
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region UI Helpers
+
+        #endregion
+
+
+        #region Code Helpers
+
+        #endregion
+    }
+}
