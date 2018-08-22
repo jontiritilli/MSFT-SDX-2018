@@ -1,0 +1,12 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SurfaceTestBed.Styles">
+
+    <GridLength x:Key="LeftMargin">80</GridLength>
+    <GridLength x:Key="TopMargin">80</GridLength>
+    <GridLength x:Key="RightMargin">80</GridLength>
+    <GridLength x:Key="BottomMargin">50</GridLength>
+
+    <GridLength x:Key="SpaceBelowHeader">30</GridLength>
+</ResourceDictionary>

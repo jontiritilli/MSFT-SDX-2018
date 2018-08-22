@@ -4,16 +4,40 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
     DataContext="{Binding FlipViewViewModel, Source={StaticResource Locator}}"
+    Style="{StaticResource PageStyle}"
+    xmlns:model="using:SurfaceTestBed.Models"
+    xmlns:views="using:SurfaceTestBed.Views"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <Grid>
+        <ctrl:FlipViewEx x:Uid="FlipViewPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_Page1">
+                <Frame>
+                    <views:Page1Page/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_Page2">
+                <Frame>
+                    <views:Page2Page/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_Page3">
+                <Frame>
+                    <views:Page3Page/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_Page4">
+                <Frame>
+                    <views:Page4Page/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_Page5">
+                <Frame>
+                    <views:Page5Page/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+        </ctrl:FlipViewEx>
     </Grid>
 </Page>

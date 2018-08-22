@@ -141,30 +141,6 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="PivotItem_FlipView.Header" xml:space="preserve">
-    <value>FlipView</value>
-    <comment>Pivot item header for FlipView</comment>
-  </data>
-  <data name="PivotItem_Page1.Header" xml:space="preserve">
-    <value>Page1</value>
-    <comment>Pivot item header for Page1</comment>
-  </data>
-  <data name="PivotItem_Page2.Header" xml:space="preserve">
-    <value>Page2</value>
-    <comment>Pivot item header for Page2</comment>
-  </data>
-  <data name="PivotItem_Page3.Header" xml:space="preserve">
-    <value>Page3</value>
-    <comment>Pivot item header for Page3</comment>
-  </data>
-  <data name="PivotItem_Page4.Header" xml:space="preserve">
-    <value>Page4</value>
-    <comment>Pivot item header for Page4</comment>
-  </data>
-  <data name="PivotItem_Page5.Header" xml:space="preserve">
-    <value>Page5</value>
-    <comment>Pivot item header for Page5</comment>
-  </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>

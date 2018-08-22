@@ -121,17 +121,13 @@
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
-    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\Page1ViewModel.cs" />
     <Compile Include="ViewModels\Page2ViewModel.cs" />
     <Compile Include="ViewModels\Page3ViewModel.cs" />
     <Compile Include="ViewModels\Page4ViewModel.cs" />
     <Compile Include="ViewModels\Page5ViewModel.cs" />
-    <Compile Include="ViewModels\PivotViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\FlipViewPage.xaml.cs">
-      <DependentUpon>FlipViewPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Page1Page.xaml.cs">
       <DependentUpon>Page1Page.xaml</DependentUpon>
     </Compile>
@@ -147,8 +143,8 @@
     <Compile Include="Views\Page5Page.xaml.cs">
       <DependentUpon>Page5Page.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="Views\FlipViewPage.xaml.cs">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +154,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Sizes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
@@ -178,9 +182,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FlipViewPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Page1Page.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -202,7 +206,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PivotPage.xaml">
+    <Page Include="Views\FlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -217,6 +221,7 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +243,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SDX.Toolkit\SDX.Toolkit\SDX.Toolkit.csproj">
+      <Project>{d8d62aad-a4a7-4653-a9e7-f52b1c9d26d8}</Project>
+      <Name>SDX.Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

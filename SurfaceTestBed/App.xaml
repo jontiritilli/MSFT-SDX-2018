@@ -15,6 +15,9 @@
 
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
                 <ResourceDictionary Source="/Styles/Page.xaml"/>
+
+                <ResourceDictionary Source="/Styles/Sizes.xaml"/>
+                <ResourceDictionary Source="/Styles/FlipView.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

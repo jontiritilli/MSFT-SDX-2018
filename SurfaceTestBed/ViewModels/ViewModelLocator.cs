@@ -17,7 +17,6 @@ namespace SurfaceTestBed.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            Register<PivotViewModel, PivotPage>();
             Register<FlipViewViewModel, FlipViewPage>();
             Register<Page1ViewModel, Page1Page>();
             Register<Page2ViewModel, Page2Page>();
@@ -37,8 +36,6 @@ namespace SurfaceTestBed.ViewModels
         public Page1ViewModel Page1ViewModel => ServiceLocator.Current.GetInstance<Page1ViewModel>();
 
         public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
-
-        public PivotViewModel PivotViewModel => ServiceLocator.Current.GetInstance<PivotViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 
