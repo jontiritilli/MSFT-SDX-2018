@@ -16,19 +16,23 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using SurfaceTestBed.Helpers;
+using SurfaceTestBed.Services;
 
 namespace SurfaceTestBed.Controls
 {
     public sealed partial class DialColorControl : UserControl
     {
         #region Private Members
-        private bool rightHanded;
+
         private byte[] bmpBytes = null;
         private BitmapDecoder dec;
-        private Border _layoutRoot = null;
-        private Grid _layoutGrid = null;
-        private UserControl _userControl = null;
+        private Border _layoutRoot;
+        private Canvas _dialRoot;
+        private Grid _dialGrid;
+        private Image _dialImage;
 
         #endregion
 
@@ -84,19 +88,11 @@ namespace SurfaceTestBed.Controls
             set { SetValue(RotationProperty, value); UpdateColorBrush(); }
         }
 
-        // Using a DependencyProperty as the backing store for Rotation.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty RotationProperty =
-            DependencyProperty.Register("Rotation", typeof(double), typeof(DialColorControl), new PropertyMetadata(0.0));
-
         public SolidColorBrush ColorBrush
         {
             get { return (SolidColorBrush)GetValue(ColorBrushProperty); }
             set { SetValue(ColorBrushProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for ColorBrush.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ColorBrushProperty =
-            DependencyProperty.Register("ColorBrush", typeof(SolidColorBrush), typeof(DialColorControl), new PropertyMetadata(new SolidColorBrush(Colors.White)));
 
         public Color GetPixel(byte[] pixels, int x, int y, uint width, uint height)
         {
@@ -109,53 +105,102 @@ namespace SurfaceTestBed.Controls
             return Color.FromArgb(255, r, g, b);
         }
 
-        //public DialColorControl()
-        //{
-        //    //this.InitializeComponent();
-        //    //handedness for on-screen UI
-        //    Windows.UI.ViewManagement.UISettings settings = new Windows.UI.ViewManagement.UISettings();
-        //    rightHanded = (settings.HandPreference == Windows.UI.ViewManagement.HandPreference.RightHanded);
-        //    //if left handed then rotate the entire control 180
-        //    if (!rightHanded)
-        //    {
-        //        RotateTransform trans = new RotateTransform();
-        //        trans.Angle = 180;
-        //        colorControl.RenderTransform = trans;
-        //    }
-        //}
+        #endregion
 
+        #region Dependency Properties
+
+        // Using a DependencyProperty as the backing store for ColorBrush.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ColorBrushProperty =
+            DependencyProperty.Register("ColorBrush", typeof(SolidColorBrush), typeof(DialColorControl), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+
+        // Using a DependencyProperty as the backing store for Rotation.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RotationProperty =
+            DependencyProperty.Register("Rotation", typeof(double), typeof(DialColorControl), new PropertyMetadata(0.0));
+
+        // ImageSource
+        public static readonly DependencyProperty ImageSourceProperty =
+            DependencyProperty.Register("ImageSource", typeof(string), typeof(DialColorControl), new PropertyMetadata(null, OnImageSourceChanged));
+
+        public string ImageSource
+        {
+            get { return (string)GetValue(ImageSourceProperty); }
+            set { SetValue(ImageSourceProperty, value); }
+        }
+
+        // ImageWidth
+        public static readonly DependencyProperty ImageWidthProperty =
+            DependencyProperty.Register("ImageWidth", typeof(double), typeof(DialColorControl), new PropertyMetadata(0d, OnImageWidthChanged));
+
+        public double ImageWidth
+        {
+            get { return (double)GetValue(ImageWidthProperty); }
+            set { SetValue(ImageWidthProperty, value); }
+        }
         #endregion
 
         #region UI Methods
 
-        public RenderUI()
+        private void RenderUI()
         {
-            // get the layoutroot
-            _layoutRoot = (Canvas)this.GetTemplateChild("dialCanvas");
-            if (null == _layoutRoot) { return; }
+            // get the layout base (a canvas here)
+            _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
 
-            UserControl dialDisplay = new UserControl();
-            _layoutRoot.Children.Add(UserControl dialDisplay)
+            // if we can't get the layout root, we can't do anything
+            if (null == _layoutRoot)
+            {
+                return;
+            }
+
+            // if we have a valid image source and width
+            if (!String.IsNullOrWhiteSpace(this.ImageSource))
+            {
+                BitmapImage bitmapImage = null;
+
+                // if the image source doesn't start with "ms-appx:", then we need to look for it in the
+                // local folder and load it from there.
+                // set image source; if the image is an app asset
+                if (this.ImageSource.StartsWith(@"ms-appx:"))
+                {
+                    // just set the image source
+                    bitmapImage = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth };
+                }
+                else
+                {
+                    // get a reference to the file from local storage (IdleContent)
+                    StorageFile bitmapFile = ConfigurationService.Current.GetFileFromLocalStorage(this.ImageSource);
+
+                    // if we got it
+                    if (null != bitmapFile)
+                    {
+                        bitmapImage = new BitmapImage() { DecodePixelWidth = (int)this.ImageWidth };
+
+                        // otherwise we need to load from the filesystem
+                        AsyncHelper.RunSync(() => LoadBitmapFromFileAsync(bitmapImage, bitmapFile));
+                    }
+                }
+
+                // create the image
+                _dialImage = new Image()
+                {
+                    Source = bitmapImage,
+                    Name = "ColorRingImage",
+                    Width = this.ImageWidth,
+                    HorizontalAlignment = this.HorizontalContentAlignment,
+                    VerticalAlignment = this.VerticalContentAlignment,
+                    Opacity = 0.0d
+                };
+
+
+                // add the image to the layout root
+                _layoutRoot.Child = _dialImage;
+            }
+            //    <Grid>
+            //        <Image x:Name="ColorRingImage"  Source="ms-appx:///Assets/custom_visual_colour_wheel.png" RenderTransformOrigin="0.5,0.5" >
+            //            <Image.RenderTransform>
+            //                <CompositeTransform Rotation = "{Binding Rotation, ElementName=colorControl}" />
+            //            </ Image.RenderTransform >
+            //        </ Image >
+            //    </ Grid >
+            #endregion
         }
-        <UserControl x:Name="colorControl"
-            x:Class="DialDemo.Controls.DialColorControl"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            mc:Ignorable="d"
-            d:DesignHeight="300"
-            d:DesignWidth="300"
-            RenderTransformOrigin="0.5,0.5">
-
-            <Grid>
-                <Image x:Name="ColorRingImage"  Source="ms-appx:///Assets/custom_visual_colour_wheel.png" RenderTransformOrigin="0.5,0.5" >
-                    <Image.RenderTransform>
-                        <CompositeTransform Rotation = "{Binding Rotation, ElementName=colorControl}" />
-                    </ Image.RenderTransform >
-                </ Image >
-            </ Grid >
-        </ UserControl >
-        #endregion
-    }
 }

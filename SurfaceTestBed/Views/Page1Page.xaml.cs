@@ -42,6 +42,7 @@ namespace SurfaceTestBed.Views
 
             TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
 
+            // Remove standard menu items
             RadialControllerConfiguration myConfiguration = RadialControllerConfiguration.GetForCurrentView();
             myConfiguration.SetDefaultMenuItems(new RadialControllerSystemMenuItemKind[] { });
 
@@ -61,7 +62,6 @@ namespace SurfaceTestBed.Views
 
             // Add the custom tool to the RadialController menu.
             myController.Menu.Items.Add(screenColorMenuItem);
-
             //screenColorMenuItem.Invoked += ColorMenuItem_Invoked;
 
             myController.ScreenContactStarted += MyController_ScreenContactStarted;
@@ -138,12 +138,6 @@ namespace SurfaceTestBed.Views
         {
             Debug.WriteLine("Item invoked");
             myController.Menu.IsEnabled = false;
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            myController.Menu.Items.Remove(screenColorMenuItem);
-            Frame.GoBack();
         }
     }
 }
