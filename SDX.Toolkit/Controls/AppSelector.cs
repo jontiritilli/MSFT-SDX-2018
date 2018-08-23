@@ -10,6 +10,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
+using Windows.Media;
+
+
 namespace SDX.Toolkit.Controls
 {
     // determines if the image pair rendering code will fire or if the line drawing code will fire
@@ -19,12 +23,34 @@ namespace SDX.Toolkit.Controls
         App
     }
 
+
+    #region classes
+    public class AppSelectorButton : Button
+    {
+        public int ID = 0;        
+    }
+    public class AppSelectorData
+    {
+        public string URI_SelectedImage = "";
+        public string URI_NotSelectedImage = "";
+        public string Message;
+    }
+    public class ImagePair
+    {
+        public int ID = 0;
+        public Image Selected = new Image();
+        public Image UnSelected = new Image();
+
+    }
+    #endregion
+
     public sealed class AppSelector : Control
     {
         #region Private Constants
         
         private const double WIDTH_GRID = 340d;
         private const double WIDTH_GRID_COLUMNSPACING = 10d;
+        private const double WIDTH_GRID_ROWSPACING = 10d;
         private const double WIDTH_IMAGE_SELECTED = 62d;
         private const double WIDTH_IMAGE_NOTSEL = 50d;
 
@@ -37,31 +63,15 @@ namespace SDX.Toolkit.Controls
         private Storyboard _storyboardFadeIn = null;
         private Storyboard _storyboardFadeOut = null;
         private int _syncID = -1;// cant be 0 b/c 0 is first part of index in list
-
+        private List<AppSelectorButton> Buttons;
+        private Line selectedLine = new Line();
+        private AppSelectorButton SelectedButton;
+        private TranslateTransform translateTransform = new TranslateTransform();
+        private Storyboard storyboard = new Storyboard();
+        private DoubleAnimation daAnimation = new DoubleAnimation();
         #endregion
 
         #region Construction
-
-
-        #region classes
-        public class AppSelectorButton : Button
-        {
-            public int ID = 0;
-        }
-        public class AppSelectorData
-        {
-            public string URI_SelectedImage = "";
-            public string URI_NotSelectedImage = "";
-            public string Message;
-        }
-        public class ImagePair
-        {
-            public int ID = 0;
-            public Image Selected = new Image();
-            public Image UnSelected = new Image();
-
-        }
-        #endregion
 
         /*  NOTE FOR DEVELOPER USING THIS*** 
         // up to the consumer (u) to feed the data for messages and images shown
@@ -118,6 +128,7 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(AppSelector);
             this.Loaded += OnLoaded;
             this.ImagePairs = new Dictionary<int, ImagePair>();
+            this.Buttons = new List<AppSelectorButton>();
 
 
             // inherited dependency property
@@ -200,8 +211,14 @@ namespace SDX.Toolkit.Controls
         public List<AppSelectorData> URIs { get; set; }
         public Orientation Orientation = Orientation.Horizontal;
         public bool ShowMessages = false;
+
+        //changes the render to handle changing opacity on 2 images or leaving 1
         public SelectorMode AppSelectorMode = SelectorMode.Color;
 
+        // for the selected line
+        public int ButtonHeight = 0;
+        public int ButtonWidth = 0;// default. if 0 let the control set its own dimensions
+        public bool ShowSelectedLine = false;
         #endregion
 
         #region Dependency Properties
@@ -354,7 +371,8 @@ namespace SDX.Toolkit.Controls
         {
             // get the layout base (a canvas here)
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
-
+            
+            
             // if we can't get the layout root, we can't do anything
             if (null == _layoutRoot) { return; }
 
@@ -362,13 +380,14 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Name = "AppSelectorGrid";
             _layoutRoot.Opacity = 1;// why is this 0 instead of 1?
 
-            _layoutRoot.ColumnSpacing = 10;// WIDTH_GRID_COLUMNSPACING;
+            
 
             // must construct additional columns or rows based on orientation and number
             // keep 1.0 so it creates a ratio (double) for the width/height definitions
             double ratio = 1.0 / URIs.Count;
             if (this.Orientation == Orientation.Horizontal)
             {
+                _layoutRoot.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
                 _layoutRoot.RowDefinitions.Add(new RowDefinition());
                 for (int i = 0; i < this.URIs.Count; i++)
                 {
@@ -377,6 +396,7 @@ namespace SDX.Toolkit.Controls
             }
             else
             {
+                _layoutRoot.RowSpacing = WIDTH_GRID_ROWSPACING;
                 _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition());
                 for (int i = 0; i < this.URIs.Count; i++)
                 {
@@ -441,7 +461,7 @@ namespace SDX.Toolkit.Controls
                     Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                     grid.Children.Add(tbMessage);
                 }
-
+                
                 this.ImagePairs.Add(i, images);
                 HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
                 // if we need to show messages then align left 
@@ -456,9 +476,21 @@ namespace SDX.Toolkit.Controls
                     Background = new SolidColorBrush(Colors.Transparent),
                     HorizontalAlignment = horizontalAlignment,
                     VerticalAlignment = VerticalAlignment.Center,
-                    Content = grid
+                    Content = grid                    
                 };
+                //only set the dimensions of the button if the control variables are passed in
+                // and the orientation is correct
+                if (this.ButtonHeight > 0)
+                {
+                    sbButton.Height = this.ButtonHeight;
+                }
 
+                // if u need to show messages, dont set the width b/c theres no way to figure out the width 
+                // if there is text
+                if (this.ButtonWidth > 0 && (!this.ShowMessages && !(this.Orientation == Orientation.Vertical)))
+                {
+                    sbButton.Width = this.ButtonWidth;
+                }
                 if (null != buttonStyle) { sbButton.Style = buttonStyle; };
                 sbButton.Click += Selector_ButtonClick;
                 if (this.Orientation == Orientation.Horizontal)
@@ -471,8 +503,63 @@ namespace SDX.Toolkit.Controls
                     Grid.SetColumn(sbButton, 0);
                     Grid.SetRow(sbButton, i);
                 }
-
+                this.Buttons.Add(sbButton);
                 _layoutRoot.Children.Add(sbButton);
+            }
+
+            if (this.ShowSelectedLine)
+            {
+                //int margin = 5;
+                selectedLine.StrokeThickness = 10;
+                if (this.Orientation == Orientation.Vertical)
+                {                    
+                    selectedLine.X1 = 10;
+                    selectedLine.Y1 = 4;
+
+                    selectedLine.X2 = 10;
+                    selectedLine.Y2 = this.ButtonHeight + 4;
+                }
+                if (this.Orientation == Orientation.Horizontal)
+                {                    
+                    selectedLine.X1 = 5;
+                    selectedLine.Y1 = this.ButtonHeight + 6;
+
+                    selectedLine.X2 = this.ButtonWidth + 14;// border thickness for some reason 2 on both sides
+                    selectedLine.Y2 = this.ButtonHeight + 6;
+                }
+
+
+                selectedLine.Stroke = new SolidColorBrush(Colors.LightSteelBlue);
+                selectedLine.Fill = new SolidColorBrush(Colors.LightSteelBlue);
+                _layoutRoot.Children.Add(selectedLine);
+
+                this.SelectedButton = this.Buttons[0];// set the first button as the selected button for line moving
+
+                // need sine easing
+                SineEase sineEaseIn = new SineEase()
+                {
+                    EasingMode = EasingMode.EaseIn
+                };
+                // set this once here and forget it. 
+                this.selectedLine.RenderTransform = this.translateTransform;
+                Duration duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
+                daAnimation = new DoubleAnimation()
+                {
+                    Duration = duration,
+                    EasingFunction = sineEaseIn
+                };
+
+                this.storyboard.Children.Add(daAnimation);
+                Storyboard.SetTarget(daAnimation, this.translateTransform);
+                if (this.Orientation == Orientation.Horizontal)
+                {
+                    Storyboard.SetTargetProperty(daAnimation, "X");
+                }
+                if (this.Orientation == Orientation.Vertical)
+                {
+                    Storyboard.SetTargetProperty(daAnimation, "Y");
+                }
+
             }
 
             // set up animations
@@ -484,12 +571,44 @@ namespace SDX.Toolkit.Controls
 
         private void Selector_ButtonClick(object sender, RoutedEventArgs e)
         {
-            AppSelectorButton sbButton = (AppSelectorButton)sender;
+            AppSelectorButton sbButton = (AppSelectorButton)sender;                    
+            if (this.ShowSelectedLine && this.SelectedButton.ID != sbButton.ID)
+            {// transform the line so it moves to underneath the sender
+                this.Selector_SlideLine(sbButton);
+            }
             this.SelectedID = sbButton.ID;
-
+            this.SelectedButton = sbButton;
+                        
             // telemetry
             //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
 
+        }
+
+        private void Selector_SlideLine(AppSelectorButton End)
+        {
+            /** how this place works
+                // transform the line so it moves to underneath the sender
+                // make sure it cant go less than the first button and past the last button
+                //calculate move distance based on orientation and how many button widths away to move
+                *** SPECIAL NOTE if u storyboard a  translatetransform with a double animation, the
+                the translatetransform gets no value and the animation gets it instead in the To prop
+            */
+            int iDistanceInButtons = End.ID;
+            int iDistance;               
+            
+            // move left or right
+            if (this.Orientation == Orientation.Horizontal)
+            {
+                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * ((int)WIDTH_GRID_COLUMNSPACING + 10));
+            }
+
+            // move up or down
+            else //if (this.Orientation == Orientation.Vertical)
+            {
+                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * ((int)WIDTH_GRID_ROWSPACING) + 4);
+            }
+            daAnimation.To = iDistance;
+            this.storyboard.Begin();
         }
 
         private void UpdateUI()
