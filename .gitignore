@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs
+/Testbed/.vs/SurfaceTestBed
+/Testbed/SurfaceTestBed/obj/ARM/Debug
+/Testbed/SurfaceTestBed/obj/ARM/Release
+/Testbed/SurfaceTestBed/obj/x64/Debug
+/Testbed/SurfaceTestBed/obj/x64/Release
+/Testbed/SurfaceTestBed/obj/x86
