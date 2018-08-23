@@ -109,6 +109,7 @@
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
+    <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\SwipeLeft.cs" />
     <Compile Include="Controls\SwipeToContinue.cs" />
     <Compile Include="Controls\TextLine.cs" />
@@ -118,6 +119,8 @@
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="Models\NavigationPage.cs" />
+    <Compile Include="Models\NavigationSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\SDX.Toolkit.rd.xml" />
   </ItemGroup>
@@ -132,9 +135,7 @@
       <Version>5.4.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Styles\TextBlock.xaml">
       <SubType>Designer</SubType>
