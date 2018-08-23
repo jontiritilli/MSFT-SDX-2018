@@ -48,11 +48,7 @@
                        AutoStart="True"/>
 
         <ctrl:SurfaceDial x:Name="Dial" Loaded="OnLoaded" />
-        <Canvas x:Name="DialCanvas" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" >
-            <Image
-                Source="ms-appx:///Assets/custom_visual_color_wheel.png"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" />
+        <Canvas x:Name="DialCanvas">
         </Canvas>
     </Grid>
 

@@ -74,6 +74,7 @@ namespace SurfaceTestBed.Views
 
             _myController.RotationChanged += OnControllerRotationChanged;
         }
+
         private async void OnControllerScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -83,6 +84,9 @@ namespace SurfaceTestBed.Views
                     _dialControl = new SurfaceDial();
                     DialCanvas.Children.Add(_dialControl);
                 }
+
+                _dialControl.Width = 500;
+                _dialControl.Height = 500;
 
                 Canvas.SetLeft(_dialControl, args.Contact.Position.X - 200);
                 Canvas.SetTop(_dialControl, args.Contact.Position.Y - 200);
