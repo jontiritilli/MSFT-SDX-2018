@@ -128,13 +128,18 @@ namespace SDX.Toolkit.Controls
             // event handlers
             this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
-            this.KeyUp += BottomNavBar_OnKeyUp;
+            this.KeyUp += NavigationBar_OnKeyUp;
 
             // set default properties
             this.SelectedSection = null;
             this.SelectedPage = null;
             this.CanGoBack = false;
             this.CanGoForward = true;
+
+            if (null == this.NavigationSections)
+            {
+                this.NavigationSections = new List<NavigationSection>();
+            }
         }
 
         protected override void OnApplyTemplate()
@@ -164,7 +169,7 @@ namespace SDX.Toolkit.Controls
 
         // NavigationSections
         public static readonly DependencyProperty NavigationSectionsProperty =
-            DependencyProperty.Register("NavigationSections", typeof(List<NavigationSection>), typeof(NavigationBar), new PropertyMetadata(null, OnNavigationSectionsChanged));
+            DependencyProperty.Register("NavigationSections", typeof(List<NavigationSection>), typeof(NavigationBar), new PropertyMetadata(new List<NavigationSection>(), OnNavigationSectionsChanged));
 
         public List<NavigationSection> NavigationSections
         {
@@ -285,7 +290,7 @@ namespace SDX.Toolkit.Controls
         //    base.OnPreviewKeyUp(e);
         //}
 
-        private void BottomNavBar_OnKeyUp(object sender, KeyRoutedEventArgs e)
+        private void NavigationBar_OnKeyUp(object sender, KeyRoutedEventArgs e)
         {
             e.Handled = HandleKey(e.Key);
         }
