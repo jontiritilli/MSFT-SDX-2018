@@ -112,6 +112,7 @@
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
     <Compile Include="Controls\NavigationBar.cs" />
+    <Compile Include="Controls\SurfaceDial.cs" />
     <Compile Include="Controls\SwipeLeft.cs" />
     <Compile Include="Controls\SwipeToContinue.cs" />
     <Compile Include="Controls\TextLine.cs" />
