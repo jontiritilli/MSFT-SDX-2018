@@ -264,7 +264,7 @@ namespace SDX.Toolkit.Controls
                 _wordStoryboard.Children.Add(CreateFadeIn(word, start, end, startDelay, durationPerWord));
 
                 // recalculate start and end
-                start = end;
+                start = end + 1;
                 end = start + durationPerWord - 1;
             }
 
@@ -277,7 +277,7 @@ namespace SDX.Toolkit.Controls
 
         private DoubleAnimationUsingKeyFrames CreateFadeIn(TextBlock target, double startTime, double endTime, double startDelay, double duration)
         {
-            double totalDuration = startDelay + duration;
+            double totalDuration = startDelay + startTime + duration;
 
             DoubleAnimationUsingKeyFrames _frames = new DoubleAnimationUsingKeyFrames()
             {
@@ -288,21 +288,21 @@ namespace SDX.Toolkit.Controls
             };
 
             // create frame 0; only used if the start time > zero
-            DiscreteDoubleKeyFrame _frame0 = new DiscreteDoubleKeyFrame
+            DiscreteDoubleKeyFrame _frame0 = new DiscreteDoubleKeyFrame()
             {
                 KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0)),
                 Value = 0d
             };
 
             // create frame 1 (start point)
-            DiscreteDoubleKeyFrame _frame1 = new DiscreteDoubleKeyFrame
+            DiscreteDoubleKeyFrame _frame1 = new DiscreteDoubleKeyFrame()
             {
                 KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(startTime + startDelay)),
                 Value = 0d
             };
 
             // create frame 2 (end point)
-            LinearDoubleKeyFrame _frame2 = new LinearDoubleKeyFrame
+            LinearDoubleKeyFrame _frame2 = new LinearDoubleKeyFrame()
             {
                 KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(endTime + startDelay)),
                 Value = 1d
