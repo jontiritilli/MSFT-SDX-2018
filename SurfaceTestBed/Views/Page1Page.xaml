@@ -28,6 +28,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        
 
         <Grid.Background>
             <ImageBrush ImageSource="ms-appx:///Assets/Backgrounds/Page1.jpg"/>
@@ -71,6 +72,9 @@
                     StaggerDelayInMilliseconds="0"
                     AutoStart="True"/>-->
 
+        <ctrl:SurfaceDial x:Name="Dial" Loaded="OnLoaded" />
+        <Canvas x:Name="DialCanvas">
+        </Canvas>
     </Grid>
 
 </Page>

@@ -114,6 +114,7 @@
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
+    <Compile Include="Helpers\SelectedBrushConverter.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
@@ -230,6 +231,9 @@
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow.png" />
+    <Content Include="Assets\custom_visual_colour_picker2.png" />
+    <Content Include="Assets\custom_visual_color_wheel.png" />
+    <Content Include="Assets\dial_icon_custom_visual.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
