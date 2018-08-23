@@ -3,7 +3,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrl="using:SDX.Toolkit.Controls">
 
-  <Style TargetType="ctrl:Hero">
+    <Style TargetType="ctrl:NavigationBar">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:NavigationBar">
+                    <Grid x:Name="LayoutRoot" Background="Black" Margin="0,0,0,0"/>
+                    <!--Needs to fill 80epx high --><!--
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas Height="6" Grid.Row="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
+                        <Line Name="ProgressLine" Stroke="White" StrokeThickness="6" X1="0" Y1="3" X2="0" Y2="3" Margin="0,0,0,0"></Line>
+                    </Canvas>-->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:Hero">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="ctrl:Hero">
