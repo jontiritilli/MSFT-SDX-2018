@@ -38,6 +38,14 @@
                    StaggerDelayMilliseconds="400"
                    AutoStart="True" />
 
+        <ctrl:SwipeLeft x:Name="SwipeLeft" Grid.Row="5" Grid.Column="1"
+                        SwipeText="{x:Bind Path=ViewModel.SwipeLeft}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        DurationInMilliseconds="200"
+                        StaggerDelayInMilliseconds="3000"
+                        AutoStart="True"/>
+
         <!--<ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                      Headline="{x:Bind Path=ViewModel.Headline}"
                      Lede="{x:Bind Path=ViewModel.Lede}"
