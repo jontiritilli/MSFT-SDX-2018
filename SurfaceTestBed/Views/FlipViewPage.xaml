@@ -11,8 +11,29 @@
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
 
-    <Grid>
-        <ctrl:FlipViewEx x:Uid="FlipViewPage">
+    <Grid Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- Column definitions are for Close button -->
+        <!-- FlipView occupies two columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="46"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Host FlipView-->
+        <ctrl:FlipViewEx x:Name="ContentFlipView"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Margin="0"
+               Padding="0"
+               Background="Transparent"
+               AllowFocusOnInteraction="False"
+               Loaded="FlipViewEx_Loaded"
+               SelectionChanged="FlipViewEx_SelectionChanged">
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_Page1">
                 <Frame>
                     <views:Page1Page/>
@@ -39,5 +60,23 @@
                 </Frame>
             </ctrl:FlipViewItemEx>
         </ctrl:FlipViewEx>
+
+        <!-- App Close button -->
+        <!--
+        <Button x:Name="AppClose" Grid.Row="0" Grid.Column="1" Width="46" Height="32" Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right" Style="{StaticResource NoInteractionButton}" Click="AppClose_Click">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.1" />
+            </Button.Background>
+            <Button.Content>
+                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
+            </Button.Content>
+        </Button>-->
+
+        <!-- Bottom Nav Bar -->
+        <ctrl:NavigationBar x:Name="BottomNavBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                           Height="80"
+                           Navigate="BottomNavBar_OnNavigation">
+        </ctrl:NavigationBar>
+
     </Grid>
 </Page>
