@@ -18,7 +18,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using SurfaceTestBed.Controls;
+using Windows.UI.Xaml.Media.Imaging;
+using SDX.Toolkit.Controls;
 
 namespace SurfaceTestBed.Views
 {
@@ -27,9 +28,10 @@ namespace SurfaceTestBed.Views
     /// </summary>
     public sealed partial class Page1Page : Page
     {
-        private RadialController myController;
-        private RadialControllerMenuItem screenColorMenuItem;
-        private DialColorControl dialControl;
+
+        private RadialController _myController;
+        private SurfaceDial _dialControl;
+        private RadialControllerMenuItem _screenColorMenuItem;
 
         private Page1ViewModel ViewModel
         {
@@ -40,104 +42,96 @@ namespace SurfaceTestBed.Views
         {
             this.InitializeComponent();
 
-            TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            // Create a reference to the RadialController.
+            _myController = RadialController.CreateForCurrentView();
 
             // Remove standard menu items
-            RadialControllerConfiguration myConfiguration = RadialControllerConfiguration.GetForCurrentView();
-            myConfiguration.SetDefaultMenuItems(new RadialControllerSystemMenuItemKind[] { });
-
-            // Create a reference to the RadialController.
-            myController = RadialController.CreateForCurrentView();
-
-            // Disable standard menu??
-            myController.Menu.IsEnabled = false;
+            RadialControllerConfiguration _dialConfiguration = RadialControllerConfiguration.GetForCurrentView();
+            _dialConfiguration.SetDefaultMenuItems(new RadialControllerSystemMenuItemKind[] { });
 
             // Create an icon for the custom tool.
             RandomAccessStreamReference icon =
-              RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/dial_icon_custom_visual.png"));
+                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/dial_icon_custom_visual.png"));
 
             // Create a menu item for the custom tool.
-            screenColorMenuItem =
-              RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
+            _screenColorMenuItem =
+                RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
 
             // Add the custom tool to the RadialController menu.
-            myController.Menu.Items.Add(screenColorMenuItem);
+            _myController.Menu.Items.Add(_screenColorMenuItem);
+
             //screenColorMenuItem.Invoked += ColorMenuItem_Invoked;
 
-            myController.ScreenContactStarted += MyController_ScreenContactStarted;
-            myController.ScreenContactContinued += MyController_ScreenContactContinued;
-            myController.ScreenContactEnded += MyController_ScreenContactEnded;
+            _myController.ScreenContactStarted += OnControllerScreenContactStarted;
 
-            myController.RotationChanged += MyController_RotationChanged;
+            _myController.ScreenContactContinued += OnControllerScreenContactContinued;
+
+            _myController.ScreenContactEnded += OnControllerScreenContactEnded;
+
+            _myController.RotationChanged += OnControllerRotationChanged;
         }
-
-        private async void MyController_ScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
+        private async void OnControllerScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                if (null == dialControl)
+                if (null == _dialControl)
                 {
-                    dialControl = new Controls.DialColorControl();
-                    DialCanvas.Children.Add(dialControl);
+                    _dialControl = new SurfaceDial();
+                    DialCanvas.Children.Add(_dialControl);
                 }
 
-                dialControl.Width = 500;
-                dialControl.Height = 500;
+                Canvas.SetLeft(_dialControl, args.Contact.Position.X - 200);
+                Canvas.SetTop(_dialControl, args.Contact.Position.Y - 200);
 
-                Canvas.SetLeft(dialControl, args.Contact.Position.X - 250);
-                Canvas.SetTop(dialControl, args.Contact.Position.Y - 250);
-
-                dialControl.Visibility = Visibility.Visible;
+                _dialControl.Visibility = Visibility.Visible;
             });
         }
 
-        private async void MyController_ScreenContactContinued(RadialController sender, RadialControllerScreenContactContinuedEventArgs args)
+        private async void OnControllerScreenContactContinued(RadialController sender, RadialControllerScreenContactContinuedEventArgs args)
         {
-            if (null != dialControl)
+            if (null != _dialControl)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    Canvas.SetLeft(dialControl, args.Contact.Position.X - 250);
-                    Canvas.SetTop(dialControl, args.Contact.Position.Y - 250);
+                    Canvas.SetLeft(_dialControl, args.Contact.Position.X - 200);
+                    Canvas.SetTop(_dialControl, args.Contact.Position.Y - 200);
                 });
             }
         }
 
-        private async void MyController_ScreenContactEnded(RadialController sender, object args)
+        private async void OnControllerScreenContactEnded(RadialController sender, object args)
         {
-            if (null != dialControl)
+            if (null != _dialControl)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    dialControl.Visibility = Visibility.Collapsed;
+                    _dialControl.Visibility = Visibility.Collapsed;
                 });
             }
         }
 
-        private async void MyController_RotationChanged(RadialController sender, RadialControllerRotationChangedEventArgs args)
+        private async void OnControllerRotationChanged(RadialController sender, RadialControllerRotationChangedEventArgs args)
         {
-            if (null != dialControl)
+            if (null != _dialControl)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    dialControl.Rotation += args.RotationDeltaInDegrees;
-                    if (dialControl.Rotation > 0)
+                    _dialControl.Rotation += args.RotationDeltaInDegrees;
+                    if (_dialControl.Rotation > 0)
                     {
-                        dialControl.Rotation = 0;
+                        _dialControl.Rotation = 0;
                     }
-                    else if (dialControl.Rotation < -315)
+                    else if (_dialControl.Rotation < -315)
                     {
-                        dialControl.Rotation = -315;
+                        _dialControl.Rotation = -315;
                     }
-                    LayoutRoot.Background = dialControl.ColorBrush;
+                    LayoutRoot.Background = _dialControl.ColorBrush;
                 });
             }
-        }
-
-        private void ColorMenuItem_Invoked(RadialControllerMenuItem sender, object args)
-        {
-            Debug.WriteLine("Item invoked");
-            myController.Menu.IsEnabled = false;
         }
     }
 }

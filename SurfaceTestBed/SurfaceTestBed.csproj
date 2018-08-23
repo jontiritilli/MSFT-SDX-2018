@@ -112,7 +112,6 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
-    <Compile Include="Controls\DialColorControl.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SelectedBrushConverter.cs" />
@@ -223,11 +222,12 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\custom_visual_colour_picker2.png" />
-    <Content Include="Assets\custom_visual_colour_wheel.png" />
+    <Content Include="Assets\custom_visual_color_wheel.png" />
     <Content Include="Assets\dial_icon_custom_visual.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
