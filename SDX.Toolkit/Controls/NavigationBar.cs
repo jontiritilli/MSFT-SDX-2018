@@ -508,7 +508,7 @@ namespace SDX.Toolkit.Controls
 
                     // set inherited Grid properties
                     Grid.SetRow(_navHome, MenuItemRow);
-                    Grid.SetColumn(_navHome, this.NavigationSections.Count - 1);
+                    Grid.SetColumn(_navHome, this.NavigationSections.Count + 3);
 
                     // add the Click event handler
                     _navHome.Click += this.NavItem_Click;
