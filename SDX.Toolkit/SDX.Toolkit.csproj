@@ -106,14 +106,24 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\AppSelector.cs" />
+    <Compile Include="Controls\AppSelectorImage.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
+    <Compile Include="Controls\Hero.cs" />
+    <Compile Include="Controls\NavigationBar.cs" />
+    <Compile Include="Controls\SurfaceDial.cs" />
+    <Compile Include="Controls\SwipeLeft.cs" />
+    <Compile Include="Controls\SwipeToContinue.cs" />
     <Compile Include="Controls\TextLine.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\PropertyChangeEventSource.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="Models\NavigationPage.cs" />
+    <Compile Include="Models\NavigationSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\SDX.Toolkit.rd.xml" />
   </ItemGroup>
@@ -128,10 +138,12 @@
       <Version>5.4.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\TextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
