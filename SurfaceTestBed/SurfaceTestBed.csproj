@@ -225,6 +225,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />
