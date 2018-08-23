@@ -3,6 +3,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrl="using:SDX.Toolkit.Controls">
 
+  <Style TargetType="ctrl:Hero">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ctrl:Hero">
+          <Border
+              x:Name="LayoutRoot"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}">
+            <StackPanel x:Name="RowMaster" Orientation="Vertical">
+            </StackPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
     <Style TargetType="ctrl:Header">
         <Setter Property="Template">
             <Setter.Value>
@@ -32,7 +49,37 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+  <Style TargetType="ctrl:SwipeLeft">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ctrl:SwipeLeft">
+          <Grid
+              x:Name="LayoutRoot"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}">
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+    <Style TargetType="ctrl:SwipeToContinue">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:SwipeToContinue">
+                    <Grid
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="ctrl:FlipViewEx">
         <Setter Property="Background" Value="{ThemeResource FlipViewBackground}"/>
         <Setter Property="BorderThickness" Value="0"/>

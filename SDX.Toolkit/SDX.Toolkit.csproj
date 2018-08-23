@@ -108,12 +108,16 @@
   <ItemGroup>
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
+    <Compile Include="Controls\Hero.cs" />
+    <Compile Include="Controls\SwipeLeft.cs" />
+    <Compile Include="Controls\SwipeToContinue.cs" />
     <Compile Include="Controls\TextLine.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\PropertyChangeEventSource.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Helpers\WindowHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\SDX.Toolkit.rd.xml" />
   </ItemGroup>
