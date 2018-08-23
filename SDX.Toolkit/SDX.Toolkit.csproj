@@ -107,6 +107,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controls\AppSelector.cs" />
+    <Compile Include="Controls\AppSelectorImage.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\TextLine.cs" />

@@ -12,6 +12,13 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 namespace SDX.Toolkit.Controls
 {
+    // determines if the image pair rendering code will fire or if the line drawing code will fire
+    public enum SelectorMode
+    {
+        Color,
+        App
+    }
+
     public sealed class AppSelector : Control
     {
         #region Private Constants
@@ -23,22 +30,15 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Private Members
 
-        private Grid _layoutRoot = null;
-        public List<AppSelectorData> URIs;
-        private Dictionary<int, ImagePair> ImagePairs;
-        public Orientation Orientation = Orientation.Horizontal;
-        public bool ShowMessages = false;
-
+        private Grid _layoutRoot = null;        
+        private Dictionary<int, ImagePair> ImagePairs;                
         private Storyboard _storyboardFadeIn = null;
         private Storyboard _storyboardFadeOut = null;
-
-        private int _syncID = 0;
+        private int _syncID = -1;// cant be 0 b/c 0 is first part of index in list
 
         #endregion
-
 
         #region Construction
 
@@ -62,7 +62,8 @@ namespace SDX.Toolkit.Controls
 
         }
         #endregion
-        /*  NOTE FOR DEVELOPER USING THIS*** POP POP
+
+        /*  NOTE FOR DEVELOPER USING THIS*** 
         // up to the consumer (u) to feed the data for messages and images shown
         // set orientation to vertical to put buttons on top of each other
         // set ShowMessages to true to show messages
@@ -194,8 +195,12 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Public Properties
-
+        // pass me in at init to define me pls
         public string TelemetryId { get; set; }
+        public List<AppSelectorData> URIs { get; set; }
+        public Orientation Orientation = Orientation.Horizontal;
+        public bool ShowMessages = false;
+        public SelectorMode AppSelectorMode = SelectorMode.Color;
 
         #endregion
 
@@ -302,7 +307,7 @@ namespace SDX.Toolkit.Controls
                 if (selector.SelectedID != selector._syncID)
                 {
                     // reset the sync ID
-                    selector._syncID = 0;
+                    selector._syncID = -1;
 
                     // raise the selected color changed event
                     selector.RaiseSelectedIDChangedEvent(selector);
@@ -356,17 +361,8 @@ namespace SDX.Toolkit.Controls
             // update the grid
             _layoutRoot.Name = "AppSelectorGrid";
             _layoutRoot.Opacity = 1;// why is this 0 instead of 1?
-            //if (this.ShowMessages && this.Orientation == Orientation.Vertical)
-            //{
-            //    _layoutRoot.Width = WIDTH_GRID * 2;// this needs to expand if we have message boxes
-            //}
-            //else
-            //{
-            //    _layoutRoot.Width = 425;// this needs to expand if we have message boxes
-            //}
 
-
-            _layoutRoot.ColumnSpacing = 0;// WIDTH_GRID_COLUMNSPACING;
+            _layoutRoot.ColumnSpacing = 10;// WIDTH_GRID_COLUMNSPACING;
 
             // must construct additional columns or rows based on orientation and number
             // keep 1.0 so it creates a ratio (double) for the width/height definitions
@@ -404,7 +400,7 @@ namespace SDX.Toolkit.Controls
                     grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
                     grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
                 }
-                // burgundy not selected image
+                
                 ImagePair images = new ImagePair()
                 {
                     //ID = i,
@@ -500,20 +496,30 @@ namespace SDX.Toolkit.Controls
         {
             // test the first image and return if it hasn't been created
             if (null == this.ImagePairs[0].UnSelected) { return; }
-
-            for (int i = 0; i < this.ImagePairs.Count; i++)
+            // if there are image pairs and the setting has image pairs, then do image pairs. 
+            // otherwise keep all opaque and move the line and update the button text to be bold
+            if (this.AppSelectorMode == SelectorMode.Color)
             {
-                if (this.SelectedID == i)
-                { // selected change opacity to 1 and unselected to 0
-                    this.ImagePairs[i].Selected.Opacity = 1;
-                    this.ImagePairs[i].UnSelected.Opacity = 0;
-                }
-                else
-                { // opposite
-                    this.ImagePairs[i].Selected.Opacity = 0;
-                    this.ImagePairs[i].UnSelected.Opacity = 1;
+                for (int i = 0; i < this.ImagePairs.Count; i++)
+                {
+                    if (this.SelectedID == i)
+                    { // selected change opacity to 1 and unselected to 0
+                        this.ImagePairs[i].Selected.Opacity = 1;
+                        this.ImagePairs[i].UnSelected.Opacity = 0;
+                    }
+                    else
+                    { // opposite
+                        this.ImagePairs[i].Selected.Opacity = 0;
+                        this.ImagePairs[i].UnSelected.Opacity = 1;
+                    }
                 }
             }
+            else
+            {   // app mode so no flipping opacity and move line and change textblock bold and fontsize 
+                //on button 
+
+            }
+           
         }
 
         #endregion
