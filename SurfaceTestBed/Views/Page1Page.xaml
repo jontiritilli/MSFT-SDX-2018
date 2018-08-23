@@ -25,7 +25,28 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Backgrounds/Page1.jpg"/>
+        </Grid.Background>
+
+        <ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"
+                   Words="{x:Bind Path=ViewModel.HeroPhrase}"
+                   WordRows="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" 
+                   DurationPerWordInMilliseconds="400"
+                   StaggerDelayMilliseconds="400"
+                   AutoStart="True" />
+
+        <ctrl:SwipeLeft x:Name="SwipeLeft" Grid.Row="5" Grid.Column="1"
+                        SwipeText="{x:Bind Path=ViewModel.SwipeLeft}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        DurationInMilliseconds="200"
+                        StaggerDelayInMilliseconds="3000"
+                        AutoStart="True"/>
+
+        <!--<ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                      Headline="{x:Bind Path=ViewModel.Headline}"
                      Lede="{x:Bind Path=ViewModel.Lede}"
                      HeaderStyle="HeaderAndLede"
@@ -35,16 +56,16 @@
                      Width="500"
                      DurationInMilliseconds="200"
                      StaggerDelayInMilliseconds="0"
-                     AutoStart="True"/>
+                     AutoStart="True"/>-->
 
-        <ctrl:TextLine x:Name="LegalNotice" Grid.Row="3" Grid.Column="1"
+        <!--<ctrl:TextLine x:Name="LegalNotice" Grid.Row="3" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.WelcomeText}"
                        ControlStyle="Hero"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        DurationInMilliseconds="200"
                        StaggerDelayInMilliseconds="0"
-                       AutoStart="True"/>
+                       AutoStart="True"/>-->
 
     </Grid>
     
