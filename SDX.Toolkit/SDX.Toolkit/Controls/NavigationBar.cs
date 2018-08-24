@@ -646,12 +646,116 @@ namespace SDX.Toolkit.Controls
 
         #region UI Helpers
 
+        public int GetPageIndexFromPage(NavigationSection section, NavigationPage page)
+        {
+            int index = -1;     // -1 is an error
+
+            // if the section and page are valid
+            if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0)
+                && (null != section) && (null != section.Pages) && (section.Pages.Count > 0)
+                && (null != page))
+            {
+                // get the index of the section in the list of sections
+                int sectionIndex = this.NavigationSections.IndexOf(section);
+
+                // get the index of the page in the current section
+                int pageIndex = section.Pages.IndexOf(page);
+
+                // if both are valid
+                if ((0 <= sectionIndex) && (0 <= pageIndex))
+                {
+                    // if this is the first section
+                    if (0 == sectionIndex)
+                    {
+                        // then the page index is our value
+                        index = pageIndex;
+                    }
+                    else
+                    {
+                        // if the section isn't the first, we have to add the pages from the previous sections
+                        int previousPageCount = 0;
+
+                        // loop through the previous sections and add their page counts
+                        for (int i = 0; i < sectionIndex; i++)
+                        {
+                            // make sure there's a section here and it has pages
+                            if ((null != this.NavigationSections[i]) && (null != this.NavigationSections[i].Pages))
+                            {
+                                // it does, so add those pages to our count
+                                previousPageCount += this.NavigationSections[i].Pages.Count;
+                            }
+                        }
+
+                        // take the count of previous pages and add the page index to it 
+                        index = previousPageCount + pageIndex;
+                    }
+                }
+            }
+
+            return index;
+        }
+
+        public void GetPageFromPageIndex(int pageIndex, out NavigationSection section, out NavigationPage page)
+        {
+            // default values
+            section = null;
+            page = null;
+
+            // if there are sections
+            if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0))
+            {
+                // loop through the sections
+                foreach (NavigationSection navigationSection in this.NavigationSections)
+                {
+                    // does the section have pages?
+                    if ((null != navigationSection) && (null != navigationSection.Pages))
+                    {
+                        // how many pages are in this section?
+                        int pageCount = navigationSection.Pages.Count;
+
+                        // if there are more pages in this section than remain in the index
+                        if (pageCount > pageIndex)
+                        {
+                            // this is the section where our page will be
+                            section = navigationSection;
+                            page = section.Pages[pageIndex];
+
+                            return;
+                        }
+                        else
+                        {
+                            // if we're here, this section can't exhaust pageIndex, 
+                            // so subtract the section's page count from the index
+                            pageIndex -= pageCount;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void MoveToPageIndex(int pageIndex)
+        {
+            // we need a section and page
+            NavigationSection section = null;
+            NavigationPage page = null;
+
+            // convert the index to section and page
+            this.GetPageFromPageIndex(pageIndex, out section, out page);
+
+            // if we got them
+            if ((null != section) && (null != page))
+            {
+                // move to it
+                MoveToPage(section, page);
+            }
+        }
+
         public void MoveToPreviousPage()
         {
             // get the selected section and page
             NavigationSection section = this.SelectedSection;
             NavigationPage page = this.SelectedPage;
-            
+
             // if we can go back and we have a selected section and page
             if ((this.CanGoBack) && (null != this.SelectedSection) && (null != this.SelectedPage))
             {
