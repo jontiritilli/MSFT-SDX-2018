@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="SurfaceStudioDemo.Views.PivotPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding PivotViewModel, Source={StaticResource Locator}}"
+    Style="{StaticResource PageStyle}"
+    xmlns:behaviors="using:SurfaceStudioDemo.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:model="using:SurfaceStudioDemo.Models"
+    xmlns:views="using:SurfaceStudioDemo.Views"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Pivot x:Uid="PivotPage">
+            <i:Interaction.Behaviors>
+                <behaviors:PivotBehavior />
+            </i:Interaction.Behaviors>
+            <PivotItem x:Uid="PivotItem_AttractorLoop">
+                <Frame>
+                    <views:AttractorLoopPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_ExperienceHero">
+                <Frame>
+                    <views:ExperienceHeroPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_ExperienceCreativity">
+                <Frame>
+                    <views:ExperienceCreativityPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_ExperienceCrafted">
+                <Frame>
+                    <views:ExperienceCraftedPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_ExperiencePixelSense">
+                <Frame>
+                    <views:ExperiencePixelSensePage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_AccessoriesDial">
+                <Frame>
+                    <views:AccessoriesDialPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_AccessoriesMouse">
+                <Frame>
+                    <views:AccessoriesMousePage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_AccessoriesTryIt">
+                <Frame>
+                    <views:AccessoriesTryItPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_AccessoriesPen">
+                <Frame>
+                    <views:AccessoriesPenPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_BestOfMicrosoft">
+                <Frame>
+                    <views:BestOfMicrosoftPage/>
+                </Frame>
+            </PivotItem>
+            <PivotItem x:Uid="PivotItem_Compare">
+                <Frame>
+                    <views:ComparePage/>
+                </Frame>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
