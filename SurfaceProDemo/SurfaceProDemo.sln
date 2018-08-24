@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurfaceProDemo", "SurfaceProDemo\SurfaceProDemo.csproj", "{73FDCFB8-E5DD-477E-9D3E-06BA49F2FEDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDX.Toolkit", "..\Toolkit\SDX.Toolkit\SDX.Toolkit.csproj", "{D8D62AAD-A4A7-4653-A9E7-F52B1C9D26D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDX.Toolkit", "..\SDX.Toolkit\SDX.Toolkit\SDX.Toolkit.csproj", "{D8D62AAD-A4A7-4653-A9E7-F52B1C9D26D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

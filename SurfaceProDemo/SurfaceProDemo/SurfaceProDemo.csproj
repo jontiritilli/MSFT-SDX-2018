@@ -297,7 +297,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Toolkit\SDX.Toolkit\SDX.Toolkit.csproj">
+    <ProjectReference Include="..\..\SDX.Toolkit\SDX.Toolkit\SDX.Toolkit.csproj">
       <Project>{d8d62aad-a4a7-4653-a9e7-f52b1c9d26d8}</Project>
       <Name>SDX.Toolkit</Name>
     </ProjectReference>
