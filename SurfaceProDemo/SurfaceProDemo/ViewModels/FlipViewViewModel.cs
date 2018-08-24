@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SurfaceProDemo.ViewModels
 {
-    public class ShellViewModel : ViewModelBase
+    public class FlipViewViewModel : ViewModelBase
     {
         private NavigationView _navigationView;
         private NavigationViewItem _selected;
@@ -40,7 +40,7 @@ namespace SurfaceProDemo.ViewModels
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
-        public ShellViewModel()
+        public FlipViewViewModel()
         {
         }
 

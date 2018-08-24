@@ -17,7 +17,7 @@ namespace SurfaceProDemo.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            SimpleIoc.Default.Register<ShellViewModel>();
+            SimpleIoc.Default.Register<FlipViewViewModel>();
             Register<AttractorLoopViewModel, AttractorLoopPage>();
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
@@ -59,7 +59,7 @@ namespace SurfaceProDemo.ViewModels
 
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
-        public ShellViewModel ShellViewModel => ServiceLocator.Current.GetInstance<ShellViewModel>();
+        public FlipViewViewModel ShellViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

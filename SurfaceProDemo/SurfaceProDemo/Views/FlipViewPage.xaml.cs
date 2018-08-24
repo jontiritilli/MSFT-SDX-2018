@@ -12,9 +12,9 @@ namespace SurfaceProDemo.Views
     // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page
     {
-        private ShellViewModel ViewModel
+        private FlipViewViewModel ViewModel
         {
-            get { return DataContext as ShellViewModel; }
+            get { return DataContext as FlipViewViewModel; }
         }
 
         public ShellPage()
