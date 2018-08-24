@@ -30,6 +30,7 @@ namespace SDX.Toolkit.Controls
         #region Constants
 
         private readonly string URI_COLOR_WHEEL = "ms-appx:///Assets/custom_visual_color_wheel.png";
+        private readonly string TEST_STRING = "TESTING PAINT ON SCREEN";
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace SDX.Toolkit.Controls
         private Canvas _dialCanvas;
         private Grid _dialGrid;
         private Image _dialImage;
+        private TextBlock _testString;
 
         #endregion
 
@@ -127,7 +129,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Constructor
 
         protected override void OnApplyTemplate()
@@ -151,9 +152,15 @@ namespace SDX.Toolkit.Controls
         {
             // get the layout base (a grid here)
             if (null == _dialCanvas) { _dialCanvas = (Canvas)this.GetTemplateChild("DialCanvas"); }
-            
+
             // if we can't get the layout root, we can't do anything
             if (null == _dialCanvas) { return; }
+
+            // add test string to screen
+            _testString = new TextBlock()
+            {
+                Text = this.TEST_STRING
+            };
 
             // create the image
             _dialImage = new Image()
@@ -164,7 +171,7 @@ namespace SDX.Toolkit.Controls
                 Height = 500
             };
 
-            _dialCanvas.Children.Add(_dialImage);
+            _dialCanvas.Children.Add(_testString);
         }
         
         #endregion
