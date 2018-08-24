@@ -29,8 +29,8 @@ namespace SurfaceTestBed.Views
     public sealed partial class Page1Page : Page
     {
 
-        private RadialController _myController;
-        private SurfaceDial _dialControl;
+        private RadialController _dialController;
+        private SurfaceDial _dial;
         private RadialControllerMenuItem _screenColorMenuItem;
 
         private Page1ViewModel ViewModel
@@ -40,14 +40,14 @@ namespace SurfaceTestBed.Views
 
         public Page1Page()
         {
-            this.InitializeComponent();
-
+            InitializeComponent();
+            //TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             // Create a reference to the RadialController.
-            _myController = RadialController.CreateForCurrentView();
+            _dialController = RadialController.CreateForCurrentView();
 
             // Remove standard menu items
             RadialControllerConfiguration _dialConfiguration = RadialControllerConfiguration.GetForCurrentView();
@@ -62,82 +62,67 @@ namespace SurfaceTestBed.Views
                 RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
 
             // Add the custom tool to the RadialController menu.
-            _myController.Menu.Items.Add(_screenColorMenuItem);
+            _dialController.Menu.Items.Add(_screenColorMenuItem);
 
             //screenColorMenuItem.Invoked += ColorMenuItem_Invoked;
 
-            _myController.ScreenContactStarted += OnControllerScreenContactStarted;
+            _dialController.ScreenContactStarted += OnControllerScreenContactStarted;
 
-            _myController.ScreenContactContinued += OnControllerScreenContactContinued;
+            _dialController.ScreenContactContinued += OnControllerScreenContactContinued;
 
-            _myController.ScreenContactEnded += OnControllerScreenContactEnded;
+            _dialController.ScreenContactEnded += OnControllerScreenContactEnded;
 
-            _myController.RotationChanged += OnControllerRotationChanged;
+            _dialController.RotationChanged += OnControllerRotationChanged;
         }
 
-        private async void OnControllerScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
+        private void OnControllerScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
         {
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            if (null == _dial)
             {
-            InitializeComponent();
+                _dial = new SurfaceDial();
+                DialCanvas.Children.Add(_dial);
+            }
 
-            //TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
-                if (null == _dialControl)
+            _dial.Width = 500;
+            _dial.Height = 500;
+
+            Canvas.SetLeft(_dial, args.Contact.Position.X - 200);
+            Canvas.SetTop(_dial, args.Contact.Position.Y - 200);
+
+            _dial.Visibility = Visibility.Visible;
+        }
+
+        private void OnControllerScreenContactContinued(RadialController sender, RadialControllerScreenContactContinuedEventArgs args)
+        {
+            if (null != _dial)
+            {
+                Canvas.SetLeft(_dial, args.Contact.Position.X - 200);
+                Canvas.SetTop(_dial, args.Contact.Position.Y - 200);
+            }
+        }
+
+        private void OnControllerScreenContactEnded(RadialController sender, object args)
+        {
+            if (null != _dial)
+            {
+                _dial.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void OnControllerRotationChanged(RadialController sender, RadialControllerRotationChangedEventArgs args)
+        {
+            if (null != _dial)
+            {
+                _dial.Rotation += args.RotationDeltaInDegrees;
+                if (_dial.Rotation > 0)
                 {
-                    _dialControl = new SurfaceDial();
-                    DialCanvas.Children.Add(_dialControl);
+                    _dial.Rotation = 0;
                 }
-
-                _dialControl.Width = 500;
-                _dialControl.Height = 500;
-
-                Canvas.SetLeft(_dialControl, args.Contact.Position.X - 200);
-                Canvas.SetTop(_dialControl, args.Contact.Position.Y - 200);
-
-                _dialControl.Visibility = Visibility.Visible;
-            });
-        }
-
-        private async void OnControllerScreenContactContinued(RadialController sender, RadialControllerScreenContactContinuedEventArgs args)
-        {
-            if (null != _dialControl)
-            {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                else if (_dial.Rotation < -315)
                 {
-                    Canvas.SetLeft(_dialControl, args.Contact.Position.X - 200);
-                    Canvas.SetTop(_dialControl, args.Contact.Position.Y - 200);
-                });
-            }
-        }
-
-        private async void OnControllerScreenContactEnded(RadialController sender, object args)
-        {
-            if (null != _dialControl)
-            {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    _dialControl.Visibility = Visibility.Collapsed;
-                });
-            }
-        }
-
-        private async void OnControllerRotationChanged(RadialController sender, RadialControllerRotationChangedEventArgs args)
-        {
-            if (null != _dialControl)
-            {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    _dialControl.Rotation += args.RotationDeltaInDegrees;
-                    if (_dialControl.Rotation > 0)
-                    {
-                        _dialControl.Rotation = 0;
-                    }
-                    else if (_dialControl.Rotation < -315)
-                    {
-                        _dialControl.Rotation = -315;
-                    }
-                    LayoutRoot.Background = _dialControl.ColorBrush;
-                });
+                    _dial.Rotation = -315;
+                }
+                LayoutRoot.Background = _dial.ColorBrush;
             }
         }
     }
