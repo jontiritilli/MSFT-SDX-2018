@@ -62,11 +62,11 @@ namespace SurfaceTestBed.ViewModels
             );
             this.Sections.Add(section);
 
-            // create Page Four section
+            // create Last 2 section
             section = new NavigationSection()
             {
-                Name = "Page4",
-                Text = "Page Four",
+                Name = "Last2",
+                Text = "Last Two",
                 Order = 0
             };
             section.Pages.Add(new NavigationPage()
@@ -74,24 +74,13 @@ namespace SurfaceTestBed.ViewModels
                 Name = "Page4",
                 Text = "Page 4",
                 Order = 0
-            }
-            );
-            this.Sections.Add(section);
-
-            // create Page Five section
-            section = new NavigationSection()
-            {
-                Name = "Page5",
-                Text = "Page Five",
-                Order = 0
-            };
+            });
             section.Pages.Add(new NavigationPage()
             {
                 Name = "Page5",
                 Text = "Page 5",
                 Order = 0
-            }
-            );
+            });
             this.Sections.Add(section);
         }
     }

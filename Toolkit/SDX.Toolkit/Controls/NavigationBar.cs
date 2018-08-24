@@ -472,7 +472,7 @@ namespace SDX.Toolkit.Controls
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoForward, MenuItemRow);
-                Grid.SetColumn(_navGoForward, this.NavigationSections.Count - 1);
+                Grid.SetColumn(_navGoForward, this.NavigationSections.Count + 3);
 
                 // add the Click event handler
                 _navGoForward.Click += this.NavItem_Click;
