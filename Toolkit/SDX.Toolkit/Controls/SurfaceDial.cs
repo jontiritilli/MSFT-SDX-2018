@@ -127,9 +127,21 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+
+        #region Constructor
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.RenderUI();
+        }
+
+        #endregion
+
         #region Event Handlers
 
-        
+
 
         #endregion
 
@@ -141,24 +153,15 @@ namespace SDX.Toolkit.Controls
             if (null == _dialCanvas) { _dialCanvas = (Canvas)this.GetTemplateChild("DialCanvas"); }
             
             // if we can't get the layout root, we can't do anything
-            if (null == _dialCanvas)
-            {
-                Console.WriteLine("Broken");
-                return;
-            }
-
-            // set the layout base (a canvas here)
-            _dialCanvas = (Canvas)this.GetTemplateChild("DialCanvas");
+            if (null == _dialCanvas) { return; }
 
             // create the image
             _dialImage = new Image()
             {
-                Source = new BitmapImage(new Uri(URI_COLOR_WHEEL)),
+                Source = new BitmapImage(new Uri("ms-appx:///Assets/custom_visual_color_wheel.png")),
                 Name = "ColorRingImage",
                 Width = 500,
-                Height = 500,
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                Opacity = 0.0d
+                Height = 500
             };
 
             _dialCanvas.Children.Add(_dialImage);
