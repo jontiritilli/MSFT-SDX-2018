@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{75ED1730-0107-4149-8637-811ABCD22C3F}</ProjectGuid>
+    <ProjectGuid>{44B20FEB-50E2-4619-A06A-76C574C2EC77}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SurfaceLaptopDemo</RootNamespace>
-    <AssemblyName>SurfaceLaptopDemo</AssemblyName>
+    <RootNamespace>SurfaceBook2Demo</RootNamespace>
+    <AssemblyName>SurfaceBook2Demo</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SurfaceLaptopDemo_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SurfaceBook2Demo_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -121,28 +121,32 @@
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
+    <Compile Include="ViewModels\AccessoriesDialViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesMouseViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
-    <Compile Include="ViewModels\AccessoriesTouchViewModel.cs" />
+    <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
-    <Compile Include="ViewModels\ExperienceColorsViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayCreateViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayPlayViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayRelaxViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayWorkViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
-    <Compile Include="ViewModels\ExperienceInnovationViewModel.cs" />
-    <Compile Include="ViewModels\ExperiencePerformanceViewModel.cs" />
-    <Compile Include="ViewModels\ExperienceSleekViewModel.cs" />
-    <Compile Include="ViewModels\ExperienceSpeakersViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceIntroViewModel.cs" />
     <Compile Include="ViewModels\PivotViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\AccessoriesDialPage.xaml.cs">
+      <DependentUpon>AccessoriesDialPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AccessoriesMousePage.xaml.cs">
       <DependentUpon>AccessoriesMousePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccessoriesPenPage.xaml.cs">
       <DependentUpon>AccessoriesPenPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccessoriesTouchPage.xaml.cs">
-      <DependentUpon>AccessoriesTouchPage.xaml</DependentUpon>
+    <Compile Include="Views\AttractorLoopPage.xaml.cs">
+      <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BestOfMicrosoftPage.xaml.cs">
       <DependentUpon>BestOfMicrosoftPage.xaml</DependentUpon>
@@ -150,26 +154,26 @@
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExperienceColorsPage.xaml.cs">
-      <DependentUpon>ExperienceColorsPage.xaml</DependentUpon>
+    <Compile Include="Views\ExperienceDayCreatePage.xaml.cs">
+      <DependentUpon>ExperienceDayCreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperienceDayPage.xaml.cs">
+      <DependentUpon>ExperienceDayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperienceDayPlayPage.xaml.cs">
+      <DependentUpon>ExperienceDayPlayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperienceDayRelaxPage.xaml.cs">
+      <DependentUpon>ExperienceDayRelaxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperienceDayWorkPage.xaml.cs">
+      <DependentUpon>ExperienceDayWorkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceHeroPage.xaml.cs">
       <DependentUpon>ExperienceHeroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExperienceInnovationPage.xaml.cs">
-      <DependentUpon>ExperienceInnovationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExperiencePerformancePage.xaml.cs">
-      <DependentUpon>ExperiencePerformancePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExperienceSleekPage.xaml.cs">
-      <DependentUpon>ExperienceSleekPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExperienceSpeakersPage.xaml.cs">
-      <DependentUpon>ExperienceSpeakersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Views\ExperienceIntroPage.xaml.cs">
+      <DependentUpon>ExperienceIntroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PivotPage.xaml.cs">
       <DependentUpon>PivotPage.xaml</DependentUpon>
@@ -202,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AccessoriesDialPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AccessoriesMousePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,7 +218,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AccessoriesTouchPage.xaml">
+    <Page Include="Views\AttractorLoopPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -222,7 +230,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ExperienceColorsPage.xaml">
+    <Page Include="Views\ExperienceDayCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExperienceDayPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExperienceDayPlayPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExperienceDayRelaxPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExperienceDayWorkPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -230,23 +254,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ExperienceInnovationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ExperiencePerformancePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ExperienceSleekPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ExperienceSpeakersPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MainPage.xaml">
+    <Page Include="Views\ExperienceIntroPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -279,7 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
-    <None Include="SurfaceLaptopDemo_TemporaryKey.pfx" />
+    <None Include="SurfaceBook2Demo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
