@@ -242,5 +242,20 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style TargetType="ctrl:ColoringBook">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:ColoringBook">
+                    <Grid
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
