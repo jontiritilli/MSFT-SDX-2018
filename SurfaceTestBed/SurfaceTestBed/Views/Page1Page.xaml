@@ -34,14 +34,14 @@
             <ImageBrush ImageSource="ms-appx:///Assets/Backgrounds/Page1.jpg"/>
         </Grid.Background>
 
-        <ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"
+        <!--<ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"
                 Words="{x:Bind Path=ViewModel.HeroPhrase}"
                 WordRows="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
                 DurationPerWordInMilliseconds="400"
                 StaggerDelayMilliseconds="400"
-                AutoStart="True" />
+                AutoStart="True" />-->
 
         <ctrl:SwipeLeft x:Name="SwipeLeft" Grid.Row="5" Grid.Column="1"
                     SwipeText="{x:Bind Path=ViewModel.SwipeLeft}"
@@ -72,9 +72,10 @@
                     StaggerDelayInMilliseconds="0"
                     AutoStart="True"/>-->
 
-        <ctrl:SurfaceDial x:Name="Dial" Loaded="OnLoaded" />
-        <Canvas x:Name="DialCanvas">
+        <Canvas x:Name="DialRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+            <Grid Name="Palette">
+                <ctrl:SurfaceDial x:Name="SurfaceDial" />
+            </Grid>
         </Canvas>
     </Grid>
-
 </Page>

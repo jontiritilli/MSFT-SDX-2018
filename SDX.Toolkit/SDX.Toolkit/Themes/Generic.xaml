@@ -242,20 +242,67 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style TargetType="ctrl:ColoringBook">
+    
+    <Style TargetType="ctrl:SurfaceDial" >
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ctrl:ColoringBook">
-                    <Grid
-                        x:Name="LayoutRoot"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                <ControlTemplate TargetType="ctrl:SurfaceDial">
+                    <Grid x:Name="LayoutRoot">
+                        <Canvas 
+                             x:Name="LayoutCanvas">
+                            <Canvas
+                                x:Name="DialCanvas">
+                                <Ellipse 
+                                     x:Name="Dial"
+                                     Height="400"
+                                     Width="400"
+                                     Fill="Black"
+                                     Opacity="0.7"/>
+
+                                <Path Fill="Black"
+                                      Stroke="Gray"   
+                                      RenderTransformOrigin=".5,.5"
+                                      x:Name="ColorRay">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="0"/>
+                                    </Path.RenderTransform>
+                                </Path>
+
+                                <Path x:Name="ColorEllipse"
+                                      Fill="Red"      
+                                      Stroke="Gray"
+                                      RenderTransformOrigin=".5,.5"
+                                      StrokeThickness="2">
+                                    <Path.RenderTransform>
+                                        <RotateTransform Angle="0"/>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Canvas>
+                        </Canvas>
+                        <StackPanel 
+                            Grid.Column="1" 
+                            Orientation="Vertical" 
+                            VerticalAlignment="Center" 
+                            Margin="12">
+                            <Border BorderBrush="Gray" 
+                                BorderThickness="1" 
+                                x:Name="SelectedColorBorder" 
+                                Background="White" 
+                                Width="30" 
+                                Height="20" 
+                                VerticalAlignment="Top" />
+                            <Border BorderBrush="Gray" 
+                                BorderThickness="1" 
+                                x:Name="CurrentColorBorder" 
+                                Background="White" 
+                                Width="30" 
+                                Height="20" 
+                                VerticalAlignment="Top" />
+                        </StackPanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
+    
 </ResourceDictionary>
