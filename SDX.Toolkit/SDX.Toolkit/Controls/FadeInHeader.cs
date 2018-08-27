@@ -15,22 +15,23 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
+//using SDX.Telemetry.Services;
 using SDX.Toolkit.Helpers;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
 namespace SDX.Toolkit.Controls
 {
-    public enum HeaderStyles
+    public enum FadeInHeaderStyles
     {
         HeaderOnly,         // shows the headline only in normal style
         HeaderAndLede,      // shows headline/lede in normal style
         ListHeader,         // shows headline/lede in list style
         ListItemLedeOnly,   // shows lede in list style
-        FastChargePopup     // shows headline/lede in popup text style
+        BatteryLifePopup     // shows headline/lede in popup text style
     }
 
-    public sealed class Header : Control
+    public sealed class FadeInHeader : Control
     {
 
         #region Private Constants
@@ -63,9 +64,9 @@ namespace SDX.Toolkit.Controls
 
         #region Constructor
 
-        public Header()
+        public FadeInHeader()
         {
-            this.DefaultStyleKey = typeof(Header);
+            this.DefaultStyleKey = typeof(FadeInHeader);
             this.Loaded += OnLoaded;
 
             // inherited dependency property
@@ -225,7 +226,7 @@ namespace SDX.Toolkit.Controls
 
         // Headline
         public static readonly DependencyProperty HeadlineProperty =
-            DependencyProperty.Register("Headline", typeof(string), typeof(Header), new PropertyMetadata(null, OnHeadlineChanged));
+            DependencyProperty.Register("Headline", typeof(string), typeof(FadeInHeader), new PropertyMetadata(null, OnHeadlineChanged));
 
         public string Headline
         {
@@ -235,7 +236,7 @@ namespace SDX.Toolkit.Controls
 
         // Lede
         public static readonly DependencyProperty LedeProperty =
-            DependencyProperty.Register("Lede", typeof(string), typeof(Header), new PropertyMetadata(null, OnLedeChanged));
+            DependencyProperty.Register("Lede", typeof(string), typeof(FadeInHeader), new PropertyMetadata(null, OnLedeChanged));
 
         public string Lede
         {
@@ -245,7 +246,7 @@ namespace SDX.Toolkit.Controls
 
         // CTAText
         public static readonly DependencyProperty CTATextProperty =
-            DependencyProperty.Register("CTAText", typeof(string), typeof(Header), new PropertyMetadata(null, OnCTATextChanged));
+            DependencyProperty.Register("CTAText", typeof(string), typeof(FadeInHeader), new PropertyMetadata(null, OnCTATextChanged));
 
         public string CTAText
         {
@@ -255,7 +256,7 @@ namespace SDX.Toolkit.Controls
 
         // CTAUri
         public static readonly DependencyProperty CTAUriProperty =
-            DependencyProperty.Register("CTAUri", typeof(Uri), typeof(Header), new PropertyMetadata(null, OnCTAUriChanged));
+            DependencyProperty.Register("CTAUri", typeof(Uri), typeof(FadeInHeader), new PropertyMetadata(null, OnCTAUriChanged));
 
         public Uri CTAUri
         {
@@ -265,17 +266,17 @@ namespace SDX.Toolkit.Controls
 
         // HeaderStyle
         public static readonly DependencyProperty HeaderStyleProperty =
-        DependencyProperty.Register("HeaderStyle", typeof(HeaderStyles), typeof(Header), new PropertyMetadata(HeaderStyles.HeaderAndLede, OnAutoStartChanged));
+        DependencyProperty.Register("HeaderStyle", typeof(FadeInHeaderStyles), typeof(FadeInHeader), new PropertyMetadata(FadeInHeaderStyles.HeaderAndLede, OnAutoStartChanged));
 
-        public HeaderStyles HeaderStyle
+        public FadeInHeaderStyles HeaderStyle
         {
-            get { return (HeaderStyles)GetValue(HeaderStyleProperty); }
+            get { return (FadeInHeaderStyles)GetValue(HeaderStyleProperty); }
             set { SetValue(HeaderStyleProperty, value); }
         }
 
         // HeaderAlignment
         public static readonly DependencyProperty HeaderAlignmentProperty =
-        DependencyProperty.Register("HeaderAlignment", typeof(TextAlignment), typeof(Header), new PropertyMetadata(TextAlignment.Left, OnAutoStartChanged));
+        DependencyProperty.Register("HeaderAlignment", typeof(TextAlignment), typeof(FadeInHeader), new PropertyMetadata(TextAlignment.Left, OnAutoStartChanged));
 
         public TextAlignment HeaderAlignment
         {
@@ -285,7 +286,7 @@ namespace SDX.Toolkit.Controls
 
         // DurationInMilliseconds
         public static readonly DependencyProperty DurationInMillisecondsProperty =
-            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(Header), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
+            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(FadeInHeader), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
 
         public double DurationInMilliseconds
         {
@@ -295,7 +296,7 @@ namespace SDX.Toolkit.Controls
 
         // FadeInCompletedHandler
         public static readonly DependencyProperty FadeInCompletedHandlerProperty =
-            DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(Header), new PropertyMetadata(null));
+            DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(FadeInHeader), new PropertyMetadata(null));
 
         public EventHandler<object> FadeInCompletedHandler
         {
@@ -305,7 +306,7 @@ namespace SDX.Toolkit.Controls
 
         // FadeOutCompletedHandler
         public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
-            DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(Header), new PropertyMetadata(null));
+            DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(FadeInHeader), new PropertyMetadata(null));
 
         public EventHandler<object> FadeOutCompletedHandler
         {
@@ -315,7 +316,7 @@ namespace SDX.Toolkit.Controls
 
         // StaggerDelayInMilliseconds
         public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(Header), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(FadeInHeader), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
 
         public double StaggerDelayInMilliseconds
         {
@@ -325,7 +326,7 @@ namespace SDX.Toolkit.Controls
 
         // AutoStart
         public static readonly DependencyProperty AutoStartProperty =
-        DependencyProperty.Register("AutoStart", typeof(bool), typeof(Header), new PropertyMetadata(true, OnAutoStartChanged));
+        DependencyProperty.Register("AutoStart", typeof(bool), typeof(FadeInHeader), new PropertyMetadata(true, OnAutoStartChanged));
 
         public bool AutoStart
         {
@@ -417,9 +418,9 @@ namespace SDX.Toolkit.Controls
             //double ledeWidth = this.Width * leftColPercent;
 
             // calculate rows
-            GridLength headlineRowHeight = (HeaderStyles.ListItemLedeOnly == this.HeaderStyle) ? new GridLength(0) : GridLength.Auto;
-            GridLength ledeRowHeight = (HeaderStyles.HeaderOnly == this.HeaderStyle) ? new GridLength(0) : new GridLength(1.0, GridUnitType.Star);
-            double rowSpacing = ((HeaderStyles.ListItemLedeOnly == this.HeaderStyle) || (HeaderStyles.HeaderOnly == this.HeaderStyle)) ? 0d : 10d;
+            GridLength headlineRowHeight = (FadeInHeaderStyles.ListItemLedeOnly == this.HeaderStyle) ? new GridLength(0) : GridLength.Auto;
+            GridLength ledeRowHeight = (FadeInHeaderStyles.HeaderOnly == this.HeaderStyle) ? new GridLength(0) : new GridLength(1.0, GridUnitType.Star);
+            double rowSpacing = ((FadeInHeaderStyles.ListItemLedeOnly == this.HeaderStyle) || (FadeInHeaderStyles.HeaderOnly == this.HeaderStyle)) ? 0d : 10d;
 
             // create the grid
             _layoutGrid = new Grid()
@@ -438,34 +439,34 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Child = _layoutGrid;
 
             // calculate item delay
-            double itemDelay = (HeaderStyles.ListItemLedeOnly == this.HeaderStyle) ? 0d : this.DurationInMilliseconds / 2;
+            double itemDelay = (FadeInHeaderStyles.ListItemLedeOnly == this.HeaderStyle) ? 0d : this.DurationInMilliseconds / 2;
 
             // calculate styles 
             ControlStyles headlineControlStyle;
             ControlStyles ledeControlStyle;
             switch (this.HeaderStyle)
             {
-                case HeaderStyles.HeaderAndLede:
-                case HeaderStyles.HeaderOnly:
+                case FadeInHeaderStyles.HeaderAndLede:
+                case FadeInHeaderStyles.HeaderOnly:
                 default:
                     headlineControlStyle = ControlStyles.Headline;
                     ledeControlStyle = ControlStyles.Lede;
                     break;
 
-                case HeaderStyles.ListHeader:
-                case HeaderStyles.ListItemLedeOnly:
+                case FadeInHeaderStyles.ListHeader:
+                case FadeInHeaderStyles.ListItemLedeOnly:
                     headlineControlStyle = ControlStyles.ListHeadline;
                     ledeControlStyle = ControlStyles.ListLede;
                     break;
 
-                case HeaderStyles.FastChargePopup:
+                case FadeInHeaderStyles.BatteryLifePopup:
                     headlineControlStyle = ControlStyles.BatteryLifeHeader;
                     ledeControlStyle = ControlStyles.BatteryLifeLede;
                     break;
             }
 
             // if we're in lede-only mode, don't create the headline
-            if (HeaderStyles.ListItemLedeOnly != this.HeaderStyle)
+            if (FadeInHeaderStyles.ListItemLedeOnly != this.HeaderStyle)
             {
                 // create headline
                 // =================
@@ -501,7 +502,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // if we're in headline-only mode, don't create the lede
-            if (HeaderStyles.HeaderOnly != this.HeaderStyle)
+            if (FadeInHeaderStyles.HeaderOnly != this.HeaderStyle)
             {
                 // create lede
                 // =================
@@ -579,6 +580,83 @@ namespace SDX.Toolkit.Controls
                 //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
             }
         }
+
+        //private Storyboard SetupAnimation(TextBlock textBlock, double duration, double itemDelay, double staggerDelay)
+        //{
+        //    // duration is the duration of the animation itself, not the total storyboard because the storyboard might include waiting time
+        //    // itemDelay is how much time to wait for this "child" item to start animating
+        //    // staggerDelay is how much time to wait for the whole control to start animating
+
+        //    double totalStartDelay = itemDelay + staggerDelay;
+        //    double totalDuration = duration + totalStartDelay;
+
+        //    // create the storyboard
+        //    Storyboard storyboard = new Storyboard()
+        //    {
+        //        Duration = TimeSpan.FromMilliseconds(totalDuration),
+        //        AutoReverse = false,
+        //        RepeatBehavior = new RepeatBehavior(1d)
+        //    };
+
+        //    // create the key frames holder
+        //    DoubleAnimationUsingKeyFrames _frames = new DoubleAnimationUsingKeyFrames
+        //    {
+        //        Duration = TimeSpan.FromMilliseconds(totalDuration),
+        //        EnableDependentAnimation = true,
+        //        AutoReverse = false,
+        //        RepeatBehavior = new RepeatBehavior(1d)
+        //    };
+
+        //    // need sine easing
+        //    CubicEase cubicEaseIn = new CubicEase()
+        //    {
+        //        EasingMode = EasingMode.EaseIn
+        //    };
+
+        //    // create frame 0
+        //    EasingDoubleKeyFrame _frame0 = new EasingDoubleKeyFrame
+        //    {
+        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0d)),
+        //        Value = 0d,
+        //        EasingFunction = cubicEaseIn
+        //    };
+
+        //    // create delay frame
+        //    EasingDoubleKeyFrame _frameStagger = new EasingDoubleKeyFrame
+        //    {
+        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalStartDelay)),
+        //        Value = 0d,
+        //        EasingFunction = cubicEaseIn
+        //    };
+
+        //    // create frame 2
+        //    EasingDoubleKeyFrame _frame1 = new EasingDoubleKeyFrame
+        //    {
+        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration)),
+        //        Value = 1d,
+        //        EasingFunction = cubicEaseIn
+        //    };
+
+        //    // add frames to the collection
+        //    _frames.KeyFrames.Add(_frame0);
+        //    if (totalStartDelay > 0)
+        //    {
+        //        // add staggerdelay frame only if > 0
+        //        _frames.KeyFrames.Add(_frameStagger);
+        //    }
+        //    _frames.KeyFrames.Add(_frame1);
+
+
+        //    // add frame collection to the storyboard
+        //    storyboard.Children.Add(_frames);
+
+        //    // set the target of the storyboard
+        //    Storyboard.SetTarget(storyboard, textBlock);
+        //    Storyboard.SetTargetProperty(storyboard, "Opacity");
+        //    //storyboard.SetValue(Storyboard.TargetPropertyProperty, "Opacity");
+
+        //    return storyboard;
+        //}
 
         #endregion
 
