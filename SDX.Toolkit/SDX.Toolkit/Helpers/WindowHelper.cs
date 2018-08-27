@@ -8,6 +8,36 @@ namespace SDX.Toolkit.Helpers
 {
     public static class WindowHelper
     {
+        #region Public Static Constants
+
+        public static readonly Rect WINDOW_BOUNDS = ApplicationView.GetForCurrentView().VisibleBounds;
+
+        public static readonly double CANVAS_X = WINDOW_BOUNDS.Width;
+        public static readonly double CANVAS_Y = WINDOW_BOUNDS.Height - 80d;   // navbar takes up 80 effective pixels height
+
+        public static readonly double LEFT_MARGIN = 80d;
+        public static readonly double TOP_MARGIN = 80d;
+        public static readonly double TOP_MARGIN_NARROW = 40d;
+        public static readonly double RIGHT_MARGIN = 80d;
+        public static readonly double BOTTOM_MARGIN = 50d;
+        public static readonly double LEFT_MARGIN_CANVAS = 20d;
+        public static readonly double TOP_MARGIN_CANVAS = 20d;
+
+        public static readonly double SPACE_BETWEEN_ELEMENTS = 30d;
+
+        public static readonly double WIDTH_HEADER = 400d;
+        public static readonly double WIDTH_TEXT_POPUP = 360d;
+
+        public static readonly int Z_ORDER_SHADOW = 5;
+        public static readonly int Z_ORDER_IMAGE = 90;
+        public static readonly int Z_ORDER_CONTROLS = 100;
+        public static readonly int Z_ORDER_OVERLAY = 1000;
+
+        #endregion
+
+
+        #region Public Static Methods
+
         public static Size GetScreenResolutionInfo()
         {
             ApplicationView applicationView = ApplicationView.GetForCurrentView();
@@ -27,5 +57,7 @@ namespace SDX.Toolkit.Helpers
 
             return size;
         }
+
+        #endregion
     }
 }

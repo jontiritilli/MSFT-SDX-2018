@@ -12,12 +12,15 @@ namespace SurfaceProDemo.ViewModels
     [Windows.UI.Xaml.Data.Bindable]
     public class ViewModelLocator
     {
+        private static ViewModelLocator Current;
+
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            SimpleIoc.Default.Register<FlipViewViewModel>();
+
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<AttractorLoopViewModel, AttractorLoopPage>();
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
@@ -59,7 +62,7 @@ namespace SurfaceProDemo.ViewModels
 
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
-        public FlipViewViewModel ShellViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
+        public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

@@ -29,10 +29,10 @@ namespace SDX.Toolkit.Helpers
         ButtonText,         // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
         SliderText,         // Segoe UI Bold, 60px, White
         TouchHere,          // Segoe UI Bold, 60px, White
-        FastChargeHeader,   // Segoe UI Regular, 100px, Black
-        FastChargeLede,     // Segoe UI Regular, 86px, Black
-        FastChargePercent,  // Segoe UI Light, 300px, White
-        FastChargeTimeline, // Segoe UI Bold, 60px, Black
+        BatteryLifeHeader,   // Segoe UI Regular, 100px, Black
+        BatteryLifeLede,     // Segoe UI Regular, 86px, Black
+        BatteryLifeHours,  // Segoe UI Light, 300px, White
+        BatteryLifeTimeline, // Segoe UI Bold, 60px, Black
         GaugePoint,         // Segoe UI Bold, 60px, White
         GaugePointBullet,   // Segoe UI Bold, 60px, White
         Footnote,           // Segoe UI Regular, 60px, #5C5C5C
@@ -225,7 +225,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.FastChargeHeader:// Segoe UI Regular, 100px, Black
+                case ControlStyles.BatteryLifeHeader:// Segoe UI Regular, 100px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
@@ -233,7 +233,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.Black);
                     break;
 
-                case ControlStyles.FastChargeLede:  // Segoe UI Regular, 86px, Black
+                case ControlStyles.BatteryLifeLede:  // Segoe UI Regular, 86px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
@@ -241,7 +241,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.Black);
                     break;
 
-                case ControlStyles.FastChargePercent: // Segoe UI Light, 300px, White
+                case ControlStyles.BatteryLifeHours: // Segoe UI Light, 300px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Light;
@@ -249,7 +249,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.FastChargeTimeline:// Segoe UI Bold, 60px, Black
+                case ControlStyles.BatteryLifeTimeline:// Segoe UI Bold, 60px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Bold;
@@ -455,7 +455,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.FastChargeHeader:// Segoe UI Regular, 100px, Black
+                case ControlStyles.BatteryLifeHeader:// Segoe UI Regular, 100px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
@@ -463,7 +463,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.Black);
                     break;
 
-                case ControlStyles.FastChargeLede:  // Segoe UI Regular, 86px, Black
+                case ControlStyles.BatteryLifeLede:  // Segoe UI Regular, 86px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
@@ -471,7 +471,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.Black);
                     break;
 
-                case ControlStyles.FastChargePercent: // Segoe UI Light, 300px, White
+                case ControlStyles.BatteryLifeHours: // Segoe UI Light, 300px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Light;
@@ -479,7 +479,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.FastChargeTimeline:// Segoe UI Bold, 60px, Black
+                case ControlStyles.BatteryLifeTimeline:// Segoe UI Bold, 60px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Bold;
@@ -685,7 +685,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.FastChargeHeader:// Segoe UI Regular, 100px, Black
+                case ControlStyles.BatteryLifeHeader:// Segoe UI Regular, 100px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
@@ -693,7 +693,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.Black);
                     break;
 
-                case ControlStyles.FastChargeLede:  // Segoe UI Regular, 86px, Black
+                case ControlStyles.BatteryLifeLede:  // Segoe UI Regular, 86px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
@@ -701,7 +701,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.Black);
                     break;
 
-                case ControlStyles.FastChargePercent: // Segoe UI Light, 300px, White
+                case ControlStyles.BatteryLifeHours: // Segoe UI Light, 300px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Light;
@@ -709,7 +709,7 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.FastChargeTimeline:// Segoe UI Bold, 60px, Black
+                case ControlStyles.BatteryLifeTimeline:// Segoe UI Bold, 60px, Black
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Bold;
