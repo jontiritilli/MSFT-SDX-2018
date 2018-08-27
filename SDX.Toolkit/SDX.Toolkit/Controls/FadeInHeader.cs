@@ -15,12 +15,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
+//using SDX.Telemetry.Services;
 using SDX.Toolkit.Helpers;
-using SDX.Telemetry.Services;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
-namespace SurfaceGoDemo.Controls
+namespace SDX.Toolkit.Controls
 {
     public enum FadeInHeaderStyles
     {
@@ -577,7 +577,7 @@ namespace SurfaceGoDemo.Controls
             if (!String.IsNullOrEmpty(this.TelemetryId))
             {
                 // telemetry
-                TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+                //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
             }
         }
 

@@ -25,11 +25,9 @@ namespace SDX.Toolkit.Controls
     public sealed class PopupContentBatteryLife : Control
     {
         #region Constants
-
+        // Still need assets
         private readonly string URI_IMAGE_BATTERY = @"ms-appx:///Assets/FastCharge/battery-outline.png";
-        private readonly string URI_IMAGE_METER = @"ms-appx:///Assets/FastCharge/meter-line.png";
         private readonly string URI_IMAGE_CHARGE = @"ms-appx:///Assets/FastCharge/blue-charge.png";
-        private readonly string URI_IMAGE_POSITION = @"ms-appx:///Assets/FastCharge/blue-line.png";
 
         private static readonly double CANVAS_X = 410d;
         private static readonly double CANVAS_Y = 175d;
@@ -43,7 +41,6 @@ namespace SDX.Toolkit.Controls
         private static readonly double HEIGHT_BATTERY = 134d;
 
         private static readonly double MARGIN_CHARGE_LEFT = 20d;
-        private static readonly double MARGIN_CHARGE_RIGHT = 35d;
         private static readonly double MARGIN_CHARGE_TOP = 25d;
         private static readonly double TOP_CHARGE = TOP_BATTERY + MARGIN_CHARGE_TOP;
         private static readonly double LEFT_CHARGE = LEFT_BATTERY + MARGIN_CHARGE_LEFT;
@@ -61,8 +58,6 @@ namespace SDX.Toolkit.Controls
         private readonly int Z_ORDER_CONTROLS = 100;
         private readonly int Z_ORDER_BATTERY = 10;
         private readonly int Z_ORDER_CHARGE = 20;
-        private readonly int Z_ORDER_POSITION = 20;
-        private readonly int Z_ORDER_BACKGROUND = 0;
 
         #endregion
 
@@ -343,7 +338,7 @@ namespace SDX.Toolkit.Controls
             _fadeInHeader = new FadeInHeader()
             {
                 Name = "FastCharge",
-                HeaderStyle = FadeInHeaderStyles.FastChargePopup,
+                HeaderStyle = FadeInHeaderStyles.BatteryLifePopup,
                 Width = CANVAS_X,
                 DurationInMilliseconds = 400d,
                 StaggerDelayInMilliseconds = 0d,
@@ -420,7 +415,7 @@ namespace SDX.Toolkit.Controls
             // create the percent overlay
             _hours = new AnimatableBatteryLife()
             {
-                PercentValue = 0.0
+                HourValue = 0.0
             };
 
             Canvas.SetLeft(_hours, LEFT_HOURS);
@@ -433,7 +428,7 @@ namespace SDX.Toolkit.Controls
             {
                 Text = "hrs"
             };
-            StyleHelper.SetFontCharacteristics(_hrs, ControlStyles.FastChargePercent);
+            StyleHelper.SetFontCharacteristics(_hrs, ControlStyles.BatteryLifeHours);
 
             Canvas.SetLeft(_hrs, LEFT_HOURS);
             Canvas.SetTop(_hrs, TOP_HOURS);

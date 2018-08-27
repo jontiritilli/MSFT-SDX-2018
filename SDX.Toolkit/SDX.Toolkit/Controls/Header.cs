@@ -459,8 +459,8 @@ namespace SDX.Toolkit.Controls
                     break;
 
                 case HeaderStyles.FastChargePopup:
-                    headlineControlStyle = ControlStyles.FastChargeHeader;
-                    ledeControlStyle = ControlStyles.FastChargeLede;
+                    headlineControlStyle = ControlStyles.BatteryLifeHeader;
+                    ledeControlStyle = ControlStyles.BatteryLifeLede;
                     break;
             }
 

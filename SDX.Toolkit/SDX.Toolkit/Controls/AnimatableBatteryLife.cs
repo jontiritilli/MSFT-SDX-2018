@@ -16,7 +16,7 @@ using SDX.Toolkit.Helpers;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
-namespace SurfaceGoDemo.Controls
+namespace SDX.Toolkit.Controls
 {
     public sealed class AnimatableBatteryLife : Control
     {
@@ -191,7 +191,7 @@ namespace SurfaceGoDemo.Controls
             {
                 HorizontalAlignment = HorizontalAlignment.Right
             };
-            StyleHelper.SetFontCharacteristics(_hours, ControlStyles.FastChargePercent);
+            StyleHelper.SetFontCharacteristics(_hours, ControlStyles.BatteryLifeHours);
             _hours.SetBinding(TextBlock.TextProperty,
                 new Binding() { Source = this, Path = new PropertyPath("PercentText"), Mode = BindingMode.OneWay });
 

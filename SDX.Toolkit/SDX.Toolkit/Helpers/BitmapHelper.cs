@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 
-namespace SurfaceGoDemo.Helpers
+namespace SDX.Toolkit.Helpers
 {
     public static class BitmapHelper
     {
