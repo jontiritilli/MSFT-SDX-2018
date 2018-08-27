@@ -1,6 +1,7 @@
 ﻿using System;
 using SDX.Toolkit.Helpers;
 using Windows.Foundation;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
@@ -12,10 +13,6 @@ using Windows.UI.Xaml.Shapes;
 namespace SDX.Toolkit.Controls
 {
     [TemplatePart(Name = "LayoutRoot", Type = typeof(Grid))]
-    [TemplatePart(Name = "DialCanvas", Type = typeof(Canvas))]
-    [TemplatePart(Name = "Dial", Type = typeof(Ellipse))]
-    [TemplatePart(Name = "ColorRay", Type = typeof(Path))]
-    [TemplatePart(Name = "ColorEllipse", Type = typeof(Path))]
     [TemplatePart(Name = "SelectedColorBorder", Type = typeof(Border))]
     [TemplatePart(Name = "CurrentColorBorder", Type = typeof(Border))]
     public sealed class SurfaceDial : Control
@@ -25,25 +22,24 @@ namespace SDX.Toolkit.Controls
 
         public ColorSelectionMode SelectionMode;
 
-        float mainColorAngle;
-        float activeSaturationValue;
-        Grid PaletteRing;
-        Grid SaturationPaletteRing;
-        Storyboard storyboard;
-        bool isRotating;
-        double currentAngle;
-        double dialCenterX;
-        double dialCenterY;
+        public float mainColorAngle;
+        public float activeSaturationValue;
+        public Grid _paletteRing;
+        public Grid _saturationPaletteRing;
+        public Storyboard _storyboard;
+        public bool isRotating;
+        public double _currentAngle;
 
         #region Private Members
 
-        private Grid layoutRoot;
-        private Canvas dialCanvas;
-        private Ellipse dial;
-        private Path colorRay;
-        private Path colorEllipse;
-        private Border selectedColorBorder;
-        private Border currentColorBorder;
+        private Grid _layoutRoot;
+        private Grid _dialGrid;
+        private Canvas _dialCanvas;
+        private Ellipse _dial;
+        private Path _colorSelectorEllipse;
+        private Border _selectedColorBorder;
+        private Border _currentColorBorder;
+        private RadialControllerMenuItem _screenColorMenuItem;
 
         #endregion
 
@@ -146,16 +142,40 @@ namespace SDX.Toolkit.Controls
 
         private void SetupController()
         {
-            if (Controller == null) Controller = RadialController.CreateForCurrentView();
+            if (null == Controller)
+            {
+                Controller = RadialController.CreateForCurrentView();
+            }
+            // Remove standard menu items
+            RadialControllerConfiguration _dialConfiguration = RadialControllerConfiguration.GetForCurrentView();
+            _dialConfiguration.SetDefaultMenuItems(new RadialControllerSystemMenuItemKind[] { });
+
+            // Create an icon for the custom tool.
+            RandomAccessStreamReference icon =
+                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/dial_icon_custom_visual.png"));
+
+            // Create a menu item for the custom tool.
+            _screenColorMenuItem =
+                RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
+
+            // Add the custom tool to the RadialController menu.
+            Controller.Menu.Items.Add(_screenColorMenuItem);
+
             // Set rotation degrees
             Controller.RotationResolutionInDegrees = 30;
 
             // Bind dial controls to local methods
+            _screenColorMenuItem.Invoked += ColorMenuItem_Invoked;
             Controller.RotationChanged += Controller_RotationChanged;
             Controller.ButtonClicked += Controller_ButtonClicked;
             Controller.ScreenContactStarted += Controller_ScreenContactStarted;
             Controller.ScreenContactContinued += Controller_ScreenContactContinued;
             Controller.ScreenContactEnded += Controller_ScreenContactEnded;
+        }
+
+        private void ColorMenuItem_Invoked(RadialControllerMenuItem sender, object args)
+        {
+            IsActive = true;
         }
 
         // Dial rotation handler
@@ -168,45 +188,30 @@ namespace SDX.Toolkit.Controls
         }
 
         // Dial Screen contact initial
-        private async void Controller_ScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
+        private void Controller_ScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
         {
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                dialCenterX = args.Contact.Position.X;
-                dialCenterY = args.Contact.Position.Y;
+            Canvas.SetLeft(_dialCanvas, args.Contact.Position.X - 150);
+            Canvas.SetTop(_dialCanvas, args.Contact.Position.Y - 150);
 
-                Canvas.SetLeft(dial, args.Contact.Position.X - 150);
-                Canvas.SetTop(dial, args.Contact.Position.Y - 150);
-
-                dialCanvas.Visibility = Visibility.Visible;
-            });
+            _dialCanvas.Visibility = Visibility.Visible;
         }
 
         // Dial lifted and placed again
-        private async void Controller_ScreenContactContinued(RadialController sender, RadialControllerScreenContactContinuedEventArgs args)
+        private void Controller_ScreenContactContinued(RadialController sender, RadialControllerScreenContactContinuedEventArgs args)
         {
             if (IsActive)
             {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    dialCenterX = args.Contact.Position.X;
-                    dialCenterY = args.Contact.Position.Y;
-
-                    Canvas.SetLeft(dial, args.Contact.Position.X - 150);
-                    Canvas.SetTop(dial, args.Contact.Position.Y - 150);
-                });
+                Canvas.SetLeft(_dialCanvas, args.Contact.Position.X - 150);
+                Canvas.SetTop(_dialCanvas, args.Contact.Position.Y - 150);
             }
         }
 
         // Dial screen contact ended and placed again
-        private async void Controller_ScreenContactEnded(RadialController sender, object args)
+        private void Controller_ScreenContactEnded(RadialController sender, object args)
         {
             if (IsActive)
             {
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    dialCanvas.Visibility = Visibility.Collapsed;
-                });
+                _dialCanvas.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -217,13 +222,13 @@ namespace SDX.Toolkit.Controls
             {
                 if (SelectionMode == ColorSelectionMode.Value)
                 {
-                    mainColorAngle = (float)Utilities.ClampAngle(currentAngle);
-                    selectedColorBorder.Background = new SolidColorBrush(Utilities.ConvertHSV2RGB(mainColorAngle, 1, 1));
+                    mainColorAngle = (float)Utilities.ClampAngle(_currentAngle);
+                    _selectedColorBorder.Background = new SolidColorBrush(Utilities.ConvertHSV2RGB(mainColorAngle, 1, 1));
                     SelectionMode = ColorSelectionMode.Saturation;
                 }
                 else
                 {
-                    selectedColorBorder.Background = new SolidColorBrush(Utilities.ConvertHSV2RGB(mainColorAngle, 1 - Math.Abs(activeSaturationValue), 1));
+                    _selectedColorBorder.Background = new SolidColorBrush(Utilities.ConvertHSV2RGB(mainColorAngle, 1 - Math.Abs(activeSaturationValue), 1));
                     SelectionMode = ColorSelectionMode.Value;
                     activeSaturationValue = 0;
                 }
@@ -236,21 +241,21 @@ namespace SDX.Toolkit.Controls
         {
             if (SelectionMode == ColorSelectionMode.Value)
             {
-                PaletteRing.Visibility = Visibility.Visible;
-                SaturationPaletteRing.Visibility = Visibility.Collapsed;
+                _paletteRing.Visibility = Visibility.Visible;
+                _saturationPaletteRing.Visibility = Visibility.Collapsed;
             }
             else
             {
-                PaletteRing.Visibility = Visibility.Collapsed;
+                _paletteRing.Visibility = Visibility.Collapsed;
                 FillSaturationRing();
-                SaturationPaletteRing.Visibility = Visibility.Visible;
+                _saturationPaletteRing.Visibility = Visibility.Visible;
             }
         }
 
         // Show saturation selector for selected color
         private void FillSaturationRing()
         {
-            SaturationPaletteRing.Children.Clear();
+            _saturationPaletteRing.Children.Clear();
 
             Color current = Utilities.ConvertHSV2RGB(mainColorAngle, 0, 1);
 
@@ -265,7 +270,7 @@ namespace SDX.Toolkit.Controls
                 current = Utilities.ConvertHSV2RGB(mainColorAngle, i * 0.01f, 1);
                 colorBrush.GradientStops.Add(new GradientStop() { Color = current, Offset = 1 });
                 Path line = DrawColorLine(rt, colorBrush);
-                SaturationPaletteRing.Children.Add(line);
+                _saturationPaletteRing.Children.Add(line);
             }
         }
 
@@ -287,7 +292,7 @@ namespace SDX.Toolkit.Controls
 
             if (SelectionMode == ColorSelectionMode.Saturation)
             {
-                double destinationAngle = Utilities.ClampAngle(currentAngle + angle);
+                double destinationAngle = Utilities.ClampAngle(_currentAngle + angle);
 
                 if (!IsInSaturationBounds(destinationAngle))
                 {
@@ -296,46 +301,41 @@ namespace SDX.Toolkit.Controls
                 activeSaturationValue += (float)angle / 100;
             }
 
-            currentAngle += angle;
-            rayAnimation.To = currentAngle;
+            _currentAngle += angle;
+            rayAnimation.To = _currentAngle;
             rayAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
 
             DoubleAnimation colorEllipseAnimation = new DoubleAnimation();
-            colorEllipseAnimation.To = currentAngle;
+            colorEllipseAnimation.To = _currentAngle;
             colorEllipseAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
 
-            storyboard.Children.Add(rayAnimation);
-            Storyboard.SetTarget(rayAnimation, colorRay);
-            Storyboard.SetTargetProperty(rayAnimation, "(ColorRay.RenderTransform).(RotateTransform.Angle)");
-
-            storyboard.Children.Add(colorEllipseAnimation);
-            Storyboard.SetTarget(colorEllipseAnimation, colorEllipse);
+            _storyboard.Children.Add(colorEllipseAnimation);
+            Storyboard.SetTarget(colorEllipseAnimation, _colorSelectorEllipse);
             Storyboard.SetTargetProperty(colorEllipseAnimation, "(ColorEllipse.RenderTransform).(RotateTransform.Angle)");
 
-            storyboard.Begin();
+            _storyboard.Begin();
             isRotating = true;
 
             Color activeColor;
             if (SelectionMode == ColorSelectionMode.Value)
             {
-                activeColor = Utilities.ConvertHSV2RGB((float)Utilities.ClampAngle(currentAngle), 1, 1);
+                activeColor = Utilities.ConvertHSV2RGB((float)Utilities.ClampAngle(_currentAngle), 1, 1);
             }
             else
             {
                 activeColor = Utilities.ConvertHSV2RGB(mainColorAngle, 1 - Math.Abs(activeSaturationValue), 1);
             }
 
-            colorEllipse.Fill = currentColorBorder.Background = new SolidColorBrush(activeColor);
+            _colorSelectorEllipse.Fill = _currentColorBorder.Background = new SolidColorBrush(activeColor);
         }
 
         private void CompleteRotation()
         {
-            storyboard.SkipToFill();
-            storyboard.Stop();
-            RotateTransform rotateTransform = new RotateTransform() { Angle = currentAngle };
-            colorRay.RenderTransform = rotateTransform;
-            colorEllipse.RenderTransform = rotateTransform;
-            storyboard.Children.Clear();
+            _storyboard.SkipToFill();
+            _storyboard.Stop();
+            RotateTransform rotateTransform = new RotateTransform() { Angle = _currentAngle };
+            _colorSelectorEllipse.RenderTransform = rotateTransform;
+            _storyboard.Children.Clear();
         }
 
         #endregion
@@ -349,6 +349,7 @@ namespace SDX.Toolkit.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+            this.SetupController();
             this.RenderUI();
         }
 
@@ -358,29 +359,58 @@ namespace SDX.Toolkit.Controls
 
         private void RenderUI()
         {
-            layoutRoot = GetTemplateChild("LayoutRoot") as Grid;
-            dialCanvas = GetTemplateChild("DialCanvas") as Canvas;
-            dial = GetTemplateChild("Dial") as Ellipse;
-            colorEllipse = GetTemplateChild("ColorEllipse") as Path;
-            colorRay = GetTemplateChild("ColorRay") as Path;
-            currentColorBorder = GetTemplateChild("CurrentColorBorder") as Border;
-            selectedColorBorder = GetTemplateChild("SelectedColorBorder") as Border;
+            if (null == _layoutRoot) { _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot"); }
+            if (null == _currentColorBorder) { _currentColorBorder = (Border)this.GetTemplateChild("CurrentColorBorder"); }
+            if (null == _selectedColorBorder) { _selectedColorBorder = (Border)this.GetTemplateChild("SelectedColorBorder"); }
 
-            dialCanvas.Visibility = Visibility.Collapsed;
+            _dialCanvas = new Canvas()
+            {
+                Name = "DialCanvas"
+            };
 
-            storyboard = new Storyboard();
-            storyboard.Completed += Storyboard_Completed;
-            currentAngle = 0;
-            colorRay.Data = new LineGeometry() { StartPoint = new Point(200, 200), EndPoint = new Point(400, 200) };
-            colorEllipse.Data = new EllipseGeometry() { Center = new Point(400, 200), RadiusX = 10, RadiusY = 10 };
+            _dialGrid = new Grid()
+            {
+                Name = "DialGrid"
+            }; ;
+            _dialGrid.HorizontalAlignment = HorizontalAlignment.Center;
+            _dialGrid.VerticalAlignment = VerticalAlignment.Center;
+
+            _dial = new Ellipse()
+            {
+                Name = "Dial",
+                Height = 400,
+                Width = 400,
+                Fill = new SolidColorBrush(Colors.Black),
+                Opacity = 0.7
+            };
+
+            _colorSelectorEllipse = new Path()
+            {
+                Name = "ColorEllipse",
+                Stroke = new SolidColorBrush(Colors.Gray),
+                Fill = new SolidColorBrush(Colors.Red),
+                RenderTransformOrigin = new Point(.5,.5),
+                StrokeThickness = 2d
+            };
+
+            RotateTransform _colorEllipseTransform = new RotateTransform();
+            _colorEllipseTransform.Angle = 0;
+            _colorSelectorEllipse.RenderTransform = _colorEllipseTransform;
+            _colorSelectorEllipse.Data = new EllipseGeometry() {
+                RadiusX = 10, RadiusY = 10
+            };
+
+            _dialCanvas.Visibility = Visibility.Collapsed;
+
+            _storyboard = new Storyboard();
+            _storyboard.Completed += Storyboard_Completed;
+            _currentAngle = 0;
+
 
             SelectionMode = ColorSelectionMode.Value;
 
-            PaletteRing = new Grid();
+            _paletteRing = new Grid();
 
-            PaletteRing.Width = 400;
-
-            PaletteRing.Height = 400;
             Color current = Utilities.ConvertHSV2RGB(0, 1, 1);
             for (int i = 0; i < 360; i++)
             {
@@ -396,24 +426,24 @@ namespace SDX.Toolkit.Controls
 
                 Path line = DrawColorLine(rt, colorBrush);
 
-                PaletteRing.Children.Add(line);
+                _paletteRing.Children.Add(line);
             }
-            PaletteRing.HorizontalAlignment = HorizontalAlignment.Center;
 
-            PaletteRing.VerticalAlignment = VerticalAlignment.Center;
+            _paletteRing.HorizontalAlignment = HorizontalAlignment.Center;
+            _paletteRing.VerticalAlignment = VerticalAlignment.Center;
 
-            // need to append color wheel to dial canvas
-            dial.Child = PaletteRing;
-
-            SaturationPaletteRing = new Grid()
+            _saturationPaletteRing = new Grid()
             {
-                Width = 375,
-                Height = 375,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
 
-            dialCanvas.Children.Add(SaturationPaletteRing);
+            _dialGrid.Children.Add(_dial);
+            _dialGrid.Children.Add(_paletteRing);
+            _dialGrid.Children.Add(_saturationPaletteRing);
+
+            _dialCanvas.Children.Add(_dialGrid);
+            _layoutRoot.Children.Add(_dialCanvas);
         }
 
         // Builds color wheel
@@ -421,7 +451,7 @@ namespace SDX.Toolkit.Controls
         {
             return new Path()
             {
-                Data = new LineGeometry() { StartPoint = FindLineStart(280, 280), EndPoint = FindLineStart(300, 300) },
+                Data = new LineGeometry() { StartPoint = FindLineStart(300, 300), EndPoint = FindLineStart(310, 310) },
                 StrokeThickness = 3,
                 RenderTransformOrigin = new Point(0.5, 0.5),
                 RenderTransform = rt,

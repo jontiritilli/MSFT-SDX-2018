@@ -71,11 +71,5 @@
                     DurationInMilliseconds="200"
                     StaggerDelayInMilliseconds="0"
                     AutoStart="True"/>-->
-
-        <Canvas x:Name="DialRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-            <Grid Name="Palette">
-                <ctrl:SurfaceDial x:Name="SurfaceDial" />
-            </Grid>
-        </Canvas>
     </Grid>
 </Page>
