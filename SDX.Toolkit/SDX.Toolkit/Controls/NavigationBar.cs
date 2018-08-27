@@ -223,12 +223,18 @@ namespace SDX.Toolkit.Controls
 
         private static void OnNavigationSectionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is NavigationBar navbar)
+            {
+                navbar.UpdateUI();
+            }
         }
 
         private static void OnIsHomeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is NavigationBar navbar)
+            {
+                navbar.UpdateUI();
+            }
         }
 
         private void NavItem_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -254,8 +260,8 @@ namespace SDX.Toolkit.Controls
                     break;
 
                 case "GoHome":
-                    // TODO
-                    // - must perform go home action, including setting the selected section/page
+                    // move to the first page
+                    MoveToPageIndex(0);
                     RaiseNavigateEvent(this, NavigationActions.Home, this.SelectedSection, this.SelectedPage);
                     break;
 
@@ -280,7 +286,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // update the UI to reflect the change
-            this.UpdateUI();
+            //this.UpdateUI();  // this is done in MoveToPage() which is called by all MoveXXX() functions.
         }
 
         //protected override void OnPreviewKeyUp(KeyRoutedEventArgs e)
@@ -545,6 +551,9 @@ namespace SDX.Toolkit.Controls
                 // bump our counter
                 j++;
             }
+
+            // move to the first page
+            MoveToPageIndex(0);
         }
 
         private void UpdateUI()

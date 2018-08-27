@@ -42,5 +42,22 @@ namespace SDX.Toolkit.Controls
 
             base.OnKeyDown(e);
         }
+
+        public object GetChildViewAsObject()
+        {
+            object child = null;
+
+            // get our content
+            if (null != this.Content)
+            {
+                // our immediate content is a frame
+                if (this.Content is Frame frame)
+                {
+                    child = frame.Content;
+                }
+            }
+
+            return child;
+        }
     }
 }

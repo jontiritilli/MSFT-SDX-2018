@@ -114,9 +114,15 @@
     <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
+    <Compile Include="Helpers\PropertyChangeEventSource.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\StyleHelper.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
@@ -175,6 +181,7 @@
     <Compile Include="Views\FlipViewPage.xaml.cs">
       <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\INavigate.cs" />
     <Compile Include="Views\UriSchemeExamplePage.xaml.cs">
       <DependentUpon>UriSchemeExamplePage.xaml</DependentUpon>
     </Compile>
@@ -186,6 +193,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -272,11 +287,16 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
+    <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
+    <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />
+    <Content Include="Assets\NavigationBar\forward-nav-arrow.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -288,6 +308,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <None Include="config.json" />
+    <None Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SurfaceProDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
