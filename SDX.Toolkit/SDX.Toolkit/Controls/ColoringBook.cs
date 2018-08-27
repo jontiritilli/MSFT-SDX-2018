@@ -53,8 +53,7 @@ namespace SDX.Toolkit.Controls
         private InkCanvas _inkCanvas = null;
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
-        private Image _touchHereImage = null;
-        private StyledText _caption = null;
+        private Image _touchHereImage = null;        
 
         private bool _touchHereWasHidden = false;
         private int _currentColor = -1;
@@ -266,21 +265,7 @@ namespace SDX.Toolkit.Controls
             };
             Grid.SetRow(_touchHereImage, 0);
             Grid.SetColumn(_touchHereImage, 0);
-            _penTouchPointGrid.Children.Add(_touchHereImage);
-
-            // create the caption
-            _caption = new StyledText()
-            {
-                Name = "ColoringBookCaption",
-                Text = this.Caption,
-                ControlStyle = this.ControlStyle,
-                TextAlignment = TextAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            Grid.SetRow(_caption, 2);
-            Grid.SetColumn(_caption, 0);
-            _penTouchPointGrid.Children.Add(_caption);
+            _penTouchPointGrid.Children.Add(_touchHereImage);          
 
             // create the ink canvas
             _inkCanvas = new InkCanvas()
@@ -293,18 +278,6 @@ namespace SDX.Toolkit.Controls
             Grid.SetRow(_inkCanvas, 0);
             Grid.SetColumn(_inkCanvas, 0);
             _layoutRoot.Children.Add(_inkCanvas);
-
-            // set the default drawing attribs
-            SetupBrush();
-            //InkDrawingAttributes inkDrawingAttributes = new InkDrawingAttributes()
-            //{
-            //    Color = GetNextColor(),
-            //    //FitToCurve = true,
-            //    PenTip = PenTipShape.Circle,
-            //    Size = new Size(WINDOW_BOUNDS.Width * 0.02, WINDOW_BOUNDS.Height * 0.02)
-            //};
-            //_inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(inkDrawingAttributes);
-
 
             // add a nohitvisible png onto this page
             Image ColoringImage = new Image()
