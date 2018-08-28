@@ -8,6 +8,8 @@ namespace SurfaceProDemo.Models
 {
     public sealed class LanguageFile
     {
+        #region Public Properties
+
         public string INTRO_TITLE_DEVICE_ONE = "INTRO_TITLE_DEVICE_ONE";
         public string INTRO_TITLE_DEVICE_TWO = "INTRO_TITLE_DEVICE_TWO";
         public string INTRO_TITLE = "INTRO_TITLE";
@@ -202,6 +204,21 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE = "COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY = "COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL = "COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL";
+
+        #endregion
+
+
+        #region Construction
+
+        public LanguageFile()
+        {
+
+        }
+
+        #endregion
+
+
+        #region Public Static Methods
 
         public static LanguageFile CreateDefault()
         {
@@ -405,5 +422,7 @@ namespace SurfaceProDemo.Models
 
             return languageFile;
         }
+
+        #endregion
     }
 }
