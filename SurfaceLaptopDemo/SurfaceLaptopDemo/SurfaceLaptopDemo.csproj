@@ -115,8 +115,12 @@
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
@@ -132,8 +136,8 @@
     <Compile Include="ViewModels\ExperiencePerformanceViewModel.cs" />
     <Compile Include="ViewModels\ExperienceSleekViewModel.cs" />
     <Compile Include="ViewModels\ExperienceSpeakersViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\PivotViewModel.cs" />
+    <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AccessoriesMousePage.xaml.cs">
       <DependentUpon>AccessoriesMousePage.xaml</DependentUpon>
@@ -168,12 +172,13 @@
     <Compile Include="Views\ExperienceSpeakersPage.xaml.cs">
       <DependentUpon>ExperienceSpeakersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Views\AttractorLoopPage.xaml.cs">
+      <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="Views\FlipViewPage.xaml.cs">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\INavigate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -182,6 +187,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -246,11 +259,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainPage.xaml">
+    <Page Include="Views\AttractorLoopPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PivotPage.xaml">
+    <Page Include="Views\FlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -264,10 +277,15 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
+    <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
+    <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
+    <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />
+    <Content Include="Assets\NavigationBar\forward-nav-arrow.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -279,6 +297,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="SurfaceLaptopDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

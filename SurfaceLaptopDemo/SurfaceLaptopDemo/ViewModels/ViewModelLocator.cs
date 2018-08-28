@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceLaptopDemo.Services;
 using SurfaceLaptopDemo.Views;
 
+
 namespace SurfaceLaptopDemo.ViewModels
 {
     [Windows.UI.Xaml.Data.Bindable]
@@ -17,8 +18,9 @@ namespace SurfaceLaptopDemo.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            Register<PivotViewModel, PivotPage>();
-            Register<MainViewModel, MainPage>();
+
+            Register<AttractorLoopViewModel, AttractorLoopPage>();
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
             Register<ExperienceColorsViewModel, ExperienceColorsPage>();
             Register<ExperienceInnovationViewModel, ExperienceInnovationPage>();
@@ -54,9 +56,9 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperienceHeroViewModel ExperienceHeroViewModel => ServiceLocator.Current.GetInstance<ExperienceHeroViewModel>();
 
-        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
-        public PivotViewModel PivotViewModel => ServiceLocator.Current.GetInstance<PivotViewModel>();
+        public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

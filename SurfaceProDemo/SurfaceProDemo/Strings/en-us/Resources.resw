@@ -141,54 +141,6 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="Shell_AttractorLoop.Content" xml:space="preserve">
-    <value>AttractorLoop</value>
-    <comment>Navigation view item name for AttractorLoop</comment>
-  </data>
-  <data name="Shell_ChoosePath.Content" xml:space="preserve">
-    <value>ChoosePath</value>
-    <comment>Navigation view item name for ChoosePath</comment>
-  </data>
-  <data name="Shell_ExperienceHero.Content" xml:space="preserve">
-    <value>ExperienceHero</value>
-    <comment>Navigation view item name for ExperienceHero</comment>
-  </data>
-  <data name="Shell_ExperienceIntro.Content" xml:space="preserve">
-    <value>ExperienceIntro</value>
-    <comment>Navigation view item name for ExperienceIntro</comment>
-  </data>
-  <data name="Shell_ExperienceTransform.Content" xml:space="preserve">
-    <value>ExperienceTransform</value>
-    <comment>Navigation view item name for ExperienceTransform</comment>
-  </data>
-  <data name="Shell_ExperiencePerformance.Content" xml:space="preserve">
-    <value>ExperiencePerformance</value>
-    <comment>Navigation view item name for ExperiencePerformance</comment>
-  </data>
-  <data name="Shell_ExperienceQuiet.Content" xml:space="preserve">
-    <value>ExperienceQuiet</value>
-    <comment>Navigation view item name for ExperienceQuiet</comment>
-  </data>
-  <data name="Shell_AccessoriesPen.Content" xml:space="preserve">
-    <value>AccessoriesPen</value>
-    <comment>Navigation view item name for AccessoriesPen</comment>
-  </data>
-  <data name="Shell_AccessoriesKeyboard.Content" xml:space="preserve">
-    <value>AccessoriesKeyboard</value>
-    <comment>Navigation view item name for AccessoriesKeyboard</comment>
-  </data>
-  <data name="Shell_AccessoriesMouse.Content" xml:space="preserve">
-    <value>AccessoriesMouse</value>
-    <comment>Navigation view item name for AccessoriesMouse</comment>
-  </data>
-  <data name="Shell_BestOfMicrosoft.Content" xml:space="preserve">
-    <value>BestOfMicrosoft</value>
-    <comment>Navigation view item name for BestOfMicrosoft</comment>
-  </data>
-  <data name="Shell_Compare.Content" xml:space="preserve">
-    <value>Compare</value>
-    <comment>Navigation view item name for Compare</comment>
-  </data>
   <data name="UriSchemeExample_Title.Text" xml:space="preserve">
     <value>URI Scheme Example</value>
     <comment>Page Title for URI Scheme Example</comment>

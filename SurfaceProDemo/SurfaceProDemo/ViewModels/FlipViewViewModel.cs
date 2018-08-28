@@ -69,7 +69,7 @@ namespace SurfaceProDemo.ViewModels
             // ExperienceHeroPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceHero",
+                Name = "ExperienceHeroPage",
                 Order = 0
             }
             );
@@ -77,7 +77,7 @@ namespace SurfaceProDemo.ViewModels
             // ExperienceIntroPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceIntro",
+                Name = "ExperienceIntroPage",
                 Order = 1
             }
             );
@@ -85,7 +85,7 @@ namespace SurfaceProDemo.ViewModels
             // ExperienceTransformPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceTransform",
+                Name = "ExperienceTransformPage",
                 Order = 2
             }
             );
@@ -93,7 +93,7 @@ namespace SurfaceProDemo.ViewModels
             // ExperiencePerformancePage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperiencePerformance",
+                Name = "ExperiencePerformancePage",
                 Order = 3
             }
             );
@@ -101,7 +101,7 @@ namespace SurfaceProDemo.ViewModels
             // ExperienceQuietPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceQuiet",
+                Name = "ExperienceQuietPage",
                 Order = 4
             }
             );
@@ -178,7 +178,7 @@ namespace SurfaceProDemo.ViewModels
             // =================================================
             section = new NavigationSection()
             {
-                Name = "Last2",
+                Name = "Compare",
                 Text = this.NavBarCompare,  // from language file
                 Order = 3
             };

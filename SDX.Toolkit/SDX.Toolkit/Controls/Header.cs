@@ -27,7 +27,7 @@ namespace SDX.Toolkit.Controls
         HeaderAndLede,      // shows headline/lede in normal style
         ListHeader,         // shows headline/lede in list style
         ListItemLedeOnly,   // shows lede in list style
-        FastChargePopup     // shows headline/lede in popup text style
+        BatteryLifePopup     // shows headline/lede in popup text style
     }
 
     public sealed class Header : Control
@@ -458,7 +458,7 @@ namespace SDX.Toolkit.Controls
                     ledeControlStyle = ControlStyles.ListLede;
                     break;
 
-                case HeaderStyles.FastChargePopup:
+                case HeaderStyles.BatteryLifePopup:
                     headlineControlStyle = ControlStyles.BatteryLifeHeader;
                     ledeControlStyle = ControlStyles.BatteryLifeLede;
                     break;

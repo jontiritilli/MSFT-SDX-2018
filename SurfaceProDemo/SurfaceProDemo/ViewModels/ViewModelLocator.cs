@@ -7,21 +7,20 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceProDemo.Services;
 using SurfaceProDemo.Views;
 
+
 namespace SurfaceProDemo.ViewModels
 {
     [Windows.UI.Xaml.Data.Bindable]
     public class ViewModelLocator
     {
-        private static ViewModelLocator Current;
-
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
 
-            Register<FlipViewViewModel, FlipViewPage>();
             Register<AttractorLoopViewModel, AttractorLoopPage>();
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
             Register<ExperienceIntroViewModel, ExperienceIntroPage>();
