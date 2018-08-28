@@ -71,10 +71,5 @@
                     DurationInMilliseconds="200"
                     StaggerDelayInMilliseconds="0"
                     AutoStart="True"/>-->
-
-        <ctrl:SurfaceDial x:Name="Dial" Loaded="OnLoaded" />
-        <Canvas x:Name="DialCanvas">
-        </Canvas>
     </Grid>
-
 </Page>
