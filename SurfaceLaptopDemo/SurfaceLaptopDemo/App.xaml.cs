@@ -42,7 +42,7 @@ namespace SurfaceLaptopDemo
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.PivotViewModel));
+            return new ActivationService(this, typeof(ViewModels.FlipViewViewModel));
         }
 
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)

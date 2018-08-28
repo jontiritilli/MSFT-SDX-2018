@@ -17,8 +17,8 @@ namespace SurfaceLaptopDemo.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            Register<PivotViewModel, PivotPage>();
-            Register<MainViewModel, MainPage>();
+            Register<FlipViewViewModel, FlipViewPage>();
+            Register<AttractorLoopViewModel, MainPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
             Register<ExperienceColorsViewModel, ExperienceColorsPage>();
             Register<ExperienceInnovationViewModel, ExperienceInnovationPage>();
@@ -54,9 +54,9 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperienceHeroViewModel ExperienceHeroViewModel => ServiceLocator.Current.GetInstance<ExperienceHeroViewModel>();
 
-        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public AttractorLoopViewModel MainViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
-        public PivotViewModel PivotViewModel => ServiceLocator.Current.GetInstance<PivotViewModel>();
+        public FlipViewViewModel PivotViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

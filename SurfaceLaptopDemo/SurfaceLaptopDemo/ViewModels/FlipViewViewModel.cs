@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-using SurfaceProDemo.Services;
+using SurfaceLaptopDemo.Services;
 using SDX.Toolkit.Models;
 
 
-namespace SurfaceProDemo.ViewModels
+namespace SurfaceLaptopDemo.ViewModels
 {
     public class FlipViewViewModel : ViewModelBase
     {
@@ -74,18 +74,18 @@ namespace SurfaceProDemo.ViewModels
             }
             );
 
-            // ExperienceIntroPage
+            // ExperienceColorsPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceIntroPage",
+                Name = "ExperienceColorsPage",
                 Order = 1
             }
             );
 
-            // ExperienceTransformPage
+            // ExperienceInnovationPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceTransformPage",
+                Name = "ExperienceInnovationPage",
                 Order = 2
             }
             );
@@ -98,11 +98,19 @@ namespace SurfaceProDemo.ViewModels
             }
             );
 
-            // ExperienceQuietPage
+            // ExperienceSpeakersPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceQuietPage",
+                Name = "ExperienceSpeakersPage",
                 Order = 4
+            }
+            );
+
+            // ExperienceSleekPage
+            section.Pages.Add(new NavigationPage()
+            {
+                Name = "ExperienceSleekPage",
+                Order = 5
             }
             );
 
@@ -178,7 +186,7 @@ namespace SurfaceProDemo.ViewModels
             // =================================================
             section = new NavigationSection()
             {
-                Name = "Compare",
+                Name = "Last2",
                 Text = this.NavBarCompare,  // from language file
                 Order = 3
             };
