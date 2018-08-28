@@ -38,42 +38,11 @@ namespace SurfaceTestBed.Views
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // stop the page timer
-            //if (null != _pageMoveTimer) { _pageMoveTimer.Stop(); }
-
-            // if we have a bottom nav bar
-            if (null != this.BottomNavBar)
-            {
-                // get the sender
-                if (sender is FlipViewEx flipView)
-                {
-                    // get the pageIndex of the new page
-                    int pageIndex = flipView.SelectedIndex;
-
-                    // tell the navbar to move to it
-                    this.BottomNavBar.MoveToPageIndex(pageIndex);
-                }
-            }
         }
 
         private void BottomNavBar_OnNavigation(object sender, NavigateEventArgs e)
         {
-            // stop the page timer
-            //if (null != _pageMoveTimer) { _pageMoveTimer.Stop(); }
 
-            // if we have a flipview
-            if (null != this.ContentFlipView)
-            {
-                // get the sender
-                if (sender is NavigationBar navBar)
-                {
-                    // convert the section/page from the event args to a page index
-                    int pageIndex = navBar.GetPageIndexFromPage(e.NavSection, e.NavPage);
-
-                    // move the flipview to that index
-                    this.ContentFlipView.SelectedIndex = pageIndex;
-                }
-            }
         }
     }
 }
