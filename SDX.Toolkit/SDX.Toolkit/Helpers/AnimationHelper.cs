@@ -21,8 +21,9 @@ using Windows.UI.Xaml.Shapes;
 
 namespace SDX.Toolkit.Helpers
 {
+
     public static class AnimationHelper
-    {
+    {        
         public static void PerformFadeIn(DependencyObject dependencyObject, double duration, double staggerDelay = 0)
         {
             Storyboard storyboard = null;
@@ -44,6 +45,35 @@ namespace SDX.Toolkit.Helpers
                 storyboard = CreateEasingAnimation(dependencyObject, "Opacity", 1.0, 1.0, 0.0, duration, staggerDelay, false, false, new RepeatBehavior(1d));
 
                 storyboard.Begin();
+            }
+        }
+        
+        public static void PerformPageEntranceAnimation(Page page)
+        {
+            //traverse the visual tree of a page and perform the fade in and translate in on each frameworkitem            
+            // general idea from EntranceThemeTransition and rebuilt as a behavior here
+            // https://jeremiahmorrill.wordpress.com/2014/04/02/entrancethemetransitionbehavior-behavior-for-wpf/
+            List<Storyboard> StoryBoardCollection = new List<Storyboard>();
+            double StaggerDelay = 0.0;
+            double TotalStagger = (((Windows.UI.Xaml.Controls.Panel)page.Content).Children.Count  * 100d) + 500d;            
+            foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
+            {
+                //create a storyboard per item and stagger them .1 per child
+                Storyboard storyboard = null;
+
+                if (null != child)
+                {                    
+                    storyboard = CreateEasingAnimation(child, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                    StoryBoardCollection.Add(storyboard);                    
+                    storyboard = CreateTranslateAnimation(child, "X",100, 100, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                    StoryBoardCollection.Add(storyboard);
+                    StaggerDelay += 100;
+                }
+            }
+
+            foreach (Storyboard SB in StoryBoardCollection)
+            {
+                SB.Begin();
             }
         }
 
@@ -193,6 +223,52 @@ namespace SDX.Toolkit.Helpers
             // set the target of the storyboard
             Storyboard.SetTarget(storyboard, dependencyObject);
             Storyboard.SetTargetProperty(storyboard, propertyName);
+
+            return storyboard;
+        }
+
+        public static Storyboard CreateTranslateAnimation(DependencyObject dependencyObject, string propertyName,
+                                                            double defaultValue, double startValue, double endValue,
+                                                            double duration, double staggerDelay,
+                                                            bool autoReverse, bool repeatForever, RepeatBehavior repeatBehavior)
+        {
+            // total duration
+            double totalDuration = duration + staggerDelay;
+
+            // create the storyboard
+            Storyboard storyboard = new Storyboard()
+            {
+                Duration = TimeSpan.FromMilliseconds(totalDuration),
+                AutoReverse = autoReverse,
+                RepeatBehavior = (repeatForever) ? RepeatBehavior.Forever : repeatBehavior
+            };
+            
+            var tg = new TransformGroup();
+            var translation = new TranslateTransform()
+            {               
+                X = startValue,
+                Y = 0
+            };
+            
+            tg.Children.Add(translation);
+            
+            UIElement UI = (UIElement)dependencyObject;
+            UI.RenderTransform = tg;
+            // create default easing
+            CubicEase easeIn = new CubicEase()
+            {
+                EasingMode = EasingMode.EaseIn
+            };
+
+            CubicEase easeOut = new CubicEase()
+            {
+                EasingMode = EasingMode.EaseOut
+            };
+
+            DoubleAnimationUsingKeyFrames daKeyFrames = CreateEasingKeyFrames(translation, propertyName, defaultValue, startValue, endValue, easeIn, easeOut, duration, staggerDelay);
+            storyboard.Children.Add(daKeyFrames);
+            Storyboard.SetTarget(daKeyFrames, translation);
+            Storyboard.SetTargetProperty(daKeyFrames, propertyName);
 
             return storyboard;
         }
