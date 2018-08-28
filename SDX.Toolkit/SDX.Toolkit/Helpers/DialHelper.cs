@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI;
+using System.Diagnostics;
 
 namespace SDX.Toolkit.Helpers
 {
@@ -22,13 +23,13 @@ namespace SDX.Toolkit.Helpers
 
         }
 
-        public static Color ConvertHSV2RGB(float sliceNum)
+        public static Color ConvertHSV2RGB(float EllipseAngle)
         {
             byte r = 0;
             byte g = 0;
             byte b = 0;
-            int slice = (int)Math.Ceiling(sliceNum / 72);
-            switch (slice)
+            int angle = (int)Math.Ceiling(EllipseAngle / 72);
+            switch (angle)
             {
                 case 1:
                     r = 12;

@@ -42,6 +42,8 @@ namespace SDX.Toolkit.Controls
         private static readonly double DIAL_RADIUS = DIAL_HEIGHT / 2d;
         private static readonly double SELECTOR_CENTER = DIAL_RADIUS + 120d;
         private static readonly double SELECTOR_RADIUS = 15d;
+        private static readonly double ROTATION_MODIFIER = 16d;
+        private static readonly double DIAL_INITIAL_ANGLE = 36d;
 
         #endregion
 
@@ -168,9 +170,20 @@ namespace SDX.Toolkit.Controls
         // Dial rotation handler
         private void Controller_RotationChanged(RadialController sender, RadialControllerRotationChangedEventArgs args)
         {
+            double RotationInterval;
+
+            if (args.RotationDeltaInDegrees < 0)
+            {
+                RotationInterval = args.RotationDeltaInDegrees - ROTATION_MODIFIER;
+            } else
+            {
+                RotationInterval = args.RotationDeltaInDegrees + ROTATION_MODIFIER;
+            }
+
             if (IsActive)
             {
-                Rotate(args.RotationDeltaInDegrees);
+                Rotate(RotationInterval);
+                Debug.WriteLine("RotationInterval {0}", RotationInterval);
             }
         }
 
@@ -210,7 +223,6 @@ namespace SDX.Toolkit.Controls
                 if (SelectionMode == ColorSelectionMode.Value)
                 {
                     mainColorAngle = (float)Utilities.ClampAngle(_currentAngle);
-                    //SelectionMode = ColorSelectionMode.Saturation;
                 }
                 else
                 {
@@ -229,12 +241,6 @@ namespace SDX.Toolkit.Controls
                 _paletteRing.Visibility = Visibility.Visible;
                 _saturationPaletteRing.Visibility = Visibility.Collapsed;
             }
-            else
-            {
-                _paletteRing.Visibility = Visibility.Collapsed;
-                //FillSaturationRing();
-                _saturationPaletteRing.Visibility = Visibility.Visible;
-            }
         }
 
         private void Storyboard_Completed(object sender, object e)
@@ -249,8 +255,10 @@ namespace SDX.Toolkit.Controls
             {
                 CompleteRotation();
             }
+            
+            _currentAngle = (double)Utilities.ClampAngle(_currentAngle + angle);
 
-            _currentAngle += angle;
+            Debug.WriteLine("current angle in rotate {0}",_currentAngle);
 
             DoubleAnimation colorSelectorAnimation = new DoubleAnimation();
             colorSelectorAnimation.To = _currentAngle;
@@ -269,6 +277,7 @@ namespace SDX.Toolkit.Controls
             {
                 activeColor = Utilities.ConvertHSV2RGB((float)Utilities.ClampAngle(_currentAngle));
             }
+            //Debug.WriteLine("Current angle {0}", _currentAngle);
             _colorSelector.Fill = new SolidColorBrush(activeColor);
         }
 
@@ -338,7 +347,7 @@ namespace SDX.Toolkit.Controls
             };
 
             RotateTransform _colorSelectorTransform = new RotateTransform();
-            _colorSelectorTransform.Angle = 0;
+            _colorSelectorTransform.Angle = DIAL_INITIAL_ANGLE;
             _colorSelector.RenderTransform = _colorSelectorTransform;
             _colorSelector.Data = new EllipseGeometry()
             {
@@ -351,7 +360,7 @@ namespace SDX.Toolkit.Controls
 
             _storyboard = new Storyboard();
             _storyboard.Completed += Storyboard_Completed;
-            _currentAngle = 0;
+            _currentAngle = DIAL_INITIAL_ANGLE;
 
 
             SelectionMode = ColorSelectionMode.Value;
@@ -359,7 +368,7 @@ namespace SDX.Toolkit.Controls
             _paletteRing = new Grid();
 
             Color current = Utilities.ConvertHSV2RGB(0);
-            for (int sliceCount = 0; sliceCount < 360; sliceCount++)
+            for (int sliceCount = 1; sliceCount <= 360; sliceCount++)
             {
                 RotateTransform rt = new RotateTransform() { Angle = sliceCount };
 

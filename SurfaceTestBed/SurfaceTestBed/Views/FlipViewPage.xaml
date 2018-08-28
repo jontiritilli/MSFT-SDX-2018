@@ -77,9 +77,6 @@
                            Height="80"
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
-
-        <!-- Surface Dial -->
-        <ctrl:SurfaceDial x:Name="SurfaceDial">
-        </ctrl:SurfaceDial>
+        <ctrl:SurfaceDial x:Name="Dial"/>
     </Grid>
 </Page>
