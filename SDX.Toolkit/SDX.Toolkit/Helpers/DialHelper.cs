@@ -9,7 +9,7 @@ namespace SDX.Toolkit.Helpers
         {
             if (currentAngle > 360)
             {
-                return currentAngle % 360;
+                return (currentAngle % 360);
             }
             else if (currentAngle < 0)
             {
@@ -22,48 +22,38 @@ namespace SDX.Toolkit.Helpers
 
         }
 
-        public static Color ConvertHSV2RGB(float hue, float saturation, float value)
+        public static Color ConvertHSV2RGB(float sliceNum)
         {
             byte r = 0;
             byte g = 0;
             byte b = 0;
-            hue /= 60;
-            int i = (int)Math.Floor(hue);
-            float f = hue - i;
-            float p = value * (1 - saturation);
-            float q = value * (1 - saturation * f);
-            float t = value * (1 - saturation * (1 - f));
-            switch (i)
+            int slice = (int)Math.Ceiling(sliceNum / 72);
+            switch (slice)
             {
-                case 0:
-                    r = (byte)(255 * value);
-                    g = (byte)(255 * t);
-                    b = (byte)(255 * p);
-                    break;
                 case 1:
-                    r = (byte)(255 * q);
-                    g = (byte)(255 * value);
-                    b = (byte)(255 * p);
+                    r = 12;
+                    g = 98;
+                    b = 145;
                     break;
                 case 2:
-                    r = (byte)(255 * p);
-                    g = (byte)(255 * value);
-                    b = (byte)(255 * t);
+                    r = 152;
+                    g = 216;
+                    b = 216;
                     break;
                 case 3:
-                    r = (byte)(255 * p);
-                    g = (byte)(255 * q);
-                    b = (byte)(255 * value);
+                    r = 255;
+                    g = 179;
+                    b = 103;
                     break;
                 case 4:
-                    r = (byte)(255 * t);
-                    g = (byte)(255 * p);
-                    b = (byte)(255 * value);
+                    r = 150;
+                    g = 101;
+                    b = 245;
                     break;
                 default:
-                    r = (byte)(255 * value);
-                    g = (byte)(255 * p);
-                    b = (byte)(255 * q);
+                    r = 230;
+                    g = 48;
+                    b = 97;
                     break;
             }
             return Color.FromArgb(255, r, g, b);
