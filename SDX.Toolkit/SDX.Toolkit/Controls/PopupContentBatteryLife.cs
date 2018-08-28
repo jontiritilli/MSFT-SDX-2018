@@ -65,8 +65,8 @@ namespace SDX.Toolkit.Controls
 
         private Grid _layoutRoot = null;
         private Canvas _canvas = null;
-        private FadeInHeader _fadeInHeader = null;
-        private AnimatableBatteryLife _hours = null;
+        private Header _header = null;
+        private AnimatableInteger _hours = null;
         private TextBlock _hrs = null;
         private TextBlock _legal = null;
         private Image _imageBattery = null;
@@ -230,9 +230,9 @@ namespace SDX.Toolkit.Controls
 
         public void StartAnimation()
         {
-            if (null != _fadeInHeader)
+            if (null != _header)
             {
-                _fadeInHeader.StartFadeIn();
+                _header.StartFadeIn();
             }
 
             if (null != _chargeStoryboard)
@@ -253,9 +253,9 @@ namespace SDX.Toolkit.Controls
 
         public void ResetAnimation()
         {
-            if (null != _fadeInHeader)
+            if (null != _header)
             {
-                _fadeInHeader.ResetAnimation();
+                _header.ResetAnimation();
             }
 
             if (null != _chargeStoryboard)
@@ -335,29 +335,29 @@ namespace SDX.Toolkit.Controls
             //_layoutRoot.Padding = new Thickness(20, 20, 20, 20);
 
             // create the header
-            _fadeInHeader = new FadeInHeader()
+            _header = new Header()
             {
                 Name = "FastCharge",
-                HeaderStyle = FadeInHeaderStyles.BatteryLifePopup,
+                HeaderStyle = HeaderStyles.BatteryLifePopup,
                 Width = CANVAS_X,
                 DurationInMilliseconds = 400d,
                 StaggerDelayInMilliseconds = 0d,
                 AutoStart = false
             };
-            Grid.SetRow(_fadeInHeader, 1);
-            Grid.SetColumn(_fadeInHeader, 1);
-            _layoutRoot.Children.Add(_fadeInHeader);
+            Grid.SetRow(_header, 1);
+            Grid.SetColumn(_header, 1);
+            _layoutRoot.Children.Add(_header);
 
             // set headline binding
-            _fadeInHeader.SetBinding(FadeInHeader.HeadlineProperty,
+            _header.SetBinding(Header.HeadlineProperty,
                 new Binding() { Source = this, Path = new PropertyPath("Headline"), Mode = BindingMode.OneWay });
 
             // set lede binding
-            _fadeInHeader.SetBinding(FadeInHeader.LedeProperty,
+            _header.SetBinding(Header.LedeProperty,
                 new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
 
             // set hour binding
-            _fadeInHeader.SetBinding(PopupContentBatteryLife.HourProperty,
+            _header.SetBinding(PopupContentBatteryLife.HourProperty,
                 new Binding() { Source = this, Path = new PropertyPath("Hour"), Mode = BindingMode.OneWay });
 
             // create the legal notice
@@ -413,7 +413,7 @@ namespace SDX.Toolkit.Controls
             _canvas.Children.Add(_imageCharge);
 
             // create the percent overlay
-            _hours = new AnimatableBatteryLife()
+            _hours = new AnimatableInteger()
             {
                 HourValue = 0.0
             };

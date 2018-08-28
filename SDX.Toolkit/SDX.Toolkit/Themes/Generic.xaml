@@ -257,20 +257,16 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style TargetType="ctrl:ColoringBook">
+    
+    <Style TargetType="ctrl:SurfaceDial" >
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ctrl:ColoringBook">
-                    <Grid
-                        x:Name="LayoutRoot"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                    </Grid>
+                <ControlTemplate TargetType="ctrl:SurfaceDial">
+                    <Canvas x:Name="LayoutRoot">
+                    </Canvas>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
+    
 </ResourceDictionary>

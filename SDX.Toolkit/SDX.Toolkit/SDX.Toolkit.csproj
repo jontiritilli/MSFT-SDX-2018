@@ -106,12 +106,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controls\AnimatableBatteryLife.cs" />
+    <Compile Include="Controls\AnimatableInteger.cs" />
     <Compile Include="Controls\AppSelector.cs" />
     <Compile Include="Controls\AppSelectorImage.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
     <Compile Include="Controls\ColoringBook.cs" />
-    <Compile Include="Controls\FadeInHeader.cs" />
     <Compile Include="Controls\FadeInText.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
@@ -125,6 +124,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Helpers\DialHelper.cs" />
     <Compile Include="Helpers\PropertyChangeEventSource.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
