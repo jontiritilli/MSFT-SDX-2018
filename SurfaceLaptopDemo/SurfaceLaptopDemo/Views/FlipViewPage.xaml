@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SurfaceProDemo.Views.FlipViewPage"
+    x:Class="SurfaceLaptopDemo.Views.FlipViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -39,14 +39,14 @@
                     <views:ExperienceHeroPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceIntroPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceColorsPage">
                 <Frame>
-                    <views:ExperienceIntroPage/>
+                    <views:ExperienceColorsPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceTransformPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceInnovationPage">
                 <Frame>
-                    <views:ExperienceTransformPage/>
+                    <views:ExperienceInnovationPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperiencePerformancePage">
@@ -54,24 +54,29 @@
                     <views:ExperiencePerformancePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceQuietPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceSpeakersPage">
                 <Frame>
-                    <views:ExperienceQuietPage/>
+                    <views:ExperienceSpeakersPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceSleekPage">
                 <Frame>
-                    <views:AccessoriesPenPage/>
+                    <views:ExperienceSleekPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesKeyboardPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesTouchPage">
                 <Frame>
-                    <views:AccessoriesKeyboardPage/>
+                    <views:AccessoriesTouchPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesMousePage">
                 <Frame>
                     <views:AccessoriesMousePage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
+                <Frame>
+                    <views:AccessoriesPenPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_BestOfMicrosoftPage">

@@ -183,12 +183,12 @@ namespace SurfaceLaptopDemo.Services
 
         }
 
-        public void LoadExperienceIntroViewModel(ExperienceIntroViewModel viewModel)
+        public void LoadExperienceColorsViewModel(ExperienceColorsViewModel viewModel)
         {
 
         }
 
-        public void LoadExperienceTransformViewModel(ExperienceTransformViewModel viewModel)
+        public void LoadExperienceInnovationViewModel(ExperienceInnovationViewModel viewModel)
         {
 
         }
@@ -198,22 +198,27 @@ namespace SurfaceLaptopDemo.Services
 
         }
 
-        public void LoadExperienceQuietViewModel(ExperienceQuietViewModel viewModel)
+        public void LoadExperienceSpeakersViewModel(ExperienceSpeakersViewModel viewModel)
         {
 
         }
 
-        public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
+        public void LoadExperienceSleekViewModel(ExperienceSleekViewModel viewModel)
         {
 
         }
 
-        public void LoadAccessoriesKeyboardViewModel(AccessoriesKeyboardViewModel viewModel)
+        public void LoadAccessoriesTouchViewModel(AccessoriesTouchViewModel viewModel)
         {
 
         }
 
         public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)
+        {
+
+        }
+
+        public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
         {
 
         }

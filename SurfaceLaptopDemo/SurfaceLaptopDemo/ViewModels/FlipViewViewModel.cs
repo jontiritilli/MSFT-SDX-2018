@@ -129,19 +129,11 @@ namespace SurfaceLaptopDemo.ViewModels
                 Order = 1
             };
 
-            // AccessoriesPenPage
+            // AccessoriesTouchPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "AccessoriesPenPage",
+                Name = "AccessoriesTouchPage",
                 Order = 0
-            }
-            );
-
-            // AccessoriesKeyboardPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AccessoriesKeyboardPage",
-                Order = 1
             }
             );
 
@@ -149,6 +141,14 @@ namespace SurfaceLaptopDemo.ViewModels
             section.Pages.Add(new NavigationPage()
             {
                 Name = "AccessoriesMousePage",
+                Order = 1
+            }
+            );
+
+            // AccessoriesPenPage
+            section.Pages.Add(new NavigationPage()
+            {
+                Name = "AccessoriesPenPage",
                 Order = 2
             }
             );
@@ -186,7 +186,7 @@ namespace SurfaceLaptopDemo.ViewModels
             // =================================================
             section = new NavigationSection()
             {
-                Name = "Last2",
+                Name = "Compare",
                 Text = this.NavBarCompare,  // from language file
                 Order = 3
             };

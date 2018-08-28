@@ -10,7 +10,8 @@ using SurfaceLaptopDemo.ViewModels;
 using SDX.Toolkit.Controls;
 using SDX.Telemetry.Services;
 
-namespace SurfaceProDemo.Views
+
+namespace SurfaceLaptopDemo.Views
 {
     public sealed partial class AttractorLoopPage : Page
     {
@@ -59,7 +60,7 @@ namespace SurfaceProDemo.Views
             NavigationServiceEx NavigationService = Locator?.NavigationService;
 
             // navigate
-            NavigationService?.Navigate(typeof(ChoosePathViewModel).FullName);
+            NavigationService?.Navigate(typeof(FlipViewViewModel).FullName);
 
         }
 
