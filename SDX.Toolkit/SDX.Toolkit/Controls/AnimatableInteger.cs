@@ -18,7 +18,7 @@ using SDX.Toolkit.Helpers;
 
 namespace SDX.Toolkit.Controls
 {
-    public sealed class AnimatableBatteryLife : Control
+    public sealed class AnimatableInteger : Control
     {
 
         #region Private Members
@@ -32,9 +32,9 @@ namespace SDX.Toolkit.Controls
 
         #region Constructor
 
-        public AnimatableBatteryLife()
+        public AnimatableInteger()
         {
-            this.DefaultStyleKey = typeof(AnimatableBatteryLife);
+            this.DefaultStyleKey = typeof(AnimatableInteger);
             this.Loaded += OnLoaded;
         }
 
@@ -73,7 +73,7 @@ namespace SDX.Toolkit.Controls
 
         // HourValue
         public static readonly DependencyProperty HourValueProperty =
-            DependencyProperty.Register("HourValue", typeof(double), typeof(AnimatableBatteryLife), new PropertyMetadata(0.0, OnHourTextChanged));
+            DependencyProperty.Register("HourValue", typeof(double), typeof(AnimatableInteger), new PropertyMetadata(0.0, OnHourTextChanged));
 
         public double HourValue
         {
@@ -83,7 +83,7 @@ namespace SDX.Toolkit.Controls
 
         // hourText
         public static readonly DependencyProperty HourTextProperty =
-            DependencyProperty.Register("HourText", typeof(string), typeof(AnimatableBatteryLife), new PropertyMetadata(0.0, OnHourTextChanged));
+            DependencyProperty.Register("HourText", typeof(string), typeof(AnimatableInteger), new PropertyMetadata(0.0, OnHourTextChanged));
 
         public string HourText
         {
@@ -93,7 +93,7 @@ namespace SDX.Toolkit.Controls
 
         // DurationInMilliseconds
         public static readonly DependencyProperty DurationInMillisecondsProperty =
-            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(AnimatableBatteryLife), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
+            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(AnimatableInteger), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
 
         public double DurationInMilliseconds
         {
@@ -110,7 +110,7 @@ namespace SDX.Toolkit.Controls
 
         // StaggerDelayInMilliseconds
         public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(AnimatableBatteryLife), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(AnimatableInteger), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
 
         public double StaggerDelayInMilliseconds
         {
@@ -120,7 +120,7 @@ namespace SDX.Toolkit.Controls
 
         // AutoStart
         public static readonly DependencyProperty AutoStartProperty =
-        DependencyProperty.Register("AutoStart", typeof(bool), typeof(AnimatableBatteryLife), new PropertyMetadata(true, OnAutoStartChanged));
+        DependencyProperty.Register("AutoStart", typeof(bool), typeof(AnimatableInteger), new PropertyMetadata(true, OnAutoStartChanged));
 
         public bool AutoStart
         {
@@ -142,7 +142,7 @@ namespace SDX.Toolkit.Controls
 
         private static void OnHourValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            AnimatableBatteryLife hours = (AnimatableBatteryLife)d;
+            AnimatableInteger hours = (AnimatableInteger)d;
 
             if (null != hours)
             {
@@ -202,7 +202,7 @@ namespace SDX.Toolkit.Controls
             _storyboardPercent = SetupAnimation(this, 0.0, 0.8, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
         }
 
-        private Storyboard SetupAnimation(AnimatableBatteryLife percent, double start, double finish, double duration, double staggerDelay)
+        private Storyboard SetupAnimation(AnimatableInteger percent, double start, double finish, double duration, double staggerDelay)
         {
             double totalDuration = duration + staggerDelay;
 
