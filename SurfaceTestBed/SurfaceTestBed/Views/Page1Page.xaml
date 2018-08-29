@@ -17,11 +17,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource BottomMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
@@ -50,7 +48,11 @@
                     DurationInMilliseconds="200"
                     StaggerDelayInMilliseconds="3000"
                     AutoStart="True"/>
-
+        <ctrl:PopupContentBatteryLife
+            Grid.Column="1"
+            Grid.Row="3"            
+            />
+        
         <!--<ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
@@ -61,15 +63,34 @@
                     Width="500"
                     DurationInMilliseconds="200"
                     StaggerDelayInMilliseconds="0"
-                    AutoStart="True"/>-->
+                    AutoStart="True"/>-->        
 
-        <!--<ctrl:TextLine x:Name="LegalNotice" Grid.Row="3" Grid.Column="1"
-                    Text="{x:Bind Path=ViewModel.WelcomeText}"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                    Headline="Manana is enough"
+                    Lede="For Me"
+                    HeaderStyle="HeaderAndLede"
+                    HeaderAlignment="Left"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Width="500"
+                    DurationInMilliseconds="200"
+                    StaggerDelayInMilliseconds="0"
+                    AutoStart="True"/>
+        <ctrl:TextLine
+            Grid.Column="1"
+            Grid.Row="2"
+            ControlStyle="Hero"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"            
+            Text="this is a textline"/>
+        
+        <ctrl:TextLine x:Name="LegalNotice" Grid.Row="3" Grid.Column="1"
+                    Text="This is legal text"
                     ControlStyle="Hero"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     DurationInMilliseconds="200"
                     StaggerDelayInMilliseconds="0"
-                    AutoStart="True"/>-->
+                    AutoStart="True"/>
     </Grid>
 </Page>

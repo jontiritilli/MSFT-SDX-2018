@@ -37,6 +37,55 @@ namespace SurfaceTestBed.Views
         {
             InitializeComponent();
             //TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.AliceBlue);
+            this.LayoutRoot.Background = new SolidColorBrush(Colors.CadetBlue);
+            this.Loaded += OnLoaded;
+            AppSelector _tstSelector = new AppSelector()
+            {//                
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Top,
+                DurationInMilliseconds = 200d,
+                StaggerDelayInMilliseconds = 200d,
+                AutoStart = false,
+                Orientation = Orientation.Vertical,
+                ShowMessages = true,
+                URIs = new List<AppSelectorData>
+                {
+                    new AppSelectorData
+                    {
+                        URI_NotSelectedImage="ms-appx:///Assets/ColorPanel/black.png",
+                        URI_SelectedImage ="ms-appx:///Assets/ColorPanel/black-selected.png",
+                        Message= "first"
+                    },
+                    new AppSelectorData
+                    {
+                        URI_NotSelectedImage="ms-appx:///Assets/ColorPanel/burgundy.png",
+                        URI_SelectedImage ="ms-appx:///Assets/ColorPanel/burgundy-selected.png",
+                        Message= "second"
+                    },
+                    new AppSelectorData
+                    {
+                        URI_NotSelectedImage="ms-appx:///Assets/ColorPanel/cobalt.png",
+                        URI_SelectedImage ="ms-appx:///Assets/ColorPanel/cobalt-selected.png",
+                        Message= "third"
+                    },
+                    new AppSelectorData
+                    {
+                        URI_NotSelectedImage="ms-appx:///Assets/ColorPanel/silver.png",
+                        URI_SelectedImage ="ms-appx:///Assets/ColorPanel/silver-selected.png",
+                        Message= "fourth"
+                    }
+
+                }
+            };
+            // add the test selector here so it's after the color selector image
+            Grid.SetRow(_tstSelector, 3);
+            Grid.SetColumn(_tstSelector, 1);
+            this.LayoutRoot.Children.Add(_tstSelector);
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
     }
 }

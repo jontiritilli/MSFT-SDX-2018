@@ -24,11 +24,6 @@ namespace SurfaceTestBed.Views
             //this.LayoutRoot.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Color.FromArgb(255, 100, 100, 100));
             ColoringBook _ColoringBook = new ColoringBook()
             {
-                //Width = CANVAS_X,
-                //Height = CANVAS_Y,
-                //Width = WINDOW_BOUNDS.Width,
-                //Height = WINDOW_BOUNDS.Height - 80,
-                Caption = "Giggity",
                 ControlStyle = ControlStyles.TouchHere,
                 AutoStart = false,
                 ImageURI = "ms-appx:///Assets/ColoringBook/GeishaTattoo.png",
