@@ -84,10 +84,6 @@ namespace SDX.Toolkit.Controls
         {
             this.DefaultStyleKey = typeof(ColoringBook);            
             this.Loaded += OnLoaded;
-            // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
             this._URIs = new List<AppSelectorData>();
         }
 
@@ -220,30 +216,6 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private void OnOpacityChanged(object sender, double e)
-        {
-            double opacity = e;
-
-            if (null != _layoutRoot)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
-
-                // set opacity
-                _layoutRoot.Opacity = opacity;
-            }
-            //_AppSelector needs to be handled here as well
-            if (null != _AppSelector)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
-
-                // set opacity
-                _AppSelector.Opacity = opacity;
-            }
-        }
         #endregion
 
         #region UI Methods
@@ -252,8 +224,7 @@ namespace SDX.Toolkit.Controls
         {
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
-            _layoutRoot.Opacity = 0;
-
+            
             if (null == _layoutRoot) { return; }
 
             // create touch here canvas
@@ -344,7 +315,6 @@ namespace SDX.Toolkit.Controls
                 AutoStart = false,
                 Orientation = Orientation.Vertical,
                 ButtonHeight = 74,
-                Opacity=1,
                 URIs = this._URIs
             };// bind event to catch and change color from this.colors
             // add the test selector here so it's after the color selector image

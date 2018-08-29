@@ -111,7 +111,6 @@
     <Compile Include="Controls\AppSelectorImage.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
     <Compile Include="Controls\ColoringBook.cs" />
-    <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\FadeInText.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />

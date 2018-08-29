@@ -21,11 +21,6 @@ using Windows.UI.Xaml.Shapes;
 
 namespace SDX.Toolkit.Helpers
 {
-    public enum TranslateDirection
-    {
-        Left,
-        Right
-    }
 
     public static class AnimationHelper
     {        
@@ -52,48 +47,7 @@ namespace SDX.Toolkit.Helpers
                 storyboard.Begin();
             }
         }
-
-        public static void PerformTranslateIn(DependencyObject dependencyObject, TranslateDirection translateDirection,double distance, double duration, double staggerDelay = 0)
-        {
-            Storyboard storyboard = null;
-
-            double xStartingPosition = distance;
-            if (translateDirection == TranslateDirection.Left)
-            {
-                xStartingPosition = distance;
-            }
-            else
-            {
-                xStartingPosition = distance * -1;
-            }
-
-            if (null != dependencyObject)
-            {
-                storyboard = CreateTranslateAnimation(dependencyObject, "X", 0.0, xStartingPosition, 0.0, duration, staggerDelay, false, false, new RepeatBehavior(1d));
-
-                storyboard.Begin();
-            }
-        }
-
-        // keep incase we dont need to traverse the visual tree recursively (itll output last first so be aware)
-        //static private IEnumerable<DependencyObject> FindInputElements(DependencyObject parent)
-        //{
-        //    if (parent == null)
-        //        yield break;
-
-        //    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-        //    {
-        //        DependencyObject o = VisualTreeHelper.GetChild(parent, i);
-
-        //        foreach (DependencyObject obj in FindInputElements(o))
-
-        //            yield return (UIElement)obj;
-
-        //    }
-
-        //    yield return parent;
-        //}
-
+        
         public static void PerformPageEntranceAnimation(Page page)
         {
             //traverse the visual tree of a page and perform the fade in and translate in on each frameworkitem            
@@ -101,13 +55,13 @@ namespace SDX.Toolkit.Helpers
             // https://jeremiahmorrill.wordpress.com/2014/04/02/entrancethemetransitionbehavior-behavior-for-wpf/
             List<Storyboard> StoryBoardCollection = new List<Storyboard>();
             double StaggerDelay = 0.0;
-            double TotalStagger = (((Windows.UI.Xaml.Controls.Panel)page.Content).Children.Count * 100d) + 500d;
-            // Traverses the first content area on the page in linear order to show everything
+            double TotalStagger = (((Windows.UI.Xaml.Controls.Panel)page.Content).Children.Count  * 100d) + 500d;            
             foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
-            { 
+            {
+                //create a storyboard per item and stagger them .1 per child
                 Storyboard storyboard = null;
-                   
-                if (null != child && child != page && !(child is Grid) && !(child is Controls.ImageEx))// dont do the page either
+
+                if (null != child)
                 {                    
                     storyboard = CreateEasingAnimation(child, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
                     StoryBoardCollection.Add(storyboard);                    
@@ -121,22 +75,6 @@ namespace SDX.Toolkit.Helpers
             {
                 SB.Begin();
             }
-        }
-
-        public static void PerformPageExitAnimation(Page page)
-        {
-
-            foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
-            {
-                           
-                FrameworkElement FE;
-                if (null != child && child != page && !(child  is Grid) && !(child is Controls.ImageEx))// dont do the page either
-                {
-                    FE = (FrameworkElement)child;
-                    FE.Opacity = 0;
-                }
-            }
-
         }
 
         public static bool IsVisible(UIElement uiElement)

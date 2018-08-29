@@ -5,57 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding AccessoriesDialViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
-        Opacity="1"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <!--<Grid x:Name="ContentArea2"
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">-->
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-
-
-            <!--<ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                    Headline="Manana is enough"
-                    Lede="For Me"
-                    HeaderStyle="HeaderAndLede"
-                    HeaderAlignment="Left"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="500"
-                    DurationInMilliseconds="200"
-                    StaggerDelayInMilliseconds="0"
-                    Opacity="0"/>
-            <ctrl:TextLine
-            Grid.Column="1"
-            Grid.Row="2"
-            ControlStyle="Hero"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-                Opacity="0"
-            Text="this is a textline"/>
-
-            <ctrl:TextLine x:Name="LegalNotice" Grid.Row="3" Grid.Column="1"
-                    Text="This is legal text"
-                    ControlStyle="Hero"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    DurationInMilliseconds="200"
-                    StaggerDelayInMilliseconds="0"
-                           Opacity="0"/>-->
-        <!--</Grid>-->
+        </Grid>
     </Grid>
 </Page>
