@@ -43,7 +43,7 @@ namespace SDX.Toolkit.Controls
 
         private const int Z_ORDER_CONTROLS = 99;
         private const int Z_ORDER_SHAPES = 0;
-        
+
 
         #endregion
 
@@ -53,7 +53,7 @@ namespace SDX.Toolkit.Controls
         private InkCanvas _inkCanvas = null;
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
-        private Image _touchHereImage = null;        
+        private Image _touchHereImage = null;
 
         private bool _touchHereWasHidden = false;
         private int _currentColor = -1;
@@ -65,9 +65,9 @@ namespace SDX.Toolkit.Controls
                 Color.FromArgb(255, 33, 33, 33)
             };
         private List<AppSelectorData> _URIs;
-        private Color _SelectedColor = Color.FromArgb(255,0,0,0);
+        private Color _SelectedColor = Color.FromArgb(255, 0, 0, 0);
         private AppSelector _AppSelector = new AppSelector();
-        
+
 
         #endregion
 
@@ -82,8 +82,12 @@ namespace SDX.Toolkit.Controls
 
         public ColoringBook()
         {
-            this.DefaultStyleKey = typeof(ColoringBook);            
+            this.DefaultStyleKey = typeof(ColoringBook);
             this.Loaded += OnLoaded;
+            // inherited dependency property
+            new PropertyChangeEventSource<double>(
+                this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
+                OnOpacityChanged;
             this._URIs = new List<AppSelectorData>();
         }
 
@@ -216,6 +220,30 @@ namespace SDX.Toolkit.Controls
 
         }
 
+        private void OnOpacityChanged(object sender, double e)
+        {
+            double opacity = e;
+
+            if (null != _layoutRoot)
+            {
+                // correct opacity range
+                opacity = Math.Max(0.0, opacity);
+                opacity = Math.Min(1.0, opacity);
+
+                // set opacity
+                _layoutRoot.Opacity = opacity;
+            }
+            //_AppSelector needs to be handled here as well
+            if (null != _AppSelector)
+            {
+                // correct opacity range
+                opacity = Math.Max(0.0, opacity);
+                opacity = Math.Min(1.0, opacity);
+
+                // set opacity
+                _AppSelector.Opacity = opacity;
+            }
+        }
         #endregion
 
         #region UI Methods
@@ -224,7 +252,8 @@ namespace SDX.Toolkit.Controls
         {
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
-            
+            _layoutRoot.Opacity = 0;
+
             if (null == _layoutRoot) { return; }
 
             // create touch here canvas
@@ -265,16 +294,16 @@ namespace SDX.Toolkit.Controls
             };
             Grid.SetRow(_touchHereImage, 0);
             Grid.SetColumn(_touchHereImage, 0);
-            _penTouchPointGrid.Children.Add(_touchHereImage);          
+            _penTouchPointGrid.Children.Add(_touchHereImage);
 
             // create the ink canvas
             _inkCanvas = new InkCanvas()
             {
                 Name = "InkCanvas",
                 Margin = new Thickness(0),
-                
+
             };
-            
+
             Grid.SetRow(_inkCanvas, 0);
             Grid.SetColumn(_inkCanvas, 0);
             _layoutRoot.Children.Add(_inkCanvas);
@@ -296,8 +325,9 @@ namespace SDX.Toolkit.Controls
             Grid.SetColumn(ColoringImage, 0);
             Grid.SetColumnSpan(ColoringImage, 3);
             _layoutRoot.Children.Add(ColoringImage);
-            
-            for (int i = 0; i < this.Colors.Count; i++) {
+
+            for (int i = 0; i < this.Colors.Count; i++)
+            {
                 this._URIs.Add(new AppSelectorData
                 {
                     URI_NotSelectedImage = this.Colors[i].URI_NotSelectedImage,
@@ -315,6 +345,7 @@ namespace SDX.Toolkit.Controls
                 AutoStart = false,
                 Orientation = Orientation.Vertical,
                 ButtonHeight = 74,
+                Opacity = 1,
                 URIs = this._URIs
             };// bind event to catch and change color from this.colors
             // add the test selector here so it's after the color selector image
@@ -389,7 +420,7 @@ namespace SDX.Toolkit.Controls
             {
                 InkDrawingAttributes inkDrawingAttributes = InkDrawingAttributes.CreateForPencil();
                 inkDrawingAttributes.Color = GetNextColor();
-                
+
                 //inkDrawingAttributes.PenTip = PenTipShape.Circle;
                 inkDrawingAttributes.Size = new Size(WINDOW_BOUNDS.Width * 0.01, WINDOW_BOUNDS.Height * 0.01);
                 //inkDrawingAttributes.PenTipTransform = System.Numerics.Matrix3x2.CreateRotation((float)(70 * Math.PI / 180));// System.Numerics.Matrix3x2.CreateRotation(.785f);//
@@ -416,7 +447,7 @@ namespace SDX.Toolkit.Controls
         {
 
             return _SelectedColor;
-        }       
+        }
 
         #endregion
     }

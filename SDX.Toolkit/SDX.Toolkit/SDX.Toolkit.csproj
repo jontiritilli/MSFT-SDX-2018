@@ -115,6 +115,7 @@
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
+    <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\PopupContentBatteryLife.cs" />
     <Compile Include="Controls\StyledText.cs" />
