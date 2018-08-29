@@ -20,6 +20,12 @@ namespace SurfaceBook2Demo.ViewModels
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string Headline;
+        public string Lede;
+        public string SliderBatteryCopy;
+        public string BatteryPopupHeadline;
+        public string BatteryPopupCopy;
+        public string BatteryPopupHours;
 
         #endregion
 

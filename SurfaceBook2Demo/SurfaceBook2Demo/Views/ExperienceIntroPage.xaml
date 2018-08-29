@@ -4,16 +4,130 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding ExperienceIntroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <!--Style="{StaticResource PageStyle}"-->
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Book13">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1500"/>  --><!-- 3000 @ 200% scaling = 1500 --><!--
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageCanvas.Width" Value="{StaticResource CanvasWidth15}"/>
+                        <Setter Target="PageCanvas.Height" Value="{StaticResource CanvasHeight15}"/>
+                        <Setter Target="SurfaceBook15.(Canvas.Left)" Value="900"/>
+                        <Setter Target="SurfaceBook15.(Canvas.Top)" Value="300"/>
+                        <Setter Target="SurfaceBook13.(Canvas.Left)" Value="1700"/>
+                        <Setter Target="SurfaceBook13.(Canvas.Top)" Value="300"/>
+                        <Setter Target="Dial.(Canvas.Left)" Value="300"/>
+                        <Setter Target="Dial.(Canvas.Top)" Value="300"/>
+                        <Setter Target="Pen.(Canvas.Left)" Value="600"/>
+                        <Setter Target="Pen.(Canvas.Top)" Value="300"/>
+                        <Setter Target="Temporary.Text" Value="13"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Book15">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1580"/>  --><!-- 3160 @ 200% scaling = 1580 --><!--
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="PageCanvas.Width" Value="{StaticResource CanvasWidth13}"/>
+                        <Setter Target="PageCanvas.Height" Value="{StaticResource CanvasHeight13}"/>
+                        <Setter Target="SurfaceBook15.(Canvas.Left)" Value="1000"/>
+                        <Setter Target="SurfaceBook15.(Canvas.Top)" Value="300"/>
+                        <Setter Target="SurfaceBook13.(Canvas.Left)" Value="1800"/>
+                        <Setter Target="SurfaceBook13.(Canvas.Top)" Value="450"/>
+                        <Setter Target="Dial.(Canvas.Left)" Value="300"/>
+                        <Setter Target="Dial.(Canvas.Top)" Value="300"/>
+                        <Setter Target="Pen.(Canvas.Left)" Value="600"/>
+                        <Setter Target="Pen.(Canvas.Top)" Value="300"/>
+                        <Setter Target="Temporary.Text" Value="15"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                Width="{StaticResource HeaderWidth}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" 
+                DurationInMilliseconds="{StaticResource Duration}"
+                StaggerDelayInMilliseconds="0"
+                AutoStart="True" />
+
+        <ctrl:TextLine x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
+                       Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Visibility="Collapsed"
+                       DurationInMilliseconds="{StaticResource Duration}"
+                       StaggerDelayInMilliseconds="0"
+                       AutoStart="False" />
+
+        <ctrl:TextLine x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
+                       Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Visibility="Collapsed"
+                       DurationInMilliseconds="{StaticResource Duration}"
+                       StaggerDelayInMilliseconds="0"
+                       AutoStart="False" />
+
+        <Canvas x:Name="PageCanvas"
+                Grid.Row="0" Grid.RowSpan="7"
+                Grid.Column="0" Grid.ColumnSpan="3"
+                Margin="0"
+                Width="{StaticResource CanvasWidth15}"
+                Height="{StaticResource CanvasHeight15}">
+
+            <Image x:Name="SurfaceBook15" Width="100" MaxWidth="100">
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind Path=ViewModel.Book15Uri}" DecodePixelWidth="100" DecodePixelType="Physical"/>
+                </Image.Source>
+            </Image>
+            <Image x:Name="SurfaceBook13">
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind Path=ViewModel.Book13Uri}"/>
+                </Image.Source>
+            </Image>
+            <Image x:Name="Dial">
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind Path=ViewModel.DialUri}"/>
+                </Image.Source>
+            </Image>
+
+            <Image x:Name="Pen">
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind Path=ViewModel.PenUri}"/>
+                </Image.Source>
+            </Image>
+        </Canvas>
     </Grid>
+
 </Page>
