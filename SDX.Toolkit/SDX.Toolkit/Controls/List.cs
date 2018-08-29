@@ -169,24 +169,14 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ListStyleProperty, value); }
         }
 
-        // ListHeadline
-        public static readonly DependencyProperty ListHeaderProperty =
-            DependencyProperty.Register("ListHeadline", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListHeadlineChanged));
-
-        public string ListHeader
-        {
-            get { return (string)GetValue(ListHeaderProperty); }
-            set { SetValue(ListHeaderProperty, value); }
-        }
-
         // ListLedeHeadline
-        public static readonly DependencyProperty ListHeadlineProperty =
+        public static readonly DependencyProperty ListLedeHeadlineProperty =
             DependencyProperty.Register("ListLedeHeadline", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListLedeHeadlineChanged));
 
-        public string ListHeadline
+        public string ListLedeHeadline
         {
-            get { return (string)GetValue(ListHeadlineProperty); }
-            set { SetValue(ListHeadlineProperty, value); }
+            get { return (string)GetValue(ListLedeHeadlineProperty); }
+            set { SetValue(ListLedeHeadlineProperty, value); }
         }
 
         // ListLede

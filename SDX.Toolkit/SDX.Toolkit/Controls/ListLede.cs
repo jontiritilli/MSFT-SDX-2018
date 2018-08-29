@@ -250,13 +250,13 @@ namespace SDX.Toolkit.Controls
         }
 
         // LedeAlignment
-        public static readonly DependencyProperty HeaderAlignmentProperty =
+        public static readonly DependencyProperty LedeAlignmentProperty =
         DependencyProperty.Register("LedeAlignment", typeof(TextAlignment), typeof(Header), new PropertyMetadata(TextAlignment.Left, OnAutoStartChanged));
 
         public TextAlignment LedeAlignment
         {
-            get { return (TextAlignment)GetValue(HeaderAlignmentProperty); }
-            set { SetValue(HeaderAlignmentProperty, value); }
+            get { return (TextAlignment)GetValue(LedeAlignmentProperty); }
+            set { SetValue(LedeAlignmentProperty, value); }
         }
 
         // DurationInMilliseconds
@@ -388,8 +388,6 @@ namespace SDX.Toolkit.Controls
 
             // calculate element widths
             double gridWidth = this.Width;
-            //double headlineWidth = this.Width;
-            //double ledeWidth = this.Width * leftColPercent;
 
             // calculate rows
             GridLength headlineRowHeight = (LedeStyles.HeadlineAndLede == this.LedeStyle) ? new GridLength(0) : GridLength.Auto;
@@ -406,8 +404,6 @@ namespace SDX.Toolkit.Controls
             _layoutGrid.RowDefinitions.Add(new RowDefinition() { Height = headlineRowHeight });
             _layoutGrid.RowDefinitions.Add(new RowDefinition() { Height = ledeRowHeight });
             _layoutGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            //_layoutGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(leftColPercent, GridUnitType.Star) });
-            //_layoutGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength((1 - leftColPercent), GridUnitType.Star) });
 
             // add it to the root
             _layoutRoot.Child = _layoutGrid;
@@ -451,7 +447,6 @@ namespace SDX.Toolkit.Controls
                 StyleHelper.SetFontCharacteristics(_ledeHeadline, ledeHeadlineControlStyle);
                 Grid.SetRow(_ledeHeadline, 0);
                 Grid.SetColumn(_ledeHeadline, 0);
-                //Grid.SetColumn(_headline, 0);
 
                 // set headline binding
                 _ledeHeadline.SetBinding(TextBlock.TextProperty,
@@ -461,7 +456,6 @@ namespace SDX.Toolkit.Controls
                 _layoutGrid.Children.Add(_ledeHeadline);
 
                 // set up animations
-                //_storyboardFadeInHeadline = SetupAnimation(_headline, this.DurationInMilliseconds, 0d, this.StaggerDelayInMilliseconds);
                 _storyboardFadeInLedeHeadline = AnimationHelper.CreateEasingAnimation(_ledeHeadline, "Opacity", 0.0, 0.0, 1.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
                 _storyboardFadeOutLedeHeadline = AnimationHelper.CreateEasingAnimation(_ledeHeadline, "Opacity", 1.0, 1.0, 0.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
@@ -477,15 +471,11 @@ namespace SDX.Toolkit.Controls
                 HorizontalTextAlignment = this.LedeAlignment,
                 TextWrapping = TextWrapping.WrapWholeWords,
                 Width = gridWidth,
-                //MaxWidth = gridWidth,
-                //Width = ledeWidth,
                 Opacity = 0d
             };
             StyleHelper.SetFontCharacteristics(_lede, ledeControlStyle);
             Grid.SetRow(_lede, 1);
             Grid.SetColumn(_lede, 0);
-            //Grid.SetColumn(_lede, 0);
-            //Grid.SetColumnSpan(_lede, 1);
 
             // create the runs
             _ledeText = new Run()
@@ -499,15 +489,10 @@ namespace SDX.Toolkit.Controls
             _layoutGrid.Children.Add(_lede);
 
             // set up animation
-            //_storyboardFadeInLede = SetupAnimation(_lede, this.DurationInMilliseconds, itemDelay, this.StaggerDelayInMilliseconds);
             _storyboardFadeInLede = AnimationHelper.CreateEasingAnimationWithNotify(_lede, this.FadeInCompletedHandler, "Opacity", 0.0, 0.0, 1.0, null, null, this.DurationInMilliseconds, itemDelay + this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
             _storyboardFadeOutLede = AnimationHelper.CreateEasingAnimationWithNotify(_lede, this.FadeOutCompletedHandler, "Opacity", 1.0, 1.0, 0.0, null, null, this.DurationInMilliseconds, itemDelay + this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
         }
         
-        #endregion
-
-        #region UI Helpers
-
         #endregion
     }
 }
