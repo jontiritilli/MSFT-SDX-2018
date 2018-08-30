@@ -180,11 +180,21 @@ namespace SurfaceBook2Demo.Services
 
         public void LoadExperienceHeroViewModel(ExperienceHeroViewModel viewModel)
         {
-
+            viewModel.HeroText = GetStringValue(_languageCurrent.INTRO_TITLE, "INTRO_TITLE");
+            viewModel.RowCount = GetIntValue(_languageCurrent.INTRO_ROWCOUNT, 1);
+            viewModel.SwipeText = GetStringValue(_languageCurrent.INTRO_SWIPE, "INTRO_SWIPE");
         }
 
         public void LoadExperienceIntroViewModel(ExperienceIntroViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_HEADLINE, "EXPERIENCE_OVERVIEW_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_COPY, "EXPERIENCE_OVERVIEW_COPY");
+            viewModel.PopupPixelSenseHeadline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPLEFT_TITLE, "EXPERIENCE_OVERVIEW_POPLEFT_TITLE");
+            viewModel.PopupPixelSenseLede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPLEFT_COPY, "EXPERIENCE_OVERVIEW_POPLEFT_COPY");
+            viewModel.PopupPixelSenseLegal = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPLEFT_LEGAL, "EXPERIENCE_OVERVIEW_POPLEFT_LEGAL");
+            viewModel.PopupCompareHeadline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_TITLE, "EXPERIENCE_OVERVIEW_POPRIGHT_TITLE");
+            viewModel.PopupCompareLede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_COPY, "EXPERIENCE_OVERVIEW_POPRIGHT_COPY");
+            viewModel.PopupCompareLegal = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_LEGAL, "EXPERIENCE_OVERVIEW_POPRIGHT_LEGAL");
 
         }
 
@@ -195,6 +205,7 @@ namespace SurfaceBook2Demo.Services
 
         public void LoadExperienceDayWorkViewModel(ExperienceDayWorkViewModel viewModel)
         {
+            viewModel.SliderBatteryCopy = GetStringValue(_languageCurrent.BATTERY_COPY, "BATTERY_COPY");
 
         }
 

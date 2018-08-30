@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Windows.UI.Xaml.Media.Imaging;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -12,7 +14,7 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = @"ms-appx:///Assets/Backgrounds/background_sb2_dark.jpg";
 
         #endregion
 
@@ -20,6 +22,9 @@ namespace SurfaceBook2Demo.ViewModels
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string HeroText;
+        public int RowCount;
+        public string SwipeText;
 
         #endregion
 

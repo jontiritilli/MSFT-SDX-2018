@@ -191,6 +191,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Animation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -200,6 +204,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Sizes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -285,10 +293,42 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Accessories\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\background_sb2_light.jpg" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
+    <Content Include="Assets\Backgrounds\background_sb2_dark.jpg" />
+    <Content Include="Assets\BestOfMicrosoft\bomOffice.svg" />
+    <Content Include="Assets\BestOfMicrosoft\bomSmile.svg" />
+    <Content Include="Assets\BestOfMicrosoft\bomSync.svg" />
+    <Content Include="Assets\BestOfMicrosoft\bomWindows.svg" />
+    <Content Include="Assets\Comparison\book2.png" />
+    <Content Include="Assets\Comparison\caprock.png" />
+    <Content Include="Assets\Comparison\cruz.png" />
+    <Content Include="Assets\Comparison\foxburrg.png" />
+    <Content Include="Assets\Comparison\go.png" />
+    <Content Include="Assets\Comparison\surface-family.png" />
+    <Content Include="Assets\Experience\sb2_appIcon_blueBeam.png" />
+    <Content Include="Assets\Experience\sb2_appIcon_maya.png" />
+    <Content Include="Assets\Experience\sb2_appIcon_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_appIcon_premiere.png" />
+    <Content Include="Assets\Experience\sb2_appIcon_sketchBook.png" />
+    <Content Include="Assets\Experience\sb2_create_sb15.png" />
+    <Content Include="Assets\Experience\sb2_hero_dial.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetCompare.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetPixelsense.png" />
+    <Content Include="Assets\Experience\sb2_hero_pen.png" />
+    <Content Include="Assets\Experience\sb2_hero_sb13.png" />
+    <Content Include="Assets\Experience\sb2_hero_sb15.png" />
+    <Content Include="Assets\Experience\sb2_play_sb15.png" />
+    <Content Include="Assets\Experience\sb2_relax_insetHinge.png" />
+    <Content Include="Assets\Experience\sb2_relax_sb15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_work_insetConnections.png" />
+    <Content Include="Assets\Experience\sb2_work_sb15.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />

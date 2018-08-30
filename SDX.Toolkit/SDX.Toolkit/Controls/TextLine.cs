@@ -252,17 +252,35 @@ namespace SDX.Toolkit.Controls
 
         private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if ((d is TextLine textLine) && (null != textLine._text))
+            {
+                if (e.NewValue is string newValue)
+                {
+                    textLine._text.Text = newValue;
+                }
+            }
         }
 
         private static void OnTextAlignmentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if ((d is TextLine textLine) && (null != textLine._text))
+            {
+                if (e.NewValue is TextAlignment newValue)
+                {
+                    textLine._text.TextAlignment = newValue;
+                }
+            }
         }
 
         private static void OnControlStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if ((d is TextLine textLine) && (null != textLine._text))
+            {
+                if (e.NewValue is ControlStyles newValue)
+                {
+                    StyleHelper.SetFontCharacteristics(textLine._text, newValue);
+                }
+            }
         }
 
         private void OnOpacityChanged(object sender, double e)

@@ -31,7 +31,7 @@
         
 
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/Backgrounds/Page1.jpg"/>
+            <ImageBrush ImageSource="ms-appx:///Assets/Backgrounds/gradient-bg.jpg"/>
         </Grid.Background>
 
         <!--<ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"

@@ -6,6 +6,17 @@ using Windows.UI.ViewManagement;
 
 namespace SDX.Toolkit.Helpers
 {
+    public enum DeviceType
+    {
+        Unknown,
+        Go,
+        Laptop,
+        Pro,
+        Studio,
+        Book13,
+        Book15
+    }
+
     public static class WindowHelper
     {
         #region Public Static Constants
@@ -56,6 +67,43 @@ namespace SDX.Toolkit.Helpers
             Size size = new Size(bounds.Width, bounds.Height);
 
             return size;
+        }
+
+        public static DeviceType GetDeviceTypeFromResolution()
+        {
+            DeviceType deviceType = DeviceType.Unknown;
+
+            // get the physical resolution
+            Size size = WindowHelper.GetScreenResolutionInfo();
+
+            switch(size.Width)
+            {
+                case 4500:
+                    deviceType = DeviceType.Studio;
+                    break;
+
+                case 3160:
+                    deviceType = DeviceType.Book15;
+                    break;
+
+                case 3000:
+                    deviceType = DeviceType.Book13;
+                    break;
+
+                case 2736:
+                    deviceType = DeviceType.Pro;
+                    break;
+
+                case 2256:
+                    deviceType = DeviceType.Laptop;
+                    break;
+
+                case 1800:
+                    deviceType = DeviceType.Go;
+                    break;
+            }
+
+            return deviceType;
         }
 
         #endregion
