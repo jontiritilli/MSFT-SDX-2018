@@ -49,7 +49,7 @@
 
         <ctrl:List x:Name="List" Grid.Row="3" Grid.Column="1"
                        ListItems = "{x:Bind Path=items}"
-                       ListStyle="Headline"
+                       ListStyle="HeadlineAndLede"
                        />
 
     </Grid>

@@ -22,8 +22,8 @@ namespace SDX.Toolkit.Controls
 {
     public enum ListStyles
     {
-        Lede,       // List has a header and lede-only items (i.e. interactive pages)
-        Headline,     // List items have individual headlines (i.e. product highlights page)
+        LedeOnly,       // List has a header and lede-only items (i.e. interactive pages)
+        HeadlineAndLede,     // List items have individual headlines (i.e. product highlights page)
     }
 
     public sealed class List : Control
@@ -69,7 +69,7 @@ namespace SDX.Toolkit.Controls
 
         // ListStyle
         public static readonly DependencyProperty ListStyleProperty =
-            DependencyProperty.Register("ListStyle", typeof(ListStyles), typeof(List), new PropertyMetadata(ListStyles.Lede, OnListStyleChanged));
+            DependencyProperty.Register("ListStyle", typeof(ListStyles), typeof(List), new PropertyMetadata(ListStyles.LedeOnly, OnListStyleChanged));
 
         public ListStyles ListStyle
         {
@@ -195,7 +195,7 @@ namespace SDX.Toolkit.Controls
             // based on liststyle, do we need a list header and list panel?
             switch (this.ListStyle)
             {
-                case ListStyles.Lede: // used for interactive pages with header followed by list of items
+                case ListStyles.LedeOnly: // used for interactive pages with header followed by list of items
                     {
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
@@ -263,7 +263,7 @@ namespace SDX.Toolkit.Controls
                     }
                     break;
 
-                case ListStyles.Headline: // Used for product highlights page wherein each item has its own lede-headline
+                case ListStyles.HeadlineAndLede: // Used for product highlights page wherein each item has its own lede-headline
                     {
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
