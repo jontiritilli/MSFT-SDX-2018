@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceBook2Demo.Services;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceBook2Demo.ViewModels
@@ -12,14 +13,29 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_relax.png";
+        private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_relax.png";
+
+        private const string URI_HERO = "ms-appx:///Assets/Experience/sb2_relax_sb15.png";
+
+        private const string URI_HINGE = "ms-appx:///Assets/Experience/sb2_relax_insetHinge.png";
 
         #endregion
 
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;
+        public string BackgroundUri;
+
+        public string HeroUri;
+
+        public string Headline;
+        public string Lede;
+        public string PopupHingeHeadline;
+        public string PopupHingeLede;
+        public string PopupDisplayHeadline;
+        public string PopupDisplayLede;
+        public string PopupDisplayInsetImage = URI_HINGE;
 
         #endregion
 
@@ -28,6 +44,21 @@ namespace SurfaceBook2Demo.ViewModels
 
         public ExperienceDayRelaxViewModel()
         {
+            // populate our images based on size of device
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Book15:
+                    this.BackgroundUri = URI_BACKGROUND15;
+                    this.HeroUri = URI_HERO;
+                    break;
+
+                case DeviceType.Book13:
+                default:
+                    this.BackgroundUri = URI_BACKGROUND13;
+                    this.HeroUri = URI_HERO;
+                    break;
+            }
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

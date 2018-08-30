@@ -189,9 +189,11 @@ namespace SurfaceBook2Demo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_HEADLINE, "EXPERIENCE_OVERVIEW_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_COPY, "EXPERIENCE_OVERVIEW_COPY");
+
             viewModel.PopupPixelSenseHeadline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPLEFT_TITLE, "EXPERIENCE_OVERVIEW_POPLEFT_TITLE");
             viewModel.PopupPixelSenseLede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPLEFT_COPY, "EXPERIENCE_OVERVIEW_POPLEFT_COPY");
             viewModel.PopupPixelSenseLegal = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPLEFT_LEGAL, "EXPERIENCE_OVERVIEW_POPLEFT_LEGAL");
+
             viewModel.PopupCompareHeadline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_TITLE, "EXPERIENCE_OVERVIEW_POPRIGHT_TITLE");
             viewModel.PopupCompareLede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_COPY, "EXPERIENCE_OVERVIEW_POPRIGHT_COPY");
             viewModel.PopupCompareLegal = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_LEGAL, "EXPERIENCE_OVERVIEW_POPRIGHT_LEGAL");
@@ -200,43 +202,92 @@ namespace SurfaceBook2Demo.Services
 
         public void LoadExperienceDayViewModel(ExperienceDayViewModel viewModel)
         {
-
+            viewModel.SliderBatteryCopy = GetStringValue(_languageCurrent.BATTERY_COPY, "BATTERY_COPY");
         }
 
         public void LoadExperienceDayWorkViewModel(ExperienceDayWorkViewModel viewModel)
         {
-            viewModel.SliderBatteryCopy = GetStringValue(_languageCurrent.BATTERY_COPY, "BATTERY_COPY");
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_WORK_HEADLINE, "EXPERIENCE_WORK_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_WORK_COPY, "EXPERIENCE_WORK_COPY");
+
+            viewModel.PopupBatteryLifeHeadline = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPLEFT_TITLE, "EXPERIENCE_WORK_POPLEFT_TITLE");
+            viewModel.PopupBatteryLifeLede = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPLEFT_COPY, "EXPERIENCE_WORK_POPLEFT_COPY");
+            viewModel.PopupBatteryLifeHours = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPLEFT_BATTERYXX, "EXPERIENCE_WORK_POPLEFT_BATTERYXX");
+            viewModel.PopupBatteryLifeLegal = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPLEFT_LEGAL, "EXPERIENCE_WORK_POPLEFT_LEGAL");
+
+            viewModel.PopupConnectionsHeadline = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPRIGHT_TITLE, "EXPERIENCE_WORK_POPRIGHT_TITLE");
+            viewModel.PopupConnectionsLede = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPRIGHT_COPY, "EXPERIENCE_WORK_POPRIGHT_COPY");
+            viewModel.PopupConnectionsLegal = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPRIGHT_LEGAL, "EXPERIENCE_WORK_POPRIGHT_LEGAL");
 
         }
 
         public void LoadExperienceDayCreateViewModel(ExperienceDayCreateViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_HEADLINE, "EXPERIENCE_CREATE_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_COPY, "EXPERIENCE_CREATE_COPY");
 
+            viewModel.PopupDialHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPLEFT_TITLE, "EXPERIENCE_CREATE_POPLEFT_TITLE");
+            viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPLEFT_COPY, "EXPERIENCE_CREATE_POPLEFT_COPY");
+
+            viewModel.PopupPenHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_TITLE, "EXPERIENCE_CREATE_POPRIGHT_TITLE");
+            viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_COPY, "EXPERIENCE_CREATE_POPRIGHT_COPY");
+
+            
         }
 
         public void LoadExperienceDayRelaxViewModel(ExperienceDayRelaxViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_RELAX_HEADLINE, "EXPERIENCE_RELAX_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_RELAX_COPY, "EXPERIENCE_RELAX_COPY");
 
+            viewModel.PopupHingeHeadline = GetStringValue(_languageCurrent.EXPERIENCE_RELAX_POPLEFT_TITLE, "EXPERIENCE_RELAX_POPLEFT_TITLE");
+            viewModel.PopupHingeLede = GetStringValue(_languageCurrent.EXPERIENCE_RELAX_POPLEFT_COPY, "EXPERIENCE_RELAX_POPLEFT_COPY");
+
+            viewModel.PopupDisplayHeadline = GetStringValue(_languageCurrent.EXPERIENCE_RELAX_POPTOP_TITLE, "EXPERIENCE_RELAX_POPTOP_TITLE");
+            viewModel.PopupDisplayLede = GetStringValue(_languageCurrent.EXPERIENCE_RELAX_POPTOP_COPY, "EXPERIENCE_RELAX_POPTOP_COPY");
         }
 
         public void LoadExperienceDayPlayViewModel(ExperienceDayPlayViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_PLAY_HEADLINE, "EXPERIENCE_PLAY_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_PLAY_COPY, "EXPERIENCE_PLAY_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_PLAY_COPY_LEGAL, "EXPERIENCE_PLAY_COPY_LEGAL");
         }
 
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
 
+            viewModel.TryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
+            viewModel.TryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");
+
+            // TODO: add code to load list
         }
 
         public void LoadAccessoriesDialViewModel(AccessoriesDialViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_COPY, "ACCESSORIES_LEFT_COPY");
 
+            viewModel.PopupDialHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
+            viewModel.PopupDialLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
+            viewModel.PopupDialLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_LEGAL, "ACCESSORIES_LEFT_POPLEFT_LEGAL");
+
+            viewModel.PopupPenHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPTOP_TITLE, "ACCESSORIES_LEFT_POPTOP_TITLE");
+            viewModel.PopupPenLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPTOP_COPY, "ACCESSORIES_LEFT_POPTOP_COPY");
+            viewModel.PopupPenLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPTOP_LEGAL, "ACCESSORIES_LEFT_POPTOP_LEGAL");
         }
 
         public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_HEADLINE, "ACCESSORIES_RIGHT_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_COPY, "ACCESSORIES_RIGHT_COPY");
 
+            viewModel.PopupMouseHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_TITLE, "ACCESSORIES_RIGHT_POPCENTER_TITLE");
+            viewModel.PopupMouseLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_COPY, "ACCESSORIES_RIGHT_POPCENTER_COPY");
+            viewModel.PopupMouseLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_LEGAL, "ACCESSORIES_RIGHT_POPCENTER_LEGAL");
+            viewModel.PopupMouseTryIt = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_TRYIT_TITLE, "ACCESSORIES_RIGHT_TRYIT_TITLE");
         }
 
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)

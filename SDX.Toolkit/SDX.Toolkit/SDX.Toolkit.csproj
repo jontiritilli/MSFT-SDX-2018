@@ -116,6 +116,8 @@
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
     <Compile Include="Controls\ImageEx.cs" />
+    <Compile Include="Controls\List.cs" />
+    <Compile Include="Controls\ListItem.cs" />
     <Compile Include="Controls\LoopPlayer.cs" />
     <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\PopupMedia.cs" />

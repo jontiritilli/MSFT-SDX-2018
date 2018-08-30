@@ -293,14 +293,26 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Assets\Accessories\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\Accessories\sb2_15_accessories_car.svg" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_left.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_right.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_right_insetScrollWheel.png" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_car.svg" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_left.png" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_right.png" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_right_insetScrollWheel.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
-    <Content Include="Assets\Backgrounds\background_sb2_light.jpg" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
-    <Content Include="Assets\Backgrounds\background_sb2_dark.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_15_background_dark.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_15_background_light.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_work.png" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_create.png" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_relax.png" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_play.png" />
+    <Content Include="Assets\Backgrounds\sb2_13_background_dark.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_13_background_light.jpg" />
     <Content Include="Assets\BestOfMicrosoft\bomOffice.svg" />
     <Content Include="Assets\BestOfMicrosoft\bomSmile.svg" />
     <Content Include="Assets\BestOfMicrosoft\bomSync.svg" />

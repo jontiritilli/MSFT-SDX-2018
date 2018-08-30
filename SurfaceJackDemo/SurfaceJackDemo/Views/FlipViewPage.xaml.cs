@@ -86,6 +86,7 @@ namespace SurfaceJackDemo.Views
             {
                 this.BottomNavBar.NavigationSections.Add(section);
             }
+            this.BottomNavBar.IsHomeEnabled = true;
 
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
