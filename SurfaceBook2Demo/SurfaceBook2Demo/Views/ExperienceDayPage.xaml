@@ -33,10 +33,7 @@
                 Lede="This is a placeholder for the slider control that this page will host."
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top" 
-                DurationInMilliseconds="{StaticResource Duration}"
-                StaggerDelayInMilliseconds="0"
-                AutoStart="True" />
+                VerticalAlignment="Top" />
 
     </Grid>
 </Page>

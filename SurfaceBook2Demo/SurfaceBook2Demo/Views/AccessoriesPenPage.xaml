@@ -33,10 +33,7 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top" 
-                DurationInMilliseconds="{StaticResource Duration}"
-                StaggerDelayInMilliseconds="0"
-                AutoStart="True" />
+                VerticalAlignment="Top" />
 
         <!-- TODO: List goes here -->
 

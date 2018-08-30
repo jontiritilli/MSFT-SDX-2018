@@ -76,28 +76,19 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top" 
-                DurationInMilliseconds="{StaticResource Duration}"
-                StaggerDelayInMilliseconds="0"
-                AutoStart="True" />
+                VerticalAlignment="Top" />
 
-        <ctrl:TextLine x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed"
-                       DurationInMilliseconds="{StaticResource Duration}"
-                       StaggerDelayInMilliseconds="0"
-                       AutoStart="False" />
+                       Visibility="Collapsed" />
 
-        <ctrl:TextLine x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed"
-                       DurationInMilliseconds="{StaticResource Duration}"
-                       StaggerDelayInMilliseconds="0"
-                       AutoStart="False" />
+                       Visibility="Collapsed" />
 
         <Canvas x:Name="PageCanvas"
                 Grid.Row="0" Grid.RowSpan="7"

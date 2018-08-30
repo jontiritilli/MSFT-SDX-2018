@@ -33,10 +33,7 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Top" 
-                DurationInMilliseconds="{StaticResource Duration}"
-                StaggerDelayInMilliseconds="0"
-                AutoStart="True" />
+                VerticalAlignment="Top" />
 
         <!-- TODO: Color Selector Goes Here -->
 
@@ -47,13 +44,10 @@
             </Image.Source>
         </Image>
 
-        <ctrl:TextLine x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed"
-                       DurationInMilliseconds="{StaticResource Duration}"
-                       StaggerDelayInMilliseconds="0"
-                       AutoStart="False" />
+                       Visibility="Collapsed" />
     </Grid>
 </Page>
