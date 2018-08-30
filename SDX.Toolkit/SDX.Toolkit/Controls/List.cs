@@ -147,21 +147,6 @@ namespace SDX.Toolkit.Controls
             //((FadeInList)d).RenderUI();
         }
 
-        private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //((FadeInList)d).RenderUI();
-        }
-
-        private static void OnStaggerDelayInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //((FadeInList)d).RenderUI();
-        }
-
-        private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
         #endregion
 
         #region UI Methods
@@ -237,23 +222,19 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
                                 VerticalContentAlignment = VerticalAlignment.Center,
-                                AutoStart = true
                             };
                             Grid.SetColumn(icon, 0);
                             Grid.SetRow(icon, 0);
                             _itemGrid.Children.Add(icon);
 
                             // create the lede
-                            TextLine lede = new TextLine()
+                            TextBlockEx lede = new TextBlockEx()
                             {
                                 ControlStyle = ControlStyles.ListLede,
                                 Text = item.Lede,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Top,
-                                DurationInMilliseconds = 100d,
-                                StaggerDelayInMilliseconds = 0d,
-                                AutoStart = true
                             };
                             Grid.SetColumn(lede, 0);
                             Grid.SetRow(lede, 0);
@@ -308,7 +289,6 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
-                                AutoStart = true
                             };
 
                             Grid.SetColumn(icon, 0);
@@ -316,31 +296,25 @@ namespace SDX.Toolkit.Controls
                             _itemGrid.Children.Add(icon);
 
                             // create the headline (bold text) if one is provided
-                            TextLine headline = new TextLine()
+                            TextBlockEx headline = new TextBlockEx()
                             {
                                 ControlStyle = ControlStyles.ListHeadline,
                                 Text = item.Headline,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Top,
-                                DurationInMilliseconds = 100d,
-                                StaggerDelayInMilliseconds = 0d,
-                                AutoStart = true
                             };
                             Grid.SetColumn(headline, 0);
                             Grid.SetRow(headline, 0);
 
                             // create the lede
-                            TextLine lede = new TextLine()
+                            TextBlockEx lede = new TextBlockEx()
                             {
                                 ControlStyle = ControlStyles.ListLede,
                                 Text = item.Lede,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top,
-                                DurationInMilliseconds = 100d,
-                                StaggerDelayInMilliseconds = 0d,
-                                AutoStart = true
+                                VerticalAlignment = VerticalAlignment.Top
                             };
                             Grid.SetColumn(lede, 0);
                             Grid.SetRow(lede, 1);
