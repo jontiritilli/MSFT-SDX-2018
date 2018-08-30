@@ -119,10 +119,6 @@
     <Compile Include="Controls\LoopPlayer.cs" />
     <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\PopupMedia.cs" />
-    <Compile Include="Controls\List.cs" />
-    <Compile Include="Controls\ListImage.cs" />
-    <Compile Include="Controls\ListItem.cs" />
-    <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\PopupContentBatteryLife.cs" />
     <Compile Include="Controls\RadiatingButton.cs" />
     <Compile Include="Controls\StyledText.cs" />
