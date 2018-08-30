@@ -37,9 +37,6 @@ namespace SDX.Toolkit.Controls
 
         private Border _layoutRoot;
         private Image _image;
-        private Storyboard _storyboardFadeIn;
-        private Storyboard _storyboardFadeOut;
-        private Storyboard _storyboardTranslate;
 
         private DispatcherTimer _timer = null;
         private int _dispatchCount = 0;
