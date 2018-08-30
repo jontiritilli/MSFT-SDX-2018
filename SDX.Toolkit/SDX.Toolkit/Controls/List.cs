@@ -33,9 +33,9 @@ namespace SDX.Toolkit.Controls
         private List<ListItem> _listItems = new List<ListItem>();
 
         private Grid _layoutRoot = null;
-        private ListLede _listLedeHeadline = null;
+        private TextLine _listLedeHeadline = null;
         private List<ListImage> _images = new List<ListImage>();
-        private List<ListLede> _listLedes = new List<ListLede>();
+        private List<TextLine> _listLedes = new List<TextLine>();
 
         private DispatcherTimer _timer = null;
         private int _dispatchCount = 0;
@@ -107,7 +107,7 @@ namespace SDX.Toolkit.Controls
 
             if (null != _listLedes)
             {
-                foreach (ListLede item in _listLedes)
+                foreach (TextLine item in _listLedes)
                 {
                     item.StartFadeIn();
                 }
@@ -140,7 +140,7 @@ namespace SDX.Toolkit.Controls
 
             if (null != _listLedes)
             {
-                foreach (ListLede item in _listLedes)
+                foreach (TextLine item in _listLedes)
                 {
                     item.ResetAnimation();
                 }
@@ -323,8 +323,6 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.RowSpacing = rowSpacing;
             _layoutRoot.Margin = new Thickness(0);
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             for (int i = 0; i < rowCount; i++)
             {
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
@@ -348,6 +346,28 @@ namespace SDX.Toolkit.Controls
                             // how wide is the text
                             double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
 
+                            // create the lede grid to add to col2
+                            Grid _itemGrid = new Grid();
+                            _itemGrid.Name = "ItemGrid";
+                            _itemGrid.RowSpacing = rowSpacing;
+                            _itemGrid.Margin = new Thickness(0);
+                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
+                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                            Grid.SetColumn(_itemGrid, 0);
+                            Grid.SetRow(_itemGrid, item.Order + 1);
+
+                            Grid _ledeGrid = new Grid();
+                            _ledeGrid.Name = "LedeGrid";
+                            _ledeGrid.RowSpacing = rowSpacing;
+                            _ledeGrid.Margin = new Thickness(0);
+                            _ledeGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            _ledeGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            Grid.SetColumn(_ledeGrid, 2);
+                            Grid.SetRow(_ledeGrid, 0);
+
                             // create icon image
                             ListImage icon = new ListImage()
                             {
@@ -361,28 +381,32 @@ namespace SDX.Toolkit.Controls
                                 AutoStart = false
                             };
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, item.Order + 1);
-                            _layoutRoot.Children.Add(icon);
+                            Grid.SetRow(icon, 0);
+                            _itemGrid.Children.Add(icon);
 
                             // add to animation list
                             _images.Add(icon);
 
                             // create the lede
-                            ListLede lede = new ListLede()
+                            TextLine lede = new TextLine()
                             {
-                                Name = String.Format("Text_{0}", item.Order),
-                                LedeStyle = LedeStyles.LedeOnly,
-                                Lede = item.Lede,
-                                Width = itemTextWidth,
-                                LedeAlignment = TextAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
-                                DurationInMilliseconds = itemDuration,
-                                StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds + childDelay,
+                                ControlStyle = ControlStyles.ListLede,
+                                Text = item.Lede,
+                                TextAlignment = TextAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalAlignment = VerticalAlignment.Top,
+                                DurationInMilliseconds = 100d,
+                                StaggerDelayInMilliseconds = 0d,
                                 AutoStart = false
                             };
-                            Grid.SetColumn(lede, 2);
-                            Grid.SetRow(lede, item.Order + 1);
-                            _layoutRoot.Children.Add(lede);
+                            Grid.SetColumn(lede, 0);
+                            Grid.SetRow(lede, 0);
+
+                            _ledeGrid.Children.Add(lede);
+
+                            _itemGrid.Children.Add(_ledeGrid);
+
+                            _layoutRoot.Children.Add(_itemGrid);
 
                             // add to animation list
                             _listLedes.Add(lede);
@@ -404,6 +428,31 @@ namespace SDX.Toolkit.Controls
                             // how wide is the text
                             double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
 
+                            GridLength ledeHeadlineRowHeight = (item.LedeHeadline == null) ? new GridLength(0) : GridLength.Auto;
+
+                            // create the lede grid to add to col2
+                            Grid _itemGrid = new Grid();
+                            _itemGrid.Name = "ItemGrid";
+                            _itemGrid.RowSpacing = rowSpacing;
+                            _itemGrid.Margin = new Thickness(0);
+                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
+                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                            Grid.SetColumn(_itemGrid, 0);
+                            Grid.SetRow(_itemGrid, item.Order + 1);
+
+                            Grid _ledeGrid = new Grid();
+                            _ledeGrid.Name = "LedeGrid";
+                            _ledeGrid.RowSpacing = rowSpacing;
+                            _ledeGrid.Margin = new Thickness(0);
+                            _ledeGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            _ledeGrid.RowDefinitions.Add(new RowDefinition() { Height = ledeHeadlineRowHeight });
+                            _ledeGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            Grid.SetColumn(_ledeGrid, 2);
+                            Grid.SetRow(_ledeGrid, 0);
+
                             // create icon image
                             ListImage icon = new ListImage()
                             {
@@ -416,48 +465,52 @@ namespace SDX.Toolkit.Controls
                                 StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds + childDelay,
                                 AutoStart = false
                             };
+
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, item.Order);
-                            _layoutRoot.Children.Add(icon);
+                            Grid.SetRow(icon, 0);
+                            _itemGrid.Children.Add(icon);
 
                             // add to animation list
                             _images.Add(icon);
-
-                            ListLede ledeHeadline = null;
-
                             // create the headline (bold text) if one is provided
-                            ledeHeadline = new ListLede()
+                            TextLine ledeHeadline = new TextLine()
                             {
-                                Name = String.Format("Headline_{0}", item.Order),
-                                LedeStyle = LedeStyles.HeadlineAndLede,
-                                LedeHeadline = item.LedeHeadline,
-                                Width = itemTextWidth,
-                                VerticalAlignment = VerticalAlignment.Top,       // items align to top when they're a header
-                                DurationInMilliseconds = itemDuration,
-                                StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds + childDelay,
+                                ControlStyle = ControlStyles.ListHeadline,
+                                Text = item.LedeHeadline,
+                                TextAlignment = TextAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalAlignment = VerticalAlignment.Top,
+                                DurationInMilliseconds = 100d,
+                                StaggerDelayInMilliseconds = 0d,
                                 AutoStart = false
                             };
-                            Grid.SetColumn(ledeHeadline, 2);
-                            Grid.SetRow(ledeHeadline, item.Order);
-                            _layoutRoot.Children.Add(ledeHeadline);
+                            Grid.SetColumn(ledeHeadline, 0);
+                            Grid.SetRow(ledeHeadline, 0);
 
                             // add to animation list
                             _listLedes.Add(ledeHeadline);
+
                             // create the lede
-                            ListLede lede = new ListLede()
+                            TextLine lede = new TextLine()
                             {
-                                Name = String.Format("lede_{0}", item.Order),
-                                LedeStyle = LedeStyles.HeadlineAndLede,
-                                Lede = item.Lede,
-                                Width = itemTextWidth,
-                                VerticalAlignment = VerticalAlignment.Top,       // items align to top when they're a header
-                                DurationInMilliseconds = itemDuration,
-                                StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds + childDelay,
+                                ControlStyle = ControlStyles.ListLede,
+                                Text = item.Lede,
+                                TextAlignment = TextAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalAlignment = VerticalAlignment.Top,
+                                DurationInMilliseconds = 100d,
+                                StaggerDelayInMilliseconds = 0d,
                                 AutoStart = false
                             };
-                            Grid.SetColumn(lede, 2);
-                            Grid.SetRow(lede, item.Order + 1);
-                            _layoutRoot.Children.Add(lede);
+                            Grid.SetColumn(lede, 0);
+                            Grid.SetRow(lede, 1);
+
+                            _ledeGrid.Children.Add(ledeHeadline);
+                            _ledeGrid.Children.Add(lede);
+
+                            _itemGrid.Children.Add(_ledeGrid);
+
+                            _layoutRoot.Children.Add(_itemGrid);
 
                             // add to animation list
                             _listLedes.Add(ledeHeadline);

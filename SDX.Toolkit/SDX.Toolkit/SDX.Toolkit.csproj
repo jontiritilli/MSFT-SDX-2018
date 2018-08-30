@@ -113,7 +113,6 @@
     <Compile Include="Controls\ColoringBook.cs" />
     <Compile Include="Controls\FadeInText.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
-    <Compile Include="Controls\ListLede.cs" />
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
     <Compile Include="Controls\List.cs" />

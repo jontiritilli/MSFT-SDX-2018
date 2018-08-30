@@ -26,7 +26,7 @@ namespace SurfaceTestBed.Views
             TestHelper.AddGridCellBorders(this.LayoutRoot, 7, 3, Colors.Orange);
 
 
-            items[0] = ListItem.CreateListItem(0, ListItemIcon.Jot, 50d, ViewModel.HeadlineJot, ViewModel.BulletJot, null);
+            items[0] = ListItem.CreateListItem(0, ListItemIcon.Jot, 50d, null, ViewModel.BulletJot, null);
 
             items[1] = ListItem.CreateListItem(1, ListItemIcon.Write, 50d, ViewModel.HeadlineWrite, ViewModel.BulletWrite, null);
 
