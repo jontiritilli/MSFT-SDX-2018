@@ -335,13 +335,19 @@ namespace SDX.Toolkit.Controls
             Grid.SetColumn(ColoringImage, 0);
             Grid.SetColumnSpan(ColoringImage, 3);
             _layoutRoot.Children.Add(ColoringImage);
+            this._URIs.Add(new AppSelectorData
+            {
+                SourceSVG_NotSelectedImage = "ms-appx:///Assets/Universal/inkingReset.svg",
+                SourceSVG_SelectedImage = "ms-appx:///Assets/Universal/inkingReset.svg",
+                IsClearButton = true
+            });
 
             for (int i = 0; i < this.Colors.Count; i++)
             {
                 this._URIs.Add(new AppSelectorData
                 {
-                    URI_NotSelectedImage = this.Colors[i].URI_NotSelectedImage,
-                    URI_SelectedImage = this.Colors[i].URI_SelectedImage
+                    Source_NotSelectedImage = this.Colors[i].URI_NotSelectedImage,
+                    Source_SelectedImage = this.Colors[i].URI_SelectedImage
                 });
             }
             AppSelector _AppSelector = new AppSelector()
@@ -360,11 +366,12 @@ namespace SDX.Toolkit.Controls
             };// bind event to catch and change color from this.colors
             // add the test selector here so it's after the color selector image
             _AppSelector.SelectedIDChanged += _AppSelector_SelectedIDChanged;
+            _AppSelector.OnClearClicked += _AppSelector_ClearClickedChanged;
             Canvas.SetZIndex(_AppSelector, 101);
             Grid.SetRow(_AppSelector, 5);
             Grid.SetColumn(_AppSelector, 1);
             this._layoutRoot.Children.Add(_AppSelector);
-            this._SelectedColor = this.Colors[0].Color;
+            this._SelectedColor = this.Colors[1].Color;
             SetupBrush();
             // set up events
 
@@ -376,9 +383,27 @@ namespace SDX.Toolkit.Controls
             if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
-                this._SelectedColor = this.Colors[appSelector.SelectedID].Color;
+                if (appSelector.SelectedID > 0)
+                {// this is the only case there this needs to manage since there is a clear button so account for it
+                    this._SelectedColor = this.Colors[appSelector.SelectedID - 1].Color;
+                }
+                //else
+                //{// should it disable the color? or leave the selection on the previous one?
+                //    _inkCanvas.InkPresenter.StrokeContainer.Clear();
+                //}
+                
 
                 SetupBrush();
+            }
+        }
+
+        private void _AppSelector_ClearClickedChanged(object sender, EventArgs e)
+        {
+            // need to change the mouse page too
+            if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
+            {
+                AppSelector appSelector = (AppSelector)sender;
+                _inkCanvas.InkPresenter.StrokeContainer.Clear();                               
             }
         }
 
