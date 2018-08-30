@@ -80,10 +80,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ctrl:TextLine">
+    <Style TargetType="ctrl:TextBlockEx">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ctrl:TextLine">
+                <ControlTemplate TargetType="ctrl:TextBlockEx">
                     <Grid
                         x:Name="LayoutRoot"
                         Background="{TemplateBinding Background}"

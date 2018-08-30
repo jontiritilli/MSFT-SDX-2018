@@ -230,10 +230,10 @@ namespace SDX.Toolkit.Controls
 
         public void StartAnimation()
         {
-            if (null != _header)
-            {
-                _header.StartFadeIn();
-            }
+            //if (null != _header)
+            //{
+            //    _header.StartFadeIn();
+            //}
 
             if (null != _chargeStoryboard)
             {
@@ -253,10 +253,10 @@ namespace SDX.Toolkit.Controls
 
         public void ResetAnimation()
         {
-            if (null != _header)
-            {
-                _header.ResetAnimation();
-            }
+            //if (null != _header)
+            //{
+            //    _header.ResetAnimation();
+            //}
 
             if (null != _chargeStoryboard)
             {
@@ -338,11 +338,13 @@ namespace SDX.Toolkit.Controls
             _header = new Header()
             {
                 Name = "FastCharge",
-                HeaderStyle = HeaderStyles.BatteryLifePopup,
+                //HeaderStyle = HeaderStyles.BatteryLifePopup,
+                HeadlineStyle = ControlStyles.BatteryLifeHeader,
+                LedeStyle = ControlStyles.BatteryLifeLede,
                 Width = CANVAS_X,
-                DurationInMilliseconds = 400d,
-                StaggerDelayInMilliseconds = 0d,
-                AutoStart = false
+                //DurationInMilliseconds = 400d,
+                //StaggerDelayInMilliseconds = 0d,
+                //AutoStart = false
             };
             Grid.SetRow(_header, 1);
             Grid.SetColumn(_header, 1);
