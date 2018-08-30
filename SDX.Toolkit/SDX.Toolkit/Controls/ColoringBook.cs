@@ -73,6 +73,7 @@ namespace SDX.Toolkit.Controls
 
         #region Public Members
         public string ImageURI;
+        public string ImageSVGURI;
         public int ImageWidth;
         public int ImageHeight;
         public List<ColoringBookColor> Colors;
@@ -309,9 +310,9 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Add(_inkCanvas);
 
             // add a nohitvisible png onto this page
+            // please dont not have a URI or an SVGURI or the image below will error
             Image ColoringImage = new Image()
-            {
-                Source = new BitmapImage() { UriSource = new Uri(ImageURI), DecodePixelWidth = this.ImageWidth },
+            {                
                 Width = this.ImageWidth,
                 Height = this.ImageHeight,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -319,6 +320,15 @@ namespace SDX.Toolkit.Controls
                 Opacity = 1.0,
                 IsHitTestVisible = false
             };
+            
+            if (!string.IsNullOrEmpty(ImageURI)) {
+                ColoringImage.Source = new BitmapImage() { UriSource = new Uri(ImageURI), DecodePixelWidth = this.ImageWidth };                
+            }
+            else if(!string.IsNullOrEmpty(ImageSVGURI))
+            {
+                ColoringImage.Source = new SvgImageSource(new Uri(ImageSVGURI)) {};
+            }
+
             Canvas.SetZIndex(ColoringImage, 100);
             Grid.SetRow(ColoringImage, 0);
             Grid.SetRowSpan(ColoringImage, 4);
