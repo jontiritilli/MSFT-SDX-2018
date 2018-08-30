@@ -55,34 +55,31 @@ namespace SDX.Toolkit.Controls
         private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/icon-3.png";
         private const string ICON_PALM_URI = @"ms-appx:///Assets/List/icon-4.png";
         // touch icons
-        private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/icon-1.png";
-        private const string ICON_ROTATE_URI = @"ms-appx:///Assets/List/icon-2.png";
-        private const string ICON_DRAG_URI = @"ms-appx:///Assets/List/icon-3.png";
+        private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_ROTATE_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_DRAG_URI = @"ms-appx:///Assets/List/??.png";
         // product highlights modal icons
-        private const string ICON_DESIGN_URI = @"ms-appx:///Assets/List/icon-4.png";
-        private const string ICON_POWER_URI = @"ms-appx:///Assets/List/icon-1.png";
-        private const string ICON_LAPTOP_URI = @"ms-appx:///Assets/List/icon-2.png";
-        private const string ICON_DISPLAY_URI = @"ms-appx:///Assets/List/icon-3.png";
-        private const string ICON_SOUND_URI = @"ms-appx:///Assets/List/icon-4.png";
-        private const string ICON_MOBILITY_URI = @"ms-appx:///Assets/List/icon-4.png";
-        private const string ICON_BATTERY_URI = @"ms-appx:///Assets/List/icon-1.png";
-        private const string ICON_DETAIL_URI = @"ms-appx:///Assets/List/icon-2.png";
-        private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/icon-3.png";
-        private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/icon-4.png";
-        private const string ICON_PEN_URI = @"ms-appx:///Assets/List/icon-4.png";
+        private const string ICON_DESIGN_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_POWER_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_LAPTOP_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_DISPLAY_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_SOUND_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_MOBILITY_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_BATTERY_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_DETAIL_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_PEN_URI = @"ms-appx:///Assets/List/??.png";
 
         #endregion
 
         #region Private Members
 
-        private Border _layoutRoot = null;
-        private Grid _layoutGrid = null;
         private int _order;
         private ListItemIcon _icon;
         private double _width = 60d;
         private string _ledeHeadline;
         private string _lede;
-        private string _ctaTelemetryId;
         private string _iconPath;
 
         #endregion
@@ -93,7 +90,7 @@ namespace SDX.Toolkit.Controls
 
         #region Static Methods
 
-        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string ledeHeadline, string lede, string ctaText, string ctaUri, string ctaTelemetryId, string iconPath)
+        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string ledeHeadline, string lede, string iconPath)
         {
             // create the item
             ListItem item = new ListItem();
@@ -267,12 +264,6 @@ namespace SDX.Toolkit.Controls
         {
             get => _lede;
             set => _lede = value;
-        }
-
-        public string TelemetryId
-        {
-            get => _ctaTelemetryId;
-            set => _ctaTelemetryId = value;
         }
 
         public string IconPath

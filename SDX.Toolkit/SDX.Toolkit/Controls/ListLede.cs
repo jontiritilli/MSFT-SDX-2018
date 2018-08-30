@@ -29,7 +29,6 @@ namespace SDX.Toolkit.Controls
 
     public sealed class ListLede : Control
     {
-
         #region Private Constants
 
         private const string CHAR_BULLET = "•";
@@ -241,7 +240,7 @@ namespace SDX.Toolkit.Controls
         
         // ListLedeStyle
         public static readonly DependencyProperty LedeStyleProperty =
-        DependencyProperty.Register("ListLedeStyle", typeof(LedeStyles), typeof(Header), new PropertyMetadata(LedeStyles.HeadlineAndLede, OnAutoStartChanged));
+        DependencyProperty.Register("ListLedeStyle", typeof(LedeStyles), typeof(Header), new PropertyMetadata(LedeStyles.LedeOnly, OnAutoStartChanged));
 
         public LedeStyles LedeStyle
         {
@@ -390,8 +389,8 @@ namespace SDX.Toolkit.Controls
             double gridWidth = this.Width;
 
             // calculate rows
-            GridLength headlineRowHeight = (LedeStyles.HeadlineAndLede == this.LedeStyle) ? new GridLength(0) : GridLength.Auto;
-            GridLength ledeRowHeight = (LedeStyles.LedeOnly == this.LedeStyle) ? new GridLength(0) : new GridLength(1.0, GridUnitType.Star);
+            GridLength headlineRowHeight = (LedeStyles.HeadlineAndLede != this.LedeStyle) ? new GridLength(0) : GridLength.Auto;
+            GridLength ledeRowHeight = (LedeStyles.LedeOnly != this.LedeStyle) ? new GridLength(0) : new GridLength(1.0, GridUnitType.Star);
             double rowSpacing = (LedeStyles.LedeOnly == this.LedeStyle) ? 0d : 10d;
 
             // create the grid
@@ -412,23 +411,8 @@ namespace SDX.Toolkit.Controls
             double itemDelay = (LedeStyles.LedeOnly == this.LedeStyle) ? 0d : this.DurationInMilliseconds / 2;
 
             // set styles 
-            ControlStyles ledeHeadlineControlStyle;
-            ControlStyles ledeControlStyle;
-            switch (this.LedeStyle)
-            {
-                case LedeStyles.HeadlineAndLede:
-                    ledeHeadlineControlStyle = ControlStyles.ListHeadline;
-                    ledeControlStyle = ControlStyles.ListLede;
-                    break;
-                case LedeStyles.LedeOnly:
-                    ledeHeadlineControlStyle = ControlStyles.ListHeadline;
-                    ledeControlStyle = ControlStyles.ListLede;
-                    break;
-                default:
-                    ledeHeadlineControlStyle = ControlStyles.ListHeadline;
-                    ledeControlStyle = ControlStyles.ListLede;
-                    break;
-            }
+            ControlStyles ledeHeadlineControlStyle = ControlStyles.ListHeadline;
+            ControlStyles ledeControlStyle = ControlStyles.ListLede;
 
             // if we're in lede-only mode, don't create the headline
             if (LedeStyles.LedeOnly != this.LedeStyle)
@@ -447,6 +431,14 @@ namespace SDX.Toolkit.Controls
                 StyleHelper.SetFontCharacteristics(_ledeHeadline, ledeHeadlineControlStyle);
                 Grid.SetRow(_ledeHeadline, 0);
                 Grid.SetColumn(_ledeHeadline, 0);
+
+                // create the runs
+                _ledeHeadlineText = new Run()
+                {
+                    Text = this.LedeHeadline + CHAR_NBSPACE + CHAR_NBSPACE
+                };
+                StyleHelper.SetFontCharacteristics(_ledeHeadlineText, ledeControlStyle);
+                _ledeHeadline.Inlines.Add(_ledeHeadlineText);
 
                 // set headline binding
                 _ledeHeadline.SetBinding(TextBlock.TextProperty,

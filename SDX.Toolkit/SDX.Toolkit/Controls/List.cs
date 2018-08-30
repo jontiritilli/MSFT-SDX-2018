@@ -55,6 +55,8 @@ namespace SDX.Toolkit.Controls
             base.OnApplyTemplate();
 
             this.RenderUI();
+
+            this.StartAnimation();
         }
 
         #endregion
@@ -191,7 +193,7 @@ namespace SDX.Toolkit.Controls
 
         // ListItems
         public static readonly DependencyProperty ListItemsProperty =
-            DependencyProperty.Register("ListStyle", typeof(ListItem[]), typeof(List), new PropertyMetadata(null, OnListItemsChanged));
+            DependencyProperty.Register("ListItems", typeof(ListItem[]), typeof(List), new PropertyMetadata(null, OnListItemsChanged));
 
         public ListItem[] ListItems
         {
@@ -313,15 +315,16 @@ namespace SDX.Toolkit.Controls
             double columnSpacing = 20d;
 
             // how many rows do we need? (items plus the header for ListHeader style)
-            int rowCount = _listItems.Count;
+            int rowCount = _listItems.Count + 1;
 
             // configure grid
             _layoutRoot.Name = "ListGrid";
-            _layoutRoot.ColumnSpacing = columnSpacing;
+            //_layoutRoot.ColumnSpacing = columnSpacing;
             _layoutRoot.RowSpacing = rowSpacing;
             _layoutRoot.Margin = new Thickness(0);
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1d, GridUnitType.Star) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             for (int i = 0; i < rowCount; i++)
             {
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
@@ -370,7 +373,6 @@ namespace SDX.Toolkit.Controls
                                 Name = String.Format("Text_{0}", item.Order),
                                 LedeStyle = LedeStyles.LedeOnly,
                                 Lede = item.Lede,
-                                TelemetryId = item.TelemetryId,
                                 Width = itemTextWidth,
                                 LedeAlignment = TextAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
@@ -378,8 +380,8 @@ namespace SDX.Toolkit.Controls
                                 StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds + childDelay,
                                 AutoStart = false
                             };
-                            Grid.SetColumn(lede, 1);
-                            Grid.SetRow(lede, item.Order);
+                            Grid.SetColumn(lede, 2);
+                            Grid.SetRow(lede, item.Order + 1);
                             _layoutRoot.Children.Add(lede);
 
                             // add to animation list
@@ -421,20 +423,21 @@ namespace SDX.Toolkit.Controls
                             // add to animation list
                             _images.Add(icon);
 
-                            // create the headline (bold text)
-                            ListLede ledeHeadline = new ListLede()
+                            ListLede ledeHeadline = null;
+
+                            // create the headline (bold text) if one is provided
+                            ledeHeadline = new ListLede()
                             {
                                 Name = String.Format("Headline_{0}", item.Order),
                                 LedeStyle = LedeStyles.HeadlineAndLede,
                                 LedeHeadline = item.LedeHeadline,
-                                TelemetryId = item.TelemetryId,
                                 Width = itemTextWidth,
                                 VerticalAlignment = VerticalAlignment.Top,       // items align to top when they're a header
                                 DurationInMilliseconds = itemDuration,
                                 StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds + childDelay,
                                 AutoStart = false
                             };
-                            Grid.SetColumn(ledeHeadline, 1);
+                            Grid.SetColumn(ledeHeadline, 2);
                             Grid.SetRow(ledeHeadline, item.Order);
                             _layoutRoot.Children.Add(ledeHeadline);
 
@@ -446,7 +449,6 @@ namespace SDX.Toolkit.Controls
                                 Name = String.Format("lede_{0}", item.Order),
                                 LedeStyle = LedeStyles.HeadlineAndLede,
                                 Lede = item.Lede,
-                                TelemetryId = item.TelemetryId,
                                 Width = itemTextWidth,
                                 VerticalAlignment = VerticalAlignment.Top,       // items align to top when they're a header
                                 DurationInMilliseconds = itemDuration,
@@ -454,10 +456,11 @@ namespace SDX.Toolkit.Controls
                                 AutoStart = false
                             };
                             Grid.SetColumn(lede, 2);
-                            Grid.SetRow(lede, item.Order);
+                            Grid.SetRow(lede, item.Order + 1);
                             _layoutRoot.Children.Add(lede);
 
                             // add to animation list
+                            _listLedes.Add(ledeHeadline);
                             _listLedes.Add(lede);
 
                             // bump childDelay for this item
@@ -467,10 +470,6 @@ namespace SDX.Toolkit.Controls
                     break;
             }
         }
-
-        #endregion
-
-        #region UI Helpers
 
         #endregion
     }
