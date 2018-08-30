@@ -82,7 +82,7 @@ namespace SDX.Toolkit.Helpers
                     deviceType = DeviceType.Studio;
                     break;
 
-                case 3160:
+                case 3240:
                     deviceType = DeviceType.Book15;
                     break;
 
