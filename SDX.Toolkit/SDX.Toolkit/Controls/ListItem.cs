@@ -78,7 +78,7 @@ namespace SDX.Toolkit.Controls
         private int _order;
         private ListItemIcon _icon;
         private double _width = 60d;
-        private string _ledeHeadline;
+        private string _headline;
         private string _lede;
         private string _iconPath;
 
@@ -90,7 +90,7 @@ namespace SDX.Toolkit.Controls
 
         #region Static Methods
 
-        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string ledeHeadline, string lede, string iconPath)
+        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string headline, string lede, string iconPath)
         {
             // create the item
             ListItem item = new ListItem();
@@ -99,7 +99,7 @@ namespace SDX.Toolkit.Controls
             item.Order = order;
             item.Icon = icon;
             item.IconWidth = width;
-            item.LedeHeadline = ledeHeadline;
+            item.Headline = headline;
             item.Lede = lede;
 
             // set calculated properties
@@ -109,7 +109,7 @@ namespace SDX.Toolkit.Controls
             return item;
         }
 
-        public static string GetIconPath(ListItemIcon icon, string iconPath)
+        public static string GetIconPath(ListItemIcon icon, string iconPath = "")
         {
             if (String.IsNullOrWhiteSpace(iconPath))
             {
@@ -254,10 +254,10 @@ namespace SDX.Toolkit.Controls
             set => _width = value;
         }
 
-        public string LedeHeadline
+        public string Headline
         {
-            get => _ledeHeadline;
-            set => _ledeHeadline = value;
+            get => _headline;
+            set => _headline = value;
         }
 
         public string Lede
