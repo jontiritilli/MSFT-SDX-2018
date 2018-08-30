@@ -78,6 +78,18 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageSourceProperty, value); }
         }
 
+        // ImageSourceSVG
+        public static readonly DependencyProperty ImageSourceSVGProperty =
+            DependencyProperty.Register("ImageSourceSVG", typeof(string), typeof(ImageEx), new PropertyMetadata(null, OnImageSourceSVGChanged));
+
+
+        public string ImageSourceSVG
+        {
+            get { return (string)GetValue(ImageSourceSVGProperty); }
+            set { SetValue(ImageSourceSVGProperty, value); }
+        }
+
+
         // ImageWidth
         public static readonly DependencyProperty ImageWidthProperty =
             DependencyProperty.Register("ImageWidth", typeof(double), typeof(ImageEx), new PropertyMetadata(0d, OnImageWidthChanged));
@@ -197,6 +209,11 @@ namespace SDX.Toolkit.Controls
 
         }
 
+        private static void OnImageSourceSVGChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
 
         #endregion
 
@@ -215,42 +232,49 @@ namespace SDX.Toolkit.Controls
             }
 
             // if we have a valid image source and width
-            if (!String.IsNullOrWhiteSpace(this.ImageSource))
+            // create the image
+            _image = new Image()
             {
-                BitmapImage bitmapImage = null;
+                //Source = bitmapImage,
+                Width = this.ImageWidth,
+                HorizontalAlignment = this.HorizontalContentAlignment,
+                VerticalAlignment = this.VerticalContentAlignment,
+                Opacity = 1.0d
+            };
+            if (!String.IsNullOrWhiteSpace(this.ImageSource) || !String.IsNullOrWhiteSpace(this.ImageSourceSVG))
+            {                
+                if (!String.IsNullOrWhiteSpace(this.ImageSource))
+                {
+                    if (this.ImageSource.StartsWith(@"ms-appx:"))
+                    {
+                        // just set the image source
+                        _image.Source = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth };
+                    }
+                    else
+                    {
+                        //// get a reference to the file from local storage (IdleContent)
+                        //StorageFile bitmapFile = ConfigurationService.Current.GetFileFromLocalStorage(this.ImageSource);
 
+                        //// if we got it
+                        //if (null != bitmapFile)
+                        //{
+                        //    bitmapImage = new BitmapImage() { DecodePixelWidth = (int)this.ImageWidth };
+
+                        //    // otherwise we need to load from the filesystem
+                        //    AsyncHelper.RunSync(() => LoadBitmapFromFileAsync(bitmapImage, bitmapFile));
+                        //}
+                    }
+                }
+                else if (!String.IsNullOrWhiteSpace(this.ImageSourceSVG))
+                {
+                    _image.Source = new SvgImageSource(new Uri(ImageSourceSVG)) { };
+                }
                 // if the image source doesn't start with "ms-appx:", then we need to look for it in the
                 // local folder and load it from there.
                 // set image source; if the image is an app asset
-                if (this.ImageSource.StartsWith(@"ms-appx:"))
-                {
-                    // just set the image source
-                    bitmapImage = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth };
-                }
-                else
-                {
-                    //// get a reference to the file from local storage (IdleContent)
-                    //StorageFile bitmapFile = ConfigurationService.Current.GetFileFromLocalStorage(this.ImageSource);
 
-                    //// if we got it
-                    //if (null != bitmapFile)
-                    //{
-                    //    bitmapImage = new BitmapImage() { DecodePixelWidth = (int)this.ImageWidth };
 
-                    //    // otherwise we need to load from the filesystem
-                    //    AsyncHelper.RunSync(() => LoadBitmapFromFileAsync(bitmapImage, bitmapFile));
-                    //}
-                }
 
-                // create the image
-                _image = new Image()
-                {
-                    Source = bitmapImage,
-                    Width = this.ImageWidth,
-                    HorizontalAlignment = this.HorizontalContentAlignment,
-                    VerticalAlignment = this.VerticalContentAlignment,
-                    Opacity = 1.0d
-                };
                 //_image.ImageFailed += this.Image_ImageFailed;
 
                 // add the image to the layout root
