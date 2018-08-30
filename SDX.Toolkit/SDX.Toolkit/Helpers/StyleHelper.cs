@@ -127,20 +127,20 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.ListHeadline:    // Segoe UI Bold, 86px, Black
+                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                    element.FontWeight = FontWeights.Normal;
+                    element.FontSize = FONTSIZE_110px;
+                    element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, Black
+                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
                     element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                    element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
                 case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
@@ -360,9 +360,9 @@ namespace SDX.Toolkit.Helpers
                 case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                    element.FontWeight = FontWeights.Normal;
+                    element.FontSize = FONTSIZE_110px;
+                    element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
                 case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
@@ -370,7 +370,7 @@ namespace SDX.Toolkit.Helpers
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
                     element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                    element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
                 case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
@@ -587,20 +587,20 @@ namespace SDX.Toolkit.Helpers
                     element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.ListHeadline:    // Segoe UI Bold, 86px, Black
+                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                    element.FontWeight = FontWeights.Normal;
+                    element.FontSize = FONTSIZE_110px;
+                    element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, Black
+                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
                     element.FontFamily = new FontFamily(fontFamily);
                     element.FontStyle = FontStyle.Normal;
                     element.FontWeight = FontWeights.Normal;
                     element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                    element.Foreground = new SolidColorBrush(Colors.White);
                     break;
 
                 case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
