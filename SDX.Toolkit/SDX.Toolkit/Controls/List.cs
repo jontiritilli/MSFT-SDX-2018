@@ -46,7 +46,6 @@ namespace SDX.Toolkit.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
             this.RenderUI();
         }
 
@@ -220,6 +219,8 @@ namespace SDX.Toolkit.Controls
                             Grid.SetColumn(_itemGrid, 0);
                             Grid.SetRow(_itemGrid, item.Order + 1);
 
+                            _layoutRoot.Children.Add(_itemGrid);
+
                             Grid _ledeGrid = new Grid();
                             _ledeGrid.Name = "LedeGrid";
                             _ledeGrid.RowSpacing = rowSpacing;
@@ -230,6 +231,8 @@ namespace SDX.Toolkit.Controls
                             Grid.SetColumn(_ledeGrid, 2);
                             Grid.SetRow(_ledeGrid, 0);
 
+                            _itemGrid.Children.Add(_ledeGrid);
+
                             // create icon image
                             ImageEx icon = new ImageEx()
                             {
@@ -238,7 +241,7 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
                                 VerticalContentAlignment = VerticalAlignment.Center,
-                                AutoStart = false
+                                AutoStart = true
                             };
                             Grid.SetColumn(icon, 0);
                             Grid.SetRow(icon, 0);
@@ -254,16 +257,12 @@ namespace SDX.Toolkit.Controls
                                 VerticalAlignment = VerticalAlignment.Top,
                                 DurationInMilliseconds = 100d,
                                 StaggerDelayInMilliseconds = 0d,
-                                AutoStart = false
+                                AutoStart = true
                             };
                             Grid.SetColumn(lede, 0);
                             Grid.SetRow(lede, 0);
 
                             _ledeGrid.Children.Add(lede);
-
-                            _itemGrid.Children.Add(_ledeGrid);
-
-                            _layoutRoot.Children.Add(_itemGrid);
                         }
                     }
                     break;
@@ -290,6 +289,8 @@ namespace SDX.Toolkit.Controls
                             Grid.SetColumn(_itemGrid, 0);
                             Grid.SetRow(_itemGrid, item.Order + 1);
 
+                            _layoutRoot.Children.Add(_itemGrid);
+
                             Grid _ledeGrid = new Grid();
                             _ledeGrid.Name = "LedeGrid";
                             _ledeGrid.RowSpacing = rowSpacing;
@@ -300,6 +301,8 @@ namespace SDX.Toolkit.Controls
 
                             Grid.SetColumn(_ledeGrid, 2);
                             Grid.SetRow(_ledeGrid, 0);
+                            _itemGrid.Children.Add(_ledeGrid);
+
 
                             // create icon image
                             ImageEx icon = new ImageEx()
@@ -309,7 +312,7 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
-                                AutoStart = false
+                                AutoStart = true
                             };
 
                             Grid.SetColumn(icon, 0);
@@ -326,7 +329,7 @@ namespace SDX.Toolkit.Controls
                                 VerticalAlignment = VerticalAlignment.Top,
                                 DurationInMilliseconds = 100d,
                                 StaggerDelayInMilliseconds = 0d,
-                                AutoStart = false
+                                AutoStart = true
                             };
                             Grid.SetColumn(ledeHeadline, 0);
                             Grid.SetRow(ledeHeadline, 0);
@@ -341,17 +344,13 @@ namespace SDX.Toolkit.Controls
                                 VerticalAlignment = VerticalAlignment.Top,
                                 DurationInMilliseconds = 100d,
                                 StaggerDelayInMilliseconds = 0d,
-                                AutoStart = false
+                                AutoStart = true
                             };
                             Grid.SetColumn(lede, 0);
                             Grid.SetRow(lede, 1);
 
                             _ledeGrid.Children.Add(ledeHeadline);
                             _ledeGrid.Children.Add(lede);
-
-                            _itemGrid.Children.Add(_ledeGrid);
-
-                            _layoutRoot.Children.Add(_itemGrid);
                         }
                     }
                     break;
