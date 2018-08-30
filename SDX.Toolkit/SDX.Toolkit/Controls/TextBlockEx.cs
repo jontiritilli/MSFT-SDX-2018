@@ -325,7 +325,7 @@ namespace SDX.Toolkit.Controls
 
             // set up grid
             _layoutRoot.Width = this.Width;
-            _layoutRoot.Opacity = 0.0d;
+            //_layoutRoot.Opacity = 0.0d;
 
             // create textblock
             _text = new TextBlock()

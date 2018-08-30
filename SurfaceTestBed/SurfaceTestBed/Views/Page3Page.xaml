@@ -29,23 +29,16 @@
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                      Headline="{x:Bind Path=ViewModel.Headline}"
                      Lede="{x:Bind Path=ViewModel.Lede}"
-                     HeaderStyle="HeaderAndLede"
                      HeaderAlignment="Left"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Width="500"
-                     DurationInMilliseconds="200"
-                     StaggerDelayInMilliseconds="0"
-                     AutoStart="True"/>
+                     Width="500"/>
 
-        <ctrl:TextLine x:Name="LegalNotice" Grid.Row="4" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="LegalNotice" Grid.Row="4" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.WelcomeText}"
                        ControlStyle="Hero"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       DurationInMilliseconds="200"
-                       StaggerDelayInMilliseconds="0"
-                       AutoStart="True"/>
+                       VerticalAlignment="Top"/>
 
         <ctrl:List x:Name="List" Grid.Row="3" Grid.Column="1"
                        ListItems = "{x:Bind Path=items}"
