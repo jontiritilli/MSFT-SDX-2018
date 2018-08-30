@@ -33,10 +33,7 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top" 
-                DurationInMilliseconds="{StaticResource Duration}"
-                StaggerDelayInMilliseconds="0"
-                AutoStart="True" />
+                VerticalAlignment="Top" />
 
         <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
             <Image.Source>
@@ -44,13 +41,10 @@
             </Image.Source>
         </Image>
 
-        <ctrl:TextLine x:Name="Legal" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed"
-                       DurationInMilliseconds="{StaticResource Duration}"
-                       StaggerDelayInMilliseconds="0"
-                       AutoStart="False" />
+                       Visibility="Collapsed" />
     </Grid>
 </Page>
