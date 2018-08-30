@@ -247,7 +247,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoBack)
                     {
                         MoveToPreviousPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoBack, this.SelectedSection, this.SelectedPage);
                     }
                     break;
 
@@ -255,14 +254,12 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoForward)
                     {
                         MoveToNextPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoForward, this.SelectedSection, this.SelectedPage);
                     }
                     break;
 
                 case "GoHome":
                     // move to the first page
                     MoveToPageIndex(0);
-                    RaiseNavigateEvent(this, NavigationActions.Home, this.SelectedSection, this.SelectedPage);
                     break;
 
                 default:
@@ -274,9 +271,6 @@ namespace SDX.Toolkit.Controls
                         {
                             // move to this section
                             MoveToSection(section);
-
-                            // raise our event
-                            RaiseNavigateEvent(this, NavigationActions.Section, this.SelectedSection, this.SelectedPage);
 
                             // telemetry
                             //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_NAVEXPERIENCE, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
@@ -311,7 +305,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoForward)
                     {
                         MoveToNextPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoForward, this.SelectedSection, this.SelectedPage);
                         handled = true;
                     }
                     break;
@@ -320,7 +313,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoBack)
                     {
                         MoveToPreviousPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoBack, this.SelectedSection, this.SelectedPage);
                         handled = true;
                     }
                     break;
@@ -744,6 +736,8 @@ namespace SDX.Toolkit.Controls
 
         public void MoveToPageIndex(int pageIndex)
         {
+            NavigationActions navigationAction = NavigationActions.Unknown;
+
             // we need a section and page
             NavigationSection section = null;
             NavigationPage page = null;
@@ -754,8 +748,15 @@ namespace SDX.Toolkit.Controls
             // if we got them
             if ((null != section) && (null != page))
             {
+                // what action?
+                if (0 == pageIndex)
+                {
+                    // go home
+                    navigationAction = NavigationActions.Home;
+                }
+
                 // move to it
-                MoveToPage(section, page);
+                MoveToPage(section, page, navigationAction);
             }
         }
 
@@ -803,7 +804,7 @@ namespace SDX.Toolkit.Controls
                 // if we made it through the gauntlet with non-null section and page
                 if ((null != section) && (null != page))
                 {
-                    MoveToPage(section, page);
+                    MoveToPage(section, page, NavigationActions.GoBack);
                 }
             }
         }
@@ -852,7 +853,7 @@ namespace SDX.Toolkit.Controls
                 // if we made it through the gauntlet with non-null section and page
                 if ((null != section) && (null != page))
                 {
-                    MoveToPage(section, page);
+                    MoveToPage(section, page, NavigationActions.GoForward);
                 }
             }
         }
@@ -868,13 +869,13 @@ namespace SDX.Toolkit.Controls
                 // if we got it
                 if (null != page)
                 {
-                    // move to the section and page
-                    MoveToPage(section, page);
+                    // move to the section and page; assume we're triggered by a button click
+                    MoveToPage(section, page, NavigationActions.Section);
                 }
             }
         }
 
-        public void MoveToPage(NavigationSection section, NavigationPage page)
+        public void MoveToPage(NavigationSection section, NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown)
         {
             // if the section is valid and it has pages
             if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
@@ -935,6 +936,10 @@ namespace SDX.Toolkit.Controls
 
                     // we've made changes, so need to update the UI
                     this.UpdateUI();
+
+                    // raise our navigate event
+                    RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedPage);
+
                 }
             }
         }
