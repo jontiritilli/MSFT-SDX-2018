@@ -59,7 +59,7 @@ namespace SDX.Toolkit.Controls
 
         // ListWidth
         public static readonly DependencyProperty ListWidthProperty =
-            DependencyProperty.Register("ListWidth", typeof(double), typeof(List), new PropertyMetadata(500d, OnListWidthChanged));
+            DependencyProperty.Register("ListWidth", typeof(double), typeof(List), new PropertyMetadata(250d, OnListWidthChanged));
 
         public double ListWidth
         {
@@ -157,8 +157,9 @@ namespace SDX.Toolkit.Controls
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
             if (null == _layoutRoot) { return; }
 
+            _layoutRoot.Children.Clear();
+
             // get sizes
-            //double windowWidth = PageHelper.GetViewSizeInfo().Width;
             double parentWidth = this.ListWidth;
             double rowSpacing = 15d;
             double columnSpacing = 20d;
@@ -169,6 +170,7 @@ namespace SDX.Toolkit.Controls
             // configure grid
             _layoutRoot.Name = "ListGrid";
             //_layoutRoot.ColumnSpacing = columnSpacing;
+            _layoutRoot.Width = parentWidth;
             _layoutRoot.RowSpacing = rowSpacing;
             _layoutRoot.Margin = new Thickness(0);
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
@@ -234,7 +236,7 @@ namespace SDX.Toolkit.Controls
                                 Text = item.Lede,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top,
+                                VerticalAlignment = VerticalAlignment.Top
                             };
                             Grid.SetColumn(lede, 0);
                             Grid.SetRow(lede, 0);
@@ -302,7 +304,7 @@ namespace SDX.Toolkit.Controls
                                 Text = item.Headline,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top,
+                                VerticalAlignment = VerticalAlignment.Top
                             };
                             Grid.SetColumn(headline, 0);
                             Grid.SetRow(headline, 0);

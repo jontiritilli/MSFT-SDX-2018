@@ -43,7 +43,13 @@
         <ctrl:List x:Name="List" Grid.Row="3" Grid.Column="1"
                        ListItems = "{x:Bind Path=items}"
                        ListStyle="HeadlineAndLede"
-                       />
+                       ListWidth="300"/>
 
+        <ctrl:RadiatingButton x:Name="RadiatingButton" Grid.Row="3" Grid.Column="1"
+                       EntranceDurationInMilliseconds = "200"
+                       EntranceStaggerDelayInMilliseconds = "800"
+                       RadiateDurationInMilliseconds = "1800"
+                       RadiateStaggerDelayInMilliseconds = "1000"
+                       AutoStart = "true"/>
     </Grid>
 </Page>

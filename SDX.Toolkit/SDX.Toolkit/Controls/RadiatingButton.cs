@@ -55,7 +55,7 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         // ui elements to track
-        Border _layoutRoot = null;
+        Grid _layoutRoot = null;
         Button _hostButton = null;
         Grid _grid = null;
         Ellipse _entranceEllipse = null;
@@ -97,6 +97,17 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Dependency Properties
+
+        // TryItEnabled
+        public static readonly DependencyProperty TryItEnabledProperty =
+            DependencyProperty.Register("TryItEnabled", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+
+
+        public bool TryItEnabled
+        {
+            get => (bool)GetValue(TryItEnabledProperty);
+            set => SetValue(TryItEnabledProperty, value);
+        }
 
         // AnimationEnabled
         public static readonly DependencyProperty AnimationEnabledProperty =
@@ -284,14 +295,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void DispatcherTimerRadiate_Tick(object sender, object e)
-        {
-            // stop the timer
-            if (null != _timerRadiate) { _timerRadiate.Stop(); }
-
-            // call the method that set up the timer
-            this.StartRadiateAnimation();
-        }
 
         public void ResetRadiateAnimation()
         {
@@ -351,15 +354,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void DispatcherTimerEntrance_Tick(object sender, object e)
-        {
-            // stop the timer
-            if (null != _timerEntrance) { _timerEntrance.Stop(); }
-
-            // call the method that set up the timer
-            this.StartEntranceAnimation();
-        }
-
         public void ResetEntranceAnimation()
         {
             if (null != _entranceStoryboard)
@@ -368,6 +362,28 @@ namespace SDX.Toolkit.Controls
                 _entranceEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void DispatcherTimerRadiate_Tick(object sender, object e)
+        {
+            // stop the timer
+            if (null != _timerRadiate) { _timerRadiate.Stop(); }
+
+            // call the method that set up the timer
+            this.StartRadiateAnimation();
+        }
+
+        private void DispatcherTimerEntrance_Tick(object sender, object e)
+        {
+            // stop the timer
+            if (null != _timerEntrance) { _timerEntrance.Stop(); }
+
+            // call the method that set up the timer
+            this.StartEntranceAnimation();
         }
 
         #endregion
@@ -403,6 +419,11 @@ namespace SDX.Toolkit.Controls
         }
 
         private static void OnChildPopupChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private static void OnTryItClicked(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 
         }
@@ -531,10 +552,14 @@ namespace SDX.Toolkit.Controls
         private void RenderUI()
         {
             // get the layoutroot
-            _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
+            _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
 
             // we can't work without it, so return if that failed
             if (null == _layoutRoot) { return; }
+
+
+
+            _layoutRoot.Children.Add(_tryIt);
 
             // if the button doesn't exist
             if (null == _hostButton)
@@ -555,9 +580,11 @@ namespace SDX.Toolkit.Controls
                 if (null != buttonStyle) { _hostButton.Style = buttonStyle; }
                 _hostButton.PointerPressed += HostButton_PointerPressed;
                 _hostButton.Click += HostButton_Click;
+                Grid.SetRow(_hostButton, 1);
+                Grid.SetColumn(_hostButton, 0);
 
-                //// add it to the layout
-                _layoutRoot.Child = _hostButton;
+                // add it to the layout
+                _layoutRoot.Children.Add(_hostButton);
 
                 // create the grid
                 _grid = new Grid()
@@ -572,6 +599,8 @@ namespace SDX.Toolkit.Controls
                 };
                 _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(GRID_SIZE) });
                 _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GRID_SIZE) });
+                Grid.SetRow(_grid, 1);
+                Grid.SetColumn(_grid, 0);
 
                 // add to the button
                 _hostButton.Content = _grid;
@@ -633,6 +662,9 @@ namespace SDX.Toolkit.Controls
 
                 // add it to the canvas
                 _grid.Children.Add(_imageX);
+
+                // add it to the layout grid
+                _layoutRoot.Children.Add(_grid);
 
                 // create storyboard
                 _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
