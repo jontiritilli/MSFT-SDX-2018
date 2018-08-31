@@ -27,7 +27,8 @@ namespace SurfaceBook2Demo.ViewModels
         public string BackgroundUri;
 
         public string Headline;
-        public List<ListItem> ListItems = new List<ListItem>();
+        public ListItem[] LeftItemList = new ListItem[3];
+        public ListItem[] RightItemList = new ListItem[2];
         public string Legal;
 
         #endregion

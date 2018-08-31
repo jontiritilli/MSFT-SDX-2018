@@ -42,7 +42,12 @@ namespace SDX.Toolkit.Controls
         Size,
         Connection,
         Pen,
-        Custom
+        Custom,
+        // for best of page
+        Start,
+        Sync,
+        Hello,
+        Office,
     }
     
     public class ListItem
@@ -70,6 +75,11 @@ namespace SDX.Toolkit.Controls
         private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_PEN_URI = @"ms-appx:///Assets/List/??.png";
+        // BOM icons
+        private const string ICON_START_URI = @"ms-appx:///Assets/List/icon-3.png";
+        private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/icon-1.png";
+        private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/icon-2.png";
+        private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/icon-4.png";
 
         #endregion
 
@@ -90,7 +100,7 @@ namespace SDX.Toolkit.Controls
 
         #region Static Methods
 
-        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string headline, string lede, string iconPath)
+        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string headline, string lede, string iconPath = "")
         {
             // create the item
             ListItem item = new ListItem();
@@ -109,7 +119,7 @@ namespace SDX.Toolkit.Controls
             return item;
         }
 
-        public static string GetIconPath(ListItemIcon icon, string iconPath = "")
+        public static string GetIconPath(ListItemIcon icon, string iconPath)
         {
             if (String.IsNullOrWhiteSpace(iconPath))
             {

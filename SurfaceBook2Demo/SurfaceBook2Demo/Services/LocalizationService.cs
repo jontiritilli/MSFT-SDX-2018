@@ -298,36 +298,59 @@ namespace SurfaceBook2Demo.Services
             viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
 
             // bullet one
-            viewModel.ListItems.Add(new ListItem()
-            {
-                Order = 0,
-                Headline = GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""),
-                Lede = GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, ""),
-                //Icon = ListItemIcon.
-                IconWidth = 60 // TODO: This should be a constant defined somewhere that makes sense
-            });
+
+            viewModel.LeftItemList[0] = ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Start, // icon enum name
+                60, // size
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "") // order
+                // null // custom icon path
+            );
 
             // bullet two
-            viewModel.ListItems.Add(new ListItem()
-            {
-                Order = 1,
-                Headline = GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""),
-                Lede = GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, ""),
-                //Icon = ListItemIcon.
-                IconWidth = 60 // TODO: This should be a constant defined somewhere that makes sense
-            });
 
-            // bullet two
-            viewModel.ListItems.Add(new ListItem()
-            {
-                Order = 2,
-                Headline = GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""),
-                Lede = GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, ""),
-                //Icon = ListItemIcon.
-                IconWidth = 60 // TODO: This should be a constant defined somewhere that makes sense
-            });
+            viewModel.LeftItemList[1] = ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Hello, // icon enum name
+                60, // size
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "") // order
+                // null // custom icon path
+            );
 
-            // TODO: LOAD THE OTHER 2 BULLETS
+            // bullet three OPTIONAL BULLET
+
+            viewModel.LeftItemList[2] = ListItem.CreateListItem(
+                2, // order
+                ListItemIcon.Custom, // icon enum name
+                60, // size
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "") // order
+                // null // custom icon path
+            );
+
+            // bullet four
+
+            viewModel.RightItemList[0] = ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Sync, // icon enum name
+                60, // size
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "") // order
+                // null // custom icon path
+            );
+
+            // bullet five
+
+            viewModel.LeftItemList[1] = ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Office, // icon enum name
+                60, // size
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "") // order
+                // null // custom icon path
+            );
         }
 
         public void LoadCompareViewModel(CompareViewModel viewModel)

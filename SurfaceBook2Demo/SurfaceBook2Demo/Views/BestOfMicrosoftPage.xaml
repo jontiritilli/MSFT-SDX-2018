@@ -42,7 +42,15 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Visibility="Collapsed" />
-
+        
+        <ctrl:List x:Name="BOM_LEFT" Grid.Row="4" Grid.Column="1"
+                   ListItems="{x:Bind Path=ViewModel.LeftItemList}"
+                   ListStyle="HeadlineAndLede"
+                   />
+        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="4" Grid.Column="1"
+                   ListItems="{x:Bind Path=ViewModel.LeftItemList}"
+                   ListStyle="HeadlineAndLede"
+                   />
 
     </Grid>
 </Page>

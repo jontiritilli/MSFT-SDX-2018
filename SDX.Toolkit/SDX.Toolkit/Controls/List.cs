@@ -77,25 +77,25 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ListStyleProperty, value); }
         }
 
-        // ListHeadline
-        public static readonly DependencyProperty ListHeadlineProperty =
-            DependencyProperty.Register("ListHeadline", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListHeadlineChanged));
+        //// ListHeadline
+        //public static readonly DependencyProperty ListHeadlineProperty =
+        //    DependencyProperty.Register("ListHeadline", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListHeadlineChanged));
 
-        public string ListHeadline
-        {
-            get { return (string)GetValue(ListHeadlineProperty); }
-            set { SetValue(ListHeadlineProperty, value); }
-        }
+        //public string ListHeadline
+        //{
+        //    get { return (string)GetValue(ListHeadlineProperty); }
+        //    set { SetValue(ListHeadlineProperty, value); }
+        //}
 
-        // ListLede
-        public static readonly DependencyProperty ListLedeProperty =
-            DependencyProperty.Register("ListLede", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListLedeChanged));
+        //// ListLede
+        //public static readonly DependencyProperty ListLedeProperty =
+        //    DependencyProperty.Register("ListLede", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListLedeChanged));
 
-        public string ListLede
-        {
-            get { return (string)GetValue(ListLedeProperty); }
-            set { SetValue(ListLedeProperty, value); }
-        }
+        //public string ListLede
+        //{
+        //    get { return (string)GetValue(ListLedeProperty); }
+        //    set { SetValue(ListLedeProperty, value); }
+        //}
 
         // ListItems
         public static readonly DependencyProperty ListItemsProperty =

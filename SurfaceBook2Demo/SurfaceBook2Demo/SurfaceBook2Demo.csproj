@@ -293,7 +293,9 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\List\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Accessories\sb2_15_accessories_car.svg" />
     <Content Include="Assets\Accessories\sb2_15_accessories_left.png" />
