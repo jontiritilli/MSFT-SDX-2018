@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+
+using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 
 using SurfaceBook2Demo.Services;
 
@@ -12,14 +16,25 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_13_background_light.jpg";
+        private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
 
         #endregion
 
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;
+        public string BackgroundUri;
+
+        public string Headline;
+        public string BulletOneCTA;
+        public string BulletTwoCTA;
+        public string BulletThreeCTA;
+        public string BulletFourCTA;
+        public string Legal;
+        public ListItem[] LeftItemList = new ListItem[3];
+        public ListItem[] RightItemList = new ListItem[2];
+        public double ICON_WIDTH = 60d;
 
         #endregion
 
@@ -28,6 +43,19 @@ namespace SurfaceBook2Demo.ViewModels
 
         public BestOfMicrosoftViewModel()
         {
+            // populate our images based on size of device
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Book15:
+                    this.BackgroundUri = URI_BACKGROUND15;
+                    break;
+
+                case DeviceType.Book13:
+                default:
+                    this.BackgroundUri = URI_BACKGROUND13;
+                    break;
+            }
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

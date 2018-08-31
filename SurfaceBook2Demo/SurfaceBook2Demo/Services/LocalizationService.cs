@@ -14,6 +14,8 @@ using GalaSoft.MvvmLight.Ioc;
 
 using Newtonsoft.Json;
 
+using SDX.Toolkit.Controls;
+
 using SurfaceBook2Demo.Models;
 using SurfaceBook2Demo.ViewModels;
 
@@ -232,7 +234,7 @@ namespace SurfaceBook2Demo.Services
             viewModel.PopupPenHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_TITLE, "EXPERIENCE_CREATE_POPRIGHT_TITLE");
             viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_COPY, "EXPERIENCE_CREATE_POPRIGHT_COPY");
 
-            
+
         }
 
         public void LoadExperienceDayRelaxViewModel(ExperienceDayRelaxViewModel viewModel)
@@ -292,7 +294,67 @@ namespace SurfaceBook2Demo.Services
 
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
+            viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+            viewModel.BulletOneCTA = GetStringValue(_languageCurrent.BEST_BULLET_ONE_CTA, "BEST_BULLET_ONE_CTA");
+            viewModel.BulletTwoCTA = GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA");
+            viewModel.BulletThreeCTA = GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA");
+            viewModel.BulletFourCTA = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA");
 
+            // bullet one
+
+            viewModel.LeftItemList[0] = ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Start, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "") // order
+                // null // custom icon path
+            );
+
+            // bullet two
+
+            viewModel.LeftItemList[1] = ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Hello, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "") // order
+                // null // custom icon path
+            );
+
+            // bullet three OPTIONAL BULLET
+
+            viewModel.LeftItemList[2] = ListItem.CreateListItem(
+                2, // order
+                ListItemIcon.Custom, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "") // order
+                // null // custom icon path
+            );
+
+            // bullet four
+
+            viewModel.RightItemList[0] = ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Sync, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "") // order
+                // null // custom icon path
+            );
+
+            // bullet five
+
+            viewModel.RightItemList[1] = ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Office, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "") // order
+                // null // custom icon path
+            );
         }
 
         public void LoadCompareViewModel(CompareViewModel viewModel)

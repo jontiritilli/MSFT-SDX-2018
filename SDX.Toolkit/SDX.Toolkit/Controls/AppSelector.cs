@@ -31,15 +31,18 @@ namespace SDX.Toolkit.Controls
     }
     public class AppSelectorData
     {
-        public string URI_SelectedImage = "";
-        public string URI_NotSelectedImage = "";
+        public string SourceSVG_SelectedImage = "";
+        public string SourceSVG_NotSelectedImage = "";
+        public string Source_SelectedImage = "";
+        public string Source_NotSelectedImage = "";
         public string Message;
+        public bool IsClearButton = false;
     }
     public class ImagePair
     {
         public int ID = 0;
         public Image Selected = new Image();
-        public Image UnSelected = new Image();
+        public Image NotSelected = new Image();
 
     }
     #endregion
@@ -301,6 +304,22 @@ namespace SDX.Toolkit.Controls
             this.RaiseSelectedIDChangedEvent(Selector, new EventArgs());
         }
 
+
+        public delegate void OnClearClickedEvent(object sender, EventArgs e);
+
+        public event OnClearClickedEvent OnClearClicked;
+
+        private void RaiseClearClickedEvent(AppSelector Selector, EventArgs e)
+        {
+            OnClearClicked?.Invoke(Selector, e);
+        }
+
+        private void RaiseClearClickedEvent(AppSelector Selector)
+        {
+            this.RaiseClearClickedEvent(Selector, new EventArgs());
+        }
+
+
         #endregion
 
         #region Event Handlers
@@ -427,24 +446,42 @@ namespace SDX.Toolkit.Controls
                     //ID = i,
                     Selected = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri(URIs[i].URI_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED },
+                        //Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED },
                         Width = WIDTH_IMAGE_SELECTED,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Opacity = 1.0
                     },
-                    UnSelected = new Image()
+                    NotSelected = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri(URIs[i].URI_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL },
+                       // Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL },
                         Width = WIDTH_IMAGE_NOTSEL,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Opacity = 1.0
                     }
                 };
-                Grid.SetRow(images.UnSelected, 0);
-                Grid.SetColumn(images.UnSelected, 0);
-                grid.Children.Add(images.UnSelected);
+                if (!string.IsNullOrEmpty(URIs[i].Source_NotSelectedImage))
+                {
+                    images.NotSelected.Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL };
+                }
+                else if (!string.IsNullOrEmpty(URIs[i].SourceSVG_NotSelectedImage))
+                {
+                    images.NotSelected.Source = new SvgImageSource(new Uri(URIs[i].SourceSVG_NotSelectedImage));
+                }
+
+                if (!string.IsNullOrEmpty(URIs[i].Source_SelectedImage))
+                {
+                    images.Selected.Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED };
+                }
+                else if (!string.IsNullOrEmpty(URIs[i].SourceSVG_SelectedImage))
+                {
+                    images.Selected.Source = new SvgImageSource(new Uri(URIs[i].SourceSVG_SelectedImage));
+                }
+                //images.Selected.Source
+                Grid.SetRow(images.NotSelected, 0);
+                Grid.SetColumn(images.NotSelected, 0);
+                grid.Children.Add(images.NotSelected);
                 Grid.SetRow(images.Selected, 0);
                 Grid.SetColumn(images.Selected, 0);
                 grid.Children.Add(images.Selected);
@@ -493,7 +530,17 @@ namespace SDX.Toolkit.Controls
                     sbButton.Width = this.ButtonWidth;
                 }
                 if (null != buttonStyle) { sbButton.Style = buttonStyle; };
-                sbButton.Click += Selector_ButtonClick;
+
+                if (this.URIs[i].IsClearButton)
+                {// these buttons get their own handler and dont change the selection of the app selector
+                    sbButton.Click += Selector_ClearButtonClick;
+                }
+                else
+                {
+                    sbButton.Click += Selector_ButtonClick;
+                }
+
+                
                 if (this.Orientation == Orientation.Horizontal)
                 {
                     Grid.SetRow(sbButton, 0);
@@ -585,6 +632,17 @@ namespace SDX.Toolkit.Controls
 
         }
 
+        private void Selector_ClearButtonClick(object sender, RoutedEventArgs e)
+        {
+            AppSelectorButton sbButton = (AppSelectorButton)sender;
+            // raise event clear clicked
+            // raise the selected color changed event
+            this.RaiseClearClickedEvent(this);
+            // telemetry
+            //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+
+        }
+
         private void Selector_SlideLine(AppSelectorButton End)
         {
             /** how this place works
@@ -615,7 +673,7 @@ namespace SDX.Toolkit.Controls
         private void UpdateUI()
         {
             // test the first image and return if it hasn't been created
-            if (null == this.ImagePairs[0].UnSelected) { return; }
+            if (null == this.ImagePairs[0].NotSelected) { return; }
             // if there are image pairs and the setting has image pairs, then do image pairs. 
             // otherwise keep all opaque and move the line and update the button text to be bold
             if (this.AppSelectorMode == SelectorMode.Color)
@@ -625,12 +683,12 @@ namespace SDX.Toolkit.Controls
                     if (this.SelectedID == i)
                     { // selected change opacity to 1 and unselected to 0
                         this.ImagePairs[i].Selected.Opacity = 1;
-                        this.ImagePairs[i].UnSelected.Opacity = 0;
+                        this.ImagePairs[i].NotSelected.Opacity = 0;
                     }
                     else
                     { // opposite
                         this.ImagePairs[i].Selected.Opacity = 0;
-                        this.ImagePairs[i].UnSelected.Opacity = 1;
+                        this.ImagePairs[i].NotSelected.Opacity = 1;
                     }
                 }
             }

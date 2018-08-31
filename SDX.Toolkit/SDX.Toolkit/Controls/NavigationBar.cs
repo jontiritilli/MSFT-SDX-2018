@@ -88,12 +88,16 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        private const string URI_GOBACK_ACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow-hover.png";
-        private const string URI_GOBACK_INACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow.png";
-        private const string URI_GOFORWARD_ACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow-hover.png";
-        private const string URI_GOFORWARD_INACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow.png";
+        private const string URI_HOME = "ms-appx:///Assets/NavigationBar/navHome.svg";
+        private const string URI_CHEVRON_BACK = "ms-appx:///Assets/NavigationBar/navChevronLeft.svg";
+        private const string URI_CHEVRON_FORWARD = "ms-appx:///Assets/NavigationBar/navChevronRight.svg";
 
-        private const string URI_HOME = "ms-appx:///Assets/NavigationBar/home.png";
+        //private const string URI_GOBACK_ACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow-hover.png";
+        //private const string URI_GOBACK_INACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow.png";
+        //private const string URI_GOFORWARD_ACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow-hover.png";
+        //private const string URI_GOFORWARD_INACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow.png";
+
+        //private const string URI_HOME = "ms-appx:///Assets/NavigationBar/home.png";
 
         private const double BUTTON_SPACING = 30d;
         private const double WIDTH_ARROW = 15d;
@@ -247,7 +251,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoBack)
                     {
                         MoveToPreviousPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoBack, this.SelectedSection, this.SelectedPage);
                     }
                     break;
 
@@ -255,14 +258,12 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoForward)
                     {
                         MoveToNextPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoForward, this.SelectedSection, this.SelectedPage);
                     }
                     break;
 
                 case "GoHome":
                     // move to the first page
                     MoveToPageIndex(0);
-                    RaiseNavigateEvent(this, NavigationActions.Home, this.SelectedSection, this.SelectedPage);
                     break;
 
                 default:
@@ -274,9 +275,6 @@ namespace SDX.Toolkit.Controls
                         {
                             // move to this section
                             MoveToSection(section);
-
-                            // raise our event
-                            RaiseNavigateEvent(this, NavigationActions.Section, this.SelectedSection, this.SelectedPage);
 
                             // telemetry
                             //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_NAVEXPERIENCE, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
@@ -311,7 +309,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoForward)
                     {
                         MoveToNextPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoForward, this.SelectedSection, this.SelectedPage);
                         handled = true;
                     }
                     break;
@@ -320,7 +317,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoBack)
                     {
                         MoveToPreviousPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoBack, this.SelectedSection, this.SelectedPage);
                         handled = true;
                     }
                     break;
@@ -431,7 +427,7 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoBack = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri((this.CanGoBack) ? URI_GOBACK_ACTIVE : URI_GOBACK_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW },
+                        Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_BACK), RasterizePixelWidth = (int)WIDTH_ARROW },
                         Width = WIDTH_ARROW
                     };
                 }
@@ -440,7 +436,8 @@ namespace SDX.Toolkit.Controls
                 _navGoBack = new Button()
                 {
                     Name = "GoBack",
-                    Content = _imgGoBack
+                    Content = _imgGoBack,
+                    Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
                 };
                 if (null != buttonStyle) { _navGoBack.Style = buttonStyle; }
 
@@ -463,7 +460,7 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoForward = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri((this.CanGoForward) ? URI_GOFORWARD_ACTIVE : URI_GOFORWARD_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW },
+                        Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_FORWARD), RasterizePixelWidth = (int)WIDTH_ARROW },
                         Width = WIDTH_ARROW
                     };
                 }
@@ -472,7 +469,8 @@ namespace SDX.Toolkit.Controls
                 _navGoForward = new Button()
                 {
                     Name = "GoForward",
-                    Content = _imgGoForward
+                    Content = _imgGoForward,
+                    Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed)
                 };
                 if (null != buttonStyle) { _navGoForward.Style = buttonStyle; }
 
@@ -498,8 +496,9 @@ namespace SDX.Toolkit.Controls
                     {
                         _imgHome = new Image()
                         {
-                            Source = new BitmapImage() { UriSource = new Uri(URI_HOME), DecodePixelWidth = (int)WIDTH_HOME },
-                            Width = WIDTH_HOME
+                            Source = new SvgImageSource() { UriSource = new Uri(URI_HOME), RasterizePixelWidth = (int)WIDTH_ARROW },
+                            Width = WIDTH_ARROW,
+                            Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
                         };
                     }
 
@@ -567,13 +566,31 @@ namespace SDX.Toolkit.Controls
             // can go back
             if (null != _navGoBack)
             {
-                _imgGoBack.Source = new BitmapImage() { UriSource = new Uri(this.CanGoBack ? URI_GOBACK_ACTIVE : URI_GOBACK_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW };
+                _navGoBack.Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed);
             }
 
             // can go forward
             if (null != _navGoForward)
             {
-                _imgGoForward.Source = new BitmapImage() { UriSource = new Uri(this.CanGoForward ? URI_GOFORWARD_ACTIVE : URI_GOFORWARD_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW };
+                _navGoForward.Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed);
+            }
+
+            // if Home is enabled
+            if ((this.IsHomeEnabled) && (null != _navHome) && (null != _navGoForward))
+            {
+                // if we can go forward
+                if (this.CanGoForward)
+                {
+                    // we can go forward, so show go forward and hide home
+                    _navGoForward.Visibility = Visibility.Visible;
+                    _navHome.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    // can't go forward, so hide go forward and show home
+                    _navGoForward.Visibility = Visibility.Collapsed;
+                    _navHome.Visibility = Visibility.Visible;
+                }
             }
 
             // update nav section buttons
@@ -612,24 +629,6 @@ namespace SDX.Toolkit.Controls
                         // lowlight it
                         StyleHelper.SetFontCharacteristics(button, ControlStyles.NavBarInactive);
                     }
-                }
-            }
-
-            // if Home is enabled
-            if ((this.IsHomeEnabled) && (null != _navHome) && (null != _navGoForward))
-            {
-                // if we can go forward
-                if (this.CanGoForward)
-                {
-                    // we can go forward, so show go forward and hide home
-                    _navGoForward.Visibility = Visibility.Visible;
-                    _navHome.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    // can't go forward, so hide go forward and show home
-                    _navGoForward.Visibility = Visibility.Collapsed;
-                    _navHome.Visibility = Visibility.Visible;
                 }
             }
 
@@ -744,6 +743,8 @@ namespace SDX.Toolkit.Controls
 
         public void MoveToPageIndex(int pageIndex)
         {
+            NavigationActions navigationAction = NavigationActions.Unknown;
+
             // we need a section and page
             NavigationSection section = null;
             NavigationPage page = null;
@@ -754,8 +755,15 @@ namespace SDX.Toolkit.Controls
             // if we got them
             if ((null != section) && (null != page))
             {
+                // what action?
+                if (0 == pageIndex)
+                {
+                    // go home
+                    navigationAction = NavigationActions.Home;
+                }
+
                 // move to it
-                MoveToPage(section, page);
+                MoveToPage(section, page, navigationAction);
             }
         }
 
@@ -803,7 +811,7 @@ namespace SDX.Toolkit.Controls
                 // if we made it through the gauntlet with non-null section and page
                 if ((null != section) && (null != page))
                 {
-                    MoveToPage(section, page);
+                    MoveToPage(section, page, NavigationActions.GoBack);
                 }
             }
         }
@@ -852,7 +860,7 @@ namespace SDX.Toolkit.Controls
                 // if we made it through the gauntlet with non-null section and page
                 if ((null != section) && (null != page))
                 {
-                    MoveToPage(section, page);
+                    MoveToPage(section, page, NavigationActions.GoForward);
                 }
             }
         }
@@ -868,13 +876,13 @@ namespace SDX.Toolkit.Controls
                 // if we got it
                 if (null != page)
                 {
-                    // move to the section and page
-                    MoveToPage(section, page);
+                    // move to the section and page; assume we're triggered by a button click
+                    MoveToPage(section, page, NavigationActions.Section);
                 }
             }
         }
 
-        public void MoveToPage(NavigationSection section, NavigationPage page)
+        public void MoveToPage(NavigationSection section, NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown)
         {
             // if the section is valid and it has pages
             if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
@@ -935,6 +943,10 @@ namespace SDX.Toolkit.Controls
 
                     // we've made changes, so need to update the UI
                     this.UpdateUI();
+
+                    // raise our navigate event
+                    RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedPage);
+
                 }
             }
         }
