@@ -92,16 +92,12 @@ namespace SDX.Toolkit.Controls
         private const string URI_CHEVRON_BACK = "ms-appx:///Assets/NavigationBar/navChevronLeft.svg";
         private const string URI_CHEVRON_FORWARD = "ms-appx:///Assets/NavigationBar/navChevronRight.svg";
 
-        //private const string URI_GOBACK_ACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow-hover.png";
-        //private const string URI_GOBACK_INACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow.png";
-        //private const string URI_GOFORWARD_ACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow-hover.png";
-        //private const string URI_GOFORWARD_INACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow.png";
-
-        //private const string URI_HOME = "ms-appx:///Assets/NavigationBar/home.png";
-
+        private const double HEIGHT_LINE = 6d;
+        private const double HEIGHT_BUTTONROW = 40d;
+        private const double WIDTH_MARGIN = 10d;
+        private const double WIDTH_ARROW = 40d; // orig 15
+        private const double WIDTH_HOME = 40d;
         private const double BUTTON_SPACING = 30d;
-        private const double WIDTH_ARROW = 15d;
-        private const double WIDTH_HOME = 30d;
 
         #endregion
 
@@ -118,9 +114,9 @@ namespace SDX.Toolkit.Controls
         Image _imgGoForward;
         Image _imgHome;
 
-        #endregion
+#endregion
 
-        #region Construction/Destruction
+#region Construction/Destruction
 
         public NavigationBar()
         {
@@ -155,9 +151,9 @@ namespace SDX.Toolkit.Controls
             this.UpdateUI();
         }
 
-        #endregion
+#endregion
 
-        #region Public Properties
+#region Public Properties
 
         public NavigationSection SelectedSection { get; private set; }
 
@@ -167,9 +163,9 @@ namespace SDX.Toolkit.Controls
 
         public bool CanGoForward { get; private set; }
 
-        #endregion
+#endregion
 
-        #region Dependency Properties
+#region Dependency Properties
 
         // NavigationSections
         public static readonly DependencyProperty NavigationSectionsProperty =
@@ -191,9 +187,9 @@ namespace SDX.Toolkit.Controls
             set => SetValue(IsHomeEnabledProperty, value);
         }
 
-        #endregion
+#endregion
 
-        #region Custom Events
+#region Custom Events
 
         public delegate void NavigateEvent(object sender, NavigateEventArgs e);
 
@@ -211,9 +207,9 @@ namespace SDX.Toolkit.Controls
             RaiseNavigateEvent(navigationBar, args);
         }
 
-        #endregion
+#endregion
 
-        #region Event Handlers
+#region Event Handlers
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -345,9 +341,9 @@ namespace SDX.Toolkit.Controls
             return false;
         }
 
-        #endregion
+#endregion
 
-        #region UI Methods
+#region UI Methods
 
         private void RenderUI()
         {
@@ -360,14 +356,15 @@ namespace SDX.Toolkit.Controls
             // set up the grid
 
             // rows - this is static
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(6) });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(HEIGHT_LINE) });
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(HEIGHT_BUTTONROW) });
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
 
             // columns - this is dynamic based on sections
             // go back and spacer
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(WIDTH_MARGIN) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(WIDTH_ARROW) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
 
             // column for each section
@@ -378,7 +375,11 @@ namespace SDX.Toolkit.Controls
 
             // spacer and go forward
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(WIDTH_ARROW) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(WIDTH_MARGIN) });
+
+            // test only
+            TestHelper.AddGridCellBorders(_layoutRoot, 4, 6 + this.NavigationSections.Count, Colors.Purple);
 
             // create the progress line and the canvas that contains it
 
@@ -391,7 +392,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Add(_lineCanvas);
             Grid.SetRow(_lineCanvas, 0);
             Grid.SetColumn(_lineCanvas, 0);
-            Grid.SetColumnSpan(_lineCanvas, 2 + this.NavigationSections.Count);
+            Grid.SetColumnSpan(_lineCanvas, 3 + this.NavigationSections.Count);
 
             // line
             _navLine = new Line()
@@ -427,8 +428,9 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoBack = new Image()
                     {
-                        Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_BACK), RasterizePixelWidth = (int)WIDTH_ARROW },
-                        Width = WIDTH_ARROW
+                        Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_BACK), RasterizePixelWidth = WIDTH_ARROW },
+                        Width = WIDTH_ARROW,
+                        Stretch = Stretch.Uniform,
                     };
                 }
 
@@ -437,13 +439,15 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "GoBack",
                     Content = _imgGoBack,
-                    Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
+                    Margin = new Thickness(0),
+                    Padding = new Thickness(0),
+                    //Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
                 };
                 if (null != buttonStyle) { _navGoBack.Style = buttonStyle; }
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoBack, MenuItemRow);
-                Grid.SetColumn(_navGoBack, 0);
+                Grid.SetColumn(_navGoBack, 1);
 
                 // add the Click event handler
                 _navGoBack.Click += this.NavItem_Click;
@@ -461,7 +465,8 @@ namespace SDX.Toolkit.Controls
                     _imgGoForward = new Image()
                     {
                         Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_FORWARD), RasterizePixelWidth = (int)WIDTH_ARROW },
-                        Width = WIDTH_ARROW
+                        Width = WIDTH_ARROW,
+                        Stretch = Stretch.Uniform,
                     };
                 }
 
@@ -470,13 +475,15 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "GoForward",
                     Content = _imgGoForward,
-                    Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed)
+                    Margin = new Thickness(0),
+                    Padding = new Thickness(0),
+                    //Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed)
                 };
                 if (null != buttonStyle) { _navGoForward.Style = buttonStyle; }
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoForward, MenuItemRow);
-                Grid.SetColumn(_navGoForward, this.NavigationSections.Count + 3);
+                Grid.SetColumn(_navGoForward, this.NavigationSections.Count + 4);
 
                 // add the Click event handler
                 _navGoForward.Click += this.NavItem_Click;
@@ -498,7 +505,7 @@ namespace SDX.Toolkit.Controls
                         {
                             Source = new SvgImageSource() { UriSource = new Uri(URI_HOME), RasterizePixelWidth = (int)WIDTH_ARROW },
                             Width = WIDTH_ARROW,
-                            Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
+                            //Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
                         };
                     }
 
@@ -507,13 +514,15 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "Home",
                         Content = _imgHome,
+                        Margin = new Thickness(0),
+                        Padding = new Thickness(0),
                         Visibility = Visibility.Collapsed
                     };
                     if (null != buttonStyle) { _navHome.Style = buttonStyle; }
 
                     // set inherited Grid properties
                     Grid.SetRow(_navHome, MenuItemRow);
-                    Grid.SetColumn(_navHome, this.NavigationSections.Count + 3);
+                    Grid.SetColumn(_navHome, this.NavigationSections.Count + 4);
 
                     // add the Click event handler
                     _navHome.Click += this.NavItem_Click;
@@ -541,7 +550,7 @@ namespace SDX.Toolkit.Controls
 
                 // add to the grid
                 Grid.SetRow(sectionButton, MenuItemRow);
-                Grid.SetColumn(sectionButton, 2 + j);
+                Grid.SetColumn(sectionButton, 3 + j);
                 _layoutRoot.Children.Add(sectionButton);
 
                 // save the button with the section
@@ -646,13 +655,13 @@ namespace SDX.Toolkit.Controls
             //}
         }
 
-        #endregion
+#endregion
 
-        #region Code Helpers
+#region Code Helpers
 
-        #endregion
+#endregion
 
-        #region UI Helpers
+#region UI Helpers
 
         public int GetPageIndexFromPage(NavigationSection section, NavigationPage page)
         {
@@ -951,7 +960,7 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        #endregion
+#endregion
 
     }
 }
