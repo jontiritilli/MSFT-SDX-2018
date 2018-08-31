@@ -42,10 +42,12 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string Headline;
         public string Lede;
+
         public string PopupPixelSenseHeadline;
         public string PopupPixelSenseLede;
         public string PopupPixelSenseLegal;
         public string PopupPixelSenseInsetImage = URI_PIXELSENSE;
+
         public string PopupCompareHeadline;
         public string PopupCompareLede;
         public string PopupCompareLegal;
