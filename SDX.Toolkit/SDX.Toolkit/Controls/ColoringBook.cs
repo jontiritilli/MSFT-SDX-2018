@@ -72,7 +72,7 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Public Members
-        public string ImageURI;
+        
         public string ImageSVGURI;
         public int ImageWidth;
         public int ImageHeight;
@@ -202,6 +202,16 @@ namespace SDX.Toolkit.Controls
         {
             get { return (bool)GetValue(AutoStartProperty); }
             set { SetValue(AutoStartProperty, value); }
+        }
+
+        // ImageURI
+        public static readonly DependencyProperty ImageURIProperty =
+        DependencyProperty.Register("ImageURI", typeof(string), typeof(ColoringBook), new PropertyMetadata(""));
+
+        public string ImageURI
+        {
+            get { return (string)GetValue(ImageURIProperty); }
+            set { SetValue(ImageURIProperty, value); }
         }
 
         #endregion
@@ -362,7 +372,8 @@ namespace SDX.Toolkit.Controls
                 Orientation = Orientation.Vertical,
                 ButtonHeight = 74,
                 Opacity = 1,
-                URIs = this._URIs
+                URIs = this._URIs,
+                SelectedID = 1// starting color b/c 0 is the clear button
             };// bind event to catch and change color from this.colors
             // add the test selector here so it's after the color selector image
             _AppSelector.SelectedIDChanged += _AppSelector_SelectedIDChanged;
