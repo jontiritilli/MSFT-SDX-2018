@@ -42,7 +42,12 @@ namespace SDX.Toolkit.Controls
         Size,
         Connection,
         Pen,
-        Custom
+        Custom,
+        // for best of page
+        Start,
+        Sync,
+        Hello,
+        Office,
     }
     
     public class ListItem
@@ -50,10 +55,10 @@ namespace SDX.Toolkit.Controls
         #region Constants
 
         // pen icons
-        private const string ICON_JOT_URI = @"ms-appx:///Assets/List/icon-1.png";
-        private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/icon-2.png";
-        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/icon-3.png";
-        private const string ICON_PALM_URI = @"ms-appx:///Assets/List/icon-4.png";
+        private const string ICON_JOT_URI = @"ms-appx:///Assets/List/inkingDraw.svg";
+        private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/inkingWrite.svg";
+        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/inkingPressure.svg";
+        private const string ICON_PALM_URI = @"ms-appx:///Assets/List/inkingPalm.svg";
         // touch icons
         private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_ROTATE_URI = @"ms-appx:///Assets/List/??.png";
@@ -70,6 +75,11 @@ namespace SDX.Toolkit.Controls
         private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_PEN_URI = @"ms-appx:///Assets/List/??.png";
+        // BOM icons
+        private const string ICON_START_URI = @"ms-appx:///Assets/List/bomWindows.svg";
+        private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bomSmile.svg";
+        private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bomSync.svg";
+        private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bomOffice.svg";
 
         #endregion
 
@@ -81,6 +91,9 @@ namespace SDX.Toolkit.Controls
         private string _headline;
         private string _lede;
         private string _iconPath;
+        private string _ctaURI;
+        private string _ctaText;
+        private string _ctaTelemetryId;
 
         #endregion
 
@@ -90,7 +103,7 @@ namespace SDX.Toolkit.Controls
 
         #region Static Methods
 
-        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string headline, string lede, string iconPath)
+        public static ListItem CreateListItem(int order, ListItemIcon icon, double width, string headline, string lede, string _ctaURI = "", string _ctaText = "", string _ctaTelemetryId = "", string _iconPath = "")
         {
             // create the item
             ListItem item = new ListItem();
@@ -101,15 +114,17 @@ namespace SDX.Toolkit.Controls
             item.IconWidth = width;
             item.Headline = headline;
             item.Lede = lede;
-
+            item.CTAUri = _ctaURI;
+            item.CTAText = _ctaText;
             // set calculated properties
-            //item.TelemetryId = GetTelemetryId(icon, ctaTelemetryId); Commented out until Tel.Svc is added
-            item.IconPath = GetIconPath(icon, iconPath);
+            item.IconPath = GetIconPath(icon, _iconPath);
+            // commented out until Tel.Svc is added
+            //item.TelemetryId = GetTelemetryId(icon, _ctaTelemetryId); 
 
             return item;
         }
 
-        public static string GetIconPath(ListItemIcon icon, string iconPath = "")
+        public static string GetIconPath(ListItemIcon icon, string iconPath)
         {
             if (String.IsNullOrWhiteSpace(iconPath))
             {
@@ -185,6 +200,22 @@ namespace SDX.Toolkit.Controls
 
                     case ListItemIcon.Pen:
                         iconPath = ICON_DRAG_URI;
+                        break;
+
+                    case ListItemIcon.Start:
+                        iconPath = ICON_START_URI;
+                        break;
+
+                    case ListItemIcon.Sync:
+                        iconPath = ICON_SYNC_URI;
+                        break;
+
+                    case ListItemIcon.Hello:
+                        iconPath = ICON_HELLO_URI;
+                        break;
+
+                    case ListItemIcon.Office:
+                        iconPath = ICON_OFFICE_URI;
                         break;
 
                     default:
@@ -270,6 +301,23 @@ namespace SDX.Toolkit.Controls
         {
             get => _iconPath;
             set => _iconPath = value;
+        }
+        public string CTAUri
+        { 
+            get => _ctaURI;
+            set => _ctaURI = value;
+        }
+
+        public string CTAText
+        {
+            get => _ctaText;
+            set => _ctaText = value;
+        }
+
+        public string TelemtryID
+        {
+            get => _ctaTelemetryId;
+            set => _ctaTelemetryId = value;
         }
 
         #endregion

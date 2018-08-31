@@ -22,8 +22,9 @@ namespace SDX.Toolkit.Controls
 {
     public enum ListStyles
     {
-        LedeOnly,       // List has a header and lede-only items (i.e. interactive pages)
+        LedeOnly,            // List has a header and lede-only items (i.e. interactive pages)
         HeadlineAndLede,     // List items have individual headlines (i.e. product highlights page)
+        BestOf               // best of page
     }
 
     public sealed class List : Control
@@ -77,25 +78,25 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ListStyleProperty, value); }
         }
 
-        // ListHeadline
-        public static readonly DependencyProperty ListHeadlineProperty =
-            DependencyProperty.Register("ListHeadline", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListHeadlineChanged));
+        //// ListHeadline
+        //public static readonly DependencyProperty ListHeadlineProperty =
+        //    DependencyProperty.Register("ListHeadline", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListHeadlineChanged));
 
-        public string ListHeadline
-        {
-            get { return (string)GetValue(ListHeadlineProperty); }
-            set { SetValue(ListHeadlineProperty, value); }
-        }
+        //public string ListHeadline
+        //{
+        //    get { return (string)GetValue(ListHeadlineProperty); }
+        //    set { SetValue(ListHeadlineProperty, value); }
+        //}
 
-        // ListLede
-        public static readonly DependencyProperty ListLedeProperty =
-            DependencyProperty.Register("ListLede", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListLedeChanged));
+        //// ListLede
+        //public static readonly DependencyProperty ListLedeProperty =
+        //    DependencyProperty.Register("ListLede", typeof(string), typeof(List), new PropertyMetadata(String.Empty, OnListLedeChanged));
 
-        public string ListLede
-        {
-            get { return (string)GetValue(ListLedeProperty); }
-            set { SetValue(ListLedeProperty, value); }
-        }
+        //public string ListLede
+        //{
+        //    get { return (string)GetValue(ListLedeProperty); }
+        //    set { SetValue(ListLedeProperty, value); }
+        //}
 
         // ListItems
         public static readonly DependencyProperty ListItemsProperty =
@@ -160,7 +161,6 @@ namespace SDX.Toolkit.Controls
             // get sizes
             //double windowWidth = PageHelper.GetViewSizeInfo().Width;
             double parentWidth = this.ListWidth;
-            double rowSpacing = 15d;
             double columnSpacing = 20d;
 
             // how many rows do we need? (items plus the header for ListHeader style)
@@ -169,8 +169,9 @@ namespace SDX.Toolkit.Controls
             // configure grid
             _layoutRoot.Name = "ListGrid";
             //_layoutRoot.ColumnSpacing = columnSpacing;
-            _layoutRoot.RowSpacing = rowSpacing;
             _layoutRoot.Margin = new Thickness(0);
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             for (int i = 0; i < rowCount; i++)
             {
@@ -188,31 +189,9 @@ namespace SDX.Toolkit.Controls
                             // how wide is the text
                             double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
 
-                            // create the lede grid to add to col2
-                            Grid _itemGrid = new Grid();
-                            _itemGrid.Name = "ItemGrid";
-                            _itemGrid.RowSpacing = rowSpacing;
-                            _itemGrid.Margin = new Thickness(0);
-                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
-                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-
-                            Grid.SetColumn(_itemGrid, 0);
-                            Grid.SetRow(_itemGrid, item.Order + 1);
-
-                            _layoutRoot.Children.Add(_itemGrid);
-
-                            Grid _textGrid = new Grid();
-                            _textGrid.Name = "TextGrid";
-                            _textGrid.RowSpacing = rowSpacing;
-                            _textGrid.Margin = new Thickness(0);
-                            _textGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                            _textGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                            Grid.SetColumn(_textGrid, 2);
-                            Grid.SetRow(_textGrid, 0);
-
-                            _itemGrid.Children.Add(_textGrid);
+                            // set row spacing
+                            double rowSpacing = 15d;
+                            _layoutRoot.RowSpacing = rowSpacing;
 
                             // create icon image
                             ImageEx icon = new ImageEx()
@@ -224,22 +203,24 @@ namespace SDX.Toolkit.Controls
                                 VerticalContentAlignment = VerticalAlignment.Center,
                             };
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, 0);
-                            _itemGrid.Children.Add(icon);
+                            Grid.SetRow(icon, item.Order + 1);
+                            _layoutRoot.Children.Add(icon);
 
                             // create the lede
-                            TextBlockEx lede = new TextBlockEx()
+                            Header lede = new Header()
                             {
-                                ControlStyle = ControlStyles.ListLede,
-                                Text = item.Lede,
-                                TextAlignment = TextAlignment.Left,
+                                HeadlineStyle = ControlStyles.ListHeadline,
+                                Headline = "",
+                                LedeStyle = ControlStyles.ListLede,
+                                Lede = item.Lede,
+                                HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top,
+                                VerticalAlignment = VerticalAlignment.Top
                             };
-                            Grid.SetColumn(lede, 0);
-                            Grid.SetRow(lede, 0);
+                            Grid.SetColumn(lede, 2);
+                            Grid.SetRow(lede, item.Order + 1);
 
-                            _textGrid.Children.Add(lede);
+                            _layoutRoot.Children.Add(lede);
                         }
                     }
                     break;
@@ -252,34 +233,11 @@ namespace SDX.Toolkit.Controls
                             // how wide is the text
                             double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
 
+                            // set row spacing
+                            double rowSpacing = 30d;
+                            _layoutRoot.RowSpacing = rowSpacing;
+
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
-
-                            // create the lede grid to add to col2
-                            Grid _itemGrid = new Grid();
-                            _itemGrid.Name = "ItemGrid";
-                            _itemGrid.RowSpacing = rowSpacing;
-                            _itemGrid.Margin = new Thickness(0);
-                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
-                            _itemGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-
-                            Grid.SetColumn(_itemGrid, 0);
-                            Grid.SetRow(_itemGrid, item.Order + 1);
-
-                            _layoutRoot.Children.Add(_itemGrid);
-
-                            Grid _textGrid = new Grid();
-                            _textGrid.Name = "TextGrid";
-                            _textGrid.RowSpacing = rowSpacing;
-                            _textGrid.Margin = new Thickness(0);
-                            _textGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                            _textGrid.RowDefinitions.Add(new RowDefinition() { Height = ledeHeadlineRowHeight });
-                            _textGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                            Grid.SetColumn(_textGrid, 2);
-                            Grid.SetRow(_textGrid, 0);
-                            _itemGrid.Children.Add(_textGrid);
-
 
                             // create icon image
                             ImageEx icon = new ImageEx()
@@ -292,35 +250,75 @@ namespace SDX.Toolkit.Controls
                             };
 
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, 0);
-                            _itemGrid.Children.Add(icon);
+                            Grid.SetRow(icon, item.Order + 1);
+                            _layoutRoot.Children.Add(icon);
 
                             // create the headline (bold text) if one is provided
-                            TextBlockEx headline = new TextBlockEx()
+                            Header headline = new Header()
                             {
-                                ControlStyle = ControlStyles.ListHeadline,
-                                Text = item.Headline,
-                                TextAlignment = TextAlignment.Left,
-                                HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top,
-                            };
-                            Grid.SetColumn(headline, 0);
-                            Grid.SetRow(headline, 0);
-
-                            // create the lede
-                            TextBlockEx lede = new TextBlockEx()
-                            {
-                                ControlStyle = ControlStyles.ListLede,
-                                Text = item.Lede,
-                                TextAlignment = TextAlignment.Left,
+                                HeadlineStyle = ControlStyles.ListHeadline,
+                                Headline = item.Headline,
+                                LedeStyle = ControlStyles.ListLede,
+                                Lede = item.Lede,
+                                CTAText = item.CTAText,
+                                CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
+                                HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Top
                             };
-                            Grid.SetColumn(lede, 0);
-                            Grid.SetRow(lede, 1);
+                            Grid.SetColumn(headline, 2);
+                            Grid.SetRow(headline, item.Order + 1);
 
-                            _textGrid.Children.Add(headline);
-                            _textGrid.Children.Add(lede);
+                            _layoutRoot.Children.Add(headline);
+                        }
+                    }
+                    break;
+
+                case ListStyles.BestOf: // Used for product highlights page wherein each item has its own lede-headline
+                    {
+                        // create the list items and add to the grid
+                        foreach (ListItem item in _listItems)
+                        {
+                            // how wide is the text
+                            double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
+
+                            // set row spacing
+                            double rowSpacing = 60d;
+                            _layoutRoot.RowSpacing = rowSpacing;
+
+                            GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
+
+                            // create icon image
+                            ImageEx icon = new ImageEx()
+                            {
+                                Name = String.Format("Icon_{0}", item.Order),
+                                ImageSourceSVG = item.IconPath,
+                                ImageWidth = item.IconWidth,
+                                VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
+                                VerticalContentAlignment = VerticalAlignment.Top,
+                            };
+
+                            Grid.SetColumn(icon, 0);
+                            Grid.SetRow(icon, item.Order + 1);
+                            _layoutRoot.Children.Add(icon);
+
+                            // create the headline (bold text) if one is provided
+                            Header headline = new Header()
+                            {
+                                HeadlineStyle = ControlStyles.ListHeadline,
+                                Headline = item.Headline,
+                                LedeStyle = ControlStyles.ListLede,
+                                Lede = item.Lede,
+                                CTAText = item.CTAText,
+                                CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
+                                HeaderAlignment = TextAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalAlignment = VerticalAlignment.Top
+                            };
+                            Grid.SetColumn(headline, 2);
+                            Grid.SetRow(headline, item.Order + 1);
+
+                            _layoutRoot.Children.Add(headline);
                         }
                     }
                     break;

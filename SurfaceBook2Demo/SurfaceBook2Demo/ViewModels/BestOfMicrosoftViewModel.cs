@@ -16,8 +16,8 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_13_background_dark.jpg";
-        private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_background_dark.jpg";
+        private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_13_background_light.jpg";
+        private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
 
         #endregion
 
@@ -27,8 +27,14 @@ namespace SurfaceBook2Demo.ViewModels
         public string BackgroundUri;
 
         public string Headline;
-        public List<ListItem> ListItems = new List<ListItem>();
+        public string BulletOneCTA;
+        public string BulletTwoCTA;
+        public string BulletThreeCTA;
+        public string BulletFourCTA;
         public string Legal;
+        public ListItem[] LeftItemList = new ListItem[3];
+        public ListItem[] RightItemList = new ListItem[2];
+        public double ICON_WIDTH = 60d;
 
         #endregion
 
