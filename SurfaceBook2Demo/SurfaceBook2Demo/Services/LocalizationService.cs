@@ -14,6 +14,8 @@ using GalaSoft.MvvmLight.Ioc;
 
 using Newtonsoft.Json;
 
+using SDX.Toolkit.Controls;
+
 using SurfaceBook2Demo.Models;
 using SurfaceBook2Demo.ViewModels;
 
@@ -232,7 +234,7 @@ namespace SurfaceBook2Demo.Services
             viewModel.PopupPenHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_TITLE, "EXPERIENCE_CREATE_POPRIGHT_TITLE");
             viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_COPY, "EXPERIENCE_CREATE_POPRIGHT_COPY");
 
-            
+
         }
 
         public void LoadExperienceDayRelaxViewModel(ExperienceDayRelaxViewModel viewModel)
@@ -292,7 +294,40 @@ namespace SurfaceBook2Demo.Services
 
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
+            viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
 
+            // bullet one
+            viewModel.ListItems.Add(new ListItem()
+            {
+                Order = 0,
+                Headline = GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""),
+                Lede = GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, ""),
+                //Icon = ListItemIcon.
+                IconWidth = 60 // TODO: This should be a constant defined somewhere that makes sense
+            });
+
+            // bullet two
+            viewModel.ListItems.Add(new ListItem()
+            {
+                Order = 1,
+                Headline = GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""),
+                Lede = GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, ""),
+                //Icon = ListItemIcon.
+                IconWidth = 60 // TODO: This should be a constant defined somewhere that makes sense
+            });
+
+            // bullet two
+            viewModel.ListItems.Add(new ListItem()
+            {
+                Order = 2,
+                Headline = GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""),
+                Lede = GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, ""),
+                //Icon = ListItemIcon.
+                IconWidth = 60 // TODO: This should be a constant defined somewhere that makes sense
+            });
+
+            // TODO: LOAD THE OTHER 2 BULLETS
         }
 
         public void LoadCompareViewModel(CompareViewModel viewModel)
