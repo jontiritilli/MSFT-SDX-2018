@@ -86,26 +86,6 @@ namespace SurfaceBook2Demo.Views
             {
                 this.BottomNavBar.NavigationSections.Add(section);
             }
-
-            // configure our page move timer
-            _pageMoveTimer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromMilliseconds(PAGE_TIMER_DURATION)
-            };
-            _pageMoveTimer.Tick += PageMoveTimer_Tick;
-            _pageMoveTimer.Start();
-        }
-
-        private void PageMoveTimer_Tick(object sender, object e)
-        {
-            // stop the timer
-            if (null != _pageMoveTimer) { _pageMoveTimer.Stop(); }
-
-            // move to the next page
-            if (null != this.BottomNavBar)
-            {
-                this.BottomNavBar.MoveToNextPage();
-            }
         }
 
         #endregion
@@ -124,6 +104,13 @@ namespace SurfaceBook2Demo.Views
             // navigate to it
             _previousPage.NavigateToPage();
 
+            // configure our page move timer
+            _pageMoveTimer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(PAGE_TIMER_DURATION)
+            };
+            _pageMoveTimer.Tick += PageMoveTimer_Tick;
+            _pageMoveTimer.Start();
         }
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -179,6 +166,18 @@ namespace SurfaceBook2Demo.Views
                     // move the flipview to that index
                     this.ContentFlipView.SelectedIndex = pageIndex;
                 }
+            }
+        }
+
+        private void PageMoveTimer_Tick(object sender, object e)
+        {
+            // stop the timer
+            if (null != _pageMoveTimer) { _pageMoveTimer.Stop(); }
+
+            // move to the next page
+            if (null != this.BottomNavBar)
+            {
+                this.BottomNavBar.MoveToNextPage();
             }
         }
 
