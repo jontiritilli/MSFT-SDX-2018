@@ -44,6 +44,14 @@
             </Image.Source>
         </Image>
 
+        <ctrl:RadiatingButton x:Name="RadiatingButtonPen" Grid.Row="3" Grid.Column="1"
+                EntranceDurationInMilliseconds = "200"
+                EntranceStaggerDelayInMilliseconds = "800"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "1000"
+                AutoStart = "false"
+                PopupPosition = "Right"/>
+        
         <ctrl:TextBlockEx x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupDialLegal}"
                        HorizontalAlignment="Left"

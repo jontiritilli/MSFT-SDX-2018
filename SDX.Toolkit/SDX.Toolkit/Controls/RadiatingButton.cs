@@ -32,6 +32,7 @@ namespace SDX.Toolkit.Controls
         Right
     }
 
+
     public sealed class RadiatingButton : Control
     {
         private const double ENTRANCE_SIZE = 40d;
@@ -55,7 +56,7 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         // ui elements to track
-        Grid _layoutRoot = null;
+        Border _layoutRoot = null;
         Button _hostButton = null;
         Grid _grid = null;
         Ellipse _entranceEllipse = null;
@@ -552,14 +553,40 @@ namespace SDX.Toolkit.Controls
         private void RenderUI()
         {
             // get the layoutroot
-            _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
+            _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
 
             // we can't work without it, so return if that failed
             if (null == _layoutRoot) { return; }
 
+            PathFigure myPathFigure = new PathFigure();
+            myPathFigure.StartPoint = new Point(10, 10);
 
+            LineSegment Topright = new LineSegment();
+            Topright.Point = new Point(10, 62);
 
-            _layoutRoot.Children.Add(_tryIt);
+            LineSegment Peak = new LineSegment();
+            Peak.Point = new Point(26, 36);
+
+            PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
+            myPathSegmentCollection.Add(Topright);
+            myPathSegmentCollection.Add(Peak);
+
+            myPathFigure.Segments = myPathSegmentCollection;
+
+            PathFigureCollection myPathFigureCollection = new PathFigureCollection();
+            myPathFigureCollection.Add(myPathFigure);
+
+            PathGeometry myPathGeometry = new PathGeometry();
+            myPathGeometry.Figures = myPathFigureCollection;
+
+            Path myPath = new Path();
+            myPath.Stroke = new SolidColorBrush(Colors.Black);
+            myPath.StrokeThickness = 1;
+            myPath.Data = myPathGeometry;
+
+            Grid.SetRow(myPath, 0);
+            Grid.SetColumn(myPath, 0);
+            _layoutRoot.Child = myPath;
 
             // if the button doesn't exist
             if (null == _hostButton)
@@ -584,7 +611,7 @@ namespace SDX.Toolkit.Controls
                 Grid.SetColumn(_hostButton, 0);
 
                 // add it to the layout
-                _layoutRoot.Children.Add(_hostButton);
+                _layoutRoot.Child = _hostButton;
 
                 // create the grid
                 _grid = new Grid()
@@ -664,7 +691,7 @@ namespace SDX.Toolkit.Controls
                 _grid.Children.Add(_imageX);
 
                 // add it to the layout grid
-                _layoutRoot.Children.Add(_grid);
+                _layoutRoot.Child = _grid;
 
                 // create storyboard
                 _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
@@ -828,75 +855,6 @@ namespace SDX.Toolkit.Controls
         //}
 
 
-        #endregion
-
-        #region Code Helpers
-        public static Popup CreatePopup(PopupTypes type, string text, double leftOffset, double topOffset, double width)
-        {
-            // create the popup
-            Popup popup = new Popup()
-            {
-                IsOpen = false,
-                IsLightDismissEnabled = true,
-                HorizontalOffset = leftOffset,
-                VerticalOffset = topOffset
-            };
-            PopupMedia popupMedia = new PopupMedia()
-            {
-                PopupType = type,
-                Text = text,
-                AutoStart = true
-            };
-            if (!Double.IsInfinity(width) && !double.IsNaN(width))
-            {
-                popupMedia.Width = width;
-            }
-            popup.Child = popupMedia;
-            //switch (type)
-            //{
-            //    case PopupTypes.Text:
-            //        PopupMedia popupMedia = new PopupMedia()
-            //        {
-            //            PopupType = type,
-            //            Text = text,
-            //            AutoStart = true
-            //        };
-            //        if (!Double.IsInfinity(width) && !double.IsNaN(width))
-            //        {
-            //            popupMedia.Width = width;
-            //        }
-            //        popup.Child = popupMedia;
-            //        break;
-
-            //    case PopupTypes.Image:
-            //        break;
-
-            //    //case PopupTypes.ImageGallery:
-            //    //    // using ImageGallery and not creating it here
-            //    //    //popup.Child = new PopupContentImageGallery()
-            //    //    //{
-            //    //    //    Width = Window.Current.Bounds.Width,
-            //    //    //    Height = Window.Current.Bounds.Height
-            //    //    //};
-            //    //    break;
-
-            //    //case PopupTypes.FastCharge:
-            //    //    popup.Child = new PopupContentFastCharge()
-            //    //    {
-            //    //        AutoStart = true
-            //    //    };
-            //    //    break;
-
-            //    //case PopupTypes.CompareSKUs:
-            //    //    popup.Child = new PopupContentCompareGallery();
-            //    //    break;
-
-            //    default:
-            //        break;
-            //}
-
-            return popup;
-        }
         #endregion
 
         #region UI Helpers

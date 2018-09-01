@@ -24,21 +24,13 @@ using Windows.Storage;
 
 namespace SDX.Toolkit.Controls
 {
-    public enum PopupTypes
-    {
-        None,
-        Text,
-        Image,
-        Video
-    }
-
     public sealed class PopupMedia : Control
     {
         #region Private Members
 
         // ui elements to track
         Grid _layoutRoot = null;
-        TextBlock _block = null;
+        TextBlockEx _block = null;
 
         Storyboard _storyboard = null;
 
@@ -210,14 +202,13 @@ namespace SDX.Toolkit.Controls
                 //_layoutRoot.MaxWidth = this.Width;
             }
 
-            if (this.PopupType == PopupTypes.None)
+            if (null == this.PopupType)
             { }
             else if (this.PopupType == PopupTypes.Text)
             {
                 // create the textblock
-                _block = new TextBlock()
+                _block = new TextBlockEx()
                 {
-                    TextWrapping = TextWrapping.WrapWholeWords,
                     Margin = new Thickness(30),
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,

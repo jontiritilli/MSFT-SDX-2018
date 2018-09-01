@@ -22,11 +22,11 @@ namespace SDX.Toolkit.Helpers
 {
     public enum PopupTypes
     {
+        Fullscreen,
         Text,
+        Video,
         Image,
-        ImageGallery,
-        FastCharge,
-        CompareSKUs
+        Animation
     }
 
     public enum PopupTexts
@@ -42,7 +42,6 @@ namespace SDX.Toolkit.Helpers
         Gibson_Alcantara,
         Lexington_TouchPad,
         Lexington_Mouse
-
     }
 
     public static class PopupHelper
@@ -60,6 +59,9 @@ namespace SDX.Toolkit.Helpers
 
             switch (type)
             {
+                case PopupTypes.Fullscreen:
+                    break;
+
                 case PopupTypes.Text:
                     PopupContentText popupText = new PopupContentText()
                     {
@@ -73,10 +75,7 @@ namespace SDX.Toolkit.Helpers
                     popup.Child = popupText;
                     break;
 
-                case PopupTypes.Image:
-                    break;
-
-                case PopupTypes.ImageGallery:
+                case PopupTypes.Video:
                     // using ImageGallery and not creating it here
                     //popup.Child = new PopupContentImageGallery()
                     //{
@@ -85,16 +84,15 @@ namespace SDX.Toolkit.Helpers
                     //};
                     break;
 
-                case PopupTypes.FastCharge:
+                case PopupTypes.Image:
+                    break;
+
+                case PopupTypes.Animation:
                     popup.Child = new PopupContentBatteryLife()
                     {
                         AutoStart = true
                     };
                     break;
-
-                //case PopupTypes.CompareSKUs:
-                //    popup.Child = new PopupContentCompareGallery();
-                //    break;
 
                 default:
                     break;
