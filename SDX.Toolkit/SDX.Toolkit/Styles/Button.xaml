@@ -315,7 +315,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AppSelectorButton" TargetType="Button">
+    <!--<Style x:Key="AppSelectorButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -407,5 +407,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 </ResourceDictionary>
