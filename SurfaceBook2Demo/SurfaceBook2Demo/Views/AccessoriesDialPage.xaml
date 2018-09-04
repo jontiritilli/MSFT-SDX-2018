@@ -49,8 +49,9 @@
                 EntranceStaggerDelayInMilliseconds = "800"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "1000"
-                AutoStart = "false"
-                PopupPosition = "Right"/>
+                PopupType="BatteryLife"
+                PopupPosition = "Right"
+                TryItEnabled="True"/>
         
         <ctrl:TextBlockEx x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupDialLegal}"

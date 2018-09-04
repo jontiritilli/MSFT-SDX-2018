@@ -353,6 +353,7 @@
     <Content Include="Assets\NavigationBar\navChevronRight.svg" />
     <Content Include="Assets\NavigationBar\navHome.svg" />
     <Content Include="Assets\Universal\close-app-button.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

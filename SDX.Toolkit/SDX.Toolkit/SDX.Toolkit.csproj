@@ -119,6 +119,7 @@
     <Compile Include="Controls\ListItem.cs" />
     <Compile Include="Controls\LoopPlayer.cs" />
     <Compile Include="Controls\NavigationBar.cs" />
+    <Compile Include="Controls\PopupContentText.cs" />
     <Compile Include="Controls\PopupMedia.cs" />
     <Compile Include="Controls\PopupContentBatteryLife.cs" />
     <Compile Include="Controls\RadiatingButton.cs" />
@@ -131,8 +132,6 @@
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\BitmapHelper.cs" />
     <Compile Include="Helpers\DialHelper.cs" />
-    <Compile Include="Controls\PopupContentText.cs" />
-    <Compile Include="Helpers\PopupHelper.cs" />
     <Compile Include="Helpers\PropertyChangeEventSource.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />

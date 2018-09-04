@@ -32,9 +32,11 @@ namespace SDX.Toolkit.Controls
         Right
     }
 
-
     public sealed class RadiatingButton : Control
     {
+
+        #region Constants
+
         private const double ENTRANCE_SIZE = 40d;
 
         private const double RADIATE_SIZE_DEFAULT = 0d;
@@ -44,14 +46,19 @@ namespace SDX.Toolkit.Controls
         private const double RADIATE_OPACITY_START = 0.6;
         private const double RADIATE_OPACITY_END = 0.4;
 
-        private const double GRID_SIZE = 75d;
-        private const double BUTTON_SIZE = 75d;
+        private const double GRID_SIZE = 150d;
+        private const double TRY_IT_HEIGHT = 50d;
+        private const double TRY_IT_INDICATOR_HEIGHT = 10d;
+        private const double ROW_HEIGHT = 90d;
+        private const double BUTTON_SIZE = 150d;
         private const double X_SIZE = 8d;
 
         private const double POPUP_MARGIN = 30d;
         private double POPUP_SPACER = POPUP_MARGIN + (RADIATE_SIZE_END - RADIATE_SIZE_START) * 1.1;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
+
+        #endregion
 
         #region Private Members
 
@@ -61,20 +68,25 @@ namespace SDX.Toolkit.Controls
         Grid _grid = null;
         Ellipse _entranceEllipse = null;
         Ellipse _radiateEllipse = null;
-        Image _imageX = null;
+        Path _indicatorPath = null;
+        Rectangle _indicatorRectangle = null;
+        ImageEx _imageX = null;
 
         Storyboard _entranceStoryboard = null;
         Storyboard _radiatingStoryboardX = null;
         Storyboard _radiatingStoryboardY = null;
         Storyboard _radiatingStoryboardOpacity = null;
+        Storyboard _tryItIndicatorPathStoryboard = null;
+        Storyboard _tryItIndicatorRectangleStoryboard = null;
+        Storyboard _tryItTextStoryboard = null;
 
-        private PopupPositions _popupPosition;
         private Popup _popupChild = null;
 
         private DispatcherTimer _timerRadiate = null;
         private int _dispatchCountRadiate = 0;
         private DispatcherTimer _timerEntrance = null;
         private int _dispatchCountEntrance = 0;
+        private double TRY_IT_DELAY = 2000;
 
         #endregion
 
@@ -84,7 +96,6 @@ namespace SDX.Toolkit.Controls
         {
             this.DefaultStyleKey = typeof(RadiatingButton);
 
-            this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
         }
 
@@ -93,21 +104,63 @@ namespace SDX.Toolkit.Controls
             base.OnApplyTemplate();
 
             this.RenderUI();
+
+            this.PopupChild = CreatePopup(PopupType, null, 60d);
         }
 
         #endregion
 
         #region Dependency Properties
 
+        // IsPenOnly
+        public static readonly DependencyProperty IsPenOnlyProperty =
+            DependencyProperty.Register("IsPenOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+
+        public bool IsPenOnly
+        {
+            get => (bool)GetValue(IsPenOnlyProperty);
+            set => SetValue(IsPenOnlyProperty, value);
+        }
+
         // TryItEnabled
         public static readonly DependencyProperty TryItEnabledProperty =
             DependencyProperty.Register("TryItEnabled", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
-
 
         public bool TryItEnabled
         {
             get => (bool)GetValue(TryItEnabledProperty);
             set => SetValue(TryItEnabledProperty, value);
+        }
+
+        // PopupPosition
+        public static readonly DependencyProperty PopupPositionProperty =
+            DependencyProperty.Register("PopupPosition", typeof(PopupPositions), typeof(RadiatingButton), new PropertyMetadata(PopupPositions.Right, OnPopupPositionChanged));
+
+
+        public PopupPositions PopupPosition
+        {
+            get => (PopupPositions)GetValue(PopupPositionProperty);
+            set => SetValue(PopupPositionProperty, value);
+        }
+
+        // PopupType
+        public static readonly DependencyProperty PopupTypeProperty =
+            DependencyProperty.Register("PopupType", typeof(PopupTypes), typeof(RadiatingButton), new PropertyMetadata(PopupTypes.Text, OnPopupTypeChanged));
+
+        public PopupTypes PopupType
+        {
+            get => (PopupTypes)GetValue(PopupTypeProperty);
+            set => SetValue(PopupTypeProperty, value);
+        }
+
+        // PopupText
+        public static readonly DependencyProperty PopupTextProperty =
+            DependencyProperty.Register("PopupText", typeof(string), typeof(RadiatingButton), new PropertyMetadata(null, OnPopupTextChanged));
+
+        public string PopupText
+        {
+            get => (string)GetValue(PopupTextProperty);
+            set => SetValue(PopupTextProperty, value);
         }
 
         // AnimationEnabled
@@ -180,16 +233,6 @@ namespace SDX.Toolkit.Controls
             set { SetValue(RadiateStaggerDelayInMillisecondsProperty, value); }
         }
 
-        // AutoStart
-        public static readonly DependencyProperty AutoStartProperty =
-            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnAutoStartChanged));
-
-        public bool AutoStart
-        {
-            get => (bool)GetValue(AutoStartProperty);
-            set => SetValue(AutoStartProperty, value);
-        }
-
         #endregion
 
         #region Public Properties
@@ -220,12 +263,6 @@ namespace SDX.Toolkit.Controls
                     //}
                 }
             }
-        }
-
-        public PopupPositions PopupPosition
-        {
-            get => _popupPosition;
-            set => _popupPosition = value;
         }
 
         //public double RadiateOffset { get => -1 * (BUTTON_SIZE - ENTRANCE_SIZE); }
@@ -296,7 +333,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-
         public void ResetRadiateAnimation()
         {
             if (null != _radiatingStoryboardX)
@@ -353,6 +389,14 @@ namespace SDX.Toolkit.Controls
             {
                 _entranceStoryboard.Begin();
             }
+            if (null != _tryItIndicatorPathStoryboard)
+            {
+                _tryItIndicatorPathStoryboard.Begin();
+            }
+            if (null != _tryItIndicatorRectangleStoryboard)
+            {
+                _tryItIndicatorRectangleStoryboard.Begin();
+            }
         }
 
         public void ResetEntranceAnimation()
@@ -362,7 +406,63 @@ namespace SDX.Toolkit.Controls
                 _entranceStoryboard.Stop();
                 _entranceEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
+                _indicatorRectangle.Opacity = 0d;
+                _indicatorPath.Opacity = 0d;
+                _radiateEllipse.Opacity = 0d;
             }
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        public static Popup CreatePopup(PopupTypes type, string text, double width, double leftOffset = -1, double topOffset = -1)
+        {
+            // create the popup
+            Popup popup = new Popup()
+            {
+                IsOpen = false,
+                IsLightDismissEnabled = true,
+                HorizontalOffset = leftOffset,
+                VerticalOffset = topOffset
+            };
+
+            switch (type)
+            {
+                case PopupTypes.Fullscreen:
+                    break;
+
+                case PopupTypes.Text:
+                    PopupContentText popupText = new PopupContentText()
+                    {
+                        Text = text,
+                        AutoStart = true
+                    };
+                    if (!Double.IsInfinity(width) && !double.IsNaN(width))
+                    {
+                        popupText.Width = width;
+                    }
+                    popup.Child = popupText;
+                    break;
+
+                case PopupTypes.Video:
+                    break;
+
+                case PopupTypes.Image:
+                    break;
+
+                case PopupTypes.BatteryLife:
+                    popup.Child = new PopupContentBatteryLife()
+                    {
+                        AutoStart = true
+                    };
+                    break;
+
+                default:
+                    break;
+            }
+
+            return popup;
         }
 
         #endregion
@@ -403,18 +503,23 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Event Handlers
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        
+        private void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            ///TODO Determine dual startup strategy
-            if (this.AutoStart)
-            {
-                this.StartEntranceAnimation();
-                this.StartRadiateAnimation();
-            }
+
         }
 
-        private void OnSizeChanged(object sender, RoutedEventArgs e)
+        private static void OnPopupPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private static void OnPopupTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private static void OnPopupTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 
         }
@@ -484,12 +589,6 @@ namespace SDX.Toolkit.Controls
         {
             if (null != this.PopupChild)
             {
-                //// toggle IsOpen
-                //this.PopupChild.IsOpen = !this.PopupChild.IsOpen;
-
-                //// if it's open, show the X
-                //_imageX.Opacity = (this._popupChild.IsOpen) ? 1.0 : 0.0;
-
                 if (this.PopupChild.IsOpen)
                 {
                     // close it
@@ -557,37 +656,6 @@ namespace SDX.Toolkit.Controls
 
             // we can't work without it, so return if that failed
             if (null == _layoutRoot) { return; }
-
-            PathFigure myPathFigure = new PathFigure();
-            myPathFigure.StartPoint = new Point(10, 10);
-
-            LineSegment Topright = new LineSegment();
-            Topright.Point = new Point(10, 62);
-
-            LineSegment Peak = new LineSegment();
-            Peak.Point = new Point(26, 36);
-
-            PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
-            myPathSegmentCollection.Add(Topright);
-            myPathSegmentCollection.Add(Peak);
-
-            myPathFigure.Segments = myPathSegmentCollection;
-
-            PathFigureCollection myPathFigureCollection = new PathFigureCollection();
-            myPathFigureCollection.Add(myPathFigure);
-
-            PathGeometry myPathGeometry = new PathGeometry();
-            myPathGeometry.Figures = myPathFigureCollection;
-
-            Path myPath = new Path();
-            myPath.Stroke = new SolidColorBrush(Colors.Black);
-            myPath.StrokeThickness = 1;
-            myPath.Data = myPathGeometry;
-
-            Grid.SetRow(myPath, 0);
-            Grid.SetColumn(myPath, 0);
-            _layoutRoot.Child = myPath;
-
             // if the button doesn't exist
             if (null == _hostButton)
             {
@@ -607,8 +675,6 @@ namespace SDX.Toolkit.Controls
                 if (null != buttonStyle) { _hostButton.Style = buttonStyle; }
                 _hostButton.PointerPressed += HostButton_PointerPressed;
                 _hostButton.Click += HostButton_Click;
-                Grid.SetRow(_hostButton, 1);
-                Grid.SetColumn(_hostButton, 0);
 
                 // add it to the layout
                 _layoutRoot.Child = _hostButton;
@@ -624,13 +690,72 @@ namespace SDX.Toolkit.Controls
                     RowSpacing = 0d,
                     ColumnSpacing = 0d
                 };
-                _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(GRID_SIZE) });
-                _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GRID_SIZE) });
-                Grid.SetRow(_grid, 1);
-                Grid.SetColumn(_grid, 0);
 
                 // add to the button
                 _hostButton.Content = _grid;
+
+                // add rows for try it message and indicator if enabled
+                GridLength TRY_IT_ROW = (!this.TryItEnabled) ? new GridLength(0) : new GridLength(TRY_IT_HEIGHT);
+                GridLength TRY_IT_INDICATOR_ROW = (!this.TryItEnabled) ? new GridLength(0) : new GridLength(TRY_IT_INDICATOR_HEIGHT);
+
+                // define rows and columns
+                _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GRID_SIZE) });
+                _grid.RowDefinitions.Add(new RowDefinition() { Height = TRY_IT_ROW });
+                _grid.RowDefinitions.Add(new RowDefinition() { Height = TRY_IT_INDICATOR_ROW });
+                _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ROW_HEIGHT) });
+                _grid.RowDefinitions.Add(new RowDefinition() { Height = TRY_IT_ROW });
+
+                _indicatorRectangle = new Rectangle();
+                _indicatorRectangle.Fill = new SolidColorBrush(Colors.Blue);
+
+                Grid.SetRow(_indicatorRectangle, 0);
+                Grid.SetColumn(_indicatorRectangle, 0);
+
+                _grid.Children.Add(_indicatorRectangle);
+
+                // create the tryit indicator
+                PathFigure figure = new PathFigure();
+                figure.StartPoint = new Point(0, 0);
+
+                LineSegment Topright = new LineSegment();
+                Topright.Point = new Point(20, 0);
+
+                LineSegment Peak = new LineSegment();
+                Peak.Point = new Point(10, 10);
+
+                LineSegment TopLeft = new LineSegment();
+                TopLeft.Point = new Point(0, 0);
+
+                PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
+                myPathSegmentCollection.Add(Topright);
+                myPathSegmentCollection.Add(Peak);
+                myPathSegmentCollection.Add(TopLeft);
+
+                figure.Segments = myPathSegmentCollection;
+
+                PathFigureCollection myPathFigureCollection = new PathFigureCollection();
+                myPathFigureCollection.Add(figure);
+
+                PathGeometry myPathGeometry = new PathGeometry();
+                myPathGeometry.Figures = myPathFigureCollection;
+
+                _indicatorPath = new Path()
+                {
+                    Stroke = new SolidColorBrush(Colors.Blue),
+                    Fill = new SolidColorBrush(Colors.Blue),
+                    StrokeThickness = 1,
+                    Data = myPathGeometry
+                };
+
+                Grid.SetRow(_indicatorPath, 1);
+                Grid.SetColumn(_indicatorPath, 0);
+                _indicatorPath.HorizontalAlignment = HorizontalAlignment.Center;
+
+                _grid.Children.Add(_indicatorPath);
+
+                _tryItIndicatorRectangleStoryboard = AnimationHelper.CreateEasingAnimation(_indicatorRectangle, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
+                _tryItIndicatorPathStoryboard = AnimationHelper.CreateEasingAnimation(_indicatorPath, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
+                //_tryItTextStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
 
                 // create the radiating ellipse
                 _radiateEllipse = new Ellipse()
@@ -644,8 +769,9 @@ namespace SDX.Toolkit.Controls
                     VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(0)
                 };
-                Grid.SetRow(_radiateEllipse, 0);
+                Grid.SetRow(_radiateEllipse, 2);
                 Grid.SetColumn(_radiateEllipse, 0);
+
 
                 // add it to the canvas
                 _grid.Children.Add(_radiateEllipse);
@@ -667,193 +793,33 @@ namespace SDX.Toolkit.Controls
                     VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(0)
                 };
-                Grid.SetRow(_entranceEllipse, 0);
+                Grid.SetRow(_entranceEllipse, 2);
                 Grid.SetColumn(_entranceEllipse, 0);
 
-                // add to the canvas
+                // add to the grid
                 _grid.Children.Add(_entranceEllipse);
 
                 // create the X image
-                _imageX = new Image()
+                _imageX = new ImageEx()
                 {
                     Name = this.Name + "ImageX",
-                    Source = new BitmapImage(new Uri(URI_X_IMAGE)),
+                    ImageSource = URI_X_IMAGE,
                     Width = X_SIZE,
                     Opacity = 0.0d,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(0)
                 };
-                Grid.SetRow(_imageX, 0);
+                Grid.SetRow(_imageX, 2);
                 Grid.SetColumn(_imageX, 0);
 
-                // add it to the canvas
+                // add it to the grid
                 _grid.Children.Add(_imageX);
-
-                // add it to the layout grid
-                _layoutRoot.Child = _grid;
 
                 // create storyboard
                 _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
-                //_entranceStoryboard = SetupEntranceAnimation(_entranceEllipse, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds);
             }
         }
-
-        private Storyboard SetupEntranceAnimation(Ellipse ellipse, double duration, double staggerDelay)
-        {
-            double totalDuration = duration + staggerDelay;
-            double expandDuration = (duration * 0.65);
-            double contractDuration = duration - expandDuration;
-
-            // create the storyboard
-            Storyboard storyboard = new Storyboard()
-            {
-                Duration = TimeSpan.FromMilliseconds(totalDuration),
-                AutoReverse = false,
-                RepeatBehavior = new RepeatBehavior(1d)
-            };
-
-            // create the key frames holder
-            DoubleAnimationUsingKeyFrames _frames = new DoubleAnimationUsingKeyFrames
-            {
-                Duration = TimeSpan.FromMilliseconds(totalDuration),
-                EnableDependentAnimation = true,
-                AutoReverse = false,
-                RepeatBehavior = new RepeatBehavior(1d)
-            };
-
-            // need sine easing
-            CubicEase cubicEaseIn = new CubicEase()
-            {
-                EasingMode = EasingMode.EaseIn
-            };
-
-            // create frame 0
-            EasingDoubleKeyFrame _frame0 = new EasingDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0d)),
-                Value = 0d,
-                EasingFunction = cubicEaseIn
-            };
-
-            // create delay frame
-            EasingDoubleKeyFrame _frameStagger = new EasingDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(staggerDelay)),
-                Value = 0d,
-                EasingFunction = cubicEaseIn
-            };
-
-            // create frame 1
-            EasingDoubleKeyFrame _frame1 = new EasingDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration)),
-                Value = 1d,
-                EasingFunction = cubicEaseIn
-            };
-
-            // add frames to the collection
-            _frames.KeyFrames.Add(_frame0);
-            if (staggerDelay > 0)
-            {
-                _frames.KeyFrames.Add(_frameStagger);
-            }
-            _frames.KeyFrames.Add(_frame1);
-
-            // add frame collection to the storyboard
-            storyboard.Children.Add(_frames);
-
-            // set the target of the storyboard
-            Storyboard.SetTarget(storyboard, ellipse);
-            Storyboard.SetTargetProperty(storyboard, "Opacity");
-
-            return storyboard;
-        }
-
-        //private Storyboard SetupRadiateAnimation(Ellipse ellipse, string propertyName, double startValue, double endValue, double duration, double staggerDelay)
-        //{
-        //    double expandDuration = (duration * 0.6);
-        //    double totalDuration = duration + staggerDelay;
-
-        //    // create the storyboard
-        //    Storyboard storyboard = new Storyboard()
-        //    {
-        //        Duration = TimeSpan.FromMilliseconds(totalDuration),
-        //        AutoReverse = false,
-        //        RepeatBehavior = new RepeatBehavior(1d)
-        //    };
-
-        //    // create the key frames holder
-        //    DoubleAnimationUsingKeyFrames _frames = new DoubleAnimationUsingKeyFrames
-        //    {
-        //        Duration = TimeSpan.FromMilliseconds(totalDuration),
-        //        EnableDependentAnimation = true,
-        //        AutoReverse = true,
-        //        RepeatBehavior = new RepeatBehavior(1d)
-        //    };
-
-        //    // need cubic easing
-        //    CubicEase cubicEaseIn = new CubicEase()
-        //    {
-        //        EasingMode = EasingMode.EaseIn
-        //    };
-        //    CubicEase cubicEaseOut = new CubicEase()
-        //    {
-        //        EasingMode = EasingMode.EaseOut
-        //    };
-
-        //    // create frame 0
-        //    EasingDoubleKeyFrame _frame0 = new EasingDoubleKeyFrame
-        //    {
-        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0d)),
-        //        Value = startValue,
-        //        EasingFunction = cubicEaseIn
-        //    };
-
-        //    // create delay frame
-        //    EasingDoubleKeyFrame _frameStagger = new EasingDoubleKeyFrame
-        //    {
-        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(staggerDelay)),
-        //        Value = startValue,
-        //        EasingFunction = cubicEaseIn
-        //    };
-
-        //    // create frame 1
-        //    EasingDoubleKeyFrame _frame1 = new EasingDoubleKeyFrame
-        //    {
-        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(expandDuration + staggerDelay)),
-        //        Value = endValue,
-        //        EasingFunction = cubicEaseIn
-        //    };
-
-        //    // create frame 2
-        //    EasingDoubleKeyFrame _frame2 = new EasingDoubleKeyFrame
-        //    {
-        //        KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration)),
-        //        Value = startValue,
-        //        EasingFunction = cubicEaseOut
-        //    };
-
-        //    // add frames to the collection
-        //    _frames.KeyFrames.Add(_frame0);
-        //    if (staggerDelay > 0)
-        //    {
-        //        _frames.KeyFrames.Add(_frameStagger);
-        //    }
-        //    _frames.KeyFrames.Add(_frame1);
-        //    _frames.KeyFrames.Add(_frame2);
-
-        //    // add frame collection to the storyboard
-        //    storyboard.Children.Add(_frames);
-
-        //    // set the target of the storyboard
-        //    Storyboard.SetTarget(storyboard, ellipse);
-        //    Storyboard.SetTargetProperty(storyboard, propertyName);
-        //    //storyboard.SetValue(Storyboard.TargetPropertyProperty, propertyName);
-
-        //    return storyboard;
-        //}
-
 
         #endregion
 

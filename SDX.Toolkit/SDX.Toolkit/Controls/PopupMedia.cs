@@ -24,6 +24,16 @@ using Windows.Storage;
 
 namespace SDX.Toolkit.Controls
 {
+    public enum PopupTypes
+    {
+        BatteryLife,
+        Video,
+        Text,
+        Image,
+        Fullscreen,
+        NoType
+    }
+
     public sealed class PopupMedia : Control
     {
         #region Private Members
@@ -98,8 +108,6 @@ namespace SDX.Toolkit.Controls
         //    set => SetValue(MediaSourceStorageFileProperty, value);
         //}
 
-
-
         //// MediaSourceUri
         public static readonly DependencyProperty MediaSourceUriProperty =
             DependencyProperty.Register("MediaSourceUri", typeof(Uri), typeof(RadiatingButton), new PropertyMetadata(null, OnMediaSourceUriChanged));
@@ -131,12 +139,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
-        #region Custom Events
-
-
-        #endregion
-
         #region Event Handlers
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -154,27 +156,22 @@ namespace SDX.Toolkit.Controls
 
         private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
         }
 
         private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
         }
 
         private static void OnPopupTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
         }
 
         private static void OnMediaSourceStorageFileChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
         }
 
         private static void OnMediaSourceUriChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
         }
 
         #endregion
@@ -202,7 +199,7 @@ namespace SDX.Toolkit.Controls
                 //_layoutRoot.MaxWidth = this.Width;
             }
 
-            if (null == this.PopupType)
+            if (this.PopupType == PopupTypes.NoType)
             { }
             else if (this.PopupType == PopupTypes.Text)
             {
@@ -241,7 +238,15 @@ namespace SDX.Toolkit.Controls
                 //}
                 _layoutRoot.Children.Add(loopPlayer);
             }
-           
+            else if (this.PopupType == PopupTypes.Video)
+            {
+                PopupContentBatteryLife batteryLife = new PopupContentBatteryLife()
+                {
+                    Headline = "TEST_HEADLINE",
+                    Lede = "TEST_LEDE",
+                };
+                _layoutRoot.Children.Add(batteryLife);
+            }
         }
 
         private void UpdateUI()
@@ -251,14 +256,5 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region Code Helpers
-
-        #endregion
-
-        #region UI Helpers
-
-
-
-        #endregion
     }
 }
