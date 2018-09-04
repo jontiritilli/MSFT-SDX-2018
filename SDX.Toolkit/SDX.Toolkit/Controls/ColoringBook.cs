@@ -78,9 +78,9 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(ColoringBook);
             this.Loaded += OnLoaded;
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
             this._URIs = new List<AppSelectorData>();
         }
 
@@ -275,6 +275,16 @@ namespace SDX.Toolkit.Controls
             get { return (string)GetValue(ClearButtonURIProperty); }
             set { SetValue(ClearButtonURIProperty, value); }
         }
+
+        // ImageColumnSpan
+        public static readonly DependencyProperty ImageColumnSpanProperty =
+        DependencyProperty.Register("ImageColumnSpan", typeof(int), typeof(ColoringBook), new PropertyMetadata(1));
+
+        public int ImageColumnSpan
+        {
+            get { return (int)GetValue(ImageColumnSpanProperty); }
+            set { SetValue(ImageColumnSpanProperty, value); }
+        }
         #endregion
 
         #region Event Handlers
@@ -292,30 +302,30 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private void OnOpacityChanged(object sender, double e)
-        {
-            double opacity = e;
+        //private void OnOpacityChanged(object sender, double e)
+        //{
+        //    double opacity = e;
 
-            if (null != _layoutRoot)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
+        //    if (null != _layoutRoot)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
 
-                // set opacity
-                _layoutRoot.Opacity = opacity;
-            }
-            //_AppSelector needs to be handled here as well
-            if (null != _AppSelector)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
+        //        // set opacity
+        //        _layoutRoot.Opacity = opacity;
+        //    }
+        //    //_AppSelector needs to be handled here as well
+        //    if (null != _AppSelector)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
 
-                // set opacity
-                _AppSelector.Opacity = opacity;
-            }
-        }
+        //        // set opacity
+        //        _AppSelector.Opacity = opacity;                
+        //    }
+        //}
         #endregion
 
         #region UI Methods
@@ -324,7 +334,7 @@ namespace SDX.Toolkit.Controls
         {
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
-            _layoutRoot.Opacity = 0;
+            //_layoutRoot.Opacity = 0;
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.8, GridUnitType.Star) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.2, GridUnitType.Star) });
 
@@ -366,7 +376,7 @@ namespace SDX.Toolkit.Controls
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            Grid.SetRow(_touchHereImage, 0);
+            Grid.SetRow(_touchHereImage, 0);            
             Grid.SetColumn(_touchHereImage, 0);
             _penTouchPointGrid.Children.Add(_touchHereImage);
 
@@ -379,6 +389,7 @@ namespace SDX.Toolkit.Controls
             };
 
             Grid.SetRow(_inkCanvas, 0);
+            Grid.SetColumnSpan(_inkCanvas, this.ImageColumnSpan);
             Grid.SetColumn(_inkCanvas, 0);
             _layoutRoot.Children.Add(_inkCanvas);
 
@@ -403,6 +414,7 @@ namespace SDX.Toolkit.Controls
             }
 
             Canvas.SetZIndex(ColoringImage, 101);
+            Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
             Grid.SetRow(ColoringImage, 0);            
             Grid.SetColumn(ColoringImage, 0);            
             _layoutRoot.Children.Add(ColoringImage);

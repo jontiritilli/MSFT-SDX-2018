@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 
 using SurfaceProDemo.Models;
 using SurfaceProDemo.ViewModels;
-
+using SDX.Toolkit.Controls;
 
 namespace SurfaceProDemo.Services
 {
@@ -186,7 +186,8 @@ namespace SurfaceProDemo.Services
 
         public void LoadExperienceHeroViewModel(ExperienceHeroViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_HEADLINE, "EXPERIENCE_TABLET_HEADLINE");
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_COPY, "EXPERIENCE_TABLET_COPY");
         }
 
         public void LoadExperienceIntroViewModel(ExperienceIntroViewModel viewModel)
@@ -211,16 +212,79 @@ namespace SurfaceProDemo.Services
 
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
+
+            viewModel.TryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
+            viewModel.TryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");
+
+            // TODO: add code to load list
+            // bullet one
+
+            viewModel.ListItems[0] = (ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Jot,
+                viewModel.ICON_WIDTH, // width
+                "", // header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_ONE, "ACCESSORIES_INTERACTIVE_BULLET_ONE") // order
+            ));
+
+            // bullet one
+
+            viewModel.ListItems[1] = (ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Write, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",//header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO, "ACCESSORIES_INTERACTIVE_BULLET_TWO") // order
+            ));
+
+            viewModel.ListItems[2] = (ListItem.CreateListItem(
+                2, // order
+                ListItemIcon.Pressure, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",//header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_THREE, "ACCESSORIES_INTERACTIVE_BULLET_THREE") // order
+            ));
+
+            viewModel.ListItems[3] = (ListItem.CreateListItem(
+                3, // order
+                ListItemIcon.Palm, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",// header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_FOUR, "ACCESSORIES_INTERACTIVE_BULLET_FOUR") // order
+            ));
 
         }
 
         public void LoadAccessoriesKeyboardViewModel(AccessoriesKeyboardViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_COPY, "ACCESSORIES_LEFT_COPY");
+
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_LEGAL, "ACCESSORIES_LEFT_POPLEFT_LEGAL");
+
+            viewModel.PopTopHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPTOP_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
+            viewModel.PopTopLede= GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPTOP_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
+            viewModel.PopTopLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPTOP_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
+
 
         }
 
         public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_HEADLINE, "ACCESSORIES_RIGHT_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_COPY, "ACCESSORIES_RIGHT_COPY");
+
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPLEFT_TITLE, "ACCESSORIES_RIGHT_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPLEFT_COPY, "ACCESSORIES_RIGHT_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPLEFT_LEGAL, "ACCESSORIES_RIGHT_POPLEFT_LEGAL");
+
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_TITLE, "ACCESSORIES_RIGHT_POPRIGHT_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_TITLE, "ACCESSORIES_RIGHT_POPRIGHT_TITLE");
+            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_TITLE, "ACCESSORIES_RIGHT_POPRIGHT_TITLE");
 
         }
 
