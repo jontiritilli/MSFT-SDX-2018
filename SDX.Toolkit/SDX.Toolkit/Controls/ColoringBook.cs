@@ -420,8 +420,8 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Add(ColoringImage);
             this._URIs.Add(new AppSelectorData
             {
-                SourceSVG_NotSelectedImage = this.ClearButtonURI,
-                SourceSVG_SelectedImage = this.ClearButtonURI,
+                Source_NotSelectedImage = this.ClearButtonURI,
+                Source_SelectedImage = this.ClearButtonURI,
                 IsClearButton = true
             });
 
