@@ -132,12 +132,12 @@ namespace SDX.Toolkit.Controls
             this.Loaded += OnLoaded;
             this.ImagePairs = new Dictionary<int, ImagePair>();
             this.Buttons = new List<AppSelectorButton>();
-
+            this.Opacity = 0;
 
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
         }
 
         protected override void OnApplyTemplate()
@@ -351,20 +351,20 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void OnOpacityChanged(object sender, double e)
-        {
-            double opacity = e;
+        //private void OnOpacityChanged(object sender, double e)
+        //{
+        //    double opacity = e;
 
-            if (null != _layoutRoot)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
+        //    if (null != _layoutRoot)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
 
-                // set opacity
-                _layoutRoot.Opacity = opacity;
-            }
-        }
+        //        // set opacity
+        //        _layoutRoot.Opacity = opacity;
+        //    }
+        //}
 
         private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -396,8 +396,7 @@ namespace SDX.Toolkit.Controls
             if (null == _layoutRoot) { return; }
 
             // update the grid
-            _layoutRoot.Name = "AppSelectorGrid";
-            _layoutRoot.Opacity = 1;// why is this 0 instead of 1?
+            _layoutRoot.Name = "AppSelectorGrid";            
 
 
 

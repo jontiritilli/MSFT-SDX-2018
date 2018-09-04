@@ -5,15 +5,74 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding AccessoriesKeyboardViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
+        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width=".3*"/>
+            <ColumnDefinition Width=".7*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+        <!--Width="{StaticResource HeaderWidth}"-->
+        <ctrl:AppSelector
+            x:Name="AppSelectorKB"
+            URIs="{x:Bind Path=ViewModel.appSelectorData}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Grid.Row="3"
+            Grid.Column="1"
+            />
+        <ctrl:AppSelectorImage
+            x:Name="AppSelectorImageKB"
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.Column="2"
+            Grid.ColumnSpan="3"
+            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
+        <ctrl:TextBlockEx
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            ControlStyle="CompareLegal"
+            />
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>-->
+
     </Grid>
 </Page>
