@@ -23,11 +23,11 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_COLORING_BOOK_IMAGE_13 = "ms-appx:///Assets/Accessories/cruz_peacock.png";
 
         // private consts for widths of the coloring book image 
-        private const int COLORING_BOOK_IMAGEWIDTH_15 = 400;
-        private const int COLORING_BOOK_IMAGEWIDTH_13 = 400;
+        private const int COLORING_BOOK_IMAGEWIDTH_15 = 700;
+        private const int COLORING_BOOK_IMAGEWIDTH_13 = 700;
 
-        private const int COLORING_BOOK_IMAGEHEIGHT_15 = 400;
-        private const int COLORING_BOOK_IMAGEHEIGHT_13 = 400;
+        private const int COLORING_BOOK_IMAGEHEIGHT_15 = 700;
+        private const int COLORING_BOOK_IMAGEHEIGHT_13 = 700;
 
         //consts for colors and the rgbs
         // THESE ARE WRONG. GET THESE FRON THE ADOBE FILE   

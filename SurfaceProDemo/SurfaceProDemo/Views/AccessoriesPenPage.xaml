@@ -10,59 +10,75 @@
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
+        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+        <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
+            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width=".375*"/>
+            <ColumnDefinition Width=".625*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <!-- THIS NEEDS TO COME BACK WHEN THE STYLE STUFF IS FIXED
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>-->
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource TopMargin}"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="{StaticResource BottomMargin}"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="{StaticResource RightMargin}"/>
-            </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            Width="Auto"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
 
-            <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+        <!-- TODO: List goes here -->
+        <ctrl:List x:Name="AccessoriesList"
+        ListItems="{x:Bind Path=ViewModel.ListItems}"
+        ListStyle="LedeOnly"
+        Grid.Column="1"
+        Grid.Row="3"
 
-            <!-- TODO: List goes here -->
-            <ctrl:List x:Name="AccessoriesList"
-            ListItems="{x:Bind Path=ViewModel.ListItems}"
-            ListStyle="LedeOnly"
-            Grid.Column="1"
-            Grid.Row="3"
+                />
+        <!-- TODO: Coloring Book control goes here ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"-->
+        <ctrl:ColoringBook
+        x:Name="ColoringBook"
+        Grid.Row="3"
+        Grid.Column="2"
+        Grid.ColumnSpan="2"
+        ImageURI="{x:Bind Path=ViewModel.ColoringBookUri}"            
+        Colors="{x:Bind Path=ViewModel.Colors}"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Top"
+        ButtonHeight="{x:Bind Path=ViewModel.ColoringBookButtonHeight}"
+        ButtonWidth="{x:Bind Path=ViewModel.ColoringBookButtonWidth}"
+        ImageHeight="{x:Bind Path=ViewModel.ColoringBookImageHeight}"
+        ImageWidth="{x:Bind Path=ViewModel.ColoringBookImageWidth}"
+        ImageColumnSpan="2"
+        ClearButtonURI="{x:Bind Path=ViewModel.ColoringBookClearButtonURI}"
+        />
 
-                   />
-            <!-- TODO: Coloring Book control goes here ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"-->
-            <ctrl:ColoringBook
-            x:Name="ColoringBook"
-            Grid.Row="3"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"            
-            Colors="{x:Bind Path=ViewModel.Colors}"
-            HorizontalAlignment="Right"
-            ButtonHeight="{x:Bind Path=ViewModel.ColoringBookButtonHeight}"
-            ButtonWidth="{x:Bind Path=ViewModel.ColoringBookButtonWidth}"
-            ImageHeight="{x:Bind Path=ViewModel.ColoringBookImageHeight}"
-            ImageWidth="{x:Bind Path=ViewModel.ColoringBookImageWidth}"
-            ClearButtonURI="{x:Bind Path=ViewModel.ColoringBookClearButtonURI}"
-            />
-
-        </Grid>
     </Grid>
 </Page>
