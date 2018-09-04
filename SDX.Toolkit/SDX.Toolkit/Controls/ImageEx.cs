@@ -267,7 +267,7 @@ namespace SDX.Toolkit.Controls
                 }
                 else if (!String.IsNullOrWhiteSpace(this.ImageSourceSVG))
                 {
-                    _image.Source = new SvgImageSource(new Uri(ImageSourceSVG)) { };
+                    _image.Source = new SvgImageSource() { UriSource = new Uri(ImageSourceSVG), RasterizePixelWidth = this.ImageWidth };
                 }
                 // if the image source doesn't start with "ms-appx:", then we need to look for it in the
                 // local folder and load it from there.

@@ -197,7 +197,8 @@ namespace SDX.Toolkit.Controls
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
-                                ImageSource = item.IconPath,
+                                //ImageSource = item.IconPath,
+                                ImageSourceSVG = item.IconPath,
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
                                 VerticalContentAlignment = VerticalAlignment.Center,
@@ -243,7 +244,8 @@ namespace SDX.Toolkit.Controls
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
-                                ImageSource = item.IconPath,
+                                //ImageSource = item.IconPath,
+                                ImageSourceSVG = item.IconPath,
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
@@ -292,6 +294,7 @@ namespace SDX.Toolkit.Controls
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
+                                //ImageSource = item.IconPath,
                                 ImageSourceSVG = item.IconPath,
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
