@@ -5,13 +5,25 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceLaptopDemo.Services;
-using SDX.Toolkit.Models;
+using SDX.Toolkit.Controls;
 
 
 namespace SurfaceLaptopDemo.ViewModels
 {
     public class BestOfMicrosoftViewModel : ViewModelBase
     {
+        public string BackgroundUri;
+
+        public string Headline;
+        public string BulletOneCTA;
+        public string BulletTwoCTA;
+        public string BulletThreeCTA;
+        public string BulletFourCTA;
+        public string Legal;
+        public ListItem[] LeftItemList = new ListItem[3];
+        public ListItem[] RightItemList = new ListItem[2];
+        public double ICON_WIDTH = 60d;
+
         public BestOfMicrosoftViewModel()
         {
             // get the localization service

@@ -199,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\SizesTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,6 +284,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\foxburg_brand-bg.png" />
+    <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
