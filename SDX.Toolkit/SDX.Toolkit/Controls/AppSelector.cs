@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using Windows.Media;
-
+using Windows.UI.Xaml.Input;
 
 namespace SDX.Toolkit.Controls
 {
@@ -516,6 +516,7 @@ namespace SDX.Toolkit.Controls
                     VerticalAlignment = VerticalAlignment.Center,
                     Content = grid
                 };
+                
                 //only set the dimensions of the button if the control variables are passed in
                 // and the orientation is correct
                 if (this.ButtonHeight > 0)
@@ -539,8 +540,9 @@ namespace SDX.Toolkit.Controls
                 {
                     sbButton.Click += Selector_ButtonClick;
                 }
-
+                grid.PointerEntered += pointerEntered;
                 
+
                 if (this.Orientation == Orientation.Horizontal)
                 {
                     Grid.SetRow(sbButton, 0);
@@ -617,6 +619,15 @@ namespace SDX.Toolkit.Controls
             this.UpdateUI();
         }
 
+        private void pointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            // you can see the 2images in there. which is which?
+            // and should you refactor the render ui so it doesnt put the 
+            // clear button into the Imagepairs collection? or where it shouldnt
+            // be referred to?
+        }
+
         private void Selector_ButtonClick(object sender, RoutedEventArgs e)
         {
             AppSelectorButton sbButton = (AppSelectorButton)sender;
@@ -673,7 +684,7 @@ namespace SDX.Toolkit.Controls
         private void UpdateUI()
         {
             // test the first image and return if it hasn't been created
-            if (null == this.ImagePairs[0].NotSelected) { return; }
+            if (null == this.ImagePairs) { return; }
             // if there are image pairs and the setting has image pairs, then do image pairs. 
             // otherwise keep all opaque and move the line and update the button text to be bold
             if (this.AppSelectorMode == SelectorMode.Color)
@@ -685,11 +696,16 @@ namespace SDX.Toolkit.Controls
                         this.ImagePairs[i].Selected.Opacity = 1;
                         this.ImagePairs[i].NotSelected.Opacity = 0;
                     }
-                    else
-                    { // opposite
+                }
+
+                for (int i = 0; i < this.ImagePairs.Count; i++)
+                {
+                    if (this.SelectedID != i)
+                    { // selected change opacity to 1 and unselected to 0
                         this.ImagePairs[i].Selected.Opacity = 0;
                         this.ImagePairs[i].NotSelected.Opacity = 1;
                     }
+
                 }
             }
             else

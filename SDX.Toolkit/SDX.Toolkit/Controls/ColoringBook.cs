@@ -71,14 +71,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region Public Members
-        
-        public string ImageSVGURI;
-        public int ImageWidth;
-        public int ImageHeight;
-        public List<ColoringBookColor> Colors;
-        #endregion
-
         #region Constructor
 
         public ColoringBook()
@@ -214,6 +206,75 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageURIProperty, value); }
         }
 
+        // ImageSVGURI
+        public static readonly DependencyProperty ImageSVGURIProperty =
+        DependencyProperty.Register("ImageSVGURI", typeof(string), typeof(ColoringBook), new PropertyMetadata(""));
+
+        public string ImageSVGURI
+        {
+            get { return (string)GetValue(ImageSVGURIProperty); }
+            set { SetValue(ImageSVGURIProperty, value); }
+        }
+
+        // ImageWidth
+        public static readonly DependencyProperty ImageWidthProperty =
+        DependencyProperty.Register("ImageWidth", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ImageWidth
+        {
+            get { return (int)GetValue(ImageWidthProperty); }
+            set { SetValue(ImageWidthProperty, value); }
+        }
+
+        // ImageHeight
+        public static readonly DependencyProperty ImageHeightProperty =
+        DependencyProperty.Register("ImageHeight", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ImageHeight
+        {
+            get { return (int)GetValue(ImageHeightProperty); }
+            set { SetValue(ImageHeightProperty, value); }
+        }
+
+        // Colors
+        public static readonly DependencyProperty ColorsProperty =
+        DependencyProperty.Register("Colors", typeof(List<ColoringBookColor>), typeof(ColoringBook), new PropertyMetadata(new List<ColoringBookColor>()));
+
+        public List<ColoringBookColor> Colors
+        {
+            get { return (List<ColoringBookColor>)GetValue(ColorsProperty); }
+            set { SetValue(ColorsProperty, value); }
+        }
+
+        // ImageWidth
+        public static readonly DependencyProperty ButtonWidthProperty =
+        DependencyProperty.Register("ButtonWidth", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ButtonWidth
+        {
+            get { return (int)GetValue(ButtonWidthProperty); }
+            set { SetValue(ButtonWidthProperty, value); }
+        }
+
+        // ImageHeight
+        public static readonly DependencyProperty ButtonHeightProperty =
+        DependencyProperty.Register("ButtonHeight", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ButtonHeight
+        {
+            get { return (int)GetValue(ButtonHeightProperty); }
+            set { SetValue(ButtonHeightProperty, value); }
+        }
+
+        // ImageHeight
+        public static readonly DependencyProperty ClearButtonURIProperty =
+        DependencyProperty.Register("ClearButtonURI", typeof(string), typeof(ColoringBook), new PropertyMetadata(""));
+
+        public string ClearButtonURI
+        {
+            get { return (string)GetValue(ClearButtonURIProperty); }
+            set { SetValue(ClearButtonURIProperty, value); }
+        }
         #endregion
 
         #region Event Handlers
@@ -264,6 +325,8 @@ namespace SDX.Toolkit.Controls
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
             _layoutRoot.Opacity = 0;
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.8, GridUnitType.Star) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.2, GridUnitType.Star) });
 
             if (null == _layoutRoot) { return; }
 
@@ -336,19 +399,17 @@ namespace SDX.Toolkit.Controls
             }
             else if(!string.IsNullOrEmpty(ImageSVGURI))
             {
-                ColoringImage.Source = new SvgImageSource(new Uri(ImageSVGURI)) {};
+                ColoringImage.Source = new SvgImageSource() { UriSource = new Uri(ImageSVGURI), RasterizePixelWidth = this.ImageWidth };
             }
 
-            Canvas.SetZIndex(ColoringImage, 100);
-            Grid.SetRow(ColoringImage, 0);
-            Grid.SetRowSpan(ColoringImage, 4);
-            Grid.SetColumn(ColoringImage, 0);
-            Grid.SetColumnSpan(ColoringImage, 3);
+            Canvas.SetZIndex(ColoringImage, 101);
+            Grid.SetRow(ColoringImage, 0);            
+            Grid.SetColumn(ColoringImage, 0);            
             _layoutRoot.Children.Add(ColoringImage);
             this._URIs.Add(new AppSelectorData
             {
-                SourceSVG_NotSelectedImage = "ms-appx:///Assets/Universal/inkingReset.svg",
-                SourceSVG_SelectedImage = "ms-appx:///Assets/Universal/inkingReset.svg",
+                SourceSVG_NotSelectedImage = this.ClearButtonURI,
+                SourceSVG_SelectedImage = this.ClearButtonURI,
                 IsClearButton = true
             });
 
@@ -370,16 +431,17 @@ namespace SDX.Toolkit.Controls
                 StaggerDelayInMilliseconds = 200d,
                 AutoStart = false,
                 Orientation = Orientation.Vertical,
-                ButtonHeight = 74,
+                ButtonHeight = this.ButtonHeight,
+                ButtonWidth = this.ButtonWidth,
                 Opacity = 1,
                 URIs = this._URIs,
-                SelectedID = 1// starting color b/c 0 is the clear button
+                SelectedID = 0// starting color b/c 0 is the clear button
             };// bind event to catch and change color from this.colors
             // add the test selector here so it's after the color selector image
             _AppSelector.SelectedIDChanged += _AppSelector_SelectedIDChanged;
             _AppSelector.OnClearClicked += _AppSelector_ClearClickedChanged;
             Canvas.SetZIndex(_AppSelector, 101);
-            Grid.SetRow(_AppSelector, 5);
+            Grid.SetRow(_AppSelector, 0);
             Grid.SetColumn(_AppSelector, 1);
             this._layoutRoot.Children.Add(_AppSelector);
             this._SelectedColor = this.Colors[1].Color;

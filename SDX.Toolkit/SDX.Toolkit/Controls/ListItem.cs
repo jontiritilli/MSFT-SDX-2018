@@ -57,7 +57,7 @@ namespace SDX.Toolkit.Controls
         // pen icons
         private const string ICON_JOT_URI = @"ms-appx:///Assets/List/inkingDraw.svg";
         private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/inkingWrite.svg";
-        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/inkingPressure.svg";
+        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/inkingPressure.svg";
         private const string ICON_PALM_URI = @"ms-appx:///Assets/List/inkingPalm.svg";
         // touch icons
         private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/??.png";
