@@ -104,8 +104,7 @@ namespace SDX.Toolkit.Controls
             if (null != _mediaPlayerElement)
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    _mediaPlayerElement.IsFullWindow = true;
+                {                    
                     _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
                     _mediaPlayerElement.MediaPlayer.Play();
                 });
@@ -223,30 +222,35 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
+            IMediaPlaybackSource Source;
+            if (null != this.MediaSourceStorageFile)
+            {
+                Source = MediaSource.CreateFromStorageFile(this.MediaSourceStorageFile);
+            }
+            else
+            {
+                Source = MediaSource.CreateFromUri(this.MediaSourceUri);
+            }
+
             // create the player
             _mediaPlayerElement = new MediaPlayerElement()
             {
                 Name = "MediaPlayer",
-                //Source = MediaSource.CreateFromUri(this.MediaSourceUri),
+                Source = Source,
                 AutoPlay = this.AutoPlay,
                 AreTransportControlsEnabled = false,
-                IsFullWindow = true,
-                Stretch = Stretch.UniformToFill
+                Width = 400,
+                Height = 400
             };
-            if (null != this.MediaSourceStorageFile)
-            {
-                _mediaPlayerElement.Source = MediaSource.CreateFromStorageFile(this.MediaSourceStorageFile);
-            }
-            else
-            {
-                _mediaPlayerElement.Source = MediaSource.CreateFromUri(this.MediaSourceUri);
-            }
+
 
             // set media player event handlers
             _mediaPlayerElement.MediaPlayer.MediaOpened += this.MediaPlayer_MediaOpened;
             _mediaPlayerElement.MediaPlayer.MediaFailed += this.MediaPlayer_MediaFailed;
             _mediaPlayerElement.MediaPlayer.MediaEnded += this.MediaPlayer_MediaEnded;
-            
+
+            Grid.SetRow(_mediaPlayerElement, 0);
+            Grid.SetColumn(_mediaPlayerElement, 0);
             _border.Child = _mediaPlayerElement;
         }
 

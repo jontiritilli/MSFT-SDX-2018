@@ -275,6 +275,16 @@ namespace SDX.Toolkit.Controls
             get { return (string)GetValue(ClearButtonURIProperty); }
             set { SetValue(ClearButtonURIProperty, value); }
         }
+
+        // ImageColumnSpan
+        public static readonly DependencyProperty ImageColumnSpanProperty =
+        DependencyProperty.Register("ImageColumnSpan", typeof(int), typeof(ColoringBook), new PropertyMetadata(1));
+
+        public int ImageColumnSpan
+        {
+            get { return (int)GetValue(ImageColumnSpanProperty); }
+            set { SetValue(ImageColumnSpanProperty, value); }
+        }
         #endregion
 
         #region Event Handlers
@@ -366,7 +376,7 @@ namespace SDX.Toolkit.Controls
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            Grid.SetRow(_touchHereImage, 0);
+            Grid.SetRow(_touchHereImage, 0);            
             Grid.SetColumn(_touchHereImage, 0);
             _penTouchPointGrid.Children.Add(_touchHereImage);
 
@@ -379,6 +389,7 @@ namespace SDX.Toolkit.Controls
             };
 
             Grid.SetRow(_inkCanvas, 0);
+            Grid.SetColumnSpan(_inkCanvas, this.ImageColumnSpan);
             Grid.SetColumn(_inkCanvas, 0);
             _layoutRoot.Children.Add(_inkCanvas);
 
@@ -403,6 +414,7 @@ namespace SDX.Toolkit.Controls
             }
 
             Canvas.SetZIndex(ColoringImage, 101);
+            Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
             Grid.SetRow(ColoringImage, 0);            
             Grid.SetColumn(ColoringImage, 0);            
             _layoutRoot.Children.Add(ColoringImage);
