@@ -27,10 +27,8 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        private const double CONTROL_WIDTH = 300d;
-        private const double CONTROL_HEIGHT = 60d;
-        private const double CONTROL_COLUMNSPACING = 5d;
-        private const double CONTROL_RIGHTMARGIN = 30d;
+        //private const double CONTROL_WIDTH = 300d;
+        //private const double CONTROL_HEIGHT = 60d;
 
         private const string ARROW_URI = @"ms-appx:///Assets/SwipeLeft/swipe-arrow.png";
         private const int ARROW_WIDTH = 10;
