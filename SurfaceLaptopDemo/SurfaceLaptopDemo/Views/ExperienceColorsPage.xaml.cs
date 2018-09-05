@@ -18,16 +18,15 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public ExperienceColorsPage()
         {
             InitializeComponent();
+            this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
         }
 
         #endregion
-
 
         #region INavigate Interface
 

@@ -26,17 +26,37 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="3" Grid.Column="1"
                     Headline="{x:Bind Path=ViewModel.Headline}"
+                    Lede="{x:Bind Path=ViewModel.Lede}"
                     HeadlineStyle="Headline"
-                    Lede=""
+                    LedeStyle="Lede"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" />
-    
+
+        <ctrl:AppSelector
+            x:Name="AppSelectorKB"
+            URIs="{x:Bind Path=ViewModel.appSelectorData}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Grid.Row="3"
+            Grid.Column="1"
+            />
+
+        <ctrl:AppSelectorImage
+            x:Name="AppSelectorImageKB"
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.Column="2"
+            Grid.ColumnSpan="3"
+            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
     </Grid>
 </Page>
