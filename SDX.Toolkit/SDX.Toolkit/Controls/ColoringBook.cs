@@ -417,13 +417,7 @@ namespace SDX.Toolkit.Controls
             Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
             Grid.SetRow(ColoringImage, 0);            
             Grid.SetColumn(ColoringImage, 0);            
-            _layoutRoot.Children.Add(ColoringImage);
-            this._URIs.Add(new AppSelectorData
-            {
-                Source_NotSelectedImage = this.ClearButtonURI,
-                Source_SelectedImage = this.ClearButtonURI,
-                IsClearButton = true
-            });
+            _layoutRoot.Children.Add(ColoringImage);            
 
             for (int i = 0; i < this.Colors.Count; i++)
             {
@@ -439,24 +433,26 @@ namespace SDX.Toolkit.Controls
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                DurationInMilliseconds = 200d,
-                StaggerDelayInMilliseconds = 200d,
-                AutoStart = false,
-                Orientation = Orientation.Vertical,
+                MainOrientation = Orientation.Vertical,
                 ButtonHeight = this.ButtonHeight,
                 ButtonWidth = this.ButtonWidth,
                 Opacity = 1,
                 URIs = this._URIs,
-                SelectedID = 0// starting color b/c 0 is the clear button
-            };// bind event to catch and change color from this.colors
-            // add the test selector here so it's after the color selector image
+                ClearButtonData = new AppSelectorData
+                {
+                    Source_NotSelectedImage = this.ClearButtonURI,
+                    Source_SelectedImage = this.ClearButtonURI,
+                    IsClearButton = true
+                },
+                SelectedID = 0
+            };
             _AppSelector.SelectedIDChanged += _AppSelector_SelectedIDChanged;
             _AppSelector.OnClearClicked += _AppSelector_ClearClickedChanged;
             Canvas.SetZIndex(_AppSelector, 101);
             Grid.SetRow(_AppSelector, 0);
             Grid.SetColumn(_AppSelector, 1);
             this._layoutRoot.Children.Add(_AppSelector);
-            this._SelectedColor = this.Colors[1].Color;
+            this._SelectedColor = this.Colors[0].Color;
             SetupBrush();
             // set up events
 
@@ -468,16 +464,7 @@ namespace SDX.Toolkit.Controls
             if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
-                if (appSelector.SelectedID > 0)
-                {// this is the only case there this needs to manage since there is a clear button so account for it
-                    this._SelectedColor = this.Colors[appSelector.SelectedID - 1].Color;
-                }
-                //else
-                //{// should it disable the color? or leave the selection on the previous one?
-                //    _inkCanvas.InkPresenter.StrokeContainer.Clear();
-                //}
-                
-
+                this._SelectedColor = this.Colors[appSelector.SelectedID].Color;              
                 SetupBrush();
             }
         }
