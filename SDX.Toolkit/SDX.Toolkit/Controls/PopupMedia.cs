@@ -267,9 +267,9 @@ namespace SDX.Toolkit.Controls
                 Headline = this.Headline,
                 Lede = this.Lede,
                 HeadlineStyle = TextStyles.PopupHeadline,
+                LedeStyle = TextStyles.PopupLede,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                LedeStyle = TextStyles.PopupLede,
                 Width = this.Width,
             };
 
