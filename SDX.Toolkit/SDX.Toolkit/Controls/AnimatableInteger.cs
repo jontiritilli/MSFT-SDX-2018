@@ -24,7 +24,7 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         private Border _layoutRoot = null;
-        private TextBlock _hours = null;
+        private TextBlockEx _hours = null;
 
         private Storyboard _storyboardPercent = null;
 
@@ -187,11 +187,11 @@ namespace SDX.Toolkit.Controls
             }
 
             // create the text block
-            _hours = new TextBlock()
+            _hours = new TextBlockEx()
             {
-                HorizontalAlignment = HorizontalAlignment.Right
+                HorizontalAlignment = HorizontalAlignment.Right,
+                TextStyle = TextStyles.PopupBatteryLife,
             };
-            StyleHelper.SetFontCharacteristics(_hours, ControlStyles.BatteryLifeHours);
             _hours.SetBinding(TextBlock.TextProperty,
                 new Binding() { Source = this, Path = new PropertyPath("PercentText"), Mode = BindingMode.OneWay });
 

@@ -230,7 +230,7 @@ namespace SDX.Toolkit.Controls
                             // create the lede
                             TextBlockEx lede = new TextBlockEx()
                             {
-                                ControlStyle = ControlStyles.ListLede,
+                                TextStyle = TextStyles.ListLede,
                                 Text = item.Lede,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -298,7 +298,7 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             TextBlockEx headline = new TextBlockEx()
                             {
-                                ControlStyle = ControlStyles.ListHeadline,
+                                TextStyle = TextStyles.ListHeadline,
                                 Text = item.Headline,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -310,7 +310,7 @@ namespace SDX.Toolkit.Controls
                             // create the lede
                             TextBlockEx lede = new TextBlockEx()
                             {
-                                ControlStyle = ControlStyles.ListLede,
+                                TextStyle = TextStyles.ListLede,
                                 Text = item.Lede,
                                 TextAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,

@@ -13,4 +13,11 @@
     <!--Small size margins-->
     <Thickness x:Key="SmallAllMargin">5, 5, 5, 5</Thickness>
     <Thickness x:Key="EightTopMargin">0, 8, 0, 0</Thickness>
+
+    <!-- Hero -->
+    <Thickness x:Key="HeroMargin">5, 5, 25, 5</Thickness>
+    
+    <!-- Popup -->
+    <Thickness x:Key="PopupBorder">0, 18.83, 0, 0</Thickness>
+    <Thickness x:Key="PopupMargin">156.89, 122.36, 156.89, 137.19</Thickness>
 </ResourceDictionary>

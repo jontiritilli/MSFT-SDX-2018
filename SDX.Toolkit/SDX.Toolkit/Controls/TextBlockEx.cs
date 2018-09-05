@@ -25,12 +25,6 @@ namespace SDX.Toolkit.Controls
         private Grid _layoutRoot = null;
         private TextBlock _text = null;
 
-        //private Storyboard _storyboardFadeIn = null;
-        //private Storyboard _storyboardFadeOut = null;
-
-        //private DispatcherTimer _timer = null;
-        //private int _dispatchCount = 0;
-
         #endregion
 
         #region Constructor
@@ -69,80 +63,6 @@ namespace SDX.Toolkit.Controls
             return visible;
         }
 
-
-        //public void StartFadeIn()
-        //{
-        //    // if we're not rendered yet
-        //    if (null == _storyboardFadeIn)
-        //    {
-        //        // inc the counter
-        //        _dispatchCount++;
-
-        //        // limit the number of times we do this
-        //        if (_dispatchCount < 10)
-        //        {
-        //            // create a timer
-        //            if (null == _timer)
-        //            {
-        //                _timer = new DispatcherTimer()
-        //                {
-        //                    Interval = TimeSpan.FromMilliseconds(500d)
-        //                };
-        //                _timer.Tick += DispatcherTimer_Tick;
-        //            }
-
-        //            // start it
-        //            _timer.Start();
-        //        }
-
-        //        // return
-        //        return;
-        //    }
-
-        //    // start the fade in
-        //    if (null != _storyboardFadeIn)
-        //    {
-        //        _storyboardFadeIn.Begin();
-        //    }
-        //}
-
-        //private void DispatcherTimer_Tick(object sender, object e)
-        //{
-        //    // stop the timer
-        //    if (null != _timer) { _timer.Stop(); }
-
-        //    // call the method that sets up the timer
-        //    this.StartFadeIn();
-        //}
-
-        //public void StartFadeOut()
-        //{
-        //    // start the fade out
-        //    if (null != _storyboardFadeOut)
-        //    {
-        //        _storyboardFadeOut.Begin();
-        //    }
-        //}
-
-        //public void ResetAnimation()
-        //{
-        //    // reset the animations
-        //    if (null != _storyboardFadeIn)
-        //    {
-        //        _storyboardFadeIn.Stop();
-        //    }
-        //    if (null != _storyboardFadeOut)
-        //    {
-        //        _storyboardFadeOut.Stop();
-        //    }
-
-        //    // reset opacity to starting point
-        //    if (null != _layoutRoot)
-        //    {
-        //        _layoutRoot.Opacity = 0.0;
-        //    }
-        //}
-
         public void SetOpacity(double opacity)
         {
             opacity = Math.Max(0.0, opacity);
@@ -168,19 +88,19 @@ namespace SDX.Toolkit.Controls
             set { SetValue(TextProperty, value); }
         }
 
-        // ControlStyle
-        public static readonly DependencyProperty ControlStyleProperty =
-            DependencyProperty.Register("ControlStyle", typeof(ControlStyles), typeof(TextBlockEx), new PropertyMetadata(null, OnControlStyleChanged));
+        // TextStyle
+        public static readonly DependencyProperty TextStyleProperty =
+            DependencyProperty.Register("TextStyle", typeof(TextStyles), typeof(TextBlockEx), new PropertyMetadata(null, OnTextStyleChanged));
 
-        public ControlStyles ControlStyle
+        public TextStyles TextStyle
         {
-            get { return (ControlStyles)GetValue(ControlStyleProperty); }
-            set { SetValue(ControlStyleProperty, value); }
+            get { return (TextStyles)GetValue(TextStyleProperty); }
+            set { SetValue(TextStyleProperty, value); }
         }
 
         // TextAlignment
         public static readonly DependencyProperty TextAlignmentProperty =
-            DependencyProperty.Register("TextAlignment", typeof(TextAlignment), typeof(TextBlockEx), new PropertyMetadata(null, OnTextAlignmentChanged));
+            DependencyProperty.Register("TextAlignment", typeof(TextAlignment), typeof(TextBlockEx), new PropertyMetadata(TextAlignment.Left, OnTextAlignmentChanged));
 
         public TextAlignment TextAlignment
         {
@@ -188,55 +108,15 @@ namespace SDX.Toolkit.Controls
             set { SetValue(TextAlignmentProperty, value); }
         }
 
-        //// DurationInMilliseconds
-        //public static readonly DependencyProperty DurationInMillisecondsProperty =
-        //    DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(TextBlockEx), new PropertyMetadata(200d, OnDurationInMillisecondsChanged));
+        // TextWrapping
+        public static readonly DependencyProperty TextWrappingProperty =
+            DependencyProperty.Register("TextWrapping", typeof(TextWrapping), typeof(TextBlockEx), new PropertyMetadata(TextWrapping.WrapWholeWords, OnTextWrappingChanged));
 
-        //public double DurationInMilliseconds
-        //{
-        //    get { return (double)GetValue(DurationInMillisecondsProperty); }
-        //    set { SetValue(DurationInMillisecondsProperty, value); }
-        //}
-
-        //// FadeInCompletedHandler
-        //public static readonly DependencyProperty FadeInCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(TextBlockEx), new PropertyMetadata(null));
-
-        //public EventHandler<object> FadeInCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeInCompletedHandlerProperty); }
-        //    set { SetValue(FadeInCompletedHandlerProperty, value); }
-        //}
-
-        //// FadeOutCompletedHandler
-        //public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(TextBlockEx), new PropertyMetadata(null));
-
-        //public EventHandler<object> FadeOutCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeOutCompletedHandlerProperty); }
-        //    set { SetValue(FadeOutCompletedHandlerProperty, value); }
-        //}
-
-        //// StaggerDelayInMilliseconds
-        //public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-        //    DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(TextBlockEx), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
-
-        //public double StaggerDelayInMilliseconds
-        //{
-        //    get { return (double)GetValue(StaggerDelayInMillisecondsProperty); }
-        //    set { SetValue(StaggerDelayInMillisecondsProperty, value); }
-        //}
-
-        //// AutoStart
-        //public static readonly DependencyProperty AutoStartProperty =
-        //DependencyProperty.Register("AutoStart", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(true, OnAutoStartChanged));
-
-        //public bool AutoStart
-        //{
-        //    get { return (bool)GetValue(AutoStartProperty); }
-        //    set { SetValue(AutoStartProperty, value); }
-        //}
+        public TextWrapping TextWrapping
+        {
+            get { return (TextWrapping)GetValue(TextWrappingProperty); }
+            set { SetValue(TextWrappingProperty, value); }
+        }
 
         #endregion
 
@@ -244,10 +124,7 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //if (this.AutoStart)
-            //{
-            //    this.StartFadeIn();
-            //}
+
         }
 
         private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -272,13 +149,28 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private static void OnControlStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnTextWrappingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if ((d is TextBlockEx textLine) && (null != textLine._text))
             {
-                if (e.NewValue is ControlStyles newValue)
+                if (e.NewValue is TextWrapping newValue)
                 {
-                    StyleHelper.SetFontCharacteristics(textLine._text, newValue);
+                    textLine._text.TextWrapping = newValue;
+                }
+            }
+        }
+
+        private static void OnTextStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is TextBlockEx textLine) && (null != textLine._text))
+            {
+                if (e.NewValue is TextStyles newValue)
+                {
+                    Style style = StyleHelper.GetApplicationStyle(newValue);
+                    if (null != style)
+                    {
+                        textLine._text.Style = style;
+                    }
                 }
             }
         }
@@ -298,21 +190,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        //private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnStaggerDelayInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
         #endregion
 
         #region UI Methods
@@ -325,7 +202,6 @@ namespace SDX.Toolkit.Controls
 
             // set up grid
             _layoutRoot.Width = this.Width;
-            //_layoutRoot.Opacity = 0.0d;
 
             // create textblock
             _text = new TextBlock()
@@ -336,18 +212,19 @@ namespace SDX.Toolkit.Controls
                 TextWrapping = TextWrapping.WrapWholeWords,
                 Width = this.Width
             };
-            StyleHelper.SetFontCharacteristics(_text, this.ControlStyle);
+            
+            // set its style
+            Style style = StyleHelper.GetApplicationStyle(this.TextStyle);
+            if (null != style)
+            {
+                _text.Style = style;
+            }
+
+            // add to grid
             Grid.SetRow(_text, 0);
             Grid.SetColumn(_text, 0);
             _layoutRoot.Children.Add(_text);
 
-            // set text binding
-            //_text.SetBinding(TextBlock.TextProperty,
-            //    new Binding() { Source = this, Path = new PropertyPath("Text"), Mode = BindingMode.OneWay });
-
-            //// set up animations
-            //_storyboardFadeIn = AnimationHelper.CreateEasingAnimation(_layoutRoot, "Opacity", 0.0, 0.0, 1.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-            //_storyboardFadeOut = AnimationHelper.CreateEasingAnimation(_layoutRoot, "Opacity", 1.0, 1.0, 0.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
         }
 
         #endregion

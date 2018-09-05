@@ -351,6 +351,16 @@ namespace SDX.Toolkit.Controls
 
         private void RenderUI()
         {
+            // get our sizing values
+            double _height = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight);
+            double _lineHeight = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarLineHeight);
+            double _margin = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarMargin);
+            double _spacer = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarSpacer);
+            double _arrowWidth = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarWidthArrow);
+            double _homeWidth = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarWidthHome);
+
+            Style _sectionStyle = StyleHelper.GetApplicationStyle(TextStyles.NavigationSection);
+
             // get the nav grid
             if (null == _layoutRoot) { _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot"); }
 
@@ -359,50 +369,61 @@ namespace SDX.Toolkit.Controls
 
             // set up the grid
 
+            // set the grid height
+            _layoutRoot.Height = _height;
+
             // rows - this is static
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(6) });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(_lineHeight) });
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
 
             // columns - this is dynamic based on sections
-            // go back and spacer
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+            // margin, go back, and greedy-eater
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
 
             // column for each section
             for (int i = 0; i < this.NavigationSections.Count; i++)
             {
                 _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                // if this isn't the last column, add the between spacer
+                if (i < (this.NavigationSections.Count - 1))
+                {
+                    _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_spacer) });
+                }
             }
 
-            // spacer and go forward
+            // greedy-eater, go forward, and margin
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
 
             // create the progress line and the canvas that contains it
 
             // canvas
             _lineCanvas = new Canvas()
             {
-                Height = 6,
+                Height = _lineHeight,
                 Margin = new Thickness(0)
             };
             _layoutRoot.Children.Add(_lineCanvas);
             Grid.SetRow(_lineCanvas, 0);
             Grid.SetColumn(_lineCanvas, 0);
-            Grid.SetColumnSpan(_lineCanvas, 2 + this.NavigationSections.Count);
+            Grid.SetColumnSpan(_lineCanvas, 3 + this.NavigationSections.Count);
 
             // line
             _navLine = new Line()
             {
                 Name = "ProgressLine",
                 Stroke = new SolidColorBrush(Colors.White),
-                StrokeThickness = 6d,
+                StrokeThickness = _lineHeight,
                 X1 = 0,
-                Y1 = 3,
+                Y1 = (_lineHeight / 2),
                 X2 = 0,
-                Y2 = 3,
+                Y2 = (_lineHeight / 2),
                 Margin = new Thickness(0)
             };
             _lineCanvas.Children.Add(_navLine);
@@ -412,6 +433,9 @@ namespace SDX.Toolkit.Controls
 
             // create the button style
             Style buttonStyle = StyleHelper.GetApplicationStyle("NoInteractionButton");
+
+            // create the section text style
+            Style sectionStyle = StyleHelper.GetApplicationStyle(TextStyles.NavigationSection);
 
             // set column spacing for the grid
             _layoutRoot.ColumnSpacing = BUTTON_SPACING;
@@ -443,7 +467,7 @@ namespace SDX.Toolkit.Controls
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoBack, MenuItemRow);
-                Grid.SetColumn(_navGoBack, 0);
+                Grid.SetColumn(_navGoBack, 1);
 
                 // add the Click event handler
                 _navGoBack.Click += this.NavItem_Click;
@@ -476,7 +500,7 @@ namespace SDX.Toolkit.Controls
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoForward, MenuItemRow);
-                Grid.SetColumn(_navGoForward, this.NavigationSections.Count + 3);
+                Grid.SetColumn(_navGoForward, 3 + ((this.NavigationSections.Count  * 2) - 1) + 1);
 
                 // add the Click event handler
                 _navGoForward.Click += this.NavItem_Click;
@@ -513,7 +537,7 @@ namespace SDX.Toolkit.Controls
 
                     // set inherited Grid properties
                     Grid.SetRow(_navHome, MenuItemRow);
-                    Grid.SetColumn(_navHome, this.NavigationSections.Count + 3);
+                    Grid.SetColumn(_navHome, 3 + ((this.NavigationSections.Count * 2) - 1) + 1);
 
                     // add the Click event handler
                     _navHome.Click += this.NavItem_Click;
@@ -530,22 +554,29 @@ namespace SDX.Toolkit.Controls
             foreach (NavigationSection section in this.NavigationSections)
             {
 
+                TextBlockEx sectionText = new TextBlockEx()
+                {
+                    Text = section.Text,
+                    TextAlignment = TextAlignment.Center,
+                    TextStyle = TextStyles.NavigationSection,
+                };
+
                 Button sectionButton = new Button()
                 {
                     Name = section.Name,
-                    Content = section.Text
+                    Content = sectionText
                 };
-                StyleHelper.SetFontCharacteristics(sectionButton, ControlStyles.NavBarActive);
                 if (null != buttonStyle) { sectionButton.Style = buttonStyle; }
                 sectionButton.Click += this.NavItem_Click;
 
                 // add to the grid
                 Grid.SetRow(sectionButton, MenuItemRow);
-                Grid.SetColumn(sectionButton, 2 + j);
+                Grid.SetColumn(sectionButton, 3 + j);
                 _layoutRoot.Children.Add(sectionButton);
 
-                // save the button with the section
+                // save the button and text with the section
                 section.UIButton = sectionButton;
+                section.UIText = sectionText;
 
                 // bump our counter
                 j++;
@@ -598,16 +629,17 @@ namespace SDX.Toolkit.Controls
             // loop through the sections
             foreach (NavigationSection section in this.NavigationSections)
             {
-                // get a reference to the button for this section
+                // get a reference to the button and text for this section
                 Button button = section.UIButton;
+                TextBlockEx text = section.UIText;
 
-                if (null != button)
+                if ((null != button) && (null != text))
                 {
                     // if this section is the new selected section
                     if (section == this.SelectedSection)
                     {
                         // highlight it
-                        StyleHelper.SetFontCharacteristics(button, ControlStyles.NavBarActive);
+                        text.TextStyle = TextStyles.NavigationSectionActive;
 
                         // set progress line length (if we have the line)
                         if (null != _navLine)
@@ -627,7 +659,7 @@ namespace SDX.Toolkit.Controls
                     else
                     {
                         // lowlight it
-                        StyleHelper.SetFontCharacteristics(button, ControlStyles.NavBarInactive);
+                        text.TextStyle = TextStyles.NavigationSection;
                     }
                 }
             }

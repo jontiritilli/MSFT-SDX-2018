@@ -3,19 +3,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SurfaceTestBed.Styles">
 
-    <GridLength x:Key="LeftMargin">80</GridLength>
-    <GridLength x:Key="TopMargin">80</GridLength>
-    <GridLength x:Key="RightMargin">80</GridLength>
-    <GridLength x:Key="BottomMargin">50</GridLength>
+    <GridLength x:Key="LeftMargin">224</GridLength>
+    <GridLength x:Key="TopMargin">151.81</GridLength>
+    <GridLength x:Key="RightMargin">224</GridLength> <!-- Not spec'ed in design; Assumed to mirror left margin -->
+    <GridLength x:Key="BottomMargin">79</GridLength>
 
-    <GridLength x:Key="SpaceBelowHeader">30</GridLength>
+    <GridLength x:Key="SpaceBelowHeader">84.35</GridLength>
 
-    <x:Double x:Key="HeaderWidth">450</x:Double>
+    <x:Double x:Key="HeaderWidth">1449</x:Double>
+    <x:Double x:Key="HeaderSpacerRowHeight">84.35</x:Double>
 
     <x:Double x:Key="CanvasWidth15">1620</x:Double> <!-- 3240 / 2 for 200% scaling -->
     <x:Double x:Key="CanvasHeight15">1000</x:Double> <!-- = (2160 / 2) - 80 for navbar @ 200% scaling -->
 
     <x:Double x:Key="CanvasWidth13">1500</x:Double> <!-- 3000 / 2 for 200% scaling -->
     <x:Double x:Key="CanvasHeight13">920</x:Double> <!-- = (2000 / 2) - 80 for navbar @ 200% scaling -->
+
+    <x:Double x:Key="NavigationBarHeight">184</x:Double>
+    <x:Double x:Key="NavigationBarLineHeight">15</x:Double>
+    <x:Double x:Key="NavigationBarMargin">95</x:Double>
+    <x:Double x:Key="NavigationBarArrowWidth">26.6</x:Double>
+    <x:Double x:Key="NavigationBarHomeWidth">0</x:Double>   <!-- Home does not appear in this app -->
 
 </ResourceDictionary>

@@ -13,56 +13,247 @@ using Windows.UI.Xaml.Media;
 
 namespace SDX.Toolkit.Helpers
 {
-    public enum ControlStyles
+    public enum TextStyles
     {
-        Hero,               // Segoe UI Light, 480px, white
-        Headline,           // Segoe UI Light, 200px, white
-        Lede,               // Segoe UI Regular, 86px, white
-        ListHeadline,       // Segoe UI Regular, 110px, White
-        ListLede,           // Segoe UI Regular, 86px, White
-        CTAText,            // Segoe UI Bold, 60px, #454545
-        PopupText,          // Segoe UI Regular, 86px, Black
-        NavBarActive,       // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-        NavBarInactive,     // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-        SwipeLeft,          // Segoe UI Bold, 60px, White
-        SwipeToContinue,    // Segoe UI Semibold, 70px, White
-        ButtonText,         // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-        SliderText,         // Segoe UI Bold, 60px, White
-        TouchHere,          // Segoe UI Bold, 60px, White
-        BatteryLifeHeader,   // Segoe UI Regular, 100px, Black
-        BatteryLifeLede,     // Segoe UI Regular, 86px, Black
-        BatteryLifeHours,  // Segoe UI Light, 300px, White
-        BatteryLifeTimeline, // Segoe UI Bold, 60px, Black
-        GaugePoint,         // Segoe UI Bold, 60px, White
-        GaugePointBullet,   // Segoe UI Bold, 60px, White
-        Footnote,           // Segoe UI Regular, 60px, #5C5C5C
-        LearnMore,          // Segoe UI Bold, 60px, #454545
-        CompareHeader,      // Segoe UI Light, 200px, Black
-        CompareTitle,       // Segoe UI Bold, 80px, Black
-        CompareText,        // Segoe UI Regular, 80px, Black
-        CompareLegal        // Segoe UI Regular, 70px, #5C5C5C
+        Hero,
+        Swipe,
+        PageHeadline,
+        PageHeadlineDark,
+        PageLede,
+        PageLedeDark,
+        ListHeadline,
+        ListLede,
+        ListItemHeadline,
+        ListItemLede,
+        ListItemCTAText,
+        PopupHeadline,
+        PopupLede,
+        PopupBatteryLife,
+        Legal,
+        NavigationSection,
+        NavigationSectionActive
+    }
+
+    public enum LayoutSizes
+    {
+        SwipeLeftEllipseSize,
+        SwipeLeftSpacer,
+        SwipeToContinueArrowWidth,
+        SwipeToContinueSpacer,
+        PopupDefaultWidth,
+        PopupSpacer,
+        NavigationBarHeight,
+        NavigationBarLineHeight,
+        NavigationBarMargin,
+        NavigationBarSpacer,
+        NavigationBarWidthArrow,
+        NavigationBarWidthHome
+    }
+
+    public enum LayoutThicknesses
+    {
+        HeroMargin,
+        PopupBorder,
+        PopupMargin
     }
 
     public static class StyleHelper
     {
-        // these are "pixel" to "point" conversions based on pixels/SCALE_FACTOR = point
-        private static readonly double SCALE_FACTOR = 4.2;
+        public const string STYLE_HERO = "Hero";
+        public const string STYLE_SWIPE = "Swipe";
+        public const string STYLE_PAGE_HEADLINE = "PageHeadline";
+        public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark";
+        public const string STYLE_PAGE_LEDE = "PageLede";
+        public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
+        public const string STYLE_LIST_HEADLINE = "ListHeadline";
+        public const string STYLE_LIST_LEDE = "ListLede";
+        public const string STYLE_LISTITEM_HEADLINE = "ListItemHeadline";
+        public const string STYLE_LISTITEM_LEDE = "ListItemLede";
+        public const string STYLE_LISTITEM_CTATEXT = "ListItemCTAText";
+        public const string STYLE_POPUP_HEADLINE = "PopupHeadline";
+        public const string STYLE_POPUP_LEDE = "PopupLede";
+        public const string STYLE_POPUP_BATTERYLIFE = "PopupBatteryLife";
+        public const string STYLE_LEGAL = "Legal";
+        public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
+        public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
 
-        public static readonly double FONTSIZE_60px = Math.Truncate(60d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_70px = Math.Truncate(70d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_80px = Math.Truncate(80d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_86px = Math.Truncate(86d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_100px = Math.Truncate(100d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_110px = Math.Truncate(110d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_200px = Math.Truncate(200d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_300px = Math.Truncate(300d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_400px = Math.Truncate(400d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_480px = Math.Truncate(480d / SCALE_FACTOR);
+        public const string SIZE_SWIPELEFT_ELLIPSE_RADIUS = "SwipeLeftEllipseRadius";
+        public const string SIZE_SWIPELEFT_SPACER = "SwipeLeftSpacer";
 
-        public static readonly double ELEMENT_HEIGHT_204PX = Math.Truncate(204d / SCALE_FACTOR);
+        public const string SIZE_SWIPETOCONTINUE_ARROW_WIDTH = "SwipToContinueArrowWidth";
+        public const string SIZE_SWIPETOCONTINUE_SPACER = "SwipeTocontinueSpacer";
 
+        public const string SIZE_POPUP_DEFAULT_WIDTH = "PopupDefaultWidth";
+        public const string SIZE_POPUP_SPACER = "PopupSpacer";
 
-        public static double PopupBackgroundOpacity { get => 0.95d; }
+        public const string SIZE_NAVIGATIONBAR_HEIGHT = "NavigationBarHeight";
+        public const string SIZE_NAVIGATIONBAR_LINEHEIGHT = "NavigationBarLineHeight";
+        public const string SIZE_NAVIGATIONBAR_MARGIN = "NavigationBarMargin";
+        public const string SIZE_NAVIGATIONBAR_SPACER = "NavigationBarSpacer";
+        public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
+        public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
+
+        public const string THICKNESS_HERO_MARGIN = "HeroMargin";
+        public const string THICKNESS_POPUP_BORDER = "PopupBorder";
+        public const string THICKNESS_POPUP_MARGIN = "PopupMargin";
+
+        public static double GetApplicationDouble(LayoutSizes size)
+        {
+            double value = -1;
+
+            switch (size)
+            {
+                case LayoutSizes.SwipeLeftEllipseSize:
+                    value = GetApplicationDouble(LayoutSizes.SwipeLeftEllipseSize);
+                    break;
+
+                case LayoutSizes.SwipeLeftSpacer:
+                    value = GetApplicationDouble(LayoutSizes.SwipeLeftSpacer);
+                    break;
+
+                case LayoutSizes.SwipeToContinueArrowWidth:
+                    value = GetApplicationDouble(LayoutSizes.SwipeToContinueArrowWidth);
+                    break;
+
+                case LayoutSizes.SwipeToContinueSpacer:
+                    value = GetApplicationDouble(LayoutSizes.SwipeToContinueSpacer);
+                    break;
+
+                case LayoutSizes.PopupDefaultWidth:
+                    value = GetApplicationDouble(SIZE_POPUP_DEFAULT_WIDTH);
+                    break;
+
+                case LayoutSizes.PopupSpacer:
+                    value = GetApplicationDouble(SIZE_POPUP_SPACER);
+                    break;
+
+                case LayoutSizes.NavigationBarHeight:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_HEIGHT);
+                    break;
+
+                case LayoutSizes.NavigationBarLineHeight:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_LINEHEIGHT);
+                    break;
+
+                case LayoutSizes.NavigationBarMargin:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_MARGIN);
+                    break;
+
+                case LayoutSizes.NavigationBarSpacer:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_SPACER);
+                    break;
+
+                case LayoutSizes.NavigationBarWidthArrow:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_WIDTH_ARROW);
+                    break;
+
+                case LayoutSizes.NavigationBarWidthHome:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_WIDTH_HOME);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return value;
+        }
+
+        public static double GetApplicationDouble(string name)
+        {
+            double value = -1;
+
+            try
+            {
+                value = (double)Application.Current.Resources[name];
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return value;
+        }
+
+        public static Style GetApplicationStyle(TextStyles textStyle)
+        {
+            Style style = null;
+
+            switch (textStyle)
+            {
+                case TextStyles.Hero:
+                    style = GetApplicationStyle(STYLE_HERO);
+                    break;
+
+                case TextStyles.Swipe:
+                    style = GetApplicationStyle(STYLE_SWIPE);
+                    break;
+
+                case TextStyles.PageHeadline:
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE);
+                    break;
+
+                case TextStyles.PageHeadlineDark:
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE_DARK);
+                    break;
+
+                case TextStyles.PageLede:
+                    style = GetApplicationStyle(STYLE_PAGE_LEDE);
+                    break;
+
+                case TextStyles.PageLedeDark:
+                    style = GetApplicationStyle(STYLE_PAGE_LEDE_DARK);
+                    break;
+
+                case TextStyles.ListHeadline:
+                    style = GetApplicationStyle(STYLE_LIST_HEADLINE);
+                    break;
+
+                case TextStyles.ListLede:
+                    style = GetApplicationStyle(STYLE_LIST_LEDE);
+                    break;
+
+                case TextStyles.ListItemHeadline:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE);
+                    break;
+
+                case TextStyles.ListItemLede:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE);
+                    break;
+
+                case TextStyles.ListItemCTAText:
+                    style = GetApplicationStyle(STYLE_LISTITEM_CTATEXT);
+                    break;
+
+                case TextStyles.PopupHeadline:
+                    style = GetApplicationStyle(STYLE_POPUP_HEADLINE);
+                    break;
+
+                case TextStyles.PopupLede:
+                    style = GetApplicationStyle(STYLE_POPUP_LEDE);
+                    break;
+
+                case TextStyles.PopupBatteryLife:
+                    style = GetApplicationStyle(STYLE_POPUP_BATTERYLIFE);
+                    break;
+
+                case TextStyles.Legal:
+                    style = GetApplicationStyle(STYLE_LEGAL);
+                    break;
+
+                case TextStyles.NavigationSection:
+                    style = GetApplicationStyle(STYLE_NAVIGATION_SECTION);
+                    break;
+
+                case TextStyles.NavigationSectionActive:
+                    style = GetApplicationStyle(STYLE_NAVIGATION_SECTION_ACTIVE);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return style;
+        }
 
         public static Style GetApplicationStyle(string name)
         {
@@ -80,710 +271,78 @@ namespace SDX.Toolkit.Helpers
             return style;
         }
 
-        public static string GetFontFamily()
+        public static Thickness GetApplicationThickness(LayoutThicknesses layoutThickness)
         {
-            // default font family
-            string fontFamily = "SegoeUI";
+            Thickness thickness;
 
-            //if (null != LocalizationService.Current)
-            //{
-            //    if (LocalizationService.Current.IsLanguageJapanese())
-            //    {
-            //        fontFamily = "UE Gothic";
-            //    }
-            //}
-
-            return fontFamily;
-        }
-
-        public static void SetFontCharacteristics(Control element, ControlStyles fontStyle)
-        {
-            // get font family
-            string fontFamily = GetFontFamily();
-
-            switch (fontStyle)
+            switch (layoutThickness)
             {
-                case ControlStyles.Hero:            // Segoe UI Light, 480px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_480px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case LayoutThicknesses.HeroMargin:
+                    GetApplicationThickness(THICKNESS_HERO_MARGIN);
                     break;
 
-                case ControlStyles.Headline:        // Segoe UI Light, 200px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case LayoutThicknesses.PopupBorder:
+                    GetApplicationThickness(THICKNESS_POPUP_BORDER);
                     break;
 
-                case ControlStyles.Lede:            // Segoe UI Regular, 86px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_110px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                case ControlStyles.PopupText:           // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.NavBarActive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.NavBarInactive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 112, 112, 112));
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.SwipeLeft:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.SwipeToContinue: // Segoe UI Semibold, 70px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ButtonText:      // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    element.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-                    element.Height = ELEMENT_HEIGHT_204PX;
-                    break;
-
-                case ControlStyles.SliderText:    // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.TouchHere:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.BatteryLifeHeader:// Segoe UI Regular, 100px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_100px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.BatteryLifeLede:  // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.BatteryLifeHours: // Segoe UI Light, 300px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_300px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.BatteryLifeTimeline:// Segoe UI Bold, 60px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.GaugePoint:      // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.GaugePointBullet:      // Segoe UI Bold, 60px, Black, 30% Opacity
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush() { Color = Colors.Black, Opacity = 0.3 };
-                    break;
-
-                case ControlStyles.CompareHeader:       // Segoe UI Light, 200px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareTitle:        // Segoe UI Bold, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareText:         // Segoe UI Regular, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareLegal:        // Segoe UI Regular, 70px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.Footnote:      // Segoe UI Regular, 60px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.LearnMore:      // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
+                case LayoutThicknesses.PopupMargin:
+                    GetApplicationThickness(THICKNESS_POPUP_MARGIN);
                     break;
 
                 default:
                     break;
             }
+
+            return thickness;
         }
 
-        public static void SetFontCharacteristics(TextElement element, ControlStyles fontStyle)
+        public static Thickness GetApplicationThickness(string name)
         {
-            // get font family
-            string fontFamily = GetFontFamily();
+            Thickness thickness;
 
-            switch (fontStyle)
+            try
             {
-                case ControlStyles.Hero:            // Segoe UI Light, 480px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_480px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+                thickness = (Thickness)Application.Current.Resources[name];
+            }
+            catch (Exception)
+            {
 
-                case ControlStyles.Headline:        // Segoe UI Light, 200px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+            }
 
-                case ControlStyles.Lede:            // Segoe UI Regular, 86px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+            return thickness;
+        }
 
-                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_110px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+        public static void SetRunStyleFromStyle(Run run, Style style)
+        {
+            if ((null != run) && (null != style))
+            {
+                // to easily get style values, must apply it to something
+                TextBlock textBlock = new TextBlock()
+                {
+                    Style = style
+                };
 
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                case ControlStyles.PopupText:           // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.NavBarActive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    //element.HorizontalAlignment = HorizontalAlignment.Left;
-                    //element.VerticalAlignment = VerticalAlignment.Center;
-                    //element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.NavBarInactive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 112, 112, 112));
-                    //element.HorizontalAlignment = HorizontalAlignment.Left;
-                    //element.VerticalAlignment = VerticalAlignment.Center;
-                    //element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.SwipeLeft:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.SwipeToContinue: // Segoe UI Semibold, 70px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ButtonText:      // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    //element.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-                    //element.Height = ELEMENT_HEIGHT_204PX;
-                    break;
-
-                case ControlStyles.SliderText:    // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.TouchHere:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.BatteryLifeHeader:// Segoe UI Regular, 100px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_100px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.BatteryLifeLede:  // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.BatteryLifeHours: // Segoe UI Light, 300px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_300px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.BatteryLifeTimeline:// Segoe UI Bold, 60px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.GaugePoint:      // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.GaugePointBullet:      // Segoe UI Bold, 60px, Black, 30% Opacity
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush() { Color = Colors.Black, Opacity = 0.3 };
-                    break;
-
-                case ControlStyles.CompareHeader:       // Segoe UI Light, 200px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareTitle:        // Segoe UI Bold, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareText:         // Segoe UI Regular, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareLegal:        // Segoe UI Regular, 70px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.Footnote:      // Segoe UI Regular, 60px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.LearnMore:      // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                default:
-                    break;
+                // now copy relevant properties to the run
+                run.FontFamily = textBlock.FontFamily;
+                run.FontStyle = textBlock.FontStyle;
+                run.FontWeight = textBlock.FontWeight;
+                run.FontSize = textBlock.FontSize;
+                run.Foreground = textBlock.Foreground;
             }
         }
 
-        public static void SetFontCharacteristics(TextBlock element, ControlStyles fontStyle)
+        public static AcrylicBrush GetAcrylicBrush()
         {
-            // get font family
-            string fontFamily = GetFontFamily();
-
-            switch (fontStyle)
+            AcrylicBrush brush = new AcrylicBrush()
             {
-                case ControlStyles.Hero:            // Segoe UI Light, 480px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_480px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+                BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                Opacity = 0.9,
+                TintColor = Colors.Gray,
+                TintOpacity = 0.4,
+                FallbackColor = Colors.LightGray,
+            };
 
-                case ControlStyles.Headline:        // Segoe UI Light, 200px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.Lede:            // Segoe UI Regular, 86px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_110px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                case ControlStyles.PopupText:           // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.NavBarActive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.NavBarInactive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 112, 112, 112));
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.SwipeLeft:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.SwipeToContinue: // Segoe UI Semibold, 70px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ButtonText:      // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    //element.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-                    element.Height = ELEMENT_HEIGHT_204PX;
-                    break;
-
-                case ControlStyles.SliderText:    // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.TouchHere:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.BatteryLifeHeader:// Segoe UI Regular, 100px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_100px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.BatteryLifeLede:  // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.BatteryLifeHours: // Segoe UI Light, 300px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_300px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.BatteryLifeTimeline:// Segoe UI Bold, 60px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    element.FontSize = FONTSIZE_60px;
-                    break;
-
-                case ControlStyles.GaugePoint:      // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.GaugePointBullet:      // Segoe UI Bold, 60px, Black, 30% Opacity
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush() { Color = Colors.Black, Opacity = 0.3 };
-                    break;
-
-                case ControlStyles.CompareHeader:       // Segoe UI Light, 200px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareTitle:        // Segoe UI Bold, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareText:         // Segoe UI Regular, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareLegal:        // Segoe UI Regular, 70px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.Footnote:      // Segoe UI Regular, 60px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.LearnMore:      // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                default:
-                    break;
-            }
+            return brush;
         }
     }
 }

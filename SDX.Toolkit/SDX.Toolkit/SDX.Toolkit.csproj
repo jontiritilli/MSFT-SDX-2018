@@ -110,6 +110,7 @@
     <Compile Include="Controls\AppSelector.cs" />
     <Compile Include="Controls\AppSelectorImage.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
+    <Compile Include="Controls\CanvasEx.cs" />
     <Compile Include="Controls\ColoringBook.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />

@@ -35,20 +35,11 @@ namespace SDX.Toolkit.Controls
 
         private Border _layoutRoot = null;
         private Grid _layoutGrid = null;
-        private TextBlock _headline = null;
-        private TextBlock _lede = null;
+        private TextBlockEx _headline = null;
+        private TextBlock _lede = null;     // using TextBlock here because we need access to .Inlines and can't expose that on TextBlockEx
         private Run _ledeText = null;
         private Hyperlink _ledeCTALink = null;
         private Run _ledeCTAText = null;
-
-        //private Storyboard _storyboardFadeInHeadline = null;
-        //private Storyboard _storyboardFadeOutHeadline = null;
-
-        //private Storyboard _storyboardFadeInLede = null;
-        //private Storyboard _storyboardFadeOutLede = null;
-
-        //private DispatcherTimer _timer = null;
-        //private int _dispatchCount = 0;
 
         #endregion
 
@@ -92,106 +83,6 @@ namespace SDX.Toolkit.Controls
 
             return visible;
         }
-
-        //public void StartFadeIn()
-        //{
-        //    // if we're not rendered yet; note: need to use AND here because we don't always get both
-        //    // a headline and a lede; some styles create only one or the other.
-        //    if ((null == _storyboardFadeInHeadline) && (null == _storyboardFadeInLede))
-        //    {
-        //        // inc the counter
-        //        _dispatchCount++;
-
-        //        // limit the number of times we do this
-        //        if (_dispatchCount < 10)
-        //        {
-        //            // create a timer
-        //            if (null == _timer)
-        //            {
-        //                _timer = new DispatcherTimer()
-        //                {
-        //                    Interval = TimeSpan.FromMilliseconds(500d)
-        //                };
-        //                _timer.Tick += DispatcherTimer_Tick;
-        //            }
-
-        //            // start it
-        //            _timer.Start();
-        //        }
-
-        //        // return
-        //        return;
-        //    }
-
-        //    // start the headline
-        //    if (null != _storyboardFadeInHeadline)
-        //    {
-        //        _storyboardFadeInHeadline.Begin();
-        //    }
-
-        //    // start the lede
-        //    if (null != _storyboardFadeInLede)
-        //    {
-        //        _storyboardFadeInLede.Begin();
-        //    }
-        //}
-
-        //private void DispatcherTimer_Tick(object sender, object e)
-        //{
-        //    // stop the timer
-        //    if (null != _timer) { _timer.Stop(); }
-
-        //    // call the method that sets up the timer
-        //    this.StartFadeIn();
-        //}
-
-        //public void StartFadeOut()
-        //{
-        //    // start the headline
-        //    if (null != _storyboardFadeOutHeadline)
-        //    {
-        //        _storyboardFadeOutHeadline.Begin();
-        //    }
-
-        //    // start the lede
-        //    if (null != _storyboardFadeOutLede)
-        //    {
-        //        _storyboardFadeOutLede.Begin();
-        //    }
-        //}
-
-        //public void ResetAnimation()
-        //{
-        //    // reset the headline
-        //    if (null != _storyboardFadeInHeadline)
-        //    {
-        //        _storyboardFadeInHeadline.Stop();
-        //    }
-        //    if (null != _storyboardFadeOutHeadline)
-        //    {
-        //        _storyboardFadeOutHeadline.Stop();
-        //    }
-
-        //    // reset the lede
-        //    if (null != _storyboardFadeInLede)
-        //    {
-        //        _storyboardFadeInLede.Stop();
-        //    }
-        //    if (null != _storyboardFadeOutLede)
-        //    {
-        //        _storyboardFadeOutLede.Stop();
-        //    }
-
-        //    // reset opacity to starting point
-        //    if (null != _headline)
-        //    {
-        //        _headline.Opacity = 0.0;
-        //    }
-        //    if (null != _lede)
-        //    {
-        //        _lede.Opacity = 0.0;
-        //    }
-        //}
 
         public void SetOpacity(double opacity)
         {
@@ -269,84 +160,34 @@ namespace SDX.Toolkit.Controls
 
         // HeadlineStyle
         public static readonly DependencyProperty HeadlineStyleProperty =
-        DependencyProperty.Register("HeadlineStyle", typeof(ControlStyles), typeof(Header), new PropertyMetadata(ControlStyles.Headline, OnHeadlineStyleChanged));
+        DependencyProperty.Register("HeadlineStyle", typeof(TextStyles), typeof(Header), new PropertyMetadata(TextStyles.PageHeadline, OnHeadlineStyleChanged));
 
 
-        public ControlStyles HeadlineStyle
+        public TextStyles HeadlineStyle
         {
-            get { return (ControlStyles)GetValue(HeadlineStyleProperty); }
+            get { return (TextStyles)GetValue(HeadlineStyleProperty); }
             set { SetValue(HeadlineStyleProperty, value); }
         }
 
         // LedeStyle
         public static readonly DependencyProperty LedeStyleProperty =
-        DependencyProperty.Register("LedeStyle", typeof(ControlStyles), typeof(Header), new PropertyMetadata(ControlStyles.Lede, OnLedeStyleChanged));
+        DependencyProperty.Register("LedeStyle", typeof(TextStyles), typeof(Header), new PropertyMetadata(TextStyles.PageLede, OnLedeStyleChanged));
 
-        public ControlStyles LedeStyle
+        public TextStyles LedeStyle
         {
-            get { return (ControlStyles)GetValue(LedeStyleProperty); }
+            get { return (TextStyles)GetValue(LedeStyleProperty); }
             set { SetValue(LedeStyleProperty, value); }
         }
 
         // CTATextStyle
         public static readonly DependencyProperty CTATextStyleProperty =
-        DependencyProperty.Register("CTATextStyle", typeof(ControlStyles), typeof(Header), new PropertyMetadata(ControlStyles.CTAText, OnCTATextStyleChanged));
+        DependencyProperty.Register("CTATextStyle", typeof(TextStyles), typeof(Header), new PropertyMetadata(TextStyles.ListItemCTAText, OnCTATextStyleChanged));
 
-        public ControlStyles CTATextStyle
+        public TextStyles CTATextStyle
         {
-            get { return (ControlStyles)GetValue(CTATextStyleProperty); }
+            get { return (TextStyles)GetValue(CTATextStyleProperty); }
             set { SetValue(CTATextStyleProperty, value); }
         }
-
-        //// DurationInMilliseconds
-        //public static readonly DependencyProperty DurationInMillisecondsProperty =
-        //    DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(Header), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
-
-        //public double DurationInMilliseconds
-        //{
-        //    get { return (double)GetValue(DurationInMillisecondsProperty); }
-        //    set { SetValue(DurationInMillisecondsProperty, value); }
-        //}
-
-        //// FadeInCompletedHandler
-        //public static readonly DependencyProperty FadeInCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(Header), new PropertyMetadata(null));
-
-        //public EventHandler<object> FadeInCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeInCompletedHandlerProperty); }
-        //    set { SetValue(FadeInCompletedHandlerProperty, value); }
-        //}
-
-        //// FadeOutCompletedHandler
-        //public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(Header), new PropertyMetadata(null));
-
-        //public EventHandler<object> FadeOutCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeOutCompletedHandlerProperty); }
-        //    set { SetValue(FadeOutCompletedHandlerProperty, value); }
-        //}
-
-        //// StaggerDelayInMilliseconds
-        //public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-        //    DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(Header), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
-
-        //public double StaggerDelayInMilliseconds
-        //{
-        //    get { return (double)GetValue(StaggerDelayInMillisecondsProperty); }
-        //    set { SetValue(StaggerDelayInMillisecondsProperty, value); }
-        //}
-
-        //// AutoStart
-        //public static readonly DependencyProperty AutoStartProperty =
-        //DependencyProperty.Register("AutoStart", typeof(bool), typeof(Header), new PropertyMetadata(true, OnAutoStartChanged));
-
-        //public bool AutoStart
-        //{
-        //    get { return (bool)GetValue(AutoStartProperty); }
-        //    set { SetValue(AutoStartProperty, value); }
-        //}
 
         #endregion
 
@@ -354,10 +195,7 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //if (this.AutoStart)
-            //{
-            //    this.StartFadeIn();
-            //}
+
         }
 
         private static void OnHeadlineChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -454,21 +292,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        //private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnStaggerDelayInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
         #endregion
 
         #region UI Methods
@@ -484,8 +307,6 @@ namespace SDX.Toolkit.Controls
 
             // calculate element widths
             double gridWidth = this.Width;
-            //double headlineWidth = this.Width;
-            //double ledeWidth = this.Width * leftColPercent;
 
             // calculate rows
             GridLength headlineRowHeight = (String.IsNullOrWhiteSpace(this.Headline)) ? new GridLength(0) : GridLength.Auto;
@@ -506,23 +327,19 @@ namespace SDX.Toolkit.Controls
             // add it to the root
             _layoutRoot.Child = _layoutGrid;
 
-            //// calculate item delay
-            //double itemDelay = (HeaderStyles.ListItemLedeOnly == this.HeaderStyle) ? 0d : this.DurationInMilliseconds / 2;
-
             // if we have a headline
             if (!String.IsNullOrWhiteSpace(this.Headline))
             {
                 // create headline
                 // =================
-                _headline = new TextBlock()
+                _headline = new TextBlockEx()
                 {
                     Name = "Headline",
-                    HorizontalTextAlignment = this.HeaderAlignment,
+                    TextAlignment = this.HeaderAlignment,
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
-                    //Opacity = 0d
+                    TextStyle = this.HeadlineStyle,
                 };
-                StyleHelper.SetFontCharacteristics(_headline, this.HeadlineStyle);
                 Grid.SetRow(_headline, 0);
                 Grid.SetColumn(_headline, 0);
 
@@ -532,10 +349,6 @@ namespace SDX.Toolkit.Controls
 
                 // add to the grid
                 _layoutGrid.Children.Add(_headline);
-
-                // set up animations
-                //_storyboardFadeInHeadline = AnimationHelper.CreateEasingAnimation(_headline, "Opacity", 0.0, 0.0, 1.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                //_storyboardFadeOutHeadline = AnimationHelper.CreateEasingAnimation(_headline, "Opacity", 1.0, 1.0, 0.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                 // update layout
                 this.UpdateLayout();
@@ -549,21 +362,24 @@ namespace SDX.Toolkit.Controls
                 _lede = new TextBlock()
                 {
                     Name = "Lede",
-                    HorizontalTextAlignment = this.HeaderAlignment,
+                    TextAlignment = this.HeaderAlignment,
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
-                    //Opacity = 0d
+                    Style = StyleHelper.GetApplicationStyle(this.LedeStyle),
                 };
-                StyleHelper.SetFontCharacteristics(_lede, this.LedeStyle);
                 Grid.SetRow(_lede, 1);
                 Grid.SetColumn(_lede, 0);
+
+                // get styles for the runs
+                Style runStyle = StyleHelper.GetApplicationStyle(this.LedeStyle);
+                Style ctaStyle = StyleHelper.GetApplicationStyle(this.CTATextStyle);
 
                 // create the runs
                 _ledeText = new Run()
                 {
-                    Text = this.Lede + CHAR_NBSPACE + CHAR_NBSPACE
+                    Text = this.Lede + CHAR_NBSPACE + CHAR_NBSPACE,
                 };
-                StyleHelper.SetFontCharacteristics(_ledeText, this.LedeStyle);
+                StyleHelper.SetRunStyleFromStyle(_ledeText, runStyle);
                 _lede.Inlines.Add(_ledeText);
 
                 // if there's a call to action
@@ -580,7 +396,8 @@ namespace SDX.Toolkit.Controls
                     {
                         Text = this.CTAText.ToUpper()
                     };
-                    StyleHelper.SetFontCharacteristics(_ledeCTAText, this.CTATextStyle);
+                    
+                    StyleHelper.SetRunStyleFromStyle(_ledeCTAText, ctaStyle);
                     _ledeCTALink.Inlines.Add(_ledeCTAText);
                     _lede.Inlines.Add(_ledeCTALink);
 
@@ -595,10 +412,6 @@ namespace SDX.Toolkit.Controls
 
                 // add to the grid
                 _layoutGrid.Children.Add(_lede);
-
-                // set up animation
-                //_storyboardFadeInLede = AnimationHelper.CreateEasingAnimationWithNotify(_lede, this.FadeInCompletedHandler, "Opacity", 0.0, 0.0, 1.0, null, null, this.DurationInMilliseconds, itemDelay + this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                //_storyboardFadeOutLede = AnimationHelper.CreateEasingAnimationWithNotify(_lede, this.FadeOutCompletedHandler, "Opacity", 1.0, 1.0, 0.0, null, null, this.DurationInMilliseconds, itemDelay + this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
             }
         }
 
