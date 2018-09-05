@@ -4,16 +4,45 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     Style="{StaticResource PageStyle}"
     DataContext="{Binding ExperienceInnovationViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Header Grid.Row="3" Grid.Column="1"
+                    x:Name="PageHeader" 
+                    Headline="{x:Bind Path=ViewModel.Headline}"
+                    Lede="{x:Bind Path=ViewModel.Lede}"
+                    HeadlineStyle="Headline"
+                    LedeStyle="Lede"
+                    Width="{StaticResource HeaderWidth}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+
+        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
+            <Image.Source>
+                <BitmapImage UriSource="{x:Bind Path=ViewModel.DesignUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
+            </Image.Source>
+        </Image>
     </Grid>
 </Page>

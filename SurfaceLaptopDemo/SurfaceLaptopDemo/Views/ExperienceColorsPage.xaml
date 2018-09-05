@@ -20,6 +20,7 @@
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -38,17 +39,19 @@
                     LedeStyle="Lede"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Bottom"/>
 
-        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
+        <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
             x:Name="AppSelectorKB"
-            URIs="{x:Bind Path=ViewModel.appSelectorData}"
+            URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorData}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Top"
+            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
+            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"/>
 
-        <ctrl:AppSelectorImage Grid.Row="3" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="3"
+        <ctrl:AppSelectorImage Grid.Row="3" Grid.Column="2" Grid.RowSpan="3"
             x:Name="AppSelectorImageKB"
-            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+            URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
     </Grid>

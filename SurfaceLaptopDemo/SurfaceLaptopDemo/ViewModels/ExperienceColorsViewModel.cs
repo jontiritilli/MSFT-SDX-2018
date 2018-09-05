@@ -16,23 +16,28 @@ namespace SurfaceLaptopDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_brand-bg.png";
 
-        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Lifestyle/foxburg_black_lifestlye.png";
-        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Lifestyle/foxburg_burgundy_lifestlye.png";
-        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Lifestyle/foxburg_cobalt_lifestlye.png";
+        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Lifestyle/foxburg_black_lifestyle.png";
+        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Lifestyle/foxburg_burgundy_lifestyle.png";
+        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Lifestyle/foxburg_cobalt_lifestyle.png";
+        private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Lifestyle/foxburg_platinum_lifestyle.png";
 
-        private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Colors/cobalt_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_2 = "ms-appx:///Assets/Colors/black_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_3 = "ms-appx:///Assets/Colors/burgundy_swatch.png";
+        private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Colors/fox_black.png";
+        private const string URI_APPSELECTOR_COLOR_2 = "ms-appx:///Assets/Colors/fox_burgundy.png";
+        private const string URI_APPSELECTOR_COLOR_3 = "ms-appx:///Assets/Colors/fox_cobalt.png";
+        private const string URI_APPSELECTOR_COLOR_4 = "ms-appx:///Assets/Colors/fox_platinum.png";
+        //private const string URI_APPSELECTOR_COLOR_5 = "ms-appx:///Assets/Colors/fox_coral.png";
 
-        private const string URI_APPSELECTOR_COLOR_1_SELECTED = "ms-appx:///Assets/Colors/cobalt_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_2_SELECTED = "ms-appx:///Assets/Colors/black_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_3_SELECTED = "ms-appx:///Assets/Colors/burgundy_swatch.png";
+        private const string URI_APPSELECTOR_COLOR_1_SELECTED = "ms-appx:///Assets/Colors/fox_black_active.png";
+        private const string URI_APPSELECTOR_COLOR_2_SELECTED = "ms-appx:///Assets/Colors/fox_burgundy_active.png";
+        private const string URI_APPSELECTOR_COLOR_3_SELECTED = "ms-appx:///Assets/Colors/fox_cobalt_active.png";
+        private const string URI_APPSELECTOR_COLOR_4_SELECTED = "ms-appx:///Assets/Colors/fox_platinum_active.png";
+        //private const string URI_APPSELECTOR_COLOR_5_SELECTED = "ms-appx:///Assets/Colors/fox_coral_active.png";
 
-        private const int APPSELECTOR_BUTTON_WIDTH = 40;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 40;
+        private const int APPSELECTOR_BUTTON_WIDTH = 60;
+        private const int APPSELECTOR_BUTTON_HEIGHT = 50;
 
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 648;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 764;
+        private const int SELECTORIMAGE_IMAGEWIDTH = 768;
+        private const int SELECTORIMAGE_IMAGEHEIGHT = 1360;
 
         #endregion
 
@@ -44,54 +49,76 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string BackgroundUri;
 
+        public int AppSelectorButtonWidth;
+        public int AppSelectorButtonHeight;
+
         public int ImageSelectorImageWidth;
         public int ImageSelectorImageHeight;
 
-        public List<AppSelectorData> appSelectorData = new List<AppSelectorData>();
-        public List<AppSelectorImageURI> appSelectorImageURIs = new List<AppSelectorImageURI>();
+        public List<AppSelectorData> lifeStyleColorSelectorData = new List<AppSelectorData>();
+        public List<AppSelectorImageURI> lifeStyleColorSelectorImageURIs = new List<AppSelectorImageURI>();
 
         #endregion
 
         public ExperienceColorsViewModel()
         {
-            BackgroundUri = URI_BACKGROUND;
-
-            this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
+            BackgroundUri = URI_IMAGESELECTOR_IMAGE_2;
+            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
+            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
 
             // list of color swatches
-            this.appSelectorData.Add(new AppSelectorData()
+            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_1_SELECTED
             });
-            this.appSelectorData.Add(new AppSelectorData()
+            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
             });
-            this.appSelectorData.Add(new AppSelectorData()
+            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_3_SELECTED
             });
+            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+            {
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_4,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_4_SELECTED
+            });
+            //this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+            //{
+            //    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_5,
+            //    Source_SelectedImage = URI_APPSELECTOR_COLOR_5_SELECTED
+            //});
 
             // list of associated lifestyle images to display
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_1,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_2,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
+            this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_IMAGESELECTOR_IMAGE_4,
+                Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+            //this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
+            //{
+            //    URI = URI_IMAGESELECTOR_IMAGE_5,
+            //    Width = SELECTORIMAGE_IMAGEWIDTH
+            //});
 
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
