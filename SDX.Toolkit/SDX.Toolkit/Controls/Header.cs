@@ -344,7 +344,7 @@ namespace SDX.Toolkit.Controls
                 Grid.SetColumn(_headline, 0);
 
                 // set headline binding
-                _headline.SetBinding(TextBlock.TextProperty,
+                _headline.SetBinding(TextBlockEx.TextProperty,
                     new Binding() { Source = this, Path = new PropertyPath("Headline"), Mode = BindingMode.OneWay });
 
                 // add to the grid
