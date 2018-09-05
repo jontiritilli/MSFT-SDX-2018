@@ -13,6 +13,7 @@ namespace SurfaceProDemo.Models
         public string INTRO_TITLE_DEVICE_ONE = "INTRO_TITLE_DEVICE_ONE";
         public string INTRO_TITLE_DEVICE_TWO = "INTRO_TITLE_DEVICE_TWO";
         public string INTRO_TITLE = "INTRO_TITLE";
+        public string INTRO_ROWCOUNT = "1";
         public string INTRO_SWIPE = "INTRO_SWIPE";
         public string EXPERIENCE = "EXPERIENCE";
         public string ACCESSORIES = "ACCESSORIES";
