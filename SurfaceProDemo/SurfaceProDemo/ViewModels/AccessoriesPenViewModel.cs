@@ -14,34 +14,33 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";           
        
-        private const string URI_COLORING_BOOK_IMAGE = "ms-appx:///Assets/Accessories/cruz_peacock.png";
+        private const string URI_COLORING_BOOK_IMAGE = "ms-appx:///Assets/Accessories/peacock.png";
 
         // private consts for widths of the coloring book image 
         private const int COLORING_BOOK_IMAGEWIDTH = 700;
 
         private const int COLORING_BOOK_IMAGEHEIGHT = 700;
 
-        //consts for colors and the rgbs
-        // THESE ARE WRONG. GET THESE FRON THE ADOBE FILE   
+        //consts for colors and the rgbs        
         private Color COLORING_BOOK_COLOR_1 = Color.FromArgb(100, 229, 48, 97);
         private Color COLORING_BOOK_COLOR_2 = Color.FromArgb(100, 12, 98, 144);
         private Color COLORING_BOOK_COLOR_3 = Color.FromArgb(100, 152, 216, 216);
         private Color COLORING_BOOK_COLOR_4 = Color.FromArgb(100, 255, 179, 103);
         private Color COLORING_BOOK_COLOR_5 = Color.FromArgb(100, 151, 101, 245);
 
-        private const string URI_SVG_COLORING_BOOK_COLOR_1 = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_2 = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_3 = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_4 = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_5 = "ms-appx:///Assets/Universal/close-app-button.png";
+        private const string URI_COLORING_BOOK_COLOR_1 = "ms-appx:///Assets/Accessories/ArtworkColors/red.png";
+        private const string URI_COLORING_BOOK_COLOR_2 = "ms-appx:///Assets/Accessories/ArtworkColors/blue.png";
+        private const string URI_COLORING_BOOK_COLOR_3 = "ms-appx:///Assets/Accessories/ArtworkColors/skyblue.png";
+        private const string URI_COLORING_BOOK_COLOR_4 = "ms-appx:///Assets/Accessories/ArtworkColors/yellow.png";
+        private const string URI_COLORING_BOOK_COLOR_5 = "ms-appx:///Assets/Accessories/ArtworkColors/purple.png";
 
-        private const string URI_SVG_COLORING_BOOK_COLOR_1_SELECTED = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_2_SELECTED = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_3_SELECTED = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_4_SELECTED = "ms-appx:///Assets/Universal/close-app-button.png";
-        private const string URI_SVG_COLORING_BOOK_COLOR_5_SELECTED = "ms-appx:///Assets/Universal/close-app-button.png";
+        private const string URI_COLORING_BOOK_COLOR_1_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/red.png";
+        private const string URI_COLORING_BOOK_COLOR_2_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/blue.png";
+        private const string URI_COLORING_BOOK_COLOR_3_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/skyblue.png";
+        private const string URI_COLORING_BOOK_COLOR_4_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/yellow.png";
+        private const string URI_COLORING_BOOK_COLOR_5_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/purple.png";
 
-        private const string URI_SVG_COLORING_BOOK_CLEAR_BUTTON = "ms-appx:///Assets/Universal/close-app-button.png";
+        private const string URI_COLORING_BOOK_CLEAR_BUTTON = "ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
 
 
         private const int COLORING_BOOK_BUTTON_WIDTH = 40;
@@ -86,39 +85,39 @@ namespace SurfaceProDemo.ViewModels
             this.ColoringBookImageWidth = COLORING_BOOK_IMAGEWIDTH;
             this.ColoringBookButtonHeight = COLORING_BOOK_BUTTON_HEIGHT;
             this.ColoringBookButtonWidth = COLORING_BOOK_BUTTON_WIDTH;
-            this.ColoringBookClearButtonURI = URI_SVG_COLORING_BOOK_CLEAR_BUTTON;
+            this.ColoringBookClearButtonURI = URI_COLORING_BOOK_CLEAR_BUTTON;
             this.Colors.Add(new ColoringBookColor()
             {
-                URI_NotSelectedImage = URI_SVG_COLORING_BOOK_COLOR_1,
-                URI_SelectedImage = URI_SVG_COLORING_BOOK_COLOR_1_SELECTED,
+                URI_NotSelectedImage = URI_COLORING_BOOK_COLOR_1,
+                URI_SelectedImage = URI_COLORING_BOOK_COLOR_1_SELECTED,
                 Color = COLORING_BOOK_COLOR_1
             });
 
             this.Colors.Add(new ColoringBookColor()
             {
-                URI_NotSelectedImage = URI_SVG_COLORING_BOOK_COLOR_2,
-                URI_SelectedImage = URI_SVG_COLORING_BOOK_COLOR_2_SELECTED,
+                URI_NotSelectedImage = URI_COLORING_BOOK_COLOR_2,
+                URI_SelectedImage = URI_COLORING_BOOK_COLOR_2_SELECTED,
                 Color = COLORING_BOOK_COLOR_2
             });
 
             this.Colors.Add(new ColoringBookColor()
             {
-                URI_NotSelectedImage = URI_SVG_COLORING_BOOK_COLOR_3,
-                URI_SelectedImage = URI_SVG_COLORING_BOOK_COLOR_3_SELECTED,
+                URI_NotSelectedImage = URI_COLORING_BOOK_COLOR_3,
+                URI_SelectedImage = URI_COLORING_BOOK_COLOR_3_SELECTED,
                 Color = COLORING_BOOK_COLOR_3
             });
 
             this.Colors.Add(new ColoringBookColor()
             {
-                URI_NotSelectedImage = URI_SVG_COLORING_BOOK_COLOR_4,
-                URI_SelectedImage = URI_SVG_COLORING_BOOK_COLOR_4_SELECTED,
+                URI_NotSelectedImage = URI_COLORING_BOOK_COLOR_4,
+                URI_SelectedImage = URI_COLORING_BOOK_COLOR_4_SELECTED,
                 Color = COLORING_BOOK_COLOR_4
             });
 
             this.Colors.Add(new ColoringBookColor()
             {
-                URI_NotSelectedImage = URI_SVG_COLORING_BOOK_COLOR_5,
-                URI_SelectedImage = URI_SVG_COLORING_BOOK_COLOR_5_SELECTED,
+                URI_NotSelectedImage = URI_COLORING_BOOK_COLOR_5,
+                URI_SelectedImage = URI_COLORING_BOOK_COLOR_5_SELECTED,
                 Color = COLORING_BOOK_COLOR_5
             });
 
