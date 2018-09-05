@@ -308,11 +308,11 @@ namespace SDX.Toolkit.Controls
             _textSwipe = new TextBlockEx()
             {
                 Name = "SwipeText",
-                Style = StyleHelper.GetApplicationStyle(TextStyles.Swipe),
+                TextStyle = TextStyles.Swipe,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            _textSwipe.SetBinding(TextBlock.TextProperty,
+            _textSwipe.SetBinding(TextBlockEx.TextProperty,
                     new Binding() { Source = this, Path = new PropertyPath("SwipeText"), Mode = BindingMode.OneWay });
             Grid.SetRow(_textSwipe, 1);
             Grid.SetColumn(_textSwipe, 0);

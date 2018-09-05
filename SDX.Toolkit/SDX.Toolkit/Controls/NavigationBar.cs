@@ -88,20 +88,9 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        private const string URI_HOME = "ms-appx:///Assets/NavigationBar/navHome.svg";
-        private const string URI_CHEVRON_BACK = "ms-appx:///Assets/NavigationBar/navChevronLeft.svg";
-        private const string URI_CHEVRON_FORWARD = "ms-appx:///Assets/NavigationBar/navChevronRight.svg";
-
-        //private const string URI_GOBACK_ACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow-hover.png";
-        //private const string URI_GOBACK_INACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow.png";
-        //private const string URI_GOFORWARD_ACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow-hover.png";
-        //private const string URI_GOFORWARD_INACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow.png";
-
-        //private const string URI_HOME = "ms-appx:///Assets/NavigationBar/home.png";
-
-        private const double BUTTON_SPACING = 30d;
-        private const double WIDTH_ARROW = 15d;
-        private const double WIDTH_HOME = 30d;
+        private const string URI_HOME = "ms-appx:///Assets/NavigationBar/navHome.png";
+        private const string URI_CHEVRON_BACK = "ms-appx:///Assets/NavigationBar/navChevronLeft.png";
+        private const string URI_CHEVRON_FORWARD = "ms-appx:///Assets/NavigationBar/navChevronRight.png";
 
         #endregion
 
@@ -359,8 +348,6 @@ namespace SDX.Toolkit.Controls
             double _arrowWidth = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarWidthArrow);
             double _homeWidth = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarWidthHome);
 
-            Style _sectionStyle = StyleHelper.GetApplicationStyle(TextStyles.NavigationSection);
-
             // get the nav grid
             if (null == _layoutRoot) { _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot"); }
 
@@ -371,6 +358,7 @@ namespace SDX.Toolkit.Controls
 
             // set the grid height
             _layoutRoot.Height = _height;
+            _layoutRoot.MinHeight = _height;
 
             // rows - this is static
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(_lineHeight) });
@@ -401,8 +389,11 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
 
-            // create the progress line and the canvas that contains it
+            // test
+            //TestHelper.AddGridCellBorders(_layoutRoot, 4, 13, Colors.DarkRed);
 
+            // create the progress line and the canvas that contains it
+            // ===========================================================
             // canvas
             _lineCanvas = new Canvas()
             {
@@ -427,18 +418,10 @@ namespace SDX.Toolkit.Controls
                 Margin = new Thickness(0)
             };
             _lineCanvas.Children.Add(_navLine);
-
-            // test
-            //TestHelper.AddGridCellBorders(_layoutRoot, 6, 8, Colors.DarkRed);
+            // ===========================================================
 
             // create the button style
             Style buttonStyle = StyleHelper.GetApplicationStyle("NoInteractionButton");
-
-            // create the section text style
-            Style sectionStyle = StyleHelper.GetApplicationStyle(TextStyles.NavigationSection);
-
-            // set column spacing for the grid
-            _layoutRoot.ColumnSpacing = BUTTON_SPACING;
 
             // grid row for menu items
             int MenuItemRow = 2;
@@ -451,8 +434,8 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoBack = new Image()
                     {
-                        Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_BACK), RasterizePixelWidth = (int)WIDTH_ARROW },
-                        Width = WIDTH_ARROW
+                        Source = new BitmapImage() { UriSource = new Uri(URI_CHEVRON_BACK), DecodePixelWidth = (int)_arrowWidth },
+                        Width = _arrowWidth
                     };
                 }
 
@@ -484,8 +467,8 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoForward = new Image()
                     {
-                        Source = new SvgImageSource() { UriSource = new Uri(URI_CHEVRON_FORWARD), RasterizePixelWidth = (int)WIDTH_ARROW },
-                        Width = WIDTH_ARROW
+                        Source = new BitmapImage() { UriSource = new Uri(URI_CHEVRON_FORWARD), DecodePixelWidth = (int)_arrowWidth },
+                        Width = _arrowWidth
                     };
                 }
 
@@ -500,7 +483,7 @@ namespace SDX.Toolkit.Controls
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoForward, MenuItemRow);
-                Grid.SetColumn(_navGoForward, 3 + ((this.NavigationSections.Count  * 2) - 1) + 1);
+                Grid.SetColumn(_navGoForward, 3 + ((this.NavigationSections.Count * 2) - 1) + 1);
 
                 // add the Click event handler
                 _navGoForward.Click += this.NavItem_Click;
@@ -520,8 +503,8 @@ namespace SDX.Toolkit.Controls
                     {
                         _imgHome = new Image()
                         {
-                            Source = new SvgImageSource() { UriSource = new Uri(URI_HOME), RasterizePixelWidth = (int)WIDTH_ARROW },
-                            Width = WIDTH_ARROW,
+                            Source = new BitmapImage() { UriSource = new Uri(URI_HOME), DecodePixelWidth = (int)_homeWidth },
+                            Width = _homeWidth,
                             Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
                         };
                     }
@@ -571,7 +554,7 @@ namespace SDX.Toolkit.Controls
 
                 // add to the grid
                 Grid.SetRow(sectionButton, MenuItemRow);
-                Grid.SetColumn(sectionButton, 3 + j);
+                Grid.SetColumn(sectionButton, 3 + (j * 2));
                 _layoutRoot.Children.Add(sectionButton);
 
                 // save the button and text with the section

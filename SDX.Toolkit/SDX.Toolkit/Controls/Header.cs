@@ -36,7 +36,7 @@ namespace SDX.Toolkit.Controls
         private Border _layoutRoot = null;
         private Grid _layoutGrid = null;
         private TextBlockEx _headline = null;
-        private TextBlock _lede = null;     // using TextBlock here because we need access to .Inlines and can't expose that on TextBlockEx
+        private TextBlockEx _lede = null;     // using TextBlock here because we need access to .Inlines and can't expose that on TextBlockEx
         private Run _ledeText = null;
         private Hyperlink _ledeCTALink = null;
         private Run _ledeCTAText = null;
@@ -359,13 +359,13 @@ namespace SDX.Toolkit.Controls
             {
                 // create lede
                 // =================
-                _lede = new TextBlock()
+                _lede = new TextBlockEx()
                 {
                     Name = "Lede",
                     TextAlignment = this.HeaderAlignment,
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
-                    Style = StyleHelper.GetApplicationStyle(this.LedeStyle),
+                    TextStyle = this.LedeStyle,
                 };
                 Grid.SetRow(_lede, 1);
                 Grid.SetColumn(_lede, 0);
@@ -380,7 +380,7 @@ namespace SDX.Toolkit.Controls
                     Text = this.Lede + CHAR_NBSPACE + CHAR_NBSPACE,
                 };
                 StyleHelper.SetRunStyleFromStyle(_ledeText, runStyle);
-                _lede.Inlines.Add(_ledeText);
+                _lede.AddInline(_ledeText);
 
                 // if there's a call to action
                 if ((!String.IsNullOrEmpty(this.CTAText)) && (null != this.CTAUri))
@@ -399,7 +399,7 @@ namespace SDX.Toolkit.Controls
                     
                     StyleHelper.SetRunStyleFromStyle(_ledeCTAText, ctaStyle);
                     _ledeCTALink.Inlines.Add(_ledeCTAText);
-                    _lede.Inlines.Add(_ledeCTALink);
+                    _lede.AddInline(_ledeCTALink);
 
                     // add the click handler for the link
                     _ledeCTALink.Click += CTALink_Click;

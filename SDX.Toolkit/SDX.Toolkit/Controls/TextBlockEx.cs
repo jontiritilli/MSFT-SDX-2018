@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
 using SDX.Toolkit.Helpers;
+using Windows.Foundation;
 
 // The Templated Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234235
 
@@ -23,7 +24,7 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         private Grid _layoutRoot = null;
-        private TextBlock _text = null;
+        private TextBlock _text = new TextBlock();
 
         #endregion
 
@@ -49,7 +50,39 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+
+        #region Overrides
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            // if our textblock child exists
+            if (null != _text)
+            {
+                // tell it to measure
+                _text.Measure(availableSize);
+
+                // return its desired size
+                return _text.DesiredSize;
+            }
+            else
+            {
+                // our textblock doesn't exist, so just return our size
+                return base.MeasureOverride(availableSize);
+            }
+        }
+
+        #endregion
+
+
         #region Public Methods
+
+        public void AddInline(Inline inline)
+        {
+            if ((null != _text) && (null != inline))
+            {
+                _text.Inlines.Add(inline);
+            }
+        }
 
         public bool IsVisible()
         {
@@ -118,6 +151,26 @@ namespace SDX.Toolkit.Controls
             set { SetValue(TextWrappingProperty, value); }
         }
 
+        // LineStackingStrategy
+        public static readonly DependencyProperty LineStackingStrategyProperty =
+            DependencyProperty.Register("LineStackingStrategy", typeof(LineStackingStrategy), typeof(TextBlockEx), new PropertyMetadata(LineStackingStrategy.BlockLineHeight, OnLineStackingStrategyChanged));
+
+        public LineStackingStrategy LineStackingStrategy
+        {
+            get { return (LineStackingStrategy)GetValue(LineStackingStrategyProperty); }
+            set { SetValue(LineStackingStrategyProperty, value); }
+        }
+
+        // LineHeight
+        public static readonly DependencyProperty LineHeightProperty =
+            DependencyProperty.Register("LineHeight", typeof(double), typeof(TextBlockEx), new PropertyMetadata(null, OnLineHeightChanged));
+
+        public double LineHeight
+        {
+            get { return (double)GetValue(LineHeightProperty); }
+            set { SetValue(LineHeightProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -134,6 +187,7 @@ namespace SDX.Toolkit.Controls
                 if (e.NewValue is string newValue)
                 {
                     textLine._text.Text = newValue;
+                    textLine._text.InvalidateMeasure();
                 }
             }
         }
@@ -175,6 +229,28 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        private static void OnLineStackingStrategyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is TextBlockEx textLine) && (null != textLine._text))
+            {
+                if (e.NewValue is LineStackingStrategy newValue)
+                {
+                    textLine._text.LineStackingStrategy = newValue;
+                }
+            }
+        }
+
+        private static void OnLineHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is TextBlockEx textLine) && (null != textLine._text))
+            {
+                if (e.NewValue is double newValue)
+                {
+                    textLine._text.LineHeight = newValue;
+                }
+            }
+        }
+
         private void OnOpacityChanged(object sender, double e)
         {
             double opacity = e;
@@ -200,18 +276,25 @@ namespace SDX.Toolkit.Controls
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
             if (null == _layoutRoot) { return; }
 
-            // set up grid
-            _layoutRoot.Width = this.Width;
+            //// set up grid
+            //_layoutRoot.Width = this.Width;
 
-            // create textblock
-            _text = new TextBlock()
+            // create textblock, if needed
+            if (null == _text)
             {
-                Name = "Text",
-                Text = this.Text ?? String.Empty,
-                TextAlignment = this.TextAlignment,
-                TextWrapping = TextWrapping.WrapWholeWords,
-                Width = this.Width
-            };
+                _text = new TextBlock();
+            }
+
+            // set properties
+            _text.Name = "Text";
+            _text.Text = this.Text ?? String.Empty;
+            _text.TextAlignment = this.TextAlignment;
+            _text.TextWrapping = this.TextWrapping;
+            _text.LineStackingStrategy = this.LineStackingStrategy;
+            _text.LineHeight = this.LineHeight;
+            _text.VerticalAlignment = this.VerticalAlignment;
+            _text.HorizontalAlignment = this.HorizontalAlignment;
+            //_text.Width = this.Width;
             
             // set its style
             Style style = StyleHelper.GetApplicationStyle(this.TextStyle);

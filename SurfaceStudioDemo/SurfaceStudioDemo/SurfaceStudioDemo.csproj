@@ -280,11 +280,10 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\Attractor\attractor.mp4" />
-    <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
-    <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
-    <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
-    <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />
-    <Content Include="Assets\NavigationBar\forward-nav-arrow.png" />
+    <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
+    <Content Include="Assets\NavigationBar\navChevronLeft.png" />
+    <Content Include="Assets\NavigationBar\navChevronRight.png" />
+    <Content Include="Assets\NavigationBar\navHome.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

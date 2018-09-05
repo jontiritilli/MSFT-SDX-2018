@@ -36,6 +36,11 @@ namespace SDX.Toolkit.Helpers
 
     public enum LayoutSizes
     {
+        AppCloseWidth,
+        AppCloseHeight,
+        AccessoriesPenListIconWidth,
+        BestOfMicrosoftListIconWidth,
+        CompareListIconWidth,
         SwipeLeftEllipseSize,
         SwipeLeftSpacer,
         SwipeToContinueArrowWidth,
@@ -77,6 +82,13 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
 
+        public const string SIZE_APPCLOSE_WIDTH = "AppCloseWidth";
+        public const string SIZE_APPCLOSE_HEIGHT = "AppCloseHeight";
+
+        public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
+        public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
+        public const string SIZE_COMPARE_LISTICONWIDTH = "CompareListIconWidth";
+
         public const string SIZE_SWIPELEFT_ELLIPSE_RADIUS = "SwipeLeftEllipseRadius";
         public const string SIZE_SWIPELEFT_SPACER = "SwipeLeftSpacer";
 
@@ -103,20 +115,40 @@ namespace SDX.Toolkit.Helpers
 
             switch (size)
             {
+                case LayoutSizes.AppCloseWidth:
+                    value = GetApplicationDouble(SIZE_APPCLOSE_WIDTH);
+                    break;
+
+                case LayoutSizes.AppCloseHeight:
+                    value = GetApplicationDouble(SIZE_APPCLOSE_HEIGHT);
+                    break;
+
+                case LayoutSizes.AccessoriesPenListIconWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIESPEN_LISTICONWIDTH);
+                    break;
+
+                case LayoutSizes.BestOfMicrosoftListIconWidth:
+                    value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_LISTICONWIDTH);
+                    break;
+
+                case LayoutSizes.CompareListIconWidth:
+                    value = GetApplicationDouble(SIZE_COMPARE_LISTICONWIDTH);
+                    break;
+
                 case LayoutSizes.SwipeLeftEllipseSize:
-                    value = GetApplicationDouble(LayoutSizes.SwipeLeftEllipseSize);
+                    value = GetApplicationDouble(SIZE_SWIPELEFT_ELLIPSE_RADIUS);
                     break;
 
                 case LayoutSizes.SwipeLeftSpacer:
-                    value = GetApplicationDouble(LayoutSizes.SwipeLeftSpacer);
+                    value = GetApplicationDouble(SIZE_SWIPELEFT_SPACER);
                     break;
 
                 case LayoutSizes.SwipeToContinueArrowWidth:
-                    value = GetApplicationDouble(LayoutSizes.SwipeToContinueArrowWidth);
+                    value = GetApplicationDouble(SIZE_SWIPETOCONTINUE_ARROW_WIDTH);
                     break;
 
                 case LayoutSizes.SwipeToContinueSpacer:
-                    value = GetApplicationDouble(LayoutSizes.SwipeToContinueSpacer);
+                    value = GetApplicationDouble(SIZE_SWIPETOCONTINUE_SPACER);
                     break;
 
                 case LayoutSizes.PopupDefaultWidth:

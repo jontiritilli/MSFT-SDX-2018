@@ -327,7 +327,7 @@ namespace SDX.Toolkit.Controls
 
             // target the control
             Storyboard.SetTarget(_frames, target);
-            Storyboard.SetTargetProperty(_frames, "(TextBlock.Opacity)");
+            Storyboard.SetTargetProperty(_frames, "(TextBlockEx.Opacity)");
 
             return _frames;
         }
@@ -338,7 +338,7 @@ namespace SDX.Toolkit.Controls
             {
                 Name = name,
                 Text = text,
-                Style = StyleHelper.GetApplicationStyle(TextStyles.Hero),
+                TextStyle = TextStyles.Hero,
                 Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.HeroMargin),
                 Opacity = 0d,
             };

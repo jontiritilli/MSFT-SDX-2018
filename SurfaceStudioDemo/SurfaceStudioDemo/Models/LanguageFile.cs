@@ -12,6 +12,7 @@ namespace SurfaceStudioDemo.Models
         #region Public Properties
 
         public string INTRO_TITLE = "INTRO_TITLE";
+        public string INTRO_ROWCOUNT = "1";
         public string INTRO_SWIPE = "INTRO_SWIPE";
         public string EXPERIENCE = "EXPERIENCE";
         public string ACCESSORIES = "ACCESSORIES";
@@ -215,6 +216,7 @@ namespace SurfaceStudioDemo.Models
             LanguageFile languageFile = new LanguageFile();
 
             languageFile.INTRO_TITLE = "INTRO_TITLE";
+            languageFile.INTRO_ROWCOUNT = "1";
             languageFile.INTRO_SWIPE = "INTRO_SWIPE";
             languageFile.EXPERIENCE = "EXPERIENCE";
             languageFile.ACCESSORIES = "ACCESSORIES";
