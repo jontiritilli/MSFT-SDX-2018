@@ -30,15 +30,15 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_COLORING_BOOK_COLOR_1 = "ms-appx:///Assets/Accessories/ArtworkColors/red.png";
         private const string URI_COLORING_BOOK_COLOR_2 = "ms-appx:///Assets/Accessories/ArtworkColors/blue.png";
-        private const string URI_COLORING_BOOK_COLOR_3 = "ms-appx:///Assets/Accessories/ArtworkColors/skyblue.png";
-        private const string URI_COLORING_BOOK_COLOR_4 = "ms-appx:///Assets/Accessories/ArtworkColors/yellow.png";
+        private const string URI_COLORING_BOOK_COLOR_3 = "ms-appx:///Assets/Accessories/ArtworkColors/teal.png";
+        private const string URI_COLORING_BOOK_COLOR_4 = "ms-appx:///Assets/Accessories/ArtworkColors/orange.png";
         private const string URI_COLORING_BOOK_COLOR_5 = "ms-appx:///Assets/Accessories/ArtworkColors/purple.png";
 
-        private const string URI_COLORING_BOOK_COLOR_1_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/red.png";
-        private const string URI_COLORING_BOOK_COLOR_2_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/blue.png";
-        private const string URI_COLORING_BOOK_COLOR_3_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/skyblue.png";
-        private const string URI_COLORING_BOOK_COLOR_4_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/yellow.png";
-        private const string URI_COLORING_BOOK_COLOR_5_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/purple.png";
+        private const string URI_COLORING_BOOK_COLOR_1_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/red_active.png";
+        private const string URI_COLORING_BOOK_COLOR_2_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/blue_active.png";
+        private const string URI_COLORING_BOOK_COLOR_3_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/teal_active.png";
+        private const string URI_COLORING_BOOK_COLOR_4_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/orange_active.png";
+        private const string URI_COLORING_BOOK_COLOR_5_SELECTED = "ms-appx:///Assets/Accessories/ArtworkColors/purple_active.png";
 
         private const string URI_COLORING_BOOK_CLEAR_BUTTON = "ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
 
