@@ -13,15 +13,27 @@ namespace SurfaceProDemo.ViewModels
 
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms:appx:///Assets/Backgrounds/gradient-bg.jpg";        
+        private const string URI_STUDIO = "ms-appx:///Assets/Experience/studio.png";
 
+        private const int IMG_STUDIO_WIDTH = 1122;
+        private const int IMG_STUDIO_HEIGHT = 402;
         #endregion
 
 
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string StudioUri = URI_STUDIO;
+        public int StudioHeight = IMG_STUDIO_HEIGHT;
+        public int StudioWidth = IMG_STUDIO_WIDTH;
 
+
+        public string Headline;
+        public string Lede;
+
+        public string PopHeadline;
+        public string PopLede;
         #endregion
 
         #region Construction

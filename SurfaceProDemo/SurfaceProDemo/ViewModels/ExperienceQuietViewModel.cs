@@ -14,14 +14,38 @@ namespace SurfaceProDemo.ViewModels
         #region Constants
 
         private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_TABLET= "ms-appx:///Assets/Experience/tablet.png";
 
+        private const int IMG_TABLET_WIDTH = 1122;
+        private const int IMG_TABLET_HEIGHT = 402;
         #endregion
 
 
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string TabletUri = URI_TABLET;
+        public int TabletHeight = IMG_TABLET_HEIGHT;
+        public int TabletWidth = IMG_TABLET_WIDTH;
 
+
+        public string Headline;
+        public string Lede;
+
+        public string PopLeftHeadline;
+        public string PopLeftLede;
+
+        public string PopTopHeadline;
+        public string PopTopLede;
+
+        public string PopCenterBulletOne;
+        public string PopCenterBulletTwo;
+        public string PopCenterBulletThree;
+        public string PopCenterBulletFour;
+        public string PopCenterFive;
+
+        public string PopRightHeadline;
+        public string PopRightLede;
         #endregion
 
         #region Construction
