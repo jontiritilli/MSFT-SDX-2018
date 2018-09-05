@@ -186,8 +186,6 @@ namespace SurfaceProDemo.Services
 
         public void LoadExperienceHeroViewModel(ExperienceHeroViewModel viewModel)
         {
-            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_HEADLINE, "EXPERIENCE_TABLET_HEADLINE");
-            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_COPY, "EXPERIENCE_TABLET_COPY");
         }
 
         public void LoadExperienceIntroViewModel(ExperienceIntroViewModel viewModel)
