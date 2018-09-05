@@ -288,7 +288,13 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Accessories\cruz_peacock.png" />
+    <Content Include="Assets\Accessories\ArtworkColors\blue.png" />
+    <Content Include="Assets\Accessories\ArtworkColors\skyblue.png" />
+    <Content Include="Assets\Accessories\ArtworkColors\red.png" />
+    <Content Include="Assets\Accessories\ArtworkColors\reset.png" />
+    <Content Include="Assets\Accessories\ArtworkColors\yellow.png" />
+    <Content Include="Assets\Accessories\ArtworkColors\purple.png" />
+    <Content Include="Assets\Accessories\peacock.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
     <Content Include="Assets\List\inkingDraw.svg" />
