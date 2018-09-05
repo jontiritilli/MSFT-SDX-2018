@@ -4,16 +4,46 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding ExperienceHeroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <!--Style="{StaticResource PageStyle}"-->
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"
+                Words="{x:Bind Path=ViewModel.HeroText}"
+                WordRows="{x:Bind Path=ViewModel.RowCount}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                DurationPerWordInMilliseconds="400"
+                StaggerDelayMilliseconds="400"
+                AutoStart="True" />
+
+        <ctrl:SwipeLeft x:Name="SwipeLeft" Grid.Row="5" Grid.Column="1"
+                    SwipeText="{x:Bind Path=ViewModel.SwipeText}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    DurationInMilliseconds="200"
+                    StaggerDelayInMilliseconds="3000"
+                    AutoStart="True"/>
     </Grid>
 </Page>

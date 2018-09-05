@@ -199,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\SizesTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,13 +283,61 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Accessories\foxburg_black_left.png" />
+    <Content Include="Assets\Accessories\foxburg_black_right.png" />
+    <Content Include="Assets\Accessories\foxburg_burgundy_left.png" />
+    <Content Include="Assets\Accessories\foxburg_burgundy_right.png" />
+    <Content Include="Assets\Accessories\foxburg_cobalt_left.png" />
+    <Content Include="Assets\Accessories\foxburg_cobalt_right.png" />
+    <Content Include="Assets\Accessories\foxburg_platinum_left.png" />
+    <Content Include="Assets\Accessories\foxburg_platinum_right.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\foxburg_brand-bg.png" />
+    <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
+    <Content Include="Assets\Colors\fox_black.png" />
+    <Content Include="Assets\Colors\fox_black_active.png" />
+    <Content Include="Assets\Colors\fox_burgundy.png" />
+    <Content Include="Assets\Colors\fox_burgundy_active.png" />
+    <Content Include="Assets\Colors\fox_cobalt.png" />
+    <Content Include="Assets\Colors\fox_cobalt_active.png" />
+    <Content Include="Assets\Colors\fox_coral.png" />
+    <Content Include="Assets\Colors\fox_coral_active.png" />
+    <Content Include="Assets\Colors\fox_platinum.png" />
+    <Content Include="Assets\Colors\fox_platinum_active.png" />
+    <Content Include="Assets\Experience\Design\foxburg_alcantara.png" />
+    <Content Include="Assets\Experience\Icons\fox_excel.png" />
+    <Content Include="Assets\Experience\Icons\fox_movie.png" />
+    <Content Include="Assets\Experience\Icons\fox_music.png" />
+    <Content Include="Assets\Experience\Icons\fox_ppt.png" />
+    <Content Include="Assets\Experience\Icons\fox_skype.png" />
+    <Content Include="Assets\Experience\Icons\fox_word.png" />
+    <Content Include="Assets\Experience\Performance\foxburg_books.png" />
+    <Content Include="Assets\Experience\Design\foxburg_design.png" />
+    <Content Include="Assets\Experience\Performance\foxburg_excel.png" />
+    <Content Include="Assets\Experience\Performance\foxburg_graphs.png" />
+    <Content Include="Assets\Experience\Performance\foxburg_powerpoint.png" />
+    <Content Include="Assets\Experience\Performance\foxburg_word.png" />
+    <Content Include="Assets\Experience\Sleek\foxburg_morepower.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_enjoy_movie.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_enjoy_music.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_enjoy_skype.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_headphone.png" />
+    <Content Include="Assets\Experience\Performance\foxburg_plant.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_popcorn.png" />
+    <Content Include="Assets\Lifestyle\foxburg_black_lifestyle.png" />
+    <Content Include="Assets\Lifestyle\foxburg_burgundy_lifestyle.png" />
+    <Content Include="Assets\Lifestyle\foxburg_cobalt_lifestyle.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_coffee.png" />
+    <Content Include="Assets\Lifestyle\foxburg_platinum_lifestyle.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
+    <Content Include="Assets\Universal\fox_close.png" />
+    <Content Include="Assets\Universal\fox_pinch.png" />
+    <Content Include="Assets\Universal\fox_tryit.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
