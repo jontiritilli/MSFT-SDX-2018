@@ -287,6 +287,12 @@
     <Content Include="Assets\Backgrounds\foxburg_brand-bg.png" />
     <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
+    <Content Include="Assets\Colors\black_swatch.png" />
+    <Content Include="Assets\Colors\burgundy_swatch.png" />
+    <Content Include="Assets\Colors\cobalt_swatch.png" />
+    <Content Include="Assets\Lifestyle\foxburg_black_lifestyle.png" />
+    <Content Include="Assets\Lifestyle\foxburg_burgundy_lifestyle.png" />
+    <Content Include="Assets\Lifestyle\foxburg_cobalt_lifestyle.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />

@@ -14,7 +14,7 @@ namespace SurfaceLaptopDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_brand-bg.png";
 
         #endregion
 
