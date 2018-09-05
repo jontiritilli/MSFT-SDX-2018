@@ -12,16 +12,26 @@ namespace SurfaceLaptopDemo.ViewModels
 {
     public class BestOfMicrosoftViewModel : ViewModelBase
     {
-        public string BackgroundUri;
+
+        #region Constants
+
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
+
+        #endregion
+
+        public string BackgroundUri = URI_BACKGROUND;
 
         public string Headline;
+        public string Legal;
+
         public string BulletOneCTA;
         public string BulletTwoCTA;
         public string BulletThreeCTA;
         public string BulletFourCTA;
-        public string Legal;
+
         public List<ListItem> LeftItemList = new List<ListItem>();
         public List<ListItem> RightItemList = new List<ListItem>();
+
         public double ICON_WIDTH = 60d;
 
         public BestOfMicrosoftViewModel()
