@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ctrl="using:SDX.Toolkit.Controls">
+    xmlns:local="using:SurfaceStudioDemo.Styles">
 
 <!--
     If you add a style to this page, please copy an existing
