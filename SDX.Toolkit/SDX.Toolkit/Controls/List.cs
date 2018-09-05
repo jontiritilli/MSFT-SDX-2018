@@ -100,11 +100,11 @@ namespace SDX.Toolkit.Controls
 
         // ListItems
         public static readonly DependencyProperty ListItemsProperty =
-            DependencyProperty.Register("ListItems", typeof(ListItem[]), typeof(List), new PropertyMetadata(null, OnListItemsChanged));
+            DependencyProperty.Register("ListItems", typeof(List<ListItem>), typeof(List), new PropertyMetadata(null, OnListItemsChanged));
 
-        public ListItem[] ListItems
+        public List<ListItem> ListItems
         {
-            get { return (ListItem[])GetValue(ListItemsProperty); }
+            get { return (List<ListItem>)GetValue(ListItemsProperty); }
             set
             {
                 // save the value

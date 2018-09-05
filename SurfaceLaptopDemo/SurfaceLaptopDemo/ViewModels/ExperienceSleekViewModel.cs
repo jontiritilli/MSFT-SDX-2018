@@ -12,8 +12,37 @@ namespace SurfaceLaptopDemo.ViewModels
 {
     public class ExperienceSleekViewModel : ViewModelBase
     {
+        #region Constants
+
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
+        private const string URI_DESIGN = "ms-appx:///Assets/Experience/Sleek/foxburg_morepower.png";
+
+        #endregion
+
+        #region Public Members
+
+        public string Headline;
+        public string Lede;
+        
+        public string PopTop_Headline;
+        public string PopTop_Lede;
+
+        public string PopLeft_Headline;
+        public string PopLeft_Lede;
+
+        public string PopBattery_Headline;
+        public string PopBattery_Lede;
+
+        public string DesignUri;
+        public string BackgroundUri;
+
+        #endregion
+
         public ExperienceSleekViewModel()
         {
+            DesignUri = URI_DESIGN;
+            BackgroundUri = URI_BACKGROUND;
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
