@@ -17,9 +17,9 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_COLORING_BOOK_IMAGE = "ms-appx:///Assets/Accessories/peacock.png";
 
         // private consts for widths of the coloring book image 
-        private const int COLORING_BOOK_IMAGEWIDTH = 700;
+        private const int COLORING_BOOK_IMAGEWIDTH = 855;
 
-        private const int COLORING_BOOK_IMAGEHEIGHT = 700;
+        private const int COLORING_BOOK_IMAGEHEIGHT = 820;
 
         //consts for colors and the rgbs        
         private Color COLORING_BOOK_COLOR_1 = Color.FromArgb(100, 229, 48, 97);
@@ -43,8 +43,8 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_COLORING_BOOK_CLEAR_BUTTON = "ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
 
 
-        private const int COLORING_BOOK_BUTTON_WIDTH = 40;
-        private const int COLORING_BOOK_BUTTON_HEIGHT = 40;
+        private const int COLORING_BOOK_BUTTON_WIDTH = 65;
+        private const int COLORING_BOOK_BUTTON_HEIGHT = 65;
         #endregion
 
 
@@ -63,7 +63,7 @@ namespace SurfaceProDemo.ViewModels
 
         public string TryItTitle;
         public string TryItLede;
-        public ListItem[] ListItems = new ListItem[4];
+        public List<ListItem> ListItems = new List<ListItem>();
         public List<ColoringBookColor> Colors = new List<ColoringBookColor>();
 
         public int ColoringBookButtonWidth;

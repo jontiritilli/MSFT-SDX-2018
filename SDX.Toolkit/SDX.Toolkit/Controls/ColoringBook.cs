@@ -136,14 +136,14 @@ namespace SDX.Toolkit.Controls
             set { SetValue(CaptionProperty, value); }
         }
 
-        // ControlStyle
-        public static readonly DependencyProperty ControlStyleProperty =
-            DependencyProperty.Register("ControlStyle", typeof(ControlStyles), typeof(ColoringBook), new PropertyMetadata(null));
+        // TextStyle
+        public static readonly DependencyProperty TextStyleProperty =
+            DependencyProperty.Register("TextStyle", typeof(TextStyles), typeof(ColoringBook), new PropertyMetadata(null));
 
-        public ControlStyles ControlStyle
+        public TextStyles TextStyle
         {
-            get { return (ControlStyles)GetValue(ControlStyleProperty); }
-            set { SetValue(ControlStyleProperty, value); }
+            get { return (TextStyles)GetValue(TextStyleProperty); }
+            set { SetValue(TextStyleProperty, value); }
         }
 
         // DurationInMilliseconds

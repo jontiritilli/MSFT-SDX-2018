@@ -110,6 +110,7 @@
     <Compile Include="Controls\AppSelector.cs" />
     <Compile Include="Controls\AppSelectorImage.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
+    <Compile Include="Controls\CanvasEx.cs" />
     <Compile Include="Controls\ColoringBook.cs" />
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Controls\SwipeLeft.cs" />
     <Compile Include="Controls\SwipeToContinue.cs" />
     <Compile Include="Controls\TextBlockEx.cs" />
+    <Compile Include="Helpers\DoubleToGridLengthConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />

@@ -25,7 +25,7 @@ namespace SDX.Toolkit.Controls
 
         private StackPanel _rowMaster = null;
         private List<StackPanel> _rows = new List<StackPanel>();
-        private List<TextBlock> _wordTextBlocks = new List<TextBlock>();
+        private List<TextBlockEx> _wordTextBlocks = new List<TextBlockEx>();
 
         private Storyboard _storyboard;
 
@@ -65,7 +65,7 @@ namespace SDX.Toolkit.Controls
             {
                 _storyboard.Stop();
 
-                foreach (TextBlock word in _wordTextBlocks)
+                foreach (TextBlockEx word in _wordTextBlocks)
                 {
                     word.Opacity = 0d;
                 }
@@ -222,7 +222,7 @@ namespace SDX.Toolkit.Controls
                     string name = String.Format("Word_{0}", wordIndex);
 
                     // create the textblock
-                    TextBlock textBlockWord = CreateWord(name, word);
+                    TextBlockEx textBlockWord = CreateWord(name, word);
 
                     // save it to reset opacity for animation
                     _wordTextBlocks.Add(textBlockWord);
@@ -258,7 +258,7 @@ namespace SDX.Toolkit.Controls
             double end = start + durationPerWord - 1;
 
             // loop through the words
-            foreach (TextBlock word in _wordTextBlocks)
+            foreach (TextBlockEx word in _wordTextBlocks)
             {
                 // create animation for each and add to storyboard
                 _wordStoryboard.Children.Add(CreateFadeIn(word, start, end, startDelay, durationPerWord));
@@ -275,7 +275,7 @@ namespace SDX.Toolkit.Controls
 
         #region UI Helpers
 
-        private DoubleAnimationUsingKeyFrames CreateFadeIn(TextBlock target, double startTime, double endTime, double startDelay, double duration)
+        private DoubleAnimationUsingKeyFrames CreateFadeIn(TextBlockEx target, double startTime, double endTime, double startDelay, double duration)
         {
             double totalDuration = startDelay + startTime + duration;
 
@@ -327,20 +327,21 @@ namespace SDX.Toolkit.Controls
 
             // target the control
             Storyboard.SetTarget(_frames, target);
-            Storyboard.SetTargetProperty(_frames, "(TextBlock.Opacity)");
+            Storyboard.SetTargetProperty(_frames, "(TextBlockEx.Opacity)");
 
             return _frames;
         }
 
-        private TextBlock CreateWord(string name, string text)
+        private TextBlockEx CreateWord(string name, string text)
         {
-            TextBlock _textBlock = new TextBlock();
-
-            _textBlock.Name = name;
-            _textBlock.Text = text;
-            StyleHelper.SetFontCharacteristics(_textBlock, ControlStyles.Hero);
-            _textBlock.Margin = new Thickness(5d, 5d, 25d, 5d);
-            _textBlock.Opacity = 0d;
+            TextBlockEx _textBlock = new TextBlockEx()
+            {
+                Name = name,
+                Text = text,
+                TextStyle = TextStyles.Hero,
+                Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.HeroMargin),
+                Opacity = 0d,
+            };
 
             return _textBlock;
         }
