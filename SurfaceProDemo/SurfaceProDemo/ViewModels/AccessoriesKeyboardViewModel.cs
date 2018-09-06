@@ -126,25 +126,6 @@ namespace SurfaceProDemo.ViewModels
                 localizationService.LoadAccessoriesKeyboardViewModel(this);
             }
         }
-        private void _AppSelector_SelectedIDChanged(object sender, EventArgs e)
-        {
-            // need to change the mouse page too
-            //if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
-            //{
-            //    AppSelector appSelector = (AppSelector)sender;
-            //    if (appSelector.SelectedID > 0)
-            //    {// this is the only case there this needs to manage since there is a clear button so account for it
-            //        this._SelectedColor = this.Colors[appSelector.SelectedID - 1].Color;
-            //    }
-            //    //else
-            //    //{// should it disable the color? or leave the selection on the previous one?
-            //    //    _inkCanvas.InkPresenter.StrokeContainer.Clear();
-            //    //}
-
-
-            //    SetupBrush();
-            //}
-        }
 
         #endregion
     }

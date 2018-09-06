@@ -205,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,11 +326,11 @@
     <Content Include="Assets\List\bomSmile.png" />
     <Content Include="Assets\List\bomSync.png" />
     <Content Include="Assets\List\bomWindows.png" />
+    <Content Include="Assets\List\inkingDraw.png" />
+    <Content Include="Assets\List\InkingPalm.png" />
+    <Content Include="Assets\List\inkingPressure.png" />
+    <Content Include="Assets\List\inkingWrite.png" />
     <Content Include="Assets\SwipeLeft\swipe-arrow.png" />
-    <Content Include="Assets\List\inkingDraw.svg" />
-    <Content Include="Assets\List\inkingPalm.svg" />
-    <Content Include="Assets\List\inkingPressure.svg" />
-    <Content Include="Assets\List\inkingWrite.svg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Accessories\Images\keyboard_left.png" />

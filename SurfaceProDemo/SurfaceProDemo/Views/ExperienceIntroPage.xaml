@@ -14,24 +14,26 @@
             <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
         </Grid.Background>
         <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
+        
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                
+                HeadlineStyle="{x:Bind Path=ViewModel.HeadlineStyle}"
+                LedeStyle="PageLede"
+                Lede="{x:Bind Path=ViewModel.Lede}"                
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
@@ -39,16 +41,18 @@
                        Text="{x:Bind Path=ViewModel.PopLeftLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
+                       TextStyle="Legal"
                        Visibility="Collapsed" />
 
         <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopTopLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
+                       TextStyle="Legal"
                        Visibility="Collapsed" />
 
         <ctrl:ImageEx
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="1"
             Grid.ColumnSpan="2"
             x:Name="img_HeroFront"
@@ -59,7 +63,7 @@
             Opacity="0"
             />
         <ctrl:ImageEx
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="1"
             Grid.ColumnSpan="2"
             x:Name="img_HeroBack"
@@ -73,7 +77,7 @@
 
         <ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
                     SwipeText="{x:Bind Path=ViewModel.SwipeText}"                    
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Right"                              
                     VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
