@@ -127,6 +127,7 @@
     <Compile Include="Controls\SwipeLeft.cs" />
     <Compile Include="Controls\SwipeToContinue.cs" />
     <Compile Include="Controls\TextBlockEx.cs" />
+    <Compile Include="Helpers\DoubleToGridLengthConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />

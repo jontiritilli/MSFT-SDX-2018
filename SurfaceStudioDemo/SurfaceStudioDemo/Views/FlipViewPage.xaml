@@ -15,21 +15,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <!--<RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>-->
-            <!-- Microsoft's UWP is an unloved, unimplemented, incomplete pile of shit.
-                 In WPF, you can bind the Height parameter of a RowDefinition, but the
-                 people who borrowed from WPF to create UWP are either lazy, stupid, or
-                 both because they are incapable of correctly implementing this.
-                 Thanks assholes. You've wasted 2 hours of my time chasing down your
-                 fucking incompetence. Fuck you!!!
-            -->
-            <RowDefinition Height="{Binding Path=ViewModel.AppCloseWidth}"/>  <!-- Microsoft UWP team employees are incompetent, so must use a hack here -->
+            <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
+                 resource with a converter. So we have to add the GridLength we want
+                 to the ViewModel, which uses StyleHelper to create it with the style value. -->
+            <RowDefinition Height="{Binding Path=ViewModel.AppCloseWidth}"/>
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
         <!-- FlipView occupies two columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <!--<ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}}"/>-->
-            <ColumnDefinition Width="{Binding Path=ViewModel.NavigationBarHeight}"/>  <!-- Microsoft UWP team employees are incompetent, so must use a hack here -->
+            <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
+                 resource with a converter. So we have to add the GridLength we want
+                 to the ViewModel, which uses StyleHelper to create it with the style value. -->
+            <ColumnDefinition Width="{Binding Path=ViewModel.NavigationBarHeight}"/>
         </Grid.ColumnDefinitions>
 
         <!--Host FlipView-->

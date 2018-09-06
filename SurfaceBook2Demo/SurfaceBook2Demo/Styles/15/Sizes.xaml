@@ -88,5 +88,4 @@
     <x:Double x:Key="NavigationBarArrowWidth">14.365</x:Double>
     <x:Double x:Key="NavigationBarHomeWidth">14.365</x:Double>    <!-- Home does not appear in this app -->
 
-    
 </ResourceDictionary>

@@ -27,8 +27,8 @@ namespace SurfaceStudioDemo.ViewModels
         public string NavBarBestOfMicrosoft;
         public string NavBarCompare;
 
-        // This method is a hack because UWP does not support nested binding the
-        // way that WPF does. See comments in the FlipViewPage.xaml code.
+        // This method is a hack because UWP does not support binding a StaticResource
+        // with a Converter, so we must add these properties to the ViewModel.
         public GridLength NavigationBarHeight
         {
             get
