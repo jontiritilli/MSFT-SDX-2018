@@ -295,6 +295,14 @@
     <Content Include="Assets\Backgrounds\foxburg_brand-bg.png" />
     <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_black.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_black_active.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_burgundy.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_burgundy_active.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_cobalt.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_cobalt_active.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_platinum.png" />
+    <Content Include="Assets\Accessories\Icons\fox_accs_platinum_active.png" />
     <Content Include="Assets\Colors\fox_black.png" />
     <Content Include="Assets\Colors\fox_black_active.png" />
     <Content Include="Assets\Colors\fox_burgundy.png" />

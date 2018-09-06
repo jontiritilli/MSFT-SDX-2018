@@ -60,6 +60,10 @@ namespace SurfaceLaptopDemo.ViewModels
         {
 
             BackgroundUri = URI_BACKGROUND;
+
+            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
+            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
+
             ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
             ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 

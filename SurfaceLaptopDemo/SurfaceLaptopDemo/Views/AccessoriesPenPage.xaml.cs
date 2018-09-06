@@ -18,27 +18,26 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public AccessoriesPenPage()
         {
             InitializeComponent();
+            this.AppSelectorImageAccRight.AppSelector = this.AppSelectorAccRight;
         }
 
         #endregion
-
 
         #region INavigate Interface
 
         public void NavigateToPage()
         {
-            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

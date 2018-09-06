@@ -24,6 +24,7 @@ namespace SurfaceLaptopDemo.Views
         public AccessoriesMousePage()
         {
             InitializeComponent();
+            this.AppSelectorImageAccLeft.AppSelector = this.AppSelectorAccLeft;
         }
 
         #endregion
@@ -33,12 +34,12 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage()
         {
-            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion
