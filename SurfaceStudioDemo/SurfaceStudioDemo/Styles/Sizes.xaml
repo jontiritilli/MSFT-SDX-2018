@@ -67,9 +67,9 @@
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeaderCompare">15</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPopupHeader">23.07</x:Double>
 
-    <x:Double x:Key="AccessoriesPenListIconWidth">40</x:Double>
-    <x:Double x:Key="BestOfMicrosoftListIconWidth">75.285</x:Double>
-    <x:Double x:Key="CompareListIconWidth">38.675</x:Double>
+    <x:Double x:Key="AccessoriesPenListIconWidth">72</x:Double>
+    <x:Double x:Key="BestOfMicrosoftListIconWidth">78</x:Double>
+    <x:Double x:Key="CompareListIconWidth">48</x:Double>
 
     <x:Double x:Key="SwipeLeftEllipseRadius">54</x:Double>
     <x:Double x:Key="SwipeLeftSpacer">26.315</x:Double>

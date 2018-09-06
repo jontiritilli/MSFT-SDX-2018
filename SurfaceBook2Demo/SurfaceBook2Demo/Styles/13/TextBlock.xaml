@@ -58,9 +58,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Light" />
-        <Setter Property="FontSize" Value="187.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="137.5" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="200" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="150" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -73,7 +73,7 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
+        <Setter Property="FontSize" Value="16" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
@@ -88,9 +88,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiLight" />
-        <Setter Property="FontSize" Value="87.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="50" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="105" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="60" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -107,9 +107,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -126,9 +126,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="45" />    <!-- halved -->
+        <Setter Property="FontSize" Value="27" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="50" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="29.5" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -141,9 +141,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -151,14 +151,14 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="ListItemHeadline" TargetType="TextBlock">
+    <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -166,14 +166,74 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="ListItemLede" TargetType="TextBlock">
+    <Style x:Key="ListItemLedePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ListItemHeadlineBestOf" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="27" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ListItemLedeBestOf" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="27" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ListItemHeadlineCompare" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ListItemLedeCompare" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -186,9 +246,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
+        <Setter Property="FontSize" Value="12.5" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="15" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -201,9 +261,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="45" />    <!-- halved -->
+        <Setter Property="FontSize" Value="27" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="50" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -216,9 +276,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -227,13 +287,13 @@
     </Style>
 
     <Style x:Key="PopupBatteryLife" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="50" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="56" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -241,14 +301,45 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
+    <Style x:Key="SliderBatteryLife" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF737373"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="16" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="28" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+    
     <Style x:Key="Legal" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
+        <Setter Property="FontSize" Value="15" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="30" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+    
+    <Style x:Key="TryIt" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="13" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="13" />    <!-- halved -->
+        <Setter Property="CharacterSpacing" Value="25"/>
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -256,6 +347,21 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
+    <Style x:Key="ButtonCaption" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="16" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="21" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+    
     <Style x:Key="NavigationSection" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -264,6 +370,7 @@
         <Setter Property="FontSize" Value="18.5" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="22" />    <!-- halved -->
+        <Setter Property="CharacterSpacing" Value="50"/>
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Center" />
