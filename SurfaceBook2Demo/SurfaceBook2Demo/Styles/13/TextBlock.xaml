@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SurfaceStudioDemo.Styles">
+    xmlns:local="using:SurfaceBook2Demo.Styles">
 
 <!--
     If you add a style to this page, please copy an existing
@@ -151,67 +151,7 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="20" />    <!-- halved -->
-        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="30" />    <!-- halved -->
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords" />
-    </Style>
-
-    <Style x:Key="ListItemLedePenTouch" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="20" />    <!-- halved -->
-        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="30" />    <!-- halved -->
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords" />
-    </Style>
-
-    <Style x:Key="ListItemHeadlineBestOf" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="45" />    <!-- halved -->
-        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="52" />    <!-- halved -->
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords" />
-    </Style>
-
-    <Style x:Key="ListItemLedeBestOf" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27.5" />    <!-- halved -->
-        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="43" />    <!-- halved -->
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords" />
-    </Style>
-
-    <Style x:Key="ListItemHeadlineCompare" TargetType="TextBlock">
+    <Style x:Key="ListItemHeadline" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
@@ -226,7 +166,7 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="ListItemLedeCompare" TargetType="TextBlock">
+    <Style x:Key="ListItemLede" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
@@ -240,7 +180,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
-    
+
     <Style x:Key="ListItemCTAText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FFAAAAAA"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -316,36 +256,6 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="TryIt" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF737373"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
-        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />    <!-- halved -->
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords" />
-    </Style>
-
-    <Style x:Key="ButtonCaption" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF737373"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
-        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />    <!-- halved -->
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords" />
-    </Style>
-    
     <Style x:Key="NavigationSection" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>

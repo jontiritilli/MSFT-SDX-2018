@@ -1,14 +1,14 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SurfaceStudioDemo.Styles">
+    xmlns:local="using:SurfaceBook2Demo.Styles">
 
     <!--
-    If you add a Thickness to this page, you must also
+    If you add a size to this page, you must also
     modify StyleHelper to:
-    (1) add a constant containing the key of your thickness,
-    (2) add a value to the appropriate enum representing your thickness
-    (3) modify GetApplicationThickness(enum) to include your new enum
+    (1) add a constant containing the key of your size,
+    (2) add a value to the appropriate enum representing your size
+    (3) modify GetApplicationDouble(enum) to include your new enum
         value in the switch statement
 
     !!!IMPORTANT!!!
@@ -49,23 +49,44 @@
 
     -->
 
+    <GridLength x:Key="LeftMargin">112</GridLength>
+    <GridLength x:Key="TopMargin">75.905</GridLength>
+    <GridLength x:Key="RightMargin">112</GridLength>    <!-- Not spec'ed in design; Assumed to mirror left margin -->
+    <GridLength x:Key="BottomMargin">39.5</GridLength>
 
-    <!--Custom size margins-->
-    <Thickness x:Key="PageTitleMargin">0,0,12,7</Thickness>
-    <Thickness x:Key="SettingsSubheaderMargin">0, 20, 0, 48</Thickness>
-    
-    <!--Medium size margins-->
-    <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
-    <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
-    
-    <!--Small size margins-->
-    <Thickness x:Key="SmallAllMargin">5, 5, 5, 5</Thickness>
-    <Thickness x:Key="EightTopMargin">0, 8, 0, 0</Thickness>
+    <GridLength x:Key="SpaceBelowHeader">42.175</GridLength>
 
-    <!-- Hero -->
-    <Thickness x:Key="HeroMargin">15, 15, 35, 15</Thickness>
+    <x:Double x:Key="AppCloseWidth">46</x:Double>
+    <x:Double x:Key="AppCloseHeight">32</x:Double>
+
+    <x:Double x:Key="HeaderWidth">724.5</x:Double>
+    <x:Double x:Key="HeaderSpacerRowHeightPageHeader">42.175</x:Double>
+    <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
+    <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">15</x:Double>
+    <x:Double x:Key="HeaderSpacerRowHeightPopupHeader">23.07</x:Double>
+
+    <x:Double x:Key="AccessoriesPenListIconWidth">40</x:Double>
+    <x:Double x:Key="BestOfMicrosoftListIconWidth">75.285</x:Double>
+    <x:Double x:Key="CompareListIconWidth">38.675</x:Double>
+
+    <x:Double x:Key="SwipeLeftEllipseRadius">60</x:Double>
+    <x:Double x:Key="SwipeLeftSpacer">30</x:Double>
+
+    <x:Double x:Key="SwipeToContinueArrowWidth">30</x:Double>
+    <x:Double x:Key="SwipeToContinueSpacer">30</x:Double>
+
+    <x:Double x:Key="PopupDefaultWidth">700</x:Double>
+    <x:Double x:Key="PopupSpacer">60</x:Double>
+
+    <x:Double x:Key="CanvasWidth">2250</x:Double>
+    <x:Double x:Key="CanvasHeight">1408</x:Double>  <!-- 3000 - 184 (navbar) = 2816, 2816 / 2 (200% scaling) = 1408 -->
+
+    <x:Double x:Key="NavigationBarHeight">92</x:Double>
+    <x:Double x:Key="NavigationBarLineHeight">7.5</x:Double>
+    <x:Double x:Key="NavigationBarMargin">47.5</x:Double>
+    <x:Double x:Key="NavigationBarSpacer">62</x:Double>
+    <x:Double x:Key="NavigationBarArrowWidth">13.3</x:Double>
+    <x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    <!-- Home does not appear in this app -->
+
     
-    <!-- Popup -->
-    <Thickness x:Key="PopupBorder">0, 9.415, 0, 0</Thickness>
-    <Thickness x:Key="PopupMargin">78.445, 61.18, 78.445, 68.595</Thickness>
 </ResourceDictionary>

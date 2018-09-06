@@ -18,6 +18,7 @@ using SurfaceBook2Demo.Services;
 using SurfaceBook2Demo.ViewModels;
 
 using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 
 

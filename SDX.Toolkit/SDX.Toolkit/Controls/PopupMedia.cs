@@ -38,7 +38,9 @@ namespace SDX.Toolkit.Controls
 
         // ui elements to track
         Grid _layoutRoot = null;
-        TextBlock _block = null;
+        Header _header = null;
+        ImageEx _image = null;
+        LoopPlayer _player = null;
 
         Storyboard _storyboard = null;
 
@@ -65,24 +67,24 @@ namespace SDX.Toolkit.Controls
 
         #region Dependency Properties
 
-        // Text
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnTextChanged));
+        // Headline
+        public static readonly DependencyProperty HeadlineProperty =
+            DependencyProperty.Register("Headline", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnHeadlineChanged));
 
-        public string Text
+        public string Headline
         {
-            get => (string)GetValue(TextProperty);
-            set => SetValue(TextProperty, value);
+            get => (string)GetValue(HeadlineProperty);
+            set => SetValue(HeadlineProperty, value);
         }
 
-        // AutoStart
-        public static readonly DependencyProperty AutoStartProperty =
-            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnAutoStartChanged));
+        // Lede
+        public static readonly DependencyProperty LedeProperty =
+            DependencyProperty.Register("Lede", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnLedeChanged));
 
-        public bool AutoStart
+        public string Lede
         {
-            get => (bool)GetValue(AutoStartProperty);
-            set => SetValue(AutoStartProperty, value);
+            get => (string)GetValue(LedeProperty);
+            set => SetValue(LedeProperty, value);
         }
 
         // PopupType
@@ -106,8 +108,6 @@ namespace SDX.Toolkit.Controls
         //    set => SetValue(MediaSourceStorageFileProperty, value);
         //}
 
-
-
         //// MediaSourceUri
         public static readonly DependencyProperty MediaSourceUriProperty =
             DependencyProperty.Register("MediaSourceUri", typeof(Uri), typeof(RadiatingButton), new PropertyMetadata(null, OnMediaSourceUriChanged));
@@ -117,6 +117,18 @@ namespace SDX.Toolkit.Controls
             get => (Uri)GetValue(MediaSourceUriProperty);
             set => SetValue(MediaSourceUriProperty, value);
         }
+
+
+        // AutoStart
+        public static readonly DependencyProperty AutoStartProperty =
+            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnAutoStartChanged));
+
+        public bool AutoStart
+        {
+            get => (bool)GetValue(AutoStartProperty);
+            set => SetValue(AutoStartProperty, value);
+        }
+
         #endregion
 
         #region Public Methods
@@ -160,9 +172,26 @@ namespace SDX.Toolkit.Controls
             ((PopupMedia)sender).UpdateUI();
         }
 
-        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnHeadlineChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if ((d is PopupMedia popup) && (null != popup._header))
+            {
+                if (e.NewValue is string newValue)
+                {
+                    popup._header.Headline = newValue;
+                }
+            }
+        }
 
+        private static void OnLedeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is PopupMedia popup) && (null != popup._header))
+            {
+                if (e.NewValue is string newValue)
+                {
+                    popup._header.Lede = newValue;
+                }
+            }
         }
 
         private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -177,12 +206,12 @@ namespace SDX.Toolkit.Controls
 
         private static void OnMediaSourceStorageFileChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
 
         private static void OnMediaSourceUriChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
 
         #endregion
@@ -197,60 +226,85 @@ namespace SDX.Toolkit.Controls
             // we can't work without it, so return if that failed
             if (null == _layoutRoot) { return; }
 
-            // set the background of the grid
-            _layoutRoot.Background = new SolidColorBrush(Colors.LightGray) { Opacity = StyleHelper.PopupBackgroundOpacity };
+            // set the background/border of the grid
+            _layoutRoot.Background = StyleHelper.GetAcrylicBrush();
             _layoutRoot.BorderBrush = new SolidColorBrush(Colors.White);
-            _layoutRoot.BorderThickness = new Thickness(0, 3, 0, 0);
+            _layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
+
+            // add rows to the popup; only need to do this if we have an image or video
+            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType))
+            {
+                // header
+                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                // spacer
+                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PopupSpacer))});
+
+                // image/video
+                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            }
+
+            // set our margin
+            _layoutRoot.Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupMargin);
+
+            // figure out our width
+            // if the control width is infinity or not a number
+            if (Double.IsInfinity(this.Width) || Double.IsNaN(this.Width))
+            {
+                // use the default popup width
+                this.Width = StyleHelper.GetApplicationDouble(LayoutSizes.PopupDefaultWidth);
+            }
+
+            // set our width
+            _layoutRoot.Width = this.Width;
+
+            // if we autostart, set our opacity to 0 to prepare for that
             if (this.AutoStart) { _layoutRoot.Opacity = 0.0; }
 
-            // set the width of the grid
-            if (!Double.IsInfinity(this.Width) && !Double.IsNaN(this.Width))
+            // create the header
+            _header = new Header()
             {
-                _layoutRoot.Width = this.Width;
-                //_layoutRoot.MaxWidth = this.Width;
-            }
+                Headline = this.Headline,
+                Lede = this.Lede,
+                HeadlineStyle = TextStyles.PopupHeadline,
+                LedeStyle = TextStyles.PopupLede,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Width = this.Width,
+            };
 
-            if (this.PopupType == PopupTypes.None)
-            { }
-            else if (this.PopupType == PopupTypes.Text)
+            // add it to the layout
+            Grid.SetRow(_header, 0);
+            _layoutRoot.Children.Add(_header);
+
+            // if this is a popup with an image
+            if (this.PopupType == PopupTypes.Image)
             {
-                // create the textblock
-                _block = new TextBlock()
+                // create the image
+                _image = new ImageEx()
                 {
-                    TextWrapping = TextWrapping.WrapWholeWords,
-                    Margin = new Thickness(30),
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Center,
+                    ImageSource = this.MediaSourceUri.OriginalString,
+                    Width = this.Width
                 };
-                StyleHelper.SetFontCharacteristics(_block, ControlStyles.PopupText);
-                _block.SetBinding(TextBlock.TextProperty,
-                    new Binding() { Source = this, Path = new PropertyPath("Text"), Mode = BindingMode.OneWay });
 
-                // add it to the layout
-                _layoutRoot.Children.Add(_block);
-
-                // set up the entrance animation
-                _storyboard = AnimationHelper.CreateEasingAnimation(_layoutRoot, "Opacity", 0.0, 0.0, 1.0, 200d, 0d, false, false, new RepeatBehavior(1d));
+                // add to the grid
+                Grid.SetRow(_image, 2);
+                _layoutRoot.Children.Add(_image);
             }
-            else if (this.PopupType == PopupTypes.Image)
-            {
-
-            }
+            // if this is a poup with a video
             else if (this.PopupType == PopupTypes.Video)
             {
-                LoopPlayer loopPlayer = new LoopPlayer() {                    
+                // create the loop player and add it to the grid
+                _player = new LoopPlayer()
+                {
+                    MediaSourceUri = this.MediaSourceUri,
                 };
-                //if (null != this.MediaSourceStorageFile)
-                //{
-                //    loopPlayer.Source = loopPlayer.CreateFromStorageFile(this.MediaSourceStorageFile);
-                //}
-                //else
-                //{
-                    loopPlayer.MediaSourceUri = this.MediaSourceUri;
-                //}
-                _layoutRoot.Children.Add(loopPlayer);
+
+                // add to the grid
+                Grid.SetRow(_player, 2);
+                _layoutRoot.Children.Add(_player);
             }
-           
+
         }
 
         private void UpdateUI()

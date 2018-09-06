@@ -11,46 +11,6 @@
     <!--Style="{StaticResource PageStyle}"-->
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <!--<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Book13">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1500"/>  --><!-- 3000 @ 200% scaling = 1500 --><!--
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="PageCanvas.Width" Value="{StaticResource CanvasWidth15}"/>
-                        <Setter Target="PageCanvas.Height" Value="{StaticResource CanvasHeight15}"/>
-                        <Setter Target="SurfaceBook15.(Canvas.Left)" Value="900"/>
-                        <Setter Target="SurfaceBook15.(Canvas.Top)" Value="300"/>
-                        <Setter Target="SurfaceBook13.(Canvas.Left)" Value="1700"/>
-                        <Setter Target="SurfaceBook13.(Canvas.Top)" Value="300"/>
-                        <Setter Target="Dial.(Canvas.Left)" Value="300"/>
-                        <Setter Target="Dial.(Canvas.Top)" Value="300"/>
-                        <Setter Target="Pen.(Canvas.Left)" Value="600"/>
-                        <Setter Target="Pen.(Canvas.Top)" Value="300"/>
-                        <Setter Target="Temporary.Text" Value="13"/>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Book15">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1580"/>  --><!-- 3160 @ 200% scaling = 1580 --><!--
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="PageCanvas.Width" Value="{StaticResource CanvasWidth13}"/>
-                        <Setter Target="PageCanvas.Height" Value="{StaticResource CanvasHeight13}"/>
-                        <Setter Target="SurfaceBook15.(Canvas.Left)" Value="1000"/>
-                        <Setter Target="SurfaceBook15.(Canvas.Top)" Value="300"/>
-                        <Setter Target="SurfaceBook13.(Canvas.Left)" Value="1800"/>
-                        <Setter Target="SurfaceBook13.(Canvas.Top)" Value="450"/>
-                        <Setter Target="Dial.(Canvas.Left)" Value="300"/>
-                        <Setter Target="Dial.(Canvas.Top)" Value="300"/>
-                        <Setter Target="Pen.(Canvas.Left)" Value="600"/>
-                        <Setter Target="Pen.(Canvas.Top)" Value="300"/>
-                        <Setter Target="Temporary.Text" Value="15"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
 
         <Grid.Background>
             <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
@@ -94,8 +54,8 @@
                 Grid.Row="0" Grid.RowSpan="7"
                 Grid.Column="0" Grid.ColumnSpan="3"
                 Margin="0"
-                Width="{StaticResource CanvasWidth15}"
-                Height="{StaticResource CanvasHeight15}">
+                Width="{StaticResource CanvasWidth}"
+                Height="{StaticResource CanvasHeight}">
 
             <Image x:Name="SurfaceBook15" Width="100" MaxWidth="100">
                 <Image.Source>

@@ -67,8 +67,8 @@ namespace SDX.Toolkit.Controls
         private Canvas _canvas = null;
         private Header _header = null;
         private AnimatableInteger _hours = null;
-        private TextBlock _hrs = null;
-        private TextBlock _legal = null;
+        private TextBlockEx _hrs = null;
+        private TextBlockEx _legal = null;
         private Image _imageBattery = null;
         private Image _imageCharge = null;
 
@@ -327,24 +327,17 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
-            // set the background of the grid (this won't work due to a bug/issue; see below where we add a rectangle)
-            _layoutRoot.Background = new SolidColorBrush(Colors.LightGray) { Opacity = StyleHelper.PopupBackgroundOpacity };
+            _layoutRoot.Background = StyleHelper.GetAcrylicBrush();
             _layoutRoot.BorderBrush = new SolidColorBrush(Colors.White);
-            _layoutRoot.BorderThickness = new Thickness(0, 3, 0, 0);
-            //_layoutRoot.Margin = new Thickness(CANVAS_X, CANVAS_X, CANVAS_X, CANVAS_X);
-            //_layoutRoot.Padding = new Thickness(20, 20, 20, 20);
+            _layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
 
             // create the header
             _header = new Header()
             {
                 Name = "FastCharge",
-                //HeaderStyle = HeaderStyles.BatteryLifePopup,
-                HeadlineStyle = ControlStyles.BatteryLifeHeader,
-                LedeStyle = ControlStyles.BatteryLifeLede,
+                HeadlineStyle = TextStyles.PopupHeadline,
+                LedeStyle = TextStyles.PopupLede,
                 Width = CANVAS_X,
-                //DurationInMilliseconds = 400d,
-                //StaggerDelayInMilliseconds = 0d,
-                //AutoStart = false
             };
             Grid.SetRow(_header, 1);
             Grid.SetColumn(_header, 1);
@@ -363,15 +356,15 @@ namespace SDX.Toolkit.Controls
                 new Binding() { Source = this, Path = new PropertyPath("Hour"), Mode = BindingMode.OneWay });
 
             // create the legal notice
-            _legal = new TextBlock()
+            _legal = new TextBlockEx()
             {
                 Name = "Legal",
                 //Text = this.Legal,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 TextWrapping = TextWrapping.WrapWholeWords,
-                Width = CANVAS_X
+                Width = CANVAS_X, 
+                TextStyle = TextStyles.Legal
             };
-            StyleHelper.SetFontCharacteristics(_legal, ControlStyles.Footnote);
             Grid.SetRow(_legal, 4);
             Grid.SetColumn(_legal, 1);
             _layoutRoot.Children.Add(_legal);
@@ -426,12 +419,12 @@ namespace SDX.Toolkit.Controls
             _canvas.Children.Add(_hours);
 
             // create hours overlay
-            _hrs = new TextBlock()
+            _hrs = new TextBlockEx()
             {
-                Text = "hrs"
+                Text = this.Hour,
+                TextAlignment = TextAlignment.Left,
+                TextStyle = TextStyles.PopupBatteryLife,
             };
-            StyleHelper.SetFontCharacteristics(_hrs, ControlStyles.BatteryLifeHours);
-
             Canvas.SetLeft(_hrs, LEFT_HOURS);
             Canvas.SetTop(_hrs, TOP_HOURS);
             Canvas.SetZIndex(_hrs, Z_ORDER_CONTROLS);

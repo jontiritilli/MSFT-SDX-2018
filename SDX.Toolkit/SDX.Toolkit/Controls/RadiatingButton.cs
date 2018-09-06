@@ -809,10 +809,11 @@ namespace SDX.Toolkit.Controls
                 HorizontalOffset = leftOffset,
                 VerticalOffset = topOffset
             };
+            // TODO: Fix this to account for our header fields
             PopupMedia popupMedia = new PopupMedia()
             {
                 PopupType = type,
-                Text = text,
+                //Text = text,
                 AutoStart = true
             };
             if (!Double.IsInfinity(width) && !double.IsNaN(width))

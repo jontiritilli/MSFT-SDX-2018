@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Windows.UI.Xaml.Controls;
 
+using SDX.Toolkit.Controls;
+
 
 namespace SDX.Toolkit.Models
 {
@@ -16,6 +18,7 @@ namespace SDX.Toolkit.Models
         public int Order;
         public List<NavigationPage> Pages = new List<NavigationPage>();
         public Button UIButton = null;
+        public TextBlockEx UIText = null;
 
         public int GetPageIndex(NavigationPage page)
         {
