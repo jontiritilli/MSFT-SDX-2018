@@ -23,13 +23,19 @@ namespace SDX.Toolkit.Helpers
         PageLedeDark,
         ListHeadline,
         ListLede,
-        ListItemHeadline,
-        ListItemLede,
+        ListItemHeadlinePenTouch,
+        ListItemLedePenTouch,
+        ListItemHeadlineBestOf,
+        ListItemLedeBestOf,
+        ListItemHeadlineCompare,
+        ListItemLedeCompare,
         ListItemCTAText,
         PopupHeadline,
         PopupLede,
         PopupBatteryLife,
         Legal,
+        TryIt,
+        ButtonCaption,
         NavigationSection,
         NavigationSectionActive
     }
@@ -72,13 +78,19 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
         public const string STYLE_LIST_HEADLINE = "ListHeadline";
         public const string STYLE_LIST_LEDE = "ListLede";
-        public const string STYLE_LISTITEM_HEADLINE = "ListItemHeadline";
-        public const string STYLE_LISTITEM_LEDE = "ListItemLede";
+        public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
+        public const string STYLE_LISTITEM_LEDE_PENTOUCH = "ListItemLedePenTouch";
+        public const string STYLE_LISTITEM_HEADLINE_BESTOF = "ListItemHeadlineBestOf";
+        public const string STYLE_LISTITEM_LEDE_BESTOF = "ListItemLedeBestOf";
+        public const string STYLE_LISTITEM_HEADLINE_COMPARE = "ListItemHeadlineCompare";
+        public const string STYLE_LISTITEM_LEDE_COMPARE = "ListItemLedeCompare";
         public const string STYLE_LISTITEM_CTATEXT = "ListItemCTAText";
         public const string STYLE_POPUP_HEADLINE = "PopupHeadline";
         public const string STYLE_POPUP_LEDE = "PopupLede";
         public const string STYLE_POPUP_BATTERYLIFE = "PopupBatteryLife";
         public const string STYLE_LEGAL = "Legal";
+        public const string STYLE_TRYIT = "TryIt";
+        public const string STYLE_BUTTONCAPTION = "ButtonCaption";
         public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
 
@@ -244,12 +256,28 @@ namespace SDX.Toolkit.Helpers
                     style = GetApplicationStyle(STYLE_LIST_LEDE);
                     break;
 
-                case TextStyles.ListItemHeadline:
-                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE);
+                case TextStyles.ListItemHeadlinePenTouch:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_PENTOUCH);
                     break;
 
-                case TextStyles.ListItemLede:
-                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE);
+                case TextStyles.ListItemLedePenTouch:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE_PENTOUCH);
+                    break;
+
+                case TextStyles.ListItemHeadlineBestOf:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_BESTOF);
+                    break;
+
+                case TextStyles.ListItemLedeBestOf:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE_BESTOF);
+                    break;
+
+                case TextStyles.ListItemHeadlineCompare:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_COMPARE);
+                    break;
+
+                case TextStyles.ListItemLedeCompare:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE_COMPARE);
                     break;
 
                 case TextStyles.ListItemCTAText:
@@ -270,6 +298,14 @@ namespace SDX.Toolkit.Helpers
 
                 case TextStyles.Legal:
                     style = GetApplicationStyle(STYLE_LEGAL);
+                    break;
+
+                case TextStyles.TryIt:
+                    style = GetApplicationStyle(STYLE_TRYIT);
+                    break;
+
+                case TextStyles.ButtonCaption:
+                    style = GetApplicationStyle(STYLE_BUTTONCAPTION);
                     break;
 
                 case TextStyles.NavigationSection:
