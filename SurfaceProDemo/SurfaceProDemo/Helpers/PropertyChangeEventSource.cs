@@ -5,7 +5,7 @@
 
 // this class is sourced from https://blogs.u2u.be/diederik/post/Drawing-a-Circular-Gradient-in-Windows-Store-and-Windows-Phone-apps
 
-namespace SurfaceGoDemo.Helpers
+namespace SurfaceProDemo.Helpers
 {
     /// <summary>
     /// Allows raise an event when the value of a dependency property changes when a view model is otherwise not necessary.

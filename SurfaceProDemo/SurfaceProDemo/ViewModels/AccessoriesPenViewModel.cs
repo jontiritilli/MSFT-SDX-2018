@@ -43,8 +43,8 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_COLORING_BOOK_CLEAR_BUTTON = "ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
 
 
-        private const int COLORING_BOOK_BUTTON_WIDTH = 65;
-        private const int COLORING_BOOK_BUTTON_HEIGHT = 65;
+        private const int COLORING_BOOK_BUTTON_WIDTH = 60;
+        private const int COLORING_BOOK_BUTTON_HEIGHT = 60;
         #endregion
 
 

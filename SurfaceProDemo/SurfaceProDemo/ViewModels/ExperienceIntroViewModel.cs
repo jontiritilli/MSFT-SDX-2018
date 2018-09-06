@@ -1,10 +1,10 @@
 ﻿using System;
-
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceProDemo.Services;
-
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceProDemo.ViewModels
 {
@@ -21,6 +21,7 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_IMAGEBLACKHERO_BACK = "ms-appx:///Assets/Experience/black_hero_back.png";
         private const double IMAGEHERO_FRONT_WIDTH = 1194;
         private const double IMAGEHERO_BACK_WIDTH = 610;
+        private const TextStyles PAGEHEADER_HEADLINE_STYLE = TextStyles.PageHeadline;
         #endregion
 
 
@@ -44,6 +45,8 @@ namespace SurfaceProDemo.ViewModels
 
         public double HeroFrontWidth = IMAGEHERO_FRONT_WIDTH;
         public double HeroBackWidth = IMAGEHERO_BACK_WIDTH;
+
+        public TextStyles HeadlineStyle = PAGEHEADER_HEADLINE_STYLE;
         #endregion
 
         #region Construction
@@ -52,6 +55,7 @@ namespace SurfaceProDemo.ViewModels
         {
             if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
+                HeadlineStyle = TextStyles.PageHeadlineDark;
                 BackgroundUri = URI_BLACKBACKGROUND;
                 HeroFrontURI = URI_IMAGEBLACKHERO_FRONT;
                 HeroBackURI = URI_IMAGEBLACKHERO_BACK;

@@ -14,24 +14,25 @@
             <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
         </Grid.Background>
         <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width=".3*"/>
             <ColumnDefinition Width=".7*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
-                
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"                
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
         <!--Width="{StaticResource HeaderWidth}"-->
@@ -45,7 +46,7 @@
             />
         <ctrl:AppSelectorImage
             x:Name="AppSelectorImageKB"
-            Grid.Row="1"
+            Grid.Row="0"
             Grid.RowSpan="4"
             Grid.Column="2"
             Grid.ColumnSpan="3"
@@ -58,23 +59,7 @@
             Grid.Row="4"
             Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-            ControlStyle="CompareLegal"
+            TextStyle="Legal"
             />
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource TopMargin}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource BottomMargin}"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="{StaticResource RightMargin}"/>
-        </Grid.ColumnDefinitions>-->
-
     </Grid>
 </Page>

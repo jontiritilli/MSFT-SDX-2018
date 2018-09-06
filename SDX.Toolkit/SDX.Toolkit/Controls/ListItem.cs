@@ -55,10 +55,10 @@ namespace SDX.Toolkit.Controls
         #region Constants
 
         // pen icons
-        private const string ICON_JOT_URI = @"ms-appx:///Assets/List/inkingDraw.svg";
-        private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/inkingWrite.svg";
-        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/inkingPressure.svg";
-        private const string ICON_PALM_URI = @"ms-appx:///Assets/List/inkingPalm.svg";
+        private const string ICON_JOT_URI = @"ms-appx:///Assets/List/inkingDraw.png";
+        private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/inkingWrite.png";
+        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/inkingPressure.png";
+        private const string ICON_PALM_URI = @"ms-appx:///Assets/List/inkingPalm.png";
         // touch icons
         private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_ROTATE_URI = @"ms-appx:///Assets/List/??.png";

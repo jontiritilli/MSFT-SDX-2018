@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Media;
 using SurfaceProDemo.Services;
 
 
-namespace SurfaceGoDemo.Helpers
+namespace SurfaceProDemo.Helpers
 {
     public enum ControlStyles
     {

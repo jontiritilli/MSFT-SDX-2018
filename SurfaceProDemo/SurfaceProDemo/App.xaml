@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml"/>
                 <ResourceDictionary Source="/Styles/_Thickness.xaml"/>
 
+                <ResourceDictionary Source="/Styles/Sizes.xaml"/>
                 <ResourceDictionary Source="/Styles/Page.xaml"/>
                 <ResourceDictionary Source="/Styles/FlipView.xaml"/>
                 <ResourceDictionary Source="/Styles/Button.xaml"/>
