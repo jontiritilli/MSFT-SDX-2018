@@ -5,6 +5,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceLaptopDemo.Services;
+using Windows.Foundation;
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Controls;
 
 
@@ -36,9 +38,6 @@ namespace SurfaceLaptopDemo.ViewModels
         private const int APPSELECTOR_BUTTON_WIDTH = 60;
         private const int APPSELECTOR_BUTTON_HEIGHT = 50;
 
-        private const int SELECTORIMAGE_IMAGEWIDTH = 768;
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 1360;
-
         #endregion
 
         #region Public Members
@@ -55,6 +54,7 @@ namespace SurfaceLaptopDemo.ViewModels
         public int ImageSelectorImageWidth;
         public int ImageSelectorImageHeight;
 
+        Size size = WindowHelper.GetScreenResolutionInfo();
         public List<AppSelectorData> lifeStyleColorSelectorData = new List<AppSelectorData>();
         public List<AppSelectorImageURI> lifeStyleColorSelectorImageURIs = new List<AppSelectorImageURI>();
 
@@ -62,9 +62,11 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperienceColorsViewModel()
         {
-            BackgroundUri = URI_IMAGESELECTOR_IMAGE_2;
             AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
             AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
+
+            ImageSelectorImageWidth = Convert.ToInt32(size.Width);
+            ImageSelectorImageHeight = Convert.ToInt32(size.Height);
 
             // list of color swatches
             this.lifeStyleColorSelectorData.Add(new AppSelectorData()
@@ -97,27 +99,27 @@ namespace SurfaceLaptopDemo.ViewModels
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_1,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_2,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_4,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             //this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             //{
             //    URI = URI_IMAGESELECTOR_IMAGE_5,
-            //    Width = SELECTORIMAGE_IMAGEWIDTH
+            //    Width = ImageSelectorImageWidth
             //});
 
             // get the localization service

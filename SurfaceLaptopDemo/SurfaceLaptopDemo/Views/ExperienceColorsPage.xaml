@@ -10,9 +10,9 @@
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
-        </Grid.Background>
+        </Grid.Background>-->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
@@ -31,6 +31,12 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="4"
+            x:Name="AppSelectorImageExpColors"
+            URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
+            ImageHeight="{StaticResource CanvasHeight}"
+            ImageWidth="{StaticResource CanvasWidth}"/>
+        
         <ctrl:Header Grid.Row="3" Grid.Column="1"
                     x:Name="PageHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
@@ -42,17 +48,12 @@
                     VerticalAlignment="Bottom"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
-            x:Name="AppSelectorKB"
+            x:Name="AppSelectorExpColors"
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
             ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"/>
 
-        <ctrl:AppSelectorImage Grid.Row="3" Grid.Column="2" Grid.RowSpan="3"
-            x:Name="AppSelectorImageKB"
-            URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
     </Grid>
 </Page>
