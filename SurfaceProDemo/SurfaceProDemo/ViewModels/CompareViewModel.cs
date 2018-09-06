@@ -13,7 +13,7 @@ namespace SurfaceProDemo.ViewModels
 
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
 
         private const string URI_FAMILY = "ms-appx:///Assets/Comparison/comparisonFamily.png";
         private const int IMG_FAMILY_WIDTH = 1368;//2736
@@ -23,7 +23,7 @@ namespace SurfaceProDemo.ViewModels
         private const int IMG_PRO_WIDTH = 702;//1404
         private const int IMG_PRO_HEIGHT = 630;//1260
 
-        private const string URI_BOOK = "ms-appx:///Assets/Comparison/cruz_comparisonSb2.png";
+        private const string URI_BOOK = "ms-appx:///Assets/Comparison/comparisonSb2.png";
         private const int IMG_BOOK_WIDTH = 702;//1404
         private const int IMG_BOOK_HEIGHT = 630;//1260
 
@@ -35,7 +35,7 @@ namespace SurfaceProDemo.ViewModels
         private const int IMG_LAPTOP_WIDTH = 702;//1404
         private const int IMG_LAPTOP_HEIGHT = 630;//1260
 
-        private const string URI_GO = "ms-appx:///Assets/Comparison/cruz_comparisonGo.png";
+        private const string URI_GO = "ms-appx:///Assets/Comparison/comparisonGo.png";
         private const int IMG_GO_WIDTH = 702;//1404
         private const int IMG_GO_HEIGHT = 630;//1260
         #endregion

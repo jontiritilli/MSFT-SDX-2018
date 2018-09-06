@@ -13,9 +13,12 @@ namespace SurfaceProDemo.ViewModels
 
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
-        private const string URI_IMAGEHERO_FRONT = "ms-appx:///Assets/Experience/black_hero_front.png";
-        private const string URI_IMAGEHERO_BACK = "ms-appx:///Assets/Experience/black_hero_back.png";        
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
+        private const string URI_BLACKBACKGROUND = "ms-appx:///Assets/Backgrounds/brand-bg.png";
+        private const string URI_IMAGEHERO_FRONT = "ms-appx:///Assets/Experience/platinum_hero_front.png";
+        private const string URI_IMAGEHERO_BACK = "ms-appx:///Assets/Experience/platinum_hero_back.png";
+        private const string URI_IMAGEBLACKHERO_FRONT = "ms-appx:///Assets/Experience/black_hero_front.png";
+        private const string URI_IMAGEBLACKHERO_BACK = "ms-appx:///Assets/Experience/black_hero_back.png";
         private const double IMAGEHERO_FRONT_WIDTH = 1194;
         private const double IMAGEHERO_BACK_WIDTH = 610;
         #endregion
@@ -47,6 +50,13 @@ namespace SurfaceProDemo.ViewModels
 
         public ExperienceIntroViewModel()
         {
+            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
+            {
+                BackgroundUri = URI_BLACKBACKGROUND;
+                HeroFrontURI = URI_IMAGEBLACKHERO_FRONT;
+                HeroBackURI = URI_IMAGEBLACKHERO_BACK;
+            }
+
             // get the localization service         
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

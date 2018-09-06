@@ -9,9 +9,10 @@
     DataContext="{Binding ExperienceHeroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-        Margin="{StaticResource MediumLeftRightMargin}">
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
