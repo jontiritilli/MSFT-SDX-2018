@@ -67,5 +67,5 @@
 
     <!-- Popup -->
     <Thickness x:Key="PopupBorder">0, 9.415, 0, 0</Thickness>
-    <Thickness x:Key="PopupMargin">78.445, 61.18, 78.445, 68.595</Thickness>
+    <Thickness x:Key="PopupMargin">108, 115.48, 108, 63.82</Thickness>
 </ResourceDictionary>
