@@ -33,6 +33,7 @@ namespace SDX.Toolkit.Helpers
         PopupHeadline,
         PopupLede,
         PopupBatteryLife,
+        SliderBatteryLife,
         Legal,
         TryIt,
         ButtonCaption,
@@ -104,6 +105,7 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_POPUP_HEADLINE = "PopupHeadline";
         public const string STYLE_POPUP_LEDE = "PopupLede";
         public const string STYLE_POPUP_BATTERYLIFE = "PopupBatteryLife";
+        public const string STYLE_SLIDER_BATTERYLIFE = "SliderBatteryLife";
         public const string STYLE_LEGAL = "Legal";
         public const string STYLE_TRYIT = "TryIt";
         public const string STYLE_BUTTONCAPTION = "ButtonCaption";
@@ -404,6 +406,10 @@ namespace SDX.Toolkit.Helpers
 
                 case TextStyles.PopupBatteryLife:
                     style = GetApplicationStyle(STYLE_POPUP_BATTERYLIFE);
+                    break;
+
+                case TextStyles.SliderBatteryLife:
+                    style = GetApplicationStyle(STYLE_SLIDER_BATTERYLIFE);
                     break;
 
                 case TextStyles.Legal:
