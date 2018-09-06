@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Windows.UI.Xaml;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceBook2Demo.Services;
+
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 
 
@@ -22,7 +26,23 @@ namespace SurfaceBook2Demo.ViewModels
         public string NavBarAccessories;
         public string NavBarBestOfMicrosoft;
         public string NavBarCompare;
-        
+
+        public GridLength NavigationBarHeight
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight));
+            }
+        }
+
+        public GridLength AppCloseWidth
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.AppCloseWidth));
+            }
+        }
+
         #endregion
 
 
@@ -47,6 +67,8 @@ namespace SurfaceBook2Demo.ViewModels
 
         #endregion
 
+
+        #region UI Methods
 
         public void RenderNavigation()
         {
@@ -203,6 +225,8 @@ namespace SurfaceBook2Demo.ViewModels
             // =================================================
 
         }
+
+        #endregion
     }
 
 }

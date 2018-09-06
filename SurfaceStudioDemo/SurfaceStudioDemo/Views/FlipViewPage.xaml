@@ -20,16 +20,16 @@
                  people who borrowed from WPF to create UWP are either lazy, stupid, or
                  both because they are incapable of correctly implementing this.
                  Thanks assholes. You've wasted 2 hours of my time chasing down your
-                 fucking incompetence. Fuck you!!! Do us all a favor and just die.
+                 fucking incompetence. Fuck you!!!
             -->
-            <RowDefinition Height="92"/> <!-- Microsoft UWP team employees are incompetent, so must use a static here -->
+            <RowDefinition Height="{Binding Path=ViewModel.AppCloseWidth}"/>  <!-- Microsoft UWP team employees are incompetent, so must use a hack here -->
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
         <!-- FlipView occupies two columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <!--<ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}}"/>-->
-            <ColumnDefinition Width="46"/>  <!-- Microsoft UWP team employees are incompetent, so must use a static here -->
+            <ColumnDefinition Width="{Binding Path=ViewModel.NavigationBarHeight}"/>  <!-- Microsoft UWP team employees are incompetent, so must use a hack here -->
         </Grid.ColumnDefinitions>
 
         <!--Host FlipView-->
