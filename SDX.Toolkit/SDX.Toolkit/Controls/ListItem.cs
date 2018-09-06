@@ -57,7 +57,7 @@ namespace SDX.Toolkit.Controls
         // pen icons
         private const string ICON_JOT_URI = @"ms-appx:///Assets/List/inkingDraw.svg";
         private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/inkingWrite.svg";
-        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/inkingPressure.svg";
+        private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/inkingPressure.svg";
         private const string ICON_PALM_URI = @"ms-appx:///Assets/List/inkingPalm.svg";
         // touch icons
         private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/??.png";
@@ -76,10 +76,10 @@ namespace SDX.Toolkit.Controls
         private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/??.png";
         private const string ICON_PEN_URI = @"ms-appx:///Assets/List/??.png";
         // BOM icons
-        private const string ICON_START_URI = @"ms-appx:///Assets/List/bomWindows.svg";
-        private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bomSmile.svg";
-        private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bomSync.svg";
-        private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bomOffice.svg";
+        private const string ICON_START_URI = @"ms-appx:///Assets/List/bomWindows.png";
+        private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bomSmile.png";
+        private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bomSync.png";
+        private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bomOffice.png";
 
         #endregion
 

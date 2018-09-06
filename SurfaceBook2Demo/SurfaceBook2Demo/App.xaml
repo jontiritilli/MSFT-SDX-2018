@@ -11,15 +11,13 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/_Colors.xaml"/>
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml"/>
-                <ResourceDictionary Source="/Styles/_Thickness.xaml"/>
+                <!--<ResourceDictionary Source="/Styles/_Thickness.xaml"/>--><!-- This is now loaded in code -->
 
-                <ResourceDictionary Source="/Styles/Sizes.xaml"/>
-                <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
+                <!--<ResourceDictionary Source="/Styles/Sizes.xaml"/>--><!-- This is now loaded in code -->
+                <!--<ResourceDictionary Source="/Styles/TextBlock.xaml"/>--><!-- This is now loaded in code -->
                 <ResourceDictionary Source="/Styles/FlipView.xaml"/>
                 <ResourceDictionary Source="/Styles/Button.xaml"/>
                 <ResourceDictionary Source="/Styles/Page.xaml"/>
-
-                <ResourceDictionary Source="/Styles/Animation.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

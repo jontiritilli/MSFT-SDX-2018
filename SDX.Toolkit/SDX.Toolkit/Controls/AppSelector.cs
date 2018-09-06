@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using Windows.Media;
-
+using Windows.UI.Xaml.Input;
 
 namespace SDX.Toolkit.Controls
 {
@@ -56,6 +56,7 @@ namespace SDX.Toolkit.Controls
         private const double WIDTH_GRID_ROWSPACING = 10d;
         private const double WIDTH_IMAGE_SELECTED = 62d;
         private const double WIDTH_IMAGE_NOTSEL = 50d;
+        private Style _buttonStyle;
 
         #endregion
 
@@ -132,12 +133,12 @@ namespace SDX.Toolkit.Controls
             this.Loaded += OnLoaded;
             this.ImagePairs = new Dictionary<int, ImagePair>();
             this.Buttons = new List<AppSelectorButton>();
-
+            this.Opacity = 0;
 
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
         }
 
         protected override void OnApplyTemplate()
@@ -210,18 +211,7 @@ namespace SDX.Toolkit.Controls
 
         #region Public Properties
         // pass me in at init to define me pls
-        public string TelemetryId { get; set; }
-        public List<AppSelectorData> URIs { get; set; }
-        public Orientation Orientation = Orientation.Horizontal;
-        public bool ShowMessages = false;
-
-        //changes the render to handle changing opacity on 2 images or leaving 1
-        public SelectorMode AppSelectorMode = SelectorMode.Color;
-
-        // for the selected line
-        public int ButtonHeight = 0;
-        public int ButtonWidth = 0;// default. if 0 let the control set its own dimensions
-        public bool ShowSelectedLine = false;
+        public string TelemetryId { get; set; }        
         #endregion
 
         #region Dependency Properties
@@ -286,6 +276,78 @@ namespace SDX.Toolkit.Controls
             set { SetValue(AutoStartProperty, value); }
         }
 
+        //List<AppSelectorData> URIs        
+        public static readonly DependencyProperty URIsProperty =
+        DependencyProperty.Register("URIs", typeof(List<AppSelectorData>), typeof(AppSelector), new PropertyMetadata(new List<AppSelectorData>(), OnAutoStartChanged));
+
+        public List<AppSelectorData> URIs
+        {
+            get { return (List<AppSelectorData>)GetValue(URIsProperty); }
+            set { SetValue(URIsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClearButtonDataProperty =
+        DependencyProperty.Register("ClearButtonDataProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null, OnAutoStartChanged));
+
+        public AppSelectorData ClearButtonData
+        {
+            get { return (AppSelectorData)GetValue(ClearButtonDataProperty); }
+            set { SetValue(ClearButtonDataProperty, value); }
+        }
+
+        public static readonly DependencyProperty MainOrientationProperty =
+        DependencyProperty.Register("MainOrientationProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal, OnAutoStartChanged));
+
+        public Orientation MainOrientation
+        {
+            get { return (Orientation)GetValue(MainOrientationProperty); }
+            set { SetValue(MainOrientationProperty, value); }
+        }
+
+        public static readonly DependencyProperty ShowMessagesProperty =
+        DependencyProperty.Register("ShowMessagesProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+
+        public bool ShowMessages
+        {
+            get { return (bool)GetValue(ShowMessagesProperty); }
+            set { SetValue(ShowMessagesProperty, value); }
+        }
+
+        public static readonly DependencyProperty AppSelectorModeProperty =
+        DependencyProperty.Register("AppSelectorModeProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color, OnAutoStartChanged));
+
+        public SelectorMode AppSelectorMode
+        {
+            get { return (SelectorMode)GetValue(AppSelectorModeProperty); }
+            set { SetValue(AppSelectorModeProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonHeightProperty =
+        DependencyProperty.Register("ButtonHeightProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+
+        public int ButtonHeight
+        {
+            get { return (int)GetValue(ButtonHeightProperty); }
+            set { SetValue(ButtonHeightProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonWidthProperty =
+        DependencyProperty.Register("ButtonWidthProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+
+        public int ButtonWidth
+        {
+            get { return (int)GetValue(ButtonWidthProperty); }
+            set { SetValue(ButtonWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ShowSelectedLineProperty =
+        DependencyProperty.Register("ShowSelectedLineProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+
+        public bool ShowSelectedLine
+        {
+            get { return (bool)GetValue(ShowSelectedLineProperty); }
+            set { SetValue(ShowSelectedLineProperty, value); }
+        }
         #endregion
 
         #region Custom Events
@@ -351,20 +413,20 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void OnOpacityChanged(object sender, double e)
-        {
-            double opacity = e;
+        //private void OnOpacityChanged(object sender, double e)
+        //{
+        //    double opacity = e;
 
-            if (null != _layoutRoot)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
+        //    if (null != _layoutRoot)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
 
-                // set opacity
-                _layoutRoot.Opacity = opacity;
-            }
-        }
+        //        // set opacity
+        //        _layoutRoot.Opacity = opacity;
+        //    }
+        //}
 
         private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -397,18 +459,19 @@ namespace SDX.Toolkit.Controls
 
             // update the grid
             _layoutRoot.Name = "AppSelectorGrid";
-            _layoutRoot.Opacity = 1;// why is this 0 instead of 1?
 
 
 
             // must construct additional columns or rows based on orientation and number
             // keep 1.0 so it creates a ratio (double) for the width/height definitions
-            double ratio = 1.0 / URIs.Count;
-            if (this.Orientation == Orientation.Horizontal)
+            int iButtonCount = URIs.Count + (this.ClearButtonData != null ? 1: 0);
+
+            double ratio = 1.0 / iButtonCount;
+            if (this.MainOrientation == Orientation.Horizontal)
             {
                 _layoutRoot.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
                 _layoutRoot.RowDefinitions.Add(new RowDefinition());
-                for (int i = 0; i < this.URIs.Count; i++)
+                for (int i = 0; i < iButtonCount; i++)
                 {
                     _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ratio, GridUnitType.Star) });
                 }
@@ -417,149 +480,31 @@ namespace SDX.Toolkit.Controls
             {
                 _layoutRoot.RowSpacing = WIDTH_GRID_ROWSPACING;
                 _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition());
-                for (int i = 0; i < this.URIs.Count; i++)
+                for (int i = 0; i < iButtonCount; i++)
                 {
                     _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ratio, GridUnitType.Star) });
                 }
             }
 
             // create the button style
-            Style buttonStyle = StyleHelper.GetApplicationStyle("AppSelectorButton");
-            // JN loop this area to create images and buttons based on list
-
-            for (int i = 0; i < this.URIs.Count; i++)
-            {
-                Grid grid = new Grid()
-                {
-                    Margin = new Thickness(0),
-                    Padding = new Thickness(0)
-                };
-                if (this.ShowMessages && this.Orientation == Orientation.Vertical)
-                {
-                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
-                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
-                    grid.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
-                }
-
-                ImagePair images = new ImagePair()
-                {
-                    //ID = i,
-                    Selected = new Image()
-                    {
-                        //Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED },
-                        Width = WIDTH_IMAGE_SELECTED,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Opacity = 1.0
-                    },
-                    NotSelected = new Image()
-                    {
-                       // Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL },
-                        Width = WIDTH_IMAGE_NOTSEL,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Opacity = 1.0
-                    }
-                };
-                if (!string.IsNullOrEmpty(URIs[i].Source_NotSelectedImage))
-                {
-                    images.NotSelected.Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL };
-                }
-                else if (!string.IsNullOrEmpty(URIs[i].SourceSVG_NotSelectedImage))
-                {
-                    images.NotSelected.Source = new SvgImageSource(new Uri(URIs[i].SourceSVG_NotSelectedImage));
-                }
-
-                if (!string.IsNullOrEmpty(URIs[i].Source_SelectedImage))
-                {
-                    images.Selected.Source = new BitmapImage() { UriSource = new Uri(URIs[i].Source_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED };
-                }
-                else if (!string.IsNullOrEmpty(URIs[i].SourceSVG_SelectedImage))
-                {
-                    images.Selected.Source = new SvgImageSource(new Uri(URIs[i].SourceSVG_SelectedImage));
-                }
-                //images.Selected.Source
-                Grid.SetRow(images.NotSelected, 0);
-                Grid.SetColumn(images.NotSelected, 0);
-                grid.Children.Add(images.NotSelected);
-                Grid.SetRow(images.Selected, 0);
-                Grid.SetColumn(images.Selected, 0);
-                grid.Children.Add(images.Selected);
-
-                if (this.Orientation == Orientation.Vertical && this.ShowMessages)
-                {
-                    TextBlock tbMessage = new TextBlock()
-                    {
-                        Text = URIs[i].Message,
-                        FontSize = 20,
-                        Opacity = 1,
-                        VerticalAlignment = VerticalAlignment.Center
-                    };
-                    Grid.SetRow(tbMessage, 0);
-                    Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
-                    grid.Children.Add(tbMessage);
-                }
-
-                this.ImagePairs.Add(i, images);
-                HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
-                // if we need to show messages then align left 
-                if (this.Orientation == Orientation.Vertical && this.ShowMessages)
-                {
-                    horizontalAlignment = HorizontalAlignment.Left;
-                }
-
-                AppSelectorButton sbButton = new AppSelectorButton()
-                {
-                    ID = i,
-                    Background = new SolidColorBrush(Colors.Transparent),
-                    HorizontalAlignment = horizontalAlignment,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Content = grid
-                };
-                //only set the dimensions of the button if the control variables are passed in
-                // and the orientation is correct
-                if (this.ButtonHeight > 0)
-                {
-                    sbButton.Height = this.ButtonHeight;
-                }
-
-                // if u need to show messages, dont set the width b/c theres no way to figure out the width 
-                // if there is text
-                if (this.ButtonWidth > 0 && (!this.ShowMessages && !(this.Orientation == Orientation.Vertical)))
-                {
-                    sbButton.Width = this.ButtonWidth;
-                }
-                if (null != buttonStyle) { sbButton.Style = buttonStyle; };
-
-                if (this.URIs[i].IsClearButton)
-                {// these buttons get their own handler and dont change the selection of the app selector
-                    sbButton.Click += Selector_ClearButtonClick;
-                }
-                else
-                {
-                    sbButton.Click += Selector_ButtonClick;
-                }
-
-                
-                if (this.Orientation == Orientation.Horizontal)
-                {
-                    Grid.SetRow(sbButton, 0);
-                    Grid.SetColumn(sbButton, i);
-                }
-                else // vertical
-                {
-                    Grid.SetColumn(sbButton, 0);
-                    Grid.SetRow(sbButton, i);
-                }
-                this.Buttons.Add(sbButton);
-                _layoutRoot.Children.Add(sbButton);
+            _buttonStyle = StyleHelper.GetApplicationStyle("AppSelectorButton");
+            // JN loop this area to create images and buttons based on list            
+            int index = 0;
+            if (this.ClearButtonData != null)
+            {// start the actual buttons at the next position if there is a clear button
+                GenerateButton(this.ClearButtonData, 0, 0);
+                index = 1;
+            }
+            for (int i = 0; i < this.URIs.Count; i++, index++)
+            {                
+                GenerateButton(this.URIs[i], i, index);
             }
 
             if (this.ShowSelectedLine)
             {
                 //int margin = 5;
                 selectedLine.StrokeThickness = 10;
-                if (this.Orientation == Orientation.Vertical)
+                if (this.MainOrientation == Orientation.Vertical)
                 {
                     selectedLine.X1 = 0;
                     selectedLine.Y1 = 2;
@@ -567,7 +512,7 @@ namespace SDX.Toolkit.Controls
                     selectedLine.X2 = 0;
                     selectedLine.Y2 = this.ButtonHeight + 4;
                 }
-                if (this.Orientation == Orientation.Horizontal)
+                if (this.MainOrientation == Orientation.Horizontal)
                 {
                     selectedLine.X1 = 5;
                     selectedLine.Y1 = this.ButtonHeight + 10;
@@ -599,11 +544,11 @@ namespace SDX.Toolkit.Controls
 
                 this.storyboard.Children.Add(daAnimation);
                 Storyboard.SetTarget(daAnimation, this.translateTransform);
-                if (this.Orientation == Orientation.Horizontal)
+                if (this.MainOrientation == Orientation.Horizontal)
                 {
                     Storyboard.SetTargetProperty(daAnimation, "X");
                 }
-                if (this.Orientation == Orientation.Vertical)
+                if (this.MainOrientation == Orientation.Vertical)
                 {
                     Storyboard.SetTargetProperty(daAnimation, "Y");
                 }
@@ -615,6 +560,148 @@ namespace SDX.Toolkit.Controls
             _storyboardFadeOut = AnimationHelper.CreateEasingAnimation(_layoutRoot, "Opacity", 1.0, 1.0, 0.0, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
             this.UpdateUI();
+        }
+
+        private void GenerateButton(AppSelectorData AppSelectorData, int i, int position)
+        {
+            Grid grid = new Grid()
+            {
+                Margin = new Thickness(0),
+                Padding = new Thickness(0)
+            };
+            if (this.ShowMessages && this.MainOrientation == Orientation.Vertical)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                grid.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
+            }
+
+            ImagePair images = new ImagePair()
+            {
+                //ID = i,
+                Selected = new Image()
+                {                    
+                    Width = WIDTH_IMAGE_SELECTED,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                },
+                NotSelected = new Image()
+                {                    
+                    Width = WIDTH_IMAGE_NOTSEL,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                }
+            };
+            if (!string.IsNullOrEmpty(AppSelectorData.Source_NotSelectedImage))
+            {
+                images.NotSelected.Source = new BitmapImage() { UriSource = new Uri(AppSelectorData.Source_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL };
+            }
+            else if (!string.IsNullOrEmpty(AppSelectorData.SourceSVG_NotSelectedImage))
+            {
+                images.NotSelected.Source = new SvgImageSource(new Uri(AppSelectorData.SourceSVG_NotSelectedImage));
+            }
+
+            if (!string.IsNullOrEmpty(AppSelectorData.Source_SelectedImage))
+            {
+                images.Selected.Source = new BitmapImage() { UriSource = new Uri(AppSelectorData.Source_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED };
+            }
+            else if (!string.IsNullOrEmpty(AppSelectorData.SourceSVG_SelectedImage))
+            {
+                images.Selected.Source = new SvgImageSource(new Uri(AppSelectorData.SourceSVG_SelectedImage));
+            }
+            //images.Selected.Source
+            Grid.SetRow(images.NotSelected, 0);
+            Grid.SetColumn(images.NotSelected, 0);
+            grid.Children.Add(images.NotSelected);
+            Grid.SetRow(images.Selected, 0);
+            Grid.SetColumn(images.Selected, 0);
+            grid.Children.Add(images.Selected);
+
+            if (this.MainOrientation == Orientation.Vertical && this.ShowMessages)
+            {
+                TextBlock tbMessage = new TextBlock()
+                {
+                    Text = AppSelectorData.Message,
+                    FontSize = 20,
+                    Opacity = 1,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                Grid.SetRow(tbMessage, 0);
+                Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
+                grid.Children.Add(tbMessage);
+            }
+            if (!AppSelectorData.IsClearButton) {
+                this.ImagePairs.Add(i, images);
+            }
+                
+            HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
+            // if we need to show messages then align left 
+            if (this.MainOrientation == Orientation.Vertical && this.ShowMessages)
+            {
+                horizontalAlignment = HorizontalAlignment.Left;
+            }
+
+            AppSelectorButton sbButton = new AppSelectorButton()
+            {
+                ID = i,
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = horizontalAlignment,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = grid
+            };
+
+            //only set the dimensions of the button if the control variables are passed in
+            // and the orientation is correct
+            if (this.ButtonHeight > 0)
+            {
+                sbButton.Height = this.ButtonHeight;
+            }
+
+            // if u need to show messages, dont set the width b/c theres no way to figure out the width 
+            // if there is text
+            if (this.ButtonWidth > 0 && (!this.ShowMessages && !(this.MainOrientation == Orientation.Vertical)))
+            {
+                sbButton.Width = this.ButtonWidth;
+            }
+            if (null != _buttonStyle) { sbButton.Style = _buttonStyle; };
+
+            if (AppSelectorData.IsClearButton)
+            {// these buttons get their own handler and dont change the selection of the app selector
+                sbButton.Click += Selector_ClearButtonClick;
+            }
+            else
+            {
+                sbButton.Click += Selector_ButtonClick;
+            }
+            grid.PointerEntered += pointerEntered;
+
+
+            if (this.MainOrientation == Orientation.Horizontal)
+            {
+                Grid.SetRow(sbButton, 0);
+                Grid.SetColumn(sbButton, position);
+            }
+            else // vertical
+            {
+                Grid.SetColumn(sbButton, 0);
+                Grid.SetRow(sbButton, position);
+            }
+            if (!AppSelectorData.IsClearButton)
+            {// clear button is not a part of the regular buttons 
+                this.Buttons.Add(sbButton);
+            }            
+            _layoutRoot.Children.Add(sbButton);
+        }
+
+        private void pointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            Grid grid = (Grid)sender;
+            // you can see the 2images in there. which is which?
+            // and should you refactor the render ui so it doesnt put the 
+            // clear button into the Imagepairs collection? or where it shouldnt
+            // be referred to?
         }
 
         private void Selector_ButtonClick(object sender, RoutedEventArgs e)
@@ -656,7 +743,7 @@ namespace SDX.Toolkit.Controls
             int iDistance = 0;
 
             // move left or right
-            if (this.Orientation == Orientation.Horizontal)
+            if (this.MainOrientation == Orientation.Horizontal)
             {
                 iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * ((int)WIDTH_GRID_COLUMNSPACING + 8));
             }
@@ -673,7 +760,7 @@ namespace SDX.Toolkit.Controls
         private void UpdateUI()
         {
             // test the first image and return if it hasn't been created
-            if (null == this.ImagePairs[0].NotSelected) { return; }
+            if (null == this.ImagePairs) { return; }
             // if there are image pairs and the setting has image pairs, then do image pairs. 
             // otherwise keep all opaque and move the line and update the button text to be bold
             if (this.AppSelectorMode == SelectorMode.Color)
@@ -685,11 +772,16 @@ namespace SDX.Toolkit.Controls
                         this.ImagePairs[i].Selected.Opacity = 1;
                         this.ImagePairs[i].NotSelected.Opacity = 0;
                     }
-                    else
-                    { // opposite
+                }
+
+                for (int i = 0; i < this.ImagePairs.Count; i++)
+                {
+                    if (this.SelectedID != i)
+                    { // selected change opacity to 1 and unselected to 0
                         this.ImagePairs[i].Selected.Opacity = 0;
                         this.ImagePairs[i].NotSelected.Opacity = 1;
                     }
+
                 }
             }
             else

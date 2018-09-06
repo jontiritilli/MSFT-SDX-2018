@@ -107,7 +107,7 @@ namespace SDX.Toolkit.Helpers
             {
                 Storyboard storyboard = null;
 
-                if (null != child && child != page && !(child is Grid) && !(child is Controls.ImageEx))// dont do the page either
+                if (null != child && child != page && !(child is Grid))// dont do the page either
                 {
                     storyboard = CreateEasingAnimation(child, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
                     StoryBoardCollection.Add(storyboard);

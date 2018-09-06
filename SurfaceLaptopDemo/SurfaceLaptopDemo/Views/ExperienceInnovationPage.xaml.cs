@@ -31,14 +31,15 @@ namespace SurfaceLaptopDemo.Views
 
         #region INavigate Interface
 
+
         public void NavigateToPage()
         {
-            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

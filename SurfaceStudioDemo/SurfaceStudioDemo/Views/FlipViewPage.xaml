@@ -5,22 +5,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding FlipViewViewModel, Source={StaticResource Locator}}"
-    Style="{StaticResource PageStyle}"
     xmlns:model="using:SurfaceStudioDemo.Models"
     xmlns:views="using:SurfaceStudioDemo.Views"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
 
     <Grid Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0" Background="Transparent">
+        <!-- Top row is for FlipView and its content, bottom is for NavBar -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>-->
+            <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
+                 resource with a converter. So we have to add the GridLength we want
+                 to the ViewModel, which uses StyleHelper to create it with the style value. -->
+            <RowDefinition Height="{Binding Path=ViewModel.AppCloseWidth}"/>
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
         <!-- FlipView occupies two columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="46"/>
+            <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
+                 resource with a converter. So we have to add the GridLength we want
+                 to the ViewModel, which uses StyleHelper to create it with the style value. -->
+            <ColumnDefinition Width="{Binding Path=ViewModel.NavigationBarHeight}"/>
         </Grid.ColumnDefinitions>
 
         <!--Host FlipView-->
@@ -87,21 +94,31 @@
         </ctrl:FlipViewEx>
 
         <!-- App Close button -->
-
-        <Button x:Name="AppClose" Grid.Row="0" Grid.Column="1" Width="46" Height="32" Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right" Style="{StaticResource NoInteractionButton}" Click="AppClose_Click">
+        <Button x:Name="AppClose" Grid.Row="0" Grid.Column="1"
+                Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
+                Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
+                Style="{StaticResource NoInteractionButton}" Click="AppClose_Click">
             <Button.Background>
                 <SolidColorBrush Color="Black" Opacity="0.1" />
             </Button.Background>
             <Button.Content>
-                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
+                <Image Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
+                       Source="/Assets/Universal/close-app-button.png"/>
             </Button.Content>
         </Button>
 
         <!-- Bottom Nav Bar -->
-        <ctrl:NavigationBar x:Name="BottomNavBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                           Height="80"
+        <ctrl:NavigationBar x:Name="BottomNavBar"
+                           Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                           Height="{StaticResource NavigationBarHeight}"
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
+
+        <!-- TEST ONLY -->
+        <!--<Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="2"/>
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="White" BorderThickness="2"/>-->
 
     </Grid>
 </Page>

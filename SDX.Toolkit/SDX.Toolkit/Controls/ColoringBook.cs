@@ -71,14 +71,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region Public Members
-        
-        public string ImageSVGURI;
-        public int ImageWidth;
-        public int ImageHeight;
-        public List<ColoringBookColor> Colors;
-        #endregion
-
         #region Constructor
 
         public ColoringBook()
@@ -86,9 +78,9 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(ColoringBook);
             this.Loaded += OnLoaded;
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
             this._URIs = new List<AppSelectorData>();
         }
 
@@ -144,14 +136,14 @@ namespace SDX.Toolkit.Controls
             set { SetValue(CaptionProperty, value); }
         }
 
-        // ControlStyle
-        public static readonly DependencyProperty ControlStyleProperty =
-            DependencyProperty.Register("ControlStyle", typeof(ControlStyles), typeof(ColoringBook), new PropertyMetadata(null));
+        // TextStyle
+        public static readonly DependencyProperty TextStyleProperty =
+            DependencyProperty.Register("TextStyle", typeof(TextStyles), typeof(ColoringBook), new PropertyMetadata(null));
 
-        public ControlStyles ControlStyle
+        public TextStyles TextStyle
         {
-            get { return (ControlStyles)GetValue(ControlStyleProperty); }
-            set { SetValue(ControlStyleProperty, value); }
+            get { return (TextStyles)GetValue(TextStyleProperty); }
+            set { SetValue(TextStyleProperty, value); }
         }
 
         // DurationInMilliseconds
@@ -214,6 +206,85 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageURIProperty, value); }
         }
 
+        // ImageSVGURI
+        public static readonly DependencyProperty ImageSVGURIProperty =
+        DependencyProperty.Register("ImageSVGURI", typeof(string), typeof(ColoringBook), new PropertyMetadata(""));
+
+        public string ImageSVGURI
+        {
+            get { return (string)GetValue(ImageSVGURIProperty); }
+            set { SetValue(ImageSVGURIProperty, value); }
+        }
+
+        // ImageWidth
+        public static readonly DependencyProperty ImageWidthProperty =
+        DependencyProperty.Register("ImageWidth", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ImageWidth
+        {
+            get { return (int)GetValue(ImageWidthProperty); }
+            set { SetValue(ImageWidthProperty, value); }
+        }
+
+        // ImageHeight
+        public static readonly DependencyProperty ImageHeightProperty =
+        DependencyProperty.Register("ImageHeight", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ImageHeight
+        {
+            get { return (int)GetValue(ImageHeightProperty); }
+            set { SetValue(ImageHeightProperty, value); }
+        }
+
+        // Colors
+        public static readonly DependencyProperty ColorsProperty =
+        DependencyProperty.Register("Colors", typeof(List<ColoringBookColor>), typeof(ColoringBook), new PropertyMetadata(new List<ColoringBookColor>()));
+
+        public List<ColoringBookColor> Colors
+        {
+            get { return (List<ColoringBookColor>)GetValue(ColorsProperty); }
+            set { SetValue(ColorsProperty, value); }
+        }
+
+        // ImageWidth
+        public static readonly DependencyProperty ButtonWidthProperty =
+        DependencyProperty.Register("ButtonWidth", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ButtonWidth
+        {
+            get { return (int)GetValue(ButtonWidthProperty); }
+            set { SetValue(ButtonWidthProperty, value); }
+        }
+
+        // ImageHeight
+        public static readonly DependencyProperty ButtonHeightProperty =
+        DependencyProperty.Register("ButtonHeight", typeof(int), typeof(ColoringBook), new PropertyMetadata(0));
+
+        public int ButtonHeight
+        {
+            get { return (int)GetValue(ButtonHeightProperty); }
+            set { SetValue(ButtonHeightProperty, value); }
+        }
+
+        // ImageHeight
+        public static readonly DependencyProperty ClearButtonURIProperty =
+        DependencyProperty.Register("ClearButtonURI", typeof(string), typeof(ColoringBook), new PropertyMetadata(""));
+
+        public string ClearButtonURI
+        {
+            get { return (string)GetValue(ClearButtonURIProperty); }
+            set { SetValue(ClearButtonURIProperty, value); }
+        }
+
+        // ImageColumnSpan
+        public static readonly DependencyProperty ImageColumnSpanProperty =
+        DependencyProperty.Register("ImageColumnSpan", typeof(int), typeof(ColoringBook), new PropertyMetadata(1));
+
+        public int ImageColumnSpan
+        {
+            get { return (int)GetValue(ImageColumnSpanProperty); }
+            set { SetValue(ImageColumnSpanProperty, value); }
+        }
         #endregion
 
         #region Event Handlers
@@ -231,30 +302,30 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private void OnOpacityChanged(object sender, double e)
-        {
-            double opacity = e;
+        //private void OnOpacityChanged(object sender, double e)
+        //{
+        //    double opacity = e;
 
-            if (null != _layoutRoot)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
+        //    if (null != _layoutRoot)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
 
-                // set opacity
-                _layoutRoot.Opacity = opacity;
-            }
-            //_AppSelector needs to be handled here as well
-            if (null != _AppSelector)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
+        //        // set opacity
+        //        _layoutRoot.Opacity = opacity;
+        //    }
+        //    //_AppSelector needs to be handled here as well
+        //    if (null != _AppSelector)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
 
-                // set opacity
-                _AppSelector.Opacity = opacity;
-            }
-        }
+        //        // set opacity
+        //        _AppSelector.Opacity = opacity;                
+        //    }
+        //}
         #endregion
 
         #region UI Methods
@@ -263,7 +334,9 @@ namespace SDX.Toolkit.Controls
         {
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
-            _layoutRoot.Opacity = 0;
+            //_layoutRoot.Opacity = 0;
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.8, GridUnitType.Star) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.2, GridUnitType.Star) });
 
             if (null == _layoutRoot) { return; }
 
@@ -303,7 +376,7 @@ namespace SDX.Toolkit.Controls
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            Grid.SetRow(_touchHereImage, 0);
+            Grid.SetRow(_touchHereImage, 0);            
             Grid.SetColumn(_touchHereImage, 0);
             _penTouchPointGrid.Children.Add(_touchHereImage);
 
@@ -316,6 +389,7 @@ namespace SDX.Toolkit.Controls
             };
 
             Grid.SetRow(_inkCanvas, 0);
+            Grid.SetColumnSpan(_inkCanvas, this.ImageColumnSpan);
             Grid.SetColumn(_inkCanvas, 0);
             _layoutRoot.Children.Add(_inkCanvas);
 
@@ -336,21 +410,14 @@ namespace SDX.Toolkit.Controls
             }
             else if(!string.IsNullOrEmpty(ImageSVGURI))
             {
-                ColoringImage.Source = new SvgImageSource(new Uri(ImageSVGURI)) {};
+                ColoringImage.Source = new SvgImageSource() { UriSource = new Uri(ImageSVGURI), RasterizePixelWidth = this.ImageWidth };
             }
 
-            Canvas.SetZIndex(ColoringImage, 100);
-            Grid.SetRow(ColoringImage, 0);
-            Grid.SetRowSpan(ColoringImage, 4);
-            Grid.SetColumn(ColoringImage, 0);
-            Grid.SetColumnSpan(ColoringImage, 3);
-            _layoutRoot.Children.Add(ColoringImage);
-            this._URIs.Add(new AppSelectorData
-            {
-                SourceSVG_NotSelectedImage = "ms-appx:///Assets/Universal/inkingReset.svg",
-                SourceSVG_SelectedImage = "ms-appx:///Assets/Universal/inkingReset.svg",
-                IsClearButton = true
-            });
+            Canvas.SetZIndex(ColoringImage, 101);
+            Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
+            Grid.SetRow(ColoringImage, 0);            
+            Grid.SetColumn(ColoringImage, 0);            
+            _layoutRoot.Children.Add(ColoringImage);            
 
             for (int i = 0; i < this.Colors.Count; i++)
             {
@@ -366,23 +433,26 @@ namespace SDX.Toolkit.Controls
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                DurationInMilliseconds = 200d,
-                StaggerDelayInMilliseconds = 200d,
-                AutoStart = false,
-                Orientation = Orientation.Vertical,
-                ButtonHeight = 74,
+                MainOrientation = Orientation.Vertical,
+                ButtonHeight = this.ButtonHeight,
+                ButtonWidth = this.ButtonWidth,
                 Opacity = 1,
                 URIs = this._URIs,
-                SelectedID = 1// starting color b/c 0 is the clear button
-            };// bind event to catch and change color from this.colors
-            // add the test selector here so it's after the color selector image
+                ClearButtonData = new AppSelectorData
+                {
+                    Source_NotSelectedImage = this.ClearButtonURI,
+                    Source_SelectedImage = this.ClearButtonURI,
+                    IsClearButton = true
+                },
+                SelectedID = 0
+            };
             _AppSelector.SelectedIDChanged += _AppSelector_SelectedIDChanged;
             _AppSelector.OnClearClicked += _AppSelector_ClearClickedChanged;
             Canvas.SetZIndex(_AppSelector, 101);
-            Grid.SetRow(_AppSelector, 5);
+            Grid.SetRow(_AppSelector, 0);
             Grid.SetColumn(_AppSelector, 1);
             this._layoutRoot.Children.Add(_AppSelector);
-            this._SelectedColor = this.Colors[1].Color;
+            this._SelectedColor = this.Colors[0].Color;
             SetupBrush();
             // set up events
 
@@ -394,16 +464,7 @@ namespace SDX.Toolkit.Controls
             if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
-                if (appSelector.SelectedID > 0)
-                {// this is the only case there this needs to manage since there is a clear button so account for it
-                    this._SelectedColor = this.Colors[appSelector.SelectedID - 1].Color;
-                }
-                //else
-                //{// should it disable the color? or leave the selection on the previous one?
-                //    _inkCanvas.InkPresenter.StrokeContainer.Clear();
-                //}
-                
-
+                this._SelectedColor = this.Colors[appSelector.SelectedID].Color;              
                 SetupBrush();
             }
         }

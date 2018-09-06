@@ -5,15 +5,32 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceLaptopDemo.Services;
-using SDX.Toolkit.Models;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceLaptopDemo.ViewModels
 {
     public class ExperienceHeroViewModel : ViewModelBase
     {
+        #region Constants
+
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_brand-bg.png";
+
+        #endregion
+
+        #region Public Properties
+
+        public string BackgroundUri;
+        public string HeroText;
+        public int RowCount;
+        public string SwipeText;
+
+        #endregion
+
         public ExperienceHeroViewModel()
         {
+            BackgroundUri = URI_BACKGROUND;
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

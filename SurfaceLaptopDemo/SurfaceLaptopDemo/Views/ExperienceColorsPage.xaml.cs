@@ -18,27 +18,27 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public ExperienceColorsPage()
         {
             InitializeComponent();
+            this.AppSelectorImageExpColors.AppSelector = this.AppSelectorExpColors;
+            ViewModel.BackgroundUri = ViewModel.lifeStyleColorSelectorImageURIs[AppSelectorImageExpColors.SelectedID].URI;
         }
 
         #endregion
-
 
         #region INavigate Interface
 
         public void NavigateToPage()
         {
-            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

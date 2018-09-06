@@ -100,11 +100,11 @@ namespace SDX.Toolkit.Controls
 
         // ListItems
         public static readonly DependencyProperty ListItemsProperty =
-            DependencyProperty.Register("ListItems", typeof(ListItem[]), typeof(List), new PropertyMetadata(null, OnListItemsChanged));
+            DependencyProperty.Register("ListItems", typeof(List<ListItem>), typeof(List), new PropertyMetadata(null, OnListItemsChanged));
 
-        public ListItem[] ListItems
+        public List<ListItem> ListItems
         {
-            get { return (ListItem[])GetValue(ListItemsProperty); }
+            get { return (List<ListItem>)GetValue(ListItemsProperty); }
             set
             {
                 // save the value
@@ -197,7 +197,7 @@ namespace SDX.Toolkit.Controls
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
-                                ImageSource = item.IconPath,
+                                ImageSource = item.IconPath,                                
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
                                 VerticalContentAlignment = VerticalAlignment.Center,
@@ -209,9 +209,9 @@ namespace SDX.Toolkit.Controls
                             // create the lede
                             Header lede = new Header()
                             {
-                                HeadlineStyle = ControlStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListHeadline,
                                 Headline = "",
-                                LedeStyle = ControlStyles.ListLede,
+                                LedeStyle = TextStyles.ListLede,
                                 Lede = item.Lede,
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -219,7 +219,7 @@ namespace SDX.Toolkit.Controls
                             };
                             Grid.SetColumn(lede, 2);
                             Grid.SetRow(lede, item.Order + 1);
-
+                            
                             _layoutRoot.Children.Add(lede);
                         }
                     }
@@ -243,7 +243,7 @@ namespace SDX.Toolkit.Controls
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
-                                ImageSource = item.IconPath,
+                                ImageSource = item.IconPath,                                
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
@@ -256,9 +256,9 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
                             {
-                                HeadlineStyle = ControlStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListHeadline,
                                 Headline = item.Headline,
-                                LedeStyle = ControlStyles.ListLede,
+                                LedeStyle = TextStyles.ListLede,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
@@ -292,7 +292,7 @@ namespace SDX.Toolkit.Controls
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
-                                ImageSourceSVG = item.IconPath,
+                                ImageSource = item.IconPath,
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
@@ -305,9 +305,9 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
                             {
-                                HeadlineStyle = ControlStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListItemHeadlineBestOf,
                                 Headline = item.Headline,
-                                LedeStyle = ControlStyles.ListLede,
+                                LedeStyle = TextStyles.ListItemLedeBestOf,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
