@@ -34,11 +34,14 @@ namespace SurfaceProDemo.Views
         public void NavigateToPage()
         {
             // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Tablet, this.img_Tablet.TranslateDirection, 100, 500, 0);
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

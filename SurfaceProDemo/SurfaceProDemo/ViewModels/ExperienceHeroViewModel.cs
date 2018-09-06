@@ -20,8 +20,10 @@ namespace SurfaceProDemo.ViewModels
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;
-
+        public string BackgroundUri = URI_BACKGROUND;        
+        public string HeroText;
+        public int RowCount;
+        public string SwipeText;
         #endregion
 
         #region Construction

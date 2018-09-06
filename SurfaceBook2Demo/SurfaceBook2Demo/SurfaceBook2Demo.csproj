@@ -349,6 +349,14 @@
     <Content Include="Assets\Experience\sb2_work_appScreen_photoshop.png" />
     <Content Include="Assets\Experience\sb2_work_insetConnections.png" />
     <Content Include="Assets\Experience\sb2_work_sb15.png" />
+    <Content Include="Assets\List\bomOffice.svg" />
+    <Content Include="Assets\List\bomSmile.svg" />
+    <Content Include="Assets\List\bomSync.svg" />
+    <Content Include="Assets\List\bomWindows.svg" />
+    <Content Include="Assets\List\inkingDraw.svg" />
+    <Content Include="Assets\List\inkingPalm.svg" />
+    <Content Include="Assets\List\inkingPressure.svg" />
+    <Content Include="Assets\List\inkingWrite.svg" />
     <Content Include="Assets\NavigationBar\navChevronLeft.svg" />
     <Content Include="Assets\NavigationBar\navChevronRight.svg" />
     <Content Include="Assets\NavigationBar\navHome.svg" />
