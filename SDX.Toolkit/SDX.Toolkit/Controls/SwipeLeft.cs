@@ -292,7 +292,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Clear();
 
             // get ellipse size
-            double ellipseSize = StyleHelper.GetApplicationDouble(LayoutSizes.SwipeLeftEllipseSize);
+            double ellipseSize = StyleHelper.GetApplicationDouble(LayoutSizes.SwipeLeftEllipseRadius);
 
             // set up grid
             _layoutRoot.Width = WIDTH_CONTROL;

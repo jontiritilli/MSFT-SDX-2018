@@ -42,17 +42,31 @@ namespace SDX.Toolkit.Helpers
 
     public enum LayoutSizes
     {
+        LeftMargin,
+        TopMargin,
+        RightMargin,
+        BottomMargin,
+        SpaceBelowHeader,
         AppCloseWidth,
         AppCloseHeight,
+        HeaderWidth,
+        HeaderSpacerRowHeightPageHeader,
+        HeaderSpacerRowHeightListHeader,
+        HeaderSpacerRowHeightListItemHeaderPenTouch,
+        HeaderSpacerRowHeightListItemHeaderBestOf,
+        HeaderSpacerRowHeightListItemHeaderCompare,
+        HeaderSpacerRowHeightPopupHeader,
         AccessoriesPenListIconWidth,
         BestOfMicrosoftListIconWidth,
         CompareListIconWidth,
-        SwipeLeftEllipseSize,
+        SwipeLeftEllipseRadius,
         SwipeLeftSpacer,
         SwipeToContinueArrowWidth,
         SwipeToContinueSpacer,
         PopupDefaultWidth,
         PopupSpacer,
+        CanvasWidth,
+        CanvasHeight,
         NavigationBarHeight,
         NavigationBarLineHeight,
         NavigationBarMargin,
@@ -70,6 +84,8 @@ namespace SDX.Toolkit.Helpers
 
     public static class StyleHelper
     {
+        #region Style Constants
+
         public const string STYLE_HERO = "Hero";
         public const string STYLE_SWIPE = "Swipe";
         public const string STYLE_PAGE_HEADLINE = "PageHeadline";
@@ -94,8 +110,28 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
 
+        #endregion
+
+
+        #region Size Constants
+
+        public const string SIZE_LEFT_MARGIN = "LeftMargin";
+        public const string SIZE_TOP_MARGIN = "TopMargin";
+        public const string SIZE_RIGHT_MARGIN = "RightMargin";
+        public const string SIZE_BOTTOM_MARGIN = "BottomMargin";
+
+        public const string SIZE_SPACE_BELOW_HEADER = "SpaceBelowHeader";
+
         public const string SIZE_APPCLOSE_WIDTH = "AppCloseWidth";
         public const string SIZE_APPCLOSE_HEIGHT = "AppCloseHeight";
+
+        public const string SIZE_HEADER_WIDTH = "HeaderWidth";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_PAGEHEADER = "HeaderSpacerRowHeightPageHeader";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTHEADER = "HeaderSpacerRowHeightListHeader";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_PENTOUCH = "HeaderSpacerRowHeightListHeaderPenTouch";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_BESTOF = "HeaderSpacerRowHeightListHeaderBestOf";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_COMPARE = "HeaderSpacerRowHeightListHeaderCompare";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_POPUPHEADER = "HeaderSpacerRowHeightPopupHeader";
 
         public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
@@ -110,6 +146,9 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_POPUP_DEFAULT_WIDTH = "PopupDefaultWidth";
         public const string SIZE_POPUP_SPACER = "PopupSpacer";
 
+        public const string SIZE_CANVAS_WIDTH = "CanvasWidth";
+        public const string SIZE_CANVAS_HEIGHT = "CanvasHeight";
+
         public const string SIZE_NAVIGATIONBAR_HEIGHT = "NavigationBarHeight";
         public const string SIZE_NAVIGATIONBAR_LINEHEIGHT = "NavigationBarLineHeight";
         public const string SIZE_NAVIGATIONBAR_MARGIN = "NavigationBarMargin";
@@ -117,9 +156,19 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
         public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
 
+        #endregion
+
+
+        #region Thickness Constants
+
         public const string THICKNESS_HERO_MARGIN = "HeroMargin";
         public const string THICKNESS_POPUP_BORDER = "PopupBorder";
         public const string THICKNESS_POPUP_MARGIN = "PopupMargin";
+
+        #endregion
+
+
+        #region Size Methods
 
         public static double GetApplicationDouble(LayoutSizes size)
         {
@@ -127,12 +176,60 @@ namespace SDX.Toolkit.Helpers
 
             switch (size)
             {
+                case LayoutSizes.LeftMargin:
+                    value = GetApplicationDouble(SIZE_LEFT_MARGIN);
+                    break;
+
+                case LayoutSizes.TopMargin:
+                    value = GetApplicationDouble(SIZE_TOP_MARGIN);
+                    break;
+
+                case LayoutSizes.RightMargin:
+                    value = GetApplicationDouble(SIZE_RIGHT_MARGIN);
+                    break;
+
+                case LayoutSizes.BottomMargin:
+                    value = GetApplicationDouble(SIZE_BOTTOM_MARGIN);
+                    break;
+
+                case LayoutSizes.SpaceBelowHeader:
+                    value = GetApplicationDouble(SIZE_SPACE_BELOW_HEADER);
+                    break;
+
+                case LayoutSizes.HeaderWidth:
+                    value = GetApplicationDouble(SIZE_HEADER_WIDTH);
+                    break;
+
                 case LayoutSizes.AppCloseWidth:
                     value = GetApplicationDouble(SIZE_APPCLOSE_WIDTH);
                     break;
 
                 case LayoutSizes.AppCloseHeight:
                     value = GetApplicationDouble(SIZE_APPCLOSE_HEIGHT);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightPageHeader:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_PAGEHEADER);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListHeader:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTHEADER);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListItemHeaderPenTouch:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_PENTOUCH);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListItemHeaderBestOf:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_BESTOF);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListItemHeaderCompare:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_COMPARE);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightPopupHeader:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_POPUPHEADER);
                     break;
 
                 case LayoutSizes.AccessoriesPenListIconWidth:
@@ -147,7 +244,7 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_COMPARE_LISTICONWIDTH);
                     break;
 
-                case LayoutSizes.SwipeLeftEllipseSize:
+                case LayoutSizes.SwipeLeftEllipseRadius:
                     value = GetApplicationDouble(SIZE_SWIPELEFT_ELLIPSE_RADIUS);
                     break;
 
@@ -169,6 +266,14 @@ namespace SDX.Toolkit.Helpers
 
                 case LayoutSizes.PopupSpacer:
                     value = GetApplicationDouble(SIZE_POPUP_SPACER);
+                    break;
+
+                case LayoutSizes.CanvasWidth:
+                    value = GetApplicationDouble(SIZE_CANVAS_WIDTH);
+                    break;
+
+                case LayoutSizes.CanvasHeight:
+                    value = GetApplicationDouble(SIZE_CANVAS_HEIGHT);
                     break;
 
                 case LayoutSizes.NavigationBarHeight:
@@ -217,6 +322,11 @@ namespace SDX.Toolkit.Helpers
 
             return value;
         }
+
+        #endregion
+
+
+        #region Style Methods
 
         public static Style GetApplicationStyle(TextStyles textStyle)
         {
@@ -339,6 +449,11 @@ namespace SDX.Toolkit.Helpers
             return style;
         }
 
+        #endregion
+
+
+        #region Thickness Methods
+
         public static Thickness GetApplicationThickness(LayoutThicknesses layoutThickness)
         {
             Thickness thickness;
@@ -380,6 +495,11 @@ namespace SDX.Toolkit.Helpers
             return thickness;
         }
 
+        #endregion
+
+
+        #region Helpers
+
         public static void SetRunStyleFromStyle(Run run, Style style)
         {
             if ((null != run) && (null != style))
@@ -412,5 +532,7 @@ namespace SDX.Toolkit.Helpers
 
             return brush;
         }
+
+        #endregion
     }
 }
