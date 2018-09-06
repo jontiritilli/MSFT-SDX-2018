@@ -6,7 +6,7 @@
     <GridLength x:Key="LeftMargin">80</GridLength>
     <GridLength x:Key="TopMargin">80</GridLength>
     <GridLength x:Key="RightMargin">80</GridLength>
-    <GridLength x:Key="BottomMargin">50</GridLength>
+    <GridLength x:Key="BottomMargin">80</GridLength>
 
     <GridLength x:Key="SpaceBelowHeader">30</GridLength>
 
@@ -16,6 +16,6 @@
     <x:Double x:Key="CanvasHeight">960</x:Double> <!-- = (2000 / 2) - 80 for navbar @ 200% scaling -->
 
     <x:Double x:Key="AccessoryImageSelectorWidth">1420</x:Double> <!-- 1500 - 60 for legal row-->
-    <x:Double x:Key="AccessoryImageSelectorHeight">910</x:Double> <!-- 960 - 50 for col 0 -->
+    <x:Double x:Key="AccessoryImageSelectorHeight">880</x:Double> <!-- 960 - 80 for col 0 -->
 
 </ResourceDictionary>

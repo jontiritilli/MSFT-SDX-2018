@@ -209,9 +209,9 @@ namespace SDX.Toolkit.Controls
                             // create the lede
                             Header lede = new Header()
                             {
-                                HeadlineStyle = ControlStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListHeadline,
                                 Headline = "",
-                                LedeStyle = ControlStyles.ListLede,
+                                LedeStyle = TextStyles.ListLede,
                                 Lede = item.Lede,
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -219,7 +219,7 @@ namespace SDX.Toolkit.Controls
                             };
                             Grid.SetColumn(lede, 2);
                             Grid.SetRow(lede, item.Order + 1);
-
+                            
                             _layoutRoot.Children.Add(lede);
                         }
                     }
@@ -256,9 +256,9 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
                             {
-                                HeadlineStyle = ControlStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListHeadline,
                                 Headline = item.Headline,
-                                LedeStyle = ControlStyles.ListLede,
+                                LedeStyle = TextStyles.ListLede,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
@@ -305,9 +305,9 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
                             {
-                                HeadlineStyle = ControlStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListItemHeadlineBestOf,
                                 Headline = item.Headline,
-                                LedeStyle = ControlStyles.ListLede,
+                                LedeStyle = TextStyles.ListItemLedeBestOf,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
