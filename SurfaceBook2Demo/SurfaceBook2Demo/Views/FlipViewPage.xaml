@@ -21,9 +21,9 @@
                  people who borrowed from WPF to create UWP are either lazy, stupid, or
                  both because they are incapable of correctly implementing this.
                  Thanks assholes. You've wasted 2 hours of my time chasing down your
-                 fucking incompetence. Fuck you!!! Do us all a favor and just die.
+                 fucking incompetence. Fuck you!!! 
             -->
-            <RowDefinition Height="92"/>
+            <RowDefinition Height="99.36"/>
             <!-- Microsoft UWP team employees are incompetent, so must use a static here -->
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
