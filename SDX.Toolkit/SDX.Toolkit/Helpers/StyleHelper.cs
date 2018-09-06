@@ -92,7 +92,7 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_SWIPELEFT_ELLIPSE_RADIUS = "SwipeLeftEllipseRadius";
         public const string SIZE_SWIPELEFT_SPACER = "SwipeLeftSpacer";
 
-        public const string SIZE_SWIPETOCONTINUE_ARROW_WIDTH = "SwipToContinueArrowWidth";
+        public const string SIZE_SWIPETOCONTINUE_ARROW_WIDTH = "SwipeToContinueArrowWidth";
         public const string SIZE_SWIPETOCONTINUE_SPACER = "SwipeTocontinueSpacer";
 
         public const string SIZE_POPUP_DEFAULT_WIDTH = "PopupDefaultWidth";
