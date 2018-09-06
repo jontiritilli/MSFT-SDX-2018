@@ -32,8 +32,8 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_APPSELECTOR_IMAGE_3_SELECTED = "ms-appx:///Assets/Accessories/Icons/fox_accs_cobalt_active.png";
         private const string URI_APPSELECTOR_IMAGE_4_SELECTED = "ms-appx:///Assets/Accessories/Icons/fox_accs_burgundy_active.png";
 
-        private const int APPSELECTOR_BUTTON_WIDTH = 100;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 100;
+        private const int APPSELECTOR_BUTTON_WIDTH = 65;
+        private const int APPSELECTOR_BUTTON_HEIGHT = 50;
 
         private const int SELECTORIMAGE_IMAGEWIDTH = 1100;
         private const int SELECTORIMAGE_IMAGEHEIGHT = 800;

@@ -23,7 +23,8 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceColorsPage()
         {
             InitializeComponent();
-            this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
+            this.AppSelectorImageExpColors.AppSelector = this.AppSelectorExpColors;
+            ViewModel.BackgroundUri = ViewModel.lifeStyleColorSelectorImageURIs[AppSelectorImageExpColors.SelectedID].URI;
         }
 
         #endregion

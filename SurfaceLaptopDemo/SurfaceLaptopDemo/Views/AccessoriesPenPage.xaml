@@ -30,11 +30,11 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:AppSelectorImage Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" 
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
             x:Name="AppSelectorImageAccRight"
             URIs="{x:Bind Path=ViewModel.accRightSelectorImageURIs}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+            ImageHeight="{StaticResource AccessoryImageSelectorHeight}"
+            ImageWidth="{StaticResource AccessoryImageSelectorWidth}"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
             x:Name="AppSelectorAccRight"

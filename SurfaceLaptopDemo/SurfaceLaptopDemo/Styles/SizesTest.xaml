@@ -12,7 +12,10 @@
 
     <x:Double x:Key="HeaderWidth">450</x:Double>
 
-    <x:Double x:Key="CanvasWidth">1620</x:Double> <!-- 3240 / 2 for 200% scaling -->
-    <x:Double x:Key="CanvasHeight">1000</x:Double> <!-- = (2160 / 2) - 80 for navbar @ 200% scaling -->
+    <x:Double x:Key="CanvasWidth">1500</x:Double> <!-- 3000 / 2 for 200% scaling -->
+    <x:Double x:Key="CanvasHeight">960</x:Double> <!-- = (2000 / 2) - 80 for navbar @ 200% scaling -->
+
+    <x:Double x:Key="AccessoryImageSelectorWidth">1420</x:Double> <!-- 1500 - 60 for legal row-->
+    <x:Double x:Key="AccessoryImageSelectorHeight">910</x:Double> <!-- 960 - 50 for col 0 -->
 
 </ResourceDictionary>
