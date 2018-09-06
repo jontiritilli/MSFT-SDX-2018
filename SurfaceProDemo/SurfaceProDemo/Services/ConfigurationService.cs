@@ -114,6 +114,18 @@ namespace SurfaceProDemo.Services
             return id;
         }
 
+        public bool GetIsBlackSchemeEnabled()
+        {
+            bool isBlackSchemeEnabled = false;
+
+            if (this.IsLoaded)
+            {
+                isBlackSchemeEnabled = this.Configuration.IsBlackSchemeEnabled;
+            }
+
+            return isBlackSchemeEnabled;
+        }
+
         public async Task Initialize()
         {
             if (this.IsLoading || this.IsLoaded) { return; }

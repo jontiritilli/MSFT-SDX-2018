@@ -19,6 +19,7 @@ namespace SurfaceProDemo.Models
         public string TelemetryBaseUrl = String.Empty;
         public string TelemetryProdId = String.Empty;
         public string TelemetryTestId = String.Empty;
+        public bool IsBlackSchemeEnabled = false;
 
 
         public static ConfigurationFile CreateDefault()
@@ -31,7 +32,8 @@ namespace SurfaceProDemo.Models
                 TelemetryKey = TelemetryKeys.Test,
                 TelemetryBaseUrl = String.Empty,
                 TelemetryProdId = String.Empty,
-                TelemetryTestId = String.Empty
+                TelemetryTestId = String.Empty,
+                IsBlackSchemeEnabled = false
             };
 
             return config;
