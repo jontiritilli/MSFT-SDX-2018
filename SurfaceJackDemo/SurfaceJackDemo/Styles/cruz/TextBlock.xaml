@@ -366,4 +366,24 @@
     <Style x:Key="NavigationSectionActive" TargetType="TextBlock" BasedOn="{StaticResource NavigationSection}">
         <Setter Property="Foreground" Value="White"/>
     </Style>
+
+    <Style x:Key="PlayerArtistName" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="13" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="2.5" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="PlayerTrackName" TargetType="TextBlock" BasedOn="PlayerArtistName">
+        <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
 </ResourceDictionary>

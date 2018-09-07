@@ -62,9 +62,11 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+
         #region Public Static Methods
 
         #endregion
+
 
         #region Dependency Properties
 
@@ -171,6 +173,7 @@ namespace SDX.Toolkit.Controls
             set { SetValue(BitmapImageProperty, value); }
         }
         #endregion
+
 
         #region Event Handlers
 

@@ -119,6 +119,7 @@
     <Compile Include="Controls\List.cs" />
     <Compile Include="Controls\ListItem.cs" />
     <Compile Include="Controls\LoopPlayer.cs" />
+    <Compile Include="Controls\MusicPlayer.cs" />
     <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\PopupMedia.cs" />
     <Compile Include="Controls\PopupContentBatteryLife.cs" />
