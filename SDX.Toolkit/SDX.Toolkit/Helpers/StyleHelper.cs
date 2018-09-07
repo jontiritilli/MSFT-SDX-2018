@@ -96,7 +96,18 @@ namespace SDX.Toolkit.Helpers
 
     public enum BitmapImages
     {
-        ColoringBookImage
+        ColoringBookImage,
+        ColoringBookColorRed,
+        ColoringBookColorRedActive,
+        ColoringBookColorBlue,
+        ColoringBookColorBlueActive,
+        ColoringBookColorTeal,
+        ColoringBookColorTealActive,
+        ColoringBookColorOrange,
+        ColoringBookColorOrangeActive,
+        ColoringBookColorPurple,
+        ColoringBookColorPurpleActive,
+        ColoringBookReset
     }
 
     public static class StyleHelper
@@ -189,6 +200,18 @@ namespace SDX.Toolkit.Helpers
 
         #region Image Constants
         public const string BITMAPIMAGE_COLORINGBOOK = "ColoringBookBitmapImage";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RESET = "BitmapImageColoringBookReset";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RED = "BitmapImageColoringBookRed";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE = "BitmapImageColoringBookBlue";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL = "BitmapImageColoringBookTeal";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE = "BitmapImageColoringBookOrange";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE = "BitmapImageColoringBookPurple";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RED_ACTIVE = "BitmapImageColoringBookRedActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE_ACTIVE = "BitmapImageColoringBookBlueActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL_ACTIVE = "BitmapImageColoringBookTealActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE_ACTIVE = "BitmapImageColoringBookOrangeActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE_ACTIVE = "BitmapImageColoringBookPurpleActive";
+        
         #endregion
 
         #region Thickness Constants
@@ -545,6 +568,39 @@ namespace SDX.Toolkit.Helpers
             {
                 case BitmapImages.ColoringBookImage:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK);
+                    break;
+                case BitmapImages.ColoringBookColorRed:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RED);
+                    break;
+                case BitmapImages.ColoringBookColorBlue:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE);
+                    break;
+                case BitmapImages.ColoringBookColorTeal:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL);
+                    break;
+                case BitmapImages.ColoringBookColorOrange:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE);
+                    break;
+                case BitmapImages.ColoringBookColorPurple:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE);
+                    break;
+                case BitmapImages.ColoringBookColorRedActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RED_ACTIVE);
+                    break;
+                case BitmapImages.ColoringBookColorBlueActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE_ACTIVE);
+                    break;
+                case BitmapImages.ColoringBookColorTealActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL_ACTIVE);
+                    break;
+                case BitmapImages.ColoringBookColorOrangeActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE_ACTIVE);
+                    break;
+                case BitmapImages.ColoringBookColorPurpleActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE_ACTIVE);
+                    break;
+                case BitmapImages.ColoringBookReset:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RESET);
                     break;
                 default:
                     break;

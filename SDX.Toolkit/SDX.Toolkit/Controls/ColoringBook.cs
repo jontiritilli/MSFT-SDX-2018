@@ -29,29 +29,28 @@ namespace SDX.Toolkit.Controls
 
         private const string URI_PENICON = @"ms-appx:///Assets/ColoringBook/ink-pen-icon.png";
 
-        private const string CLEARBUTTON_URI = @"ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
-
-        private const string URI_COLORING_BOOK_IMAGE = "ms-appx:///Assets/Accessories/peacock.png";
+        private readonly BitmapImage BMIMAGE_CLEARBUTTON = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookReset);
 
         private readonly BitmapImage BMIMAGE_COLORING_BOOK = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookImage);
 
-        private const string URI_COLOR_1 = @"ms-appx:///Assets/Accessories/ArtworkColors/red.png";
-        private const string URI_COLOR_2 = @"ms-appx:///Assets/Accessories/ArtworkColors/blue.png";
-        private const string URI_COLOR_3 = @"ms-appx:///Assets/Accessories/ArtworkColors/teal.png";
-        private const string URI_COLOR_4 = @"ms-appx:///Assets/Accessories/ArtworkColors/orange.png";
-        private const string URI_COLOR_5 = @"ms-appx:///Assets/Accessories/ArtworkColors/purple.png";
+        private readonly BitmapImage BMIMAGE_COLOR_RED = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorRed);
 
-        private const string URI_COLOR_1_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/red_active.png";
-        private const string URI_COLOR_2_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/blue_active.png";
-        private const string URI_COLOR_3_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/teal_active.png";
-        private const string URI_COLOR_4_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/orange_active.png";
-        private const string URI_COLOR_5_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/purple_active.png";
+        private readonly BitmapImage BMIMAGE_COLOR_BLUE = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorBlue);
+        private readonly BitmapImage BMIMAGE_COLOR_TEAL = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorTeal);
+        private readonly BitmapImage BMIMAGE_COLOR_ORANGE = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorOrange);
+        private readonly BitmapImage BMIMAGE_COLOR_PURPLE = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorPurple);
 
-        private readonly Color COLOR_COLORING_BOOK_1 = StyleHelper.GetApplicationColor(ColoringBookColors.Red);
-        private readonly Color COLOR_COLORING_BOOK_2 = StyleHelper.GetApplicationColor(ColoringBookColors.Blue);
-        private readonly Color COLOR_COLORING_BOOK_3 = StyleHelper.GetApplicationColor(ColoringBookColors.Teal);
-        private readonly Color COLOR_COLORING_BOOK_4 = StyleHelper.GetApplicationColor(ColoringBookColors.Orange);
-        private readonly Color COLOR_COLORING_BOOK_5 = StyleHelper.GetApplicationColor(ColoringBookColors.Purple);
+        private readonly BitmapImage BMIMAGE_COLOR_RED_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorRedActive);
+        private readonly BitmapImage BMIMAGE_COLOR_BLUE_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorBlueActive);
+        private readonly BitmapImage BMIMAGE_COLOR_TEAL_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorTealActive);
+        private readonly BitmapImage BMIMAGE_COLOR_ORANGE_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorOrangeActive);
+        private readonly BitmapImage BMIMAGE_COLOR_PURPLE_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookColorPurpleActive);
+
+        private readonly Color COLOR_COLORING_BOOK_RED = StyleHelper.GetApplicationColor(ColoringBookColors.Red);
+        private readonly Color COLOR_COLORING_BOOK_BLUE = StyleHelper.GetApplicationColor(ColoringBookColors.Blue);
+        private readonly Color COLOR_COLORING_BOOK_TEAL = StyleHelper.GetApplicationColor(ColoringBookColors.Teal);
+        private readonly Color COLOR_COLORING_BOOK_ORANGE = StyleHelper.GetApplicationColor(ColoringBookColors.Orange);
+        private readonly Color COLOR_COLORING_BOOK_PURPLE = StyleHelper.GetApplicationColor(ColoringBookColors.Purple);
 
         private static readonly Size WINDOW_BOUNDS = WindowHelper.GetViewSizeInfo();
         private static readonly double CANVAS_X = WINDOW_BOUNDS.Width;
@@ -80,17 +79,9 @@ namespace SDX.Toolkit.Controls
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
         private Image _touchHereImage = null;
-
-        private bool _touchHereWasHidden = false;
-        private int _currentColor = -1;
-        private List<Color> _inkColors = new List<Color>()
-            {
-                Color.FromArgb(255, 85, 53, 55),
-                Color.FromArgb(255, 53, 73, 85),
-                Color.FromArgb(255, 192, 192, 192),
-                Color.FromArgb(255, 33, 33, 33)
-            };
+        private bool _touchHereWasHidden = false;        
         private List<AppSelectorData> _URIs;
+        private Dictionary<int, ImagePair> _ImagePairs;
         private Color _SelectedColor = Color.FromArgb(255, 0, 0, 0);
         private AppSelector _AppSelector = new AppSelector();
 
@@ -103,6 +94,7 @@ namespace SDX.Toolkit.Controls
         {
             this.DefaultStyleKey = typeof(ColoringBook);
             this.Loaded += OnLoaded;
+            this._ImagePairs = new Dictionary<int, ImagePair>();
             // inherited dependency property
             //new PropertyChangeEventSource<double>(
             //    this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
@@ -264,11 +256,11 @@ namespace SDX.Toolkit.Controls
 
         // Colors
         public static readonly DependencyProperty ColorsProperty =
-        DependencyProperty.Register("Colors", typeof(List<ColoringBookColor>), typeof(ColoringBook), new PropertyMetadata(new List<ColoringBookColor>()));
+        DependencyProperty.Register("Colors", typeof(List<Color>), typeof(ColoringBook), new PropertyMetadata(new List<Color>()));
 
-        public List<ColoringBookColor> Colors
+        public List<Color> Colors
         {
-            get { return (List<ColoringBookColor>)GetValue(ColorsProperty); }
+            get { return (List<Color>)GetValue(ColorsProperty); }
             set { SetValue(ColorsProperty, value); }
         }
 
@@ -431,62 +423,118 @@ namespace SDX.Toolkit.Controls
                 Opacity = 1.0,
                 IsHitTestVisible = false
             };            
-            //if (!string.IsNullOrEmpty(ImageURI)) {
-            //    ColoringImage.Source = BMIMAGE_COLORING_BOOK;                
-            //}
-            //else if(!string.IsNullOrEmpty(ImageSVGURI))
-            //{
-            //    ColoringImage.Source = new SvgImageSource() { UriSource = new Uri(ImageSVGURI), RasterizePixelWidth = this.ImageWidth };
-            //}
 
             Canvas.SetZIndex(ColoringImage, 101);
             Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
             Grid.SetRow(ColoringImage, 0);            
             Grid.SetColumn(ColoringImage, 0);            
             _layoutRoot.Children.Add(ColoringImage);
-            this.Colors.Add(new ColoringBookColor()
-            {
-                URI_NotSelectedImage = URI_COLOR_1,
-                URI_SelectedImage = URI_COLOR_1_SELECTED,
-                Color = COLOR_COLORING_BOOK_1
-            });
 
-            this.Colors.Add(new ColoringBookColor()
-            {
-                URI_NotSelectedImage = URI_COLOR_2,
-                URI_SelectedImage = URI_COLOR_2_SELECTED,
-                Color = COLOR_COLORING_BOOK_2
-            });
+            this.Colors.Add(COLOR_COLORING_BOOK_RED);
+            this.Colors.Add(COLOR_COLORING_BOOK_BLUE);
+            this.Colors.Add(COLOR_COLORING_BOOK_TEAL);
+            this.Colors.Add(COLOR_COLORING_BOOK_ORANGE);
+            this.Colors.Add(COLOR_COLORING_BOOK_PURPLE);
 
-            this.Colors.Add(new ColoringBookColor()
-            {
-                URI_NotSelectedImage = URI_COLOR_3,
-                URI_SelectedImage = URI_COLOR_3_SELECTED,
-                Color = COLOR_COLORING_BOOK_3
-            });
-
-            this.Colors.Add(new ColoringBookColor()
-            {
-                URI_NotSelectedImage = URI_COLOR_4,
-                URI_SelectedImage = URI_COLOR_4_SELECTED,
-                Color = COLOR_COLORING_BOOK_4
-            });
-
-            this.Colors.Add(new ColoringBookColor()
-            {
-                URI_NotSelectedImage = URI_COLOR_5,
-                URI_SelectedImage = URI_COLOR_5_SELECTED,
-                Color = COLOR_COLORING_BOOK_5
-            });
-
-            for (int i = 0; i < this.Colors.Count; i++)
-            {
-                this._URIs.Add(new AppSelectorData
+            this._ImagePairs.Add(0,new ImagePair() {
+                NotSelected = new Image()
                 {
-                    Source_NotSelectedImage = this.Colors[i].URI_NotSelectedImage,
-                    Source_SelectedImage = this.Colors[i].URI_SelectedImage
-                });
-            }
+                    Source = BMIMAGE_COLOR_RED,
+                    Width = BMIMAGE_COLOR_RED.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                },
+                Selected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_RED_SELECTED,
+                    Width = BMIMAGE_COLOR_RED_SELECTED.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                }
+            });           
+
+            this._ImagePairs.Add(1, new ImagePair()
+            {
+                NotSelected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_BLUE,
+                    Width = BMIMAGE_COLOR_BLUE.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                },
+                Selected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_BLUE_SELECTED,
+                    Width = BMIMAGE_COLOR_BLUE_SELECTED.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                }
+            });
+
+            this._ImagePairs.Add(2, new ImagePair()
+            {
+                NotSelected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_TEAL,
+                    Width = BMIMAGE_COLOR_TEAL.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                },
+                Selected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_TEAL_SELECTED,
+                    Width = BMIMAGE_COLOR_TEAL_SELECTED.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                }
+            });
+
+            this._ImagePairs.Add(3, new ImagePair()
+            {
+                NotSelected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_ORANGE,
+                    Width = BMIMAGE_COLOR_ORANGE.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                },
+                Selected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_ORANGE_SELECTED,
+                    Width = BMIMAGE_COLOR_ORANGE_SELECTED.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                }
+            });
+
+            this._ImagePairs.Add(4, new ImagePair()
+            {
+                NotSelected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_PURPLE,
+                    Width = BMIMAGE_COLOR_PURPLE.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                },
+                Selected = new Image()
+                {
+                    Source = BMIMAGE_COLOR_PURPLE_SELECTED,
+                    Width = BMIMAGE_COLOR_PURPLE_SELECTED.DecodePixelWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Opacity = 1.0
+                }
+            });
+
             AppSelector _AppSelector = new AppSelector()
             {//
                 //TelemetryId = TelemetryService.TELEMETRY_KEYBOARDVIEWCOLOR,
@@ -497,14 +545,21 @@ namespace SDX.Toolkit.Controls
                 ButtonHeight = DOUBLE_COLORING_BOOK_BUTTON_HEIGHT,
                 ButtonWidth = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                 Opacity = 1,
-                URIs = this._URIs,
-                ClearButtonData = new AppSelectorData
+                ImagePairs = this._ImagePairs,
+                ClearButtonImagePair = new ImagePair()
                 {
-                    Source_NotSelectedImage = CLEARBUTTON_URI,
-                    Source_SelectedImage = CLEARBUTTON_URI,
+                    NotSelected = new Image()
+                    {
+                        Source = BMIMAGE_CLEARBUTTON,
+                        Width = BMIMAGE_CLEARBUTTON.DecodePixelWidth,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Opacity = 1.0
+                    },
                     IsClearButton = true
                 },
                 SelectedID = 0
+
             };
             _AppSelector.SelectedIDChanged += _AppSelector_SelectedIDChanged;
             _AppSelector.OnClearClicked += _AppSelector_ClearClickedChanged;
@@ -512,10 +567,8 @@ namespace SDX.Toolkit.Controls
             Grid.SetRow(_AppSelector, 0);
             Grid.SetColumn(_AppSelector, 1);
             this._layoutRoot.Children.Add(_AppSelector);
-            this._SelectedColor = this.Colors[0].Color;
+            this._SelectedColor = this.Colors[0];
             SetupBrush();
-            // set up events
-
         }
 
         private void _AppSelector_SelectedIDChanged(object sender, EventArgs e)
@@ -524,7 +577,7 @@ namespace SDX.Toolkit.Controls
             if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
-                this._SelectedColor = this.Colors[appSelector.SelectedID].Color;              
+                this._SelectedColor = this.Colors[appSelector.SelectedID];              
                 SetupBrush();
             }
         }
