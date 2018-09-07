@@ -47,7 +47,6 @@ namespace SDX.Toolkit.Controls
         private const double BUTTON_SIZE = 150d;
 
         private const double POPUP_MARGIN = 30d;
-        //private double POPUP_SPACER = POPUP_MARGIN + (RADIATE_SIZE_END - RADIATE_SIZE_START) * 1.1;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit-icon.png";
@@ -82,6 +81,7 @@ namespace SDX.Toolkit.Controls
         private DispatcherTimer _timerEntrance = null;
         private int _dispatchCountEntrance = 0;
         private double TRY_IT_DELAY = 2000;
+        //private double popup_spacer = popup_margin + (radiate_size_end - radiate_size_start) * 1.1;
 
         #endregion
 
@@ -913,11 +913,11 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.X - popupWidth - POPUP_SPACER;
+                        //offset = point.X - popupWidth - POPUP_SPACER;
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.X + _hostButton.ActualWidth + POPUP_SPACER;
+                        //offset = point.X + _hostButton.ActualWidth + POPUP_SPACER;
                         break;
                 }
             }
@@ -966,11 +966,11 @@ namespace SDX.Toolkit.Controls
                 {
                     case PopupPositions.Above:
                     default:
-                        offset = point.Y - popupHeight - POPUP_SPACER;
+                        //offset = point.Y - popupHeight - POPUP_SPACER;
                         break;
 
                     case PopupPositions.Below:
-                        offset = point.Y + _hostButton.ActualHeight + POPUP_SPACER;
+                        //offset = point.Y + _hostButton.ActualHeight + POPUP_SPACER;
                         break;
 
                     case PopupPositions.Left:

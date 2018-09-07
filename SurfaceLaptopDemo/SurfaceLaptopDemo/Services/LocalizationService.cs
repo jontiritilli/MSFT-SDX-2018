@@ -271,18 +271,16 @@ namespace SurfaceLaptopDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
             viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
-            viewModel.BulletOneCTA = GetStringValue(_languageCurrent.BEST_BULLET_ONE_CTA, "BEST_BULLET_ONE_CTA");
-            viewModel.BulletTwoCTA = GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA");
-            viewModel.BulletThreeCTA = GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA");
-            viewModel.BulletFourCTA = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA");
 
             // bullet one
             viewModel.LeftItemList.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Start, // icon enum name
                 viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""), // headline
-                GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "") // lede
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, "BEST_BULLET_ONE_TITLE"), // headline
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "BEST_BULLET_ONE_COPY"), // lede
+                null, //CTA URI
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_CTA, "BEST_BULLET_ONE_CTA") //CTA Text
             ));
 
             // bullet two
@@ -290,8 +288,10 @@ namespace SurfaceLaptopDemo.Services
                 1,
                 ListItemIcon.Hello,
                 viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""),
-                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "")
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, "BEST_BULLET_TWO_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "BEST_BULLET_TWO_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA")
             ));
 
             // bullet three OPTIONAL CHINA BULLET
@@ -299,8 +299,10 @@ namespace SurfaceLaptopDemo.Services
                 2,
                 ListItemIcon.Custom,
                 viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, ""),
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "")
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "BEST_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "BEST_BULLET_FIVE_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
             ));
 
             // bullet four
@@ -308,8 +310,10 @@ namespace SurfaceLaptopDemo.Services
                 0,
                 ListItemIcon.Sync,
                 viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, ""),
-                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "")
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, "BEST_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "BEST_BULLET_FOUR_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA")
             ));
 
             // bullet five
@@ -317,8 +321,10 @@ namespace SurfaceLaptopDemo.Services
                 1,
                 ListItemIcon.Office,
                 viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""),
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "")
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, "BEST_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "BEST_BULLET_THREE_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA")
             ));
         }
 
