@@ -18,7 +18,6 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public BestOfMicrosoftPage()
@@ -27,7 +26,6 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
-
 
         #region INavigate Interface
 
