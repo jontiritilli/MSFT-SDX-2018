@@ -19,6 +19,8 @@ namespace SurfaceLaptopDemo.ViewModels
 
         #endregion
 
+        #region Public Members
+
         public string BackgroundUri = URI_BACKGROUND;
 
         public string Headline;
@@ -33,6 +35,8 @@ namespace SurfaceLaptopDemo.ViewModels
         public List<ListItem> RightItemList = new List<ListItem>();
 
         public double ICON_WIDTH = 60d;
+
+        #endregion
 
         public BestOfMicrosoftViewModel()
         {

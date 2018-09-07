@@ -29,11 +29,11 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_APPSELECTOR_IMAGE_2_SELECTED = "ms-appx:///Assets/Experience/Icons/fox_word.png";
         private const string URI_APPSELECTOR_IMAGE_3_SELECTED = "ms-appx:///Assets/Experience/Icons/fox_excel.png";
 
-        private const int APPSELECTOR_BUTTON_WIDTH = 100;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 100;
+        private const int APPSELECTOR_BUTTON_WIDTH = 80;
+        private const int APPSELECTOR_BUTTON_HEIGHT = 80;
 
         private const int SELECTORIMAGE_IMAGEWIDTH = 1100;
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 800;
+        private const int SELECTORIMAGE_IMAGEHEIGHT = 750;
 
         #endregion
 
@@ -60,6 +60,10 @@ namespace SurfaceLaptopDemo.ViewModels
         {
 
             BackgroundUri = URI_BACKGROUND;
+
+            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
+            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
+
             ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
             ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 
