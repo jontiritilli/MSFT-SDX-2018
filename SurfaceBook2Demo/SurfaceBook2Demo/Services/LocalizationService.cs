@@ -267,7 +267,7 @@ namespace SurfaceBook2Demo.Services
             // TODO: add code to load list
             // bullet one
 
-            viewModel.ListItems[0] = (ListItem.CreateListItem(
+            viewModel.ListItems.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Jot, 
                 viewModel.ICON_WIDTH, // width
@@ -277,7 +277,7 @@ namespace SurfaceBook2Demo.Services
 
             // bullet one
 
-            viewModel.ListItems[1] = (ListItem.CreateListItem(
+            viewModel.ListItems.Add(ListItem.CreateListItem(
                 1, // order
                 ListItemIcon.Write, // icon enum name
                 viewModel.ICON_WIDTH, // width
@@ -285,7 +285,7 @@ namespace SurfaceBook2Demo.Services
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO, "ACCESSORIES_INTERACTIVE_BULLET_TWO") // order
             ));
 
-            viewModel.ListItems[2] = (ListItem.CreateListItem(
+            viewModel.ListItems.Add(ListItem.CreateListItem(
                 2, // order
                 ListItemIcon.Pressure, // icon enum name
                 viewModel.ICON_WIDTH, // width
@@ -293,7 +293,7 @@ namespace SurfaceBook2Demo.Services
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_THREE, "ACCESSORIES_INTERACTIVE_BULLET_THREE") // order
             ));
 
-            viewModel.ListItems[3] =(ListItem.CreateListItem(
+            viewModel.ListItems.Add(ListItem.CreateListItem(
                 3, // order
                 ListItemIcon.Palm, // icon enum name
                 viewModel.ICON_WIDTH, // width
@@ -339,58 +339,58 @@ namespace SurfaceBook2Demo.Services
 
             // bullet one
 
-            viewModel.LeftItemList[0] = ListItem.CreateListItem(
+            viewModel.LeftItemList.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Start, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "") // order
                 // null // custom icon path
-            );
+            ));
 
             // bullet two
 
-            viewModel.LeftItemList[1] = ListItem.CreateListItem(
+            viewModel.LeftItemList.Add(ListItem.CreateListItem(
                 1, // order
                 ListItemIcon.Hello, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "") // order
                 // null // custom icon path
-            );
+            ));
 
             // bullet three OPTIONAL BULLET
 
-            viewModel.LeftItemList[2] = ListItem.CreateListItem(
+            viewModel.LeftItemList.Add(ListItem.CreateListItem(
                 2, // order
                 ListItemIcon.Custom, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "") // order
                 // null // custom icon path
-            );
+            ));
 
             // bullet four
 
-            viewModel.RightItemList[0] = ListItem.CreateListItem(
+            viewModel.RightItemList.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Sync, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "") // order
                 // null // custom icon path
-            );
+            ));
 
             // bullet five
 
-            viewModel.RightItemList[1] = ListItem.CreateListItem(
+            viewModel.RightItemList.Add(ListItem.CreateListItem(
                 1, // order
                 ListItemIcon.Office, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "") // order
                 // null // custom icon path
-            );
+            ));
         }
 
         public void LoadCompareViewModel(CompareViewModel viewModel)

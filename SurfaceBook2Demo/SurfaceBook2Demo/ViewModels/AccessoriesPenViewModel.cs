@@ -86,7 +86,7 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string TryItTitle;
         public string TryItLede;
-        public ListItem[] ListItems = new ListItem[4];
+        public List<ListItem> ListItems = new List<ListItem>();
         public List<ColoringBookColor> Colors = new List<ColoringBookColor>();
 
         public int ColoringBookButtonWidth;

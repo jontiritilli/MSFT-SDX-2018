@@ -19,15 +19,15 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Accessories/Images/keyboard_left.png";
         private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Accessories/Images/keyboard_left.png";
 
-        private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Icons/AccessoriesColors/cobalt_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_2 = "ms-appx:///Assets/Icons/AccessoriesColors/black_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_3 = "ms-appx:///Assets/Icons/AccessoriesColors/platinum_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_4 = "ms-appx:///Assets/Icons/AccessoriesColors/burgundy_swatch.png";        
+        private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Icons/AccessoriesColors/cobalt.png";
+        private const string URI_APPSELECTOR_COLOR_2 = "ms-appx:///Assets/Icons/AccessoriesColors/black.png";
+        private const string URI_APPSELECTOR_COLOR_3 = "ms-appx:///Assets/Icons/AccessoriesColors/platinum.png";
+        private const string URI_APPSELECTOR_COLOR_4 = "ms-appx:///Assets/Icons/AccessoriesColors/burgundy.png";
 
-        private const string URI_APPSELECTOR_COLOR_1_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/cobalt_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_2_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/black_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_3_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/platinum_swatch.png";
-        private const string URI_APPSELECTOR_COLOR_4_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/burgundy_swatch.png";
+        private const string URI_APPSELECTOR_COLOR_1_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/cobalt_active.png";
+        private const string URI_APPSELECTOR_COLOR_2_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/black_active.png";
+        private const string URI_APPSELECTOR_COLOR_3_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/platinum_active.png";
+        private const string URI_APPSELECTOR_COLOR_4_SELECTED = "ms-appx:///Assets/Icons/AccessoriesColors/burgundy_active.png";
 
         private const int APPSELECTOR_BUTTON_WIDTH = 40;
         private const int APPSELECTOR_BUTTON_HEIGHT = 40;

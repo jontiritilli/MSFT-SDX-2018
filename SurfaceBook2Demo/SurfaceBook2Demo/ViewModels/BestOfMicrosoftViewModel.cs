@@ -32,8 +32,8 @@ namespace SurfaceBook2Demo.ViewModels
         public string BulletThreeCTA;
         public string BulletFourCTA;
         public string Legal;
-        public ListItem[] LeftItemList = new ListItem[3];
-        public ListItem[] RightItemList = new ListItem[2];
+        public List<ListItem> LeftItemList = new List<ListItem>();
+        public List<ListItem> RightItemList = new List<ListItem>();
         public double ICON_WIDTH = 60d;
 
         #endregion
