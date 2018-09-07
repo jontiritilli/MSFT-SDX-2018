@@ -32,8 +32,9 @@
 
         <ctrl:Header x:Name="BestOfHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
-                HeadlineStyle="Headline"
                 Lede=""
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageHeadline"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
@@ -48,7 +49,7 @@
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"
-                       ControlStyle="CompareLegal"
+                       TextStyle="Legal"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Visibility="Visible" />

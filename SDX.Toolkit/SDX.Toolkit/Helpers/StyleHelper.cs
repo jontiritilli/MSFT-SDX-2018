@@ -58,7 +58,13 @@ namespace SDX.Toolkit.Helpers
         NavigationBarMargin,
         NavigationBarSpacer,
         NavigationBarWidthArrow,
-        NavigationBarWidthHome
+        NavigationBarWidthHome,
+        TryItBoxHeight,
+        TryItPathHeight,
+        TryItIconHeight,
+        RadiatingButtonIconHeight,
+        RadiatingButtonEllipseHeight
+
     }
 
     public enum LayoutThicknesses
@@ -116,6 +122,13 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_NAVIGATIONBAR_SPACER = "NavigationBarSpacer";
         public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
         public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
+
+        public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight";
+        public const string SIZE_TRYIT_BOXPATH_HEIGHT = "TryItBoxPathHeight";
+        public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
+
+        public const string RADIATING_BUTTON_ICON_HEIGHT = "RadiatingButtonIconHeight";
+        public const string RADIATING_BUTTON_ELLIPSE_HEIGHT = "RadiatingButtonEllipseHeight";
 
         public const string THICKNESS_HERO_MARGIN = "HeroMargin";
         public const string THICKNESS_POPUP_BORDER = "PopupBorder";
@@ -195,6 +208,25 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_NAVIGATIONBAR_WIDTH_HOME);
                     break;
 
+                case LayoutSizes.TryItBoxHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOX_HEIGHT);
+                    break;
+
+                case LayoutSizes.TryItPathHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    break;
+
+                case LayoutSizes.TryItIconHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_ICON_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonIconHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    break; 
                 default:
                     break;
             }

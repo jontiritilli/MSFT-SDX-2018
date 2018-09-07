@@ -323,7 +323,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ButtonHeightProperty =
-        DependencyProperty.Register("ButtonHeightProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonHeight", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
 
         public int ButtonHeight
         {
@@ -332,7 +332,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ButtonWidthProperty =
-        DependencyProperty.Register("ButtonWidthProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonWidth", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
 
         public int ButtonWidth
         {
@@ -341,7 +341,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ShowSelectedLineProperty =
-        DependencyProperty.Register("ShowSelectedLineProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+        DependencyProperty.Register("ShowSelectedLine", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
 
         public bool ShowSelectedLine
         {

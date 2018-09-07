@@ -312,7 +312,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Render UI
 
         private void RenderUI()
@@ -575,11 +574,9 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region UI Helpers
 
         #endregion
-
 
         #region Code Helpers
 
