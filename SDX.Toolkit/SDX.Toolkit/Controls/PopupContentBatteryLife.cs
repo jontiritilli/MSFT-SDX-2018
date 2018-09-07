@@ -80,7 +80,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Construction
 
         public PopupContentBatteryLife()
@@ -312,7 +311,6 @@ namespace SDX.Toolkit.Controls
         }
 
         #endregion
-
 
         #region Render UI
 
@@ -576,11 +574,9 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region UI Helpers
 
         #endregion
-
 
         #region Code Helpers
 
