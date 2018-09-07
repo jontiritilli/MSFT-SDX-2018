@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -107,7 +108,7 @@ namespace SDX.Toolkit.Controls
 
         // IsPenOnly
         public static readonly DependencyProperty IsPenOnlyProperty =
-            DependencyProperty.Register("IsPenOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("IsPenOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool IsPenOnly
         {
@@ -116,7 +117,7 @@ namespace SDX.Toolkit.Controls
         }
         // IsTouchOnly
         public static readonly DependencyProperty IsTouchOnlyProperty =
-            DependencyProperty.Register("IsTouchOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("IsTouchOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool IsTouchOnly
         {
@@ -125,7 +126,7 @@ namespace SDX.Toolkit.Controls
         }
         // IsMouseOnly
         public static readonly DependencyProperty IsMouseOnlyProperty =
-            DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool IsMouseOnly
         {
@@ -135,7 +136,7 @@ namespace SDX.Toolkit.Controls
 
         // TryItEnabled
         public static readonly DependencyProperty TryItEnabledProperty =
-            DependencyProperty.Register("TryItEnabled", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("TryItEnabled", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool TryItEnabled
         {
@@ -147,21 +148,10 @@ namespace SDX.Toolkit.Controls
         public static readonly DependencyProperty PopupPositionProperty =
             DependencyProperty.Register("PopupPosition", typeof(PopupPositions), typeof(RadiatingButton), new PropertyMetadata(PopupPositions.Right, OnPopupPositionChanged));
 
-
         public PopupPositions PopupPosition
         {
             get => (PopupPositions)GetValue(PopupPositionProperty);
             set => SetValue(PopupPositionProperty, value);
-        }
-
-        // PopupText
-        public static readonly DependencyProperty PopupTextProperty =
-            DependencyProperty.Register("PopupText", typeof(string), typeof(RadiatingButton), new PropertyMetadata(null, OnPopupTextChanged));
-
-        public string PopupText
-        {
-            get => (string)GetValue(PopupTextProperty);
-            set => SetValue(PopupTextProperty, value);
         }
 
         // AnimationEnabled
@@ -478,17 +468,7 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private static void OnPopupTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
         private static void OnChildPopupChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private static void OnTryItClicked(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 
         }
@@ -534,12 +514,13 @@ namespace SDX.Toolkit.Controls
         }
 
 
-        private void HostButton_Click(object sender, RoutedEventArgs e)
+        private void Grid_Click(object sender, RoutedEventArgs e)
         {
             HandleClick();
+            Debug.WriteLine("Grid Clicked or touched...");
         }
 
-        private void HostButton_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             HandleClick();
         }
@@ -618,27 +599,6 @@ namespace SDX.Toolkit.Controls
             // if the button doesn't exist
             if (null == _hostButton)
             {
-                // create the button style
-                Style buttonStyle = StyleHelper.GetApplicationStyle("RoundRadiatingButton");
-                double buttonSize = StyleHelper.GetApplicationDouble("RadiatingButtonRadius");
-
-                // create it
-                _hostButton = new Button()
-                {
-                    Name = this.Name + "HostButton",
-                    Background = new SolidColorBrush(Colors.Transparent),
-                    Width = buttonSize,
-                    Height = buttonSize,
-                    Margin = new Thickness(0),
-                    Padding = new Thickness(0),
-                };
-                if (null != buttonStyle) { _hostButton.Style = buttonStyle; }
-                _hostButton.PointerPressed += HostButton_PointerPressed;
-                _hostButton.Click += HostButton_Click;
-
-                // add it to the layout
-                _layoutRoot.Child = _hostButton;
-
                 // create the grid
                 _grid = new Grid()
                 {
@@ -652,7 +612,10 @@ namespace SDX.Toolkit.Controls
                 };
 
                 // add to the button
-                _hostButton.Content = _grid;
+                _layoutRoot.Child = _grid;
+
+                // add pointer pressed event
+                _grid.PointerPressed += Grid_PointerPressed;
 
                 // get the height for tryit box and path
                 double TryItBoxHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItBoxHeight);
@@ -678,36 +641,46 @@ namespace SDX.Toolkit.Controls
                 _grid.Children.Add(_indicatorRectangle);
 
                 // create the tryit indicator
-                PathFigure figure = new PathFigure();
-                figure.StartPoint = new Point(0, 0);
 
-                LineSegment Topright = new LineSegment();
-                Topright.Point = new Point(20, 0);
+                LineSegment Topright = new LineSegment()
+                {
+                    Point = new Point(20, 0)
+                };
 
-                LineSegment Peak = new LineSegment();
-                Peak.Point = new Point(10, 10);
+                LineSegment Peak = new LineSegment()
+                {
+                    Point = new Point(10, 10)
+                };
 
-                LineSegment TopLeft = new LineSegment();
-                TopLeft.Point = new Point(0, 0);
+                LineSegment TopLeft = new LineSegment()
+                {
+                    Point = new Point(0, 0)
+                };
 
                 PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
                 myPathSegmentCollection.Add(Topright);
                 myPathSegmentCollection.Add(Peak);
                 myPathSegmentCollection.Add(TopLeft);
 
-                figure.Segments = myPathSegmentCollection;
+                PathFigure _indicator = new PathFigure()
+                {
+                    StartPoint = new Point(0, 0),
+                    Segments = myPathSegmentCollection
+                };
 
                 PathFigureCollection myPathFigureCollection = new PathFigureCollection();
-                myPathFigureCollection.Add(figure);
+                myPathFigureCollection.Add(_indicator);
 
                 PathGeometry myPathGeometry = new PathGeometry();
                 myPathGeometry.Figures = myPathFigureCollection;
 
+                SolidColorBrush TryItColor = GetSolidColorBrush("#FF0078D4");
+
                 _indicatorPath = new Path()
                 {
-                    Stroke = new SolidColorBrush(Colors.Blue),
-                    Fill = new SolidColorBrush(Colors.Blue),
-                    StrokeThickness = 1,
+                    Stroke = TryItColor,
+                    Fill = TryItColor,
+                    StrokeThickness = 2,
                     Data = myPathGeometry
                 };
 

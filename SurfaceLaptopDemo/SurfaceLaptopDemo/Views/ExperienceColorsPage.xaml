@@ -52,8 +52,8 @@
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"/>
+            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
 
     </Grid>
 </Page>

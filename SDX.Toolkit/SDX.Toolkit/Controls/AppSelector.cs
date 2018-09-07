@@ -323,20 +323,20 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ButtonHeightProperty =
-        DependencyProperty.Register("ButtonHeight", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonHeight", typeof(double), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
 
-        public int ButtonHeight
+        public double ButtonHeight
         {
-            get { return (int)GetValue(ButtonHeightProperty); }
+            get { return (double)GetValue(ButtonHeightProperty); }
             set { SetValue(ButtonHeightProperty, value); }
         }
 
         public static readonly DependencyProperty ButtonWidthProperty =
-        DependencyProperty.Register("ButtonWidth", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonWidth", typeof(double), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
 
-        public int ButtonWidth
+        public double ButtonWidth
         {
-            get { return (int)GetValue(ButtonWidthProperty); }
+            get { return (double)GetValue(ButtonWidthProperty); }
             set { SetValue(ButtonWidthProperty, value); }
         }
 
@@ -739,19 +739,19 @@ namespace SDX.Toolkit.Controls
                 *** SPECIAL NOTE if u storyboard a  translatetransform with a double animation, the
                 the translatetransform gets no value and the animation gets it instead in the To prop
             */
-            int iDistanceInButtons = End.ID;
-            int iDistance = 0;
+            double iDistanceInButtons = End.ID;
+            double iDistance = 0;
 
             // move left or right
             if (this.MainOrientation == Orientation.Horizontal)
             {
-                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * ((int)WIDTH_GRID_COLUMNSPACING + 8));
+                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * ((double)WIDTH_GRID_COLUMNSPACING + 8));
             }
 
             // move up or down
             else //if (this.Orientation == Orientation.Vertical)
             {
-                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * ((int)WIDTH_GRID_ROWSPACING) + 4);
+                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * ((double)WIDTH_GRID_ROWSPACING) + 4);
             }
             daAnimation.To = iDistance;
             this.storyboard.Begin();

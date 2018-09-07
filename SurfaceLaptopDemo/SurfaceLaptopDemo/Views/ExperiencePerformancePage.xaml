@@ -52,7 +52,7 @@
             ShowSelectedLine="true"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"/>
+            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonSize}"
+            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonSize}"/>
     </Grid>
 </Page>

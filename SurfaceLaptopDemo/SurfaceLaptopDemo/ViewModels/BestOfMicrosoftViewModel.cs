@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceLaptopDemo.Services;
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Controls;
 
 
@@ -26,15 +27,10 @@ namespace SurfaceLaptopDemo.ViewModels
         public string Headline;
         public string Legal;
 
-        public string BulletOneCTA;
-        public string BulletTwoCTA;
-        public string BulletThreeCTA;
-        public string BulletFourCTA;
-
         public List<ListItem> LeftItemList = new List<ListItem>();
         public List<ListItem> RightItemList = new List<ListItem>();
 
-        public double ICON_WIDTH = 60d;
+        public double ICON_WIDTH = StyleHelper.GetApplicationDouble("BestOfMicrosoftListIconWidth");
 
         #endregion
 

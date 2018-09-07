@@ -60,6 +60,9 @@ namespace SDX.Toolkit.Helpers
         AccessoriesPenListIconWidth,
         BestOfMicrosoftListIconWidth,
         CompareListIconWidth,
+        AccessoryColorSelectorIconWidth,
+        AccessoryPrimaryImageWidth,
+        AccessoryPrimaryImageHeight,
         SwipeLeftEllipseRadius,
         SwipeLeftSpacer,
         SwipeToContinueArrowWidth,
@@ -145,6 +148,11 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
         public const string SIZE_COMPARE_LISTICONWIDTH = "CompareListIconWidth";
 
+        public const string SIZE_ACCESSORIES_COLORICONWIDTH = "AccessoryColorSelectorIconWidth";
+
+        public const string SIZE_ACCESSORIES_PRIMARYIMAGEWIDTH = "AccessoryPrimaryImageWidth";
+        public const string SIZE_ACCESSORIES_PRIMARYIMAGEHEIGHT = "AccessoryPrimaryImageHeight";
+
         public const string SIZE_SWIPELEFT_ELLIPSE_RADIUS = "SwipeLeftEllipseRadius";
         public const string SIZE_SWIPELEFT_SPACER = "SwipeLeftSpacer";
 
@@ -163,8 +171,9 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_NAVIGATIONBAR_SPACER = "NavigationBarSpacer";
         public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
         public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
+
         public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight";
-        public const string SIZE_TRYIT_BOXPATH_HEIGHT = "TryItBoxPathHeight";
+        public const string SIZE_TRYIT_PATH_HEIGHT = "TryItPathHeight";
         public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
 
         public const string SIZE_RADIATING_BUTTON_ICON_HEIGHT = "RadiatingButtonIconHeight";
@@ -257,6 +266,18 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_COMPARE_LISTICONWIDTH);
                     break;
 
+                case LayoutSizes.AccessoryColorSelectorIconWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_COLORICONWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryPrimaryImageWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_PRIMARYIMAGEWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryPrimaryImageHeight:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_PRIMARYIMAGEHEIGHT);
+                    break;
+
                 case LayoutSizes.SwipeLeftEllipseRadius:
                     value = GetApplicationDouble(SIZE_SWIPELEFT_ELLIPSE_RADIUS);
                     break;
@@ -318,7 +339,7 @@ namespace SDX.Toolkit.Helpers
                     break;
 
                 case LayoutSizes.TryItPathHeight:
-                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
                     break;
 
                 case LayoutSizes.TryItIconHeight:
@@ -326,11 +347,11 @@ namespace SDX.Toolkit.Helpers
                     break;
 
                 case LayoutSizes.RadiatingButtonIconHeight:
-                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
                     break;
 
                 case LayoutSizes.RadiatingButtonEllipseHeight:
-                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
                     break; 
                 default:
                     break;

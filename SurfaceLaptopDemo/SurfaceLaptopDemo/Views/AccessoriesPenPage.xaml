@@ -33,16 +33,16 @@
         <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
             x:Name="AppSelectorImageAccRight"
             URIs="{x:Bind Path=ViewModel.accRightSelectorImageURIs}"
-            ImageHeight="{StaticResource AccessoryImageSelectorHeight}"
-            ImageWidth="{StaticResource AccessoryImageSelectorWidth}"/>
+            ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
+            ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
             x:Name="AppSelectorAccRight"
             URIs="{x:Bind Path=ViewModel.accRightSelectorData}"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"/>
+            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
 
         <ctrl:Header Grid.Row="3" Grid.Column="1"
                     x:Name="AccRightHeader" 

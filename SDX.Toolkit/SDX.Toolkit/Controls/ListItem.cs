@@ -26,27 +26,24 @@ namespace SDX.Toolkit.Controls
         Write,
         Pressure,
         Palm,
-        // for interactive touch
-        Touch,
-        Rotate,
-        Drag,
         // for product highlight modals
         Design,
         Power,
         Laptop,
         Display,
         Sound,
-        Mobility,
+        Lightweight,
         Battery,
         Detail,
         Size,
         Connection,
+        Versatile,
         Pen,
         Custom,
         // for best of page
         Start,
-        Sync,
         Hello,
+        Sync,
         Office,
     }
     
@@ -59,27 +56,24 @@ namespace SDX.Toolkit.Controls
         private const string ICON_WRITE_URI = @"ms-appx:///Assets/List/inkingWrite.png";
         private const string ICON_PRESSURE_URI = @"ms-appx:///Assets/List/inkingPressure.png";
         private const string ICON_PALM_URI = @"ms-appx:///Assets/List/inkingPalm.png";
-        // touch icons
-        private const string ICON_TOUCH_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_ROTATE_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_DRAG_URI = @"ms-appx:///Assets/List/??.png";
         // product highlights modal icons
-        private const string ICON_DESIGN_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_POWER_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_LAPTOP_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_DISPLAY_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_SOUND_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_MOBILITY_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_BATTERY_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_DETAIL_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/??.png";
-        private const string ICON_PEN_URI = @"ms-appx:///Assets/List/??.png";
+        private const string ICON_DESIGN_URI = @"ms-appx:///Assets/List/specs_design.png";
+        private const string ICON_PERFORMANCE_URI = @"ms-appx:///Assets/List/specs_performance.png";
+        private const string ICON_LAPTOP_URI = @"ms-appx:///Assets/List/specs_laptop.png";
+        private const string ICON_DISPLAY_URI = @"ms-appx:///Assets/List/specs_eye.png";
+        private const string ICON_AUDIO_URI = @"ms-appx:///Assets/List/specs_audio.png";
+        private const string ICON_LIGHTWEIGHT_URI = @"ms-appx:///Assets/List/specs_feather.png";
+        private const string ICON_BATTERY_URI = @"ms-appx:///Assets/List/specs_battery.png";
+        private const string ICON_CREATIVE_URI = @"ms-appx:///Assets/List/specs_creative.png";
+        private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/specs_size.png";
+        private const string ICON_VERSATILE_URI = @"ms-appx:///Assets/List/specs_versatile.png";
+        private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/specs_connection.png";
+        private const string ICON_PEN_URI = @"ms-appx:///Assets/List/specs_pen.png";
         // BOM icons
-        private const string ICON_START_URI = @"ms-appx:///Assets/List/bomWindows.png";
-        private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bomSmile.png";
-        private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bomSync.png";
-        private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bomOffice.png";
+        private const string ICON_START_URI = @"ms-appx:///Assets/List/bom_windows.png";
+        private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bom_smile.png";
+        private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bom_sync.png";
+        private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bom_office.png";
 
         #endregion
 
@@ -146,24 +140,12 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_PALM_URI;
                         break;
 
-                    case ListItemIcon.Touch:
-                        iconPath = ICON_TOUCH_URI;
-                        break;
-
-                    case ListItemIcon.Rotate:
-                        iconPath = ICON_ROTATE_URI;
-                        break;
-
-                    case ListItemIcon.Drag:
-                        iconPath = ICON_DRAG_URI;
-                        break;
-
                     case ListItemIcon.Design:
                         iconPath = ICON_DESIGN_URI;
                         break;
 
                     case ListItemIcon.Power:
-                        iconPath = ICON_POWER_URI;
+                        iconPath = ICON_PERFORMANCE_URI;
                         break;
 
                     case ListItemIcon.Laptop:
@@ -175,11 +157,11 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case ListItemIcon.Sound:
-                        iconPath = ICON_SOUND_URI;
+                        iconPath = ICON_AUDIO_URI;
                         break;
 
-                    case ListItemIcon.Mobility:
-                        iconPath = ICON_MOBILITY_URI;
+                    case ListItemIcon.Lightweight:
+                        iconPath = ICON_LIGHTWEIGHT_URI;
                         break;
 
                     case ListItemIcon.Battery:
@@ -187,7 +169,7 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case ListItemIcon.Detail:
-                        iconPath = ICON_DETAIL_URI;
+                        iconPath = ICON_CREATIVE_URI;
                         break;
 
                     case ListItemIcon.Size:
@@ -198,8 +180,12 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_CONNECTION_URI;
                         break;
 
+                    case ListItemIcon.Versatile:
+                        iconPath = ICON_VERSATILE_URI;
+                        break;
+
                     case ListItemIcon.Pen:
-                        iconPath = ICON_DRAG_URI;
+                        iconPath = ICON_PEN_URI;
                         break;
 
                     case ListItemIcon.Start:
