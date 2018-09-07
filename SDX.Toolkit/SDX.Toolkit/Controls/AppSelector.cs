@@ -287,7 +287,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ClearButtonDataProperty =
-        DependencyProperty.Register("ClearButtonDataProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null, OnAutoStartChanged));
+        DependencyProperty.Register("ClearButtonData", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null, OnAutoStartChanged));
 
         public AppSelectorData ClearButtonData
         {
@@ -296,7 +296,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty MainOrientationProperty =
-        DependencyProperty.Register("MainOrientationProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal, OnAutoStartChanged));
+        DependencyProperty.Register("MainOrientation", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal, OnAutoStartChanged));
 
         public Orientation MainOrientation
         {
@@ -305,7 +305,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ShowMessagesProperty =
-        DependencyProperty.Register("ShowMessagesProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+        DependencyProperty.Register("ShowMessages", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
 
         public bool ShowMessages
         {
@@ -314,7 +314,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty AppSelectorModeProperty =
-        DependencyProperty.Register("AppSelectorModeProperty", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color, OnAutoStartChanged));
+        DependencyProperty.Register("AppSelectorMode", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color, OnAutoStartChanged));
 
         public SelectorMode AppSelectorMode
         {

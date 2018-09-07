@@ -438,7 +438,7 @@ namespace SDX.Toolkit.Controls
                 VerticalAlignment = VerticalAlignment.Center,
                 Opacity = 0.0,
             };
-            _textSwipe.SetBinding(TextBlock.TextProperty,
+            _textSwipe.SetBinding(TextBlockEx.TextProperty,
                     new Binding() { Source = this, Path = new PropertyPath("SwipeText"), Mode = BindingMode.OneWay });
             Grid.SetRow(_textSwipe, 0);
             Grid.SetColumn(_textSwipe, 6);

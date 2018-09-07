@@ -29,7 +29,7 @@ namespace SDX.Toolkit.Controls
 
         private const string URI_PENICON = @"ms-appx:///Assets/ColoringBook/ink-pen-icon.png";
 
-        private static readonly Size WINDOW_BOUNDS = new Size(5000, 5000);//= PageHelper.GetViewSizeInfo();
+        private static readonly Size WINDOW_BOUNDS = WindowHelper.GetViewSizeInfo();
         private static readonly double CANVAS_X = WINDOW_BOUNDS.Width;
         private static readonly double CANVAS_Y = WINDOW_BOUNDS.Height;
 
