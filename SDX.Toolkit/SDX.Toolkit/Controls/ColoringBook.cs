@@ -95,6 +95,8 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(ColoringBook);
             this.Loaded += OnLoaded;
             this._ImagePairs = new Dictionary<int, ImagePair>();
+            this.VerticalAlignment = VerticalAlignment.Stretch;
+            this.HorizontalAlignment = HorizontalAlignment.Stretch;
             // inherited dependency property
             //new PropertyChangeEventSource<double>(
             //    this, "Opacity", Windows.UI.Xaml.Data.BindingMode.OneWay).ValueChanged +=
@@ -353,8 +355,8 @@ namespace SDX.Toolkit.Controls
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
             //_layoutRoot.Opacity = 0;
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.8, GridUnitType.Star) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.2, GridUnitType.Star) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.95, GridUnitType.Star) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.05, GridUnitType.Star) });
 
             if (null == _layoutRoot) { return; }
 
@@ -403,6 +405,8 @@ namespace SDX.Toolkit.Controls
             {
                 Name = "InkCanvas",
                 Margin = new Thickness(0),
+                HorizontalAlignment= HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch
 
             };
 
@@ -418,7 +422,7 @@ namespace SDX.Toolkit.Controls
                 Source = BMIMAGE_COLORING_BOOK,
                 Width = BMIMAGE_COLORING_BOOK.DecodePixelWidth,
                 Height = BMIMAGE_COLORING_BOOK.DecodePixelHeight,
-                HorizontalAlignment = HorizontalAlignment.Left,
+                HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
                 Opacity = 1.0,
                 IsHitTestVisible = false

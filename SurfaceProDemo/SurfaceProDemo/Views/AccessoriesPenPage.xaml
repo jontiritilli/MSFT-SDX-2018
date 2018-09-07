@@ -44,26 +44,15 @@
             ListStyle="LedeOnly"
             Grid.Column="1"
             Grid.Row="3"
-
                 />
-        
         <ctrl:ColoringBook
             x:Name="ColoringBook"
-            Grid.Row="1"
-            Grid.RowSpan="7"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="8"
+            Grid.ColumnSpan="4"
             ImageColumnSpan="2"        
         />
-        <!--ImageHeight="{x:Bind Path=ViewModel.ColoringBookImageHeight}"
-                ButtonHeight="{x:Bind Path=ViewModel.ColoringBookButtonHeight}"
-        ButtonWidth="{x:Bind Path=ViewModel.ColoringBookButtonWidth}"
-        ImageWidth="{x:Bind Path=ViewModel.ColoringBookImageWidth}"
-        ClearButtonURI="{x:Bind Path=ViewModel.ColoringBookClearButtonURI}"
-        ImageURI="{x:Bind Path=ViewModel.ColoringBookUri}"            
-        Colors="{x:Bind Path=ViewModel.Colors}"-->
 
     </Grid>
 </Page>
