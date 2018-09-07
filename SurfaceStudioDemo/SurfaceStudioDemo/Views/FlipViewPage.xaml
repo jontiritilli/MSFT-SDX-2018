@@ -14,11 +14,10 @@
         <!-- Top row is for FlipView and its content, bottom is for NavBar -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <!--<RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>-->
             <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
                  resource with a converter. So we have to add the GridLength we want
                  to the ViewModel, which uses StyleHelper to create it with the style value. -->
-            <RowDefinition Height="{Binding Path=ViewModel.AppCloseWidth}"/>
+            <RowDefinition Height="{x:Bind Path=ViewModel.NavigationBarHeight}"/>
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
         <!-- FlipView occupies two columns -->
@@ -27,7 +26,7 @@
             <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
                  resource with a converter. So we have to add the GridLength we want
                  to the ViewModel, which uses StyleHelper to create it with the style value. -->
-            <ColumnDefinition Width="{Binding Path=ViewModel.NavigationBarHeight}"/>
+            <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>   
         </Grid.ColumnDefinitions>
 
         <!--Host FlipView-->
