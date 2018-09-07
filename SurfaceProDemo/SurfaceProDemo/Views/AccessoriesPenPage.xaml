@@ -9,28 +9,10 @@
     DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-            
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width=".375*"/>
-            <ColumnDefinition Width=".625*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <!-- THIS NEEDS TO COME BACK WHEN THE STYLE STUFF IS FIXED
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
@@ -42,14 +24,16 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".375*"/>
+            <ColumnDefinition Width=".625*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
-        </Grid.ColumnDefinitions>-->
-
+        </Grid.ColumnDefinitions>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"                     
             Width="Auto"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
@@ -65,7 +49,8 @@
         <!-- TODO: Coloring Book control goes here ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"-->
         <ctrl:ColoringBook
         x:Name="ColoringBook"
-        Grid.Row="3"
+        Grid.Row="1"
+        Grid.RowSpan="7"
         Grid.Column="2"
         Grid.ColumnSpan="2"
         ImageURI="{x:Bind Path=ViewModel.ColoringBookUri}"            

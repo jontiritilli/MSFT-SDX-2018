@@ -205,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,28 +305,32 @@
     <Content Include="Assets\Accessories\ArtworkColors\purple.png" />
     <Content Include="Assets\Accessories\peacock.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\brand-bg.png" />
+    <Content Include="Assets\Backgrounds\generic-bg.png" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
     <Content Include="Assets\Comparison\comparisonCaprock.png" />
     <Content Include="Assets\Comparison\comparisonCruz.png" />
     <Content Include="Assets\Comparison\comparisonFamily.png" />
     <Content Include="Assets\Comparison\comparisonFoxburg.png" />
-    <Content Include="Assets\Comparison\cruz_comparisonGo.png" />
-    <Content Include="Assets\Comparison\cruz_comparisonSb2.png" />
+    <Content Include="Assets\Comparison\comparisonGo.png" />
+    <Content Include="Assets\Comparison\comparisonSb2.png" />
     <Content Include="Assets\Experience\black_hero_back.png" />
     <Content Include="Assets\Experience\black_hero_front.png" />
     <Content Include="Assets\Experience\laptop.png" />
     <Content Include="Assets\Experience\laptop_photoshop.png" />
+    <Content Include="Assets\Experience\platinum_hero_back.png" />
+    <Content Include="Assets\Experience\platinum_hero_front.png" />
     <Content Include="Assets\Experience\studio.png" />
     <Content Include="Assets\Experience\tablet.png" />
     <Content Include="Assets\List\bomOffice.png" />
     <Content Include="Assets\List\bomSmile.png" />
     <Content Include="Assets\List\bomSync.png" />
     <Content Include="Assets\List\bomWindows.png" />
+    <Content Include="Assets\List\inkingDraw.png" />
+    <Content Include="Assets\List\InkingPalm.png" />
+    <Content Include="Assets\List\inkingPressure.png" />
+    <Content Include="Assets\List\inkingWrite.png" />
     <Content Include="Assets\SwipeLeft\swipe-arrow.png" />
-    <Content Include="Assets\List\inkingDraw.svg" />
-    <Content Include="Assets\List\inkingPalm.svg" />
-    <Content Include="Assets\List\inkingPressure.svg" />
-    <Content Include="Assets\List\inkingWrite.svg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Accessories\Images\keyboard_left.png" />

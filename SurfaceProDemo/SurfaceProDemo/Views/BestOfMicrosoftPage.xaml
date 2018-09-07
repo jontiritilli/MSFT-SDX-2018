@@ -9,24 +9,11 @@
     DataContext="{Binding BestOfMicrosoftViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-        Margin="{StaticResource MediumLeftRightMargin}">
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <!--<Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
@@ -37,16 +24,17 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width=".5*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
-        </Grid.ColumnDefinitions>-->
+        </Grid.ColumnDefinitions>
         <!--Width="{StaticResource HeaderWidth}"-->
+        <!--HeadlineStyle="Headline"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
-                HeadlineStyle="Headline"
-                Lede=""
                 
+                Lede=""
+
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
@@ -59,10 +47,10 @@
                    ListItems="{x:Bind Path=ViewModel.RightItemList}"
                    ListStyle="BestOf"
                    />
-
+        <!--ControlStyle="{StaticResource CompareLegal}"-->
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"
-                       ControlStyle="CompareLegal"
+                       TextStyle="Legal"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Visibility="Visible" />

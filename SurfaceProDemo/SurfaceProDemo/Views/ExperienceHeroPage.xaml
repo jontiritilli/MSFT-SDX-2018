@@ -9,24 +9,11 @@
     DataContext="{Binding ExperienceHeroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-        Margin="{StaticResource MediumLeftRightMargin}">
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <!--<Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
@@ -39,7 +26,7 @@
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
-        </Grid.ColumnDefinitions>-->
+        </Grid.ColumnDefinitions>
 
         <ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"
                 Words="{x:Bind Path=ViewModel.HeroText}"
