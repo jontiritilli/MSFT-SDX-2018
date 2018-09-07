@@ -209,7 +209,7 @@ namespace SDX.Toolkit.Controls
                             // create the lede
                             Header lede = new Header()
                             {
-                                HeadlineStyle = TextStyles.ListHeadline ,
+                                HeadlineStyle = TextStyles.ListHeadline,
                                 Headline = "",
                                 LedeStyle = TextStyles.ListLede,
                                 Lede = item.Lede,
@@ -219,7 +219,7 @@ namespace SDX.Toolkit.Controls
                             };
                             Grid.SetColumn(lede, 2);
                             Grid.SetRow(lede, item.Order + 1);
-
+                            
                             _layoutRoot.Children.Add(lede);
                         }
                     }
@@ -305,9 +305,9 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
                             {
-                                HeadlineStyle = TextStyles.ListHeadline,
+                                HeadlineStyle = TextStyles.ListItemHeadlineBestOf,
                                 Headline = item.Headline,
-                                LedeStyle = TextStyles.ListLede,
+                                LedeStyle = TextStyles.ListItemLedeBestOf,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),

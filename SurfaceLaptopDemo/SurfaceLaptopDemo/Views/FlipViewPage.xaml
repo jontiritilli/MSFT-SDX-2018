@@ -104,7 +104,7 @@
 
         <!-- Bottom Nav Bar -->
         <ctrl:NavigationBar x:Name="BottomNavBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                           Height="80"
+                           Height="{StaticResource NavigationBarHeight}"
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
 

@@ -321,9 +321,10 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
+        <Setter Property="FontSize" Value="13" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="13" />    <!-- halved -->
+        <Setter Property="CharacterSpacing" Value="25"/>
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -336,9 +337,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="22" />    <!-- halved -->
+        <Setter Property="FontSize" Value="20" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="21" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -351,9 +352,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="18.5" />    <!-- halved -->
+        <Setter Property="FontSize" Value="13" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="22" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="12.5" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Center" />
