@@ -29,6 +29,30 @@ namespace SDX.Toolkit.Controls
 
         private const string URI_PENICON = @"ms-appx:///Assets/ColoringBook/ink-pen-icon.png";
 
+        private const string CLEARBUTTON_URI = @"ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
+
+        private const string URI_COLORING_BOOK_IMAGE = "ms-appx:///Assets/Accessories/peacock.png";
+
+        private readonly BitmapImage BMIMAGE_COLORING_BOOK = StyleHelper.GetApplicationBitmapImage(BitmapImages.ColoringBookImage);
+
+        private const string URI_COLOR_1 = @"ms-appx:///Assets/Accessories/ArtworkColors/red.png";
+        private const string URI_COLOR_2 = @"ms-appx:///Assets/Accessories/ArtworkColors/blue.png";
+        private const string URI_COLOR_3 = @"ms-appx:///Assets/Accessories/ArtworkColors/teal.png";
+        private const string URI_COLOR_4 = @"ms-appx:///Assets/Accessories/ArtworkColors/orange.png";
+        private const string URI_COLOR_5 = @"ms-appx:///Assets/Accessories/ArtworkColors/purple.png";
+
+        private const string URI_COLOR_1_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/red_active.png";
+        private const string URI_COLOR_2_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/blue_active.png";
+        private const string URI_COLOR_3_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/teal_active.png";
+        private const string URI_COLOR_4_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/orange_active.png";
+        private const string URI_COLOR_5_SELECTED = @"ms-appx:///Assets/Accessories/ArtworkColors/purple_active.png";
+
+        private readonly Color COLOR_COLORING_BOOK_1 = StyleHelper.GetApplicationColor(ColoringBookColors.Red);
+        private readonly Color COLOR_COLORING_BOOK_2 = StyleHelper.GetApplicationColor(ColoringBookColors.Blue);
+        private readonly Color COLOR_COLORING_BOOK_3 = StyleHelper.GetApplicationColor(ColoringBookColors.Teal);
+        private readonly Color COLOR_COLORING_BOOK_4 = StyleHelper.GetApplicationColor(ColoringBookColors.Orange);
+        private readonly Color COLOR_COLORING_BOOK_5 = StyleHelper.GetApplicationColor(ColoringBookColors.Purple);
+
         private static readonly Size WINDOW_BOUNDS = WindowHelper.GetViewSizeInfo();
         private static readonly double CANVAS_X = WINDOW_BOUNDS.Width;
         private static readonly double CANVAS_Y = WINDOW_BOUNDS.Height;
@@ -44,6 +68,8 @@ namespace SDX.Toolkit.Controls
         private const int Z_ORDER_CONTROLS = 99;
         private const int Z_ORDER_SHAPES = 0;
 
+        private readonly double DOUBLE_COLORING_BOOK_BUTTON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookButtonWidth);
+        private readonly double DOUBLE_COLORING_BOOK_BUTTON_HEIGHT = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookButtonHeight);
 
         #endregion
 
@@ -397,27 +423,61 @@ namespace SDX.Toolkit.Controls
             // please dont not have a URI or an SVGURI or the image below will error
             Image ColoringImage = new Image()
             {                
-                Width = this.ImageWidth,
-                Height = this.ImageHeight,
+                Source = BMIMAGE_COLORING_BOOK,
+                Width = BMIMAGE_COLORING_BOOK.DecodePixelWidth,
+                Height = BMIMAGE_COLORING_BOOK.DecodePixelHeight,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
                 Opacity = 1.0,
                 IsHitTestVisible = false
-            };
-            
-            if (!string.IsNullOrEmpty(ImageURI)) {
-                ColoringImage.Source = new BitmapImage() { UriSource = new Uri(ImageURI), DecodePixelWidth = this.ImageWidth };                
-            }
-            else if(!string.IsNullOrEmpty(ImageSVGURI))
-            {
-                ColoringImage.Source = new SvgImageSource() { UriSource = new Uri(ImageSVGURI), RasterizePixelWidth = this.ImageWidth };
-            }
+            };            
+            //if (!string.IsNullOrEmpty(ImageURI)) {
+            //    ColoringImage.Source = BMIMAGE_COLORING_BOOK;                
+            //}
+            //else if(!string.IsNullOrEmpty(ImageSVGURI))
+            //{
+            //    ColoringImage.Source = new SvgImageSource() { UriSource = new Uri(ImageSVGURI), RasterizePixelWidth = this.ImageWidth };
+            //}
 
             Canvas.SetZIndex(ColoringImage, 101);
             Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
             Grid.SetRow(ColoringImage, 0);            
             Grid.SetColumn(ColoringImage, 0);            
-            _layoutRoot.Children.Add(ColoringImage);            
+            _layoutRoot.Children.Add(ColoringImage);
+            this.Colors.Add(new ColoringBookColor()
+            {
+                URI_NotSelectedImage = URI_COLOR_1,
+                URI_SelectedImage = URI_COLOR_1_SELECTED,
+                Color = COLOR_COLORING_BOOK_1
+            });
+
+            this.Colors.Add(new ColoringBookColor()
+            {
+                URI_NotSelectedImage = URI_COLOR_2,
+                URI_SelectedImage = URI_COLOR_2_SELECTED,
+                Color = COLOR_COLORING_BOOK_2
+            });
+
+            this.Colors.Add(new ColoringBookColor()
+            {
+                URI_NotSelectedImage = URI_COLOR_3,
+                URI_SelectedImage = URI_COLOR_3_SELECTED,
+                Color = COLOR_COLORING_BOOK_3
+            });
+
+            this.Colors.Add(new ColoringBookColor()
+            {
+                URI_NotSelectedImage = URI_COLOR_4,
+                URI_SelectedImage = URI_COLOR_4_SELECTED,
+                Color = COLOR_COLORING_BOOK_4
+            });
+
+            this.Colors.Add(new ColoringBookColor()
+            {
+                URI_NotSelectedImage = URI_COLOR_5,
+                URI_SelectedImage = URI_COLOR_5_SELECTED,
+                Color = COLOR_COLORING_BOOK_5
+            });
 
             for (int i = 0; i < this.Colors.Count; i++)
             {
@@ -434,14 +494,14 @@ namespace SDX.Toolkit.Controls
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
                 MainOrientation = Orientation.Vertical,
-                ButtonHeight = this.ButtonHeight,
-                ButtonWidth = this.ButtonWidth,
+                ButtonHeight = DOUBLE_COLORING_BOOK_BUTTON_HEIGHT,
+                ButtonWidth = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                 Opacity = 1,
                 URIs = this._URIs,
                 ClearButtonData = new AppSelectorData
                 {
-                    Source_NotSelectedImage = this.ClearButtonURI,
-                    Source_SelectedImage = this.ClearButtonURI,
+                    Source_NotSelectedImage = CLEARBUTTON_URI,
+                    Source_SelectedImage = CLEARBUTTON_URI,
                     IsClearButton = true
                 },
                 SelectedID = 0

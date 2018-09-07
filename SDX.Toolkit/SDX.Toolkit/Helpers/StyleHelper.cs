@@ -9,7 +9,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
-
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace SDX.Toolkit.Helpers
 {
@@ -73,7 +73,9 @@ namespace SDX.Toolkit.Helpers
         NavigationBarMargin,
         NavigationBarSpacer,
         NavigationBarWidthArrow,
-        NavigationBarWidthHome
+        NavigationBarWidthHome,
+        ColoringBookButtonWidth,
+        ColoringBookButtonHeight
     }
 
     public enum LayoutThicknesses
@@ -81,6 +83,20 @@ namespace SDX.Toolkit.Helpers
         HeroMargin,
         PopupBorder,
         PopupMargin
+    }
+
+    public enum ColoringBookColors
+    {
+        Red,
+        Blue,
+        Teal,
+        Orange,
+        Purple
+    }
+
+    public enum BitmapImages
+    {
+        ColoringBookImage
     }
 
     public static class StyleHelper
@@ -158,8 +174,22 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
         public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
 
+        public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
+        public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
+
         #endregion
 
+        #region Color Constants
+        public const string RED = "ColoringBookColorRed";
+        public const string BLUE = "ColoringBookColorBlue";
+        public const string TEAL = "ColoringBookColorTeal";
+        public const string ORANGE = "ColoringBookColorOrange";
+        public const string PURPLE = "ColoringBookColorPurple";
+        #endregion
+
+        #region Image Constants
+        public const string BITMAPIMAGE_COLORINGBOOK = "ColoringBookBitmapImage";
+        #endregion
 
         #region Thickness Constants
 
@@ -302,6 +332,13 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_NAVIGATIONBAR_WIDTH_HOME);
                     break;
 
+                case LayoutSizes.ColoringBookButtonWidth:
+                    value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.ColoringBookButtonHeight:
+                    value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONHEIGHT);
+                    break;
                 default:
                     break;
             }
@@ -326,7 +363,6 @@ namespace SDX.Toolkit.Helpers
         }
 
         #endregion
-
 
         #region Style Methods
 
@@ -457,6 +493,79 @@ namespace SDX.Toolkit.Helpers
 
         #endregion
 
+        #region Color Methods
+
+        public static Color GetApplicationColor(ColoringBookColors Color)
+        {
+            Color color = new Windows.UI.Color();
+            switch (Color)
+            {
+                case ColoringBookColors.Red:
+                    color = GetApplicationColor(RED);
+                    break;
+                case ColoringBookColors.Blue:
+                    color = GetApplicationColor(BLUE);
+                    break;
+                case ColoringBookColors.Teal:
+                    color = GetApplicationColor(TEAL);
+                    break;
+                case ColoringBookColors.Orange:
+                    color = GetApplicationColor(ORANGE);
+                    break;
+                case ColoringBookColors.Purple:
+                    color = GetApplicationColor(PURPLE);
+                    break;
+                default:
+                    break;
+            }
+            return color;
+        }
+
+        public static Color GetApplicationColor(String name)
+        {
+            Color color = new Color();
+            try
+            {
+                color = (Color)Application.Current.Resources[name];
+            }
+            catch
+            {
+            }
+
+            return color;
+        }
+        #endregion
+
+        #region Bitmap Methods
+
+        public static BitmapImage GetApplicationBitmapImage(BitmapImages image)
+        {
+            BitmapImage bmImage = new BitmapImage();
+            switch (image)
+            {
+                case BitmapImages.ColoringBookImage:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK);
+                    break;
+                default:
+                    break;
+            }
+            return bmImage;
+        }
+
+        public static BitmapImage GetApplicationBitmapImage(String name)
+        {
+            BitmapImage bmImage = new BitmapImage();
+            try
+            {
+                bmImage = (BitmapImage)Application.Current.Resources[name];
+            }
+            catch
+            {
+            }
+
+            return bmImage;
+        }
+        #endregion
 
         #region Thickness Methods
 

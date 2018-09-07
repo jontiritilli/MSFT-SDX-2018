@@ -278,7 +278,7 @@ namespace SDX.Toolkit.Controls
 
         //List<AppSelectorData> URIs        
         public static readonly DependencyProperty URIsProperty =
-        DependencyProperty.Register("URIs", typeof(List<AppSelectorData>), typeof(AppSelector), new PropertyMetadata(new List<AppSelectorData>(), OnAutoStartChanged));
+        DependencyProperty.Register("URIs", typeof(List<AppSelectorData>), typeof(AppSelector), new PropertyMetadata(new List<AppSelectorData>()));
 
         public List<AppSelectorData> URIs
         {
@@ -287,7 +287,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ClearButtonDataProperty =
-        DependencyProperty.Register("ClearButtonData", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null, OnAutoStartChanged));
+        DependencyProperty.Register("ClearButtonData", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null));
 
         public AppSelectorData ClearButtonData
         {
@@ -296,7 +296,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty MainOrientationProperty =
-        DependencyProperty.Register("MainOrientation", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal, OnAutoStartChanged));
+        DependencyProperty.Register("MainOrientation", typeof(Orientation), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal));
 
         public Orientation MainOrientation
         {
@@ -305,7 +305,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ShowMessagesProperty =
-        DependencyProperty.Register("ShowMessages", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+        DependencyProperty.Register("ShowMessages", typeof(bool), typeof(AppSelector), new PropertyMetadata(false));
 
         public bool ShowMessages
         {
@@ -314,7 +314,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty AppSelectorModeProperty =
-        DependencyProperty.Register("AppSelectorMode", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color, OnAutoStartChanged));
+        DependencyProperty.Register("AppSelectorMode", typeof(SelectorMode), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color));
 
         public SelectorMode AppSelectorMode
         {
@@ -323,25 +323,25 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ButtonHeightProperty =
-        DependencyProperty.Register("ButtonHeight", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonHeight", typeof(Double), typeof(AppSelector), new PropertyMetadata(0d));
 
-        public int ButtonHeight
+        public Double ButtonHeight
         {
-            get { return (int)GetValue(ButtonHeightProperty); }
+            get { return (Double)GetValue(ButtonHeightProperty); }
             set { SetValue(ButtonHeightProperty, value); }
         }
 
         public static readonly DependencyProperty ButtonWidthProperty =
-        DependencyProperty.Register("ButtonWidth", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonWidth", typeof(Double), typeof(AppSelector), new PropertyMetadata(0d));
 
-        public int ButtonWidth
+        public Double ButtonWidth
         {
-            get { return (int)GetValue(ButtonWidthProperty); }
+            get { return (Double)GetValue(ButtonWidthProperty); }
             set { SetValue(ButtonWidthProperty, value); }
         }
 
         public static readonly DependencyProperty ShowSelectedLineProperty =
-        DependencyProperty.Register("ShowSelectedLine", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+        DependencyProperty.Register("ShowSelectedLine", typeof(bool), typeof(AppSelector), new PropertyMetadata(false));
 
         public bool ShowSelectedLine
         {
@@ -739,8 +739,8 @@ namespace SDX.Toolkit.Controls
                 *** SPECIAL NOTE if u storyboard a  translatetransform with a double animation, the
                 the translatetransform gets no value and the animation gets it instead in the To prop
             */
-            int iDistanceInButtons = End.ID;
-            int iDistance = 0;
+            Double iDistanceInButtons = End.ID;
+            Double iDistance = 0;
 
             // move left or right
             if (this.MainOrientation == Orientation.Horizontal)
