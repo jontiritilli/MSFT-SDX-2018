@@ -620,14 +620,15 @@ namespace SDX.Toolkit.Controls
             {
                 // create the button style
                 Style buttonStyle = StyleHelper.GetApplicationStyle("RoundRadiatingButton");
+                double buttonSize = StyleHelper.GetApplicationDouble("RadiatingButtonRadius");
 
                 // create it
                 _hostButton = new Button()
                 {
                     Name = this.Name + "HostButton",
                     Background = new SolidColorBrush(Colors.Transparent),
-                    Width = BUTTON_SIZE,
-                    Height = BUTTON_SIZE,
+                    Width = buttonSize,
+                    Height = buttonSize,
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                 };

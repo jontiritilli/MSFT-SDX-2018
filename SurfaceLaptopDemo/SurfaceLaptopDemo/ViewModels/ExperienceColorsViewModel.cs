@@ -48,13 +48,13 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string BackgroundUri;
 
-        public int AppSelectorButtonWidth;
-        public int AppSelectorButtonHeight;
+        public int AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
+        public int AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
 
+        Size size = WindowHelper.GetScreenResolutionInfo();
         public int ImageSelectorImageWidth;
         public int ImageSelectorImageHeight;
 
-        Size size = WindowHelper.GetScreenResolutionInfo();
         public List<AppSelectorData> lifeStyleColorSelectorData = new List<AppSelectorData>();
         public List<AppSelectorImageURI> lifeStyleColorSelectorImageURIs = new List<AppSelectorImageURI>();
 
@@ -62,9 +62,6 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperienceColorsViewModel()
         {
-            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
-            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
-
             ImageSelectorImageWidth = Convert.ToInt32(size.Width);
             ImageSelectorImageHeight = Convert.ToInt32(size.Height);
 
