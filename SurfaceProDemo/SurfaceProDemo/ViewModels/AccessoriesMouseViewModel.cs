@@ -12,7 +12,7 @@ namespace SurfaceProDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
 
         private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Accessories/Images/mouse_right.png";
         private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Accessories/Images/mouse_right.png";
@@ -32,8 +32,8 @@ namespace SurfaceProDemo.ViewModels
         private const int APPSELECTOR_BUTTON_WIDTH = 40;
         private const int APPSELECTOR_BUTTON_HEIGHT = 40;
 
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 648;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 764;
+        private const int SELECTORIMAGE_IMAGEHEIGHT = 810;
+        private const int SELECTORIMAGE_IMAGEWIDTH = 954;
         #endregion
 
 

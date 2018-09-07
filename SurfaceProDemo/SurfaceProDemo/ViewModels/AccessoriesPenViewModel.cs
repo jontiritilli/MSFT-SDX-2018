@@ -12,7 +12,7 @@ namespace SurfaceProDemo.ViewModels
 
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";           
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";           
        
         private const string URI_COLORING_BOOK_IMAGE = "ms-appx:///Assets/Accessories/peacock.png";
 
@@ -43,8 +43,8 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_COLORING_BOOK_CLEAR_BUTTON = "ms-appx:///Assets/Accessories/ArtworkColors/reset.png";
 
 
-        private const int COLORING_BOOK_BUTTON_WIDTH = 65;
-        private const int COLORING_BOOK_BUTTON_HEIGHT = 65;
+        private const int COLORING_BOOK_BUTTON_WIDTH = 60;
+        private const int COLORING_BOOK_BUTTON_HEIGHT = 60;
         #endregion
 
 

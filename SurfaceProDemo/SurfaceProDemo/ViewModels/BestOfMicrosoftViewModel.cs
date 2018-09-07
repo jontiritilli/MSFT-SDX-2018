@@ -13,7 +13,7 @@ namespace SurfaceProDemo.ViewModels
 
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
 
         #endregion
 

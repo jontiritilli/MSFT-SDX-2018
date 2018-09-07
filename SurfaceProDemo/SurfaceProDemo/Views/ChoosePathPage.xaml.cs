@@ -130,7 +130,7 @@ namespace SurfaceProDemo.Views
                 Content = viewModel.ChooseSurfacePro
             };
             if (null != buttonStyle) { _buttonSurfacePro.Style = buttonStyle; }
-            StyleHelper.SetFontCharacteristics(_buttonSurfacePro, ControlStyles.ButtonText);
+            //StyleHelper.SetFontCharacteristics(_buttonSurfacePro, ControlStyles.ButtonText);
             Grid.SetRow(_buttonSurfacePro, 3);
             Grid.SetColumn(_buttonSurfacePro, 1);
             _page.Children.Add(_buttonSurfacePro);
@@ -145,7 +145,8 @@ namespace SurfaceProDemo.Views
                 Content = viewModel.ChooseSurfaceJack
             };
             if (null != buttonStyle) { _buttonSurfaceJack.Style = buttonStyle; }
-            StyleHelper.SetFontCharacteristics(_buttonSurfaceJack, ControlStyles.ButtonText);
+            
+            //StyleHelper.SetFontCharacteristics(_buttonSurfaceJack, ControlStyles.ButtonText);
             Grid.SetRow(_buttonSurfaceJack, 3);
             Grid.SetColumn(_buttonSurfaceJack, 2);
             _page.Children.Add(_buttonSurfaceJack);
