@@ -32,19 +32,21 @@
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
-        <!-- TODO: List goes here -->
+         <!--TODO: List goes here--> 
         <ctrl:List x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"
             Grid.Column="1"
             Grid.Row="3"
-
                    />
-        <!-- TODO: Coloring Book control goes here ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"-->
+
+         <!--TODO: Coloring Book control goes here ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"-->
         <ctrl:ColoringBook
             x:Name="ColoringBook"
             Grid.Row="3"

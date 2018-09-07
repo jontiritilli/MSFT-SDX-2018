@@ -76,6 +76,11 @@ namespace SurfaceJackDemo.Views
 
         private void _buttonSurfacePro_Click(object sender, RoutedEventArgs e)
         {
+            // launch deep-link uri to launch SurfaceProDemo
+        }
+
+        private void _buttonSurfaceJack_Click(object sender, RoutedEventArgs e)
+        {
             // navigate to the next page (flipview)
 
             // get the locator from app.xaml
@@ -86,11 +91,6 @@ namespace SurfaceJackDemo.Views
 
             // navigate to the flipview page
             NavigationService?.Navigate(typeof(FlipViewViewModel).FullName);
-        }
-
-        private void _buttonSurfaceJack_Click(object sender, RoutedEventArgs e)
-        {
-            // launch deep-link uri to launch SurfaceJackDemo
         }
 
         #endregion
@@ -129,7 +129,7 @@ namespace SurfaceJackDemo.Views
             _buttonSurfacePro = new Button()
             {
                 Name = "SurfaceProButton",
-                Content = new TextBlockEx() { Text = viewModel.ChooseSurfacePro, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLede },
+                Content = new TextBlockEx() { Text = viewModel.ChooseSurfacePro, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLedeDark },
             };
             if (null != buttonStyle) { _buttonSurfacePro.Style = buttonStyle; }
             Grid.SetRow(_buttonSurfacePro, 3);
@@ -145,7 +145,7 @@ namespace SurfaceJackDemo.Views
             _buttonSurfaceJack = new Button()
             {
                 Name = "SurfaceJackButton",
-                Content = new TextBlockEx() { Text = viewModel.ChooseSurfaceJack, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLede },
+                Content = new TextBlockEx() { Text = viewModel.ChooseSurfaceJack, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLedeDark },
             };
             if (null != buttonStyle) { _buttonSurfaceJack.Style = buttonStyle; }
             Grid.SetRow(_buttonSurfaceJack, 3);

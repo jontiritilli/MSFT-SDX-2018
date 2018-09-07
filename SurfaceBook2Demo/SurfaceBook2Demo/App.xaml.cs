@@ -197,6 +197,14 @@ namespace SurfaceBook2Demo
             };
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
 
+            // TEST ONLY
+            Style style = StyleHelper.GetApplicationStyle(TextStyles.PageHeadline);
+            if (null == style)
+            {
+                throw new Exception("Style not found!");
+            }
+            double size = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight);
+
         }
 
         private ActivationService CreateActivationService()
