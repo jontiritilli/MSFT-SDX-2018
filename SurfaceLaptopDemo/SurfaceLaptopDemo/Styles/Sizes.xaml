@@ -86,12 +86,13 @@
     <x:Double x:Key="PopupDefaultWidth">457.333</x:Double>
     <x:Double x:Key="PopupSpacer">42.367</x:Double>
 
-    <x:Double x:Key="RadiatingButtonHeight">66.667</x:Double>
-    <x:Double x:Key="RadiatingButtonWidth">66.667</x:Double>
-
+    <x:Double x:Key="RadiatingButtonEllipseRadius">66.667</x:Double>
+    <x:Double x:Key="RadiatingButtonGridWidth">117.247</x:Double>
+    
     <x:Double x:Key="TryItBoxHeight">50</x:Double>
-    <x:Double x:Key="TryItPathHeight">10</x:Double>
-    <x:Double x:Key="TryItIconHeight">20</x:Double>
+    <x:Double x:Key="TryItPathHeight">12</x:Double>
+    <x:Double x:Key="TryItPathWidth">20</x:Double>
+    <x:Double x:Key="TryItIconHeight">40</x:Double>
     
     <x:Double x:Key="CanvasWidth">1504</x:Double>  <!-- 2256 / 2 (150% scaling) = 960 -->
     <x:Double x:Key="CanvasHeight">941.333</x:Double> <!-- (1504 - 92(navbar)) / 2(150% scaling) = 941.333 -->

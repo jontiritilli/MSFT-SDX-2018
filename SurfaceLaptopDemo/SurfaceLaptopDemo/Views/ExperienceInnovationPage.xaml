@@ -38,8 +38,8 @@
         <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
                     x:Name="rButtonOne"
                     TryItEnabled="True"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
+                    Width="{StaticResource RadiatingButtonGridWidth}"
+                    HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
 
         <ctrl:Header Grid.Row="3" Grid.Column="1"
