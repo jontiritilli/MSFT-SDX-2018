@@ -6,4 +6,10 @@
 
     <SolidColorBrush x:Key="NavigationBarNormalBrush" Color="#FF737373"/>
     <SolidColorBrush x:Key="NavigationBarActiveBrush" Color="White"/>
+
+    <Color x:Key="ColoringBookColorRed">#e53061</Color>
+    <Color x:Key="ColoringBookColorBlue">#0c6290</Color>
+    <Color x:Key="ColoringBookColorTeal">#98d8d8</Color>
+    <Color x:Key="ColoringBookColorOrange">#ffb367</Color>
+    <Color x:Key="ColoringBookColorPurple">#9765f5</Color>
 </ResourceDictionary>

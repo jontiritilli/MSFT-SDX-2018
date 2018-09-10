@@ -203,7 +203,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\13\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\13\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\15\_Images.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -311,11 +319,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Assets\Accessories\sb2_15_accessories_car.svg" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_car.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_car.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_left.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_right.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_right_insetScrollWheel.png" />
-    <Content Include="Assets\Accessories\sb2_13_accessories_car.svg" />
     <Content Include="Assets\Accessories\sb2_13_accessories_left.png" />
     <Content Include="Assets\Accessories\sb2_13_accessories_right.png" />
     <Content Include="Assets\Accessories\sb2_13_accessories_right_insetScrollWheel.png" />
@@ -357,6 +365,28 @@
     <Content Include="Assets\Experience\sb2_work_appScreen_photoshop.png" />
     <Content Include="Assets\Experience\sb2_work_insetConnections.png" />
     <Content Include="Assets\Experience\sb2_work_sb15.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_purple.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_teal_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_purple.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_teal_active.png" />
     <Content Include="Assets\List\bomOffice.svg" />
     <Content Include="Assets\List\bomSmile.svg" />
     <Content Include="Assets\List\bomSync.svg" />

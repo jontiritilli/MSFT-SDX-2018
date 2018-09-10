@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="/Styles/_Colors.xaml"/>
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml"/>
                 <ResourceDictionary Source="/Styles/_Thickness.xaml"/>
-
+                <ResourceDictionary Source="/Styles/_Images.xaml"/>
                 <ResourceDictionary Source="/Styles/Sizes.xaml"/>
                 <ResourceDictionary Source="/Styles/Page.xaml"/>
                 <ResourceDictionary Source="/Styles/FlipView.xaml"/>
