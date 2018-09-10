@@ -407,8 +407,8 @@ namespace SDX.Toolkit.Controls
 
                 // can't do this anymore now that we have a hyperlink in here
                 //// set lede binding
-                _lede.SetBinding(TextBlockEx.TextProperty,
-                    new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
+                //_lede.SetBinding(TextBlockEx.TextProperty,
+                //    new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
 
                 // add to the grid
                 _layoutGrid.Children.Add(_lede);

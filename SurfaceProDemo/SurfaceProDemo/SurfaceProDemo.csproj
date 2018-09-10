@@ -209,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -292,17 +296,25 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Accessories\ArtworkColors\blue.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\blue_active.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\orange.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\orange_active.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\purple_active.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\red_active.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\red.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\reset.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\teal.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\teal_active.png" />
-    <Content Include="Assets\Accessories\ArtworkColors\purple.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\black.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\black_active.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\burgundy.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\burgundy_active.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\cobalt.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\cobalt_active.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\platinum.png" />
+    <Content Include="Assets\Icons\AccessoriesColors\platinum_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\teal_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\purple.png" />
     <Content Include="Assets\Accessories\peacock.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\brand-bg.png" />
@@ -335,10 +347,6 @@
   <ItemGroup>
     <Content Include="Assets\Accessories\Images\keyboard_left.png" />
     <Content Include="Assets\Accessories\Images\mouse_right.png" />
-    <Content Include="Assets\Icons\AccessoriesColors\black_swatch.png" />
-    <Content Include="Assets\Icons\AccessoriesColors\burgundy_swatch.png" />
-    <Content Include="Assets\Icons\AccessoriesColors\cobalt_swatch.png" />
-    <Content Include="Assets\Icons\AccessoriesColors\platinum_swatch.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
