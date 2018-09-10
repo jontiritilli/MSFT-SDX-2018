@@ -34,16 +34,13 @@ namespace SurfaceLaptopDemo.ViewModels
         public string PopRight_Headline;
         public string PopRight_Lede;
 
-        public string DesignUri;
-        public string BackgroundUri;
+        public string DesignUri = URI_DESIGN;
+        public string BackgroundUri = URI_BACKGROUND;
 
         #endregion
 
         public ExperienceInnovationViewModel()
         {
-            DesignUri = URI_DESIGN;
-            BackgroundUri = URI_BACKGROUND;
-
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

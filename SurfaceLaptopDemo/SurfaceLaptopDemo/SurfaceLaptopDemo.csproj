@@ -342,7 +342,7 @@
     <Content Include="Assets\List\bom_smile.png" />
     <Content Include="Assets\List\bom_sync.png" />
     <Content Include="Assets\List\bom_windows.png" />
-    <Content Include="Assets\List\pinch.png" />
+    <Content Include="Assets\Universal\pinch.png" />
     <Content Include="Assets\List\specs_audio.png" />
     <Content Include="Assets\List\specs_battery.png" />
     <Content Include="Assets\List\specs_connections.png" />
@@ -356,7 +356,7 @@
     <Content Include="Assets\List\specs_size.png" />
     <Content Include="Assets\List\specs_versatile.png" />
     <Content Include="Assets\List\specs_wifi.png" />
-    <Content Include="Assets\List\tryit.png" />
+    <Content Include="Assets\Universal\tryit.png" />
     <Content Include="Assets\NavigationBar\navChevronLeft.png" />
     <Content Include="Assets\NavigationBar\navChevronRight.png" />
     <Content Include="Assets\Universal\close-app-button.png" />

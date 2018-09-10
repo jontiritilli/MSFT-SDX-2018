@@ -78,12 +78,16 @@ namespace SDX.Toolkit.Helpers
         NavigationBarWidthArrow,
         NavigationBarWidthHome,
         TryItBoxHeight,
+        TryItBoxWidth,
         TryItPathHeight,
         TryItPathWidth,
         TryItIconHeight,
         RadiatingButtonIconHeight,
         RadiatingButtonEllipseRadius,
-        RadiatingButtonGridWidth
+        RadiatingButtonGridWidth,
+        RadiatingButtonEllipseTopSpacer,
+        RadiatingButtonEllipseBottomSpacer,
+        RadiatingButtonCaptionHeight
 
     }
 
@@ -174,7 +178,8 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
         public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
 
-        public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight";
+        public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight"; 
+        public const string SIZE_TRYIT_BOX_WIDTH = "TryItBoxWidth";
         public const string SIZE_TRYIT_PATH_HEIGHT = "TryItPathHeight";
         public const string SIZE_TRYIT_PATH_WIDTH = "TryItPathWidth";
         public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
@@ -182,7 +187,9 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_RADIATING_BUTTON_ICON_HEIGHT = "RadiatingButtonIconHeight";
         public const string SIZE_RADIATING_BUTTON_ELLIPSE_RADIUS = "RadiatingButtonEllipseRadius";
         public const string SIZE_RADIATING_BUTTON_GRID_WIDTH = "RadiatingButtonGridWidth";
-
+        public const string SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT = "RadiatingButtonEllipseTopSpacer";
+        public const string SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT = "RadiatingButtonEllipseBottomSpacer";
+        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight";
         #endregion
 
         #region Thickness Constants
@@ -340,6 +347,10 @@ namespace SDX.Toolkit.Helpers
                 case LayoutSizes.TryItBoxHeight:
                     value = GetApplicationDouble(SIZE_TRYIT_BOX_HEIGHT);
                     break;
+                    
+                case LayoutSizes.TryItBoxWidth:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOX_WIDTH);
+                    break;
 
                 case LayoutSizes.TryItPathHeight:
                     value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
@@ -362,6 +373,18 @@ namespace SDX.Toolkit.Helpers
 
                 case LayoutSizes.RadiatingButtonGridWidth:
                     value = GetApplicationDouble(SIZE_RADIATING_BUTTON_GRID_WIDTH);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseTopSpacer:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseBottomSpacer:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonCaptionHeight:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CAPTION_HEIGHT);
                     break;
 
                 default:
