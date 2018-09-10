@@ -26,7 +26,6 @@ namespace SurfaceProDemo.ViewModels
         public string TryItTitle;
         public string TryItLede;
         public List<ListItem> ListItems = new List<ListItem>();
-        public List<ColoringBookColor> Colors = new List<ColoringBookColor>();
 
         public double ICON_WIDTH = 96d;
 

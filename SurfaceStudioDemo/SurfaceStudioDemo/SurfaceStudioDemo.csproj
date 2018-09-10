@@ -207,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Thickness.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,8 +283,24 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Accessories\inkingFish.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
+    <Content Include="Assets\Icons\ArtworkColors\blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\purple.png" />
+    <Content Include="Assets\Icons\ArtworkColors\purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\teal_active.png" />
+    <Content Include="Assets\List\inkingDraw.png" />
+    <Content Include="Assets\List\inkingPalm.png" />
+    <Content Include="Assets\List\inkingPressure.png" />
+    <Content Include="Assets\List\inkingWrite.png" />
     <Content Include="Assets\NavigationBar\navChevronLeft.png" />
     <Content Include="Assets\NavigationBar\navChevronRight.png" />
     <Content Include="Assets\NavigationBar\navHome.png" />
