@@ -223,6 +223,11 @@ namespace SurfaceBook2Demo.Services
 
         }
 
+        public void LoadExperienceDayWorkPopupViewModel(ExperienceDayWorkPopupViewModel viewModel)
+        {
+
+        }
+
         public void LoadExperienceDayCreateViewModel(ExperienceDayCreateViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_HEADLINE, "EXPERIENCE_CREATE_HEADLINE");

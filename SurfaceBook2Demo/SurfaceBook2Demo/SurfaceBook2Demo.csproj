@@ -135,6 +135,7 @@
     <Compile Include="ViewModels\ExperienceDayPlayViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayRelaxViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayWorkPopupViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayWorkViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
     <Compile Include="ViewModels\ExperienceIntroViewModel.cs" />
@@ -172,6 +173,9 @@
     </Compile>
     <Compile Include="Views\ExperienceDayWorkPage.xaml.cs">
       <DependentUpon>ExperienceDayWorkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperienceDayWorkPopupPage.xaml.cs">
+      <DependentUpon>ExperienceDayWorkPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceHeroPage.xaml.cs">
       <DependentUpon>ExperienceHeroPage.xaml</DependentUpon>
@@ -278,6 +282,10 @@
     <Page Include="Views\ExperienceDayWorkPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExperienceDayWorkPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ExperienceHeroPage.xaml">
       <Generator>MSBuild:Compile</Generator>

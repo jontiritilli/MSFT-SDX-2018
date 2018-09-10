@@ -137,6 +137,7 @@
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
     <Compile Include="ViewModels\ExperienceIntroViewModel.cs" />
     <Compile Include="ViewModels\ExperiencePerformanceViewModel.cs" />
+    <Compile Include="ViewModels\ExperiencePopupViewModel.cs" />
     <Compile Include="ViewModels\ExperienceQuietViewModel.cs" />
     <Compile Include="ViewModels\ExperienceTransformViewModel.cs" />
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
@@ -171,6 +172,9 @@
     </Compile>
     <Compile Include="Views\ExperiencePerformancePage.xaml.cs">
       <DependentUpon>ExperiencePerformancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperiencePopupPage.xaml.cs">
+      <DependentUpon>ExperiencePopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceQuietPage.xaml.cs">
       <DependentUpon>ExperienceQuietPage.xaml</DependentUpon>
@@ -265,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ExperiencePopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExperienceQuietPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -322,6 +330,11 @@
     <Content Include="Assets\Experience\platinum_hero_front.png" />
     <Content Include="Assets\Experience\studio.png" />
     <Content Include="Assets\Experience\tablet.png" />
+    <Content Include="Assets\Icons\AppIcons\icon_adobePhotoshopCC.png" />
+    <Content Include="Assets\Icons\AppIcons\icon_adobePremiereCC.png" />
+    <Content Include="Assets\Icons\AppIcons\icon_autodeskMaya2018.png" />
+    <Content Include="Assets\Icons\AppIcons\icon_autodeskSketchbook.png" />
+    <Content Include="Assets\Icons\AppIcons\icon_blueBeam.png" />
     <Content Include="Assets\List\bomOffice.png" />
     <Content Include="Assets\List\bomSmile.png" />
     <Content Include="Assets\List\bomSync.png" />

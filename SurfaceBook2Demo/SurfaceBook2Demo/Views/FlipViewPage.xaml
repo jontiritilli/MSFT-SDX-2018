@@ -63,6 +63,11 @@
                     <views:ExperienceDayWorkPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayWorkPopupPage">
+                <Frame>
+                    <views:ExperienceDayWorkPopupPage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayCreatePage">
                 <Frame>
                     <views:ExperienceDayCreatePage/>

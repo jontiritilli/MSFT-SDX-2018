@@ -61,6 +61,11 @@
                     <views:ExperiencePerformancePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperiencePPopupPage">
+                <Frame>
+                    <views:ExperiencePopupPage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceQuietPage">
                 <Frame>
                     <views:ExperienceQuietPage/>
