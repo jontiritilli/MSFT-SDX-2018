@@ -26,6 +26,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceProDemo.ViewModels;
 using SDX.Toolkit.Helpers;
 using SurfaceProDemo.Services;
+using SDX.Toolkit.Controls;
 
 namespace SurfaceProDemo.Views
 {
@@ -127,10 +128,9 @@ namespace SurfaceProDemo.Views
             _buttonSurfacePro = new Button()
             {
                 Name = "SurfaceProButton",
-                Content = viewModel.ChooseSurfacePro
+                Content = new TextBlockEx() { Text = viewModel.ChooseSurfacePro, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLedeDark },
             };
             if (null != buttonStyle) { _buttonSurfacePro.Style = buttonStyle; }
-            //StyleHelper.SetFontCharacteristics(_buttonSurfacePro, ControlStyles.ButtonText);
             Grid.SetRow(_buttonSurfacePro, 3);
             Grid.SetColumn(_buttonSurfacePro, 1);
             _page.Children.Add(_buttonSurfacePro);
@@ -142,7 +142,7 @@ namespace SurfaceProDemo.Views
             _buttonSurfaceJack = new Button()
             {
                 Name = "SurfaceJackButton",
-                Content = viewModel.ChooseSurfaceJack
+                Content = new TextBlockEx() { Text = viewModel.ChooseSurfaceJack, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLedeDark },
             };
             if (null != buttonStyle) { _buttonSurfaceJack.Style = buttonStyle; }
             

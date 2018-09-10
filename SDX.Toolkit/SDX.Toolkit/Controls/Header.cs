@@ -383,7 +383,7 @@ namespace SDX.Toolkit.Controls
                 _lede.AddInline(_ledeText);
 
                 // if there's a call to action
-                if ((!String.IsNullOrEmpty(this.CTAText)) && (null != this.CTAUri))
+                if ((!String.IsNullOrWhiteSpace(this.CTAText)) && (null != this.CTAUri))
                 {
                     // create the hyperlink
                     _ledeCTALink = new Hyperlink()
@@ -407,8 +407,8 @@ namespace SDX.Toolkit.Controls
 
                 // can't do this anymore now that we have a hyperlink in here
                 //// set lede binding
-                _lede.SetBinding(TextBlockEx.TextProperty,
-                    new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
+                //_lede.SetBinding(TextBlockEx.TextProperty,
+                //    new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
 
                 // add to the grid
                 _layoutGrid.Children.Add(_lede);

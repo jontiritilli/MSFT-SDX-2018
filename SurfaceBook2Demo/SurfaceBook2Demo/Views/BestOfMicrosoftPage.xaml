@@ -28,12 +28,12 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-
+        <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 HeadlineStyle="PageHeadline"
                 Lede=""
-                Width="{StaticResource HeaderWidth}"
+                
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
@@ -49,7 +49,7 @@
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"
-                       ControlStyle="CompareLegal"
+                       TextStyle="Legal"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Visibility="Visible" />

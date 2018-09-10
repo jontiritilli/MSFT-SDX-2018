@@ -175,6 +175,7 @@ namespace SurfaceBook2Demo
             string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/TextBlock.xaml", path);
             string URI_SIZES = String.Format("ms-appx:///Styles/{0}/Sizes.xaml", path);
             string URI_THICKNESS = String.Format("ms-appx:///Styles/{0}/_Thickness.xaml", path);
+            string URI_IMAGE = String.Format("ms-appx:///Styles/{0}/_Images.xaml", path);
 
             // load textblock styles
             ResourceDictionary resourceDictionary = new ResourceDictionary()
@@ -196,6 +197,21 @@ namespace SurfaceBook2Demo
                 Source = new Uri(URI_THICKNESS, UriKind.Absolute),
             };
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+            // load thickness
+            resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_IMAGE, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+            //// TEST ONLY
+            //Style style = StyleHelper.GetApplicationStyle(TextStyles.PageHeadline);
+            //if (null == style)
+            //{
+            //    throw new Exception("Style not found!");
+            //}
+            //double size = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight);
 
         }
 
