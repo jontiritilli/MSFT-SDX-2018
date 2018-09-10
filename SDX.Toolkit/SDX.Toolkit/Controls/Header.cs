@@ -383,7 +383,7 @@ namespace SDX.Toolkit.Controls
                 _lede.AddInline(_ledeText);
 
                 // if there's a call to action
-                if ((!String.IsNullOrEmpty(this.CTAText)) && (null != this.CTAUri))
+                if ((!String.IsNullOrWhiteSpace(this.CTAText)) && (null != this.CTAUri))
                 {
                     // create the hyperlink
                     _ledeCTALink = new Hyperlink()

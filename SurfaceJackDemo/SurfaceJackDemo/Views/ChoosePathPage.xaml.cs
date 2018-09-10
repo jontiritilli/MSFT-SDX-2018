@@ -26,6 +26,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceJackDemo.Services;
 using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Toolkit.Controls;
 
 
 namespace SurfaceJackDemo.Views
@@ -75,6 +76,11 @@ namespace SurfaceJackDemo.Views
 
         private void _buttonSurfacePro_Click(object sender, RoutedEventArgs e)
         {
+            // launch deep-link uri to launch SurfaceProDemo
+        }
+
+        private void _buttonSurfaceJack_Click(object sender, RoutedEventArgs e)
+        {
             // navigate to the next page (flipview)
 
             // get the locator from app.xaml
@@ -85,11 +91,6 @@ namespace SurfaceJackDemo.Views
 
             // navigate to the flipview page
             NavigationService?.Navigate(typeof(FlipViewViewModel).FullName);
-        }
-
-        private void _buttonSurfaceJack_Click(object sender, RoutedEventArgs e)
-        {
-            // launch deep-link uri to launch SurfaceJackDemo
         }
 
         #endregion
@@ -128,10 +129,9 @@ namespace SurfaceJackDemo.Views
             _buttonSurfacePro = new Button()
             {
                 Name = "SurfaceProButton",
-                Content = viewModel.ChooseSurfacePro
+                Content = new TextBlockEx() { Text = viewModel.ChooseSurfacePro, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLedeDark },
             };
             if (null != buttonStyle) { _buttonSurfacePro.Style = buttonStyle; }
-            StyleHelper.SetFontCharacteristics(_buttonSurfacePro, ControlStyles.ButtonText);
             Grid.SetRow(_buttonSurfacePro, 3);
             Grid.SetColumn(_buttonSurfacePro, 1);
             _page.Children.Add(_buttonSurfacePro);
@@ -139,14 +139,15 @@ namespace SurfaceJackDemo.Views
             // button event handler
             _buttonSurfacePro.Click += this._buttonSurfacePro_Click;
 
+            // create button text
+
             // create Surface Pro button
             _buttonSurfaceJack = new Button()
             {
                 Name = "SurfaceJackButton",
-                Content = viewModel.ChooseSurfaceJack
+                Content = new TextBlockEx() { Text = viewModel.ChooseSurfaceJack, TextAlignment = TextAlignment.Center, TextStyle = TextStyles.PageLedeDark },
             };
             if (null != buttonStyle) { _buttonSurfaceJack.Style = buttonStyle; }
-            StyleHelper.SetFontCharacteristics(_buttonSurfaceJack, ControlStyles.ButtonText);
             Grid.SetRow(_buttonSurfaceJack, 3);
             Grid.SetColumn(_buttonSurfaceJack, 2);
             _page.Children.Add(_buttonSurfaceJack);

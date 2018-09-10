@@ -84,11 +84,11 @@
     <x:Double x:Key="CanvasWidth">1620</x:Double>
     <x:Double x:Key="CanvasHeight">980.64</x:Double>  <!-- 2160 - 198.72 (navbar) = 1961.28, 1961.28 / 2 (200% scaling) = 980.64 -->
 
-    <x:Double x:Key="NavigationBarHeight">99.36</x:Double>
-    <x:Double x:Key="NavigationBarLineHeight">8.1</x:Double>
-    <x:Double x:Key="NavigationBarMargin">14.365</x:Double>
-    <x:Double x:Key="NavigationBarSpacer">69.92</x:Double>
-    <x:Double x:Key="NavigationBarArrowWidth">14.365</x:Double>
-    <x:Double x:Key="NavigationBarHomeWidth">14.365</x:Double>    <!-- Home does not appear in this app -->
+    <x:Double x:Key="NavigationBarHeight">92</x:Double>
+    <x:Double x:Key="NavigationBarLineHeight">7.5</x:Double>
+    <x:Double x:Key="NavigationBarMargin">47.5</x:Double>
+    <x:Double x:Key="NavigationBarSpacer">62</x:Double>
+    <x:Double x:Key="NavigationBarArrowWidth">13.3</x:Double>
+    <x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    <!-- Home does not appear in this app -->
 
 </ResourceDictionary>

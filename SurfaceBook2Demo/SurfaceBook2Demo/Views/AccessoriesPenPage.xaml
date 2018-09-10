@@ -28,12 +28,13 @@
             <ColumnDefinition Width=".75*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <!--Width="{StaticResource HeaderWidth}"-->
+
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                  
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
@@ -42,9 +43,9 @@
             ListStyle="LedeOnly"
             Grid.Column="1"
             Grid.Row="3"
+                   />
 
                    />
-        
         <ctrl:ColoringBook
             x:Name="ColoringBook"
             Grid.Row="0"

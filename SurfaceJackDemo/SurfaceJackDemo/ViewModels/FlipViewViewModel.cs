@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Windows.UI.Xaml;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceJackDemo.Services;
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 
 
@@ -24,6 +27,24 @@ namespace SurfaceJackDemo.ViewModels
         public string NavBarProductivity;
         public string NavBarSpecs;
         public string NavBarPartner;
+
+        // This method is a hack because UWP does not support binding a StaticResource
+        // with a Converter, so we must add these properties to the ViewModel.
+        public GridLength NavigationBarHeight
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight));
+            }
+        }
+
+        public GridLength AppCloseWidth
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.AppCloseWidth));
+            }
+        }
 
         #endregion
 

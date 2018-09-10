@@ -127,6 +127,47 @@ namespace SurfaceJackDemo
             {
                 await ActivationService.ActivateAsync(args);
             }
+            // IMPORTANT: THIS CODE IS UNIQUE TO THE JACK APP BECAUSE THIS APP MUST 
+            // RUN ON ALL DEVICES, SO IT USES STYLE XAML FROM ALL DEVICE APP PROJECTS.
+            // THIS CODE SUPPLEMENTS THE xaml CODE IN App.xaml BY ADDING THE CORRECT
+            // VERSION OF THE TextBlock.xaml, Sizes.xaml, AND _Thickness.xaml FILES
+            // FROM EITHER THE 13 OR 15 SUBFOLDER OF Styles.
+
+            // Subfolder in Styles directory
+            string path = null;
+
+            // which device are we running on?
+            DeviceType deviceType = WindowHelper.GetDeviceTypeFromResolution();
+
+            switch (deviceType)
+            {
+                case DeviceType.Studio:
+                    path = @"caprock";
+                    break;
+
+                case DeviceType.Book15:
+                    path = @"sb2/15";
+                    break;
+
+                case DeviceType.Book13:
+                    path = @"sb2/13";
+                    break;
+
+                case DeviceType.Pro:
+                    path = @"cruz";
+                    break;
+
+                case DeviceType.Laptop:
+                    path = @"cruz";
+                    break;
+
+                default:
+                    path = "13";    // for testing, run the 13 version
+                    break;
+            }
+
+            // load the ResourceDictionaries
+            LoadAppResourceDictionaries(path);
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -138,6 +179,36 @@ namespace SurfaceJackDemo
 
 
         #region Private Methods
+
+        private void LoadAppResourceDictionaries(string path)
+        {
+            // calculate uri's for styles 
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/TextBlock.xaml", path);
+            string URI_SIZES = String.Format("ms-appx:///Styles/{0}/Sizes.xaml", path);
+            string URI_THICKNESS = String.Format("ms-appx:///Styles/{0}/_Thickness.xaml", path);
+
+            // load textblock styles
+            ResourceDictionary resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_TEXTBLOCK, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+            // load sizes
+            resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_SIZES, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+            // load thickness
+            resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_THICKNESS, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+        }
 
         private ActivationService CreateActivationService()
         {

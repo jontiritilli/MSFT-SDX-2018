@@ -180,6 +180,16 @@ namespace SDX.Toolkit.Controls
             set => SetValue(IsHomeEnabledProperty, value);
         }
 
+        // AreGridLinesEnabled
+        public static readonly DependencyProperty AreGridLinesEnabledProperty =
+            DependencyProperty.Register("AreGridLinesEnabled", typeof(bool), typeof(NavigationBar), new PropertyMetadata(false, AreGridLinesEnabledChanged));
+
+        public bool AreGridLinesEnabled
+        {
+            get => (bool)GetValue(AreGridLinesEnabledProperty);
+            set => SetValue(AreGridLinesEnabledProperty, value);
+        }
+
         #endregion
 
         #region Custom Events
@@ -226,6 +236,15 @@ namespace SDX.Toolkit.Controls
         {
             if (d is NavigationBar navbar)
             {
+                navbar.UpdateUI();
+            }
+        }
+
+        private static void AreGridLinesEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NavigationBar navbar)
+            {
+                navbar.RenderUI();
                 navbar.UpdateUI();
             }
         }
@@ -354,17 +373,18 @@ namespace SDX.Toolkit.Controls
             // if we couldn't get the grid we can't do anything, so exit
             if (null == _layoutRoot) { return; }
 
+            // clear the grid
+            _layoutRoot.Children.Clear();
+
             // set up the grid
 
             // set the grid height
             _layoutRoot.Height = _height;
-            _layoutRoot.MinHeight = _height;
+            _layoutRoot.MaxHeight = _height;
 
             // rows - this is static
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(_lineHeight) });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(_height - _lineHeight) });
 
             // columns - this is dynamic based on sections
             // margin, go back, and greedy-eater
@@ -389,8 +409,11 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
 
-            // test
-            //TestHelper.AddGridCellBorders(_layoutRoot, 4, 13, Colors.DarkRed);
+            // AreGridLinesEnabled
+            if (this.AreGridLinesEnabled)
+            {
+                TestHelper.AddGridCellBorders(_layoutRoot, 4, 13, Colors.DarkRed);
+            }
 
             // create the progress line and the canvas that contains it
             // ===========================================================
@@ -424,7 +447,7 @@ namespace SDX.Toolkit.Controls
             Style buttonStyle = StyleHelper.GetApplicationStyle("NoInteractionButton");
 
             // grid row for menu items
-            int MenuItemRow = 2;
+            int MenuItemRow = 1;
 
             // create the Go Back button
             if (null == _navGoBack)
@@ -444,7 +467,9 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "GoBack",
                     Content = _imgGoBack,
-                    Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
+                    Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
                 if (null != buttonStyle) { _navGoBack.Style = buttonStyle; }
 
@@ -477,7 +502,9 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "GoForward",
                     Content = _imgGoForward,
-                    Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed)
+                    Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
                 if (null != buttonStyle) { _navGoForward.Style = buttonStyle; }
 
@@ -505,7 +532,9 @@ namespace SDX.Toolkit.Controls
                         {
                             Source = new BitmapImage() { UriSource = new Uri(URI_HOME), DecodePixelWidth = (int)_homeWidth },
                             Width = _homeWidth,
-                            Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed)
+                            Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed),
+                            VerticalAlignment = VerticalAlignment.Center,
+                            HorizontalAlignment = HorizontalAlignment.Center,
                         };
                     }
 
@@ -547,7 +576,9 @@ namespace SDX.Toolkit.Controls
                 Button sectionButton = new Button()
                 {
                     Name = section.Name,
-                    Content = sectionText
+                    Content = sectionText,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
                 if (null != buttonStyle) { sectionButton.Style = buttonStyle; }
                 sectionButton.Click += this.NavItem_Click;

@@ -152,6 +152,7 @@ namespace SurfaceBook2Demo.ViewModels
                     break;
 
                 case DeviceType.Book13:
+                default:
                     this.BackgroundUri = URI_BACKGROUND13;
                     this.ColoringBookUri = URI_COLORING_BOOK_IMAGE_13;
                     this.ColoringBookImageHeight = COLORING_BOOK_IMAGEHEIGHT_13;
@@ -193,8 +194,6 @@ namespace SurfaceBook2Demo.ViewModels
                         URI_SelectedImage = URI_SVG_COLORING_BOOK_COLOR_5_SELECTED_13,
                         Color = COLORING_BOOK_COLOR_5
                     });
-                    break;
-                default:                  
                     break;
             }
 

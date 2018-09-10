@@ -48,8 +48,8 @@
                     x:Name="AccLeftHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="Headline"
-                    LedeStyle="Lede"
+                    HeadlineStyle="PageHeadline"
+                    LedeStyle="PageLede"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>

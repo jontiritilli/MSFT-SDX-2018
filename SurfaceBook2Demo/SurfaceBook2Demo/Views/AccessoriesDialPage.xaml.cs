@@ -3,6 +3,7 @@
 using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using SDX.Toolkit.Controls;
 
 
 namespace SurfaceBook2Demo.Views
@@ -33,7 +34,8 @@ namespace SurfaceBook2Demo.Views
 
         public void NavigateToPage()
         {
-            // animations in
+            this.RadiatingButtonPen.StartEntranceAnimation();
+            this.RadiatingButtonPen.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
