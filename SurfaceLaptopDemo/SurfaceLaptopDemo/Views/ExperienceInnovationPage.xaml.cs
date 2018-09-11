@@ -37,14 +37,11 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateToPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rButtonOne.StartEntranceAnimation();
-            rButtonOne.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
-            rButtonOne.ResetEntranceAnimation();
         }
 
         #endregion

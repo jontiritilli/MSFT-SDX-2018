@@ -354,4 +354,15 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ctrl:PinchZoom" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:PinchZoom">
+                    <Canvas x:Name="LayoutRoot">
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

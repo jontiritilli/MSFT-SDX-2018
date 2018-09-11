@@ -16,10 +16,7 @@ namespace SurfaceLaptopDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
         private const string URI_DESIGN = "ms-appx:///Assets/Experience/Design/foxburg_design.png";
-        private const string URI_ZOOM_IMAGE = "ms-appx:///Assets/Lifestyle/foxburg_burgundy_lifestyle.png";
-
-        private const double ZOOM_IMAGE_HEIGHT = 500d;
-        private const double ZOOM_IMAGE_WIDTH = 500d;
+        private const string URI_ZOOM_IMAGE = "ms-appx:///Assets/Accessories/foxburg_aerial.jpg";
 
         #endregion
 
@@ -31,22 +28,14 @@ namespace SurfaceLaptopDemo.ViewModels
         public string TryIt_Headline;
         public string TryIt_Lede;
 
-        public string DesignUri;
-        public string BackgroundUri;
-        public string ZoomImageUri;
-        public double ZoomImageHeight;
-        public double ZoomImageWidth;
+        public string DesignUri = URI_DESIGN;
+        public string BackgroundUri = URI_BACKGROUND;
+        public string PinchZoomImageURI = URI_ZOOM_IMAGE;
 
         #endregion
 
         public AccessoriesTouchViewModel()
         {
-            DesignUri = URI_DESIGN;
-            BackgroundUri = URI_BACKGROUND;
-            ZoomImageUri = URI_ZOOM_IMAGE;
-            ZoomImageHeight = ZOOM_IMAGE_HEIGHT;
-            ZoomImageWidth = ZOOM_IMAGE_WIDTH;
-
              // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

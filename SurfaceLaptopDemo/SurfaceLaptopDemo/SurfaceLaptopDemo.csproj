@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Accessories\foxburg_aerial.jpg" />
     <Content Include="Assets\Accessories\foxburg_black_left.png" />
     <Content Include="Assets\Accessories\foxburg_black_right.png" />
     <Content Include="Assets\Accessories\foxburg_burgundy_left.png" />
