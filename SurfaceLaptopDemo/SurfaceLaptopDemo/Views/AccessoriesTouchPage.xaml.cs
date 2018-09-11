@@ -19,8 +19,13 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-        #region Construction
+        #region Public Members
 
+        public static AccessoriesTouchPage Current { get; private set; }
+
+        #endregion
+
+        #region Construction
 
         public AccessoriesTouchPage()
         {
@@ -31,24 +36,23 @@ namespace SurfaceLaptopDemo.Views
 
         #region Private Methods
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PinchToZoomElement.ZoomMode = ZoomMode.Enabled;
-            PinchToZoomElement.ChangeView(0, 0, 3);
-        }
-
         #endregion
 
         #region INavigate Interface
 
         public void NavigateToPage()
         {
-            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            PinchZoomElement.ResetControl();
+            rButtonOne.StartEntranceAnimation();
+            rButtonOne.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            PinchZoomElement.ResetControl();
+            rButtonOne.ResetEntranceAnimation();
         }
 
         #endregion

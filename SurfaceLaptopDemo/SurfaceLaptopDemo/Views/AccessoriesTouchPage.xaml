@@ -28,34 +28,32 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
-                    Name="PinchToZoomElement"
-                    ZoomMode="Enabled"
-                    MinZoomFactor="1"
-                    MaxZoomFactor="5"
-                    HorizontalScrollMode="Enabled"
-                    VerticalScrollMode="Enabled"
-                    HorizontalScrollBarVisibility="Hidden"
-                    VerticalScrollBarVisibility="Hidden">
-            <Image
-                    MaxWidth="{Binding Path=ViewportWidth, ElementName=PinchToZoomElement}"
-                    MaxHeight="{Binding Path=ViewportHeight, ElementName=PinchToZoomElement}"
-                    MinWidth="{x:Bind Path=ViewModel.ZoomImageWidth}"
-                    MinHeight="{x:Bind Path=ViewModel.ZoomImageHeight}"
+        <ctrl:PinchZoom Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
+            x:Name="PinchZoomElement"
+            ImageUri ="{x:Bind Path=ViewModel.PinchZoomImageURI}"/>
+
+        <ctrl:Header Grid.Row="3" Grid.Column="1" 
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadlineDark"
+            LedeStyle="PageLedeDark"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+
+        <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
+                    x:Name="rButtonOne"
+                    TryItEnabled="true"
+                    IsPinchTry="true"
+                    TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
+                    TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
+                    EntranceDurationInMilliseconds = "400"
+                    EntranceStaggerDelayInMilliseconds = "0"
+                    RadiateDurationInMilliseconds = "1800"
+                    RadiateStaggerDelayInMilliseconds = "5000"
+                    AutoStart = "false"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Source="{x:Bind Path=ViewModel.ZoomImageUri}" />
-        </ScrollViewer>
-
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
-                    x:Name="PageHeader" 
-                    Headline="{x:Bind Path=ViewModel.Headline}"
-                    Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="PageHeadlineDark"
-                    LedeStyle="PageLedeDark"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"/>
-
+                    VerticalAlignment="Center"/>
     </Grid>
 </Page>

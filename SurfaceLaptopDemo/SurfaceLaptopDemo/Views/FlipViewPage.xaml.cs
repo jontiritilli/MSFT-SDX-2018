@@ -31,7 +31,6 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Private Members
 
         private FlipViewViewModel ViewModel
@@ -45,13 +44,11 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Public Static Properties
 
         public static FlipViewPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -110,7 +107,6 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Event Handlers
 
         private void FlipViewEx_Loaded(object sender, RoutedEventArgs e)
@@ -123,7 +119,6 @@ namespace SurfaceLaptopDemo.Views
 
             // navigate to it
             _previousPage.NavigateToPage();
-
         }
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -203,7 +198,6 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
-
 
         #region Public Methods
 
