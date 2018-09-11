@@ -29,6 +29,26 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
+        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
+            <Image.Source>
+                <BitmapImage UriSource="{x:Bind Path=ViewModel.DesignUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
+            </Image.Source>
+        </Image>
+
+        <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
+                    x:Name="rButtonOne"
+                    TryItEnabled="true"
+                    IsPinchTry = "true"
+                    TryItText="{x:Bind Path=ViewModel.TryIt}"
+                    TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
+                    EntranceDurationInMilliseconds = "400"
+                    EntranceStaggerDelayInMilliseconds = "0"
+                    RadiateDurationInMilliseconds = "1800"
+                    RadiateStaggerDelayInMilliseconds = "5000"
+                    AutoStart = "false"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+
         <ctrl:Header Grid.Row="3" Grid.Column="1"
                     x:Name="PageHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
@@ -38,11 +58,5 @@
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>
-
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.DesignUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
     </Grid>
 </Page>

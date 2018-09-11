@@ -16,7 +16,7 @@ namespace SDX.Toolkit.Controls
     public class AppSelectorImageURI
     {
         public string URI = "";
-        public int Width = 0;
+        public double Width = 0;
     }
     #endregion
 
@@ -26,20 +26,12 @@ namespace SDX.Toolkit.Controls
 
         //private static readonly Size BOUNDS = PageHelper.GetScreenResolutionInfo();
 
-        private static readonly double WIDTH_ORIGINAL = 1800;
-        private static readonly double HEIGHT_ORIGINAL = 1200;
-
-
         #endregion
 
 
         #region Private Members
 
         public Grid _layoutRoot = null;
-        private Image _imageBurgundy = null;
-        private Image _imageCobalt = null;
-        private Image _imageBlack = null;
-        private Image _imageSilver = null;
         private List<Image> Images;
 
         private AppSelector _previousAppSelector = null;

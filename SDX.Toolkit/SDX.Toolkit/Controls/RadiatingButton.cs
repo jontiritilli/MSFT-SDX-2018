@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 
 using Windows.Foundation;
+using Windows.Devices.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,37 +44,29 @@ namespace SDX.Toolkit.Controls
         private const double RADIATE_OPACITY_START = 0.6;
         private const double RADIATE_OPACITY_END = 0.4;
 
-        private const double GRID_SIZE = 150d;
-        private const double ROW_HEIGHT = 90d;
-        private const double BUTTON_SIZE = 150d;
-
-        private const double POPUP_MARGIN = 30d;
-
-        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
-        private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit-icon.png";
-        private const string URI_PINCH_ZOOM_IMAGE = @"ms-appx:///Assets/Universal/tryit-icon.png";
-
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/fox_close.png";
+        private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit.png";
+        private const string URI_PINCH_ZOOM_IMAGE = @"ms-appx:///Assets/Universal/pinch.png";
         #endregion
 
         #region Private Members
 
         // ui elements to track
         Border _layoutRoot = null;
-        Button _hostButton = null;
         Grid _grid = null;
         Ellipse _entranceEllipse = null;
         Ellipse _radiateEllipse = null;
-        Path _indicatorPath = null;
-        Rectangle _indicatorRectangle = null;
+        Grid _tryItBox = null;
         ImageEx _imageX = null;
+        ImageEx _tryItImage= null;
 
         Storyboard _entranceStoryboard = null;
         Storyboard _radiatingStoryboardX = null;
         Storyboard _radiatingStoryboardY = null;
         Storyboard _radiatingStoryboardOpacity = null;
-        Storyboard _tryItIndicatorPathStoryboard = null;
-        Storyboard _tryItIndicatorRectangleStoryboard = null;
-        Storyboard _tryItTextStoryboard = null;
+        Storyboard _tryItBoxStoryboard = null;
+        Storyboard _tryItCaptionStoryboard = null; 
+        Storyboard _tryItIconStoryboard = null;
 
         private Popup _popupChild = null;
 
@@ -81,6 +75,7 @@ namespace SDX.Toolkit.Controls
         private DispatcherTimer _timerEntrance = null;
         private int _dispatchCountEntrance = 0;
         private double TRY_IT_DELAY = 2000;
+        private string TRY_IT_IMAGE = null;
         //private double popup_spacer = popup_margin + (radiate_size_end - radiate_size_start) * 1.1;
 
         #endregion
@@ -91,6 +86,7 @@ namespace SDX.Toolkit.Controls
         {
             this.DefaultStyleKey = typeof(RadiatingButton);
 
+            this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
         }
 
@@ -107,7 +103,7 @@ namespace SDX.Toolkit.Controls
 
         // IsPenOnly
         public static readonly DependencyProperty IsPenOnlyProperty =
-            DependencyProperty.Register("IsPenOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("IsPenOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool IsPenOnly
         {
@@ -116,7 +112,7 @@ namespace SDX.Toolkit.Controls
         }
         // IsTouchOnly
         public static readonly DependencyProperty IsTouchOnlyProperty =
-            DependencyProperty.Register("IsTouchOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("IsTouchOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool IsTouchOnly
         {
@@ -125,7 +121,7 @@ namespace SDX.Toolkit.Controls
         }
         // IsMouseOnly
         public static readonly DependencyProperty IsMouseOnlyProperty =
-            DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool IsMouseOnly
         {
@@ -133,9 +129,39 @@ namespace SDX.Toolkit.Controls
             set => SetValue(IsMouseOnlyProperty, value);
         }
 
+        // TryItText
+        public static readonly DependencyProperty TryItTextProperty =
+            DependencyProperty.Register("TryItText", typeof(string), typeof(RadiatingButton), new PropertyMetadata("Try It"));
+
+        public string TryItText
+        {
+            get => (string)GetValue(TryItTextProperty);
+            set => SetValue(TryItTextProperty, value);
+        }
+
+        // TryItCaption
+        public static readonly DependencyProperty TryItCaptionProperty =
+            DependencyProperty.Register("TryItCaption", typeof(string), typeof(RadiatingButton), new PropertyMetadata(""));
+
+        public string TryItCaption
+        {
+            get => (string)GetValue(TryItCaptionProperty);
+            set => SetValue(TryItCaptionProperty, value);
+        }
+
+        // IsPinchTry
+        public static readonly DependencyProperty IsPinchTryProperty =
+            DependencyProperty.Register("IsPinchTry", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
+
+        public bool IsPinchTry
+        {
+            get => (bool)GetValue(IsPinchTryProperty);
+            set => SetValue(IsPinchTryProperty, value);
+        }
+
         // TryItEnabled
         public static readonly DependencyProperty TryItEnabledProperty =
-            DependencyProperty.Register("TryItEnabled", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnTryItClicked));
+            DependencyProperty.Register("TryItEnabled", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
         public bool TryItEnabled
         {
@@ -143,25 +169,24 @@ namespace SDX.Toolkit.Controls
             set => SetValue(TryItEnabledProperty, value);
         }
 
+        // AutoStart
+        public static readonly DependencyProperty AutoStartProperty =
+            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnAutoStartChanged));
+
+        public bool AutoStart
+        {
+            get => (bool)GetValue(AutoStartProperty);
+            set => SetValue(AutoStartProperty, value);
+        }
+
         // PopupPosition
         public static readonly DependencyProperty PopupPositionProperty =
             DependencyProperty.Register("PopupPosition", typeof(PopupPositions), typeof(RadiatingButton), new PropertyMetadata(PopupPositions.Right, OnPopupPositionChanged));
-
 
         public PopupPositions PopupPosition
         {
             get => (PopupPositions)GetValue(PopupPositionProperty);
             set => SetValue(PopupPositionProperty, value);
-        }
-
-        // PopupText
-        public static readonly DependencyProperty PopupTextProperty =
-            DependencyProperty.Register("PopupText", typeof(string), typeof(RadiatingButton), new PropertyMetadata(null, OnPopupTextChanged));
-
-        public string PopupText
-        {
-            get => (string)GetValue(PopupTextProperty);
-            set => SetValue(PopupTextProperty, value);
         }
 
         // AnimationEnabled
@@ -401,13 +426,17 @@ namespace SDX.Toolkit.Controls
             {
                 _entranceStoryboard.Begin();
             }
-            if (null != _tryItIndicatorPathStoryboard)
+            if (null != _tryItBoxStoryboard)
             {
-                _tryItIndicatorPathStoryboard.Begin();
+                _tryItBoxStoryboard.Begin();
             }
-            if (null != _tryItIndicatorRectangleStoryboard)
+            if (null != _tryItCaptionStoryboard)
             {
-                _tryItIndicatorRectangleStoryboard.Begin();
+                _tryItCaptionStoryboard.Begin();
+            }
+            if (null != _tryItIconStoryboard)
+            {
+                _tryItIconStoryboard.Begin();
             }
         }
 
@@ -418,8 +447,7 @@ namespace SDX.Toolkit.Controls
                 _entranceStoryboard.Stop();
                 _entranceEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
-                _indicatorRectangle.Opacity = 0d;
-                _indicatorPath.Opacity = 0d;
+                _tryItBox.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
             }
         }
@@ -462,7 +490,17 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Event Handlers
-        
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ///TODO Determine dual startup strategy
+            if (this.AutoStart)
+            {
+                this.StartEntranceAnimation();
+                this.StartRadiateAnimation();
+            }
+        }
+
         private void OnSizeChanged(object sender, RoutedEventArgs e)
         {
 
@@ -478,17 +516,7 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private static void OnPopupTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
         private static void OnChildPopupChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private static void OnTryItClicked(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 
         }
@@ -533,14 +561,31 @@ namespace SDX.Toolkit.Controls
 
         }
 
-
-        private void HostButton_Click(object sender, RoutedEventArgs e)
+        private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            HandleClick();
-        }
+            // declare potential types
+            PointerDeviceType pen = PointerDeviceType.Pen;
+            PointerDeviceType touch = PointerDeviceType.Touch;
+            PointerDeviceType mouse = PointerDeviceType.Mouse;
 
-        private void HostButton_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
+            // get current device type from event
+            PointerDeviceType pointerType = e.Pointer.PointerDeviceType;
+
+            if(IsPenOnly && pointerType != pen)
+            {
+                return;
+            }
+
+            if (IsTouchOnly && pointerType != touch)
+            {
+                return;
+            }
+
+            if (IsMouseOnly && pointerType != mouse)
+            {
+                return;
+            }
+
             HandleClick();
         }
 
@@ -552,6 +597,10 @@ namespace SDX.Toolkit.Controls
                 {
                     // close it
                     this.PopupChild.IsOpen = false;
+                    if (null != _tryItImage)
+                    {
+                        _tryItImage.Opacity = 1.0;
+                    }
                     _imageX.Opacity = 0.0;
                 }
                 else
@@ -570,6 +619,10 @@ namespace SDX.Toolkit.Controls
 
                     // open it
                     this.PopupChild.IsOpen = true;
+                    if (null != _tryItImage)
+                    {
+                        _tryItImage.Opacity = 0.0;
+                    }
                     _imageX.Opacity = 1.0;
 
                     // telemetry
@@ -599,8 +652,14 @@ namespace SDX.Toolkit.Controls
         {
             if (null != _imageX)
             {
+                // show the tryit image if there is one
+                if (null != _tryItImage)
+                {
+                    _tryItImage.Opacity = 1.0;
+                }
                 // hide the X
                 _imageX.Opacity = 0.0;
+
             }
         }
 
@@ -615,254 +674,326 @@ namespace SDX.Toolkit.Controls
 
             // we can't work without it, so return if that failed
             if (null == _layoutRoot) { return; }
-            // if the button doesn't exist
-            if (null == _hostButton)
+
+            // if the grid doesn't exist
+            if (null == _grid)
             {
-                // create the button style
-                Style buttonStyle = StyleHelper.GetApplicationStyle("RoundRadiatingButton");
-
-                // create it
-                _hostButton = new Button()
-                {
-                    Name = this.Name + "HostButton",
-                    Background = new SolidColorBrush(Colors.Transparent),
-                    Width = BUTTON_SIZE,
-                    Height = BUTTON_SIZE,
-                    Margin = new Thickness(0),
-                    Padding = new Thickness(0),
-                };
-                if (null != buttonStyle) { _hostButton.Style = buttonStyle; }
-                _hostButton.PointerPressed += HostButton_PointerPressed;
-                _hostButton.Click += HostButton_Click;
-
-                // add it to the layout
-                _layoutRoot.Child = _hostButton;
+                double GridWidth = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonGridWidth);
+                double RadiatingButtonHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
 
                 // create the grid
                 _grid = new Grid()
                 {
                     Name = this.Name + "Grid",
-                    Width = GRID_SIZE,
-                    Height = GRID_SIZE,
+                    Width = GridWidth,
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                     RowSpacing = 0d,
                     ColumnSpacing = 0d
                 };
 
+                // add pointer pressed event
+                _grid.PointerPressed += Grid_PointerPressed;
+
                 // add to the button
-                _hostButton.Content = _grid;
+                _layoutRoot.Child = _grid;
 
-                // get the height for tryit box and path
-                double TryItBoxHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItBoxHeight);
-                double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
-
-                // add rows for try it message and indicator if enabled
-                GridLength TRY_IT_BOX_ROW = (!this.TryItEnabled) ? new GridLength(0) : new GridLength(TryItBoxHeight);
-                GridLength TRY_IT_BOX_PATH_ROW = (!this.TryItEnabled) ? new GridLength(0) : new GridLength(TryItPathHeight);
-
-                // define rows and columns
-                _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GRID_SIZE) });
-                _grid.RowDefinitions.Add(new RowDefinition() { Height = TRY_IT_BOX_ROW });
-                _grid.RowDefinitions.Add(new RowDefinition() { Height = TRY_IT_BOX_PATH_ROW });
-                _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ROW_HEIGHT) });
-                _grid.RowDefinitions.Add(new RowDefinition() { Height = TRY_IT_BOX_ROW });
-
-                _indicatorRectangle = new Rectangle();
-                _indicatorRectangle.Fill = GetSolidColorBrush("#FF0078D4");
-
-                Grid.SetRow(_indicatorRectangle, 0);
-                Grid.SetColumn(_indicatorRectangle, 0);
-
-                _grid.Children.Add(_indicatorRectangle);
-
-                // create the tryit indicator
-                PathFigure figure = new PathFigure();
-                figure.StartPoint = new Point(0, 0);
-
-                LineSegment Topright = new LineSegment();
-                Topright.Point = new Point(20, 0);
-
-                LineSegment Peak = new LineSegment();
-                Peak.Point = new Point(10, 10);
-
-                LineSegment TopLeft = new LineSegment();
-                TopLeft.Point = new Point(0, 0);
-
-                PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
-                myPathSegmentCollection.Add(Topright);
-                myPathSegmentCollection.Add(Peak);
-                myPathSegmentCollection.Add(TopLeft);
-
-                figure.Segments = myPathSegmentCollection;
-
-                PathFigureCollection myPathFigureCollection = new PathFigureCollection();
-                myPathFigureCollection.Add(figure);
-
-                PathGeometry myPathGeometry = new PathGeometry();
-                myPathGeometry.Figures = myPathFigureCollection;
-
-                _indicatorPath = new Path()
+                // if try it enabled, get all appropriate sizes and add elements, otherwise, skip it
+                if (this.TryItEnabled)
                 {
-                    Stroke = new SolidColorBrush(Colors.Blue),
-                    Fill = new SolidColorBrush(Colors.Blue),
-                    StrokeThickness = 1,
-                    Data = myPathGeometry
-                };
+                    // get color for rectangle and path
+                    SolidColorBrush TryItColor = GetSolidColorBrush("#FF0078D4");
 
-                Grid.SetRow(_indicatorPath, 1);
-                Grid.SetColumn(_indicatorPath, 0);
-                _indicatorPath.HorizontalAlignment = HorizontalAlignment.Center;
+                    // get sizes
+                    //height of the blue box
+                    double TryItBoxHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItBoxHeight);
+                    //height of the triangle
+                    double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
+                    // width of the blue box
+                    double TryItBoxWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItBoxWidth);
+                    // width of the triangle
+                    double TryItPathWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathWidth);
+                    // space between message box and ellipse
+                    double RadiatingButtonTopSpacerHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseTopSpacer);
+                    // height of the radiating button with a little added space for the radiating animation
+                    double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.4;
+                    // space between ellipse and caption
+                    double RadiatingButtonEllipseBottomSpacer = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseBottomSpacer);
+                    // height of the caption
+                    double ButtonCaptionHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCaptionHeight);
+                    // size of the icon for try it buttons, use this/2 for size of the close icon
+                    double TryItIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
 
-                _grid.Children.Add(_indicatorPath);
+                    // define rows and columns
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(TryItBoxHeight + TryItPathHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonTopSpacerHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonEllipseBottomSpacer) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ButtonCaptionHeight) });
 
-                _tryItIndicatorRectangleStoryboard = AnimationHelper.CreateEasingAnimation(_indicatorRectangle, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
-                _tryItIndicatorPathStoryboard = AnimationHelper.CreateEasingAnimation(_indicatorPath, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
-                //_tryItTextStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
+                    // create the TryIt box content
+                    _tryItBox = new Grid();
 
-                // get the height for radiateEllipse
-                double RadiateButtonEllipseHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseHeight);
+                    // create main blue message box
+                    Border Background = new Border
+                    {
+                        Name = "TryItBg",
+                        Height = TryItBoxHeight,
+                        Width = TryItBoxWidth,
+                        Background = TryItColor,
+                        BorderBrush = new SolidColorBrush(Colors.White),
+                        BorderThickness = new Thickness(2),
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center
+                    };
 
-                // create the radiating ellipse
-                _radiateEllipse = new Ellipse()
+                    // create text box for "Try It" text
+                    TextBlockEx TryItBoxText = new TextBlockEx
+                    {
+                        Name = "TryItText",
+                        Text = this.TryItText,
+                        TextStyle = TextStyles.TryIt,
+                        Width = GridWidth,
+                        TextWrapping = TextWrapping.WrapWholeWords,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    // create the blue triangle with white border
+                    Polygon Indicator = new Polygon
+                    {
+                        Name = "TryItTriangle",
+                        Fill = TryItColor,
+                        Stroke = new SolidColorBrush(Colors.White),
+                        StrokeThickness = 2,
+                        Margin = new Thickness(0),
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Bottom
+                    };
+                    Indicator.Points.Add(new Point(24,0));
+                    Indicator.Points.Add(new Point(12,12));
+                    Indicator.Points.Add(new Point(0, 0));
+                    
+                    // create a triangle to cover white border at joining of triangle and rectangle
+                    Polygon IndicatorStrokeCover = new Polygon
+                    {
+                        Name = "TryItTriangleCover",
+                        Fill = TryItColor,
+                        Margin = new Thickness(0,0,0,2),
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Bottom
+                    };
+                    IndicatorStrokeCover.Points.Add(new Point(24, 0));
+                    IndicatorStrokeCover.Points.Add(new Point(12, 12));
+                    IndicatorStrokeCover.Points.Add(new Point(0, 0));
+
+                    // add it all to the box (to be added to the main grid)
+                    _tryItBox.Children.Add(Indicator);
+                    _tryItBox.Children.Add(Background);
+                    _tryItBox.Children.Add(TryItBoxText);
+                    _tryItBox.Children.Add(IndicatorStrokeCover);
+
+                    // set the rows and grids
+                    Grid.SetRow(_tryItBox, 0);
+                    Grid.SetColumn(_tryItBox, 0);
+
+                    // add it to the main grid
+                    _grid.Children.Add(_tryItBox);
+
+                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
+
+                    TextBlockEx _tryItButtonCaption = new TextBlockEx
+                    {
+                        Name = "TryItCaption",
+                        Text = this.TryItCaption,
+                        TextStyle = TextStyles.ButtonCaption,
+                        TextWrapping = TextWrapping.WrapWholeWords,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+                    Grid.SetRow(_tryItButtonCaption, 4);
+                    Grid.SetColumn(_tryItButtonCaption, 0);
+
+                    // add the caption
+                    _grid.Children.Add(_tryItButtonCaption);
+
+                    // set up the story board
+                    _tryItCaptionStoryboard = AnimationHelper.CreateEasingAnimation(_tryItButtonCaption, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
+
+                    _radiateEllipse = new Ellipse()
+                    {
+                        Name = this.Name + "radiateEllipse",
+                        Width = RadiatingButtonHeight,
+                        Height = RadiatingButtonHeight,
+                        Fill = new SolidColorBrush(Colors.White),
+                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
+                        StrokeThickness = 2,
+                        Opacity = RADIATE_OPACITY_DEFAULT,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_radiateEllipse, 2);
+                    Grid.SetColumn(_radiateEllipse, 0);
+
+                    // add it to the grid
+                    _grid.Children.Add(_radiateEllipse);
+
+                    // calculate beginning and end of animation
+                    double RADIATE_SIZE_START = RadiatingButtonHeight;
+                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.3;
+
+                    // create storyboards
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+
+                    // create the entrance ellipse
+                    _entranceEllipse = new Ellipse()
+                    {
+                        Name = this.Name + "entranceEllipse",
+                        Width = RadiatingButtonHeight,
+                        Height = RadiatingButtonHeight,
+                        Fill = new SolidColorBrush(Colors.White),
+                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
+                        StrokeThickness = 2,
+                        Opacity = 0d,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_entranceEllipse, 2);
+                    Grid.SetColumn(_entranceEllipse, 0);
+
+                    // add to the grid
+                    _grid.Children.Add(_entranceEllipse);
+
+                    // get the size for icons
+                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+
+                    // create storyboard
+                    _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
+
+                    // set correct icon for radiating button
+                    if (IsPinchTry)
+                    {
+                        TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
+                    }
+                    else
+                    {
+                        TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                    }
+
+                    // create the try it icon
+                    _tryItImage = new ImageEx
+                    {
+                        Name = this.Name + "TryItImage",
+                        ImageSource = TRY_IT_IMAGE,
+                        ImageWidth = TryItIconHeight,
+                        Opacity = 0d,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_tryItImage, 2);
+                    Grid.SetColumn(_tryItImage, 0);
+
+                    _grid.Children.Add(_tryItImage);
+
+                    _tryItIconStoryboard = AnimationHelper.CreateEasingAnimation(_tryItImage, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
+
+                    // create the X image
+                    _imageX = new ImageEx()
+                    {
+                        Name = this.Name + "ImageX",
+                        ImageSource = URI_X_IMAGE,
+                        ImageWidth = IconWidth/2,
+                        Opacity = 0.0d,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_imageX, 2);
+                    Grid.SetColumn(_imageX, 0);
+
+                    // add it to the grid
+                    _grid.Children.Add(_imageX);
+                }
+                else
                 {
-                    Name = this.Name + "radiateEllipse",
-                    Width = RADIATE_SIZE_DEFAULT,
-                    Height = RADIATE_SIZE_DEFAULT,
-                    Fill = new SolidColorBrush(Colors.White),
-                    Opacity = RADIATE_OPACITY_DEFAULT,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(0)
-                };
-                Grid.SetRow(_radiateEllipse, 2);
-                Grid.SetColumn(_radiateEllipse, 0);
+                    _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GridWidth) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonHeight) });
+                    // create the radiating ellipse
+                    _radiateEllipse = new Ellipse()
+                    {
+                        Name = this.Name + "radiateEllipse",
+                        Width = RadiatingButtonHeight,
+                        Height = RadiatingButtonHeight,
+                        Fill = new SolidColorBrush(Colors.White),
+                        Opacity = RADIATE_OPACITY_DEFAULT,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_radiateEllipse, 2);
+                    Grid.SetColumn(_radiateEllipse, 0);
 
+                    // add it to the canvas
+                    _grid.Children.Add(_radiateEllipse);
 
-                // add it to the canvas
-                _grid.Children.Add(_radiateEllipse);
+                    // calculate beginning and end of animation
+                    double RADIATE_SIZE_START = RadiatingButtonHeight;
+                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.3;
 
-                // calculate beginning and end of animation
-                double RADIATE_SIZE_START = RadiateButtonEllipseHeight;
-                double RADIATE_SIZE_END = RadiateButtonEllipseHeight * 1.2;
+                    // create storyboards
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
-                // create storyboards
-                _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    // create the entrance ellipse
+                    _entranceEllipse = new Ellipse()
+                    {
+                        Name = this.Name + "entranceEllipse",
+                        Width = RadiatingButtonHeight,
+                        Height = RadiatingButtonHeight,
+                        Fill = new SolidColorBrush(Colors.White),
+                        Opacity = 0d,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_entranceEllipse, 2);
+                    Grid.SetColumn(_entranceEllipse, 0);
 
-                // create the entrance ellipse
-                _entranceEllipse = new Ellipse()
-                {
-                    Name = this.Name + "entranceEllipse",
-                    Width = RadiateButtonEllipseHeight,
-                    Height = RadiateButtonEllipseHeight,
-                    Fill = new SolidColorBrush(Colors.White),
-                    Opacity = 0d,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(0)
-                };
-                Grid.SetRow(_entranceEllipse, 2);
-                Grid.SetColumn(_entranceEllipse, 0);
+                    // add to the grid
+                    _grid.Children.Add(_entranceEllipse);
 
-                // add to the grid
-                _grid.Children.Add(_entranceEllipse);
+                    // get the size for icons
+                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
 
-                // get the size for icons
-                double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+                    // create the X image
+                    _imageX = new ImageEx()
+                    {
+                        Name = this.Name + "ImageX",
+                        ImageSource = URI_X_IMAGE,
+                        Height = IconWidth,
+                        Width = IconWidth,
+                        Opacity = 0.0d,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(0)
+                    };
+                    Grid.SetRow(_imageX, 2);
+                    Grid.SetColumn(_imageX, 0);
 
-                // create the X image
-                _imageX = new ImageEx()
-                {
-                    Name = this.Name + "ImageX",
-                    ImageSource = URI_X_IMAGE,
-                    Width = IconWidth,
-                    Opacity = 0.0d,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(0)
-                };
-                Grid.SetRow(_imageX, 2);
-                Grid.SetColumn(_imageX, 0);
+                    // add it to the grid
+                    _grid.Children.Add(_imageX);
 
-                // add it to the grid
-                _grid.Children.Add(_imageX);
+                    // create storyboard
+                    _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
 
-                // create storyboard
-                _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
+                }
             }
-        }
-
-        private Storyboard SetupEntranceAnimation(Ellipse ellipse, double duration, double staggerDelay)
-        {
-            double totalDuration = duration + staggerDelay;
-            double expandDuration = (duration * 0.65);
-            double contractDuration = duration - expandDuration;
-
-            // create the storyboard
-            Storyboard storyboard = new Storyboard()
-            {
-                Duration = TimeSpan.FromMilliseconds(totalDuration),
-                AutoReverse = false,
-                RepeatBehavior = new RepeatBehavior(1d)
-            };
-
-            // create the key frames holder
-            DoubleAnimationUsingKeyFrames _frames = new DoubleAnimationUsingKeyFrames
-            {
-                Duration = TimeSpan.FromMilliseconds(totalDuration),
-                EnableDependentAnimation = true,
-                AutoReverse = false,
-                RepeatBehavior = new RepeatBehavior(1d)
-            };
-
-            // need sine easing
-            CubicEase cubicEaseIn = new CubicEase()
-            {
-                EasingMode = EasingMode.EaseIn
-            };
-
-            // create frame 0
-            EasingDoubleKeyFrame _frame0 = new EasingDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0d)),
-                Value = 0d,
-                EasingFunction = cubicEaseIn
-            };
-
-            // create delay frame
-            EasingDoubleKeyFrame _frameStagger = new EasingDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(staggerDelay)),
-                Value = 0d,
-                EasingFunction = cubicEaseIn
-            };
-
-            // create frame 1
-            EasingDoubleKeyFrame _frame1 = new EasingDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration)),
-                Value = 1d,
-                EasingFunction = cubicEaseIn
-            };
-
-            // add frames to the collection
-            _frames.KeyFrames.Add(_frame0);
-            if (staggerDelay > 0)
-            {
-                _frames.KeyFrames.Add(_frameStagger);
-            }
-            _frames.KeyFrames.Add(_frame1);
-
-            // add frame collection to the storyboard
-            storyboard.Children.Add(_frames);
-
-            // set the target of the storyboard
-            Storyboard.SetTarget(storyboard, ellipse);
-            Storyboard.SetTargetProperty(storyboard, "Opacity");
-
-            return storyboard;
         }
 
         #endregion
@@ -877,14 +1008,17 @@ namespace SDX.Toolkit.Controls
         {
             double offset = 0d;
 
-            if ((null != _hostButton) && (null != this.PopupChild) && (null != this.PopupChild.Child))
+            if ((null != _grid) && (null != this.PopupChild) && (null != this.PopupChild.Child))
             {
                 // get the position of our host button on the window
-                var ttv = _hostButton.TransformToVisual(Window.Current.Content);
+                var ttv = _grid.TransformToVisual(Window.Current.Content);
                 Point point = ttv.TransformPoint(new Point(0, 0));
 
                 // get the width of the child of the popup
                 double popupWidth = 0;
+
+                double POPUP_SPACER = StyleHelper.GetApplicationDouble("PopupSpacer");
+
                 object popupContent = this.PopupChild.Child;
 
                 //if (popupContent is PopupContentText pct)
@@ -905,19 +1039,19 @@ namespace SDX.Toolkit.Controls
                 {
                     case PopupPositions.Above:
                     default:
-                        offset = point.X + (_hostButton.ActualWidth / 2) - (popupWidth / 2);
+                        offset = point.X + (_grid.ActualWidth / 2) - (popupWidth / 2);
                         break;
 
                     case PopupPositions.Below:
-                        offset = point.X + (_hostButton.ActualWidth / 2) - (popupWidth / 2);
+                        offset = point.X + (_grid.ActualWidth / 2) - (popupWidth / 2);
                         break;
 
                     case PopupPositions.Left:
-                        //offset = point.X - popupWidth - POPUP_SPACER;
+                        offset = point.X - popupWidth - POPUP_SPACER;
                         break;
 
                     case PopupPositions.Right:
-                        //offset = point.X + _hostButton.ActualWidth + POPUP_SPACER;
+                        offset = point.X + _grid.ActualWidth + POPUP_SPACER;
                         break;
                 }
             }
@@ -929,56 +1063,36 @@ namespace SDX.Toolkit.Controls
         {
             double offset = 0d;
 
-            if ((null != _hostButton) && (null != this.PopupChild) && (null != this.PopupChild.Child))
+            double POPUP_SPACER = StyleHelper.GetApplicationDouble("PopupSpacer");
+
+            if ((null != _grid) && (null != this.PopupChild) && (null != this.PopupChild.Child))
             {
                 // get the position of our host button on the window
-                var ttv = _hostButton.TransformToVisual(Window.Current.Content);
+                var ttv = _grid.TransformToVisual(Window.Current.Content);
                 Point point = ttv.TransformPoint(new Point(0, 0));
 
                 // get the height of the child of the popup
                 double popupHeight = 0;
                 object popupContent = this.PopupChild.Child;
 
-                //if (popupContent is PopupContentText pct)
-                //{
-                //    popupHeight = pct.ActualHeight;
-
-                //    // hack: we can't get the height here because this isn't rendered yet
-                //    if (0 == popupHeight) { popupHeight = pct.Width * 2 / 3; }
-                //}
-                //else if (popupContent is PopupContentFastCharge pcfc)
-                //{
-                //    popupHeight = pcfc.ActualHeight;
-
-                //    // hack: we can't get the height here because this isn't rendered yet
-                //    if (0 == popupHeight) { popupHeight = pcfc.Width * 2; }
-                //}
-                //else if (popupContent is PopupContentCompareGallery pccg)
-                //{
-                //    popupHeight = pccg.ActualHeight;
-
-                //    // hack: we can't get the height here because this isn't rendered yet
-                //    if (0 == popupHeight) { popupHeight = pccg.Width * 2 / 3; }
-                //}
-
                 // which position?
                 switch (this.PopupPosition)
                 {
                     case PopupPositions.Above:
                     default:
-                        //offset = point.Y - popupHeight - POPUP_SPACER;
+                        offset = point.Y - popupHeight - POPUP_SPACER;
                         break;
 
                     case PopupPositions.Below:
-                        //offset = point.Y + _hostButton.ActualHeight + POPUP_SPACER;
+                        offset = point.Y + _grid.ActualHeight + POPUP_SPACER;
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.Y + (_hostButton.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y + (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.Y + (_hostButton.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y + (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
                 }
             }
