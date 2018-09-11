@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceLaptopDemo.Services;
 using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 
 
@@ -21,19 +22,16 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Performance/foxburg_word.png";
         private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Performance/foxburg_excel.png";
 
-        private const string URI_APPSELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/Icons/fox_ppt.png";
-        private const string URI_APPSELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Icons/fox_word.png";
-        private const string URI_APPSELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Icons/fox_excel.png";
+        private const string URI_APPSELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/Performance/Icons/ppt.png";
+        private const string URI_APPSELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Performance/Icons/word.png";
+        private const string URI_APPSELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Performance/Icons/excel.png";
 
-        private const string URI_APPSELECTOR_IMAGE_1_SELECTED = "ms-appx:///Assets/Experience/Icons/fox_ppt.png";
-        private const string URI_APPSELECTOR_IMAGE_2_SELECTED = "ms-appx:///Assets/Experience/Icons/fox_word.png";
-        private const string URI_APPSELECTOR_IMAGE_3_SELECTED = "ms-appx:///Assets/Experience/Icons/fox_excel.png";
-
-        private const int APPSELECTOR_BUTTON_WIDTH = 80;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 80;
-
-        private const int SELECTORIMAGE_IMAGEWIDTH = 1100;
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 750;
+        private const string URI_APPSELECTOR_IMAGE_1_SELECTED = "ms-appx:///Assets/Experience/Performance/Icons/ppt.png";
+        private const string URI_APPSELECTOR_IMAGE_2_SELECTED = "ms-appx:///Assets/Experience/Performance/Icons/word.png";
+        private const string URI_APPSELECTOR_IMAGE_3_SELECTED = "ms-appx:///Assets/Experience/Performance/Icons/excel.png";
+        
+        private const double SELECTORIMAGE_IMAGEWIDTH = 1100;
+        private const double SELECTORIMAGE_IMAGEHEIGHT = 750;
 
         #endregion
 
@@ -43,13 +41,12 @@ namespace SurfaceLaptopDemo.ViewModels
         public string Lede;
         public string Legal;
 
-        public string BackgroundUri;
+        public string BackgroundUri = URI_BACKGROUND;
 
-        public int AppSelectorButtonWidth;
-        public int AppSelectorButtonHeight;
+        public double AppSelectorButtonSize = StyleHelper.GetApplicationDouble("ExperienceAppIconWidth");
 
-        public int ImageSelectorImageWidth;
-        public int ImageSelectorImageHeight;
+        public double ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
+        public double ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 
         public List<AppSelectorData> performanceSelectorData = new List<AppSelectorData>();
         public List<AppSelectorImageURI> performanceSelectorImageURIs = new List<AppSelectorImageURI>();
@@ -58,15 +55,6 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperiencePerformanceViewModel()
         {
-
-            BackgroundUri = URI_BACKGROUND;
-
-            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
-            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
-
-            ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
-
             // list of app icons
             this.performanceSelectorData.Add(new AppSelectorData()
             {

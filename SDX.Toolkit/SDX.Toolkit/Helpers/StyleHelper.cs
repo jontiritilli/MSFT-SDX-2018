@@ -60,6 +60,9 @@ namespace SDX.Toolkit.Helpers
         AccessoriesPenListIconWidth,
         BestOfMicrosoftListIconWidth,
         CompareListIconWidth,
+        AccessoryColorSelectorIconWidth,
+        AccessoryPrimaryImageWidth,
+        AccessoryPrimaryImageHeight,
         SwipeLeftEllipseRadius,
         SwipeLeftSpacer,
         SwipeToContinueArrowWidth,
@@ -75,10 +78,16 @@ namespace SDX.Toolkit.Helpers
         NavigationBarWidthArrow,
         NavigationBarWidthHome,
         TryItBoxHeight,
+        TryItBoxWidth,
         TryItPathHeight,
+        TryItPathWidth,
         TryItIconHeight,
         RadiatingButtonIconHeight,
-        RadiatingButtonEllipseHeight,
+        RadiatingButtonEllipseRadius,
+        RadiatingButtonGridWidth,
+        RadiatingButtonEllipseTopSpacer,
+        RadiatingButtonEllipseBottomSpacer,
+        RadiatingButtonCaptionHeight,
         ColoringBookButtonWidth,
         ColoringBookButtonHeight
     }
@@ -186,6 +195,11 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
         public const string SIZE_COMPARE_LISTICONWIDTH = "CompareListIconWidth";
 
+        public const string SIZE_ACCESSORIES_COLORICONWIDTH = "AccessoryColorSelectorIconWidth";
+
+        public const string SIZE_ACCESSORIES_PRIMARYIMAGEWIDTH = "AccessoryPrimaryImageWidth";
+        public const string SIZE_ACCESSORIES_PRIMARYIMAGEHEIGHT = "AccessoryPrimaryImageHeight";
+
         public const string SIZE_SWIPELEFT_ELLIPSE_RADIUS = "SwipeLeftEllipseRadius";
         public const string SIZE_SWIPELEFT_SPACER = "SwipeLeftSpacer";
 
@@ -204,12 +218,19 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_NAVIGATIONBAR_SPACER = "NavigationBarSpacer";
         public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
         public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
-        public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight";
-        public const string SIZE_TRYIT_BOXPATH_HEIGHT = "TryItBoxPathHeight";
+
+        public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight"; 
+        public const string SIZE_TRYIT_BOX_WIDTH = "TryItBoxWidth";
+        public const string SIZE_TRYIT_PATH_HEIGHT = "TryItPathHeight";
+        public const string SIZE_TRYIT_PATH_WIDTH = "TryItPathWidth";
         public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
 
         public const string SIZE_RADIATING_BUTTON_ICON_HEIGHT = "RadiatingButtonIconHeight";
-        public const string SIZE_RADIATING_BUTTON_ELLIPSE_HEIGHT = "RadiatingButtonEllipseHeight";
+        public const string SIZE_RADIATING_BUTTON_ELLIPSE_RADIUS = "RadiatingButtonEllipseRadius";
+        public const string SIZE_RADIATING_BUTTON_GRID_WIDTH = "RadiatingButtonGridWidth";
+        public const string SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT = "RadiatingButtonEllipseTopSpacer";
+        public const string SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT = "RadiatingButtonEllipseBottomSpacer";
+        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight";
 
         public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
         public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
@@ -266,7 +287,6 @@ namespace SDX.Toolkit.Helpers
         public const string THICKNESS_POPUP_MARGIN = "PopupMargin";
 
         #endregion
-
 
         #region Size Methods
 
@@ -344,6 +364,18 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_COMPARE_LISTICONWIDTH);
                     break;
 
+                case LayoutSizes.AccessoryColorSelectorIconWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_COLORICONWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryPrimaryImageWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_PRIMARYIMAGEWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryPrimaryImageHeight:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_PRIMARYIMAGEHEIGHT);
+                    break;
+
                 case LayoutSizes.SwipeLeftEllipseRadius:
                     value = GetApplicationDouble(SIZE_SWIPELEFT_ELLIPSE_RADIUS);
                     break;
@@ -403,9 +435,16 @@ namespace SDX.Toolkit.Helpers
                 case LayoutSizes.TryItBoxHeight:
                     value = GetApplicationDouble(SIZE_TRYIT_BOX_HEIGHT);
                     break;
+                    
+                case LayoutSizes.TryItBoxWidth:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOX_WIDTH);
+                    break;
 
                 case LayoutSizes.TryItPathHeight:
-                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
+                    break;
+                case LayoutSizes.TryItPathWidth:
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_WIDTH);
                     break;
 
                 case LayoutSizes.TryItIconHeight:
@@ -413,12 +452,30 @@ namespace SDX.Toolkit.Helpers
                     break;
 
                 case LayoutSizes.RadiatingButtonIconHeight:
-                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_ICON_HEIGHT);
                     break;
 
-                case LayoutSizes.RadiatingButtonEllipseHeight:
-                    value = GetApplicationDouble(SIZE_TRYIT_BOXPATH_HEIGHT);
-                    break; 
+                case LayoutSizes.RadiatingButtonEllipseRadius:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_ELLIPSE_RADIUS);
+                    break;
+
+                case LayoutSizes.RadiatingButtonGridWidth:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_GRID_WIDTH);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseTopSpacer:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseBottomSpacer:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonCaptionHeight:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CAPTION_HEIGHT);
+                    break;
+
+
                 case LayoutSizes.ColoringBookButtonWidth:
                     value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONWIDTH);
                     break;
@@ -426,6 +483,7 @@ namespace SDX.Toolkit.Helpers
                 case LayoutSizes.ColoringBookButtonHeight:
                     value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONHEIGHT);
                     break;
+
                 default:
                     break;
             }
