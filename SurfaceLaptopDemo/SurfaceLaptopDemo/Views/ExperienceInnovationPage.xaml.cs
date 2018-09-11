@@ -26,23 +26,6 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceInnovationPage()
         {
             InitializeComponent();
-
-            Popup popup = new Popup()
-            {
-                IsOpen = false,
-                IsLightDismissEnabled = true
-            };
-
-            TextBlock _block = new TextBlock()
-            {
-                Text = "Testing, Testing, Testing",
-                TextWrapping = TextWrapping.WrapWholeWords,
-                Margin = new Thickness(30),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            popup.Child =_block;
-            this.rButtonOne.PopupChild = popup;
         }
 
         #endregion
@@ -61,6 +44,7 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            rButtonOne.ResetEntranceAnimation();
         }
 
         #endregion

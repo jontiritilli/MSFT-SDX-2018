@@ -30,20 +30,21 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
-                    x:Name="PageHeader" 
-                    Headline="{x:Bind Path=ViewModel.Headline}"
-                    Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="PageHeadline"
-                    LedeStyle="PageLede"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"/>
-
         <Image x:Name="Power" Width="900" Grid.Row="3" Grid.Column="2">
             <Image.Source>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.DesignUri}" DecodePixelWidth="900" DecodePixelType="Physical"/>
             </Image.Source>
         </Image>
+        
+        <ctrl:Header Grid.Row="3" Grid.Column="1"
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+
     </Grid>
 </Page>

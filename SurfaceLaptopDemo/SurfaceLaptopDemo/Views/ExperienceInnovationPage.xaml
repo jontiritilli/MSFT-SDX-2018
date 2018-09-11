@@ -38,7 +38,6 @@
         <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
                     x:Name="rButtonOne"
                     TryItEnabled="true"
-                    IsPinchTry = "true"
                     TryItText="{x:Bind Path=ViewModel.TryIt}"
                     TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
                     EntranceDurationInMilliseconds = "400"
