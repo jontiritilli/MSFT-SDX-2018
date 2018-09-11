@@ -33,23 +33,23 @@
         <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="1" Grid.RowSpan="7" Grid.ColumnSpan="2"
             x:Name="AppSelectorImageAccLeft"
             URIs="{x:Bind Path=ViewModel.accLeftSelectorImageURIs}"
-            ImageHeight="{StaticResource AccessoryImageSelectorHeight}"
-            ImageWidth="{StaticResource AccessoryImageSelectorWidth}"/>
+            ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
+            ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
             x:Name="AppSelectorAccLeft"
             URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"/>
+            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
 
         <ctrl:Header Grid.Row="3" Grid.Column="1"
                     x:Name="AccLeftHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="Headline"
-                    LedeStyle="Lede"
+                    HeadlineStyle="PageHeadline"
+                    LedeStyle="PageLede"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>

@@ -43,6 +43,8 @@ namespace SDX.Toolkit.Controls
         public int ID = 0;
         public Image Selected = new Image();
         public Image NotSelected = new Image();
+        public bool IsClearButton = false;
+        public string Message;
 
     }
     #endregion
@@ -62,8 +64,7 @@ namespace SDX.Toolkit.Controls
 
         #region Private Members
 
-        private Grid _layoutRoot = null;
-        private Dictionary<int, ImagePair> ImagePairs;
+        private Grid _layoutRoot = null;        
         private Storyboard _storyboardFadeIn = null;
         private Storyboard _storyboardFadeOut = null;
         private int _syncID = -1;// cant be 0 b/c 0 is first part of index in list
@@ -278,7 +279,7 @@ namespace SDX.Toolkit.Controls
 
         //List<AppSelectorData> URIs        
         public static readonly DependencyProperty URIsProperty =
-        DependencyProperty.Register("URIs", typeof(List<AppSelectorData>), typeof(AppSelector), new PropertyMetadata(new List<AppSelectorData>(), OnAutoStartChanged));
+        DependencyProperty.Register("URIs", typeof(List<AppSelectorData>), typeof(AppSelector), new PropertyMetadata(new List<AppSelectorData>()));
 
         public List<AppSelectorData> URIs
         {
@@ -287,7 +288,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ClearButtonDataProperty =
-        DependencyProperty.Register("ClearButtonData", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null, OnAutoStartChanged));
+        DependencyProperty.Register("ClearButtonData", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(null));
 
         public AppSelectorData ClearButtonData
         {
@@ -296,7 +297,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty MainOrientationProperty =
-        DependencyProperty.Register("MainOrientation", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal, OnAutoStartChanged));
+        DependencyProperty.Register("MainOrientation", typeof(Orientation), typeof(AppSelector), new PropertyMetadata(Orientation.Horizontal));
 
         public Orientation MainOrientation
         {
@@ -305,7 +306,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ShowMessagesProperty =
-        DependencyProperty.Register("ShowMessages", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+        DependencyProperty.Register("ShowMessages", typeof(bool), typeof(AppSelector), new PropertyMetadata(false));
 
         public bool ShowMessages
         {
@@ -314,7 +315,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty AppSelectorModeProperty =
-        DependencyProperty.Register("AppSelectorMode", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color, OnAutoStartChanged));
+        DependencyProperty.Register("AppSelectorMode", typeof(SelectorMode), typeof(AppSelector), new PropertyMetadata(SelectorMode.Color));
 
         public SelectorMode AppSelectorMode
         {
@@ -323,30 +324,48 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ButtonHeightProperty =
-        DependencyProperty.Register("ButtonHeight", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonHeight", typeof(Double), typeof(AppSelector), new PropertyMetadata(0d));
 
-        public int ButtonHeight
+        public Double ButtonHeight
         {
-            get { return (int)GetValue(ButtonHeightProperty); }
+            get { return (Double)GetValue(ButtonHeightProperty); }
             set { SetValue(ButtonHeightProperty, value); }
         }
 
         public static readonly DependencyProperty ButtonWidthProperty =
-        DependencyProperty.Register("ButtonWidth", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(0, OnAutoStartChanged));
+        DependencyProperty.Register("ButtonWidth", typeof(Double), typeof(AppSelector), new PropertyMetadata(0d));
 
-        public int ButtonWidth
+        public Double ButtonWidth
         {
-            get { return (int)GetValue(ButtonWidthProperty); }
+            get { return (Double)GetValue(ButtonWidthProperty); }
             set { SetValue(ButtonWidthProperty, value); }
         }
 
         public static readonly DependencyProperty ShowSelectedLineProperty =
-        DependencyProperty.Register("ShowSelectedLine", typeof(AppSelectorData), typeof(AppSelector), new PropertyMetadata(false, OnAutoStartChanged));
+        DependencyProperty.Register("ShowSelectedLine", typeof(bool), typeof(AppSelector), new PropertyMetadata(false));
 
         public bool ShowSelectedLine
         {
             get { return (bool)GetValue(ShowSelectedLineProperty); }
             set { SetValue(ShowSelectedLineProperty, value); }
+        }
+
+        public static readonly DependencyProperty ImagePairsProperty =
+        DependencyProperty.Register("ImagePairs", typeof(Dictionary<int, ImagePair>), typeof(AppSelector), new PropertyMetadata(new Dictionary<int,ImagePair>()));
+
+        public Dictionary<int,ImagePair> ImagePairs
+        {
+            get { return (Dictionary<int,ImagePair>)GetValue(ImagePairsProperty); }
+            set { SetValue(ImagePairsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClearButtonImagePairProperty =
+        DependencyProperty.Register("ClearButtonImagePair", typeof(ImagePair), typeof(AppSelector), new PropertyMetadata(null));
+
+        public ImagePair ClearButtonImagePair
+        {
+            get { return (ImagePair)GetValue(ClearButtonImagePairProperty); }
+            set { SetValue(ClearButtonImagePairProperty, value); }
         }
         #endregion
 
@@ -464,7 +483,8 @@ namespace SDX.Toolkit.Controls
 
             // must construct additional columns or rows based on orientation and number
             // keep 1.0 so it creates a ratio (double) for the width/height definitions
-            int iButtonCount = URIs.Count + (this.ClearButtonData != null ? 1: 0);
+            // coloring book will pass in image pairs, otherwise its a regular URI count from a normal app selector
+            int iButtonCount = this.ImagePairs.Count > 0 ? this.ImagePairs.Count + 1: URIs.Count;
 
             double ratio = 1.0 / iButtonCount;
             if (this.MainOrientation == Orientation.Horizontal)
@@ -490,15 +510,31 @@ namespace SDX.Toolkit.Controls
             _buttonStyle = StyleHelper.GetApplicationStyle("AppSelectorButton");
             // JN loop this area to create images and buttons based on list            
             int index = 0;
-            if (this.ClearButtonData != null)
-            {// start the actual buttons at the next position if there is a clear button
-                GenerateButton(this.ClearButtonData, 0, 0);
-                index = 1;
+            if (this.ImagePairs.Count != 0)
+            {// hubris! dont add clearbutton image pair unless it has a value. should only have a value on colorbook
+                if (this.ClearButtonImagePair != null)
+                {
+                    GenerateButton(this.ClearButtonImagePair, 0, 0);
+                    index = 1;
+                }
+                else
+                {
+                    index = 0;
+                }
+
+                for (int i = 0; i < this.ImagePairs.Count; i++, index++)
+                {
+                    GenerateButton(this.ImagePairs[i], i, index);
+                }
             }
-            for (int i = 0; i < this.URIs.Count; i++, index++)
-            {                
-                GenerateButton(this.URIs[i], i, index);
+            else
+            {
+                for (int i = 0; i < this.URIs.Count; i++)
+                {
+                    GenerateButton(this.URIs[i], i);
+                }
             }
+            
 
             if (this.ShowSelectedLine)
             {
@@ -562,7 +598,7 @@ namespace SDX.Toolkit.Controls
             this.UpdateUI();
         }
 
-        private void GenerateButton(AppSelectorData AppSelectorData, int i, int position)
+        private void GenerateButton(AppSelectorData AppSelectorData, int index)
         {
             Grid grid = new Grid()
             {
@@ -633,7 +669,7 @@ namespace SDX.Toolkit.Controls
                 grid.Children.Add(tbMessage);
             }
             if (!AppSelectorData.IsClearButton) {
-                this.ImagePairs.Add(i, images);
+                this.ImagePairs.Add(index, images);
             }
                 
             HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
@@ -645,7 +681,7 @@ namespace SDX.Toolkit.Controls
 
             AppSelectorButton sbButton = new AppSelectorButton()
             {
-                ID = i,
+                ID = index,
                 Background = new SolidColorBrush(Colors.Transparent),
                 HorizontalAlignment = horizontalAlignment,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -681,6 +717,97 @@ namespace SDX.Toolkit.Controls
             if (this.MainOrientation == Orientation.Horizontal)
             {
                 Grid.SetRow(sbButton, 0);
+                Grid.SetColumn(sbButton, index);
+            }
+            else // vertical
+            {
+                Grid.SetColumn(sbButton, 0);
+                Grid.SetRow(sbButton, index);
+            }
+            if (!AppSelectorData.IsClearButton)
+            {// clear button is not a part of the regular buttons 
+                this.Buttons.Add(sbButton);
+            }            
+            _layoutRoot.Children.Add(sbButton);
+        }
+
+        private void GenerateButton(ImagePair imagePair, int i, int position)
+        {
+            Grid grid = new Grid()
+            {
+                Margin = new Thickness(0),
+                Padding = new Thickness(0)
+            };
+            if (this.ShowMessages && this.MainOrientation == Orientation.Vertical)
+            {
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                grid.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
+            }
+
+            Grid.SetRow(imagePair.NotSelected, 0);
+            Grid.SetColumn(imagePair.NotSelected, 0);
+            grid.Children.Add(imagePair.NotSelected);
+            Grid.SetRow(imagePair.Selected, 0);
+            Grid.SetColumn(imagePair.Selected, 0);
+            grid.Children.Add(imagePair.Selected);
+
+            HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
+            // if we need to show messages then align left 
+            if (this.MainOrientation == Orientation.Vertical && this.ShowMessages && !string.IsNullOrWhiteSpace(imagePair.Message))
+            {
+                horizontalAlignment = HorizontalAlignment.Left;
+                TextBlockEx tbMessage = new TextBlockEx()
+                {
+                    Text = imagePair.Message,
+                    TextStyle= TextStyles.ListLede,
+                    FontSize = 20,
+                    Opacity = 1,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                Grid.SetRow(tbMessage, 0);
+                Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
+                grid.Children.Add(tbMessage);
+            }
+
+            AppSelectorButton sbButton = new AppSelectorButton()
+            {
+                ID = i,
+                Background = new SolidColorBrush(Colors.Transparent),
+                HorizontalAlignment = horizontalAlignment,
+                VerticalAlignment = VerticalAlignment.Center,
+                Content = grid
+            };
+
+            //only set the dimensions of the button if the control variables are passed in
+            // and the orientation is correct
+            if (this.ButtonHeight > 0)
+            {
+                sbButton.Height = this.ButtonHeight;
+            }
+
+            // if u need to show messages, dont set the width b/c theres no way to figure out the width 
+            // if there is text
+            if (this.ButtonWidth > 0 && (!this.ShowMessages && !(this.MainOrientation == Orientation.Vertical)))
+            {
+                sbButton.Width = this.ButtonWidth;
+            }
+            if (null != _buttonStyle) { sbButton.Style = _buttonStyle; };
+
+            if (imagePair.IsClearButton)
+            {// these buttons get their own handler and dont change the selection of the app selector
+                sbButton.Click += Selector_ClearButtonClick;
+            }
+            else
+            {
+                sbButton.Click += Selector_ButtonClick;
+            }
+            grid.PointerEntered += pointerEntered;
+
+
+            if (this.MainOrientation == Orientation.Horizontal)
+            {
+                Grid.SetRow(sbButton, 0);
                 Grid.SetColumn(sbButton, position);
             }
             else // vertical
@@ -688,10 +815,10 @@ namespace SDX.Toolkit.Controls
                 Grid.SetColumn(sbButton, 0);
                 Grid.SetRow(sbButton, position);
             }
-            if (!AppSelectorData.IsClearButton)
+            if (!imagePair.IsClearButton)
             {// clear button is not a part of the regular buttons 
                 this.Buttons.Add(sbButton);
-            }            
+            }
             _layoutRoot.Children.Add(sbButton);
         }
 
@@ -739,8 +866,8 @@ namespace SDX.Toolkit.Controls
                 *** SPECIAL NOTE if u storyboard a  translatetransform with a double animation, the
                 the translatetransform gets no value and the animation gets it instead in the To prop
             */
-            int iDistanceInButtons = End.ID;
-            int iDistance = 0;
+            Double iDistanceInButtons = End.ID;
+            Double iDistance = 0;
 
             // move left or right
             if (this.MainOrientation == Orientation.Horizontal)

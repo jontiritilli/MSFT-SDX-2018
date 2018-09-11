@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
-    DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
+    DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"    
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
@@ -24,21 +24,20 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".25*"/>
+            <ColumnDefinition Width=".75*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-
+<!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
                 LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
+
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
-         <!--TODO: List goes here--> 
         <ctrl:List x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"
@@ -46,21 +45,15 @@
             Grid.Row="3"
                    />
 
-         <!--TODO: Coloring Book control goes here ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"-->
         <ctrl:ColoringBook
             x:Name="ColoringBook"
-            Grid.Row="3"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            ImageSVGURI="{x:Bind Path=ViewModel.ColoringBookUri}"            
-            Colors="{x:Bind Path=ViewModel.Colors}"
-            HorizontalAlignment="Right"
-            ButtonHeight="{x:Bind Path=ViewModel.ColoringBookButtonHeight}"
-            ButtonWidth="{x:Bind Path=ViewModel.ColoringBookButtonWidth}"
-            ImageHeight="{x:Bind Path=ViewModel.ColoringBookImageHeight}"
-            ImageWidth="{x:Bind Path=ViewModel.ColoringBookImageWidth}"
-            ClearButtonURI="{x:Bind Path=ViewModel.ColoringBookClearButtonURI}"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="8"
+            Grid.ColumnSpan="4"
+            ImageColumnSpan="1"            
             />
+
 
     </Grid>
 </Page>

@@ -51,8 +51,8 @@
                     x:Name="PageHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="Headline"
-                    LedeStyle="Lede"
+                    HeadlineStyle="PageHeadlineDark"
+                    LedeStyle="PageLedeDark"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>

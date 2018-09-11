@@ -2,6 +2,8 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Controls;
 
 
@@ -24,6 +26,23 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceInnovationPage()
         {
             InitializeComponent();
+
+            Popup popup = new Popup()
+            {
+                IsOpen = false,
+                IsLightDismissEnabled = true
+            };
+
+            TextBlock _block = new TextBlock()
+            {
+                Text = "Testing, Testing, Testing",
+                TextWrapping = TextWrapping.WrapWholeWords,
+                Margin = new Thickness(30),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            popup.Child =_block;
+            this.rButtonOne.PopupChild = popup;
         }
 
         #endregion
@@ -35,6 +54,8 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateToPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rButtonOne.StartEntranceAnimation();
+            rButtonOne.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()

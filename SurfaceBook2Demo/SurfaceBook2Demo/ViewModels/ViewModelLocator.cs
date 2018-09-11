@@ -25,6 +25,7 @@ namespace SurfaceBook2Demo.ViewModels
             Register<ExperienceIntroViewModel, ExperienceIntroPage>();
             Register<ExperienceDayViewModel, ExperienceDayPage>();
             Register<ExperienceDayWorkViewModel, ExperienceDayWorkPage>();
+            Register<ExperienceDayWorkPopupViewModel, ExperienceDayWorkPopupPage>();
             Register<ExperienceDayCreateViewModel, ExperienceDayCreatePage>();
             Register<ExperienceDayRelaxViewModel, ExperienceDayRelaxPage>();
             Register<ExperienceDayPlayViewModel, ExperienceDayPlayPage>();
@@ -52,6 +53,8 @@ namespace SurfaceBook2Demo.ViewModels
         public ExperienceDayCreateViewModel ExperienceDayCreateViewModel => ServiceLocator.Current.GetInstance<ExperienceDayCreateViewModel>();
 
         public ExperienceDayWorkViewModel ExperienceDayWorkViewModel => ServiceLocator.Current.GetInstance<ExperienceDayWorkViewModel>();
+
+        public ExperienceDayWorkPopupViewModel ExperienceDayWorkPopupViewModel => ServiceLocator.Current.GetInstance<ExperienceDayWorkPopupViewModel>();
 
         public ExperienceDayViewModel ExperienceDayViewModel => ServiceLocator.Current.GetInstance<ExperienceDayViewModel>();
 

@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="SurfaceProDemo.Views.ExperiencePopupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SurfaceProDemo.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    DataContext="{Binding ExperiencePopupViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width=".3*"/>
+            <ColumnDefinition Width=".7*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"                
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+        <!--Width="{StaticResource HeaderWidth}"-->
+        <ctrl:AppSelector
+            x:Name="AppSelectorKB"
+            URIs="{x:Bind Path=ViewModel.appSelectorData}"
+            AppSelectorMode="App"
+            ShowMessages="True"
+            MainOrientation="Vertical"
+            ShowSelectedLine="True"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Grid.Row="3"
+            Grid.Column="1"
+            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
+            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
+            />
+        <ctrl:AppSelectorImage
+            x:Name="AppSelectorImageKB"
+            Grid.Row="3"            
+            Grid.Column="2"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Right"
+            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
+        <ctrl:TextBlockEx
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            TextStyle="Legal"
+            />
+    </Grid>
+</Page>

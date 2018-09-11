@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceLaptopDemo.Services;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceLaptopDemo.ViewModels
@@ -32,12 +33,6 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_APPSELECTOR_IMAGE_3_SELECTED = "ms-appx:///Assets/Accessories/Icons/fox_accs_cobalt_active.png";
         private const string URI_APPSELECTOR_IMAGE_4_SELECTED = "ms-appx:///Assets/Accessories/Icons/fox_accs_burgundy_active.png";
 
-        private const int APPSELECTOR_BUTTON_WIDTH = 65;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 50;
-
-        private const int SELECTORIMAGE_IMAGEWIDTH = 1100;
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 800;
-
         #endregion
 
         #region Public Members
@@ -50,26 +45,15 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string BackgroundUri = URI_BACKGROUND;
 
-        public int AppSelectorButtonWidth;
-        public int AppSelectorButtonHeight;
-
-        public int ImageSelectorImageWidth;
-        public int ImageSelectorImageHeight;
+        public double ImageSelectorImageWidth = StyleHelper.GetApplicationDouble("AccessoryPrimaryImageWidth");
 
         public List<AppSelectorData> accRightSelectorData = new List<AppSelectorData>();
         public List<AppSelectorImageURI> accRightSelectorImageURIs = new List<AppSelectorImageURI>();
-
 
         #endregion
 
         public AccessoriesPenViewModel()
         {
-            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
-            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
-
-            ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
-
             // list of app icons
             this.accRightSelectorData.Add(new AppSelectorData()
             {
@@ -96,22 +80,22 @@ namespace SurfaceLaptopDemo.ViewModels
             this.accRightSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_1,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             this.accRightSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_2,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             this.accRightSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
             this.accRightSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_4,
-                Width = SELECTORIMAGE_IMAGEWIDTH
+                Width = ImageSelectorImageWidth
             });
 
             // get the localization service

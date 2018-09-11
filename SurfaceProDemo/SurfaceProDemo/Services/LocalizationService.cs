@@ -243,6 +243,19 @@ namespace SurfaceProDemo.Services
             viewModel.PopRightLede = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPRIGHT_COPY, "EXPERIENCE_TABLET_POPRIGHT_COPY");
         }
 
+        public void LoadExperiencePopupViewModel(ExperiencePopupViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_HEADLINE, "EXPERIENCE_LAPTOP_POPCENTER_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_COPY, "EXPERIENCE_LAPTOP_POPCENTER_COPY");
+
+            viewModel.appSelectorData[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_ONE, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_ONE");
+            viewModel.appSelectorData[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_TWO, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_TWO");
+            viewModel.appSelectorData[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_THREE, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_THREE");
+            viewModel.appSelectorData[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_FOUR, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_FOUR");
+            viewModel.appSelectorData[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_FIVE, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_FIVE");
+
+        }
+
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
