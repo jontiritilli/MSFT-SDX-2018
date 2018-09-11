@@ -5,14 +5,88 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding AccessoriesDialViewModel, Source={StaticResource Locator}}"
+    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+        <ctrl:AppSelector
+            x:Name="AppSelectorKB"                        
+            URIs="{x:Bind Path=ViewModel.URIS}"
+            AppSelectorMode="App"
+            ShowMessages="True"
+            MainOrientation="Vertical"
+            ShowSelectedLine="True"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Opacity="1"
+            Grid.Row="3"
+            Grid.Column="1"
+            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
+            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
+            />
+        <ctrl:AppSelectorImage
+            x:Name="AppSelectorImageKB"
+            Grid.Row="0"            
+            Grid.Column="0"            
+            Grid.RowSpan="5"
+            Opacity="1"
+            VerticalAlignment="Top"
+            URIs="{x:Bind ViewModel.ImageURIS}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
+        <ctrl:TextBlockEx
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            Opacity="1"
+            TextStyle="Legal"
+            />
+        <!-- Pop Close button I seriously have no idea why the columns for the grid wont let the button sit far right without that 300 margin-->
+        <Button x:Name="PopClose"
+                Grid.Row="0"
+                Grid.Column="2"
+                Width="46" Height="32"
+                Margin="0"
+                Padding="0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Style="{StaticResource NoInteractionButton}"
+                Click="PopClose_Click">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.1" />
+            </Button.Background>
+            <Button.Content>
+                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>

@@ -3,7 +3,7 @@
 using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
-
+using Windows.UI.Xaml;
 
 namespace SurfaceStudioDemo.Views
 {
@@ -15,6 +15,13 @@ namespace SurfaceStudioDemo.Views
         {
             get { return DataContext as AccessoriesDialViewModel; }
         }
+        public RoutedEventHandler CloseButton_Clicked;
+
+        #region Public Static Properties
+
+        public static AccessoriesDialPage Current { get; private set; }
+
+        #endregion
 
         #endregion
 
@@ -24,6 +31,8 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesDialPage()
         {
             InitializeComponent();
+            AccessoriesDialPage.Current = this;
+            this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
         }
 
         #endregion
@@ -41,6 +50,10 @@ namespace SurfaceStudioDemo.Views
             // animations out
         }
 
+        private void PopClose_Click(object sender, RoutedEventArgs e)
+        {
+            CloseButton_Clicked(sender, e);
+        }
         #endregion
     }
 }

@@ -89,7 +89,9 @@ namespace SDX.Toolkit.Helpers
         RadiatingButtonEllipseBottomSpacer,
         RadiatingButtonCaptionHeight,
         ColoringBookButtonWidth,
-        ColoringBookButtonHeight
+        ColoringBookButtonHeight,
+        AppSelectorButtonWidth,
+        AppSelectorButtonHeight
     }
 
     public enum LayoutThicknesses
@@ -235,6 +237,8 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
         public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
 
+        public const string SIZE_APPSELECTORBUTTONWIDTH = "AppSelectorButtonWidth";
+        public const string SIZE_APPSELECTORBUTTONHEIGHT = "AppSelectorButtonHeight";
         #endregion
 
         #region Color Constants
@@ -475,13 +479,20 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CAPTION_HEIGHT);
                     break;
 
-
                 case LayoutSizes.ColoringBookButtonWidth:
                     value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONWIDTH);
                     break;
 
                 case LayoutSizes.ColoringBookButtonHeight:
                     value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONHEIGHT);
+                    break;
+
+                case LayoutSizes.AppSelectorButtonWidth:
+                    value = GetApplicationDouble(SIZE_APPSELECTORBUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.AppSelectorButtonHeight:
+                    value = GetApplicationDouble(SIZE_APPSELECTORBUTTONHEIGHT);
                     break;
 
                 default:

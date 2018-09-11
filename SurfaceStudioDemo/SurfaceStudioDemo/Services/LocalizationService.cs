@@ -197,11 +197,25 @@ namespace SurfaceStudioDemo.Services
 
         public void LoadExperiencePixelSenseViewModel(ExperiencePixelSenseViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_HEADLINE, "EXPERIENCE_DISPLAY_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_COPY, "EXPERIENCE_DISPLAY_COPY");
+            viewModel.PopLeft_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_TITLE, "EXPERIENCE_DISPLAY_POPLEFT_TITLE");
+            viewModel.PopLeft_Lede= GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY, "EXPERIENCE_DISPLAY_POPLEFT_COPY");
+            viewModel.PopBottom_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE, "EXPERIENCE_DISPLAY_POPBOTTOM_TITLE");
+            viewModel.PopBottom_Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY");
         }
 
         public void LoadAccessoriesDialViewModel(AccessoriesDialViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_HEADLINE, "EXPERIENCE_DISPLAY_POPTOP_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_COPY, "EXPERIENCE_DISPLAY_POPTOP_COPY");
+
+            viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_COPY_LEGAL, "EXPERIENCE_DISPLAY_POPTOP_COPY_LEGAL");
+            viewModel.URIS[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE");
+            viewModel.URIS[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO, "EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO");
+            viewModel.URIS[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE");
+            viewModel.URIS[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR");
+            viewModel.URIS[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE");
 
         }
 
