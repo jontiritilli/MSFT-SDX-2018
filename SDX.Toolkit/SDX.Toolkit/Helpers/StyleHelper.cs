@@ -87,7 +87,7 @@ namespace SDX.Toolkit.Helpers
         RadiatingButtonGridWidth,
         RadiatingButtonEllipseTopSpacer,
         RadiatingButtonEllipseBottomSpacer,
-        RadiatingButtonCaptionHeight
+        RadiatingButtonCaptionHeight,
         ColoringBookButtonWidth,
         ColoringBookButtonHeight
     }
