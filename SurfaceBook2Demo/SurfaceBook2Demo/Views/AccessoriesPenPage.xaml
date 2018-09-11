@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
-    DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
+    DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"    
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
@@ -28,13 +28,13 @@
             <ColumnDefinition Width=".75*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-
+<!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
                 LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
+
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
@@ -45,7 +45,6 @@
             Grid.Row="3"
                    />
 
-                   />
         <ctrl:ColoringBook
             x:Name="ColoringBook"
             Grid.Row="0"

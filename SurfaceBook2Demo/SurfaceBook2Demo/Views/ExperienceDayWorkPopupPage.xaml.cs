@@ -21,7 +21,7 @@ namespace SurfaceBook2Demo.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ExperienceDayWorkPopupPage : Page
+    public sealed partial class ExperienceDayWorkPopupPage : Page, INavigate
     {
         #region Private Members
 
@@ -34,6 +34,17 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayWorkPopupPage()
         {
             this.InitializeComponent();
+            this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
+        }
+
+        public void NavigateToPage()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+        }
+
+        public void NavigateFromPage()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
     }
 }

@@ -115,19 +115,11 @@ namespace SurfaceProDemo.ViewModels
             }
             );
 
-            // ExperiencePopupPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperiencePopupPage",
-                Order = 4
-            }
-            );
-
             // ExperienceQuietPage
             section.Pages.Add(new NavigationPage()
             {
                 Name = "ExperienceQuietPage",
-                Order = 5
+                Order = 4
             }
             );
 

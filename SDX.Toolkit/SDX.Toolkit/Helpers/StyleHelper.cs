@@ -112,7 +112,22 @@ namespace SDX.Toolkit.Helpers
         ColoringBookColorOrangeActive,
         ColoringBookColorPurple,
         ColoringBookColorPurpleActive,
-        ColoringBookReset
+        ColoringBookReset,
+        PagePopupImage_1,
+        PagePopupImage_2,
+        PagePopupImage_3,
+        PagePopupImage_4,
+        PagePopupImage_5,
+        PagePopupAppIcon_1,
+        PagePopupAppIcon_2,
+        PagePopupAppIcon_3,
+        PagePopupAppIcon_4,
+        PagePopupAppIcon_5,
+        PagePopupAppIcon_Selected_1,
+        PagePopupAppIcon_Selected_2,
+        PagePopupAppIcon_Selected_3,
+        PagePopupAppIcon_Selected_4,
+        PagePopupAppIcon_Selected_5
     }
 
     public static class StyleHelper
@@ -222,7 +237,26 @@ namespace SDX.Toolkit.Helpers
         public const string BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL_ACTIVE = "BitmapImageColoringBookTealActive";
         public const string BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE_ACTIVE = "BitmapImageColoringBookOrangeActive";
         public const string BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE_ACTIVE = "BitmapImageColoringBookPurpleActive";
-        
+
+        public const string BITMAPIMAGE_PAGEPOPUP_1 = "BitmapImagePagePopUp_1";
+        public const string BITMAPIMAGE_PAGEPOPUP_2 = "BitmapImagePagePopUp_2";
+        public const string BITMAPIMAGE_PAGEPOPUP_3 = "BitmapImagePagePopUp_3";
+        public const string BITMAPIMAGE_PAGEPOPUP_4 = "BitmapImagePagePopUp_4";
+        public const string BITMAPIMAGE_PAGEPOPUP_5 = "BitmapImagePagePopUp_5";
+
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_1 = "BitmapImagePagePopup_AppIcon_1";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_2 = "BitmapImagePagePopup_AppIcon_2";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_3 = "BitmapImagePagePopup_AppIcon_3";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_4 = "BitmapImagePagePopup_AppIcon_4";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_5 = "BitmapImagePagePopup_AppIcon_5";
+
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_1 = "BitmapImagePagePopup_AppIcon_Selected_1";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_2 = "BitmapImagePagePopup_AppIcon_Selected_2";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_3 = "BitmapImagePagePopup_AppIcon_Selected_3";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_4 = "BitmapImagePagePopup_AppIcon_Selected_4";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_5 = "BitmapImagePagePopup_AppIcon_Selected_5";
+
+
         #endregion
 
         #region Thickness Constants
@@ -556,18 +590,23 @@ namespace SDX.Toolkit.Helpers
                 case ColoringBookColors.Red:
                     color = GetApplicationColor(RED);
                     break;
+
                 case ColoringBookColors.Blue:
                     color = GetApplicationColor(BLUE);
                     break;
+
                 case ColoringBookColors.Teal:
                     color = GetApplicationColor(TEAL);
                     break;
+
                 case ColoringBookColors.Orange:
                     color = GetApplicationColor(ORANGE);
                     break;
+
                 case ColoringBookColors.Purple:
                     color = GetApplicationColor(PURPLE);
                     break;
+
                 default:
                     break;
             }
@@ -599,38 +638,109 @@ namespace SDX.Toolkit.Helpers
                 case BitmapImages.ColoringBookImage:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK);
                     break;
+                    
                 case BitmapImages.ColoringBookColorRed:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RED);
                     break;
+
                 case BitmapImages.ColoringBookColorBlue:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE);
                     break;
+
                 case BitmapImages.ColoringBookColorTeal:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL);
                     break;
+
                 case BitmapImages.ColoringBookColorOrange:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE);
                     break;
+
                 case BitmapImages.ColoringBookColorPurple:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE);
                     break;
+
                 case BitmapImages.ColoringBookColorRedActive:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RED_ACTIVE);
                     break;
+
                 case BitmapImages.ColoringBookColorBlueActive:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE_ACTIVE);
                     break;
+
                 case BitmapImages.ColoringBookColorTealActive:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL_ACTIVE);
                     break;
+
                 case BitmapImages.ColoringBookColorOrangeActive:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE_ACTIVE);
                     break;
+
                 case BitmapImages.ColoringBookColorPurpleActive:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE_ACTIVE);
                     break;
+
                 case BitmapImages.ColoringBookReset:
                     bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RESET);
+                    break;
+
+                case BitmapImages.PagePopupImage_1:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_1);
+                    break;
+
+                case BitmapImages.PagePopupImage_2:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_2);
+                    break;
+
+                case BitmapImages.PagePopupImage_3:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_3);
+                    break;
+
+                case BitmapImages.PagePopupImage_4:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_4);
+                    break;
+
+                case BitmapImages.PagePopupImage_5:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_5);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_1:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_1);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_2:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_2);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_3:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_3);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_4:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_4);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_5:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_5);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_Selected_1:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_1);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_Selected_2:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_2);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_Selected_3:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_3);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_Selected_4:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_4);
+                    break;
+
+                case BitmapImages.PagePopupAppIcon_Selected_5:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_5);
                     break;
                 default:
                     break;

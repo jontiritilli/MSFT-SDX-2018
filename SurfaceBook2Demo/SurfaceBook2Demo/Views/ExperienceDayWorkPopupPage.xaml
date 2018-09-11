@@ -38,8 +38,8 @@
                 VerticalAlignment="Top" />
         <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:AppSelector
-            x:Name="AppSelectorKB"
-            URIs="{x:Bind Path=ViewModel.appSelectorData}"
+            x:Name="AppSelectorKB"            
+            ImagePairs="{x:Bind Path=ViewModel.ImagePairs}"
             AppSelectorMode="App"
             ShowMessages="True"
             MainOrientation="Vertical"
@@ -57,14 +57,14 @@
             Grid.Column="2"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
-            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+            BitmapImages="{x:Bind ViewModel.BMImages}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
 
         <ctrl:TextBlockEx
             Grid.Row="4"
             Grid.Column="1"
-            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            Text="{x:Bind Path=ViewModel.Legal}"
             TextStyle="Legal"
             />
     </Grid>
