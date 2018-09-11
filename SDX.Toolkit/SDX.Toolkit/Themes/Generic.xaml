@@ -365,9 +365,6 @@
                         x:Name="LayoutRoot"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid.Resources>
-                            
-                        </Grid.Resources>
                         <Grid.Background>
                             <AcrylicBrush
                                           TintColor="LightGray" TintOpacity="0.7" 
@@ -378,9 +375,9 @@
                             <RowDefinition Height="{StaticResource PlayerHeight}"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.33"/>    <!-- Track Info  -->
-                            <ColumnDefinition Width="0.33"/>    <!-- Progress Bar -->
-                            <ColumnDefinition Width="0.33"/>    <!-- Player Buttons -->
+                            <ColumnDefinition Width="0.3"/>    <!-- Track Info  -->
+                            <ColumnDefinition Width="0.4"/>    <!-- Progress Bar -->
+                            <ColumnDefinition Width="0.3"/>    <!-- Player Buttons -->
                         </Grid.ColumnDefinitions>
 
                         <!-- Song Info Grid -->
