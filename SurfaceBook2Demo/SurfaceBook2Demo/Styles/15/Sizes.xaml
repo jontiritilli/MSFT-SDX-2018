@@ -49,9 +49,9 @@
 
     -->
 
-    <GridLength x:Key="LeftMargin">107.46</GridLength>
+    <GridLength x:Key="LeftMargin">107.475</GridLength>
     <GridLength x:Key="TopMargin">87.92</GridLength>
-    <GridLength x:Key="RightMargin">107.46</GridLength>    <!-- Not spec'ed in design; Assumed to mirror left margin -->
+    <GridLength x:Key="RightMargin">107.475</GridLength>    <!-- Not spec'ed in design; Assumed to mirror left margin -->
     <GridLength x:Key="BottomMargin">42.22</GridLength>
 
     <GridLength x:Key="SpaceBelowHeader">32.34</GridLength>
@@ -77,6 +77,20 @@
 
     <x:Double x:Key="SwipeToContinueArrowWidth">7.215</x:Double>
     <x:Double x:Key="SwipeToContinueSpacer">5.93</x:Double>
+
+    <x:Double x:Key="RadiatingButtonEllipseRadius">66.667</x:Double>
+    <x:Double x:Key="RadiatingButtonGridWidth">138.667</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">16.367</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">24.48</x:Double>
+    <x:Double x:Key="RadiatingButtonCaptionHeight">26.667</x:Double>
+
+    <x:Double x:Key="TryItBoxWidth">116.667</x:Double>
+    <x:Double x:Key="TryItBoxHeight">46.667</x:Double>
+    <x:Double x:Key="TryItPathHeight">12</x:Double>
+    <!--height of the triangle at the bottom of the messagebox-->
+    <x:Double x:Key="TryItPathWidth">24</x:Double>
+    <!--width of the triangle at the bottom of the messagebox-->
+    <x:Double x:Key="TryItIconHeight">40</x:Double>
 
     <x:Double x:Key="PopupDefaultWidth">700</x:Double>
     <x:Double x:Key="PopupSpacer">60</x:Double>

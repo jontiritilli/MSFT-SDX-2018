@@ -16,7 +16,7 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/gradient-bg.png";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
 
         private readonly BitmapImage BITMAPIMAGE_IMAGESELECTOR_IMAGE_1 = StyleHelper.GetApplicationBitmapImage(BitmapImages.PagePopupImage_1);
         private readonly BitmapImage BITMAPIMAGE_IMAGESELECTOR_IMAGE_2 = StyleHelper.GetApplicationBitmapImage(BitmapImages.PagePopupImage_2);
@@ -68,6 +68,14 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string ColoringBookClearButtonURI;
         public double ICON_WIDTH = 96d;
+
+        public GridLength AppCloseWidth
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.AppCloseWidth));
+            }
+        }
 
         #endregion
 

@@ -447,7 +447,11 @@ namespace SDX.Toolkit.Controls
                 _entranceStoryboard.Stop();
                 _entranceEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
-                _tryItBox.Opacity = 0d;
+
+                if (null != _tryItBox) {
+                    _tryItBox.Opacity = 0d;
+                }                
+
                 _radiateEllipse.Opacity = 0d;
             }
         }
@@ -589,7 +593,7 @@ namespace SDX.Toolkit.Controls
             HandleClick();
         }
 
-        private void HandleClick()
+        public void HandleClick()
         {
             if (null != this.PopupChild)
             {

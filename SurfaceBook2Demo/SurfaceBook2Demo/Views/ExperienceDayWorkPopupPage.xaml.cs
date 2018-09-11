@@ -30,10 +30,18 @@ namespace SurfaceBook2Demo.Views
             get { return DataContext as ExperienceDayWorkPopupViewModel; }
         }
 
+        public RoutedEventHandler CloseButton_Clicked;
+
+        #region Public Static Properties
+
+        public static ExperienceDayWorkPopupPage Current { get; private set; }
+
+        #endregion
         #endregion
         public ExperienceDayWorkPopupPage()
         {
             this.InitializeComponent();
+            ExperienceDayWorkPopupPage.Current = this;
             this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
         }
 
@@ -45,6 +53,11 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        private void PopClose_Click(object sender, RoutedEventArgs e)
+        {
+            CloseButton_Clicked(sender, e);
         }
     }
 }

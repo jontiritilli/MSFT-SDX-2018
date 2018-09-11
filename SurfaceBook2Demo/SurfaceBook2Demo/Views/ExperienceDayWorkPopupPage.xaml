@@ -25,11 +25,13 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".3*"/>
-            <ColumnDefinition Width=".7*"/>
-            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
@@ -46,6 +48,7 @@
             ShowSelectedLine="True"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Opacity="1"
             Grid.Row="3"
             Grid.Column="1"
             ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
@@ -55,8 +58,9 @@
             x:Name="AppSelectorImageKB"
             Grid.Row="3"            
             Grid.Column="2"
-            Grid.ColumnSpan="3"
-            HorizontalAlignment="Right"
+            Grid.ColumnSpan="2"
+            Opacity="1"
+            HorizontalAlignment="Center"
             BitmapImages="{x:Bind ViewModel.BMImages}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
@@ -65,7 +69,26 @@
             Grid.Row="4"
             Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
+            Opacity="1"
             TextStyle="Legal"
             />
+        <!-- Pop Close button I seriously have no idea why the columns for the grid wont let the button sit far right without that 300 margin-->
+        <Button x:Name="PopClose"
+                Grid.Row="0"
+                Grid.Column="3"
+                Width="46" Height="32"
+                Margin="300,0,0,0"
+                Padding="0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Style="{StaticResource NoInteractionButton}"
+                Click="PopClose_Click">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.1" />
+            </Button.Background>
+            <Button.Content>
+                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>

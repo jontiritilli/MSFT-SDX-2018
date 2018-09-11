@@ -114,6 +114,16 @@
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
 
+
+        <Popup x:Name="ExperiencePopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="True"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ExperiencePopupPage/>
+            </Popup.Child>
+        </Popup>
         <!-- TEST ONLY -->
         <!--<Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>
         <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="2"/>

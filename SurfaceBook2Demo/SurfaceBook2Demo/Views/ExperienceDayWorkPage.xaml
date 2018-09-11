@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    Style="{StaticResource PageStyle}"
     DataContext="{Binding ExperienceDayWorkViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -28,12 +29,25 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"     
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
+
+        <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
+                    x:Name="rButtonOne"                              
+                    EntranceDurationInMilliseconds = "400"
+                    EntranceStaggerDelayInMilliseconds = "0"
+                    RadiateDurationInMilliseconds = "1800"
+                    RadiateStaggerDelayInMilliseconds = "5000"
+                    AutoStart = "false"
+                    HorizontalAlignment="Center"
+                    Canvas.ZIndex="300"
+                    VerticalAlignment="Top"/>
 
         <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
             <Image.Source>

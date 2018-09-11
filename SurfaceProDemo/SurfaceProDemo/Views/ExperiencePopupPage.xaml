@@ -30,7 +30,9 @@
             <ColumnDefinition Width=".7*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"     
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
@@ -49,6 +51,7 @@
             VerticalAlignment="Top"
             Grid.Row="3"
             Grid.Column="1"
+            Opacity="1"
             ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
             ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
             />
@@ -56,8 +59,9 @@
             x:Name="AppSelectorImageKB"
             Grid.Row="3"            
             Grid.Column="2"
-            Grid.ColumnSpan="3"
-            HorizontalAlignment="Right"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Opacity="1"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
@@ -65,8 +69,19 @@
         <ctrl:TextBlockEx
             Grid.Row="4"
             Grid.Column="1"
+            Opacity="1"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             TextStyle="Legal"
             />
+
+        <!-- App Close button -->
+        <Button x:Name="PopClose" Grid.Row="0" Grid.Column="3" Width="46" Height="32" Margin="0,0,-15,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource NoInteractionButton}" Click="PopClose_Click">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.1" />
+            </Button.Background>
+            <Button.Content>
+                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>
