@@ -566,3 +566,63 @@ namespace SDX.Toolkit.Helpers
         }
     }
 }
+
+// This function derives from: 
+// https://dgkanatsios.com/2013/02/11/animating-a-spritesheet-in-a-windows-store-app-using-xaml-and-c-3/
+// https://github.com/dgkanatsios/UniversalHelpers/blob/master/UniversalHelpersLibrary/StoryboardHelpers.cs
+///// <summary>
+///// Initiates a spritesheet animation
+///// </summary>
+///// <param name="shape">Shape to animate on (will create an ImageBrush)</param>
+///// <param name="spriteSheetColumns">Spritesheet columns</param>
+///// <param name="spriteSheetRows">Spritesheet rows</param>
+///// <param name="image">The spritesheet image</param>
+///// <param name="width">Width of the sprite on the spritesheet</param>
+///// <param name="height">Height of the sprite on the spritesheet</param>
+///// <param name="keyframeTime">Time that each keyframe should have</param>
+///// <returns>Storyboard created</returns>
+//public static Storyboard BeginSpriteSheetStoryboard(Shape shape, int spriteSheetColumns, int spriteSheetRows, BitmapImage image,
+//    double width, double height, int keyframeTime)
+//{
+//    ImageBrush ib = new ImageBrush() { Stretch = Stretch.None, AlignmentX = AlignmentX.Left, AlignmentY = AlignmentY.Top };
+//    ib.Transform = new CompositeTransform();
+//    ib.ImageSource = image;
+
+//    shape.Fill = ib;
+
+//    Storyboard sb = new Storyboard();
+//    sb.RepeatBehavior = RepeatBehavior.Forever;
+
+//    ObjectAnimationUsingKeyFrames frm = new ObjectAnimationUsingKeyFrames();
+//    ObjectAnimationUsingKeyFrames frm2 = new ObjectAnimationUsingKeyFrames();
+//    frm.BeginTime = new TimeSpan(0, 0, 0);
+//    frm2.BeginTime = new TimeSpan(0, 0, 0);
+
+
+//    int time = 0;
+//    for (int j = 0; j < spriteSheetRows; j++)
+//    {
+//        for (int i = 0; i < spriteSheetColumns; i++)
+//        {
+//            DiscreteObjectKeyFrame dokf = new DiscreteObjectKeyFrame();
+//            dokf.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(time));
+//            dokf.Value = -(i * width);
+//            frm.KeyFrames.Add(dokf);
+
+
+//            DiscreteObjectKeyFrame dokf2 = new DiscreteObjectKeyFrame();
+//            dokf2.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(time));
+//            dokf2.Value = -(j * height);
+//            frm2.KeyFrames.Add(dokf2);
+//            time += keyframeTime;
+//        }
+//    }
+//    Storyboard.SetTarget(frm, shape.Fill);
+//    Storyboard.SetTarget(frm2, shape.Fill);
+//    Storyboard.SetTargetProperty(frm, "(ImageBrush.Transform).(CompositeTransform.TranslateX)");
+//    Storyboard.SetTargetProperty(frm2, "(ImageBrush.Transform).(CompositeTransform.TranslateY)");
+//    sb.Children.Add(frm);
+//    sb.Children.Add(frm2);
+//    sb.Begin();
+//    return sb;
+//}

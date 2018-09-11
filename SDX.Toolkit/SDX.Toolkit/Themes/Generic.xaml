@@ -355,21 +355,25 @@
     </Style>
     
 
-    <Style TargetType="ctrl:MusicPlayer">
+    <!--                         Background="{StaticResource PlayerBackgroundBrush}" -->
+    <!--  x:Key="PlayerBackgroundBrush"  -->
+    <Style TargetType="ctrl:MusicBar">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Grid
                         x:Name="LayoutRoot"
-                        Background="{StaticResource PlayerBackgroundBrush}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid.Resources>
-                            <AcrylicBrush x:Key="PlayerBackgroundBrush" 
-                                          TintColor="LightGray" TintOpacity="0.5" 
+                            
+                        </Grid.Resources>
+                        <Grid.Background>
+                            <AcrylicBrush
+                                          TintColor="LightGray" TintOpacity="0.7" 
                                           BackgroundSource="Backdrop" 
                                           FallbackColor="LightGray"/>
-                        </Grid.Resources>
+                        </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="{StaticResource PlayerHeight}"/>
                         </Grid.RowDefinitions>
@@ -409,6 +413,9 @@
                         <!-- Scrub Bar -->
                         <ProgressBar x:Name="Scrub" Value="0" Maximum="100" 
                                      Grid.Row="0" Grid.Column="1"
+                                     IsIndeterminate="False"
+                                     Background=""
+                                     Foreground=""
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Center"
                                      Margin="0" Padding="0" />

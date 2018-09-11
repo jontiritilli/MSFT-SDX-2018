@@ -86,15 +86,15 @@ namespace SDX.Toolkit.Controls
         #endregion
     }
 
-    public sealed class MusicPlayer : Control
+    public sealed class MusicBar : Control
     {
         #region Private Constants
 
-        private const string URI_PREVIOUSTRACK = "ms-appx:///Assets/MusicPlayer/";
-        private const string URI_NEXTTRACK = "ms-appx:///Assets/MusicPlayer/";
-        private const string URI_PLAY = "ms-appx:///Assets/MusicPlayer/";
-        private const string URI_PAUSE = "ms-appx:///Assets/MusicPlayer/";
-        private const string URI_EQUALIZER = "ms-appx:///Assets/MusicPlayer/";
+        private const string URI_PREVIOUSTRACK = "ms-appx:///Assets/MusicBar/";
+        private const string URI_NEXTTRACK = "ms-appx:///Assets/MusicBar/";
+        private const string URI_PLAY = "ms-appx:///Assets/MusicBar/";
+        private const string URI_PAUSE = "ms-appx:///Assets/MusicBar/";
+        private const string URI_EQUALIZER = "ms-appx:///Assets/MusicBar/";
 
         #endregion
 
@@ -120,9 +120,9 @@ namespace SDX.Toolkit.Controls
 
         #region Construction/Destruction
 
-        public MusicPlayer()
+        public MusicBar()
         {
-            this.DefaultStyleKey = typeof(MusicPlayer);
+            this.DefaultStyleKey = typeof(MusicBar);
 
             // no focus visual indications
             this.UseSystemFocusVisuals = false;
@@ -130,7 +130,7 @@ namespace SDX.Toolkit.Controls
             // event handlers
             this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
-            this.KeyUp += MusicPlayer_OnKeyUp;
+            this.KeyUp += MusicBar_OnKeyUp;
 
             // set default properties
 
@@ -158,7 +158,7 @@ namespace SDX.Toolkit.Controls
 
         // Playlist
         public static readonly DependencyProperty PlaylistProperty =
-            DependencyProperty.Register("Playlist", typeof(List<Track>), typeof(MusicPlayer), new PropertyMetadata(new List<Track>(), OnPlaylistChanged));
+            DependencyProperty.Register("Playlist", typeof(List<Track>), typeof(MusicBar), new PropertyMetadata(new List<Track>(), OnPlaylistChanged));
 
         public List<Track> Playlist
         {
@@ -168,7 +168,7 @@ namespace SDX.Toolkit.Controls
 
         // PlayerStatus
         public static readonly DependencyProperty PlayerStatusProperty =
-            DependencyProperty.Register("PlayerStatus", typeof(PlayerStatii), typeof(MusicPlayer), new PropertyMetadata(PlayerStatii.NotStarted, OnPlayerStatusChanged));
+            DependencyProperty.Register("PlayerStatus", typeof(PlayerStatii), typeof(MusicBar), new PropertyMetadata(PlayerStatii.NotStarted, OnPlayerStatusChanged));
 
         public PlayerStatii PlayerStatus
         {
@@ -258,12 +258,12 @@ namespace SDX.Toolkit.Controls
 
         private void OnSizeChanged(object sender, RoutedEventArgs e)
         {
-            ((MusicPlayer)sender).UpdateUI();
+            ((MusicBar)sender).UpdateUI();
         }
 
         private static void OnPlaylistChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is MusicPlayer player)
+            if (d is MusicBar player)
             {
                 player.UpdateUI();
             }
@@ -271,7 +271,7 @@ namespace SDX.Toolkit.Controls
 
         private static void OnPlayerStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is MusicPlayer player)
+            if (d is MusicBar player)
             {
                 // TODO: Implement this.
             }
@@ -279,7 +279,7 @@ namespace SDX.Toolkit.Controls
 
 
 
-        private void MusicPlayer_OnKeyUp(object sender, KeyRoutedEventArgs e)
+        private void MusicBar_OnKeyUp(object sender, KeyRoutedEventArgs e)
         {
             e.Handled = HandleKey(e.Key);
         }
