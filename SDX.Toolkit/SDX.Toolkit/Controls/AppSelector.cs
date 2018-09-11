@@ -44,6 +44,7 @@ namespace SDX.Toolkit.Controls
         public Image Selected = new Image();
         public Image NotSelected = new Image();
         public bool IsClearButton = false;
+        public string Message;
 
     }
     #endregion
@@ -359,7 +360,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty ClearButtonImagePairProperty =
-        DependencyProperty.Register("ClearButtonImagePair", typeof(ImagePair), typeof(AppSelector), new PropertyMetadata(new ImagePair()));
+        DependencyProperty.Register("ClearButtonImagePair", typeof(ImagePair), typeof(AppSelector), new PropertyMetadata(null));
 
         public ImagePair ClearButtonImagePair
         {
@@ -510,9 +511,17 @@ namespace SDX.Toolkit.Controls
             // JN loop this area to create images and buttons based on list            
             int index = 0;
             if (this.ImagePairs.Count != 0)
-            {
-                GenerateButton(this.ClearButtonImagePair, 0, 0);
-                index = 1;
+            {// hubris! dont add clearbutton image pair unless it has a value. should only have a value on colorbook
+                if (this.ClearButtonImagePair != null)
+                {
+                    GenerateButton(this.ClearButtonImagePair, 0, 0);
+                    index = 1;
+                }
+                else
+                {
+                    index = 0;
+                }
+
                 for (int i = 0; i < this.ImagePairs.Count; i++, index++)
                 {
                     GenerateButton(this.ImagePairs[i], i, index);
@@ -745,9 +754,20 @@ namespace SDX.Toolkit.Controls
 
             HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center;
             // if we need to show messages then align left 
-            if (this.MainOrientation == Orientation.Vertical && this.ShowMessages)
+            if (this.MainOrientation == Orientation.Vertical && this.ShowMessages && !string.IsNullOrWhiteSpace(imagePair.Message))
             {
                 horizontalAlignment = HorizontalAlignment.Left;
+                TextBlockEx tbMessage = new TextBlockEx()
+                {
+                    Text = imagePair.Message,
+                    TextStyle= TextStyles.ListLede,
+                    FontSize = 20,
+                    Opacity = 1,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                Grid.SetRow(tbMessage, 0);
+                Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
+                grid.Children.Add(tbMessage);
             }
 
             AppSelectorButton sbButton = new AppSelectorButton()

@@ -1,10 +1,10 @@
 ﻿using SDX.Toolkit.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -24,7 +24,11 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        //private static readonly Size BOUNDS = PageHelper.GetScreenResolutionInfo();
+        private static readonly Size BOUNDS = WindowHelper.GetViewSizeInfo();
+
+        private static readonly double WIDTH_ORIGINAL = BOUNDS.Width;
+        private static readonly double HEIGHT_ORIGINAL = BOUNDS.Height;
+
 
         #endregion
 
@@ -195,63 +199,17 @@ namespace SDX.Toolkit.Controls
             get { return ((HorizontalAlignment)GetValue(imageHorizontalAlignmentProperty)); }
             set { SetValue(imageHorizontalAlignmentProperty, value); }
         }
-        //public ImageStyles ImageStyle
-        //public ImageStyles ImageStyle
-        //{
-        //    get { return (ImageStyles)GetValue(ImageStyleProperty); }
-        //    set { SetValue(ImageStyleProperty, value); }
-        //}
 
-        //// DurationInMilliseconds
-        //public static readonly DependencyProperty DurationInMillisecondsProperty =
-        //    DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(200d, OnDurationInMillisecondsChanged));
+        public static readonly DependencyProperty BitmapImagesProperty =
+        DependencyProperty.Register("BitmapImages", typeof(List<BitmapImage>), typeof(AppSelectorImage), new PropertyMetadata(new List<BitmapImage>()));
 
-        //public double DurationInMilliseconds
-        //{
-        //    get { return (double)GetValue(DurationInMillisecondsProperty); }
-        //    set { SetValue(DurationInMillisecondsProperty, value); }
-        //}
 
-        //// FadeInCompletedHandler
-        //public static readonly DependencyProperty FadeInCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(AppSelectorImage), new PropertyMetadata(null));
-
-        //public EventHandler<object> FadeInCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeInCompletedHandlerProperty); }
-        //    set { SetValue(FadeInCompletedHandlerProperty, value); }
-        //}
-
-        //// FadeOutCompletedHandler
-        //public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(AppSelectorImage), new PropertyMetadata(null));
-
-        //public EventHandler<object> FadeOutCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeOutCompletedHandlerProperty); }
-        //    set { SetValue(FadeOutCompletedHandlerProperty, value); }
-        //}
-
-        //// StaggerDelayInMilliseconds
-        //public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-        //    DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
-
-        //public double StaggerDelayInMilliseconds
-        //{
-        //    get { return (double)GetValue(StaggerDelayInMillisecondsProperty); }
-        //    set { SetValue(StaggerDelayInMillisecondsProperty, value); }
-        //}
-
-        //// AutoStart
-        //public static readonly DependencyProperty AutoStartProperty =
-        //DependencyProperty.Register("AutoStart", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(true, OnAutoStartChanged));
-
-        //public bool AutoStart
-        //{
-        //    get { return (bool)GetValue(AutoStartProperty); }
-        //    set { SetValue(AutoStartProperty, value); }
-        //}
-
+        public List<BitmapImage> BitmapImages
+        {
+            get { return ((List<BitmapImage>)GetValue(BitmapImagesProperty)); }
+            set { SetValue(BitmapImagesProperty, value); }
+        }
+       
         #endregion
 
         #region Event Handlers
@@ -300,20 +258,6 @@ namespace SDX.Toolkit.Controls
         //    }
         //}
 
-        //private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnStaggerDelayInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
 
         private void AppSelector_OnSelectionChanged(object sender, EventArgs e)
         {
@@ -349,23 +293,48 @@ namespace SDX.Toolkit.Controls
             // create the burgundy image
 
             Image image = new Image();
-            for (int i = 0; i < this.URIs.Count; i++)
+            if (this.URIs.Count > 0)
             {
-
-                image = new Image()
+                for (int i = 0; i < this.URIs.Count; i++)
                 {
-                    Source = new BitmapImage() { UriSource = new Uri(this.URIs[i].URI), DecodePixelWidth = (int)ImageWidth, DecodePixelHeight = (int)ImageHeight },
-                    Width = ImageWidth,
-                    Height = ImageHeight,
-                    HorizontalAlignment = imageHorizontalAlignment,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Opacity = 0.0
-                };
-                Grid.SetRow(image, 0);
-                Grid.SetColumn(image, 0);
-                _layoutRoot.Children.Add(image);
-                this.Images.Add(image);
+
+                    image = new Image()
+                    {
+                        Source = new BitmapImage() { UriSource = new Uri(this.URIs[i].URI), DecodePixelWidth = (int)ImageWidth, DecodePixelHeight = (int)ImageHeight },
+                        Width = ImageWidth,
+                        Height = ImageHeight,
+                        HorizontalAlignment = imageHorizontalAlignment,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Opacity = 0.0
+                    };
+                    Grid.SetRow(image, 0);
+                    Grid.SetColumn(image, 0);
+                    _layoutRoot.Children.Add(image);
+                    this.Images.Add(image);
+                }
             }
+            else if (this.BitmapImages.Count > 0)
+            {
+                for (int i = 0; i < this.BitmapImages.Count; i++)
+                {
+
+                    image = new Image()
+                    {
+                        Source = BitmapImages[i],
+                        Width = BitmapImages[i].DecodePixelWidth,
+                        Height = BitmapImages[i].DecodePixelHeight,
+                        HorizontalAlignment = imageHorizontalAlignment,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Opacity = 0.0
+                    };
+                    Grid.SetRow(image, 0);
+                    Grid.SetColumn(image, 0);
+                    _layoutRoot.Children.Add(image);
+                    this.Images.Add(image);
+                }
+            }
+            
+            
             UpdateUI();
         }
 

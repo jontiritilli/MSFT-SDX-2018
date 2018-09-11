@@ -26,6 +26,7 @@ namespace SurfaceProDemo.ViewModels
             Register<ExperienceIntroViewModel, ExperienceIntroPage>();
             Register<ExperienceTransformViewModel, ExperienceTransformPage>();
             Register<ExperiencePerformanceViewModel, ExperiencePerformancePage>();
+            Register<ExperiencePopupViewModel, ExperiencePopupPage>();
             Register<ExperienceQuietViewModel, ExperienceQuietPage>();
             Register<AccessoriesPenViewModel, AccessoriesPenPage>();
             Register<AccessoriesKeyboardViewModel, AccessoriesKeyboardPage>();
@@ -50,6 +51,8 @@ namespace SurfaceProDemo.ViewModels
         public ExperienceQuietViewModel ExperienceQuietViewModel => ServiceLocator.Current.GetInstance<ExperienceQuietViewModel>();
 
         public ExperiencePerformanceViewModel ExperiencePerformanceViewModel => ServiceLocator.Current.GetInstance<ExperiencePerformanceViewModel>();
+
+        public ExperiencePopupViewModel ExperiencePopupViewModel => ServiceLocator.Current.GetInstance<ExperiencePopupViewModel>();
 
         public ExperienceTransformViewModel ExperienceTransformViewModel => ServiceLocator.Current.GetInstance<ExperienceTransformViewModel>();
 

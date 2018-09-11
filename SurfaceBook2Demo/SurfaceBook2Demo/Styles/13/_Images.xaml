@@ -49,4 +49,69 @@
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/sb2_13_purple_active.png"
                  DecodePixelWidth="42"
                  DecodePixelHeight="42"></BitmapImage>
+
+    <BitmapImage x:Key="BitmapImagePagePopUp_1"
+                 UriSource="ms-appx:///Assets/Experience/sb2_work_appScreen_photoshop.png"
+                 DecodePixelWidth="1061"
+                 DecodePixelHeight="721"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopUp_2"
+                 UriSource="ms-appx:///Assets/Experience/sb2_work_appScreen_photoshop.png"
+                 DecodePixelWidth="1061"
+                 DecodePixelHeight="721"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopUp_3"
+                 UriSource="ms-appx:///Assets/Experience/sb2_work_appScreen_photoshop.png"
+                 DecodePixelWidth="1061"
+                 DecodePixelHeight="721"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopUp_4"
+                 UriSource="ms-appx:///Assets/Experience/sb2_work_appScreen_photoshop.png"
+                 DecodePixelWidth="1061"
+                 DecodePixelHeight="721"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopUp_5"
+                 UriSource="ms-appx:///Assets/Experience/sb2_work_appScreen_photoshop.png"
+                 DecodePixelWidth="1061"
+                 DecodePixelHeight="721"></BitmapImage>
+
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_1"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_premiere.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_2"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_maya.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_3"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_sketchBook.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_4"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_blueBeam.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_5"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_photoshop.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_Selected_1"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_premiere.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_Selected_2"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_maya.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_Selected_3"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_sketchBook.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_Selected_4"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_blueBeam.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
+    <BitmapImage x:Key="BitmapImagePagePopup_AppIcon_Selected_5"
+                 UriSource="ms-appx:///Assets/Experience/sb2_appIcon_photoshop.png"
+                 DecodePixelWidth="60"
+                 DecodePixelHeight="60"></BitmapImage>
 </ResourceDictionary>
