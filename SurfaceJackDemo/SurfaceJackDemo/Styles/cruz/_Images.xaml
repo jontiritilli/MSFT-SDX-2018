@@ -1,52 +1,46 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Coloring Book Control -->
+    <x:Double x:Key="ColoringBookBitmapImageWidth">855</x:Double>
+    <x:Double x:Key="ColoringBookPaletteIconWidth">42</x:Double>
+    
     <BitmapImage x:Key="ColoringBookBitmapImage"
                  UriSource="ms-appx:///Assets/Accessories/peacock.png"
-                 DecodePixelWidth="855"
-                 DecodePixelHeight="820"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookBitmapImageWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookReset"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/reset.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookRed"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/red.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookBlue"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/blue.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookTeal"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/teal.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookOrange"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/orange.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookPurple"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/purple.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookRedActive"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/red_active.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookBlueActive"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/blue_active.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookTealActive"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/teal_active.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookOrangeActive"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/orange_active.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
     <BitmapImage x:Key="BitmapImageColoringBookPurpleActive"
                  UriSource="ms-appx:///Assets/Icons/ArtworkColors/purple_active.png"
-                 DecodePixelWidth="42"
-                 DecodePixelHeight="42"></BitmapImage>
+                 DecodePixelWidth="{StaticResource ColoringBookPaletteIconWidth}"/>
+
 </ResourceDictionary>

@@ -80,7 +80,6 @@ namespace SDX.Toolkit.Helpers
         NavigationBarSpacer,
         NavigationBarWidthArrow,
         NavigationBarWidthHome,
-        NavigationBarWidthHome,
         TryItBoxHeight,
         TryItBoxWidth,
         TryItPathHeight,

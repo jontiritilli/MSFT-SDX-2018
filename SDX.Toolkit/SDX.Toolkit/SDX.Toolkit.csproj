@@ -119,7 +119,9 @@
     <Compile Include="Controls\List.cs" />
     <Compile Include="Controls\ListItem.cs" />
     <Compile Include="Controls\LoopPlayer.cs" />
-    <Compile Include="Controls\MusicBar.cs" />
+    <Compile Include="Controls\MusicBar.xaml.cs">
+      <DependentUpon>MusicBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\NavigationBar.cs" />
     <Compile Include="Controls\PopupMedia.cs" />
     <Compile Include="Controls\PopupContentBatteryLife.cs" />
@@ -140,6 +142,8 @@
     <Compile Include="Helpers\WindowHelper.cs" />
     <Compile Include="Models\NavigationPage.cs" />
     <Compile Include="Models\NavigationSection.cs" />
+    <Compile Include="Models\Playlist.cs" />
+    <Compile Include="Models\PlaylistTrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\SDX.Toolkit.rd.xml" />
   </ItemGroup>
@@ -156,6 +160,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\MusicBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

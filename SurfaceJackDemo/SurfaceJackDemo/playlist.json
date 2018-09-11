@@ -1,0 +1,53 @@
+﻿{
+  "SelectedIndex": 0,
+  "Tracks": [
+    {
+      "ArtistName": "Alabama Shakes",
+      "TrackTitle": "Shoegaze",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Shoegaze.mp3",
+      "CovertArtSourceUri": "ms-appx:///Assets/Playlist/alabamashakes.png"
+    },
+    {
+      "ArtistName": "Billie Holiday",
+      "TrackTitle": "Sometimes I'm Happy",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Billie Holiday - Last Recording - 02 - Sometimes I’m Happy.mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/billieholiday.png"
+    },
+    {
+      "ArtistName": "a-ha",
+      "TrackTitle": "Take On Me",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/a-ha - Take On Me - 01 - Take On Me.mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/aha.png"
+    },
+    {
+      "ArtistName": "Amy Winehouse",
+      "TrackTitle": "(There Is) No Greater Love",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Amy Winehouse - Frank - 10 - (There Is) No Greater Love.mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/amywinehouse.png"
+    },
+    {
+      "ArtistName": "Erykah Badu",
+      "TrackTitle": "Didn't Cha Know",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Erykah Badu - Mama's Gun - 02 - Didn't Cha Know.mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/erykahbadu.png"
+    },
+    {
+      "ArtistName": "Empire of the Sun",
+      "TrackTitle": "We Are The People",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Empire Of The Sun - Walking On A Dream - 04 - We Are The People (Deluxe).mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/empireofthesun.png"
+    },
+    {
+      "ArtistName": "Justin Nozuka",
+      "TrackTitle": "Supposed To Grow Old",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Justin Nozuka-Holly-05-Supposed To Grow Old.mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/justinnozuka.png"
+    },
+    {
+      "ArtistName": "Joni Mitchell",
+      "TrackTitle": "California",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Joni Mitchell - Dreamland - 09 - California.mp3",
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/jonimitchell.png"
+    }
+  ]
+}

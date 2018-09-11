@@ -124,6 +124,7 @@
     <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
+    <Compile Include="Services\PlaylistService.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
@@ -248,13 +249,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\_Thickness.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Styles\cruz\_Images.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\TextBlock.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AttractorLoopPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -366,6 +363,22 @@
     <Content Include="Assets\MusicBar\joplin_player_pause.png" />
     <Content Include="Assets\MusicBar\joplin_player_play.png" />
     <Content Include="Assets\MusicBar\joplin_player_prev.png" />
+    <Content Include="Assets\Playlist\a-ha - Take On Me - 01 - Take On Me.mp3" />
+    <Content Include="Assets\Playlist\aha.png" />
+    <Content Include="Assets\Playlist\alabamashakes.png" />
+    <Content Include="Assets\Playlist\Amy Winehouse - Frank - 10 - %28There Is%29 No Greater Love.mp3" />
+    <Content Include="Assets\Playlist\amywinehouse.png" />
+    <Content Include="Assets\Playlist\Billie Holiday - Last Recording - 02 - Sometimes I’m Happy.mp3" />
+    <Content Include="Assets\Playlist\billieholiday.png" />
+    <Content Include="Assets\Playlist\Empire Of The Sun - Walking On A Dream - 04 - We Are The People %28Deluxe%29.mp3" />
+    <Content Include="Assets\Playlist\empireofthesun.png" />
+    <Content Include="Assets\Playlist\Erykah Badu - Mama%27s Gun - 02 - Didn%27t Cha Know.mp3" />
+    <Content Include="Assets\Playlist\erykahbadu.png" />
+    <Content Include="Assets\Playlist\Joni Mitchell - Dreamland - 09 - California.mp3" />
+    <Content Include="Assets\Playlist\jonimitchell.png" />
+    <Content Include="Assets\Playlist\Justin Nozuka-Holly-05-Supposed To Grow Old.mp3" />
+    <Content Include="Assets\Playlist\justinnozuka.png" />
+    <Content Include="Assets\Playlist\Shoegaze.mp3" />
     <Content Include="Assets\NavigationBar\navChevronLeft.png" />
     <Content Include="Assets\NavigationBar\navChevronRight.png" />
     <Content Include="Assets\NavigationBar\navHome.png" />
@@ -389,6 +402,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="playlist.json" />
     <None Include="SurfaceJackDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

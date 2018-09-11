@@ -382,7 +382,7 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="PlayerTrackName" TargetType="TextBlock" BasedOn="PlayerArtistName">
+    <Style x:Key="PlayerTrackName" TargetType="TextBlock" BasedOn="{StaticResource PlayerArtistName}">
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
