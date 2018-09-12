@@ -9,6 +9,7 @@ namespace SurfaceLaptopDemo.Views
 {
     public sealed partial class ExperiencePerformancePage : Page, INavigate
     {
+
         #region Private Members
 
         private ExperiencePerformanceViewModel ViewModel
@@ -17,7 +18,6 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
-
 
         #region Construction
 
@@ -28,7 +28,6 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
-
 
         #region INavigate Interface
 
@@ -41,7 +40,6 @@ namespace SurfaceLaptopDemo.Views
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
-
         #endregion
     }
 }

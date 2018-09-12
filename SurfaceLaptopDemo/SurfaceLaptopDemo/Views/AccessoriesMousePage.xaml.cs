@@ -2,14 +2,19 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
-using SDX.Toolkit.Controls;
 using Windows.UI.Xaml.Controls;
+using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceLaptopDemo.Views
 {
     public sealed partial class AccessoriesMousePage : Page, INavigate
     {
+
+        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #region Private Members
 
         private AccessoriesMouseViewModel ViewModel
@@ -18,7 +23,6 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
-
 
         #region Public Members
 
@@ -31,9 +35,17 @@ namespace SurfaceLaptopDemo.Views
         public AccessoriesMousePage()
         {
             InitializeComponent();
+
+            // connect the accessories page color selections
             AccessoriesMousePage.Current = this;
             this.AppSelectorImageAccLeft.AppSelector = this.AppSelectorAccLeft;
             this.AppSelectorAccLeft.SelectedIDChanged += SelectedIDChanged;
+
+            Canvas.SetTop(rBtnLeftMouse, _canvasHeight * .62);
+            Canvas.SetLeft(rBtnLeftMouse, _canvasWidth * .12);
+
+            Canvas.SetTop(rBtnRightMouse, _canvasHeight * .75);
+            Canvas.SetLeft(rBtnRightMouse, _canvasWidth * .81);
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)
@@ -58,11 +70,23 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateToPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnLeftMouse.StartEntranceAnimation();
+            rBtnLeftMouse.StartRadiateAnimation();
+
+            rBtnRightMouse.StartEntranceAnimation();
+            rBtnRightMouse.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+
+            rBtnLeftMouse.ResetEntranceAnimation();
+            rBtnLeftMouse.ResetRadiateAnimation();
+
+            rBtnRightMouse.ResetEntranceAnimation();
+            rBtnRightMouse.ResetRadiateAnimation();
         }
 
         #endregion

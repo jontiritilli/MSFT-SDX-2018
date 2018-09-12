@@ -29,7 +29,6 @@ namespace SDX.Toolkit.Controls
 
         #region Dependency Properties
 
-
         // ImageUri
         public static readonly DependencyProperty ImageUriProperty =
             DependencyProperty.Register("ImageUri", typeof(string), typeof(PinchZoom), new PropertyMetadata(URI_X_IMAGE));
@@ -79,13 +78,16 @@ namespace SDX.Toolkit.Controls
 
         #region Event Handlers
 
-        private void HandleZoomChange(object sender, ScrollViewerViewChangingEventArgs e)
+        public RoutedEventHandler ZoomEvent;
+
+        private void HandleZoomChanging(object sender, ScrollViewerViewChangingEventArgs e)
         {
             if (null != _viewer && _viewer.ZoomFactor > 1)
             {
                 // show the ellipse
                 _closeEllipse.Opacity = 1.0;
                 x_image.Opacity = 1.0;
+                ZoomEvent(sender, new RoutedEventArgs());
             }
             else
             {
@@ -100,14 +102,13 @@ namespace SDX.Toolkit.Controls
             if (null != _viewer && _viewer.ZoomFactor > 1)
             {
                 // reset the zoom to normal
-                this._viewer.ChangeView(null, null, 1);
+                _viewer.ChangeView(null, null, 1);
             }
             if (null != _closeEllipse)
             {
                 // hide the ellipse
                 _closeEllipse.Opacity = 0.0;
                 x_image.Opacity = 0.0;
-
             }
         }
 
@@ -172,7 +173,7 @@ namespace SDX.Toolkit.Controls
             _viewer.Content = _pinch_image;
 
             // add manipulation events to viewer
-            _viewer.ViewChanging += HandleZoomChange;
+            _viewer.ViewChanging += HandleZoomChanging;
 
             // add the scrollviewer to the root
             _layoutRoot.Children.Add(_viewer);
