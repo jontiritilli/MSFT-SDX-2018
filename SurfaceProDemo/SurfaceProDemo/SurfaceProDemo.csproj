@@ -347,10 +347,10 @@
     <Content Include="Assets\Icons\AppIcons\icon_autodeskMaya2018.png" />
     <Content Include="Assets\Icons\AppIcons\icon_autodeskSketchbook.png" />
     <Content Include="Assets\Icons\AppIcons\icon_blueBeam.png" />
-    <Content Include="Assets\List\bomOffice.png" />
-    <Content Include="Assets\List\bomSmile.png" />
-    <Content Include="Assets\List\bomSync.png" />
-    <Content Include="Assets\List\bomWindows.png" />
+    <Content Include="Assets\List\bom_office.png" />
+    <Content Include="Assets\List\bom_smile.png" />
+    <Content Include="Assets\List\bom_sync.png" />
+    <Content Include="Assets\List\bom_windows.png" />
     <Content Include="Assets\List\inkingDraw.png" />
     <Content Include="Assets\List\InkingPalm.png" />
     <Content Include="Assets\List\inkingPressure.png" />
