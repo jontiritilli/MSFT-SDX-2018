@@ -4,7 +4,7 @@ using SDX.Toolkit.Controls;
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
-
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceProDemo.Views
 {
@@ -16,7 +16,8 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as AccessoriesMouseViewModel; }
         }
-
+        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         #endregion
 
         #region Public Members
@@ -31,6 +32,12 @@ namespace SurfaceProDemo.Views
             AccessoriesMousePage.Current = this;
             this.AppSelectorImageMouse.AppSelector = this.AppSelectorMouse;
             this.AppSelectorMouse.SelectedIDChanged += SelectedIDChanged;
+
+            Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
+            Canvas.SetLeft(rBtnLeft, _canvasWidth * .10);
+
+            Canvas.SetTop(rBtnRight, _canvasHeight * .60);
+            Canvas.SetLeft(rBtnRight, _canvasWidth * .75);
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)
@@ -57,12 +64,22 @@ namespace SurfaceProDemo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
         }
 
         #endregion
