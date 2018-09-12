@@ -211,6 +211,7 @@ namespace SurfaceProDemo.Services
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_STUDIO_COPY, "EXPERIENCE_STUDIO_COPY");
             viewModel.PopHeadline = GetStringValue(_languageCurrent.EXPERIENCE_STUDIO_TRYIT_POP_TITLE, "EXPERIENCE_STUDIO_TRYIT_POP_TITLE");
             viewModel.PopLede = GetStringValue(_languageCurrent.EXPERIENCE_STUDIO_TRYIT_POP_COPY, "EXPERIENCE_STUDIO_TRYIT_POP_COPY");
+            viewModel.PopTryItCaption = GetStringValue(_languageCurrent.EXPERIENCE_STUDIO_TRYIT, "EXPERIENCE_STUDIO_TRYIT");
         }
 
         public void LoadExperiencePerformanceViewModel(ExperiencePerformanceViewModel viewModel)
@@ -261,9 +262,8 @@ namespace SurfaceProDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
 
-            viewModel.TryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
-            viewModel.TryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");
-
+            viewModel.TryIt = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
+            viewModel.TryItCaption = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");            
             // TODO: add code to load list
             // bullet one
 

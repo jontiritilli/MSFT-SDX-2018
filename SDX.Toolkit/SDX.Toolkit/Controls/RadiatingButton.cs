@@ -34,6 +34,13 @@ namespace SDX.Toolkit.Controls
         Right
     }
 
+    public enum RadiatingButtonIcons
+    {
+        dial,
+        pen,        
+        pinch,
+        touch
+    }
     public sealed class RadiatingButton : Control
     {
 
@@ -47,7 +54,10 @@ namespace SDX.Toolkit.Controls
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/fox_close.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit.png";
+        private const string URI_TRY_IT_PEN_IMAGE = @"ms-appx:///Assets/Universal/tryit_pen.png";
+        private const string URI_TRY_IT_DIAL_IMAGE = @"ms-appx:///Assets/Universal/tryit_dial.png";
         private const string URI_PINCH_ZOOM_IMAGE = @"ms-appx:///Assets/Universal/pinch.png";
+        
         #endregion
 
         #region Private Members
@@ -150,14 +160,24 @@ namespace SDX.Toolkit.Controls
             set => SetValue(TryItCaptionProperty, value);
         }
 
-        // IsPinchTry
-        public static readonly DependencyProperty IsPinchTryProperty =
-            DependencyProperty.Register("IsPinchTry", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
+        // IsRemovedOnInteraction
+        public static readonly DependencyProperty IsRemovedOnInteractionProperty =
+            DependencyProperty.Register("IsRemovedOnInteraction", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
-        public bool IsPinchTry
+        public bool IsRemovedOnInteraction
         {
-            get => (bool)GetValue(IsPinchTryProperty);
-            set => SetValue(IsPinchTryProperty, value);
+            get => (bool)GetValue(IsRemovedOnInteractionProperty);
+            set => SetValue(IsRemovedOnInteractionProperty, value);
+        }
+
+        // RBIcon
+        public static readonly DependencyProperty RadiatingButtonIconProperty =
+            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.dial));
+
+        public RadiatingButtonIcons RadiatingButtonIcon
+        {
+            get => (RadiatingButtonIcons)GetValue(RadiatingButtonIconProperty);
+            set => SetValue(RadiatingButtonIconProperty, value);
         }
 
         // TryItEnabled
@@ -601,7 +621,7 @@ namespace SDX.Toolkit.Controls
 
         public void HandleClick()
         {
-            if (IsPinchTry)
+            if (IsRemovedOnInteraction)
             {
                 _grid.Opacity = 0.0;
             }
@@ -924,13 +944,25 @@ namespace SDX.Toolkit.Controls
                     double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
 
                     // set correct icon for radiating button
-                    if (IsPinchTry)
-                    {
-                        TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
-                    }
-                    else
-                    {
-                        TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                    switch (RadiatingButtonIcon) {
+                        case RadiatingButtonIcons.dial:
+                            TRY_IT_IMAGE = URI_TRY_IT_DIAL_IMAGE;
+                            break;
+
+                        case RadiatingButtonIcons.pen:
+                            TRY_IT_IMAGE = URI_TRY_IT_PEN_IMAGE;
+                            break;
+
+                        case RadiatingButtonIcons.pinch:
+                            TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
+                            break;
+
+                        case RadiatingButtonIcons.touch:
+                            TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                            break;
+
+                        default:
+                            break;
                     }
 
                     // create the try it icon

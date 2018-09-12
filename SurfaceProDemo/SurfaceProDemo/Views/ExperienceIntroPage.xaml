@@ -51,6 +51,43 @@
                        TextStyle="Legal"
                        Visibility="Collapsed" />
 
+        <ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
+                    SwipeText="{x:Bind Path=ViewModel.SwipeText}"                    
+                    HorizontalAlignment="Right"                              
+                    VerticalAlignment="Bottom"/>
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnRight"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnLeft"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnTop"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+
+        </Canvas>
+        
         <ctrl:ImageEx
             Grid.Row="3"
             Grid.Column="1"
@@ -75,9 +112,5 @@
             Opacity="0"
             Canvas.ZIndex="99"/>
 
-        <ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
-                    SwipeText="{x:Bind Path=ViewModel.SwipeText}"                    
-                    HorizontalAlignment="Right"                              
-                    VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
