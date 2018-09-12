@@ -33,9 +33,18 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
+
+        public RoutedEventHandler CloseButton_Clicked;
+
+        #region Public Static Properties
+
+        public static ExperiencePopupPage Current { get; private set; }
+
+        #endregion
         public ExperiencePopupPage()
         {
             this.InitializeComponent();
+            ExperiencePopupPage.Current = this;
             this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
 
         }
@@ -51,5 +60,10 @@ namespace SurfaceProDemo.Views
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
         #endregion
+
+        private void PopClose_Click(object sender, PointerRoutedEventArgs e)
+        {
+            CloseButton_Clicked(sender, new RoutedEventArgs());
+        }
     }
 }

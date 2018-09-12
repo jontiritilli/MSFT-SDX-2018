@@ -599,7 +599,7 @@ namespace SDX.Toolkit.Controls
             HandleClick();
         }
 
-        private void HandleClick()
+        public void HandleClick()
         {
             if (IsPinchTry)
             {

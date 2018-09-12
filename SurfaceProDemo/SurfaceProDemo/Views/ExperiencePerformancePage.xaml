@@ -34,6 +34,17 @@
                 LedeStyle="PageLede"                
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
+
+        <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
+                    x:Name="rButtonOne"                              
+                    EntranceDurationInMilliseconds = "400"
+                    EntranceStaggerDelayInMilliseconds = "0"
+                    RadiateDurationInMilliseconds = "1800"
+                    RadiateStaggerDelayInMilliseconds = "5000"
+                    AutoStart = "false"
+                    HorizontalAlignment="Center"
+                    Canvas.ZIndex="300"
+                    VerticalAlignment="Top"/>
         <ctrl:ImageEx
             Grid.Row="3"
             Grid.Column="1"

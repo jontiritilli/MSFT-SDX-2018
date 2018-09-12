@@ -9,7 +9,8 @@
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding ExperienceDayWorkPopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
+    <Canvas x:Name="LayoutRoot">
+        <Grid
         x:Name="ContentArea">
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
@@ -25,11 +26,13 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".3*"/>
-            <ColumnDefinition Width=".7*"/>
-            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
@@ -46,6 +49,7 @@
             ShowSelectedLine="True"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Opacity="1"
             Grid.Row="3"
             Grid.Column="1"
             ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
@@ -55,8 +59,9 @@
             x:Name="AppSelectorImageKB"
             Grid.Row="3"            
             Grid.Column="2"
-            Grid.ColumnSpan="3"
-            HorizontalAlignment="Right"
+            Grid.ColumnSpan="2"
+            Opacity="1"
+            HorizontalAlignment="Center"
             BitmapImages="{x:Bind ViewModel.BMImages}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
@@ -65,7 +70,34 @@
             Grid.Row="4"
             Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
+            Opacity="1"
             TextStyle="Legal"
             />
-    </Grid>
+     
+        </Grid>
+
+        <Grid x:Name="grdCloseButton"
+              Canvas.Left="{x:Bind Path=ViewModel.ellipseGridCanvasSetLeft}"              
+              PointerPressed="PopClose_Click"
+              Canvas.Top="{x:Bind Path=ViewModel.closeEllipseTopMargin}">
+            <Ellipse
+                Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                Fill="White"
+                StrokeThickness="2"
+                Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0"
+                />
+            <ctrl:ImageEx
+                x:Name="CloseButtonImage"
+                ImageSource="{x:Bind Path=ViewModel.CloseButtonXURI}"
+                ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"                
+                Margin="0"/>
+        </Grid>
+
+    </Canvas>
 </Page>

@@ -286,6 +286,17 @@
     <Content Include="Assets\Accessories\inkingFish.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
+    <Content Include="Assets\Experience\appsDesktop.png" />
+    <Content Include="Assets\Experience\appsStudio.png" />
+    <Content Include="Assets\Experience\craftmanship.png" />
+    <Content Include="Assets\Experience\hero01.jpg" />
+    <Content Include="Assets\Experience\hero02.jpg" />
+    <Content Include="Assets\Experience\sketchbook.png" />
+    <Content Include="Assets\Icons\AppIcons\bluebeam.png" />
+    <Content Include="Assets\Icons\AppIcons\maya.png" />
+    <Content Include="Assets\Icons\AppIcons\premiere.png" />
+    <Content Include="Assets\Icons\AppIcons\psd.png" />
+    <Content Include="Assets\Icons\AppIcons\sketchbook.png" />
     <Content Include="Assets\Icons\ArtworkColors\blue.png" />
     <Content Include="Assets\Icons\ArtworkColors\blue_active.png" />
     <Content Include="Assets\Icons\ArtworkColors\orange.png" />
