@@ -60,6 +60,7 @@ namespace SDX.Toolkit.Controls
         Grid _tryItBox = null;
         ImageEx _imageX = null;
         ImageEx _tryItImage= null;
+        TextBlockEx _tryItButtonCaption = null;
 
         Storyboard _entranceStoryboard = null;
         Storyboard _radiatingStoryboardX = null;
@@ -448,12 +449,17 @@ namespace SDX.Toolkit.Controls
                 _entranceEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
-                _grid.Visibility = Visibility.Visible;
+                _grid.Opacity = 1d;
                 if (null != _tryItBox)
                 {
                     _tryItBox.Opacity = 0d;
                 }
             }
+        }
+
+        public void CloseTryIt()
+        {
+            HandleClick();
         }
 
         #endregion
@@ -595,10 +601,58 @@ namespace SDX.Toolkit.Controls
 
         public void HandleClick()
         {
-            if (TryItEnabled)
+            if (IsPinchTry)
             {
-                _grid.Visibility = Visibility.Collapsed;
+                _grid.Opacity = 0.0;
             }
+            if (TryItEnabled && null != this.PopupChild)
+            {
+                if (this.PopupChild.IsOpen)
+                {
+                    // close it
+                    this.PopupChild.IsOpen = false;
+                    _imageX.Opacity = 0.0;
+                    if(null != _tryItBox)
+                    {
+                        _tryItBox.Opacity = 1.0;
+                    }
+                    if (null != _tryItButtonCaption)
+                    {
+                        _tryItButtonCaption.Opacity = 1.0;
+                    }
+                }
+                else
+                {
+                    // if the horizontal offset is -1, calculate it
+                    if (-1 == this.PopupChild.HorizontalOffset)
+                    {
+                        this.PopupChild.HorizontalOffset = GetPopupHorizontalOffset();
+                    }
+
+                    // if the vertical offset is -1, calculate it
+                    if (-1 == this.PopupChild.VerticalOffset)
+                    {
+                        this.PopupChild.VerticalOffset = GetPopupVerticalOffset();
+                    }
+
+                    // open it
+                    this.PopupChild.IsOpen = true;
+                    _imageX.Opacity = 1.0;
+                    if (null != _tryItBox)
+                    {
+                        _tryItBox.Opacity = 0.0;
+                    }
+                    if (null != _tryItButtonCaption)
+                    {
+                        _tryItButtonCaption.Opacity = 0.0;
+                    }
+                    
+
+                    // telemetry
+                    //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+                }
+            }
+
             if (null != this.PopupChild)
             {
                 if (this.PopupChild.IsOpen)
@@ -629,7 +683,6 @@ namespace SDX.Toolkit.Controls
                     //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                 }
             }
-
             RaiseClickedEvent(this, new EventArgs());
         }
 
@@ -674,9 +727,12 @@ namespace SDX.Toolkit.Controls
             if (null == _grid)
             {
                 double GridWidth = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonGridWidth);
+
                 double RadiatingButtonHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
+
                 // height of the radiating button with a little added space for the radiating animation
                 double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.4;
+
                 // create the grid
                 _grid = new Grid()
                 {
@@ -772,7 +828,7 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "TryItTriangleCover",
                         Fill = TryItColor,
-                        Margin = new Thickness(0,0,1,2),
+                        Margin = new Thickness(0,0,1,3),
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Bottom
                     };
@@ -795,7 +851,7 @@ namespace SDX.Toolkit.Controls
 
                     _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
 
-                    TextBlockEx _tryItButtonCaption = new TextBlockEx
+                    _tryItButtonCaption = new TextBlockEx
                     {
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
@@ -924,6 +980,8 @@ namespace SDX.Toolkit.Controls
                         Width = RadiatingButtonHeight,
                         Height = RadiatingButtonHeight,
                         Fill = new SolidColorBrush(Colors.White),
+                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
+                        StrokeThickness = 2,
                         Opacity = RADIATE_OPACITY_DEFAULT,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -951,6 +1009,8 @@ namespace SDX.Toolkit.Controls
                         Width = RadiatingButtonHeight,
                         Height = RadiatingButtonHeight,
                         Fill = new SolidColorBrush(Colors.White),
+                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
+                        StrokeThickness = 2,
                         Opacity = 0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
