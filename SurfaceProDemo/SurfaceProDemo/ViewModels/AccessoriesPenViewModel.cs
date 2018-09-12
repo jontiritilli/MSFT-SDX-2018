@@ -23,7 +23,8 @@ namespace SurfaceProDemo.ViewModels
         public string Headline;
         public string Lede;
 
-        public string TryItTitle;
+        public string TryItCaption;
+        public string TryIt;
         public string TryItLede;
         public List<ListItem> ListItems = new List<ListItem>();
 

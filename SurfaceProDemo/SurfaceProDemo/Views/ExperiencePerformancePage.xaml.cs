@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
 using Windows.UI.Xaml;
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceProDemo.Views
 {
@@ -16,6 +17,8 @@ namespace SurfaceProDemo.Views
             get { return DataContext as ExperiencePerformanceViewModel; }
         }
 
+        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         #endregion
 
 
@@ -29,14 +32,22 @@ namespace SurfaceProDemo.Views
             timer.Tick += (sender, args) =>
             {// well this works? but ew
                 timer.Stop();
-                this.rButtonOne.PopupChild = FlipViewPage.Current.GetExperiencePagePopup();
+                this.rBtnTop.PopupChild = FlipViewPage.Current.GetExperiencePagePopup();
                 ExperiencePopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
-            };           
+            };
+            Canvas.SetTop(rBtnLeft, _canvasHeight * .50);
+            Canvas.SetLeft(rBtnLeft, _canvasWidth * .45);
+
+            Canvas.SetTop(rBtnTop, _canvasHeight * .30);
+            Canvas.SetLeft(rBtnTop, _canvasWidth * .55);
+
+            Canvas.SetTop(rBtnRight, _canvasHeight * .30);
+            Canvas.SetLeft(rBtnRight, _canvasWidth * .85);
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.rButtonOne.HandleClick();
+            this.rBtnTop.HandleClick();
         }
 
         #endregion
@@ -49,16 +60,28 @@ namespace SurfaceProDemo.Views
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
             SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Laptop, this.img_Laptop.TranslateDirection, 100, 500, 0);
-            this.rButtonOne.StartEntranceAnimation();
-            this.rButtonOne.StartRadiateAnimation();
+            this.rBtnLeft.StartEntranceAnimation();
+            this.rBtnLeft.StartRadiateAnimation();
+
+            this.rBtnTop.StartEntranceAnimation();
+            this.rBtnTop.StartRadiateAnimation();
+
+            this.rBtnRight.StartEntranceAnimation();
+            this.rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
-            this.rButtonOne.ResetEntranceAnimation();
-            this.rButtonOne.ResetRadiateAnimation();
+            this.rBtnTop.ResetEntranceAnimation();
+            this.rBtnTop.ResetRadiateAnimation();
+
+            this.rBtnLeft.ResetEntranceAnimation();
+            this.rBtnLeft.ResetRadiateAnimation();
+
+            this.rBtnRight.ResetEntranceAnimation();
+            this.rBtnRight.ResetRadiateAnimation();
 
 
         }

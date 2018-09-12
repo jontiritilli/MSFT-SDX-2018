@@ -38,7 +38,26 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
 
-        <!-- TODO: List goes here -->
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+            <ctrl:RadiatingButton
+                x:Name="rBtnCenter"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                IsRemovedOnInteraction="True"
+                TryItEnabled="True"
+                RadiatingButtonIcon="pen"
+                TryItText="{x:Bind Path=ViewModel.TryIt}"
+                TryItCaption="{x:Bind Path=ViewModel.TryItCaption}"                
+                AutoStart = "false"/>
+
+        </Canvas>
         <ctrl:List x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"
