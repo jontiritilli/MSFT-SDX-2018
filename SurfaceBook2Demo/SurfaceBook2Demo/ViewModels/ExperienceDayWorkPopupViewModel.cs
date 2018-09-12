@@ -9,6 +9,8 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Media;
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceBook2Demo.ViewModels
 {
@@ -17,6 +19,8 @@ namespace SurfaceBook2Demo.ViewModels
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
+
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
         private readonly BitmapImage BITMAPIMAGE_IMAGESELECTOR_IMAGE_1 = StyleHelper.GetApplicationBitmapImage(BitmapImages.PagePopupImage_1);
         private readonly BitmapImage BITMAPIMAGE_IMAGESELECTOR_IMAGE_2 = StyleHelper.GetApplicationBitmapImage(BitmapImages.PagePopupImage_2);
@@ -41,6 +45,13 @@ namespace SurfaceBook2Demo.ViewModels
 
         private const int SELECTORIMAGE_IMAGEHEIGHT = 588;
         private const int SELECTORIMAGE_IMAGEWIDTH = 1176;
+
+        private readonly double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
+        private readonly double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;
+        private readonly double _maxImageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
+        private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");
+        private readonly double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
+        private readonly double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
         #endregion
 
 
@@ -77,6 +88,14 @@ namespace SurfaceBook2Demo.ViewModels
             }
         }
 
+        public double radiatingButtonRadius;
+        public double closeIconHeight;
+
+        public string CloseButtonXURI;
+        public double ellipseGridCanvasSetLeft;
+        public double closeEllipseTopMargin;
+
+        public SolidColorBrush ellipseStroke;
         #endregion
 
 
@@ -94,6 +113,14 @@ namespace SurfaceBook2Demo.ViewModels
             ICON_WIDTH = BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED.DecodePixelWidth;
             this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
             this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
+
+            CloseButtonXURI = URI_X_IMAGE;
+            closeEllipseTopMargin = _closeEllipseTopMargin;
+            ellipseGridCanvasSetLeft = _maxImageWidth - _closeEllipseRightMargin - _radiatingButtonRadius;
+            radiatingButtonRadius = _radiatingButtonRadius;
+            closeIconHeight = _closeIconHeight;
+            ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
+
             this.ImagePairs = new Dictionary<int, ImagePair>();
 
             this.ImagePairs.Add(0, new ImagePair()

@@ -8,7 +8,8 @@
     Style="{StaticResource PageStyle}"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
-    <Grid
+    <Canvas x:Name="LayoutRoot">
+        <Grid
         x:Name="ContentArea">
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
@@ -70,23 +71,30 @@
             Opacity="1"
             TextStyle="Legal"
             />
-        <!-- Pop Close button I seriously have no idea why the columns for the grid wont let the button sit far right without that 300 margin-->
-        <Button x:Name="PopClose"
-                Grid.Row="0"
-                Grid.Column="2"
-                Width="46" Height="32"
-                Margin="0"
-                Padding="0"
-                VerticalAlignment="Top"
+        </Grid>
+
+        <Grid x:Name="grdCloseButton"
+              Canvas.Left="{x:Bind Path=ViewModel.ellipseGridCanvasSetLeft}"              
+              PointerPressed="PopClose_Click"
+              Canvas.Top="{x:Bind Path=ViewModel.closeEllipseTopMargin}">
+            <Ellipse
+                Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                Fill="White"
+                StrokeThickness="2"
+                Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
                 HorizontalAlignment="Center"
-                Style="{StaticResource NoInteractionButton}"
-                Click="PopClose_Click">
-            <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.1" />
-            </Button.Background>
-            <Button.Content>
-                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
-            </Button.Content>
-        </Button>
-    </Grid>
+                VerticalAlignment="Center"
+                Margin="0"
+                />
+            <ctrl:ImageEx
+                x:Name="CloseButtonImage"
+                ImageSource="{x:Bind Path=ViewModel.CloseButtonXURI}"
+                ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"                
+                Margin="0"/>
+        </Grid>
+
+    </Canvas>
 </Page>

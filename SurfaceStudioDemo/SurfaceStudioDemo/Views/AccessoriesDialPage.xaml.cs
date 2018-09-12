@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 
 namespace SurfaceStudioDemo.Views
 {
@@ -50,9 +51,9 @@ namespace SurfaceStudioDemo.Views
             // animations out
         }
 
-        private void PopClose_Click(object sender, RoutedEventArgs e)
+        private void PopClose_Click(object sender, PointerRoutedEventArgs e)
         {
-            CloseButton_Clicked(sender, e);
+            CloseButton_Clicked(sender, new RoutedEventArgs());
         }
         #endregion
     }

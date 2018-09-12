@@ -31,9 +31,6 @@ namespace SurfaceStudioDemo.Views
                 timer.Stop();
                 this.rButtonOne.PopupChild = FlipViewPage.Current.GetAccessoriesDialPopup();
                 AccessoriesDialPage.Current.CloseButton_Clicked += CloseButton_Clicked;
-
-
-
             };
         }
 

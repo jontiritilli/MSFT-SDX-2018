@@ -61,9 +61,9 @@ namespace SurfaceProDemo.Views
         }
         #endregion
 
-        private void PopClose_Click(object sender, RoutedEventArgs e)
+        private void PopClose_Click(object sender, PointerRoutedEventArgs e)
         {
-            CloseButton_Clicked(sender, e);
+            CloseButton_Clicked(sender, new RoutedEventArgs());
         }
     }
 }

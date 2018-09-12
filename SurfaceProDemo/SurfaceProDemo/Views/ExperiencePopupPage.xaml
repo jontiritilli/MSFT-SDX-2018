@@ -9,79 +9,94 @@
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding ExperiencePopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-
-    <Grid
-        x:Name="ContentArea">
-        <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
-        </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource TopMargin}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource BottomMargin}"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".3*"/>
-            <ColumnDefinition Width=".7*"/>
-            <ColumnDefinition Width="{StaticResource RightMargin}"/>
-        </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"     
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
+    <Canvas x:Name="LayoutRoot">
+            <Grid
+            x:Name="ContentArea">
+            <Grid.Background>
+                <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource TopMargin}"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="{StaticResource BottomMargin}"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+                <ColumnDefinition Width=".3*"/>
+                <ColumnDefinition Width=".7*"/>
+                <ColumnDefinition Width="{StaticResource RightMargin}"/>
+            </Grid.ColumnDefinitions>
+            <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"     
+                    Headline="{x:Bind Path=ViewModel.Headline}"
+                    Lede="{x:Bind Path=ViewModel.Lede}"
+                    HeadlineStyle="PageHeadline"
+                    LedeStyle="PageLede"                
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+            <!--Width="{StaticResource HeaderWidth}"-->
+            <ctrl:AppSelector
+                x:Name="AppSelectorKB"
+                URIs="{x:Bind Path=ViewModel.appSelectorData}"
+                AppSelectorMode="App"
+                ShowMessages="True"
+                MainOrientation="Vertical"
+                ShowSelectedLine="True"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
-        <!--Width="{StaticResource HeaderWidth}"-->
-        <ctrl:AppSelector
-            x:Name="AppSelectorKB"
-            URIs="{x:Bind Path=ViewModel.appSelectorData}"
-            AppSelectorMode="App"
-            ShowMessages="True"
-            MainOrientation="Vertical"
-            ShowSelectedLine="True"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Grid.Row="3"
-            Grid.Column="1"
-            Opacity="1"
-            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
-            />
-        <ctrl:AppSelectorImage
-            x:Name="AppSelectorImageKB"
-            Grid.Row="3"            
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            HorizontalAlignment="Center"
-            Opacity="1"
-            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+                VerticalAlignment="Top"
+                Grid.Row="3"
+                Grid.Column="1"
+                Opacity="1"
+                ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
+                ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
+                />
+            <ctrl:AppSelectorImage
+                x:Name="AppSelectorImageKB"
+                Grid.Row="3"            
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Opacity="1"
+                URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+                ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+                ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
 
-        <ctrl:TextBlockEx
-            Grid.Row="4"
-            Grid.Column="1"
-            Opacity="1"
-            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-            TextStyle="Legal"
-            />
+            <ctrl:TextBlockEx
+                Grid.Row="4"
+                Grid.Column="1"
+                Opacity="1"
+                Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+                TextStyle="Legal"
+                />
+        </Grid>
 
-        <!-- App Close button -->
-        <Button x:Name="PopClose" Grid.Row="0" Grid.Column="3" Width="46" Height="32" Margin="0,0,-15,0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource NoInteractionButton}" Click="PopClose_Click">
-            <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.1" />
-            </Button.Background>
-            <Button.Content>
-                <Image Width="46" Height="32" Source="/Assets/Universal/close-app-button.png"/>
-            </Button.Content>
-        </Button>
-    </Grid>
+        <Grid x:Name="grdCloseButton"
+              Canvas.Left="{x:Bind Path=ViewModel.ellipseGridCanvasSetLeft}"              
+              PointerPressed="PopClose_Click"
+              Canvas.Top="{x:Bind Path=ViewModel.closeEllipseTopMargin}">
+            <Ellipse
+                Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                Fill="White"
+                StrokeThickness="2"
+                Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0"
+                />
+            <ctrl:ImageEx
+                x:Name="CloseButtonImage"
+                ImageSource="{x:Bind Path=ViewModel.CloseButtonXURI}"
+                ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"                
+                Margin="0"/>
+        </Grid>
+        
+    </Canvas>
 </Page>

@@ -55,9 +55,9 @@ namespace SurfaceBook2Demo.Views
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
-        private void PopClose_Click(object sender, RoutedEventArgs e)
+        private void PopClose_Click(object sender, PointerRoutedEventArgs e)
         {
-            CloseButton_Clicked(sender, e);
+            CloseButton_Clicked(sender, new RoutedEventArgs());
         }
     }
 }

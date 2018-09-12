@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 using SurfaceProDemo.Services;
 using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace SurfaceProDemo.ViewModels
 {
@@ -13,6 +15,8 @@ namespace SurfaceProDemo.ViewModels
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
+
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close_app_x.png";
 
         private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
         private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
@@ -37,6 +41,13 @@ namespace SurfaceProDemo.ViewModels
 
         private const int SELECTORIMAGE_IMAGEHEIGHT = 588;
         private const int SELECTORIMAGE_IMAGEWIDTH = 1176;
+
+        private readonly double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
+        private readonly double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;
+        private readonly double _maxImageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
+        private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");
+        private readonly double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
+        private readonly double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
         #endregion
 
 
@@ -63,6 +74,14 @@ namespace SurfaceProDemo.ViewModels
         public string ColoringBookClearButtonURI;
         public double ICON_WIDTH = 96d;
 
+        public double radiatingButtonRadius;
+        public double closeIconHeight;
+
+        public string CloseButtonXURI;
+        public double ellipseGridCanvasSetLeft;
+        public double closeEllipseTopMargin;
+
+        public SolidColorBrush ellipseStroke;
         #endregion
 
 
@@ -79,7 +98,12 @@ namespace SurfaceProDemo.ViewModels
             AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
             this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
             this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
-
+            CloseButtonXURI = URI_X_IMAGE;
+            closeEllipseTopMargin = _closeEllipseTopMargin;
+            ellipseGridCanvasSetLeft = _maxImageWidth - _closeEllipseRightMargin - _radiatingButtonRadius;
+            radiatingButtonRadius = _radiatingButtonRadius;
+            closeIconHeight = _closeIconHeight;
+            ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,

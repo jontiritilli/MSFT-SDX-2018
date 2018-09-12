@@ -98,6 +98,11 @@
     <x:Double x:Key="CanvasWidth">1620</x:Double>
     <x:Double x:Key="CanvasHeight">980.64</x:Double>  <!-- 2160 - 198.72 (navbar) = 1961.28, 1961.28 / 2 (200% scaling) = 980.64 -->
 
+    <x:Double x:Key="ScreenWidth">1620</x:Double>
+    <x:Double x:Key="ScreenHeight">1080</x:Double>
+    <x:Double x:Key="CloseButtonRightMargin">107.475</x:Double>
+    <x:Double x:Key="CloseButtonTopMargin">87.92</x:Double>
+
     <x:Double x:Key="NavigationBarHeight">99.36</x:Double>
     <x:Double x:Key="NavigationBarLineHeight">8.1</x:Double>
     <x:Double x:Key="NavigationBarMargin">14.365</x:Double>

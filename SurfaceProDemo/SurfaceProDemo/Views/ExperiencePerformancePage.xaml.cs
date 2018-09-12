@@ -31,12 +31,7 @@ namespace SurfaceProDemo.Views
                 timer.Stop();
                 this.rButtonOne.PopupChild = FlipViewPage.Current.GetExperiencePagePopup();
                 ExperiencePopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
-
-
-
-            };
-            
-
+            };           
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
