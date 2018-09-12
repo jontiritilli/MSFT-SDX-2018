@@ -34,6 +34,7 @@ namespace SurfaceProDemo.ViewModels
 
         public string PopHeadline;
         public string PopLede;
+        public string PopTryItCaption;
         #endregion
 
         #region Construction

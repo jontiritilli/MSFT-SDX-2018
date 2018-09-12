@@ -367,6 +367,8 @@
     <Content Include="Assets\NavigationBar\forward-nav-arrow.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close_app_x.png" />
+    <Content Include="Assets\Universal\tryit.png" />
+    <Content Include="Assets\Universal\tryit_pen.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
