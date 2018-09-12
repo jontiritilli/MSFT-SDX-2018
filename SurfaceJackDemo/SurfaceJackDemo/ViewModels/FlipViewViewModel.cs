@@ -28,8 +28,19 @@ namespace SurfaceJackDemo.ViewModels
         public string NavBarSpecs;
         public string NavBarPartner;
 
+        // music bar playlist
+        public Playlist Playlist = null;
+
         // This method is a hack because UWP does not support binding a StaticResource
         // with a Converter, so we must add these properties to the ViewModel.
+        public GridLength MusicBarHeight
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerHeight));
+            }
+        }
+
         public GridLength NavigationBarHeight
         {
             get
@@ -66,6 +77,12 @@ namespace SurfaceJackDemo.ViewModels
             // render the navigation sections for the nav bar
             // (this has to happen AFTER the localization is loaded)
             RenderNavigation();
+
+            // load the playlist
+            if ((null != PlaylistService.Current) && (PlaylistService.Current.IsLoaded))
+            {
+                this.Playlist = PlaylistService.Current.DefaultPlaylist;
+            }
         }
 
         #endregion

@@ -121,7 +121,9 @@ namespace SurfaceJackDemo
             if (null != playlistService)
             {
                 // run this async because we don't need it to start the app
+#pragma warning disable CS4014
                 playlistService.Initialize();
+#pragma warning restore CS4014
             }
         }
 

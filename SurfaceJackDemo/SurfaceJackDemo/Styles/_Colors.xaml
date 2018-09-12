@@ -6,14 +6,14 @@
     <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"></SolidColorBrush>
 
     <!-- ColoringBook control -->
-    <Color x:Key="ColoringBookColorRed">#e53061</Color>
-    <Color x:Key="ColoringBookColorBlue">#0c6290</Color>
-    <Color x:Key="ColoringBookColorTeal">#98d8d8</Color>
-    <Color x:Key="ColoringBookColorOrange">#ffb367</Color>
-    <Color x:Key="ColoringBookColorPurple">#9765f5</Color>
+    <Color x:Key="ColoringBookColorRed">#FFe53061</Color>
+    <Color x:Key="ColoringBookColorBlue">#FF0c6290</Color>
+    <Color x:Key="ColoringBookColorTeal">#FF98d8d8</Color>
+    <Color x:Key="ColoringBookColorOrange">#FFffb367</Color>
+    <Color x:Key="ColoringBookColorPurple">#FF9765f5</Color>
 
     <!-- MusicBar control-->
-    <Color x:Key="MusicBarProgressBarBackground"></Color>
-    <Color x:Key="MusicBarProgressBarForeground"></Color>
+    <Color x:Key="MusicBarProgressBarBackground">#FF737373</Color>
+    <Color x:Key="MusicBarProgressBarForeground">#FF333333</Color>
     
 </ResourceDictionary>

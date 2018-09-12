@@ -26,9 +26,8 @@ namespace SurfaceJackDemo.Services
     {
         public static PlaylistService Current { get; private set; }
 
-        private Playlist _playlistDefault = null;
-        private Playlist _playlistCurrent = null;
-
+        public Playlist DefaultPlaylist = null;
+        public Playlist CurrentPlaylist = null;
 
         public PlaylistService()
         {
@@ -46,7 +45,7 @@ namespace SurfaceJackDemo.Services
 
             this.IsLoading = true;
 
-            if ((null == _playlistDefault) || (null == _playlistCurrent))
+            if ((null == DefaultPlaylist) || (null == CurrentPlaylist))
             {
                 // default playlist file path
                 string defaultPath = Path.Combine(Package.Current.InstalledLocation.Path, "playlist.json");
@@ -61,7 +60,7 @@ namespace SurfaceJackDemo.Services
                     if (!String.IsNullOrWhiteSpace(fileContents))
                     {
                         // deserialize it
-                        _playlistDefault = JsonConvert.DeserializeObject<Playlist>(fileContents);
+                        DefaultPlaylist = JsonConvert.DeserializeObject<Playlist>(fileContents);
                     }
                 }
                 catch (FileNotFoundException)
@@ -70,10 +69,10 @@ namespace SurfaceJackDemo.Services
                 }
 
                 // if we failed to load the defaults
-                if (null == _playlistDefault)
+                if (null == DefaultPlaylist)
                 {
                     // create them
-                    _playlistDefault = Playlist.CreateDefault();
+                    DefaultPlaylist = Playlist.CreateDefault();
                 }
 
                 // find the first playlist file we can and load that as the current language
@@ -110,7 +109,7 @@ namespace SurfaceJackDemo.Services
                                     string fileContents = await FileIO.ReadTextAsync(file);
 
                                     // deserialize into our language object
-                                    _playlistCurrent = JsonConvert.DeserializeObject<Playlist>(fileContents);
+                                    CurrentPlaylist = JsonConvert.DeserializeObject<Playlist>(fileContents);
                                 }
                             }
                         }
@@ -121,10 +120,10 @@ namespace SurfaceJackDemo.Services
                 }
 
                 // if we failed to load the current language
-                if (null == _playlistCurrent)
+                if (null == CurrentPlaylist)
                 {
                     // set it to the default
-                    _playlistCurrent = _playlistDefault;
+                    CurrentPlaylist = DefaultPlaylist;
                 }
             }
 

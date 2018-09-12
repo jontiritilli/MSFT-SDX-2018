@@ -23,6 +23,7 @@ using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 using Windows.Media.Playback;
 using Windows.Media.Core;
+using Windows.UI.Core;
 
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -122,9 +123,9 @@ namespace SDX.Toolkit.Controls
             // update the ui
             this.UpdateUI();
 
-    }
+        }
 
-    protected override void OnApplyTemplate()
+        protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
@@ -135,6 +136,14 @@ namespace SDX.Toolkit.Controls
 
         #region Public Properties
 
+        // these properties are to expose GridLengths of Size styles that the control needs.
+        // why do we need this? because it's UWP, and we can't use a Converter. FYM$
+        public GridLength PlayerHeight { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerHeight)); } }
+        public GridLength PlayerLeftMargin { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerLeftMargin)); } }
+        public GridLength PlayerRightMargin { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerRightMargin)); } }
+        public GridLength PlayerTrackSpacer { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerTrackSpacer)); } }
+        public GridLength PlayerButtonWidth { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonWidth)); } }
+        public GridLength PlayerButtonSpacer { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonSpacer)); } }
 
         #endregion
 
@@ -143,7 +152,7 @@ namespace SDX.Toolkit.Controls
 
         // PlayerPlaylist
         public static readonly DependencyProperty PlayerPlaylistProperty =
-            DependencyProperty.Register("Playlist", typeof(Playlist), typeof(MusicBar), new PropertyMetadata(null, OnPlayerPlaylistChanged));
+            DependencyProperty.Register("PlayerPlaylist", typeof(Playlist), typeof(MusicBar), new PropertyMetadata(null, OnPlayerPlaylistChanged));
 
         public Playlist PlayerPlaylist
         {
@@ -165,9 +174,9 @@ namespace SDX.Toolkit.Controls
         public static readonly DependencyProperty PreviousTrackIconUriProperty =
             DependencyProperty.Register("PreviousTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PREVIOUSTRACK));
 
-        public bool PreviousTrackIconUri
+        public string PreviousTrackIconUri
         {
-            get => (bool)GetValue(PreviousTrackIconUriProperty);
+            get => (string)GetValue(PreviousTrackIconUriProperty);
             set => SetValue(PreviousTrackIconUriProperty, value);
         }
 
@@ -175,9 +184,9 @@ namespace SDX.Toolkit.Controls
         public static readonly DependencyProperty NextTrackIconUriProperty =
             DependencyProperty.Register("NextTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_NEXTTRACK));
 
-        public bool NextTrackIconUri
+        public string NextTrackIconUri
         {
-            get => (bool)GetValue(NextTrackIconUriProperty);
+            get => (string)GetValue(NextTrackIconUriProperty);
             set => SetValue(NextTrackIconUriProperty, value);
         }
 
@@ -185,9 +194,9 @@ namespace SDX.Toolkit.Controls
         public static readonly DependencyProperty PlayIconUriProperty =
             DependencyProperty.Register("PlayIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PLAY));
 
-        public bool PlayIconUri
+        public string PlayIconUri
         {
-            get => (bool)GetValue(PlayIconUriProperty);
+            get => (string)GetValue(PlayIconUriProperty);
             set => SetValue(PlayIconUriProperty, value);
         }
 
@@ -195,72 +204,23 @@ namespace SDX.Toolkit.Controls
         public static readonly DependencyProperty PauseIconUriProperty =
             DependencyProperty.Register("PauseIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PAUSE));
 
-        public bool PauseIconUri
+        public string PauseIconUri
         {
-            get => (bool)GetValue(PauseIconUriProperty);
+            get => (string)GetValue(PauseIconUriProperty);
             set => SetValue(PauseIconUriProperty, value);
         }
 
-        // EqualizerIconUri0
-        public static readonly DependencyProperty EqualizerIconUri0Property =
-            DependencyProperty.Register("EqualizerIconUri0", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_EQUALIZER_00));
+        // EqualizerUris
+        public static readonly DependencyProperty EqualizerUrisProperty =
+            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(NavigationBar), 
+                new PropertyMetadata(new List<string>() {URI_EQUALIZER_00, URI_EQUALIZER_01, URI_EQUALIZER_02, URI_EQUALIZER_03,
+                                                            URI_EQUALIZER_04, URI_EQUALIZER_05}));
 
-        public bool EqualizerIconUri0
+        public List<string> EqualizerUris
         {
-            get => (bool)GetValue(EqualizerIconUri0Property);
-            set => SetValue(EqualizerIconUri0Property, value);
+            get => (List<string>)GetValue(EqualizerUrisProperty);
+            set => SetValue(EqualizerUrisProperty, value);
         }
-
-        // EqualizerIconUri1
-        public static readonly DependencyProperty EqualizerIconUri1Property =
-            DependencyProperty.Register("EqualizerIconUri1", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_EQUALIZER_01));
-
-        public bool EqualizerIconUri1
-        {
-            get => (bool)GetValue(EqualizerIconUri1Property);
-            set => SetValue(EqualizerIconUri1Property, value);
-        }
-
-        // EqualizerIconUri2
-        public static readonly DependencyProperty EqualizerIconUri2Property =
-            DependencyProperty.Register("EqualizerIconUri2", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_EQUALIZER_02));
-
-        public bool EqualizerIconUri2
-        {
-            get => (bool)GetValue(EqualizerIconUri2Property);
-            set => SetValue(EqualizerIconUri2Property, value);
-        }
-
-        // EqualizerIconUri3
-        public static readonly DependencyProperty EqualizerIconUri3Property =
-            DependencyProperty.Register("EqualizerIconUri3", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_EQUALIZER_03));
-
-        public bool EqualizerIconUri3
-        {
-            get => (bool)GetValue(EqualizerIconUri3Property);
-            set => SetValue(EqualizerIconUri3Property, value);
-        }
-
-        // EqualizerIconUri4
-        public static readonly DependencyProperty EqualizerIconUri4Property =
-            DependencyProperty.Register("EqualizerIconUri4", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_EQUALIZER_04));
-
-        public bool EqualizerIconUri4
-        {
-            get => (bool)GetValue(EqualizerIconUri4Property);
-            set => SetValue(EqualizerIconUri4Property, value);
-        }
-
-        // EqualizerIconUri5
-        public static readonly DependencyProperty EqualizerIconUri5Property =
-            DependencyProperty.Register("EqualizerIconUri5", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_EQUALIZER_05));
-
-        public bool EqualizerIconUri5
-        {
-            get => (bool)GetValue(EqualizerIconUri5Property);
-            set => SetValue(EqualizerIconUri5Property, value);
-        }
-
 
         #endregion
 
@@ -272,14 +232,14 @@ namespace SDX.Toolkit.Controls
 
         private void RaiseInteractedEvent(MusicBar musicBar, PlayerInteractionEventArgs e)
         {
-            Interacted?.Invoke(musicBar, e);
+            this.Interacted?.Invoke(musicBar, e);
         }
 
         private void RaiseInteractedEvent(MusicBar musicBar, PlayerInteractions playerInteraction, string artistName, string trackTitle)
         {
             PlayerInteractionEventArgs args = new PlayerInteractionEventArgs(playerInteraction, artistName, trackTitle);
 
-            RaiseInteractedEvent(musicBar, args);
+            this.RaiseInteractedEvent(musicBar, args);
         }
 
         #endregion
@@ -290,8 +250,14 @@ namespace SDX.Toolkit.Controls
         private void LoadPlaylist()
         {
             // do we have a list?
-            if ((null != this.PlayerPlaylist) && (null != this.PlayerPlaylist.Tracks) && (this.PlayerPlaylist.Tracks.Count > 0))
+            if (this.IsPlaylistValid)
             {
+                // if we have a media player already, stop it
+                if (this.IsPlayerValid)
+                {
+                    this.mediaPlayer.Pause();
+                }
+
                 // create the media playback list
                 this.mediaPlaybackList = new MediaPlaybackList()
                 {
@@ -302,12 +268,28 @@ namespace SDX.Toolkit.Controls
                 // add event handlers
                 this.mediaPlaybackList.CurrentItemChanged += this.MediaPlaybackList_CurrentItemChanged;
 
+                // first item to play
+                MediaPlaybackItem firstItem = null;
+
                 // loop through our tracks
                 foreach (PlaylistTrack track in this.PlayerPlaylist.Tracks)
                 {
+                    MediaPlaybackItem item = new MediaPlaybackItem(MediaSource.CreateFromUri(new Uri(track.MediaSourceUri)));
+
                     // create a MediaPlaybackItem and add it to the playback list
-                    this.mediaPlaybackList.Items.Add(new MediaPlaybackItem(MediaSource.CreateFromUri(new Uri(track.MediaSourceUri))));
+                    this.mediaPlaybackList.Items.Add(item);
+
+                    // have we saved the first item yet?
+                    if (null == firstItem)
+                    {
+                        // no, so save this item
+                        firstItem = item;
+                    }
                 }
+
+                // set the first item
+                this.mediaPlaybackList.StartingItem = firstItem;
+                this.PlayerPlaylist.SelectedIndex = 0;
 
                 // create the media player (every time)
                 this.mediaPlayer = new MediaPlayer()
@@ -331,7 +313,7 @@ namespace SDX.Toolkit.Controls
             {
                 bool canGoBack = false;
 
-                if (0 < this.PlayerPlaylist.SelectedIndex)
+                if ((this.IsPlaylistValid) && (0 < this.PlayerPlaylist.SelectedIndex))
                 {
                     canGoBack = true;
                 }
@@ -346,7 +328,7 @@ namespace SDX.Toolkit.Controls
             {
                 bool canGoForward = false;
 
-                if (this.PlayerPlaylist.SelectedIndex < (this.PlayerPlaylist.Tracks.Count - 1))
+                if ((this.IsPlaylistValid) && (this.PlayerPlaylist.SelectedIndex < (this.PlayerPlaylist.Tracks.Count - 1)))
                 {
                     canGoForward = true;
                 }
@@ -355,24 +337,122 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        public bool IsPlayerValid
+        {
+            get
+            {
+                bool isPlayerValid = false;
+
+                if ((null != this.mediaPlayer) && (null != this.mediaPlaybackList) && (this.mediaPlaybackList.Items.Count > 0))
+                {
+                    isPlayerValid = true;
+                }
+
+                return isPlayerValid;
+            }
+        }
+
+        public bool IsPlaylistValid
+        {
+            get
+            {
+                bool isPlaylistValid = false;
+
+                if ((null != this.PlayerPlaylist) && (null != this.PlayerPlaylist.Tracks) && (this.PlayerPlaylist.Tracks.Count > 0))
+                {
+                    isPlaylistValid = true;
+                }
+
+                return isPlaylistValid;
+            }
+        }
+
         public void Play()
         {
+            // if player and playlist are valid
+            if ((this.IsPlayerValid) && (this.IsPlaylistValid))
+            {
+                // play
+                this.mediaPlayer.Play();
 
+                // update player status
+                this.PlayerStatus = PlayerStatii.Playing;
+
+                // update the ui
+                this.UpdateUI();
+
+                // raise event
+                PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
+                RaiseInteractedEvent(this, PlayerInteractions.Play, track.ArtistName, track.TrackTitle);
+            }
         }
 
         public void Pause()
         {
+            // if player and playlist are valid
+            if ((this.IsPlayerValid) && (this.IsPlaylistValid))
+            {
+                // pause
+                this.mediaPlayer.Pause();
 
+                // update player status
+                this.PlayerStatus = PlayerStatii.Paused;
+
+                // update the ui
+                this.UpdateUI();
+
+                // raise event
+                PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
+                RaiseInteractedEvent(this, PlayerInteractions.Pause, track.ArtistName, track.TrackTitle);
+            }
         }
 
         public void MoveToNextTrack()
         {
+            // if we have a player and playlist
+            if ((this.IsPlayerValid) && (this.IsPlaylistValid))
+            {
+                // can we go forward?
+                if (this.CanGoForward)
+                {
+                    // update the media player
+                    this.mediaPlaybackList.MoveNext();
 
+                    // update our selected index
+                    this.PlayerPlaylist.SelectedIndex++;
+
+                    // update our UI
+                    this.UpdateUI();
+
+                    // raise event
+                    PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
+                    RaiseInteractedEvent(this, PlayerInteractions.NextTrack, track.ArtistName, track.TrackTitle);
+                }
+            }
         }
 
         public void MoveToPreviousTrack()
         {
+            // if we have a player and a playlist
+            if ((this.IsPlayerValid) && (this.IsPlaylistValid))
+            {
+                // can we go back?
+                if (this.CanGoBack)
+                {
+                    // update the media player
+                    this.mediaPlaybackList.MovePrevious();
 
+                    // update our selected index
+                    this.PlayerPlaylist.SelectedIndex--;
+
+                    // update our UI
+                    this.UpdateUI();
+
+                    // raise event
+                    PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
+                    RaiseInteractedEvent(this, PlayerInteractions.PreviousTrack, track.ArtistName, track.TrackTitle);
+                }
+            }
         }
 
         #endregion
@@ -382,7 +462,9 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-
+            //TestHelper.AddGridCellBorders(this.LayoutRoot, 1, 3, Colors.Red);
+            //TestHelper.AddGridCellBorders(this.TrackInfo, 1, 5, Colors.Orange);
+            //TestHelper.AddGridCellBorders(this.PlayerButtons, 1, 9, Colors.Yellow);
         }
 
         private void OnSizeChanged(object sender, RoutedEventArgs e)
@@ -404,19 +486,58 @@ namespace SDX.Toolkit.Controls
 
         private static void OnPlayerStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is MusicBar player)
-            {
-                // TODO: Implement this.
-            }
+
+        }
+
+        private void PreviousTrackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.MoveToPreviousTrack();
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Play();
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Pause();
+        }
+
+        private void NextTrackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.MoveToNextTrack();
+        }
+
+        private void EqualizerButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void MediaPlaybackList_CurrentItemChanged(MediaPlaybackList sender, CurrentMediaPlaybackItemChangedEventArgs args)
         {
-            // update our selected index
-            this.PlayerPlaylist.SelectedIndex = (int)sender.CurrentItemIndex;
+#pragma warning disable CS4014
+            Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                // is our playlist valid?
+                if (this.IsPlaylistValid)
+                {
+                    // NOTE: No real reason to do this since MediaPlaybackList just keeps 
+                    // fucking up the number it gives us. Our index is updated in our Move* methods already.
+                    ////// update our selected index
+                    ////this.PlayerPlaylist.SelectedIndex = (int)sender.CurrentItemIndex;
 
-            // update the UI
-            this.UpdateUI();
+                    ////// the player does not always give a correct number for item 0
+                    ////if (-1 == this.PlayerPlaylist.SelectedIndex)
+                    ////{
+                    ////    this.PlayerPlaylist.SelectedIndex = 0;
+                    ////}
+
+                    // update the UI
+                    this.UpdateUI();
+                }
+            });
+#pragma warning restore CS4014
         }
 
         private void PlaybackSession_PositionChanged(MediaPlaybackSession sender, object args)
@@ -471,12 +592,7 @@ namespace SDX.Toolkit.Controls
                     break;
             }
 
-            //// i hate this, but App is not getting these keys
-            //App.Current.HandleKeyUp(key);
-
-            //return handled;
-
-            return false;
+            return handled;
         }
 
         #endregion
@@ -485,38 +601,94 @@ namespace SDX.Toolkit.Controls
 
         private void UpdateUI()
         {
-            // update artist name
+#pragma warning disable CS4014
+            Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (this.IsPlaylistValid)
+                {
+                    // get the current track
+                    PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
 
-            // update track title
+                    // if we have a track
+                    if (null != track)
+                    {
+                        // update artist name
+                        this.ArtistName.Text = track.ArtistName;
 
-            // update progress bar
+                        // update track title
+                        this.TrackTitle.Text = track.TrackTitle;
 
-            // update button states
-            //  - previous track
-            //  - play/pause
-            //  - next track
+                        // update progress bar
+                        // this is updated separately
 
-            // update equalizer
+                        // update previous track button
+                        this.PreviousTrackIcon.Opacity = (this.CanGoBack) ? 1.0 : 0.6;
+                        this.PreviousTrackButton.IsEnabled = (this.CanGoBack);
+
+                        // update play/pause/equalizer
+                        if ((PlayerStatii.NotStarted == this.PlayerStatus) || (PlayerStatii.Paused == this.PlayerStatus))
+                        {
+                            this.PlayButton.Visibility = Visibility.Visible;
+                            this.PauseButton.Visibility = Visibility.Collapsed;
+                            // stop equalizer
+                        }
+                        else
+                        {
+                            this.PlayButton.Visibility = Visibility.Collapsed;
+                            this.PauseButton.Visibility = Visibility.Visible;
+                            // start equalizer
+                        }
+
+                        //  update next track
+                        this.NextTrackIcon.Opacity = (this.CanGoForward) ? 1.0 : 0.6;
+                        this.NextTrackButton.IsEnabled = (this.CanGoForward);
+
+                        // update equalizer
+                        if (null != this.EqualizerIcon)
+                        {
+                            switch(this.PlayerStatus)
+                            {
+                                case PlayerStatii.NotStarted:
+                                case PlayerStatii.Paused:
+                                default:
+                                    this.EqualizerIcon.Stop();
+                                    break;
+
+                                case PlayerStatii.Playing:
+                                    this.EqualizerIcon.Start();
+                                    break;
+                            }
+                        }
+                    }
+                }
+            });
+#pragma warning restore CS4014
         }
 
         private void UpdateTrackPosition(TimeSpan position, TimeSpan duration)
         {
-            if (null != this.Scrub)
+#pragma warning disable CS4014
+            Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                double val = position.TotalMilliseconds;
-                double max = duration.TotalMilliseconds;
+                if (null != this.Scrub)
+                {
+                    double val = position.TotalMilliseconds;
+                    double max = duration.TotalMilliseconds;
 
-                this.Scrub.Value = (val / max);
-            }
+                    this.Scrub.Value = (val / max);
+                }
+            });
+#pragma warning restore CS4014
         }
 
+
+
         #endregion
-
-
 
         #region UI Helpers
 
         #endregion
+
 
     }
 }

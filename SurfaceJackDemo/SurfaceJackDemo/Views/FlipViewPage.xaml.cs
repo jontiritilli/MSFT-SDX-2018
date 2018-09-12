@@ -88,6 +88,9 @@ namespace SurfaceJackDemo.Views
             }
             this.BottomNavBar.IsHomeEnabled = true;
 
+            // initialize the music bar
+            this.MusicBar.PlayerPlaylist = ViewModel.Playlist;
+
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
             {

@@ -282,7 +282,9 @@ namespace SDX.Toolkit.Controls
         {
             if (null != this.CTAUri)
             {
+#pragma warning disable CS4014
                 Launcher.LaunchUriAsync(this.CTAUri, new LauncherOptions() { DisplayApplicationPicker = false });
+#pragma warning restore CS4014
             }
 
             if (!String.IsNullOrEmpty(this.TelemetryId))

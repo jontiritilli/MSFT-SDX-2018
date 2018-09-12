@@ -244,6 +244,7 @@ namespace SDX.Toolkit.Controls
                 VerticalAlignment = this.VerticalContentAlignment,
                 Opacity = 1.0d
             };
+
             if (!String.IsNullOrWhiteSpace(this.ImageSource) || !String.IsNullOrWhiteSpace(this.ImageSourceSVG))
             {                
                 if (!String.IsNullOrWhiteSpace(this.ImageSource))
