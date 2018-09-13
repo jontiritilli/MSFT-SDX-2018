@@ -11,7 +11,11 @@
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
 
-    <Grid Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0" Background="Transparent">
+    <Grid Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+        
         <!-- Top row is for FlipView and its content, second is for music bar, bottom is for NavBar -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

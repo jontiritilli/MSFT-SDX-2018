@@ -15,7 +15,20 @@ namespace SurfaceJackDemo.ViewModels
 {
     public class FlipViewViewModel : ViewModelBase
     {
+        #region Constants
+
+        private const string URI_BACKGROUND_CRUZ = "ms-appx:///Assets/Backgrounds/cruz_generic_bg.png";
+        private const string URI_BACKGROUND_CAPROCK = "ms-appx:///Assets/Backgrounds/caprock_generic_bg.jpg";
+        private const string URI_BACKGROUND_FOXBURG = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
+        private const string URI_BACKGROUND_SB213 = "ms-appx:///Assets/Backgrounds/sb2_generic_bg.jpg";
+        private const string URI_BACKGROUND_SB215 = "ms-appx:///Assets/Backgrounds/sb2_15_generic_bg.jpg";
+
+        #endregion
+
         #region Public Properties
+
+        // background
+        public string BackgroundUri;
 
         // our navigation sections for the navigation bar
         public List<NavigationSection> Sections = new List<NavigationSection>();
@@ -82,6 +95,33 @@ namespace SurfaceJackDemo.ViewModels
             if ((null != PlaylistService.Current) && (PlaylistService.Current.IsLoaded))
             {
                 this.Playlist = PlaylistService.Current.DefaultPlaylist;
+            }
+
+            // determine background
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Pro:
+                case DeviceType.Unknown:
+                case DeviceType.Go:
+                default:
+                    this.BackgroundUri = URI_BACKGROUND_CRUZ;
+                    break;
+
+                case DeviceType.Laptop:
+                    this.BackgroundUri = URI_BACKGROUND_FOXBURG;
+                    break;
+
+                case DeviceType.Studio:
+                    this.BackgroundUri = URI_BACKGROUND_CAPROCK;
+                    break;
+
+                case DeviceType.Book13:
+                    this.BackgroundUri = URI_BACKGROUND_SB213;
+                    break;
+
+                case DeviceType.Book15:
+                    this.BackgroundUri = URI_BACKGROUND_SB215;
+                    break;
             }
         }
 

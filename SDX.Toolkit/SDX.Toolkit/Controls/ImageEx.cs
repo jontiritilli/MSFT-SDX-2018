@@ -4,6 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -13,10 +18,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.UI.Core;
-using Windows.Storage.Streams;
 using SDX.Toolkit.Helpers;
 
 
@@ -30,6 +31,8 @@ namespace SDX.Toolkit.Controls
     {
         #region Constants
 
+        private const string URI_BASE_APPDATA = "ms-appdata:///local/IdleContent/{0}";
+
         #endregion
 
 
@@ -37,9 +40,6 @@ namespace SDX.Toolkit.Controls
 
         private Border _layoutRoot;
         private Image _image;
-
-        private DispatcherTimer _timer = null;
-        private int _dispatchCount = 0;
 
         #endregion
 
@@ -80,17 +80,15 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageSourceProperty, value); }
         }
 
-        // ImageSourceSVG
-        public static readonly DependencyProperty ImageSourceSVGProperty =
-            DependencyProperty.Register("ImageSourceSVG", typeof(string), typeof(ImageEx), new PropertyMetadata(null, OnImageSourceSVGChanged));
+        // BitmapImage
+        public static readonly DependencyProperty BitmapImageProperty =
+        DependencyProperty.Register("BitmapImage", typeof(BitmapImage), typeof(ImageEx), new PropertyMetadata(null, OnBitmapImageChanged));
 
-
-        public string ImageSourceSVG
+        public BitmapImage BitmapImage
         {
-            get { return (string)GetValue(ImageSourceSVGProperty); }
-            set { SetValue(ImageSourceSVGProperty, value); }
+            get { return (BitmapImage)GetValue(BitmapImageProperty); }
+            set { SetValue(BitmapImageProperty, value); }
         }
-
 
         // ImageWidth
         public static readonly DependencyProperty ImageWidthProperty =
@@ -100,56 +98,6 @@ namespace SDX.Toolkit.Controls
         {
             get { return (double)GetValue(ImageWidthProperty); }
             set { SetValue(ImageWidthProperty, value); }
-        }
-
-        // FadeInCompletedHandler
-        public static readonly DependencyProperty FadeInCompletedHandlerProperty =
-            DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(ImageEx), new PropertyMetadata(null));
-
-        public EventHandler<object> FadeInCompletedHandler
-        {
-            get { return (EventHandler<object>)GetValue(FadeInCompletedHandlerProperty); }
-            set { SetValue(FadeInCompletedHandlerProperty, value); }
-        }
-
-        // FadeOutCompletedHandler
-        public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
-            DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(ImageEx), new PropertyMetadata(null));
-
-        public EventHandler<object> FadeOutCompletedHandler
-        {
-            get { return (EventHandler<object>)GetValue(FadeOutCompletedHandlerProperty); }
-            set { SetValue(FadeOutCompletedHandlerProperty, value); }
-        }
-
-        // DurationInMilliseconds
-        public static readonly DependencyProperty DurationInMillisecondsProperty =
-            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(ImageEx), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
-
-        public double DurationInMilliseconds
-        {
-            get { return (double)GetValue(DurationInMillisecondsProperty); }
-            set { SetValue(DurationInMillisecondsProperty, value); }
-        }
-
-        // StaggerDelayInMilliseconds
-        public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(ImageEx), new PropertyMetadata(0d, OnDurationInMillisecondsChanged));
-
-        public double StaggerDelayInMilliseconds
-        {
-            get { return (double)GetValue(StaggerDelayInMillisecondsProperty); }
-            set { SetValue(StaggerDelayInMillisecondsProperty, value); }
-        }
-
-        // AutoStart
-        public static readonly DependencyProperty AutoStartProperty =
-        DependencyProperty.Register("AutoStart", typeof(bool), typeof(ImageEx), new PropertyMetadata(true, OnAutoStartChanged));
-
-        public bool AutoStart
-        {
-            get { return (bool)GetValue(AutoStartProperty); }
-            set { SetValue(AutoStartProperty, value); }
         }
 
         // TranslateDirection
@@ -162,16 +110,6 @@ namespace SDX.Toolkit.Controls
             set { SetValue(TranslateDirectionProperty, value); }
         }
 
-
-        // BitmapImage
-        public static readonly DependencyProperty BitmapImageProperty =
-        DependencyProperty.Register("BitmapImage", typeof(BitmapImage), typeof(ImageEx), new PropertyMetadata(new BitmapImage(), OnBitmapImageChanged));
-
-        public BitmapImage BitmapImage
-        {
-            get { return (BitmapImage)GetValue(BitmapImageProperty); }
-            set { SetValue(BitmapImageProperty, value); }
-        }
         #endregion
 
 
@@ -184,39 +122,31 @@ namespace SDX.Toolkit.Controls
 
         private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
-        }
-
-        private static void OnImageWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private static void OnTranslateDirectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-
+            if (d is ImageEx imageEx)
+            {
+                imageEx.RenderUI();
+            }
         }
 
         private static void OnBitmapImageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is ImageEx imageEx)
+            {
+                imageEx.RenderUI();
+            }
         }
 
-        private static void OnImageSourceSVGChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnImageWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is ImageEx imageEx)
+            {
+                imageEx.RenderUI();
+            }
         }
 
+        private static void OnTranslateDirectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
 
         #endregion
 
@@ -225,107 +155,80 @@ namespace SDX.Toolkit.Controls
 
         private void RenderUI()
         {
-            // get the layout base (a canvas here)
+            // get the layout root (a border here)
             _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
+            if (null == _layoutRoot) { return; }
 
-            // if we can't get the layout root, we can't do anything
-            if (null == _layoutRoot)
-            {
-                return;
-            }
+            // clear the layout children
+            _layoutRoot.Child = null;
 
-            // if we have a valid image source and width
             // create the image
             _image = new Image()
             {
-                //Source = bitmapImage,
                 Width = this.ImageWidth,
                 HorizontalAlignment = this.HorizontalContentAlignment,
                 VerticalAlignment = this.VerticalContentAlignment,
-                Opacity = 1.0d
+                Opacity = 1.0d,
             };
 
-            if (!String.IsNullOrWhiteSpace(this.ImageSource) || !String.IsNullOrWhiteSpace(this.ImageSourceSVG))
-            {                
+            // TEST ONLY -- add failed error handler
+            _image.ImageFailed += Image_ImageFailed;
+
+            // add the image to the layout root
+            _layoutRoot.Child = _image;
+
+            // load the image source
+            // ---------------------------------------------
+            // do we have a bitmapimage?
+            if (null != this.BitmapImage)
+            {
+                // yes, so just load it
+                _image.Source = this.BitmapImage;
+            }
+            else
+            {
+                // no bitmapimage provided, so try to use source
                 if (!String.IsNullOrWhiteSpace(this.ImageSource))
                 {
-                    if (this.ImageSource.StartsWith(@"ms-appx:"))
+                    // here are the rules for how this works. you must either provide
+                    // 1) a full URI starting with ms-appx:/// or ms-appdata:///, 
+                    // OR
+                    // 2) a bare filename representing a file in LocalState/IdleContent
+
+                    // if we don't start with one of the required prefixes
+                    if (!this.ImageSource.StartsWith(@"ms-appx:") && !this.ImageSource.StartsWith(@"ms-appdata:"))
                     {
-                        // just set the image source
-                        _image.Source = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth };
+                        // convert this to a ms-appdata: uri
+                        this.ImageSource = String.Format(URI_BASE_APPDATA, this.ImageSource);
                     }
-                    else
+
+                    // now we should start with one of the correct prefixes in all cases
+                    if (this.ImageSource.StartsWith(@"ms-appx:") || this.ImageSource.StartsWith(@"ms-appdata:"))
                     {
-                        //// get a reference to the file from local storage (IdleContent)
-                        //StorageFile bitmapFile = ConfigurationService.Current.GetFileFromLocalStorage(this.ImageSource);
+                        // is this an SVG or raster image?
+                        if (this.ImageSource.EndsWith(@".svg"))
+                        {
+                            // this is an SVG image
+                            _image.Source = new SvgImageSource() { UriSource = new Uri(this.ImageSource), RasterizePixelWidth = this.ImageWidth };
+                        }
+                        else
+                        {
+                            // assume this is a bmp, png, jpg, gif or other supported raster image
 
-                        //// if we got it
-                        //if (null != bitmapFile)
-                        //{
-                        //    bitmapImage = new BitmapImage() { DecodePixelWidth = (int)this.ImageWidth };
-
-                        //    // otherwise we need to load from the filesystem
-                        //    AsyncHelper.RunSync(() => LoadBitmapFromFileAsync(bitmapImage, bitmapFile));
-                        //}
+                            // Image understands ms-appx: and ms-appdata:, so just set the image source
+                            _image.Source = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth };
+                        }
                     }
                 }
-                else if (!String.IsNullOrWhiteSpace(this.ImageSourceSVG))
-                {
-                    _image.Source = new SvgImageSource() { UriSource = new Uri(ImageSourceSVG), RasterizePixelWidth = this.ImageWidth };
-                }
-                // if the image source doesn't start with "ms-appx:", then we need to look for it in the
-                // local folder and load it from there.
-                // set image source; if the image is an app asset
-
-
-
-                //_image.ImageFailed += this.Image_ImageFailed;
-
-                // add the image to the layout root
-                _layoutRoot.Child = _image;
-
             }
-            else if(!(this.BitmapImage is null))// bitmap image passed in
-            {
-
-                // create the image with full opaque b/c fade in and translate handled by parent page
-                _image = new Image()
-                {
-                    Source = this.BitmapImage,
-                    Width = this.BitmapImage.DecodePixelWidth,
-                    HorizontalAlignment = this.HorizontalContentAlignment,
-                    VerticalAlignment = this.VerticalContentAlignment,
-                    Opacity = 1.0d
-                };
-
-                // add the image to the layout root
-                _layoutRoot.Child = _image;
-            }
+            // ---------------------------------------------
         }
 
-        //private async Task LoadBitmapFromFileAsync(BitmapImage bitmapImage, StorageFile imageFile)
-        //{
-        //    if ((null == bitmapImage) || (null == imageFile))
-        //    {
-        //        return;
-        //    }
-
-        //    // set the bitmap source on the UI thread
-        //    bitmapImage.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-        //    {
-        //        // create a stream for the image file
-        //        using (IRandomAccessStream fileStream = await imageFile.OpenReadAsync())
-        //        {
-        //            // set the image source
-        //            bitmapImage.SetSourceAsync(fileStream);
-        //        }
-        //    });
-        //}
-
-        //private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            // TEST ONLY
+            throw new BadImageFormatException(e.ErrorMessage);
+        }
 
         #endregion
 

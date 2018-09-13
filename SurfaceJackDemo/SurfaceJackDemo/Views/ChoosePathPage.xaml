@@ -4,9 +4,75 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding ChoosePathViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Device One -->
+        <ctrl:ImageEx x:Name="DeviceOneImage" Grid.Row="2" Grid.Column="1"
+                        ImageSource="ms-appx:///Assets/Experience/path_cruz.png"
+                        ImageWidth="600"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+        <ctrl:TextBlockEx x:Name="DeviceOneTitle" Grid.Row="4" Grid.Column="1"
+                       Text="{x:Bind Path=ViewModel.DeviceOneTitle}"
+                       TextStyle="PageHeadline"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top" />
+
+        <Button x:Name="DeviceOneButton" Grid.Row="6" Grid.Column="1"
+                  Content="{x:Bind Path=ViewModel.DeviceOneCTA}"
+                  Style="{StaticResource CallToActionButton}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Click="DeviceOneButton_Click"/>
+
+
+        <!-- Device Two -->
+        <ctrl:ImageEx x:Name="DeviceTwoImage" Grid.Row="2" Grid.Column="3"
+                        ImageSource="ms-appx:///Assets/Experience/path_joplin.png"
+                        ImageWidth="600"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+
+        <ctrl:TextBlockEx x:Name="DeviceTwoTitle" Grid.Row="4" Grid.Column="3"
+                       Text="{x:Bind Path=ViewModel.DeviceTwoTitle}"
+                       TextStyle="PageHeadline"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top" />
+
+        <Button x:Name="DeviceTwoButton" Grid.Row="6" Grid.Column="3"
+                  Content="{x:Bind Path=ViewModel.DeviceTwoCTA}"
+                  Style="{StaticResource CallToActionButton}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Click="DeviceTwoButton_Click"/>
+
+    </Grid>
 </Page>

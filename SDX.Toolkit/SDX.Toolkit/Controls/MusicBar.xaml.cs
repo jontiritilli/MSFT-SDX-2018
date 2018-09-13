@@ -170,6 +170,16 @@ namespace SDX.Toolkit.Controls
             set => SetValue(PlayerStatusProperty, value);
         }
 
+        // AutoPlay
+        public static readonly DependencyProperty AutoPlayProperty =
+            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(NavigationBar), new PropertyMetadata(true));
+
+        public bool AutoPlay
+        {
+            get => (bool)GetValue(AutoPlayProperty);
+            set => SetValue(AutoPlayProperty, value);
+        }
+
         // PreviousTrackIconUri
         public static readonly DependencyProperty PreviousTrackIconUriProperty =
             DependencyProperty.Register("PreviousTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PREVIOUSTRACK));
@@ -296,7 +306,9 @@ namespace SDX.Toolkit.Controls
                 {
                     AutoPlay = false,
                     IsLoopingEnabled = true,
-                    AudioCategory = MediaPlayerAudioCategory.Media
+                    AudioCategory = MediaPlayerAudioCategory.Media,
+                    AudioDeviceType = MediaPlayerAudioDeviceType.Multimedia,
+                    Volume = 0.5    // TODO: Use AudioHelper to set volume instead
                 };
 
                 // add event handlers
@@ -304,6 +316,12 @@ namespace SDX.Toolkit.Controls
 
                 // add the playback list to the mediaplayer
                 this.mediaPlayer.Source = this.mediaPlaybackList;
+
+                // if we're on autoplay, start playing
+                if (this.AutoPlay)
+                {
+                    this.Play();
+                }
             }
         }
 

@@ -319,21 +319,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\BestOfMicrosoft\" />
-    <Folder Include="Assets\List\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Accessories\sb2_15_accessories_car.svg" />
     <Content Include="Assets\Accessories\sb2_13_accessories_car.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_car.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_left.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_right.png" />
     <Content Include="Assets\Accessories\sb2_15_accessories_right_insetScrollWheel.png" />
-    <Content Include="Assets\Accessories\sb2_13_accessories_car.svg" />
     <Content Include="Assets\Accessories\sb2_13_accessories_left.png" />
     <Content Include="Assets\Accessories\sb2_13_accessories_right.png" />
     <Content Include="Assets\Accessories\sb2_13_accessories_right_insetScrollWheel.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
-    <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
     <Content Include="Assets\Backgrounds\sb2_15_background_dark.jpg" />
     <Content Include="Assets\Backgrounds\sb2_15_background_light.jpg" />
     <Content Include="Assets\Backgrounds\sb2_15_experience_work.png" />
@@ -396,9 +392,6 @@
     <Content Include="Assets\List\inkingPalm.png" />
     <Content Include="Assets\List\inkingPressure.png" />
     <Content Include="Assets\List\inkingWrite.png" />
-    <Content Include="Assets\NavigationBar\navChevronLeft.svg" />
-    <Content Include="Assets\NavigationBar\navChevronRight.svg" />
-    <Content Include="Assets\NavigationBar\navHome.svg" />
     <Content Include="Assets\NavigationBar\navHome.png" />
     <Content Include="Assets\NavigationBar\navChevronLeft.png" />
     <Content Include="Assets\NavigationBar\navChevronRight.png" />

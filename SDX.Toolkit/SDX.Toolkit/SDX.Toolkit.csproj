@@ -133,16 +133,20 @@
     <Compile Include="Controls\SurfaceDial.cs" />
     <Compile Include="Controls\SwipeLeft.cs" />
     <Compile Include="Controls\SwipeToContinue.cs" />
-    <Compile Include="Controls\TextBlockEx.cs" />
-    <Compile Include="Helpers\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Controls\TextBlockEx.xaml.cs">
+      <DependentUpon>TextBlockEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Helpers\AudioHelper.cs" />
     <Compile Include="Helpers\BitmapHelper.cs" />
     <Compile Include="Helpers\DialHelper.cs" />
     <Compile Include="Helpers\PropertyChangeEventSource.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Converters\TextStylesToStyleConverter.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
     <Compile Include="Models\NavigationPage.cs" />
     <Compile Include="Models\NavigationSection.cs" />
@@ -169,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MusicBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextBlockEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

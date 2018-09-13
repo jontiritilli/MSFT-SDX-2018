@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 
-namespace SDX.Toolkit.Helpers
+namespace SDX.Toolkit.Converters
 {
     public class DoubleToGridLengthConverter : IValueConverter
     {

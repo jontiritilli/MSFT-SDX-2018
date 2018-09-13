@@ -172,8 +172,10 @@ namespace SurfaceJackDemo.Services
 
         public void LoadChoosePathViewModel(ChoosePathViewModel viewModel)
         {
-            viewModel.ChooseSurfacePro = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_ONE, "INTRO_TITLE_DEVICE_ONE");
-            viewModel.ChooseSurfaceJack = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_TWO, "INTRO_TITLE_DEVICE_TWO");
+            viewModel.DeviceOneTitle = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_ONE_TITLE, "INTRO_TITLE_DEVICE_ONE_TITLE");
+            viewModel.DeviceOneCTA = GetStringValueToUpper(_languageCurrent.INTRO_TITLE_DEVICE_ONE_CTA, "INTRO_TITLE_DEVICE_ONE_CTA");
+            viewModel.DeviceTwoTitle = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_TWO_TITLE, "INTRO_TITLE_DEVICE_TWO_TITLE");
+            viewModel.DeviceTwoCTA = GetStringValueToUpper(_languageCurrent.INTRO_TITLE_DEVICE_TWO_CTA, "INTRO_TITLE_DEVICE_TWO_CTA");
         }
 
         public void LoadFlipViewViewModel(FlipViewViewModel viewModel)

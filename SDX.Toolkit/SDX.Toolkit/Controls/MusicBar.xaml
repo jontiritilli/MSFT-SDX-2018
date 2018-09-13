@@ -15,7 +15,7 @@
                 BorderThickness="{x:Bind Path=BorderThickness}">
                 <Grid.Background>
                     <AcrylicBrush
-                                    TintColor="LightGray" TintOpacity="0.7" 
+                                    TintColor="#FF000000" TintOpacity="0.4" 
                                     BackgroundSource="Backdrop" 
                                     FallbackColor="LightGray"/>
                 </Grid.Background>
