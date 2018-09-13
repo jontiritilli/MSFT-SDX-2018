@@ -94,8 +94,7 @@ namespace SDX.Toolkit.Helpers
         ColoringBookButtonWidth,
         ColoringBookButtonHeight,
         AppSelectorButtonWidth,
-        AppSelectorButtonHeight
-        ColoringBookButtonHeight,
+        AppSelectorButtonHeight,
         PlayerHeight,
         PlayerLeftMargin,
         PlayerRightMargin,
@@ -264,6 +263,7 @@ namespace SDX.Toolkit.Helpers
 
         #endregion
 
+
         #region Color Constants
         public const string RED = "ColoringBookColorRed";
         public const string BLUE = "ColoringBookColorBlue";
@@ -271,6 +271,7 @@ namespace SDX.Toolkit.Helpers
         public const string ORANGE = "ColoringBookColorOrange";
         public const string PURPLE = "ColoringBookColorPurple";
         #endregion
+
 
         #region Image Constants
         public const string BITMAPIMAGE_COLORINGBOOK = "ColoringBookBitmapImage";
@@ -306,6 +307,7 @@ namespace SDX.Toolkit.Helpers
 
 
         #endregion
+
 
         #region Thickness Constants
 
@@ -714,6 +716,7 @@ namespace SDX.Toolkit.Helpers
 
         #endregion
 
+
         #region Color Methods
 
         public static Color GetApplicationColor(ColoringBookColors Color)
@@ -761,6 +764,7 @@ namespace SDX.Toolkit.Helpers
             return color;
         }
         #endregion
+
 
         #region Bitmap Methods
 
@@ -896,6 +900,7 @@ namespace SDX.Toolkit.Helpers
             return bmImage;
         }
         #endregion
+
 
         #region Thickness Methods
 
