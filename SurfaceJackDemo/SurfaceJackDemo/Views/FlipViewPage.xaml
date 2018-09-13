@@ -18,7 +18,7 @@
             <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
                  resource with a converter. So we have to add the GridLength we want
                  to the ViewModel, which uses StyleHelper to create it with the style value. -->
-            <RowDefinition Height="{x:Bind Path=ViewModel.MusicBarHeight}"/>
+            <!--<RowDefinition Height="{x:Bind Path=ViewModel.MusicBarHeight}"/>-->
             <RowDefinition Height="{x:Bind Path=ViewModel.NavigationBarHeight}"/>
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
@@ -94,17 +94,19 @@
         </Button>
 
         <!-- Music Bar -->
+        <!-- This control must appear over the flipview, so it is in the
+             same row and aligned to the bottom -->
         <ctrl:MusicBar x:Name="MusicBar"
-                       Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                       Height="{StaticResource PlayerHeight}">
-        </ctrl:MusicBar>
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       Height="{StaticResource PlayerHeight}"
+                       VerticalAlignment="Bottom"/>
 
         <!-- Navigation Bar -->
         <ctrl:NavigationBar x:Name="BottomNavBar"
-                           Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                           Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                            Height="{StaticResource NavigationBarHeight}"
-                           Navigate="BottomNavBar_OnNavigation">
-        </ctrl:NavigationBar>
+                           Navigate="BottomNavBar_OnNavigation"/>
+
 
         <!-- TEST ONLY -->
         <!--<Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>
