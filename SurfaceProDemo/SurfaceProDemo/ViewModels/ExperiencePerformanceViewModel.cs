@@ -15,6 +15,7 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
         private const string URI_LAPTOP= "ms-appx:///Assets/Experience/laptop.png";
+        private const string URI_POPIMAGE = "ms-appx:///Assets/Experience/detached_keyboard.jpg";
 
         private const int IMG_LAPTOP_WIDTH = 1122;
         private const int IMG_LAPTOP_HEIGHT = 402;
@@ -27,7 +28,7 @@ namespace SurfaceProDemo.ViewModels
         public string LaptopUri = URI_LAPTOP;
         public int LaptopHeight = IMG_LAPTOP_HEIGHT;
         public int LaptopWidth = IMG_LAPTOP_WIDTH;
-
+        public string PopImage = URI_POPIMAGE;
 
         public string Headline;
         public string Lede;

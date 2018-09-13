@@ -15,6 +15,7 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";        
         private const string URI_STUDIO = "ms-appx:///Assets/Experience/studio.png";
+        private const string URI_POPIMAGE = "ms-appx:///Assets/Experience/detached_keyboard.jpg";
 
         private const int IMG_STUDIO_WIDTH = 1122;
         private const int IMG_STUDIO_HEIGHT = 402;
@@ -25,6 +26,7 @@ namespace SurfaceProDemo.ViewModels
 
         public string BackgroundUri = URI_BACKGROUND;
         public string StudioUri = URI_STUDIO;
+        public string PopImage = URI_POPIMAGE;
         public int StudioHeight = IMG_STUDIO_HEIGHT;
         public int StudioWidth = IMG_STUDIO_WIDTH;
 

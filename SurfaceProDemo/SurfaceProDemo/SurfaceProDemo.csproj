@@ -304,6 +304,10 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Experience\detached_keyboard.jpg" />
+    <Content Include="Assets\Experience\laptop_bluebeam.png" />
+    <Content Include="Assets\Experience\laptop_premiere.png" />
+    <Content Include="Assets\Experience\laptop_sketchbook.png" />
     <Content Include="Assets\Icons\AccessoriesColors\black.png" />
     <Content Include="Assets\Icons\AccessoriesColors\black_active.png" />
     <Content Include="Assets\Icons\AccessoriesColors\burgundy.png" />

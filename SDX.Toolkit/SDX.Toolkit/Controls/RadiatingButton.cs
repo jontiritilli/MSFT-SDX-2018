@@ -672,8 +672,7 @@ namespace SDX.Toolkit.Controls
                     //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                 }
             }
-
-            if (null != this.PopupChild)
+            else  if (null != this.PopupChild)
             {
                 if (this.PopupChild.IsOpen)
                 {

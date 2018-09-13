@@ -121,7 +121,7 @@ namespace SDX.Toolkit.Controls
 
         // AutoStart
         public static readonly DependencyProperty AutoStartProperty =
-            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnAutoStartChanged));
+            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnAutoStartChanged));
 
         public bool AutoStart
         {
@@ -284,7 +284,7 @@ namespace SDX.Toolkit.Controls
                 _image = new ImageEx()
                 {
                     ImageSource = this.MediaSourceUri.OriginalString,
-                    Width = this.Width
+                    ImageWidth = this.Width
                 };
 
                 // add to the grid

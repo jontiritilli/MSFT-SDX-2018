@@ -37,6 +37,16 @@ namespace SurfaceProDemo.Views
 
             Canvas.SetTop(rBtnBottom, _canvasHeight * .80);
             Canvas.SetLeft(rBtnBottom, _canvasWidth * .55);
+
+            rBtnTop.PopupChild = PopTop;
+            PopTop.VerticalOffset = _canvasHeight * .20;
+            PopTop.HorizontalOffset = _canvasWidth * .55;
+
+            rBtnBottom.PopupChild = PopBottom;
+            PopBottom.VerticalOffset = _canvasHeight * .80;
+            PopBottom.HorizontalOffset = _canvasWidth * .55;
+
+
         }
 
         public void SelectedIDChanged(object sender, EventArgs e) {

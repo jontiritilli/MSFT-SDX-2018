@@ -57,6 +57,31 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 AutoStart = "false"/>
+
+            <Popup
+                x:Name="PopBottom"
+                IsOpen = "False"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopBottomLede}"
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopTop"
+                IsOpen = "False"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                        />
+                </Popup.Child>
+            </Popup>
         </Canvas>
         <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:AppSelector
@@ -81,7 +106,7 @@
         <ctrl:TextBlockEx
             Grid.Row="4"
             Grid.Column="1"
-            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            Text="{x:Bind Path=ViewModel.PopBottomLegal}"
             TextStyle="Legal"
             />
     </Grid>

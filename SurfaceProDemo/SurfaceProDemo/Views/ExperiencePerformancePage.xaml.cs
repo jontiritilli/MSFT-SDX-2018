@@ -43,6 +43,14 @@ namespace SurfaceProDemo.Views
 
             Canvas.SetTop(rBtnRight, _canvasHeight * .30);
             Canvas.SetLeft(rBtnRight, _canvasWidth * .85);
+
+            rBtnLeft.PopupChild = PopLeft;
+            PopLeft.VerticalOffset = _canvasHeight * .50;
+            PopLeft.HorizontalOffset = _canvasWidth * .45;
+            
+            rBtnRight.PopupChild = PopRight;
+            PopRight.VerticalOffset = _canvasHeight * .30;
+            PopRight.HorizontalOffset = _canvasWidth * .85;           
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)

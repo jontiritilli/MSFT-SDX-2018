@@ -18,10 +18,10 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close_app_x.png";
 
-        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
+        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/laptop_premiere.png";
         private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
-        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
-        private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
+        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/laptop_sketchbook.png";
+        private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Experience/laptop_bluebeam.png";
         private const string URI_IMAGESELECTOR_IMAGE_5 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
 
         private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Icons/AppIcons/icon_adobePremiereCC.png";

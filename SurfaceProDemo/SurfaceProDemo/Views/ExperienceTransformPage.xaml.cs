@@ -28,6 +28,9 @@ namespace SurfaceProDemo.Views
             InitializeComponent();
             Canvas.SetTop(rBtnRight, _canvasHeight * .55);
             Canvas.SetLeft(rBtnRight, _canvasWidth * .81);
+            rBtnRight.PopupChild = PopRight;
+            PopRight.HorizontalOffset = _canvasWidth * .81;
+            PopRight.VerticalOffset = _canvasHeight * .55;
         }
 
         #endregion

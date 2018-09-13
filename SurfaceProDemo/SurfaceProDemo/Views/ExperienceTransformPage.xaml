@@ -51,7 +51,20 @@
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 AutoStart = "false"/>
-
+            <Popup
+                x:Name="PopRight"
+                IsOpen = "False"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
+                        Headline="{x:Bind Path=ViewModel.PopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopLede}"
+                        Width="450"
+                        />
+                </Popup.Child>
+            </Popup>
         </Canvas>
         <ctrl:ImageEx
             Grid.Row="3"
