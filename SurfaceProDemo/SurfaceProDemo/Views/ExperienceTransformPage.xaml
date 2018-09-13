@@ -61,7 +61,7 @@
                         MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
                         Headline="{x:Bind Path=ViewModel.PopHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLede}"
-                        Width="450"
+                        MediaWidth="450"
                         />
                 </Popup.Child>
             </Popup>

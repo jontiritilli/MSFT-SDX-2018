@@ -296,7 +296,8 @@ namespace SDX.Toolkit.Controls
                 {
                     // catch the closed event for the popup
                     _popupChild.Closed += this.Popup_Closed;
-
+                    //_popupChild.HorizontalOffset = -1;
+                    //_popupChild.VerticalOffset = -1;
                     // catch the image gallery Closed event
                     object contentChild = _popupChild.Child;
 
@@ -1172,8 +1173,8 @@ namespace SDX.Toolkit.Controls
                         offset = point.Y + _grid.ActualHeight + POPUP_SPACER;
                         break;
 
-                    case PopupPositions.Left:
-                        offset = point.Y + (_grid.ActualHeight / 2) - (popupHeight / 2);
+                    case PopupPositions.Left:// how is this doable without the width of the popup?
+                        offset = point.Y - (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
 
                     case PopupPositions.Right:

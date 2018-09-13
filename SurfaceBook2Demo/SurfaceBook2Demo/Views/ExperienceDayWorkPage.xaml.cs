@@ -4,6 +4,7 @@ using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceBook2Demo.Views
 {
@@ -15,7 +16,10 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as ExperienceDayWorkViewModel; }
         }
-
+        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+        double _rbLeftSetTop;
+        double _rbLeftSetLeft;
         #endregion
 
 
@@ -29,16 +33,36 @@ namespace SurfaceBook2Demo.Views
             timer.Tick += (sender, args) =>
             {// well this works? but ew
                 timer.Stop();
-                this.rButtonOne.PopupChild = FlipViewPage.Current.GetExperienceDayWorkPagePopup();
+                this.rBtnTop.PopupChild = FlipViewPage.Current.GetExperienceDayWorkPagePopup();
                 ExperienceDayWorkPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
 
+            _rbLeftSetTop = _canvasHeight * .7;
+            _rbLeftSetLeft = _canvasWidth * .20;
+            Canvas.SetTop(rBtnLeft, _rbLeftSetTop);
+            Canvas.SetLeft(rBtnLeft, _rbLeftSetLeft);
+
+
+            Canvas.SetTop(rBtnRight, _canvasHeight * .65);
+            Canvas.SetLeft(rBtnRight, _canvasWidth * .60);
+
+            Canvas.SetTop(rBtnTop, _canvasHeight * .35);
+            Canvas.SetLeft(rBtnTop, _canvasWidth * .25);
+
+            rBtnLeft.PopupChild = PopLeft;
+            rBtnRight.PopupChild = PopRight;
+            rBtnLeft.PopupChild.HorizontalOffset = 20;
+            //PopLeft.VerticalOffset = _rbLeftSetTop;
+            //PopLeft.HorizontalOffset = _rbLeftSetLeft + (StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius) * 2) + 10;
+
+            //PopRight.VerticalOffset = _canvasHeight * .45;
+            //PopRight.HorizontalOffset = _canvasWidth * .60;
 
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.rButtonOne.HandleClick();
+            this.rBtnTop.HandleClick();
         }
 
         #endregion
@@ -50,16 +74,27 @@ namespace SurfaceBook2Demo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            this.rButtonOne.StartEntranceAnimation();
-            this.rButtonOne.StartRadiateAnimation();
+            rBtnTop.StartEntranceAnimation();
+            rBtnTop.StartRadiateAnimation();
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
-            this.rButtonOne.ResetEntranceAnimation();
-            this.rButtonOne.ResetRadiateAnimation();
+            rBtnTop.ResetEntranceAnimation();
+            rBtnTop.ResetRadiateAnimation();
+
+            rBtnLeft.ResetEntranceAnimation();
+            rBtnLeft.ResetRadiateAnimation();
+
+            rBtnRight.ResetEntranceAnimation();
+            rBtnRight.ResetRadiateAnimation();
         }
 
         #endregion
