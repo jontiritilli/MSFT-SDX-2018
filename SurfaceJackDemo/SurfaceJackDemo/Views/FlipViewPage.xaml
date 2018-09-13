@@ -11,13 +11,18 @@
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
 
-    <Grid Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0" Background="Transparent">
-        <!-- Top row is for FlipView and its content, bottom is for NavBar -->
+    <Grid Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+        
+        <!-- Top row is for FlipView and its content, second is for music bar, bottom is for NavBar -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
                  resource with a converter. So we have to add the GridLength we want
                  to the ViewModel, which uses StyleHelper to create it with the style value. -->
+            <!--<RowDefinition Height="{x:Bind Path=ViewModel.MusicBarHeight}"/>-->
             <RowDefinition Height="{x:Bind Path=ViewModel.NavigationBarHeight}"/>
         </Grid.RowDefinitions>
         <!-- Column definitions are for Close button -->
@@ -92,12 +97,20 @@
             </Button.Content>
         </Button>
 
-        <!-- Bottom Nav Bar -->
+        <!-- Music Bar -->
+        <!-- This control must appear over the flipview, so it is in the
+             same row and aligned to the bottom -->
+        <ctrl:MusicBar x:Name="MusicBar"
+                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       Height="{StaticResource PlayerHeight}"
+                       VerticalAlignment="Bottom"/>
+
+        <!-- Navigation Bar -->
         <ctrl:NavigationBar x:Name="BottomNavBar"
                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                            Height="{StaticResource NavigationBarHeight}"
-                           Navigate="BottomNavBar_OnNavigation">
-        </ctrl:NavigationBar>
+                           Navigate="BottomNavBar_OnNavigation"/>
+
 
         <!-- TEST ONLY -->
         <!--<Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>

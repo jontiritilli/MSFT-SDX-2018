@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceJackDemo.Services;
+
 using SDX.Toolkit.Helpers;
 using SDX.Telemetry.Models;
 using SDX.Telemetry.Services;
@@ -85,7 +86,7 @@ namespace SurfaceJackDemo
             ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
             if (null != configurationService)
             {
-                // run this synchronously 
+                // need this to start, so run this synchronously 
                 AsyncHelper.RunSync(() => configurationService.Initialize());
             }
 
@@ -94,8 +95,7 @@ namespace SurfaceJackDemo
             LocalizationService localizationService = (LocalizationService)SimpleIoc.Default.GetInstance<LocalizationService>();
             if (null != localizationService)
             {
-                // async here might lead to a race condition, but no signs so far
-                //localizationService.Initialize();
+                // need this to start, so run sync
                 AsyncHelper.RunSync(() => localizationService.Initialize());
             }
 
@@ -110,9 +110,20 @@ namespace SurfaceJackDemo
                     string telemetryBaseUrl = configurationService.Configuration?.TelemetryBaseUrl;
                     string telemetryId = ConfigurationService.Current.GetTelemetryId();
 
-                    // run this synchronously 
+                    // need this to start, so run this synchronously 
                     AsyncHelper.RunSync(() => telemetryService.Initialize(telemetryBaseUrl, telemetryId, new UWPTelemetryDependent()));
                 }
+            }
+
+            // register the playlist service and initialize it
+            SimpleIoc.Default.Register<PlaylistService>();
+            PlaylistService playlistService = (PlaylistService)SimpleIoc.Default.GetInstance<PlaylistService>();
+            if (null != playlistService)
+            {
+                // run this async because we don't need it to start the app
+#pragma warning disable CS4014
+                playlistService.Initialize();
+#pragma warning restore CS4014
             }
         }
 
@@ -162,7 +173,7 @@ namespace SurfaceJackDemo
                     break;
 
                 default:
-                    path = "13";    // for testing, run the 13 version
+                    path = @"cruz";    // for testing, run the cruz version
                     break;
             }
 
@@ -186,6 +197,7 @@ namespace SurfaceJackDemo
             string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/TextBlock.xaml", path);
             string URI_SIZES = String.Format("ms-appx:///Styles/{0}/Sizes.xaml", path);
             string URI_THICKNESS = String.Format("ms-appx:///Styles/{0}/_Thickness.xaml", path);
+            string URI_IMAGES = String.Format("ms-appx:///Styles/{0}/_Images.xaml", path);
 
             // load textblock styles
             ResourceDictionary resourceDictionary = new ResourceDictionary()
@@ -208,6 +220,12 @@ namespace SurfaceJackDemo
             };
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
 
+            // load _images
+            resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_IMAGES, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
 
         private ActivationService CreateActivationService()

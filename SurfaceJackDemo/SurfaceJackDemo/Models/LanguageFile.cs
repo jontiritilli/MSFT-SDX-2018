@@ -10,8 +10,10 @@ namespace SurfaceJackDemo.Models
     {
         #region Public Properties
 
-        public string INTRO_TITLE_DEVICE_ONE = "INTRO_TITLE_DEVICE_ONE";
-        public string INTRO_TITLE_DEVICE_TWO = "INTRO_TITLE_DEVICE_TWO";
+        public string INTRO_TITLE_DEVICE_ONE_TITLE = "INTRO_TITLE_DEVICE_ONE_TITLE";
+        public string INTRO_TITLE_DEVICE_ONE_CTA = "INTRO_TITLE_DEVICE_ONE_CTA";
+        public string INTRO_TITLE_DEVICE_TWO_TITLE = "INTRO_TITLE_DEVICE_TWO_TITLE";
+        public string INTRO_TITLE_DEVICE_TWO_CTA = "INTRO_TITLE_DEVICE_TWO_CTA";
         public string AUDIO = "AUDIO";
         public string DESIGN = "DESIGN";
         public string TECH = "TECH";
@@ -36,7 +38,7 @@ namespace SurfaceJackDemo.Models
         public string AUDIO_TRACK_BULLET_ONE_TITLE = "AUDIO_TRACK_BULLET_ONE_TITLE";
         public string ADDIO_TRACK_BULLET_ONE_SUBTITLE = "ADDIO_TRACK_BULLET_ONE_SUBTITLE";
         public string AUDIO_TRACK_BULLET_TWO_TITLE = "AUDIO_TRACK_BULLET_TWO_TITLE";
-        public string ADDIO_TRACK_BULLET_TWO_SUBTITLE = "ADDIO_TRACK_BULLET_TWO_SUBTITLE";
+        public string AUDIO_TRACK_BULLET_TWO_SUBTITLE = "ADDIO_TRACK_BULLET_TWO_SUBTITLE";
         public string AUDIO_TRACK_BULLET_THREE_TITLE = "AUDIO_TRACK_BULLET_THREE_TITLE";
         public string ADDIO_TRACK_BULLET_THREE_SUBTITLE = "ADDIO_TRACK_BULLET_THREE_SUBTITLE";
         public string AUDIO_TRACK_BULLET_FOUR_TITLE = "AUDIO_TRACK_BULLET_FOUR_TITLE";
@@ -155,8 +157,10 @@ namespace SurfaceJackDemo.Models
         {
             LanguageFile languageFile = new LanguageFile();
 
-            languageFile.INTRO_TITLE_DEVICE_ONE = "INTRO_TITLE_DEVICE_ONE";
-            languageFile.INTRO_TITLE_DEVICE_TWO = "INTRO_TITLE_DEVICE_TWO";
+            languageFile.INTRO_TITLE_DEVICE_ONE_TITLE = "INTRO_TITLE_DEVICE_ONE_TITLE";
+            languageFile.INTRO_TITLE_DEVICE_ONE_CTA = "INTRO_TITLE_DEVICE_ONE_CTA";
+            languageFile.INTRO_TITLE_DEVICE_TWO_TITLE = "INTRO_TITLE_DEVICE_TWO_TITLE";
+            languageFile.INTRO_TITLE_DEVICE_TWO_CTA = "INTRO_TITLE_DEVICE_TWO_CTA";
             languageFile.AUDIO = "AUDIO";
             languageFile.DESIGN = "DESIGN";
             languageFile.TECH = "TECH";
@@ -181,7 +185,7 @@ namespace SurfaceJackDemo.Models
             languageFile.AUDIO_TRACK_BULLET_ONE_TITLE = "AUDIO_TRACK_BULLET_ONE_TITLE";
             languageFile.ADDIO_TRACK_BULLET_ONE_SUBTITLE = "ADDIO_TRACK_BULLET_ONE_SUBTITLE";
             languageFile.AUDIO_TRACK_BULLET_TWO_TITLE = "AUDIO_TRACK_BULLET_TWO_TITLE";
-            languageFile.ADDIO_TRACK_BULLET_TWO_SUBTITLE = "ADDIO_TRACK_BULLET_TWO_SUBTITLE";
+            languageFile.AUDIO_TRACK_BULLET_TWO_SUBTITLE = "ADDIO_TRACK_BULLET_TWO_SUBTITLE";
             languageFile.AUDIO_TRACK_BULLET_THREE_TITLE = "AUDIO_TRACK_BULLET_THREE_TITLE";
             languageFile.ADDIO_TRACK_BULLET_THREE_SUBTITLE = "ADDIO_TRACK_BULLET_THREE_SUBTITLE";
             languageFile.AUDIO_TRACK_BULLET_FOUR_TITLE = "AUDIO_TRACK_BULLET_FOUR_TITLE";

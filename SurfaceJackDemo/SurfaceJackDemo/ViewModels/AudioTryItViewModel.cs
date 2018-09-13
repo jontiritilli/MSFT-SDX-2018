@@ -13,7 +13,8 @@ namespace SurfaceJackDemo.ViewModels
 
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        //private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/LancasterFrog.JPG";
 
         #endregion
 
@@ -21,8 +22,12 @@ namespace SurfaceJackDemo.ViewModels
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string Headline;
+        public string Lede;
+        public string CTA;
 
         #endregion
+
 
         #region Construction
 

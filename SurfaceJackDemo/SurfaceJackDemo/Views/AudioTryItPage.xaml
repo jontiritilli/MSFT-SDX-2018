@@ -8,5 +8,9 @@
     DataContext="{Binding AudioTryItViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+    </Grid>
 </Page>

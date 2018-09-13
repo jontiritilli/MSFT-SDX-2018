@@ -172,8 +172,10 @@ namespace SurfaceJackDemo.Services
 
         public void LoadChoosePathViewModel(ChoosePathViewModel viewModel)
         {
-            viewModel.ChooseSurfacePro = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_ONE, "INTRO_TITLE_DEVICE_ONE");
-            viewModel.ChooseSurfaceJack = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_TWO, "INTRO_TITLE_DEVICE_TWO");
+            viewModel.DeviceOneTitle = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_ONE_TITLE, "INTRO_TITLE_DEVICE_ONE_TITLE");
+            viewModel.DeviceOneCTA = GetStringValueToUpper(_languageCurrent.INTRO_TITLE_DEVICE_ONE_CTA, "INTRO_TITLE_DEVICE_ONE_CTA");
+            viewModel.DeviceTwoTitle = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_TWO_TITLE, "INTRO_TITLE_DEVICE_TWO_TITLE");
+            viewModel.DeviceTwoCTA = GetStringValueToUpper(_languageCurrent.INTRO_TITLE_DEVICE_TWO_CTA, "INTRO_TITLE_DEVICE_TWO_CTA");
         }
 
         public void LoadFlipViewViewModel(FlipViewViewModel viewModel)
@@ -188,12 +190,16 @@ namespace SurfaceJackDemo.Services
 
         public void LoadAudioTryItViewModel(AudioTryItViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_GATEWAY_HEADLINE, "AUDIO_GATEWAY_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_GATEWAY_COPY, "AUDIO_GATEWAY_COPY");
+            viewModel.CTA = GetStringValue(_languageCurrent.AUDIO_GATEWAY_CTA, "AUDIO_GATEWAY_CTA");
         }
 
         public void LoadAudioListenViewModel(AudioListenViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_HEADLINE, "AUDIO_TRACK_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_TRACK_COPY, "AUDIO_TRACK_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_LEGAL, "AUDIO_TRACK_LEGAL");
         }
 
         public void LoadDesignViewModel(DesignViewModel viewModel)

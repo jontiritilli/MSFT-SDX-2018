@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrl="using:SDX.Toolkit.Controls">
@@ -29,22 +29,21 @@
     </Style>
 
     <Style TargetType="ctrl:Hero">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="ctrl:Hero">
-          <Border
-              x:Name="LayoutRoot"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}">
-            <StackPanel x:Name="RowMaster" Orientation="Vertical">
-            </StackPanel>
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-  
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:Hero">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel x:Name="RowMaster" Orientation="Vertical"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="ctrl:Header">
         <Setter Property="Template">
             <Setter.Value>
@@ -60,7 +59,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ctrl:TextBlockEx">
+    <!--<Style TargetType="ctrl:TextBlockEx">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ctrl:TextBlockEx">
@@ -69,26 +68,34 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock x:Name="TheText"
+                                   Text="{TemplateBinding Text}"
+                                   TextAlignment="{TemplateBinding TextAlignment}"
+                                   TextWrapping="{TemplateBinding TextWrapping}"
+                                   LineStackingStrategy="{TemplateBinding LineStackingStrategy}"
+                                   LineHeight="{TemplateBinding LineHeight}"
+                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Style TargetType="ctrl:SwipeLeft">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:SwipeLeft">
+                    <Grid
+              x:Name="LayoutRoot"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}">
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-  <Style TargetType="ctrl:SwipeLeft">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="ctrl:SwipeLeft">
-          <Grid
-              x:Name="LayoutRoot"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}">
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
 
     <Style TargetType="ctrl:SwipeToContinue">
         <Setter Property="Template">
@@ -237,7 +244,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="ctrl:SurfaceDial" >
         <Setter Property="Template">
             <Setter.Value>
@@ -302,8 +309,7 @@
                         x:Name="LayoutRoot"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -317,8 +323,7 @@
                         x:Name="LayoutRoot"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -332,8 +337,7 @@
                         x:Name="LayoutRoot"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                    </Grid>
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -347,19 +351,18 @@
                         x:Name="LayoutRoot"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+
     <Style TargetType="ctrl:PinchZoom" >
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ctrl:PinchZoom">
-                    <Canvas x:Name="LayoutRoot">
-                    </Canvas>
+                    <Canvas x:Name="LayoutRoot"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

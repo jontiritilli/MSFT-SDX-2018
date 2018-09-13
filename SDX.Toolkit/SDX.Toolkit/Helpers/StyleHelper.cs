@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
+
 namespace SDX.Toolkit.Helpers
 {
     public enum TextStyles
@@ -38,7 +39,9 @@ namespace SDX.Toolkit.Helpers
         TryIt,
         ButtonCaption,
         NavigationSection,
-        NavigationSectionActive
+        NavigationSectionActive,
+        PlayerArtistName,
+        PlayerTrackName,
     }
 
     public enum LayoutSizes
@@ -91,7 +94,15 @@ namespace SDX.Toolkit.Helpers
         ColoringBookButtonWidth,
         ColoringBookButtonHeight,
         AppSelectorButtonWidth,
-        AppSelectorButtonHeight
+        AppSelectorButtonHeight,
+        PlayerHeight,
+        PlayerLeftMargin,
+        PlayerRightMargin,
+        PlayerTrackSpacer,
+        PlayerButtonWidth,
+        PlayerButtonSpacer,
+        PlayerScrubHeight,
+        PlayerScrubWidth,
     }
 
     public enum LayoutThicknesses
@@ -169,6 +180,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_BUTTONCAPTION = "ButtonCaption";
         public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
+        public const string STYLE_PLAYER_ARTISTNAME = "PlayerArtistName";
+        public const string STYLE_PLAYER_TRACKNAME = "PlayerTrackName";
 
         #endregion
 
@@ -239,7 +252,17 @@ namespace SDX.Toolkit.Helpers
 
         public const string SIZE_APPSELECTORBUTTONWIDTH = "AppSelectorButtonWidth";
         public const string SIZE_APPSELECTORBUTTONHEIGHT = "AppSelectorButtonHeight";
+        public const string SIZE_PLAYER_HEIGHT = "PlayerHeight";
+        public const string SIZE_PLAYER_LEFTMARGIN = "PlayerLeftMargin";
+        public const string SIZE_PLAYER_RIGHTMARGIN = "PlayerRightMargin";
+        public const string SIZE_PLAYER_TRACKSPACER = "PlayerTrackSpacer";
+        public const string SIZE_PLAYER_BUTTONWIDTH = "PlayerButtonWidth";
+        public const string SIZE_PLAYER_BUTTONSPACER = "PlayerButtonSpacer";
+        public const string SIZE_PLAYER_SCRUBHEIGHT = "PlayerScrubHeight";
+        public const string SIZE_PLAYER_SCRUBWIDTH = "PlayerScrubWidth";
+
         #endregion
+
 
         #region Color Constants
         public const string RED = "ColoringBookColorRed";
@@ -248,6 +271,7 @@ namespace SDX.Toolkit.Helpers
         public const string ORANGE = "ColoringBookColorOrange";
         public const string PURPLE = "ColoringBookColorPurple";
         #endregion
+
 
         #region Image Constants
         public const string BITMAPIMAGE_COLORINGBOOK = "ColoringBookBitmapImage";
@@ -284,6 +308,7 @@ namespace SDX.Toolkit.Helpers
 
         #endregion
 
+
         #region Thickness Constants
 
         public const string THICKNESS_HERO_MARGIN = "HeroMargin";
@@ -291,6 +316,7 @@ namespace SDX.Toolkit.Helpers
         public const string THICKNESS_POPUP_MARGIN = "PopupMargin";
 
         #endregion
+
 
         #region Size Methods
 
@@ -495,6 +521,38 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_APPSELECTORBUTTONHEIGHT);
                     break;
 
+                case LayoutSizes.PlayerHeight:
+                    value = GetApplicationDouble(SIZE_PLAYER_HEIGHT);
+                    break;
+
+                case LayoutSizes.PlayerLeftMargin:
+                    value = GetApplicationDouble(SIZE_PLAYER_LEFTMARGIN);
+                    break;
+
+                case LayoutSizes.PlayerRightMargin:
+                    value = GetApplicationDouble(SIZE_PLAYER_RIGHTMARGIN);
+                    break;
+
+                case LayoutSizes.PlayerTrackSpacer:
+                    value = GetApplicationDouble(SIZE_PLAYER_TRACKSPACER);
+                    break;
+
+                case LayoutSizes.PlayerButtonSpacer:
+                    value = GetApplicationDouble(SIZE_PLAYER_BUTTONSPACER);
+                    break;
+
+                case LayoutSizes.PlayerButtonWidth:
+                    value = GetApplicationDouble(SIZE_PLAYER_BUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.PlayerScrubHeight:
+                    value = GetApplicationDouble(SIZE_PLAYER_SCRUBHEIGHT);
+                    break;
+
+                case LayoutSizes.PlayerScrubWidth:
+                    value = GetApplicationDouble(SIZE_PLAYER_SCRUBWIDTH);
+                    break;
+
                 default:
                     break;
             }
@@ -519,6 +577,7 @@ namespace SDX.Toolkit.Helpers
         }
 
         #endregion
+
 
         #region Style Methods
 
@@ -624,6 +683,14 @@ namespace SDX.Toolkit.Helpers
                     style = GetApplicationStyle(STYLE_NAVIGATION_SECTION_ACTIVE);
                     break;
 
+                case TextStyles.PlayerArtistName:
+                    style = GetApplicationStyle(STYLE_PLAYER_ARTISTNAME);
+                    break;
+
+                case TextStyles.PlayerTrackName:
+                    style = GetApplicationStyle(STYLE_PLAYER_TRACKNAME);
+                    break;
+
                 default:
                     break;
             }
@@ -648,6 +715,7 @@ namespace SDX.Toolkit.Helpers
         }
 
         #endregion
+
 
         #region Color Methods
 
@@ -696,6 +764,7 @@ namespace SDX.Toolkit.Helpers
             return color;
         }
         #endregion
+
 
         #region Bitmap Methods
 
@@ -831,6 +900,7 @@ namespace SDX.Toolkit.Helpers
             return bmImage;
         }
         #endregion
+
 
         #region Thickness Methods
 
