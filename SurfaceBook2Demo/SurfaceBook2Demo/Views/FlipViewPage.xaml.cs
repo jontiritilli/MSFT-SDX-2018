@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Controls.Primitives;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -221,6 +222,11 @@ namespace SurfaceBook2Demo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public Popup GetExperienceDayWorkPagePopup()
+        {
+            return this.ExperienceDayWorkPopup;
         }
 
         #endregion

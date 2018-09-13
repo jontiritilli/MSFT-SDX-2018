@@ -12,6 +12,11 @@ namespace SurfaceLaptopDemo.ViewModels
 {
     public class FlipViewViewModel : ViewModelBase
     {
+        #region Constants
+
+
+        #endregion
+
         #region Public Properties
 
         // our navigation sections for the navigation bar
@@ -23,9 +28,7 @@ namespace SurfaceLaptopDemo.ViewModels
         public string NavBarBestOfMicrosoft;
         public string NavBarCompare;
 
-
         #endregion
-
 
         #region Construction
 
@@ -47,7 +50,6 @@ namespace SurfaceLaptopDemo.ViewModels
         }
 
         #endregion
-
 
         public void RenderNavigation()
         {

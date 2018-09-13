@@ -6,14 +6,77 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     DataContext="{Binding ExperiencePixelSenseViewModel, Source={StaticResource Locator}}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"
+                Lede="{x:Bind Path=ViewModel.Lede}"                
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+
+        <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
+                    x:Name="rButtonOne"                              
+                    EntranceDurationInMilliseconds = "400"
+                    EntranceStaggerDelayInMilliseconds = "0"
+                    RadiateDurationInMilliseconds = "1800"
+                    RadiateStaggerDelayInMilliseconds = "5000"
+                    AutoStart = "false"
+                    HorizontalAlignment="Center"
+                    Canvas.ZIndex="300"
+                    VerticalAlignment="Top"/>
+        
+        <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
+                       Text="{x:Bind Path=ViewModel.PopLeft_Legal}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       TextStyle="Legal"
+                       Visibility="Collapsed" />
+
+        <ctrl:ImageEx
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            x:Name="img_Left"
+            ImageWidth="{x:Bind Path=ViewModel.Left_Width}"
+            ImageSource="{x:Bind Path=ViewModel.Left_URI}"
+            TranslateDirection="Right"
+            Canvas.ZIndex="100"
+            Opacity="0"
+            />
+        <ctrl:ImageEx
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            x:Name="img_Right"
+            ImageWidth="{x:Bind Path=ViewModel.Right_Width}"
+            ImageSource="{x:Bind Path=ViewModel.Right_URI}"
+            TranslateDirection="Left"
+            HorizontalAlignment="Right"
+            Margin="0,0,140,50"
+            Opacity="0"
+            Canvas.ZIndex="99"/>
     </Grid>
 </Page>

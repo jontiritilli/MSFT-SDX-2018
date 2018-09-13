@@ -283,6 +283,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Accessories\foxburg_aerial.jpg" />
     <Content Include="Assets\Accessories\foxburg_black_left.png" />
     <Content Include="Assets\Accessories\foxburg_black_right.png" />
     <Content Include="Assets\Accessories\foxburg_burgundy_left.png" />
@@ -360,8 +361,6 @@
     <Content Include="Assets\NavigationBar\navChevronLeft.png" />
     <Content Include="Assets\NavigationBar\navChevronRight.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
-    <Content Include="Assets\Universal\fox_chevron_left.png" />
-    <Content Include="Assets\Universal\fox_chevron_right.png" />
     <Content Include="Assets\Universal\fox_close.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

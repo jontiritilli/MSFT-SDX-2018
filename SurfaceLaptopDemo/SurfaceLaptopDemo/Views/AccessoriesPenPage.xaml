@@ -53,5 +53,17 @@
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"/>
+
+        <Canvas x:Name="ButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnPen"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+
+        </Canvas>
     </Grid>
 </Page>

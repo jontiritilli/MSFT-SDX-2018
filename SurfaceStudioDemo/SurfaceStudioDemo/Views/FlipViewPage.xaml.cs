@@ -19,7 +19,7 @@ using SurfaceStudioDemo.ViewModels;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
-
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace SurfaceStudioDemo.Views
 {
@@ -223,6 +223,10 @@ namespace SurfaceStudioDemo.Views
             }
         }
 
+        public Popup GetAccessoriesDialPopup()
+        {
+            return this.AccessoriesDialPopup;
+        }
         #endregion
     }
 }

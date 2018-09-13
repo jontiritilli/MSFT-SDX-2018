@@ -20,6 +20,8 @@ using SurfaceProDemo.ViewModels;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
 
+using Windows.UI.Xaml.Controls.Primitives;
+
 
 namespace SurfaceProDemo.Views
 {
@@ -223,6 +225,10 @@ namespace SurfaceProDemo.Views
             }
         }
 
+        public Popup GetExperiencePagePopup()
+        {
+            return this.ExperiencePopup;
+        }
         #endregion
     }
 }

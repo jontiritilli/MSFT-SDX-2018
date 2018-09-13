@@ -126,6 +126,7 @@
       <DependentUpon>MusicBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NavigationBar.cs" />
+    <Compile Include="Controls\PinchZoom.cs" />
     <Compile Include="Controls\PopupMedia.cs" />
     <Compile Include="Controls\PopupContentBatteryLife.cs" />
     <Compile Include="Controls\RadiatingButton.cs" />

@@ -35,28 +35,44 @@
             </Image.Source>
         </Image>
 
-        <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
-                    x:Name="rButtonOne"
-                    TryItEnabled="true"
-                    IsPinchTry = "true"
-                    TryItText="{x:Bind Path=ViewModel.TryIt}"
-                    TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
-                    EntranceDurationInMilliseconds = "400"
-                    EntranceStaggerDelayInMilliseconds = "0"
-                    RadiateDurationInMilliseconds = "1800"
-                    RadiateStaggerDelayInMilliseconds = "5000"
-                    AutoStart = "false"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
-
         <ctrl:Header Grid.Row="3" Grid.Column="1"
-                    x:Name="PageHeader" 
-                    Headline="{x:Bind Path=ViewModel.Headline}"
-                    Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="PageHeadline"
-                    LedeStyle="PageLede"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"/>
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
+            
+            <ctrl:RadiatingButton
+                x:Name="rBtnTryItInnovation"
+                TryItEnabled="true"
+                TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
+                TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnTopInnovation"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+        
+            <ctrl:RadiatingButton
+                x:Name="rBtnRightInnovation"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                AutoStart = "false"/>
+        </Canvas>
     </Grid>
 </Page>

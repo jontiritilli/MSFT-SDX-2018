@@ -18,7 +18,6 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public ExperienceSpeakersPage()

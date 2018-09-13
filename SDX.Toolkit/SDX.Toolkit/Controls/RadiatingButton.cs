@@ -34,6 +34,13 @@ namespace SDX.Toolkit.Controls
         Right
     }
 
+    public enum RadiatingButtonIcons
+    {
+        dial,
+        pen,        
+        pinch,
+        touch
+    }
     public sealed class RadiatingButton : Control
     {
 
@@ -43,10 +50,14 @@ namespace SDX.Toolkit.Controls
         private const double RADIATE_OPACITY_DEFAULT = 0.0;
         private const double RADIATE_OPACITY_START = 0.6;
         private const double RADIATE_OPACITY_END = 0.4;
+        private const double TRY_IT_DELAY = 4000;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/fox_close.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit.png";
+        private const string URI_TRY_IT_PEN_IMAGE = @"ms-appx:///Assets/Universal/tryit_pen.png";
+        private const string URI_TRY_IT_DIAL_IMAGE = @"ms-appx:///Assets/Universal/tryit_dial.png";
         private const string URI_PINCH_ZOOM_IMAGE = @"ms-appx:///Assets/Universal/pinch.png";
+        
         #endregion
 
         #region Private Members
@@ -59,6 +70,7 @@ namespace SDX.Toolkit.Controls
         Grid _tryItBox = null;
         ImageEx _imageX = null;
         ImageEx _tryItImage= null;
+        TextBlockEx _tryItButtonCaption = null;
 
         Storyboard _entranceStoryboard = null;
         Storyboard _radiatingStoryboardX = null;
@@ -74,7 +86,6 @@ namespace SDX.Toolkit.Controls
         private int _dispatchCountRadiate = 0;
         private DispatcherTimer _timerEntrance = null;
         private int _dispatchCountEntrance = 0;
-        private double TRY_IT_DELAY = 2000;
         private string TRY_IT_IMAGE = null;
         //private double popup_spacer = popup_margin + (radiate_size_end - radiate_size_start) * 1.1;
 
@@ -149,14 +160,24 @@ namespace SDX.Toolkit.Controls
             set => SetValue(TryItCaptionProperty, value);
         }
 
-        // IsPinchTry
-        public static readonly DependencyProperty IsPinchTryProperty =
-            DependencyProperty.Register("IsPinchTry", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
+        // IsRemovedOnInteraction
+        public static readonly DependencyProperty IsRemovedOnInteractionProperty =
+            DependencyProperty.Register("IsRemovedOnInteraction", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
 
-        public bool IsPinchTry
+        public bool IsRemovedOnInteraction
         {
-            get => (bool)GetValue(IsPinchTryProperty);
-            set => SetValue(IsPinchTryProperty, value);
+            get => (bool)GetValue(IsRemovedOnInteractionProperty);
+            set => SetValue(IsRemovedOnInteractionProperty, value);
+        }
+
+        // RBIcon
+        public static readonly DependencyProperty RadiatingButtonIconProperty =
+            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.dial));
+
+        public RadiatingButtonIcons RadiatingButtonIcon
+        {
+            get => (RadiatingButtonIcons)GetValue(RadiatingButtonIconProperty);
+            set => SetValue(RadiatingButtonIconProperty, value);
         }
 
         // TryItEnabled
@@ -300,7 +321,7 @@ namespace SDX.Toolkit.Controls
 
         #region Public Methods
 
-        public SolidColorBrush GetSolidColorBrush(string hex)
+        public static SolidColorBrush GetSolidColorBrush(string hex)
         {
             hex = hex.Replace("#", string.Empty);
             byte a = (byte)(Convert.ToUInt32(hex.Substring(0, 2), 16));
@@ -447,9 +468,18 @@ namespace SDX.Toolkit.Controls
                 _entranceStoryboard.Stop();
                 _entranceEllipse.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
-                _tryItBox.Opacity = 0d;
                 _radiateEllipse.Opacity = 0d;
+                _grid.Opacity = 1d;
+                if (null != _tryItBox)
+                {
+                    _tryItBox.Opacity = 0d;
+                }
             }
+        }
+
+        public void CloseTryIt()
+        {
+            HandleClick();
         }
 
         #endregion
@@ -589,18 +619,66 @@ namespace SDX.Toolkit.Controls
             HandleClick();
         }
 
-        private void HandleClick()
+        public void HandleClick()
         {
+            if (IsRemovedOnInteraction)
+            {
+                _grid.Opacity = 0.0;
+            }
+            if (TryItEnabled && null != this.PopupChild)
+            {
+                if (this.PopupChild.IsOpen)
+                {
+                    // close it
+                    this.PopupChild.IsOpen = false;
+                    _imageX.Opacity = 0.0;
+                    if(null != _tryItBox)
+                    {
+                        _tryItBox.Opacity = 1.0;
+                    }
+                    if (null != _tryItButtonCaption)
+                    {
+                        _tryItButtonCaption.Opacity = 1.0;
+                    }
+                }
+                else
+                {
+                    // if the horizontal offset is -1, calculate it
+                    if (-1 == this.PopupChild.HorizontalOffset)
+                    {
+                        this.PopupChild.HorizontalOffset = GetPopupHorizontalOffset();
+                    }
+
+                    // if the vertical offset is -1, calculate it
+                    if (-1 == this.PopupChild.VerticalOffset)
+                    {
+                        this.PopupChild.VerticalOffset = GetPopupVerticalOffset();
+                    }
+
+                    // open it
+                    this.PopupChild.IsOpen = true;
+                    _imageX.Opacity = 1.0;
+                    if (null != _tryItBox)
+                    {
+                        _tryItBox.Opacity = 0.0;
+                    }
+                    if (null != _tryItButtonCaption)
+                    {
+                        _tryItButtonCaption.Opacity = 0.0;
+                    }
+                    
+
+                    // telemetry
+                    //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+                }
+            }
+
             if (null != this.PopupChild)
             {
                 if (this.PopupChild.IsOpen)
                 {
                     // close it
                     this.PopupChild.IsOpen = false;
-                    if (null != _tryItImage)
-                    {
-                        _tryItImage.Opacity = 1.0;
-                    }
                     _imageX.Opacity = 0.0;
                 }
                 else
@@ -619,17 +697,12 @@ namespace SDX.Toolkit.Controls
 
                     // open it
                     this.PopupChild.IsOpen = true;
-                    if (null != _tryItImage)
-                    {
-                        _tryItImage.Opacity = 0.0;
-                    }
                     _imageX.Opacity = 1.0;
 
                     // telemetry
                     //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                 }
             }
-
             RaiseClickedEvent(this, new EventArgs());
         }
 
@@ -652,11 +725,6 @@ namespace SDX.Toolkit.Controls
         {
             if (null != _imageX)
             {
-                // show the tryit image if there is one
-                if (null != _tryItImage)
-                {
-                    _tryItImage.Opacity = 1.0;
-                }
                 // hide the X
                 _imageX.Opacity = 0.0;
 
@@ -679,13 +747,17 @@ namespace SDX.Toolkit.Controls
             if (null == _grid)
             {
                 double GridWidth = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonGridWidth);
+
                 double RadiatingButtonHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
+
+                // height of the radiating button with a little added space for the radiating animation
+                double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.4;
 
                 // create the grid
                 _grid = new Grid()
                 {
                     Name = this.Name + "Grid",
-                    Width = GridWidth,
+                    //Width = GridWidth,
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                     RowSpacing = 0d,
@@ -709,14 +781,10 @@ namespace SDX.Toolkit.Controls
                     double TryItBoxHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItBoxHeight);
                     //height of the triangle
                     double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
-                    // width of the blue box
-                    double TryItBoxWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItBoxWidth);
                     // width of the triangle
                     double TryItPathWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathWidth);
                     // space between message box and ellipse
                     double RadiatingButtonTopSpacerHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseTopSpacer);
-                    // height of the radiating button with a little added space for the radiating animation
-                    double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.4;
                     // space between ellipse and caption
                     double RadiatingButtonEllipseBottomSpacer = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseBottomSpacer);
                     // height of the caption
@@ -725,7 +793,7 @@ namespace SDX.Toolkit.Controls
                     double TryItIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
 
                     // define rows and columns
-                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(TryItBoxHeight + TryItPathHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(TryItBoxHeight+TryItPathHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonTopSpacerHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonEllipseBottomSpacer) });
@@ -739,11 +807,12 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "TryItBg",
                         Height = TryItBoxHeight,
-                        Width = TryItBoxWidth,
+                        //Width = TryItBoxWidth,
                         Background = TryItColor,
                         BorderBrush = new SolidColorBrush(Colors.White),
                         BorderThickness = new Thickness(2),
-                        VerticalAlignment = VerticalAlignment.Center,
+                        Padding = new Thickness(5,0,5,0),
+                        VerticalAlignment = VerticalAlignment.Top,
                         HorizontalAlignment = HorizontalAlignment.Center
                     };
 
@@ -753,7 +822,7 @@ namespace SDX.Toolkit.Controls
                         Name = "TryItText",
                         Text = this.TryItText,
                         TextStyle = TextStyles.TryIt,
-                        Width = GridWidth,
+                        //Width = GridWidth,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
@@ -770,8 +839,8 @@ namespace SDX.Toolkit.Controls
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Bottom
                     };
-                    Indicator.Points.Add(new Point(24,0));
-                    Indicator.Points.Add(new Point(12,12));
+                    Indicator.Points.Add(new Point(TryItPathWidth,0));
+                    Indicator.Points.Add(new Point(TryItPathHeight, TryItPathHeight));
                     Indicator.Points.Add(new Point(0, 0));
                     
                     // create a triangle to cover white border at joining of triangle and rectangle
@@ -779,18 +848,18 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "TryItTriangleCover",
                         Fill = TryItColor,
-                        Margin = new Thickness(0,0,0,2),
+                        Margin = new Thickness(0,0,1,3),
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Bottom
                     };
-                    IndicatorStrokeCover.Points.Add(new Point(24, 0));
-                    IndicatorStrokeCover.Points.Add(new Point(12, 12));
+                    IndicatorStrokeCover.Points.Add(new Point(TryItPathWidth, 0));
+                    IndicatorStrokeCover.Points.Add(new Point(TryItPathHeight, TryItPathHeight));
                     IndicatorStrokeCover.Points.Add(new Point(0, 0));
 
                     // add it all to the box (to be added to the main grid)
-                    _tryItBox.Children.Add(Indicator);
+                    Background.Child = TryItBoxText;
                     _tryItBox.Children.Add(Background);
-                    _tryItBox.Children.Add(TryItBoxText);
+                    _tryItBox.Children.Add(Indicator);
                     _tryItBox.Children.Add(IndicatorStrokeCover);
 
                     // set the rows and grids
@@ -802,7 +871,7 @@ namespace SDX.Toolkit.Controls
 
                     _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
 
-                    TextBlockEx _tryItButtonCaption = new TextBlockEx
+                    _tryItButtonCaption = new TextBlockEx
                     {
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
@@ -868,20 +937,32 @@ namespace SDX.Toolkit.Controls
                     // add to the grid
                     _grid.Children.Add(_entranceEllipse);
 
-                    // get the size for icons
-                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
-
                     // create storyboard
                     _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
 
+                    // get the size for icons
+                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+
                     // set correct icon for radiating button
-                    if (IsPinchTry)
-                    {
-                        TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
-                    }
-                    else
-                    {
-                        TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                    switch (RadiatingButtonIcon) {
+                        case RadiatingButtonIcons.dial:
+                            TRY_IT_IMAGE = URI_TRY_IT_DIAL_IMAGE;
+                            break;
+
+                        case RadiatingButtonIcons.pen:
+                            TRY_IT_IMAGE = URI_TRY_IT_PEN_IMAGE;
+                            break;
+
+                        case RadiatingButtonIcons.pinch:
+                            TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
+                            break;
+
+                        case RadiatingButtonIcons.touch:
+                            TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                            break;
+
+                        default:
+                            break;
                     }
 
                     // create the try it icon
@@ -919,10 +1000,11 @@ namespace SDX.Toolkit.Controls
                     // add it to the grid
                     _grid.Children.Add(_imageX);
                 }
+                // if try it is NOT enabled
                 else
                 {
                     _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GridWidth) });
-                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
                     // create the radiating ellipse
                     _radiateEllipse = new Ellipse()
                     {
@@ -930,6 +1012,8 @@ namespace SDX.Toolkit.Controls
                         Width = RadiatingButtonHeight,
                         Height = RadiatingButtonHeight,
                         Fill = new SolidColorBrush(Colors.White),
+                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
+                        StrokeThickness = 2,
                         Opacity = RADIATE_OPACITY_DEFAULT,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -957,6 +1041,8 @@ namespace SDX.Toolkit.Controls
                         Width = RadiatingButtonHeight,
                         Height = RadiatingButtonHeight,
                         Fill = new SolidColorBrush(Colors.White),
+                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
+                        StrokeThickness = 2,
                         Opacity = 0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,

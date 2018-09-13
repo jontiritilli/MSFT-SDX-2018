@@ -2,14 +2,19 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
-using SDX.Toolkit.Controls;
 using Windows.UI.Xaml.Controls;
+using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceLaptopDemo.Views
 {
     public sealed partial class AccessoriesPenPage : Page, INavigate
     {
+
+        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #region Private Members
 
         private AccessoriesPenViewModel ViewModel
@@ -33,6 +38,9 @@ namespace SurfaceLaptopDemo.Views
             AccessoriesPenPage.Current = this;
             this.AppSelectorImageAccRight.AppSelector = this.AppSelectorAccRight;
             this.AppSelectorAccRight.SelectedIDChanged += SelectedIDChanged;
+
+            Canvas.SetTop(rBtnPen, _canvasHeight * .71);
+            Canvas.SetLeft(rBtnPen, _canvasWidth * .48);
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)
@@ -57,11 +65,19 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateToPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnPen.StartEntranceAnimation();
+            rBtnPen.StartRadiateAnimation();
+
         }
 
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+
+            rBtnPen.ResetEntranceAnimation();
+            rBtnPen.ResetRadiateAnimation();
+            
         }
 
         #endregion

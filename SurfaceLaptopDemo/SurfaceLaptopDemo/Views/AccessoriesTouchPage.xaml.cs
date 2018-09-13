@@ -1,7 +1,7 @@
 ﻿using System;
 
 using SurfaceLaptopDemo.ViewModels;
-
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -19,22 +19,27 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-        #region Construction
+        #region Public Members
 
+        public static AccessoriesTouchPage Current { get; private set; }
+
+        #endregion
+
+        #region Construction
 
         public AccessoriesTouchPage()
         {
             InitializeComponent();
+            PinchZoomElement.ZoomEvent += HandleZoomChanged;
         }
 
         #endregion
 
-        #region Private Methods
+        #region private Methods
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void HandleZoomChanged(object sender, RoutedEventArgs e)
         {
-            PinchToZoomElement.ZoomMode = ZoomMode.Enabled;
-            PinchToZoomElement.ChangeView(0, 0, 3);
+            rButtonOne.CloseTryIt();
         }
 
         #endregion
@@ -43,12 +48,16 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage()
         {
-            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            PinchZoomElement.ResetControl();
+            rButtonOne.StartEntranceAnimation();
+            rButtonOne.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            PinchZoomElement.ResetControl();
         }
 
         #endregion
