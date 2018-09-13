@@ -51,7 +51,6 @@ namespace SDX.Toolkit.Controls
 
     public class PlayerInteractionEventArgs : EventArgs
     {
-
         #region Constructors
 
         public PlayerInteractionEventArgs()
@@ -96,12 +95,14 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+
         #region Private Members
 
         private MediaPlayer mediaPlayer;
         private MediaPlaybackList mediaPlaybackList;
 
         #endregion
+
 
         #region Construction/Destruction
 
@@ -233,6 +234,7 @@ namespace SDX.Toolkit.Controls
         }
 
         #endregion
+
 
         #region Custom Events
 
@@ -615,6 +617,7 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+
         #region UI Methods
 
         private void UpdateUI()
@@ -702,6 +705,7 @@ namespace SDX.Toolkit.Controls
 
 
         #endregion
+
 
         #region UI Helpers
 
