@@ -83,7 +83,7 @@ namespace SDX.Toolkit.Controls
 
         // Text
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(TextBlockEx), new PropertyMetadata(null)); //, OnTextChanged));
+            DependencyProperty.Register("Text", typeof(string), typeof(TextBlockEx), new PropertyMetadata(null, OnTextChanged));
 
         public string Text
         {
@@ -149,6 +149,14 @@ namespace SDX.Toolkit.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TextBlockEx textBlockEx)
+            {
+                textBlockEx.TheText.Text = (string)e.NewValue;
+            }
         }
 
         private void OnOpacityChanged(object sender, double e)

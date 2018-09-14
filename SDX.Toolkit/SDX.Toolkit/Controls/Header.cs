@@ -37,7 +37,7 @@ namespace SDX.Toolkit.Controls
         private Grid _layoutGrid = null;
         private TextBlockEx _headline = null;
         private TextBlockEx _lede = null;     // using TextBlock here because we need access to .Inlines and can't expose that on TextBlockEx
-        private Run _ledeText = null;
+        private Run _ledeRun = null;
         private Hyperlink _ledeCTALink = null;
         private Run _ledeCTAText = null;
 
@@ -352,8 +352,8 @@ namespace SDX.Toolkit.Controls
                 // add to the grid
                 _layoutGrid.Children.Add(_headline);
 
-                // update layout
-                this.UpdateLayout();
+                //// update layout
+                //this.UpdateLayout();
             }
 
             // if we have a lede
@@ -372,21 +372,21 @@ namespace SDX.Toolkit.Controls
                 Grid.SetRow(_lede, 1);
                 Grid.SetColumn(_lede, 0);
 
-                // get styles for the runs
-                Style runStyle = StyleHelper.GetApplicationStyle(this.LedeStyle);
-                Style ctaStyle = StyleHelper.GetApplicationStyle(this.CTATextStyle);
-
-                // create the runs
-                _ledeText = new Run()
-                {
-                    Text = this.Lede + CHAR_NBSPACE + CHAR_NBSPACE,
-                };
-                StyleHelper.SetRunStyleFromStyle(_ledeText, runStyle);
-                _lede.AddInline(_ledeText);
-
                 // if there's a call to action
                 if ((!String.IsNullOrWhiteSpace(this.CTAText)) && (null != this.CTAUri))
                 {
+                    // get style for the cta run
+                    Style ledeStyle = StyleHelper.GetApplicationStyle(this.LedeStyle);
+                    Style ctaStyle = StyleHelper.GetApplicationStyle(this.CTATextStyle);
+
+                    // create the lede
+                    _ledeRun = new Run()
+                    {
+                        Text = this.Lede + CHAR_NBSPACE + CHAR_NBSPACE
+                    };
+                    StyleHelper.SetRunStyleFromStyle(_ledeRun, ledeStyle);
+                    _lede.AddInline(_ledeRun);
+
                     // create the hyperlink
                     _ledeCTALink = new Hyperlink()
                     {
@@ -398,7 +398,7 @@ namespace SDX.Toolkit.Controls
                     {
                         Text = this.CTAText.ToUpper()
                     };
-                    
+
                     StyleHelper.SetRunStyleFromStyle(_ledeCTAText, ctaStyle);
                     _ledeCTALink.Inlines.Add(_ledeCTAText);
                     _lede.AddInline(_ledeCTALink);
@@ -406,11 +406,12 @@ namespace SDX.Toolkit.Controls
                     // add the click handler for the link
                     _ledeCTALink.Click += CTALink_Click;
                 }
-
-                // can't do this anymore now that we have a hyperlink in here
-                //// set lede binding
-                //_lede.SetBinding(TextBlockEx.TextProperty,
-                //    new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
+                else
+                {
+                    // no CTA, so this is simple text; set lede binding
+                    _lede.SetBinding(TextBlockEx.TextProperty,
+                        new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
+                }
 
                 // add to the grid
                 _layoutGrid.Children.Add(_lede);
