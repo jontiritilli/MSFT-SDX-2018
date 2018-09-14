@@ -17,7 +17,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SurfaceStudioDemo_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SurfaceStudioDemo_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>036A97E0B9CCCA636A0142B6ABE3CC87020F9B82</PackageCertificateThumbprint>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -125,8 +132,8 @@
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
-    <Compile Include="ViewModels\AccessoriesDialViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesMouseViewModel.cs" />
+    <Compile Include="ViewModels\AccessoriesPenPopupViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesTryItViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
@@ -135,17 +142,18 @@
     <Compile Include="ViewModels\ExperienceCraftedViewModel.cs" />
     <Compile Include="ViewModels\ExperienceCreativityViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
+    <Compile Include="ViewModels\ExperiencePixelSensePopupViewModel.cs" />
     <Compile Include="ViewModels\ExperiencePixelSenseViewModel.cs" />
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\AccessoriesDialPage.xaml.cs">
-      <DependentUpon>AccessoriesDialPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AccessoriesMousePage.xaml.cs">
       <DependentUpon>AccessoriesMousePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccessoriesPenPage.xaml.cs">
       <DependentUpon>AccessoriesPenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccessoriesPenPopupPage.xaml.cs">
+      <DependentUpon>AccessoriesPenPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccessoriesTryItPage.xaml.cs">
       <DependentUpon>AccessoriesTryItPage.xaml</DependentUpon>
@@ -170,6 +178,9 @@
     </Compile>
     <Compile Include="Views\ExperiencePixelSensePage.xaml.cs">
       <DependentUpon>ExperiencePixelSensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperiencePixelSensePopupPage.xaml.cs">
+      <DependentUpon>ExperiencePixelSensePopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\INavigate.cs" />
     <Compile Include="Views\FlipViewPage.xaml.cs">
@@ -223,10 +234,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AccessoriesDialPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\AccessoriesMousePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -234,6 +241,10 @@
     <Page Include="Views\AccessoriesPenPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccessoriesPenPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AccessoriesTryItPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ExperiencePixelSensePopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -283,6 +298,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Assets\Accessories\accessoriesLeft.png" />
+    <Content Include="Assets\Accessories\accessoriesRight.png" />
     <Content Include="Assets\Accessories\inkingFish.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
@@ -308,6 +325,22 @@
     <Content Include="Assets\Icons\ArtworkColors\reset.png" />
     <Content Include="Assets\Icons\ArtworkColors\teal.png" />
     <Content Include="Assets\Icons\ArtworkColors\teal_active.png" />
+    <Content Include="Assets\List\bom_office.png" />
+    <Content Include="Assets\List\bom_smile.png" />
+    <Content Include="Assets\List\bom_sync.png" />
+    <Content Include="Assets\List\bom_windows.png" />
+    <Content Include="Assets\List\specs_audio.png" />
+    <Content Include="Assets\List\specs_battery.png" />
+    <Content Include="Assets\List\specs_connections.png" />
+    <Content Include="Assets\List\specs_creative.png" />
+    <Content Include="Assets\List\specs_design.png" />
+    <Content Include="Assets\List\specs_eye.png" />
+    <Content Include="Assets\List\specs_feather.png" />
+    <Content Include="Assets\List\specs_laptop.png" />
+    <Content Include="Assets\List\specs_pen.png" />
+    <Content Include="Assets\List\specs_performance.png" />
+    <Content Include="Assets\List\specs_versatile.png" />
+    <Content Include="Assets\List\specs_wifi.png" />
     <Content Include="Assets\List\inkingDraw.png" />
     <Content Include="Assets\List\inkingPalm.png" />
     <Content Include="Assets\List\inkingPressure.png" />
@@ -323,6 +356,10 @@
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-400.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
@@ -376,6 +413,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SurfaceStudioDemo_StoreKey.pfx" />
     <None Include="SurfaceStudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Private Members
 
         private FlipViewViewModel ViewModel
@@ -45,13 +44,11 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Public Static Properties
 
         public static FlipViewPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -109,7 +106,6 @@ namespace SurfaceStudioDemo.Views
         }
 
         #endregion
-
 
         #region Event Handlers
 
@@ -204,7 +200,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Public Methods
 
         public void ShowAppClose()
@@ -223,9 +218,14 @@ namespace SurfaceStudioDemo.Views
             }
         }
 
-        public Popup GetAccessoriesDialPopup()
+        public Popup GetExperiencePixelSensePopup()
         {
-            return this.AccessoriesDialPopup;
+            return this.ExperiencePixelSensePopup;
+        }
+
+        public Popup GetAccessoriesPenPopup()
+        {
+            return this.AccessoriesPenPopup;
         }
         #endregion
     }

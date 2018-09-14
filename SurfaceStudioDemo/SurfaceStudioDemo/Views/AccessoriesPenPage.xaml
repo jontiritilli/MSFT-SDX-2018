@@ -10,7 +10,7 @@
     <Grid
         x:Name="ContentArea">
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
@@ -38,20 +38,20 @@
             VerticalAlignment="Top" />
 
         <!-- TODO: List goes here -->
-        <ctrl:List x:Name="AccessoriesList"
+        <ctrl:List Grid.Column="1" Grid.Row="3"
+            x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
-            ListStyle="LedeOnly"
-            Grid.Column="1"
-            Grid.Row="3"
-                />
-        <ctrl:ColoringBook
+            ListStyle="LedeOnly"/>
+        
+        <ctrl:ColoringBook Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="4"
             x:Name="ColoringBook"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.RowSpan="8"
-            Grid.ColumnSpan="4"
-            ImageColumnSpan="2"        
-        />
+            ImageColumnSpan="2" />
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+            x:Name="GridCanvas">
+            
+            <ctrl:SurfaceDial
+                x:Name="SurfaceDial"/>
+        </Canvas>
 
     </Grid>
 </Page>
