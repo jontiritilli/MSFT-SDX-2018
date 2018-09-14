@@ -11,11 +11,10 @@ namespace SurfaceStudioDemo.ViewModels
     public class ExperienceHeroViewModel : ViewModelBase
     {
         #region Constants
-
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
 
         #endregion
-
 
         #region Public Properties
 
@@ -25,7 +24,6 @@ namespace SurfaceStudioDemo.ViewModels
         public string SwipeText;
 
         #endregion
-
 
         #region Construction
 

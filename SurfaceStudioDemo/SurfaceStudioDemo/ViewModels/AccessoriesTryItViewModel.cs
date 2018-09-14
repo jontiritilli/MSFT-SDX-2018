@@ -12,17 +12,28 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
+        private const string URI_ACCESSORIES_PRIMARY = "ms-appx:///Assets/Accessories/accessoriesLeft.png";
 
         #endregion
-
 
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string PrimaryImage = URI_ACCESSORIES_PRIMARY;
+
+        public string Headline;
+        public string Lede;
+
+        public string PopLeftHeadline;
+        public string PopLeftLede;
+        public string PopLeftLegal;
+
+        public string PopRightHeadline;
+        public string PopRightLede;
+        public string PopRightLegal;
 
         #endregion
-
 
         #region Construction
 

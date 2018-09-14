@@ -1,42 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-
-using SurfaceStudioDemo.Services;
+using Windows.UI.Xaml.Media;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 
+using SurfaceStudioDemo.Services;
 
 namespace SurfaceStudioDemo.ViewModels
 {
-    public class BestOfMicrosoftViewModel : ViewModelBase
+    public class AccessoriesPenPopupViewModel : ViewModelBase
     {
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
+        private const string URI_READY = "ms-appx:///Assets/Experience/appsDesktop.png";
+        public double READY_IMAGE_WIDTH = 1000;
 
         #endregion
 
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
+        public string ReadyUri = URI_READY;
 
         public string Headline;
-        public string Legal;
-
-        public List<ListItem> LeftItemList = new List<ListItem>();
-        public List<ListItem> RightItemList = new List<ListItem>();
-
-        public double ICON_WIDTH = StyleHelper.GetApplicationDouble("BestOfMicrosoftListIconWidth");
+        public string ButtonText;
+        public SolidColorBrush ReadyBoxBorderColor = RadiatingButton.GetSolidColorBrush("#FF0078D4");
 
         #endregion
 
         #region Construction
 
-        public BestOfMicrosoftViewModel()
+        public AccessoriesPenPopupViewModel()
         {
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
@@ -45,7 +43,7 @@ namespace SurfaceStudioDemo.ViewModels
             if (null != localizationService)
             {
                 // load ourself with values from the language file
-                localizationService.LoadBestOfMicrosoftViewModel(this);
+                localizationService.LoadAccessoriesPenPopupViewModel(this);
             }
         }
 

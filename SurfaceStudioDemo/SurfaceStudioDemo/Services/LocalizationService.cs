@@ -187,46 +187,47 @@ namespace SurfaceStudioDemo.Services
 
         public void LoadExperienceCreativityViewModel(ExperienceCreativityViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_HEADLINE, "EXPERIENCE_OVERVIEW_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_COPY, "EXPERIENCE_OVERVIEW_COPY");
         }
 
         public void LoadExperienceCraftedViewModel(ExperienceCraftedViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_CRAFTSMANSHIP_HEADLINE, "EXPERIENCE_CRAFTSMANSHIP_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_CRAFTSMANSHIP_COPY, "EXPERIENCE_CRAFTSMANSHIP_COPY");
 
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CRAFTSMANSHIP_POPLEFT_TITLE, "EXPERIENCE_CRAFTSMANSHIP_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.EXPERIENCE_CRAFTSMANSHIP_POPLEFT_COPY, "EXPERIENCE_CRAFTSMANSHIP_POPLEFT_COPY");
+
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_TITLE, "EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_COPY, "EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_COPY");
         }
 
         public void LoadExperiencePixelSenseViewModel(ExperiencePixelSenseViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_HEADLINE, "EXPERIENCE_DISPLAY_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_COPY, "EXPERIENCE_DISPLAY_COPY");
+
             viewModel.PopLeft_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_TITLE, "EXPERIENCE_DISPLAY_POPLEFT_TITLE");
             viewModel.PopLeft_Lede= GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY, "EXPERIENCE_DISPLAY_POPLEFT_COPY");
+
             viewModel.PopBottom_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE, "EXPERIENCE_DISPLAY_POPBOTTOM_TITLE");
             viewModel.PopBottom_Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY");
+
         }
 
-        public void LoadAccessoriesDialViewModel(AccessoriesDialViewModel viewModel)
+        public void LoadExperiencePixelSensePopupViewModel(ExperiencePixelSensePopupViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_HEADLINE, "EXPERIENCE_DISPLAY_POPTOP_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_COPY, "EXPERIENCE_DISPLAY_POPTOP_COPY");
 
             viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_COPY_LEGAL, "EXPERIENCE_DISPLAY_POPTOP_COPY_LEGAL");
-            viewModel.URIS[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE");
-            viewModel.URIS[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO, "EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO");
-            viewModel.URIS[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE");
-            viewModel.URIS[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR");
-            viewModel.URIS[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE");
 
-        }
-
-        public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)
-        {
-
-        }
-
-        public void LoadAccessoriesTryItViewModel(AccessoriesTryItViewModel viewModel)
-        {
-
+            viewModel.IconURIS[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE");
+            viewModel.IconURIS[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO, "EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO");
+            viewModel.IconURIS[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE");
+            viewModel.IconURIS[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR");
+            viewModel.IconURIS[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE");
         }
 
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
@@ -276,8 +277,99 @@ namespace SurfaceStudioDemo.Services
 
         }
 
+        public void LoadAccessoriesPenPopupViewModel(AccessoriesPenPopupViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_GATEWAY_HEADLINE, "ACCESSORIES_GATEWAY_HEADLINE");
+            viewModel.ButtonText = GetStringValue(_languageCurrent.ACCESSORIES_GATEWAY_CTA, "ACCESSORIES_GATEWAY_CTA");
+        }
+
+        public void LoadAccessoriesTryItViewModel(AccessoriesTryItViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_COPY, "ACCESSORIES_LEFT_COPY");
+
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_LEGAL, "ACCESSORIES_LEFT_POPLEFT_LEGAL");
+
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPRIGHT_COPY");
+            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_LEGAL, "ACCESSORIES_LEFT_POPRIGHT_LEGAL");
+        }
+
+        public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_HEADLINE, "ACCESSORIES_RIGHT_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_COPY, "ACCESSORIES_RIGHT_COPY");
+
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPLEFT_TITLE, "ACCESSORIES_RIGHT_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPLEFT_COPY, "ACCESSORIES_RIGHT_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPLEFT_LEGAL, "ACCESSORIES_RIGHT_POPLEFT_LEGAL");
+
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_TITLE, "ACCESSORIES_RIGHT_POPRIGHT_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_COPY, "ACCESSORIES_RIGHT_POPRIGHT_COPY");
+            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_LEGAL, "ACCESSORIES_RIGHT_POPRIGHT_LEGAL");
+        }
+
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
+            viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+
+            // bullet one
+            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Start, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, "BEST_BULLET_ONE_TITLE"), // headline
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "BEST_BULLET_ONE_COPY"), // lede
+                null, //CTA URI
+                GetStringValue(_languageCurrent.BEST_BULLET_ONE_CTA, "BEST_BULLET_ONE_CTA") //CTA Text
+            ));
+
+            // bullet two
+            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+                1,
+                ListItemIcon.Hello,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, "BEST_BULLET_TWO_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "BEST_BULLET_TWO_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA")
+            ));
+
+            // bullet three OPTIONAL CHINA BULLET
+            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.Custom,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "BEST_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "BEST_BULLET_FIVE_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
+            ));
+
+            // bullet four
+            viewModel.RightItemList.Add(ListItem.CreateListItem(
+                0,
+                ListItemIcon.Sync,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, "BEST_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "BEST_BULLET_THREE_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA")
+            ));
+
+            // bullet five
+            viewModel.RightItemList.Add(ListItem.CreateListItem(
+                1,
+                ListItemIcon.Office,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, "BEST_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "BEST_BULLET_FOUR_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA")
+            ));
 
         }
 

@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+
+using SurfaceStudioDemo.Services;
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-using SurfaceStudioDemo.Services;
+using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Media;
 
+using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceStudioDemo.ViewModels
 {
@@ -18,15 +26,15 @@ namespace SurfaceStudioDemo.ViewModels
 
         #endregion
 
-
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
         public string Left_URI = URI_LEFT;
         public string Right_URI = URI_RIGHT;
 
-        public double Left_Width = 1134.5;
-        public double Right_Width = 1027.5;
+        public double Left_Width = 950;
+        public double Right_Width = 950;
+
         public string Headline;
         public string Lede;        
 
@@ -36,11 +44,9 @@ namespace SurfaceStudioDemo.ViewModels
 
         public string PopBottom_Headline;
         public string PopBottom_Lede;
-        public string PopBottom_Legal;        
-
+        public string PopBottom_Legal;
 
         #endregion
-
 
         #region Construction
 
