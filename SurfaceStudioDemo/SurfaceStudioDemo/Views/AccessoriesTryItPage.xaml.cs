@@ -2,6 +2,8 @@
 
 using Windows.UI.Xaml.Controls;
 
+using SDX.Toolkit.Helpers;
+
 using SurfaceStudioDemo.ViewModels;
 
 
@@ -18,7 +20,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public AccessoriesTryItPage()
@@ -28,17 +29,16 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region INavigate Interface
 
         public void NavigateToPage()
         {
-            // animations in
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

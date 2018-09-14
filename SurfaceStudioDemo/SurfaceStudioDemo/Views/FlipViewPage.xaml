@@ -5,8 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding FlipViewViewModel, Source={StaticResource Locator}}"
-    xmlns:model="using:SurfaceStudioDemo.Models"
+    Style="{StaticResource PageStyle}"
     xmlns:views="using:SurfaceStudioDemo.Views"
+    xmlns:model="using:SurfaceStudioDemo.Models"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     mc:Ignorable="d">
 
@@ -60,14 +61,9 @@
                     <views:ExperiencePixelSensePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesDialPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
                 <Frame>
-                    <views:AccessoriesDialPage/>
-                </Frame>
-            </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesMousePage">
-                <Frame>
-                    <views:AccessoriesMousePage/>
+                    <views:AccessoriesPenPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesTryItPage">
@@ -75,9 +71,9 @@
                     <views:AccessoriesTryItPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesMousePage">
                 <Frame>
-                    <views:AccessoriesPenPage/>
+                    <views:AccessoriesMousePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_BestOfMicrosoftPage">
@@ -113,13 +109,23 @@
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
 
-        <Popup x:Name="AccessoriesDialPopup"
+        <Popup x:Name="ExperiencePixelSensePopup"
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
                 VerticalOffset="0">
             <Popup.Child>
-                <views:AccessoriesDialPage/>
+                <views:ExperiencePixelSensePopupPage/>
+            </Popup.Child>
+        </Popup>
+
+        <Popup x:Name="AccessoriesPenPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:AccessoriesPenPopupPage/>
             </Popup.Child>
         </Popup>
         <!-- TEST ONLY -->

@@ -23,10 +23,11 @@ namespace SurfaceStudioDemo.ViewModels
             Register<ExperienceCreativityViewModel, ExperienceCreativityPage>();
             Register<ExperienceCraftedViewModel, ExperienceCraftedPage>();
             Register<ExperiencePixelSenseViewModel, ExperiencePixelSensePage>();
-            Register<AccessoriesDialViewModel, AccessoriesDialPage>();
+            Register<ExperiencePixelSensePopupViewModel, ExperiencePixelSensePopupPage>();
             Register<AccessoriesMouseViewModel, AccessoriesMousePage>();
             Register<AccessoriesTryItViewModel, AccessoriesTryItPage>();
             Register<AccessoriesPenViewModel, AccessoriesPenPage>();
+            Register<AccessoriesPenPopupViewModel, AccessoriesPenPopupPage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
             Register<CompareViewModel, ComparePage>();
         }
@@ -37,13 +38,15 @@ namespace SurfaceStudioDemo.ViewModels
 
         public AccessoriesPenViewModel AccessoriesPenViewModel => ServiceLocator.Current.GetInstance<AccessoriesPenViewModel>();
 
+        public AccessoriesPenPopupViewModel AccessoriesPenPopupViewModel => ServiceLocator.Current.GetInstance<AccessoriesPenPopupViewModel>();
+
         public AccessoriesTryItViewModel AccessoriesTryItViewModel => ServiceLocator.Current.GetInstance<AccessoriesTryItViewModel>();
 
         public AccessoriesMouseViewModel AccessoriesMouseViewModel => ServiceLocator.Current.GetInstance<AccessoriesMouseViewModel>();
 
-        public AccessoriesDialViewModel AccessoriesDialViewModel => ServiceLocator.Current.GetInstance<AccessoriesDialViewModel>();
-
         public ExperiencePixelSenseViewModel ExperiencePixelSenseViewModel => ServiceLocator.Current.GetInstance<ExperiencePixelSenseViewModel>();
+
+        public ExperiencePixelSensePopupViewModel ExperiencePixelSensePopupViewModel => ServiceLocator.Current.GetInstance<ExperiencePixelSensePopupViewModel>();
 
         public ExperienceCraftedViewModel ExperienceCraftedViewModel => ServiceLocator.Current.GetInstance<ExperienceCraftedViewModel>();
 

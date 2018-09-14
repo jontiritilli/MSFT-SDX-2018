@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Windows.UI.Xaml.Controls;
+using SDX.Toolkit.Helpers;
 
 using SurfaceStudioDemo.ViewModels;
 
@@ -33,12 +34,12 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage()
         {
-            // animations in
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion
