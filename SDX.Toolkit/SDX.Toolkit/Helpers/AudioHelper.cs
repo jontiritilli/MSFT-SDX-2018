@@ -59,7 +59,7 @@ namespace SDX.Toolkit.Helpers
             {
                 // get the master volume interface
                 var masterVol = GetAudioEndpointVolumeInterface();
-                if (null == masterVol) { return; }
+                //if (null == masterVol) { return; }
 
                 // Make sure that the audio is not muted (unless we mean to mute it
                 if (volume > 0)

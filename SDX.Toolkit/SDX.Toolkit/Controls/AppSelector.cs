@@ -56,8 +56,8 @@ namespace SDX.Toolkit.Controls
         private const double WIDTH_GRID = 340d;
         private const double WIDTH_GRID_COLUMNSPACING = 10d;
         private const double WIDTH_GRID_ROWSPACING = 10d;
-        private const double WIDTH_IMAGE_SELECTED = 62d;
-        private const double WIDTH_IMAGE_NOTSEL = 50d;
+        private readonly double WIDTH_IMAGE_SELECTED = StyleHelper.GetApplicationDouble(LayoutSizes.AppSelectorButtonWidth);
+        private readonly double WIDTH_IMAGE_NOTSEL = StyleHelper.GetApplicationDouble(LayoutSizes.AppSelectorButtonWidth);
         private Style _buttonStyle;
 
         #endregion
