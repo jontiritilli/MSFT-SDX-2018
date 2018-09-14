@@ -49,7 +49,7 @@ namespace SDX.Toolkit.Helpers
     {
         public static bool SetVolumeTo(double volume)
         {
-            bool succeeded = true;
+            bool succeeded = false;
 
             // level can only be between 0 and 1
             volume = Math.Min(1, volume);
@@ -59,7 +59,7 @@ namespace SDX.Toolkit.Helpers
             {
                 // get the master volume interface
                 var masterVol = GetAudioEndpointVolumeInterface();
-                if (null == masterVol) { return; }
+                if (null == masterVol) { return succeeded; }
 
                 // Make sure that the audio is not muted (unless we mean to mute it
                 if (volume > 0)
@@ -82,6 +82,9 @@ namespace SDX.Toolkit.Helpers
 
                 // set the volume
                 masterVol.SetMasterVolumeLevelScalar(newAudioValue, Guid.Empty);
+
+                // success
+                succeeded = true;
             }
             catch
             {

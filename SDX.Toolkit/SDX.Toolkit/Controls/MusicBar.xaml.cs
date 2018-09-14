@@ -693,8 +693,8 @@ namespace SDX.Toolkit.Controls
             {
                 if (null != this.Scrub)
                 {
-                    double val = position.TotalMilliseconds;
-                    double max = duration.TotalMilliseconds;
+                    double val = Double.IsNaN(position.TotalMilliseconds) ? 0 : position.TotalMilliseconds;
+                    double max = (Double.IsNaN(duration.TotalMilliseconds) || (0 == duration.TotalMilliseconds)) ? 1 : duration.TotalMilliseconds;
 
                     this.Scrub.Value = (val / max);
                 }

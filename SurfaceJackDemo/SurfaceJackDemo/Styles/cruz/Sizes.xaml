@@ -56,8 +56,9 @@
 
     <GridLength x:Key="SpaceBelowHeader">32.34</GridLength>
 
-    <x:Double x:Key="AppCloseWidth">46</x:Double>
-    <x:Double x:Key="AppCloseHeight">32</x:Double>
+    <x:Double x:Key="AppCloseWidth">36</x:Double>
+    <x:Double x:Key="AppCloseHeight">36</x:Double>  <!-- Note that we need the height because we define a row based on it -->
+                                                    <!-- Normally you would only specify the width OR height of an image -->
 
     <x:Double x:Key="HeaderWidth">300.5</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">32.34</x:Double>
