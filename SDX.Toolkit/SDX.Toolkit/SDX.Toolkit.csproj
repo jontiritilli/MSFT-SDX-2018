@@ -137,6 +137,7 @@
       <DependentUpon>TextBlockEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Converters\DoubleToIntConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
