@@ -23,7 +23,7 @@ namespace SDX.Toolkit.Controls
     {
         #region Constants
 
-        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/fox_close.png";
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
         #endregion
 

@@ -227,7 +227,7 @@ namespace SDX.Toolkit.Controls
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
             // TEST ONLY
-            throw new BadImageFormatException(e.ErrorMessage);
+            //throw new BadImageFormatException(e.ErrorMessage);
         }
 
         #endregion

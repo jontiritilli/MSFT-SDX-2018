@@ -405,7 +405,7 @@
     <Content Include="Assets\NavigationBar\navChevronLeft.png" />
     <Content Include="Assets\NavigationBar\navChevronRight.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
-    <Content Include="Assets\Universal\fox_close.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />

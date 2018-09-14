@@ -52,7 +52,7 @@ namespace SDX.Toolkit.Controls
         private const double RADIATE_OPACITY_END = 0.4;
         private const double TRY_IT_DELAY = 4000;
 
-        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/fox_close.png";
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit.png";
         private const string URI_TRY_IT_PEN_IMAGE = @"ms-appx:///Assets/Universal/tryit_pen.png";
         private const string URI_TRY_IT_DIAL_IMAGE = @"ms-appx:///Assets/Universal/tryit_dial.png";
