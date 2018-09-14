@@ -16,7 +16,7 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
 
-        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close_app_x.png";
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
         private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
         private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/laptop_photoshop.png";
