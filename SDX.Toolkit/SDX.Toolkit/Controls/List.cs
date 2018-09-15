@@ -161,8 +161,8 @@ namespace SDX.Toolkit.Controls
             // get sizes
             //double windowWidth = PageHelper.GetViewSizeInfo().Width;
             double parentWidth = this.ListWidth;
-            double ColumnSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListColumnSpacerWidth);
-            double RowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListRowSpacerHeight);
+            double ColumnSpacing = 100;//StyleHelper.GetApplicationDouble(LayoutSizes.ListColumnSpacerWidth);
+            double RowSpacing = 50;// StyleHelper.GetApplicationDouble(LayoutSizes.ListRowSpacerHeight);
 
             // how many rows do we need? (items plus the header for ListHeader style)
             int rowCount = _listItems.Count + 1;

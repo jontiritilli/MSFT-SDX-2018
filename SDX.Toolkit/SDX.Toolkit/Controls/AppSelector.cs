@@ -55,9 +55,7 @@ namespace SDX.Toolkit.Controls
 
         private const double WIDTH_GRID = 340d;
         private const double WIDTH_GRID_COLUMNSPACING = 10d;
-        private const double WIDTH_GRID_ROWSPACING = 10d;
-        private readonly double WIDTH_IMAGE_SELECTED = StyleHelper.GetApplicationDouble(LayoutSizes.AppSelectorButtonWidth);
-        private readonly double WIDTH_IMAGE_NOTSEL = StyleHelper.GetApplicationDouble(LayoutSizes.AppSelectorButtonWidth);
+        private const double WIDTH_GRID_ROWSPACING = 10d;        
         private Style _buttonStyle;
 
         #endregion
@@ -617,14 +615,14 @@ namespace SDX.Toolkit.Controls
                 //ID = i,
                 Selected = new Image()
                 {                    
-                    Width = WIDTH_IMAGE_SELECTED,
+                    Width = this.ButtonWidth,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
                 },
                 NotSelected = new Image()
                 {                    
-                    Width = WIDTH_IMAGE_NOTSEL,
+                    Width = this.ButtonWidth,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -632,7 +630,7 @@ namespace SDX.Toolkit.Controls
             };
             if (!string.IsNullOrEmpty(AppSelectorData.Source_NotSelectedImage))
             {
-                images.NotSelected.Source = new BitmapImage() { UriSource = new Uri(AppSelectorData.Source_NotSelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_NOTSEL };
+                images.NotSelected.Source = new BitmapImage() { UriSource = new Uri(AppSelectorData.Source_NotSelectedImage), DecodePixelWidth = (int)this.ButtonWidth };
             }
             else if (!string.IsNullOrEmpty(AppSelectorData.SourceSVG_NotSelectedImage))
             {
@@ -641,7 +639,7 @@ namespace SDX.Toolkit.Controls
 
             if (!string.IsNullOrEmpty(AppSelectorData.Source_SelectedImage))
             {
-                images.Selected.Source = new BitmapImage() { UriSource = new Uri(AppSelectorData.Source_SelectedImage), DecodePixelWidth = (int)WIDTH_IMAGE_SELECTED };
+                images.Selected.Source = new BitmapImage() { UriSource = new Uri(AppSelectorData.Source_SelectedImage), DecodePixelWidth = (int)this.ButtonWidth };
             }
             else if (!string.IsNullOrEmpty(AppSelectorData.SourceSVG_SelectedImage))
             {

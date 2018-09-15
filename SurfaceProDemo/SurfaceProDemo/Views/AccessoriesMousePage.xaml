@@ -92,6 +92,8 @@
             VerticalAlignment="Top"
             Grid.Row="3"
             Grid.Column="2"
+            ButtonWidth="{StaticResource AppSelectorButtonWidth}"
+            ButtonHeight="{StaticResource AppSelectorButtonWidth}"            
             />
         <ctrl:AppSelectorImage
             x:Name="AppSelectorImageMouse"
