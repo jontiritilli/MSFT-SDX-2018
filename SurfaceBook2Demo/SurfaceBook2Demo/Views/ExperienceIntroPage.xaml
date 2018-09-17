@@ -67,21 +67,25 @@
 
             <ctrl:ImageEx x:Name="SurfaceBook15"
                           ImageSource="{x:Bind Path=ViewModel.Book15Uri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
                           Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
 
             <ctrl:ImageEx x:Name="SurfaceBook13"
                           ImageSource="{x:Bind Path=ViewModel.Book13Uri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
                           Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
 
             <ctrl:ImageEx x:Name="Dial"
                           ImageSource="{x:Bind Path=ViewModel.DialUri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
                           Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
 
             <ctrl:ImageEx x:Name="Pen"
                           ImageSource="{x:Bind Path=ViewModel.PenUri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
                           Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
         </Canvas>
