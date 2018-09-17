@@ -21,10 +21,10 @@ namespace SDX.Toolkit.Helpers
     {
         #region Public Static Constants
 
-        public static readonly Rect WINDOW_BOUNDS = ApplicationView.GetForCurrentView().VisibleBounds;
+        public static readonly Size WINDOW_BOUNDS = WindowHelper.GetViewSizeInfo();
 
         public static readonly double CANVAS_X = WINDOW_BOUNDS.Width;
-        public static readonly double CANVAS_Y = WINDOW_BOUNDS.Height - 80d;   // navbar takes up 80 effective pixels height
+        public static readonly double CANVAS_Y = WINDOW_BOUNDS.Height;   // navbar/musicbar calculation takes place in GetViewSizeInfo()
 
         public static readonly double LEFT_MARGIN = 80d;
         public static readonly double TOP_MARGIN = 80d;
@@ -51,6 +51,8 @@ namespace SDX.Toolkit.Helpers
 
         public static Size GetScreenResolutionInfo()
         {
+            // these calculations are all in PHSYICAL pixels
+
             ApplicationView applicationView = ApplicationView.GetForCurrentView();
             DisplayInformation displayInformation = DisplayInformation.GetForCurrentView();
             Rect bounds = applicationView.VisibleBounds;
@@ -62,9 +64,19 @@ namespace SDX.Toolkit.Helpers
 
         public static Size GetViewSizeInfo()
         {
+            // these calculations are all in EFFECTIVE pixels
+
+            // call api to get size
             ApplicationView applicationView = ApplicationView.GetForCurrentView();
             Rect bounds = applicationView.VisibleBounds;
             Size size = new Size(bounds.Width, bounds.Height);
+
+            // how tall are navbar and musicbar?
+            double navigationBarHeight = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight);
+            double musicBarHeight = StyleHelper.GetApplicationDouble(LayoutSizes.PlayerHeight);
+
+            // subtract navbar and musicbar from height
+            size.Height -= (navigationBarHeight + musicBarHeight);
 
             return size;
         }
@@ -73,7 +85,7 @@ namespace SDX.Toolkit.Helpers
         {
             DeviceType deviceType = DeviceType.Unknown;
 
-            // get the physical resolution
+            // get the PHYSICAL resolution
             Size size = WindowHelper.GetScreenResolutionInfo();
 
             switch(size.Width)

@@ -5,9 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"
     DataContext="{Binding ExperienceIntroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+    </Page.Resources>
+    
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
 
         <Grid.Background>
@@ -30,23 +36,27 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+                        Headline="{x:Bind Path=ViewModel.Headline}"
+                        Lede="{x:Bind Path=ViewModel.Lede}"
+                        Width="{StaticResource HeaderWidth}"
+                        HeadlineStyle="PageHeadlineDark"
+                        LedeStyle="PageLedeDark"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top" />
 
         <ctrl:TextBlockEx x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Visibility="Collapsed" />
+                            Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
+                            TextStyle="Legal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Visibility="Collapsed" />
 
         <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Visibility="Collapsed" />
+                            Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
+                            TextStyle="Legal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Visibility="Collapsed" />
 
         <Canvas x:Name="PageCanvas"
                 Grid.Row="0" Grid.RowSpan="7"
@@ -55,13 +65,25 @@
                 Width="{StaticResource CanvasWidth}"
                 Height="{StaticResource CanvasHeight}">
 
-            <ctrl:ImageEx x:Name="SurfaceBook15" ImageSource="{x:Bind Path=ViewModel.Book15Uri}"/>
+            <ctrl:ImageEx x:Name="SurfaceBook15"
+                          ImageSource="{x:Bind Path=ViewModel.Book15Uri}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
 
-            <ctrl:ImageEx x:Name="SurfaceBook13" ImageSource="{x:Bind Path=ViewModel.Book13Uri}"/>
+            <ctrl:ImageEx x:Name="SurfaceBook13"
+                          ImageSource="{x:Bind Path=ViewModel.Book13Uri}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
 
-            <ctrl:ImageEx x:Name="Dial" ImageSource="{x:Bind Path=ViewModel.DialUri}"/>
+            <ctrl:ImageEx x:Name="Dial"
+                          ImageSource="{x:Bind Path=ViewModel.DialUri}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
 
-            <ctrl:ImageEx x:Name="Pen" ImageSource="{x:Bind Path=ViewModel.PenUri}"/>
+            <ctrl:ImageEx x:Name="Pen"
+                          ImageSource="{x:Bind Path=ViewModel.PenUri}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
         </Canvas>
     </Grid>
 
