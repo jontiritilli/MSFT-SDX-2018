@@ -280,10 +280,7 @@ namespace SDX.Toolkit.Controls
             set { SetValue(RadiateStaggerDelayInMillisecondsProperty, value); }
         }
 
-        #endregion
-
-        #region Public Properties
-
+      
         public Popup PopupChild
         {
             get => _popupChild;
@@ -312,7 +309,12 @@ namespace SDX.Toolkit.Controls
                 }
             }
         }
-        
+        #endregion
+
+        #region Public Properties
+
+
+
         //public double RadiateOffset { get => -1 * (BUTTON_SIZE - ENTRANCE_SIZE); }
         public double RadiateOffset { get => -16; }
 
@@ -1107,6 +1109,10 @@ namespace SDX.Toolkit.Controls
 
                 object popupContent = this.PopupChild.Child;
 
+                if (popupContent is PopupMedia popup)
+                {
+                    popupWidth = popup.Width;
+                }
                 //if (popupContent is PopupContentText pct)
                 //{
                 //    popupWidth = pct.Width;
@@ -1134,6 +1140,7 @@ namespace SDX.Toolkit.Controls
 
                     case PopupPositions.Left:
                         offset = point.X - popupWidth - POPUP_SPACER;
+                        
                         break;
 
                     case PopupPositions.Right:
@@ -1173,12 +1180,12 @@ namespace SDX.Toolkit.Controls
                         offset = point.Y + _grid.ActualHeight + POPUP_SPACER;
                         break;
 
-                    case PopupPositions.Left:// how is this doable without the width of the popup?
-                        offset = point.Y - (_grid.ActualHeight / 2) - (popupHeight / 2);
+                    case PopupPositions.Left:
+                        offset = point.Y;// + (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.Y + (_grid.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y;// + (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
                 }
             }

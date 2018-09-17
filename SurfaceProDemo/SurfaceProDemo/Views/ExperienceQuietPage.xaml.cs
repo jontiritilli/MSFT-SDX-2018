@@ -3,7 +3,6 @@
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
-using SDX.Toolkit.Helpers;
 
 namespace SurfaceProDemo.Views
 {
@@ -15,8 +14,7 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperienceQuietViewModel; }
         }
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #endregion
 
 
@@ -25,26 +23,10 @@ namespace SurfaceProDemo.Views
         public ExperienceQuietPage()
         {
             InitializeComponent();
-            Canvas.SetTop(rBtnLeft, _canvasHeight * .75);
-            Canvas.SetLeft(rBtnLeft, _canvasWidth * .25);
-
-            Canvas.SetTop(rBtnTop, _canvasHeight * .50);
-            Canvas.SetLeft(rBtnTop, _canvasWidth * .65);
-
-            Canvas.SetTop(rBtnRight, _canvasHeight * .60);
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .85);
 
             rBtnLeft.PopupChild = PopLeft;
-            PopLeft.VerticalOffset = _canvasHeight * .75;
-            PopLeft.HorizontalOffset = _canvasWidth * .25;
-
             rBtnTop.PopupChild = PopTop;
-            PopTop.VerticalOffset = _canvasHeight * .50;
-            PopTop.HorizontalOffset = _canvasWidth * .65;
-
             rBtnRight.PopupChild = PopRight;
-            PopRight.VerticalOffset = _canvasHeight * .60;
-            PopRight.HorizontalOffset = _canvasWidth * .85;
         }
 
         #endregion

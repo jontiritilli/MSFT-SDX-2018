@@ -50,14 +50,26 @@
                 TryItText="{x:Bind ViewModel.PopTryItCaption}"                
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
+                PopupPosition="Left"
+                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.81}"
+                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.55}"                 
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
-                IsLightDismissEnabled="True">
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                
+                IsLightDismissEnabled="False">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Image"
+                        Width="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.3}"
                         MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
                         Headline="{x:Bind Path=ViewModel.PopHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLede}"

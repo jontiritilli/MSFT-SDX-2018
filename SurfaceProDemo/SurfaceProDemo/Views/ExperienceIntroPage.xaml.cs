@@ -3,8 +3,8 @@
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
-using SDX.Toolkit.Helpers;
 
+using SDX.Toolkit.Controls;
 namespace SurfaceProDemo.Views
 {
     public sealed partial class ExperienceIntroPage : Page, INavigate
@@ -15,8 +15,7 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperienceIntroViewModel; }
         }
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #endregion
 
 
@@ -24,27 +23,11 @@ namespace SurfaceProDemo.Views
 
         public ExperienceIntroPage()
         {
-            InitializeComponent();
-
-            Canvas.SetTop(rBtnLeft, _canvasHeight * .62);
-            Canvas.SetLeft(rBtnLeft, _canvasWidth * .24);
-
-            Canvas.SetTop(rBtnTop, _canvasHeight * .30);
-            Canvas.SetLeft(rBtnTop, _canvasWidth * .40);
-
-            Canvas.SetTop(rBtnRight, _canvasHeight * .45);
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .81);
+            InitializeComponent();      
 
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;
-
-            PopLeft.HorizontalOffset = _canvasWidth * .24;
-            PopLeft.VerticalOffset = _canvasHeight * .62;
-            PopTop.HorizontalOffset = _canvasWidth * .40;
-            PopTop.VerticalOffset = (_canvasHeight * .30) + StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
-            PopRight.HorizontalOffset = _canvasWidth * .81;
-            PopRight.VerticalOffset = _canvasHeight * .45;
         }
 
         #endregion
