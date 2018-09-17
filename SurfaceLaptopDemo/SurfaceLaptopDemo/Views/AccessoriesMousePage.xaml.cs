@@ -41,11 +41,9 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorImageAccLeft.AppSelector = this.AppSelectorAccLeft;
             this.AppSelectorAccLeft.SelectedIDChanged += SelectedIDChanged;
 
-            Canvas.SetTop(rBtnLeftMouse, _canvasHeight * .62);
-            Canvas.SetLeft(rBtnLeftMouse, _canvasWidth * .12);
+            this.rBtnLeftMouse.PopupChild = PopLeft;
+            this.rBtnRightMouse.PopupChild = PopRight;
 
-            Canvas.SetTop(rBtnRightMouse, _canvasHeight * .75);
-            Canvas.SetLeft(rBtnRightMouse, _canvasWidth * .81);
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)

@@ -5,8 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"    
     DataContext="{Binding AccessoriesMouseViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -50,13 +56,9 @@
                 RadiateStaggerDelayInMilliseconds = "5000"                
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
-                TryItText="{x:Bind Path=ViewModel.PopupMouseTryIt}"
-                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.40}"
-                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.60}"
+                TryItText="{x:Bind Path=ViewModel.PopupMouseTryItTitle}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.6}"                                                                     
                 PopupPosition="Left"
                 AutoStart = "false"/>
 

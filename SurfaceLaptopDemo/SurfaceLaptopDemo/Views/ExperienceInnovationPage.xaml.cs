@@ -29,14 +29,9 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceInnovationPage()
         {
             InitializeComponent();
-            Canvas.SetTop(rBtnTopInnovation, _canvasHeight * .18);
-            Canvas.SetLeft(rBtnTopInnovation, _canvasWidth * .37);
-
-            Canvas.SetTop(rBtnRightInnovation, _canvasHeight * .50);
-            Canvas.SetLeft(rBtnRightInnovation, _canvasWidth * .74);
-
-            Canvas.SetTop(rBtnTryItInnovation, _canvasHeight * .63);
-            Canvas.SetLeft(rBtnTryItInnovation, _canvasWidth * .18);
+            this.rBtnTryItInnovation.PopupChild = PopLeft;
+            this.rBtnTopInnovation.PopupChild = PopTop;
+            this.rBtnRightInnovation.PopupChild = PopRight;
         }
 
         #endregion

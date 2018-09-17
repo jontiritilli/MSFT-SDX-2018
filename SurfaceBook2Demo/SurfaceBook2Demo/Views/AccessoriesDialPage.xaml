@@ -5,8 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"    
     DataContext="{Binding AccessoriesDialViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -48,12 +55,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.20}"
-                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.70}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.7}"                                     
                 PopupPosition="Right"
                 AutoStart = "false"/>
 
@@ -64,13 +67,9 @@
                     RadiateDurationInMilliseconds = "1800"
                     RadiateStaggerDelayInMilliseconds = "5000"
                     AutoStart = "false"
-                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.50}"
-                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.40}"
-                PopupPosition="Left"
+                    Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.5}"
+                    Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.4}"                   
+                    PopupPosition="Left"
                     />
             <Popup
                 x:Name="PopLeft"
@@ -83,9 +82,7 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopupDialHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupDialLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
                         />
                 </Popup.Child>
             </Popup>
@@ -100,9 +97,7 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopupPenHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupPenLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
                         />
                 </Popup.Child>
             </Popup>

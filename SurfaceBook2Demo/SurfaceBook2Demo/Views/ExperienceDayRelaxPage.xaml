@@ -5,8 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"     
     DataContext="{Binding ExperienceDayRelaxViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -47,12 +53,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.40}"
-                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.70}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.40}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                 
                 PopupPosition="Right"  
                 AutoStart = "false"/>
             
@@ -62,12 +64,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.55}"
-                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.30}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.30}"                     
                 PopupPosition="Left"  
                 AutoStart = "false"/>
 
@@ -82,9 +80,7 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopupHingeHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupHingeLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
                         />
                 </Popup.Child>
             </Popup>

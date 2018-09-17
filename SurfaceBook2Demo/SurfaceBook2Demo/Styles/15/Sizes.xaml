@@ -121,6 +121,5 @@
     <x:Double x:Key="PlayerButtonSpacer">0</x:Double>
     <x:Double x:Key="PlayerScrubHeight">0</x:Double>
     <x:Double x:Key="PlayerScrubWidth">0</x:Double>
-    <conv:MathConverter x:Key="MathConverterKey"/>
-    
+
 </ResourceDictionary>
