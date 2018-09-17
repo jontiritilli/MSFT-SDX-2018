@@ -173,7 +173,7 @@ namespace SDX.Toolkit.Controls
 
         // AutoPlay
         public static readonly DependencyProperty AutoPlayProperty =
-            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(NavigationBar), new PropertyMetadata(false));
+            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(NavigationBar), new PropertyMetadata(true));
 
         public bool AutoPlay
         {
@@ -223,7 +223,7 @@ namespace SDX.Toolkit.Controls
 
         // EqualizerUris
         public static readonly DependencyProperty EqualizerUrisProperty =
-            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(NavigationBar),
+            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(NavigationBar), 
                 new PropertyMetadata(new List<string>() {URI_EQUALIZER_00, URI_EQUALIZER_01, URI_EQUALIZER_02, URI_EQUALIZER_03,
                                                             URI_EQUALIZER_04, URI_EQUALIZER_05}));
 
@@ -482,9 +482,9 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            TestHelper.AddGridCellBorders(this.LayoutRoot, 1, 3, Colors.Red);
-            TestHelper.AddGridCellBorders(this.TrackInfo, 1, 5, Colors.Orange);
-            TestHelper.AddGridCellBorders(this.PlayerButtons, 1, 9, Colors.Yellow);
+            //TestHelper.AddGridCellBorders(this.LayoutRoot, 1, 3, Colors.Red);
+            //TestHelper.AddGridCellBorders(this.TrackInfo, 1, 5, Colors.Orange);
+            //TestHelper.AddGridCellBorders(this.PlayerButtons, 1, 9, Colors.Yellow);
         }
 
         private void OnSizeChanged(object sender, RoutedEventArgs e)
@@ -651,11 +651,13 @@ namespace SDX.Toolkit.Controls
                         {
                             this.PlayButton.Visibility = Visibility.Visible;
                             this.PauseButton.Visibility = Visibility.Collapsed;
+                            // stop equalizer
                         }
                         else
                         {
                             this.PlayButton.Visibility = Visibility.Collapsed;
                             this.PauseButton.Visibility = Visibility.Visible;
+                            // start equalizer
                         }
 
                         //  update next track
@@ -665,7 +667,7 @@ namespace SDX.Toolkit.Controls
                         // update equalizer
                         if (null != this.EqualizerIcon)
                         {
-                            switch (this.PlayerStatus)
+                            switch(this.PlayerStatus)
                             {
                                 case PlayerStatii.NotStarted:
                                 case PlayerStatii.Paused:
@@ -691,13 +693,10 @@ namespace SDX.Toolkit.Controls
             {
                 if (null != this.Scrub)
                 {
-                    if (!((Double.IsNaN(duration.TotalMilliseconds)) || (0 == duration.TotalMilliseconds)))
-                    {
-                        double val = position.TotalMilliseconds;
-                        double max = duration.TotalMilliseconds;
+                    double val = Double.IsNaN(position.TotalMilliseconds) ? 0 : position.TotalMilliseconds;
+                    double max = (Double.IsNaN(duration.TotalMilliseconds) || (0 == duration.TotalMilliseconds)) ? 1 : duration.TotalMilliseconds;
 
-                        this.Scrub.Value = (val / max);
-                    }
+                    this.Scrub.Value = (val / max);
                 }
             });
 #pragma warning restore CS4014

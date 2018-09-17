@@ -55,27 +55,13 @@
                 Width="{StaticResource CanvasWidth}"
                 Height="{StaticResource CanvasHeight}">
 
-            <Image x:Name="SurfaceBook15" Width="100" MaxWidth="100">
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind Path=ViewModel.Book15Uri}" DecodePixelWidth="100" DecodePixelType="Physical"/>
-                </Image.Source>
-            </Image>
-            <Image x:Name="SurfaceBook13">
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind Path=ViewModel.Book13Uri}"/>
-                </Image.Source>
-            </Image>
-            <Image x:Name="Dial">
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind Path=ViewModel.DialUri}"/>
-                </Image.Source>
-            </Image>
+            <ctrl:ImageEx x:Name="SurfaceBook15" ImageSource="{x:Bind Path=ViewModel.Book15Uri}"/>
 
-            <Image x:Name="Pen">
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind Path=ViewModel.PenUri}"/>
-                </Image.Source>
-            </Image>
+            <ctrl:ImageEx x:Name="SurfaceBook13" ImageSource="{x:Bind Path=ViewModel.Book13Uri}"/>
+
+            <ctrl:ImageEx x:Name="Dial" ImageSource="{x:Bind Path=ViewModel.DialUri}"/>
+
+            <ctrl:ImageEx x:Name="Pen" ImageSource="{x:Bind Path=ViewModel.PenUri}"/>
         </Canvas>
     </Grid>
 
