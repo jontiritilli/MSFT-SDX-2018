@@ -13,6 +13,7 @@
     <Page.Resources>
         <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
         <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
