@@ -51,6 +51,12 @@
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 TryItText="{x:Bind Path=ViewModel.PopupMouseTryIt}"
+                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.40}"
+                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.60}"
                 PopupPosition="Left"
                 AutoStart = "false"/>
 
@@ -58,6 +64,8 @@
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                   
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

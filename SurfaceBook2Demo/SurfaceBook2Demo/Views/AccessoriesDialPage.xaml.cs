@@ -16,8 +16,8 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as AccessoriesDialViewModel; }
         }
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+        //double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        //double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         #endregion
 
 
@@ -26,11 +26,11 @@ namespace SurfaceBook2Demo.Views
         public AccessoriesDialPage()
         {
             InitializeComponent();
-            Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
-            Canvas.SetLeft(rBtnLeft, _canvasWidth * .20);
+            //Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
+            //Canvas.SetLeft(rBtnLeft, _canvasWidth * .20);
 
-            Canvas.SetTop(rBtnTop, _canvasHeight * .40);
-            Canvas.SetLeft(rBtnTop, _canvasWidth * .50);
+            //Canvas.SetTop(rBtnTop, _canvasHeight * .40);
+            //Canvas.SetLeft(rBtnTop, _canvasWidth * .50);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;

@@ -61,7 +61,13 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.ZIndex="101"
-                PopupPosition="Right"
+                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.20}"
+                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.30}"
+                PopupPosition="Right"  
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -71,13 +77,21 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.ZIndex="101"
-                PopupPosition="Left"
+                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.65}"
+                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.30}"
+                PopupPosition="Left"  
                 AutoStart = "false"/>
 
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
                 Canvas.ZIndex="102"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                   
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -93,6 +107,8 @@
                 x:Name="PopRight"
                 IsOpen = "False"
                 Canvas.ZIndex="102"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                   
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

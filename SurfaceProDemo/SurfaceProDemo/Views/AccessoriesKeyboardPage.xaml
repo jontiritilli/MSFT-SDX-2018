@@ -47,7 +47,14 @@
                 EntranceDurationInMilliseconds = "400"
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"                
+                RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.55}"
+                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.80}"
+                PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -56,29 +63,46 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.Left="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.55}"
+                Canvas.Top="{Binding Source={StaticResource CanvasHeight}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.20}"
+                PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <Popup
                 x:Name="PopBottom"
                 IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopBottomLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
                         />
                 </Popup.Child>
             </Popup>
             <Popup
                 x:Name="PopTop"
                 IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, 
+                            Converter={StaticResource MathConverterKey},
+                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
                         />
                 </Popup.Child>
             </Popup>

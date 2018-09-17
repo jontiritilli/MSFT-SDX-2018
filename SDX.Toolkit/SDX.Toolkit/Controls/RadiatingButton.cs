@@ -1111,7 +1111,21 @@ namespace SDX.Toolkit.Controls
 
                 if (popupContent is PopupMedia popup)
                 {
-                    popupWidth = popup.Width;
+                    switch (popup.PopupType)
+                    {
+                        case PopupTypes.Text:
+                            popupWidth = popup.Width;
+                            break;
+                        case PopupTypes.Image:
+                            popupWidth = popup.MediaWidth;
+                            break;
+                        case PopupTypes.Video:
+                            popupWidth = popup.MediaWidth;
+                            break;
+                        default:
+                            break;
+                    }
+                    
                 }
                 //if (popupContent is PopupContentText pct)
                 //{
@@ -1139,7 +1153,7 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.X - popupWidth - POPUP_SPACER;
+                        offset = point.X - popupWidth - _grid.ActualWidth - POPUP_SPACER;
                         
                         break;
 

@@ -4,7 +4,6 @@ using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
-using SDX.Toolkit.Helpers;
 
 namespace SurfaceBook2Demo.Views
 {
@@ -16,10 +15,7 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as ExperienceDayWorkViewModel; }
         }
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
-        double _rbLeftSetTop;
-        double _rbLeftSetLeft;
+
         #endregion
 
 
@@ -37,26 +33,9 @@ namespace SurfaceBook2Demo.Views
                 ExperienceDayWorkPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
 
-            _rbLeftSetTop = _canvasHeight * .7;
-            _rbLeftSetLeft = _canvasWidth * .20;
-            Canvas.SetTop(rBtnLeft, _rbLeftSetTop);
-            Canvas.SetLeft(rBtnLeft, _rbLeftSetLeft);
-
-
-            Canvas.SetTop(rBtnRight, _canvasHeight * .65);
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .60);
-
-            Canvas.SetTop(rBtnTop, _canvasHeight * .35);
-            Canvas.SetLeft(rBtnTop, _canvasWidth * .25);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
-            rBtnLeft.PopupChild.HorizontalOffset = 20;
-            //PopLeft.VerticalOffset = _rbLeftSetTop;
-            //PopLeft.HorizontalOffset = _rbLeftSetLeft + (StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius) * 2) + 10;
-
-            //PopRight.VerticalOffset = _canvasHeight * .45;
-            //PopRight.HorizontalOffset = _canvasWidth * .60;
 
         }
 

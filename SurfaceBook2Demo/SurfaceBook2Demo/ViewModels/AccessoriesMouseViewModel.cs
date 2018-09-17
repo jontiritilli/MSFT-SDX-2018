@@ -19,8 +19,8 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_HERO13 = "ms-appx:///Assets/Accessories/sb2_13_accessories_right.png";
         private const string URI_HERO15 = "ms-appx:///Assets/Accessories/sb2_15_accessories_right.png";
 
-        private const string URI_MOUSEINSETIMAGE_13 = "ms-apxx:///Assets/Accessories/sb2_13_accessories_right_insetScrollWheel.png";
-        private const string URI_MOUSEINSETIMAGE_15 = "ms-apxx:///Assets/Accessories/sb2_15_accessories_right_insetScrollWheel.png";
+        private const string URI_MOUSEINSETIMAGE_13 = "ms-appx:///Assets/Accessories/sb2_13_accessories_right_insetScrollWheel.png";
+        private const string URI_MOUSEINSETIMAGE_15 = "ms-appx:///Assets/Accessories/sb2_15_accessories_right_insetScrollWheel.png";
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace SurfaceBook2Demo.ViewModels
                 default:
                     this.BackgroundUri = URI_BACKGROUND13;
                     this.HeroUri = URI_HERO13;
-                    this.PopupMouseInsetImage = URI_MOUSEINSETIMAGE_15;
+                    this.PopupMouseInsetImage = URI_MOUSEINSETIMAGE_13;
                     this.PopupMouseImageWidth = 354;
                     break;
             }
