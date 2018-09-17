@@ -930,15 +930,15 @@ namespace SDX.Toolkit.Helpers
             switch (layoutThickness)
             {
                 case LayoutThicknesses.HeroMargin:
-                    GetApplicationThickness(THICKNESS_HERO_MARGIN);
+                    thickness = GetApplicationThickness(THICKNESS_HERO_MARGIN);
                     break;
 
                 case LayoutThicknesses.PopupBorder:
-                    GetApplicationThickness(THICKNESS_POPUP_BORDER);
+                    thickness = GetApplicationThickness(THICKNESS_POPUP_BORDER);
                     break;
 
                 case LayoutThicknesses.PopupMargin:
-                    GetApplicationThickness(THICKNESS_POPUP_MARGIN);
+                    thickness = GetApplicationThickness(THICKNESS_POPUP_MARGIN);
                     break;
 
                 default:

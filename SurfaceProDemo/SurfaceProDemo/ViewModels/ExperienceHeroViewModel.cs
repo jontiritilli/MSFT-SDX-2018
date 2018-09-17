@@ -21,11 +21,12 @@ namespace SurfaceProDemo.ViewModels
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;        
+        public string BackgroundUri = URI_BACKGROUND;
         public string HeroText;
         public int RowCount;
         public string SwipeText;
         #endregion
+
 
         #region Construction
 
@@ -36,8 +37,9 @@ namespace SurfaceProDemo.ViewModels
             {
                 BackgroundUri = URI_BLACKBACKGROUND;
             }
-                // get the localization service
-                LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
             // if we got it
             if (null != localizationService)

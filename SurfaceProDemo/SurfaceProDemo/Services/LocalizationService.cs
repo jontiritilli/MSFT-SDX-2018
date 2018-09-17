@@ -187,7 +187,7 @@ namespace SurfaceProDemo.Services
         public void LoadExperienceHeroViewModel(ExperienceHeroViewModel viewModel)
         {
             viewModel.HeroText = GetStringValue(_languageCurrent.INTRO_TITLE, "INTRO_TITLE");
-            viewModel.RowCount = GetIntValue(_languageCurrent.INTRO_ROWCOUNT, 1);
+            viewModel.RowCount = GetIntValue(_languageCurrent.INTRO_ROWCOUNT, 2);
             viewModel.SwipeText = GetStringValue(_languageCurrent.INTRO_SWIPE, "INTRO_SWIPE");
         }
 
