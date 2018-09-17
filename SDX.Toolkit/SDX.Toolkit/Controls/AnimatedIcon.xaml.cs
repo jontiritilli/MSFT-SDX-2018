@@ -177,7 +177,7 @@ namespace SDX.Toolkit.Controls
         {
             if (d is AnimatedIcon ai)
             {
-                ai.UpdateUI();
+                ai.RenderUI();
             }
         }
 

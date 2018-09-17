@@ -56,10 +56,10 @@
 
     <GridLength x:Key="SpaceBelowHeader">32.34</GridLength>
 
-    <x:Double x:Key="AppCloseWidth">46</x:Double>
-    <x:Double x:Key="AppCloseHeight">32</x:Double>
+    <x:Double x:Key="AppCloseWidth">18</x:Double>
+    <x:Double x:Key="AppCloseHeight">18</x:Double>
 
-    <x:Double x:Key="HeaderWidth">300.5</x:Double>
+    <x:Double x:Key="HeaderWidth">500</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">32.34</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">4</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">4</x:Double>

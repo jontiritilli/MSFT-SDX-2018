@@ -37,7 +37,8 @@ namespace SurfaceBook2Demo.ViewModels
         public string PopupMouseHeadline;
         public string PopupMouseLede;
         public string PopupMouseLegal;
-        public string PopupMouseTryIt;
+        public string PopupMouseTryItTitle;
+        public string PopupMouseTryItCaption;
         public string PopupMouseInsetImage;
         public double PopupMouseImageWidth;
 

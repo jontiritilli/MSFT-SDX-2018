@@ -18,13 +18,13 @@
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}">
         <TextBlock x:Name="TheText"
-                    Text="{x:Bind Path=Text}"
-                    TextAlignment="{x:Bind Path=TextAlignment}"
-                    TextWrapping="{x:Bind Path=TextWrapping}"
-                    LineStackingStrategy="{x:Bind Path=LineStackingStrategy}"
-                    LineHeight="{x:Bind Path=LineHeight}"
-                    VerticalAlignment="{x:Bind Path=VerticalAlignment}"
-                    HorizontalAlignment="{x:Bind Path=HorizontalAlignment}"
+                    TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"
+                    TextWrapping="{x:Bind Path=TextWrapping, Mode=OneWay}"
+                    LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
+                    LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"
+                    VerticalAlignment="{x:Bind Path=VerticalAlignment, Mode=OneWay}"
+                    HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
                     Style="{x:Bind Path=TextStyle, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"/>
+        <!--Text="{x:Bind Path=Text, Mode=OneWay}"--><!-- Don't data-bind this. -->
     </Grid>
 </UserControl>

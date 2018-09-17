@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding FlipViewViewModel, Source={StaticResource Locator}}"
-    Style="{StaticResource PageStyle}"
     xmlns:model="using:SurfaceJackDemo.Models"
     xmlns:views="using:SurfaceJackDemo.Views"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
@@ -87,13 +86,14 @@
         <Button x:Name="AppClose" Grid.Row="0" Grid.Column="1"
                 Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
                 Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
-                Style="{StaticResource NoInteractionButton}" Click="AppClose_Click">
+                Style="{StaticResource NoInteractionButton}"
+                Click="AppClose_Click">
             <Button.Background>
-                <SolidColorBrush Color="Black" Opacity="0.1" />
+                <SolidColorBrush Color="Black" Opacity="1.0" />
             </Button.Background>
             <Button.Content>
                 <Image Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
-                       Source="/Assets/Universal/close-app-button.png"/>
+                       Source="{x:Bind Path=ViewModel.CloseButtonUri}"/>
             </Button.Content>
         </Button>
 

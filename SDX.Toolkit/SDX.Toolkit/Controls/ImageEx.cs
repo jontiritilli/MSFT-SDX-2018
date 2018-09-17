@@ -171,7 +171,8 @@ namespace SDX.Toolkit.Controls
                 Opacity = 1.0d,
             };
 
-            // TEST ONLY -- add failed error handler
+            // TEST ONLY -- add open/failed error handler
+            _image.ImageOpened += Image_ImageOpened;
             _image.ImageFailed += Image_ImageFailed;
 
             // add the image to the layout root
@@ -224,10 +225,15 @@ namespace SDX.Toolkit.Controls
             // ---------------------------------------------
         }
 
+        private void Image_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            string x = this.ImageSource;
+        }
+
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
             // TEST ONLY
-            throw new BadImageFormatException(e.ErrorMessage);
+            //throw new BadImageFormatException(e.ErrorMessage);
         }
 
         #endregion

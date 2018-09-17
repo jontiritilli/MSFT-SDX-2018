@@ -23,12 +23,21 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_BACKGROUND_SB213 = "ms-appx:///Assets/Backgrounds/sb2_generic_bg.jpg";
         private const string URI_BACKGROUND_SB215 = "ms-appx:///Assets/Backgrounds/sb2_15_generic_bg.jpg";
 
+        private const string URI_CLOSE_APP_BUTTON_CRUZ = "ms-appx:///Assets/Universal/cruz_close_app_button.png";
+        private const string URI_CLOSE_APP_BUTTON_CAPROCK = "ms-appx:///Assets/Universal/caprock_close_app_button.png";
+        private const string URI_CLOSE_APP_BUTTON_FOXBURG = "ms-appx:///Assets/Universal/fox_close.png";
+        private const string URI_CLOSE_APP_BUTTON_SB2_13 = "ms-appx:///Assets/Universal/sb2_15_close.png";
+        private const string URI_CLOSE_APP_BUTTON_SB2_15 = "ms-appx:///Assets/Universal/sb2_13_close.png";
+
         #endregion
 
         #region Public Properties
 
         // background
         public string BackgroundUri;
+
+        // close button
+        public string CloseButtonUri;
 
         // our navigation sections for the navigation bar
         public List<NavigationSection> Sections = new List<NavigationSection>();
@@ -105,22 +114,27 @@ namespace SurfaceJackDemo.ViewModels
                 case DeviceType.Go:
                 default:
                     this.BackgroundUri = URI_BACKGROUND_CRUZ;
+                    this.CloseButtonUri = URI_CLOSE_APP_BUTTON_CRUZ;
                     break;
 
                 case DeviceType.Laptop:
                     this.BackgroundUri = URI_BACKGROUND_FOXBURG;
+                    this.CloseButtonUri = URI_CLOSE_APP_BUTTON_FOXBURG;
                     break;
 
                 case DeviceType.Studio:
                     this.BackgroundUri = URI_BACKGROUND_CAPROCK;
+                    this.CloseButtonUri = URI_CLOSE_APP_BUTTON_CAPROCK;
                     break;
 
                 case DeviceType.Book13:
                     this.BackgroundUri = URI_BACKGROUND_SB213;
+                    this.CloseButtonUri = URI_CLOSE_APP_BUTTON_SB2_13;
                     break;
 
                 case DeviceType.Book15:
                     this.BackgroundUri = URI_BACKGROUND_SB215;
+                    this.CloseButtonUri = URI_CLOSE_APP_BUTTON_SB2_15;
                     break;
             }
         }

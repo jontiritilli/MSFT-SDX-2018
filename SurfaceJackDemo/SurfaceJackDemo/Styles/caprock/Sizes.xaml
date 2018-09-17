@@ -56,8 +56,8 @@
 
     <GridLength x:Key="SpaceBelowHeader">42.175</GridLength>
 
-    <x:Double x:Key="AppCloseWidth">46</x:Double>
-    <x:Double x:Key="AppCloseHeight">32</x:Double>
+    <x:Double x:Key="AppCloseWidth">30</x:Double>
+    <x:Double x:Key="AppCloseHeight">30</x:Double>
 
     <x:Double x:Key="HeaderWidth">724.5</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">42.175</x:Double>
@@ -90,5 +90,14 @@
     <x:Double x:Key="NavigationBarArrowWidth">13.3</x:Double>
     <x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    <!-- Home does not appear in this app -->
 
+    <!-- TODO: These are Cruz values; need to be adjusted to Caprock -->
+    <x:Double x:Key="PlayerHeight">50</x:Double>
+    <x:Double x:Key="PlayerLeftMargin">40</x:Double>
+    <x:Double x:Key="PlayerRightMargin">30</x:Double>
+    <x:Double x:Key="PlayerTrackSpacer">20</x:Double>
+    <x:Double x:Key="PlayerButtonWidth">18</x:Double>
+    <x:Double x:Key="PlayerButtonSpacer">30</x:Double>
+    <x:Double x:Key="PlayerScrubHeight">6</x:Double>
+    <x:Double x:Key="PlayerScrubWidth">547.2</x:Double>
     
 </ResourceDictionary>

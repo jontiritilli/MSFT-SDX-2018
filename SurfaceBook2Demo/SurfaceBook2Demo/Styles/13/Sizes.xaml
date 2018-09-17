@@ -60,7 +60,7 @@
     <x:Double x:Key="AppCloseWidth">48</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 
-    <x:Double x:Key="HeaderWidth">540</x:Double>
+    <x:Double x:Key="HeaderWidth">640</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">32.34</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">15</x:Double>
@@ -112,6 +112,17 @@
     <x:Double x:Key="NavigationBarArrowWidth">13.3</x:Double>
     <x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    <!-- Home does not appear in this app -->
 
+    <!-- NOTE: These values must be ZERO for non-Jack apps because they
+            are used in Window Calculations -->
+    <x:Double x:Key="PlayerHeight">0</x:Double>
+    <x:Double x:Key="PlayerLeftMargin">0</x:Double>
+    <x:Double x:Key="PlayerRightMargin">0</x:Double>
+    <x:Double x:Key="PlayerTrackSpacer">0</x:Double>
+    <x:Double x:Key="PlayerButtonWidth">0</x:Double>
+    <x:Double x:Key="PlayerButtonSpacer">0</x:Double>
+    <x:Double x:Key="PlayerScrubHeight">0</x:Double>
+    <x:Double x:Key="PlayerScrubWidth">0</x:Double>
+    
     <conv:MathConverter x:Key="MathConverterKey"/>
     
 </ResourceDictionary>
