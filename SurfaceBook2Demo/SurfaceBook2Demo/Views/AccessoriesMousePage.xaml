@@ -35,6 +35,8 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" />
 
+        <!-- TODO: There is now a title and a caption for the Try It button -->
+        
         <!-- TODO: Color Selector Goes Here -->
 
         <!-- TODO: This should be an ImageSelector -->
