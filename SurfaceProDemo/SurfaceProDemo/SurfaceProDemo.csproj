@@ -426,11 +426,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
-    <None Include="config.json" />
-    <None Include="default-en-US.json">
+    <Content Include="config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="SurfaceProDemo_StoreKey.pfx" />
+    </Content>
+    <Content Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="SurfaceProDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

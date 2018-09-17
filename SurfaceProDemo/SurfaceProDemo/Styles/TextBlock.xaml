@@ -381,8 +381,8 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
-    <!--BasedOn="PlayerArtistName"-->
-    <Style x:Key="PlayerTrackName" TargetType="TextBlock" >
+
+    <Style x:Key="PlayerTrackName" TargetType="TextBlock" BasedOn="{StaticResource PlayerArtistName}">
         <Setter Property="FontWeight" Value="Normal" />
     </Style>    
 </ResourceDictionary>

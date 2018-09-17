@@ -12,6 +12,7 @@
     <Page.Resources>
         <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
         <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MultiplyDoublesConverter x:Key="MultiplyDoublesConverter"/>
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
@@ -146,6 +147,7 @@
                           ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
                           Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
+
         </Canvas>
     </Grid>
 

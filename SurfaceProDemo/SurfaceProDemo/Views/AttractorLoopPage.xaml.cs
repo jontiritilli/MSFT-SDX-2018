@@ -58,9 +58,21 @@ namespace SurfaceProDemo.Views
             // use it to get the navigation service
             NavigationServiceEx NavigationService = Locator?.NavigationService;
 
-            // navigate
-            NavigationService?.Navigate(typeof(ChoosePathViewModel).FullName);
-
+            // navigate to the starting page
+            if (ConfigurationService.Current.IsLoaded)
+            {
+                // is the choose path page enabled?
+                if (ConfigurationService.Current.Configuration.IsChoosePathPageEnabled)
+                {
+                    // go to the choose path page
+                    NavigationService?.Navigate(typeof(ChoosePathViewModel).FullName);
+                }
+            }
+            else
+            {
+                // no, so go to the intro hero page
+                NavigationService?.Navigate(typeof(ExperienceHeroViewModel).FullName);
+            }
         }
 
         #endregion
