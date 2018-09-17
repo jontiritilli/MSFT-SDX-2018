@@ -161,7 +161,8 @@ namespace SDX.Toolkit.Controls
             // get sizes
             //double windowWidth = PageHelper.GetViewSizeInfo().Width;
             double parentWidth = this.ListWidth;
-            double columnSpacing = 20d;
+            double ColumnSpacing = 100;//StyleHelper.GetApplicationDouble(LayoutSizes.ListColumnSpacerWidth);
+            double RowSpacing = 50;// StyleHelper.GetApplicationDouble(LayoutSizes.ListRowSpacerHeight);
 
             // how many rows do we need? (items plus the header for ListHeader style)
             int rowCount = _listItems.Count + 1;
@@ -171,7 +172,7 @@ namespace SDX.Toolkit.Controls
             //_layoutRoot.ColumnSpacing = columnSpacing;
             _layoutRoot.Margin = new Thickness(0);
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnSpacing) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ColumnSpacing) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             for (int i = 0; i < rowCount; i++)
             {
@@ -187,11 +188,10 @@ namespace SDX.Toolkit.Controls
                         foreach (ListItem item in _listItems)
                         {
                             // how wide is the text
-                            double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
+                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
 
                             // set row spacing
-                            double rowSpacing = 15d;
-                            _layoutRoot.RowSpacing = rowSpacing;
+                            _layoutRoot.RowSpacing = RowSpacing;
 
                             // create icon image
                             ImageEx icon = new ImageEx()
@@ -231,11 +231,10 @@ namespace SDX.Toolkit.Controls
                         foreach (ListItem item in _listItems)
                         {
                             // how wide is the text
-                            double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
+                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
 
                             // set row spacing
-                            double rowSpacing = 30d;
-                            _layoutRoot.RowSpacing = rowSpacing;
+                            _layoutRoot.RowSpacing = RowSpacing;
 
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
 
@@ -251,6 +250,7 @@ namespace SDX.Toolkit.Controls
 
                             Grid.SetColumn(icon, 0);
                             Grid.SetRow(icon, item.Order + 1);
+
                             _layoutRoot.Children.Add(icon);
 
                             // create the headline (bold text) if one is provided
@@ -280,10 +280,10 @@ namespace SDX.Toolkit.Controls
                         foreach (ListItem item in _listItems)
                         {
                             // how wide is the text
-                            double itemTextWidth = parentWidth - columnSpacing - item.IconWidth;
+                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
 
                             // set row spacing
-                            double rowSpacing = 60d;
+                            double rowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftRowSpacerHeight);
                             _layoutRoot.RowSpacing = rowSpacing;
 
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;

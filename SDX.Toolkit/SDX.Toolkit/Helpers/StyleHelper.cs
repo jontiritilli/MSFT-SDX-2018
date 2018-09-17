@@ -62,6 +62,7 @@ namespace SDX.Toolkit.Helpers
         HeaderSpacerRowHeightPopupHeader,
         AccessoriesPenListIconWidth,
         BestOfMicrosoftListIconWidth,
+        BestOfMicrosoftRowSpacerHeight,
         CompareListIconWidth,
         AccessoryColorSelectorIconWidth,
         AccessoryPrimaryImageWidth,
@@ -74,6 +75,8 @@ namespace SDX.Toolkit.Helpers
         PopupSpacer,
         CanvasWidth,
         CanvasHeight,
+        ListColumnSpacerWidth,
+        ListRowSpacerHeight,
         NavigationBarHeight,
         NavigationBarLineHeight,
         NavigationBarMargin,
@@ -209,6 +212,7 @@ namespace SDX.Toolkit.Helpers
 
         public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
+        public const string SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT = "BestOfMicrosoftRowSpacerHeight";
         public const string SIZE_COMPARE_LISTICONWIDTH = "CompareListIconWidth";
 
         public const string SIZE_ACCESSORIES_COLORICONWIDTH = "AccessoryColorSelectorIconWidth";
@@ -227,6 +231,9 @@ namespace SDX.Toolkit.Helpers
 
         public const string SIZE_CANVAS_WIDTH = "CanvasWidth";
         public const string SIZE_CANVAS_HEIGHT = "CanvasHeight";
+
+        public const string SIZE_LIST_COLUMN_SPACER_WIDTH = "ListColumnSpacerWidth";
+        public const string SIZE_LIST_ROW_SPACER_HEIGHT = "ListRowSpacerHeight";
 
         public const string SIZE_NAVIGATIONBAR_HEIGHT = "NavigationBarHeight";
         public const string SIZE_NAVIGATIONBAR_LINEHEIGHT = "NavigationBarLineHeight";
@@ -392,6 +399,10 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_LISTICONWIDTH);
                     break;
 
+                case LayoutSizes.BestOfMicrosoftRowSpacerHeight:
+                    value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT);
+                    break;
+                    
                 case LayoutSizes.CompareListIconWidth:
                     value = GetApplicationDouble(SIZE_COMPARE_LISTICONWIDTH);
                     break;
@@ -440,6 +451,14 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_CANVAS_HEIGHT);
                     break;
 
+                case LayoutSizes.ListColumnSpacerWidth:
+                    value = GetApplicationDouble(SIZE_LIST_COLUMN_SPACER_WIDTH);
+                    break;
+
+                case LayoutSizes.ListRowSpacerHeight:
+                    value = GetApplicationDouble(SIZE_LIST_ROW_SPACER_HEIGHT);
+                    break;
+                    
                 case LayoutSizes.NavigationBarHeight:
                     value = GetApplicationDouble(SIZE_NAVIGATIONBAR_HEIGHT);
                     break;

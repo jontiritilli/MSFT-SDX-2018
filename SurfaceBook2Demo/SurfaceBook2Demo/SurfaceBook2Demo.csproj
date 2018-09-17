@@ -445,7 +445,8 @@
     <Content Include="Assets\Square71x71Logo.scale-400.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
-	<Content Include="Assets\Universal\tryit_pen.png" />
+    <Content Include="Assets\Universal\tryit.png" />
+    <Content Include="Assets\Universal\tryit_pen.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />

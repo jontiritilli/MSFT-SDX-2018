@@ -91,6 +91,8 @@
             VerticalAlignment="Top"
             Grid.Row="3"
             Grid.Column="1"
+            ButtonWidth="{StaticResource AppSelectorButtonWidth}"
+            ButtonHeight="{StaticResource AppSelectorButtonWidth}"
             />
         <ctrl:AppSelectorImage
             x:Name="AppSelectorImageKB"

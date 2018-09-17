@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using SDX.Toolkit.Controls;
+
 using SurfaceStudioDemo.Services;
+
+using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceStudioDemo.ViewModels
@@ -12,10 +15,9 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
 
         #endregion
-
 
         #region Public Properties
 
@@ -29,10 +31,11 @@ namespace SurfaceStudioDemo.ViewModels
 
         public string PenTryItTitle;
         public string PenTryItLede;
-        public List<ListItem> ListItems = new List<ListItem>();
-        public double ICON_WIDTH = 96d;
-        #endregion
 
+        public List<ListItem> ListItems = new List<ListItem>();
+        public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.AccessoriesPenListIconWidth);
+
+        #endregion
 
         #region Construction
 

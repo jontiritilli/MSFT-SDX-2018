@@ -2,6 +2,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using SDX.Toolkit.Helpers;
 
 using SurfaceStudioDemo.Services;
 
@@ -12,17 +13,18 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms:appx///Assets/Backgrounds/gradient-bg.jpg";
+        private const string URI_BACKGROUND1 = "ms-appx:///Assets/Experience/hero01.jpg";
+        private const string URI_BACKGROUND2 = "ms-appx:///Assets/Experience/hero02.jpg";
 
         #endregion
-
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;
+        public string Headline;
+        public string Lede;
+        public string BackgroundUri = URI_BACKGROUND1;
 
         #endregion
-
 
         #region Construction
 

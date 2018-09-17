@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Windows.UI.Xaml;
-
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceStudioDemo.Services;
-
 using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
+using Windows.UI.Xaml;
 
 
 namespace SurfaceStudioDemo.ViewModels
@@ -133,20 +131,12 @@ namespace SurfaceStudioDemo.ViewModels
                 Text = this.NavBarAccessories,  // from language file
                 Order = 1
             };
-
-            // AccessoriesDialPage
+            
+            // AccessoriesPenPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "AccessoriesDialPage",
+                Name = "AccessoriesPenPage",
                 Order = 0
-            }
-            );
-
-            // AccessoriesMousePage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AccessoriesMousePage",
-                Order = 1
             }
             );
 
@@ -158,11 +148,11 @@ namespace SurfaceStudioDemo.ViewModels
             }
             );
 
-            // AccessoriesPenPage
+            // AccessoriesMousePage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "AccessoriesPenPage",
-                Order = 3
+                Name = "AccessoriesMousePage",
+                Order = 1
             }
             );
 
