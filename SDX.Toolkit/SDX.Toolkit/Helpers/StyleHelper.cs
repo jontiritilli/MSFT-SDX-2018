@@ -113,7 +113,7 @@ namespace SDX.Toolkit.Helpers
     {
         HeroMargin,
         PopupBorder,
-        PopupMargin
+        PopupPadding
     }
 
     public enum ColoringBookColors
@@ -322,7 +322,7 @@ namespace SDX.Toolkit.Helpers
 
         public const string THICKNESS_HERO_MARGIN = "HeroMargin";
         public const string THICKNESS_POPUP_BORDER = "PopupBorder";
-        public const string THICKNESS_POPUP_MARGIN = "PopupMargin";
+        public const string THICKNESS_POPUP_PADDING = "PopupPadding";
 
         #endregion
 
@@ -943,8 +943,8 @@ namespace SDX.Toolkit.Helpers
                     thickness = GetApplicationThickness(THICKNESS_POPUP_BORDER);
                     break;
 
-                case LayoutThicknesses.PopupMargin:
-                    thickness = GetApplicationThickness(THICKNESS_POPUP_MARGIN);
+                case LayoutThicknesses.PopupPadding:
+                    thickness = GetApplicationThickness(THICKNESS_POPUP_PADDING);
                     break;
 
                 default:

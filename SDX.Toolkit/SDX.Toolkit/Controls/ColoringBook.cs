@@ -540,7 +540,7 @@ namespace SDX.Toolkit.Controls
                 }
             });
 
-            AppSelector _AppSelector = new AppSelector()
+            this._AppSelector = new AppSelector()
             {//
                 //TelemetryId = TelemetryService.TELEMETRY_KEYBOARDVIEWCOLOR,
                 AppSelectorMode = SelectorMode.Color,
@@ -579,7 +579,7 @@ namespace SDX.Toolkit.Controls
         private void _AppSelector_SelectedIDChanged(object sender, EventArgs e)
         {
             // need to change the mouse page too
-            if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
+            if ((null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
                 this._SelectedColor = this.Colors[appSelector.SelectedID];              
@@ -590,7 +590,7 @@ namespace SDX.Toolkit.Controls
         private void _AppSelector_ClearClickedChanged(object sender, EventArgs e)
         {
             // need to change the mouse page too
-            if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
+            if ((null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
                 _inkCanvas.InkPresenter.StrokeContainer.Clear();                               
