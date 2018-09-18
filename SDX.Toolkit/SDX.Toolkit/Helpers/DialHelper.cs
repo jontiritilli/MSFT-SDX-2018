@@ -32,29 +32,29 @@ namespace SDX.Toolkit.Helpers
             switch (angle)
             {
                 case 1:
+                    r = 230;
+                    g = 48;
+                    b = 97;
+                    break;
+                case 2:
                     r = 12;
                     g = 98;
                     b = 145;
                     break;
-                case 2:
+                case 3:
                     r = 152;
                     g = 216;
                     b = 216;
                     break;
-                case 3:
+                case 4:
                     r = 255;
                     g = 179;
                     b = 103;
                     break;
-                case 4:
+                default:
                     r = 150;
                     g = 101;
                     b = 245;
-                    break;
-                default:
-                    r = 230;
-                    g = 48;
-                    b = 97;
                     break;
             }
             return Color.FromArgb(255, r, g, b);

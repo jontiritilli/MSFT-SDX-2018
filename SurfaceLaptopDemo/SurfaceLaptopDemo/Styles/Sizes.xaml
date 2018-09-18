@@ -53,8 +53,9 @@
     <GridLength x:Key="TopMargin">81.067</GridLength>
     <GridLength x:Key="RightMargin">100.267</GridLength>    <!-- Not spec'ed in design; Assumed to mirror left margin -->
     <GridLength x:Key="BottomMargin">68</GridLength>
-        
-    <GridLength x:Key="SpaceBelowHeader">24.533</GridLength>
+
+    <GridLength x:Key="SpaceBelowHeader">67.733</GridLength>
+    <GridLength x:Key="BestOfMicrosoftSpaceBelowHeader">125</GridLength>
 
     <x:Double x:Key="PinchSideMargin">100.267</x:Double>
     <x:Double x:Key="PinchTopMargin">83.067</x:Double>
@@ -73,9 +74,13 @@
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">18</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPopupHeader">19.467</x:Double>
 
-    <!--<x:Double x:Key="AccessoriesPenListIconWidth">40</x:Double>-->
+    <x:Double x:Key="AccessoriesPenListIconWidth">40</x:Double>
     <x:Double x:Key="BestOfMicrosoftListIconWidth">64</x:Double>
     <x:Double x:Key="CompareListIconWidth">40</x:Double>
+    <x:Double x:Key="ListColumnSpacerWidth">19</x:Double>
+    <x:Double x:Key="ListRowSpacerHeight">16</x:Double>
+    <x:Double x:Key="BestOfMicrosoftRowSpacerHeight">200</x:Double>
+    <x:Double x:Key="BestOfMicrosoftColumnSpacerWidth">37.867</x:Double>
 
     <x:Double x:Key="ExperienceAppIconWidth">64</x:Double>
 

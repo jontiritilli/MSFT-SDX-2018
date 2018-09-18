@@ -882,7 +882,7 @@ namespace SDX.Toolkit.Controls
             this.storyboard.Begin();
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
             // test the first image and return if it hasn't been created
             if (null == this.ImagePairs) { return; }

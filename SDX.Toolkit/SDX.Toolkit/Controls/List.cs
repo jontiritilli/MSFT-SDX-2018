@@ -156,46 +156,53 @@ namespace SDX.Toolkit.Controls
         {
             // try to get layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
+
             if (null == _layoutRoot) { return; }
 
             // get sizes
-            //double windowWidth = PageHelper.GetViewSizeInfo().Width;
             double parentWidth = this.ListWidth;
-            //double ColumnSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListColumnSpacerWidth);
-            double ColumnSpacing = 100;
-            //double RowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListRowSpacerHeight);
-            double RowSpacing = 50;
 
-            // how many rows do we need? (items plus the header for ListHeader style)
-            int rowCount = _listItems.Count + 1;
+            // generic, but doesn't work for "best of list". Will have to be set seperate in the bestof case below
+            double ColumnSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListColumnSpacerWidth);
+            double RowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListRowSpacerHeight);
 
             // configure grid
             _layoutRoot.Name = "ListGrid";
-            //_layoutRoot.ColumnSpacing = columnSpacing;
             _layoutRoot.Margin = new Thickness(0);
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ColumnSpacing) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            for (int i = 0; i < rowCount; i++)
-            {
-                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-            }
 
             // based on liststyle, do we need a list header and list panel?
             switch (this.ListStyle)
             {
                 case ListStyles.LedeOnly: // used for interactive pages with header followed by list of items
                     {
+                        // add columns
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ColumnSpacing) });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                        // create a counter to know when we reach the end of list
+                        int Index = 0;
+                        int ListLength = _listItems.Count() - 1;
+
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
                         {
+                            // get correct row to add content, don't want to add to a spacer row
+                            int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
+
+                            // create the row for content
+                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            // if it's not the last row, create a spacer row
+                            if (Index < ListLength)
+                            {
+                                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RowSpacing) });
+                            }
+
                             // how wide is the text
                             double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
 
-                            // set row spacing
-                            _layoutRoot.RowSpacing = RowSpacing;
-
-                            // create icon image
+                            // create icon image and add to grid
                             ImageEx icon = new ImageEx()
                             {
                                 Name = String.Format("Icon_{0}", item.Order),
@@ -205,10 +212,10 @@ namespace SDX.Toolkit.Controls
                                 VerticalContentAlignment = VerticalAlignment.Center,
                             };
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, item.Order + 1);
+                            Grid.SetRow(icon, RowToAdd);
                             _layoutRoot.Children.Add(icon);
 
-                            // create the lede
+                            // create the lede and add to grid
                             Header lede = new Header()
                             {
                                 HeadlineStyle = TextStyles.ListHeadline,
@@ -220,23 +227,43 @@ namespace SDX.Toolkit.Controls
                                 VerticalAlignment = VerticalAlignment.Top
                             };
                             Grid.SetColumn(lede, 2);
-                            Grid.SetRow(lede, item.Order + 1);
-                            
+                            Grid.SetRow(lede, RowToAdd);
                             _layoutRoot.Children.Add(lede);
+
+                            // increment the counter
+                            Index++;
                         }
                     }
                     break;
 
                 case ListStyles.HeadlineAndLede: // Used for product highlights page wherein each item has its own lede-headline
                     {
+                        // add columns
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ColumnSpacing) });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                        // create a counter to know when we reach the end of list
+                        int Index = 0;
+                        int ListLength = _listItems.Count() - 1;
+
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
                         {
+                            // get correct row to add content, don't want to add to a spacer row
+                            int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
+
+                            // create the row for content
+                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            // if it's not the last row, create a spacer row
+                            if (Index < ListLength)
+                            {
+                                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RowSpacing) });
+                            }
+
                             // how wide is the text
                             double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
-
-                            // set row spacing
-                            _layoutRoot.RowSpacing = RowSpacing;
 
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
 
@@ -251,7 +278,7 @@ namespace SDX.Toolkit.Controls
                             };
 
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, item.Order + 1);
+                            Grid.SetRow(icon, RowToAdd);
 
                             _layoutRoot.Children.Add(icon);
 
@@ -269,24 +296,47 @@ namespace SDX.Toolkit.Controls
                                 VerticalAlignment = VerticalAlignment.Top
                             };
                             Grid.SetColumn(headline, 2);
-                            Grid.SetRow(headline, item.Order + 1);
+                            Grid.SetRow(headline, RowToAdd);
 
                             _layoutRoot.Children.Add(headline);
+
+                            // increment index
+                            Index++;
                         }
                     }
                     break;
 
                 case ListStyles.BestOf: // Used for product highlights page wherein each item has its own lede-headline
                     {
+                        // add columns
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftColumnSpacerWidth)) });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                        // create a counter to know when we reach the end of list
+                        int Index = 0;
+                        int ListLength = _listItems.Count() - 1;
+
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
                         {
-                            // how wide is the text
-                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
+                            // get correct row to add content, don't want to add to a spacer row
+                            int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
 
                             // set row spacing
                             double rowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftRowSpacerHeight);
-                            _layoutRoot.RowSpacing = rowSpacing;
+
+                            // create the row for content
+                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            // if it's not the last row, create a spacer row
+                            if (Index < ListLength)
+                            {
+                                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
+                            }
+
+                            // how wide is the text
+                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
 
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
 
@@ -301,7 +351,7 @@ namespace SDX.Toolkit.Controls
                             };
 
                             Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, item.Order + 1);
+                            Grid.SetRow(icon, RowToAdd);
                             _layoutRoot.Children.Add(icon);
 
                             // create the headline (bold text) if one is provided
@@ -318,9 +368,12 @@ namespace SDX.Toolkit.Controls
                                 VerticalAlignment = VerticalAlignment.Top
                             };
                             Grid.SetColumn(headline, 2);
-                            Grid.SetRow(headline, item.Order + 1);
+                            Grid.SetRow(headline, RowToAdd);
 
                             _layoutRoot.Children.Add(headline);
+
+                            // increment index
+                            Index++;
                         }
                     }
                     break;

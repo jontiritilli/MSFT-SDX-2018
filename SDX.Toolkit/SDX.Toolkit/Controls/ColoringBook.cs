@@ -144,9 +144,24 @@ namespace SDX.Toolkit.Controls
 
         }
 
+        public void ChangeColorId(int Id)
+        {
+            ColorID = Id;
+        }
+
         #endregion
 
         #region Dependency Properties
+
+        // color id
+        public static readonly DependencyProperty ColorIDProperty =
+            DependencyProperty.Register("ColorID", typeof(int), typeof(AppSelector), new PropertyMetadata(0, OnColorIDChanged));
+
+        public int ColorID
+        {
+            get { return (int)GetValue(ColorIDProperty); }
+            set { SetValue(ColorIDProperty, value); }
+        }
 
         // Caption
         public static readonly DependencyProperty CaptionProperty =
@@ -307,6 +322,33 @@ namespace SDX.Toolkit.Controls
             get { return (int)GetValue(ImageColumnSpanProperty); }
             set { SetValue(ImageColumnSpanProperty, value); }
         }
+
+        public void ForceColorChange(int ID)
+        {
+            this._AppSelector.SelectedID = ID;
+            this._AppSelector.UpdateUI();
+            this.ColorID = ID;
+            this._SelectedColor = this.Colors[ID];
+            SetupBrush();
+        }
+        #endregion
+
+        #region Custom Events
+
+        public delegate void OnColorIDChangedEvent(object sender, EventArgs e);
+
+        public event OnColorIDChangedEvent ColorIDChanged;
+
+        private void RaiseColorIDChangedEvent(ColoringBook Book, EventArgs e)
+        {
+            ColorIDChanged?.Invoke(Book, e);
+        }
+
+        private void RaiseColorIDChangedEvent(ColoringBook Book)
+        {
+            this.RaiseColorIDChangedEvent(Book, new EventArgs());
+        }
+
         #endregion
 
         #region Event Handlers
@@ -316,6 +358,15 @@ namespace SDX.Toolkit.Controls
             if (this.AutoStart)
             {
                 this.StartAnimation();
+            }
+        }
+
+        public static void OnColorIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if(d is ColoringBook book)
+            {
+                book.RaiseColorIDChangedEvent(book);
+                book._AppSelector.SelectedID = book.ColorID;
             }
         }
 
@@ -582,7 +633,8 @@ namespace SDX.Toolkit.Controls
             if ((null != _AppSelector) && (null != _AppSelector) && (null != _AppSelector))
             {
                 AppSelector appSelector = (AppSelector)sender;
-                this._SelectedColor = this.Colors[appSelector.SelectedID];              
+                this._SelectedColor = this.Colors[appSelector.SelectedID];
+                this.ColorID = appSelector.SelectedID;
                 SetupBrush();
             }
         }

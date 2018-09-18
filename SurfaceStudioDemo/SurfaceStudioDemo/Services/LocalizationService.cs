@@ -241,6 +241,7 @@ namespace SurfaceStudioDemo.Services
             viewModel.DialTryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_DIAL_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_DIAL_TRYIT_TITLE");
             viewModel.DialTryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_DIAL_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_DIAL_TRYIT_COPY");
 
+            // bullet one
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Jot,
@@ -249,8 +250,7 @@ namespace SurfaceStudioDemo.Services
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_ONE, "ACCESSORIES_INTERACTIVE_BULLET_ONE") // order
             ));
 
-            // bullet one
-
+            // bullet two
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 1, // order
                 ListItemIcon.Write, // icon enum name
@@ -259,6 +259,7 @@ namespace SurfaceStudioDemo.Services
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO, "ACCESSORIES_INTERACTIVE_BULLET_TWO") // order
             ));
 
+            // bullet three
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 2, // order
                 ListItemIcon.Pressure, // icon enum name
@@ -267,6 +268,7 @@ namespace SurfaceStudioDemo.Services
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_THREE, "ACCESSORIES_INTERACTIVE_BULLET_THREE") // order
             ));
 
+            // bullet four
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 3, // order
                 ListItemIcon.Palm, // icon enum name

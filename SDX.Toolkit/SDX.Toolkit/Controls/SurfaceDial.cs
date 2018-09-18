@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using SDX.Toolkit.Converters;
 using SDX.Toolkit.Helpers;
 using Windows.Foundation;
 using Windows.Storage.Streams;
@@ -16,18 +17,16 @@ namespace SDX.Toolkit.Controls
     public sealed class SurfaceDial : Control
     {
         public float mainColorAngle;
-        public float activeSaturationValue;
-        public Grid _paletteRing;
-        public Grid _saturationPaletteRing;
-        public Storyboard _storyboard;
         public bool isRotating;
         public double _currentAngle;
+        private int prevColorId = 0;
 
         #region Private Members
 
+        private Grid _paletteRing;
+        private Storyboard _storyboard;
         private Canvas _layoutRoot;
         private Grid _dialGrid;
-        private Canvas _dialCanvas;
         private Ellipse _dial;
         private Path _colorSelector;
         private RadialControllerMenuItem _screenColorMenuItem;
@@ -36,20 +35,30 @@ namespace SDX.Toolkit.Controls
 
         #region Constants
 
-        private static readonly double DIAL_HEIGHT = StyleHelper.GetApplicationDouble("DialDiameter");
+        private static readonly double DIAL_DIAMETER = StyleHelper.GetApplicationDouble("DialDiameter");
+        private static readonly double DIAL_RADIUS = DIAL_DIAMETER / 2;
         private static readonly double SELECTOR_RADIUS = StyleHelper.GetApplicationDouble("SelectorDiameter");
-        private static readonly double COLOR_LINE_RADIUS = StyleHelper.GetApplicationDouble("ColorRingRadius");
-        private static readonly double COLOR_LINE_THICKNESS = StyleHelper.GetApplicationDouble("ColorRingThickness");
-        private static readonly double DIAL_WIDTH = DIAL_HEIGHT;
-        private static readonly double DIAL_RADIUS = DIAL_HEIGHT / 2d;
-        private static readonly double SELECTOR_CENTER_MODIFIER = DIAL_HEIGHT - COLOR_LINE_RADIUS - COLOR_LINE_THICKNESS;
-        private static readonly double SELECTOR_CENTER = DIAL_RADIUS + SELECTOR_CENTER_MODIFIER;
-        private static readonly double ROTATION_MODIFIER = SELECTOR_RADIUS;
-        private static readonly double DIAL_INITIAL_ANGLE = 0;
+        private static readonly double COLOR_RING_THICKNESS = StyleHelper.GetApplicationDouble("ColorRingThickness");
+        private static readonly double COLOR_RING_INNER_DIAMETER = DIAL_DIAMETER - COLOR_RING_THICKNESS;
+        private static readonly double SELECTOR_CENTER = StyleHelper.GetApplicationDouble("SelectorCenterOffset");
+        private static readonly double ROTATION_DEGREES = 36d;
+        private static readonly double DIAL_INITIAL_ANGLE = 36d;
+        private static readonly double ROTATION_MODIFIER = DIAL_INITIAL_ANGLE - ROTATION_DEGREES;
+        private static readonly double TOTAL_ROTATION = ROTATION_DEGREES + ROTATION_MODIFIER;
 
         #endregion
 
         #region Dependency Properties
+
+        // color id
+        public static readonly DependencyProperty ColorIDProperty =
+            DependencyProperty.Register("ColorID", typeof(int), typeof(AppSelector), new PropertyMetadata(0, OnColorIDChanged));
+
+        public int ColorID
+        {
+            get { return (int)GetValue(ColorIDProperty); }
+            set { SetValue(ColorIDProperty, value); }
+        }
 
         public static readonly DependencyProperty IsActiveProperty =
             DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(SurfaceDial), new PropertyMetadata(false, IsActiveChangedCallback));
@@ -104,6 +113,10 @@ namespace SDX.Toolkit.Controls
             DefaultStyleKey = typeof(SurfaceDial);
         }
 
+        public void ActivateOnNavigate()
+        {
+            IsActive = true;
+        }
         #endregion
 
         #region Private Methods
@@ -121,35 +134,29 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private static Point FindLineStart(double x, double y)
-        {
-            return new Point(x, y);
-        }
-
-
         private void SetupController()
         {
             if (null == Controller)
             {
                 Controller = RadialController.CreateForCurrentView();
             }
-            // Remove standard menu items
             RadialControllerConfiguration _dialConfiguration = RadialControllerConfiguration.GetForCurrentView();
+
+            // Remove standard menu items
             _dialConfiguration.SetDefaultMenuItems(new RadialControllerSystemMenuItemKind[] { });
 
             // Create an icon for the custom tool.
             RandomAccessStreamReference icon =
-                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/dial_icon_custom_visual.png"));
+                RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/List/specs_creative.png"));
 
             // Create a menu item for the custom tool.
-            _screenColorMenuItem =
-                RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
+            _screenColorMenuItem = RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
 
             // Add the custom tool to the RadialController menu.
             Controller.Menu.Items.Add(_screenColorMenuItem);
 
             // Set rotation degrees
-            Controller.RotationResolutionInDegrees = 20;
+            Controller.RotationResolutionInDegrees = ROTATION_DEGREES;
 
             // Bind dial controls to local methods
             _screenColorMenuItem.Invoked += ColorMenuItem_Invoked;
@@ -168,30 +175,19 @@ namespace SDX.Toolkit.Controls
         // Dial rotation handler
         private void Controller_RotationChanged(RadialController sender, RadialControllerRotationChangedEventArgs args)
         {
-            double RotationInterval;
-
-            if (args.RotationDeltaInDegrees < 0)
-            {
-                RotationInterval = args.RotationDeltaInDegrees - ROTATION_MODIFIER;
-            } else
-            {
-                RotationInterval = args.RotationDeltaInDegrees + ROTATION_MODIFIER;
-            }
-
             if (IsActive)
             {
-                Rotate(RotationInterval);
-                Debug.WriteLine("RotationInterval {0}", RotationInterval);
+                Rotate(args.RotationDeltaInDegrees);
             }
         }
 
         // Dial Screen contact initial
         private void Controller_ScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
         {
-            Canvas.SetLeft(_dialCanvas, args.Contact.Position.X - DIAL_RADIUS);
-            Canvas.SetTop(_dialCanvas, args.Contact.Position.Y - DIAL_RADIUS);
+            Canvas.SetLeft(_dialGrid, args.Contact.Position.X - DIAL_RADIUS);
+            Canvas.SetTop(_dialGrid, args.Contact.Position.Y - DIAL_RADIUS);
 
-            _dialCanvas.Visibility = Visibility.Visible;
+            _dialGrid.Opacity = 1.0d;
         }
 
         // Dial lifted and placed again
@@ -199,8 +195,8 @@ namespace SDX.Toolkit.Controls
         {
             if (IsActive)
             {
-                Canvas.SetLeft(_dialCanvas, args.Contact.Position.X - DIAL_RADIUS);
-                Canvas.SetTop(_dialCanvas, args.Contact.Position.Y - DIAL_RADIUS);
+                Canvas.SetLeft(_dialGrid, args.Contact.Position.X - DIAL_RADIUS);
+                Canvas.SetTop(_dialGrid, args.Contact.Position.Y - DIAL_RADIUS);
             }
         }
 
@@ -209,26 +205,15 @@ namespace SDX.Toolkit.Controls
         {
             if (IsActive)
             {
-                _dialCanvas.Visibility = Visibility.Collapsed;
-                Controller.Menu.Items.Clear();
+                _dialGrid.Opacity = 0.0d;
             }
         }
 
         // Dial button pressed
         private void Controller_ButtonClicked(RadialController sender, RadialControllerButtonClickedEventArgs args)
         {
-            if (IsActive)
-            {
-                mainColorAngle = (float)Utilities.ClampAngle(_currentAngle);
-                FillSelectionRing();
-            }
         }
 
-        // Show or hide selection and saturation rings
-        private void FillSelectionRing()
-        {
-            _paletteRing.Visibility = Visibility.Visible;
-        }
 
         private void Storyboard_Completed(object sender, object e)
         {
@@ -236,26 +221,30 @@ namespace SDX.Toolkit.Controls
             CompleteRotation();
         }
 
-        private void Rotate(double angle = 1)
+        private void Rotate(double angle)
         {
+            double RotationInterval = angle * 2;
+
             if (isRotating)
             {
+                prevColorId = ColorID;
+                UpdateColorId();
                 CompleteRotation();
+                return;
             }
-            
-            _currentAngle = (double)Utilities.ClampAngle(_currentAngle + angle);
 
-            Debug.WriteLine("current angle in rotate {0}",_currentAngle);
+            _currentAngle = (double)Utilities.ClampAngle(_currentAngle + RotationInterval);
 
             DoubleAnimation colorSelectorAnimation = new DoubleAnimation();
             colorSelectorAnimation.To = _currentAngle;
             colorSelectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
-
             _storyboard.Children.Add(colorSelectorAnimation);
+
             Storyboard.SetTarget(colorSelectorAnimation, _colorSelector);
             Storyboard.SetTargetProperty(colorSelectorAnimation, "(ColorEllipse.RenderTransform).(RotateTransform.Angle)");
 
             _storyboard.Begin();
+
             isRotating = true;
 
             Color activeColor;
@@ -277,9 +266,78 @@ namespace SDX.Toolkit.Controls
             _storyboard.Children.Clear();
         }
 
+        private void UpdateColorId()
+        {
+            double angleToIndex = _currentAngle / 64.8;
+
+            ColorID = System.Convert.ToInt32(Math.Round((double)angleToIndex, 0)) - 1;
+
+            Debug.WriteLine("ColorID {0}", ColorID);
+        }
+
         #endregion
 
-        #region Public Methods
+        #region Custom Events
+
+        public delegate void OnColorIDChangedEvent(object sender, EventArgs e);
+
+        public event OnColorIDChangedEvent ColorIDChanged;
+
+        private void RaiseColorIDChangedEvent(SurfaceDial Dial, EventArgs e)
+        {
+            ColorIDChanged?.Invoke(Dial, e);
+        }
+
+        private void RaiseColorIDChangedEvent(SurfaceDial Dial)
+        {
+            this.RaiseColorIDChangedEvent(Dial, new EventArgs());
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        public void ForceRotation(int ID)
+        {
+            this.ColorID = ID;
+
+            if (isRotating)
+            {
+                prevColorId = ColorID;
+                UpdateColorId();
+                CompleteRotation();
+                return;
+            }
+
+            _currentAngle = (ColorID * 72) + ROTATION_DEGREES;
+
+            DoubleAnimation colorSelectorAnimation = new DoubleAnimation();
+            colorSelectorAnimation.To = _currentAngle;
+            colorSelectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+            _storyboard.Children.Add(colorSelectorAnimation);
+
+            Storyboard.SetTarget(colorSelectorAnimation, _colorSelector);
+            Storyboard.SetTargetProperty(colorSelectorAnimation, "(ColorEllipse.RenderTransform).(RotateTransform.Angle)");
+
+            _storyboard.Begin();
+
+            isRotating = true;
+
+            Color activeColor;
+
+            activeColor = Utilities.ConvertHSV2RGB((float)Utilities.ClampAngle(_currentAngle));
+
+            _colorSelector.Fill = new SolidColorBrush(activeColor);
+        }
+
+        public static void OnColorIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if(d is SurfaceDial dial)
+            {
+                // raise the changed event
+                dial.RaiseColorIDChangedEvent(dial);
+            }
+        }
 
         #endregion
 
@@ -305,21 +363,21 @@ namespace SDX.Toolkit.Controls
                 Name = "DialGrid",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Visibility = Visibility.Collapsed
+                Opacity = 0.0d
             };
 
             _dial = new Ellipse()
             {
-                Name = "Dial",
-                Height = DIAL_HEIGHT,
-                Width = DIAL_WIDTH,
+                Name = "DialBG",
+                Height = DIAL_DIAMETER,
+                Width = DIAL_DIAMETER,
                 Fill = new SolidColorBrush(Colors.Black),
-                Opacity = 0.7
+                Opacity = 0.9
             };
 
             _colorSelector = new Path()
             {
-                Name = "ColorEllipse",
+                Name = "ColorSelectorEllipse",
                 Stroke = new SolidColorBrush(Colors.Gray),
                 Fill = new SolidColorBrush(Colors.Red),
                 RenderTransformOrigin = new Point(.5, .5),
@@ -330,14 +388,15 @@ namespace SDX.Toolkit.Controls
             {
                 Angle = DIAL_INITIAL_ANGLE
             };
+
             _colorSelector.RenderTransform = _colorSelectorTransform;
+
             _colorSelector.Data = new EllipseGeometry()
             {
                 Center = new Point(SELECTOR_CENTER, SELECTOR_CENTER),
                 RadiusX = SELECTOR_RADIUS,
                 RadiusY = SELECTOR_RADIUS
             };
-
             _storyboard = new Storyboard();
 
             _storyboard.Completed += Storyboard_Completed;
@@ -346,6 +405,9 @@ namespace SDX.Toolkit.Controls
 
             _paletteRing = new Grid()
             {
+                Name="ColorRing",
+                Height = DIAL_DIAMETER - COLOR_RING_THICKNESS,
+                Width = DIAL_DIAMETER - COLOR_RING_THICKNESS,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
@@ -379,12 +441,14 @@ namespace SDX.Toolkit.Controls
         // Builds color wheel
         private static Path DrawColorLine(RotateTransform rt, LinearGradientBrush colorBrush)
         {
-            double _colorLineEnd = COLOR_LINE_RADIUS + COLOR_LINE_THICKNESS;
+            double _colorLineStart = SELECTOR_CENTER + 7;
+            double _colorLineEnd = _colorLineStart + COLOR_RING_THICKNESS;
+
             return new Path()
             {
                 Data = new LineGeometry()
                 {
-                    StartPoint = new Point(COLOR_LINE_RADIUS, COLOR_LINE_RADIUS),
+                    StartPoint = new Point(_colorLineStart, _colorLineStart),
                     EndPoint = new Point(_colorLineEnd, _colorLineEnd)
                 },
                 StrokeThickness = 3,
