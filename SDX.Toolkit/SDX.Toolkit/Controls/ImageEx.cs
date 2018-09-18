@@ -159,6 +159,12 @@ namespace SDX.Toolkit.Controls
             _layoutRoot = (Border)this.GetTemplateChild("LayoutRoot");
             if (null == _layoutRoot) { return; }
 
+            // if the imagewidth is zero, there is no point in rendering
+            if (0 == this.ImageWidth) { return; }
+
+            // if there's no source or bitmap, there's no point in rendering
+            if ((String.IsNullOrWhiteSpace(this.ImageSource)) && (null == this.BitmapImage)) { return; }
+
             // clear the layout children
             _layoutRoot.Child = null;
 
@@ -233,7 +239,7 @@ namespace SDX.Toolkit.Controls
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
             // TEST ONLY
-            //throw new BadImageFormatException(e.ErrorMessage);
+            throw new BadImageFormatException(e.ErrorMessage);
         }
 
         #endregion
