@@ -106,16 +106,26 @@ namespace SurfaceStudioDemo.Views
         public void NavigateToPage()
         {
             // animations in
-            AnimationHelper.PerformPageEntranceAnimation(this);
             SurfaceDial.ActivateOnNavigate();
             ShowPopup();
+
+            rBtnDial.StartEntranceAnimation();
+            rBtnDial.StartRadiateAnimation();
+
+            rBtnPen.StartEntranceAnimation();
+            rBtnPen.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
-            AnimationHelper.PerformPageExitAnimation(this);
             HidePopup();
+
+            rBtnDial.ResetEntranceAnimation();
+            rBtnDial.ResetRadiateAnimation();
+
+            rBtnPen.ResetEntranceAnimation();
+            rBtnPen.ResetRadiateAnimation();
         }
 
         #endregion

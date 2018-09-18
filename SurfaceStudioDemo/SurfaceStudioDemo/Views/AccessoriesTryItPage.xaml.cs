@@ -25,6 +25,8 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesTryItPage()
         {
             InitializeComponent();
+            this.rBtnLeftAccLeft.PopupChild = PopLeft;
+            this.rBtnRightAccLeft.PopupChild = PopRight;
         }
 
         #endregion
@@ -34,11 +36,22 @@ namespace SurfaceStudioDemo.Views
         public void NavigateToPage()
         {
             AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnLeftAccLeft.StartEntranceAnimation();
+            rBtnLeftAccLeft.StartRadiateAnimation();
+
+            rBtnRightAccLeft.StartEntranceAnimation();
+            rBtnRightAccLeft.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             AnimationHelper.PerformPageExitAnimation(this);
+            rBtnLeftAccLeft.ResetEntranceAnimation();
+            rBtnLeftAccLeft.ResetRadiateAnimation();
+
+            rBtnRightAccLeft.ResetEntranceAnimation();
+            rBtnRightAccLeft.ResetRadiateAnimation();
         }
 
         #endregion

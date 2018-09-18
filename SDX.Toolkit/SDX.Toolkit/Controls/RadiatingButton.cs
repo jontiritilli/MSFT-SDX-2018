@@ -41,9 +41,9 @@ namespace SDX.Toolkit.Controls
         pinch,
         touch
     }
+
     public sealed class RadiatingButton : Control
     {
-
         #region Constants
         
         private const double RADIATE_SIZE_DEFAULT = 0d;
@@ -634,8 +634,13 @@ namespace SDX.Toolkit.Controls
                 {
                     // close it
                     this.PopupChild.IsOpen = false;
+
+                    // swap the images
                     _imageX.Opacity = 0.0;
-                    if(null != _tryItBox)
+
+                    _tryItImage.Opacity = 1.0;
+
+                    if (null != _tryItBox)
                     {
                         _tryItBox.Opacity = 1.0;
                     }
@@ -660,7 +665,12 @@ namespace SDX.Toolkit.Controls
 
                     // open it
                     this.PopupChild.IsOpen = true;
+
+                    // swap the images
                     _imageX.Opacity = 1.0;
+
+                    _tryItImage.Opacity = 0.0;
+
                     if (null != _tryItBox)
                     {
                         _tryItBox.Opacity = 0.0;
@@ -699,6 +709,7 @@ namespace SDX.Toolkit.Controls
 
                     // open it
                     this.PopupChild.IsOpen = true;
+
                     _imageX.Opacity = 1.0;
 
                     // telemetry
@@ -752,8 +763,10 @@ namespace SDX.Toolkit.Controls
 
                 double RadiatingButtonHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
 
+                double radiateEllipseHeight = RadiatingButtonHeight * .9; // set this slightly smaller so it doesn't peek out from behind the button
+
                 // height of the radiating button with a little added space for the radiating animation
-                double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.4;
+                double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.7;
 
                 // create the grid
                 _grid = new Grid()
@@ -891,11 +904,12 @@ namespace SDX.Toolkit.Controls
                     // set up the story board
                     _tryItCaptionStoryboard = AnimationHelper.CreateEasingAnimation(_tryItButtonCaption, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
 
+
                     _radiateEllipse = new Ellipse()
                     {
                         Name = this.Name + "radiateEllipse",
-                        Width = RadiatingButtonHeight,
-                        Height = RadiatingButtonHeight,
+                        Width = radiateEllipseHeight,
+                        Height = radiateEllipseHeight,
                         Fill = new SolidColorBrush(Colors.White),
                         Stroke = GetSolidColorBrush("#FFD2D2D2"),
                         StrokeThickness = 2,
@@ -912,7 +926,7 @@ namespace SDX.Toolkit.Controls
 
                     // calculate beginning and end of animation
                     double RADIATE_SIZE_START = RadiatingButtonHeight;
-                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.3;
+                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.6;
 
                     // create storyboards
                     _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
@@ -1064,8 +1078,7 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = this.Name + "ImageX",
                         ImageSource = URI_X_IMAGE,
-                        Height = IconWidth,
-                        Width = IconWidth,
+                        ImageWidth = IconWidth,
                         Opacity = 0.0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -1125,40 +1138,26 @@ namespace SDX.Toolkit.Controls
                         default:
                             break;
                     }
-                    
                 }
-                //if (popupContent is PopupContentText pct)
-                //{
-                //    popupWidth = pct.Width;
-                //}
-                //else if (popupContent is PopupContentFastCharge pcfc)
-                //{
-                //    popupWidth = pcfc.Width;
-                //}
-                //else if (popupContent is PopupContentCompareGallery pccg)
-                //{
-                //    popupWidth = pccg.Width;
-                //}
-
+                
                 // which position?
                 switch (this.PopupPosition)
                 {
                     case PopupPositions.Above:
                     default:
-                        offset = point.X + (_grid.ActualWidth / 2) - (popupWidth / 2);
+                        offset = point.X + (popupWidth / 2);
                         break;
 
                     case PopupPositions.Below:
-                        offset = point.X + (_grid.ActualWidth / 2) - (popupWidth / 2);
+                        offset = point.X + (popupWidth / 2);
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.X - popupWidth - _grid.ActualWidth - POPUP_SPACER;
-                        
+                        offset = point.X - popupWidth - POPUP_SPACER;
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.X + _grid.ActualWidth + POPUP_SPACER;
+                        offset = point.X + POPUP_SPACER;
                         break;
                 }
             }
@@ -1180,7 +1179,26 @@ namespace SDX.Toolkit.Controls
 
                 // get the height of the child of the popup
                 double popupHeight = 0;
+
                 object popupContent = this.PopupChild.Child;
+
+                if (popupContent is PopupMedia popup)
+                {
+                    switch (popup.PopupType)
+                    {
+                        case PopupTypes.Text:
+                            Height = popup.Height;
+                            break;
+                        case PopupTypes.Image:
+                            Height = popup.MediaHeight;
+                            break;
+                        case PopupTypes.Video:
+                            Height = popup.MediaHeight;
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
                 // which position?
                 switch (this.PopupPosition)
@@ -1191,15 +1209,15 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Below:
-                        offset = point.Y + _grid.ActualHeight + POPUP_SPACER;
+                        offset = point.Y + POPUP_SPACER;
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.Y;// + (_grid.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y - (popupHeight / 2);
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.Y;// + (_grid.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y - (popupHeight / 2);
                         break;
                 }
             }

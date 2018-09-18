@@ -31,12 +31,13 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="3" Grid.Column="1"
-            Headline="{x:Bind Path=ViewModel.Headline}"
-            HeadlineStyle="PageHeadline"
-            Width="{StaticResource HeaderWidth}"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+        <ctrl:TextBlockEx x:Name="PageHeadline" Grid.Row="3" Grid.Column="1"
+                Text="{x:Bind Path=ViewModel.Headline}"
+                TextAlignment="Center"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="1300"
+                TextStyle="ReadyPageHeadline"/>
 
         <ctrl:ImageEx Grid.Row="4" Grid.Column="1"
             x:Name="img_Right"
@@ -49,7 +50,6 @@
         <Border Grid.Row="5" Grid.Column="1"
             x:Name="ReadyButton"
             Background = "White"
-            BorderBrush = "{x:Bind Path=ViewModel.ReadyBoxBorderColor}"
             BorderThickness = "2"
             Padding = "5,0,5,0"
             Width="{StaticResource ReadyButtonWidth}"
@@ -62,7 +62,7 @@
                 Text="{x:Bind Path=ViewModel.ButtonText}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                TextStyle="ButtonCaption"/>
+                TextStyle="ReadyButtonCaption"/>
         </Border>
     </Grid>
 </Page>

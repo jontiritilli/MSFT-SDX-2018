@@ -10,9 +10,6 @@ namespace SurfaceStudioDemo.Views
 {
     public sealed partial class ExperiencePixelSensePage : Page, INavigate
     {
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
-
         #region Private Members
 
         private ExperiencePixelSenseViewModel ViewModel
@@ -34,14 +31,8 @@ namespace SurfaceStudioDemo.Views
         {
             InitializeComponent();
 
-            Canvas.SetTop(rBtnLeftPixelSense, _canvasHeight * .47);
-            Canvas.SetLeft(rBtnLeftPixelSense, _canvasWidth * .24);
-
-            Canvas.SetTop(rBtnRightPixelSense, _canvasHeight * .63);
-            Canvas.SetLeft(rBtnRightPixelSense, _canvasWidth * .65);
-
-            Canvas.SetTop(rBtnBottomPixelSense, _canvasHeight * .83);
-            Canvas.SetLeft(rBtnBottomPixelSense, _canvasWidth * .68);
+            this.rBtnBottomPixelSense.PopupChild = PopBottom;
+            this.rBtnLeftPixelSense.PopupChild = PopLeft;
 
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             timer.Start();
@@ -60,6 +51,7 @@ namespace SurfaceStudioDemo.Views
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
             rBtnRightPixelSense.HandleClick();
+            FlipViewPage.Current.ShowAppClose();
         }
 
         #endregion
@@ -87,6 +79,7 @@ namespace SurfaceStudioDemo.Views
         {
             // animations out
             AnimationHelper.PerformPageExitAnimation(this);
+
             rBtnRightPixelSense.ResetEntranceAnimation();
             rBtnRightPixelSense.ResetRadiateAnimation();
 

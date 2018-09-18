@@ -208,11 +208,11 @@ namespace SurfaceStudioDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_HEADLINE, "EXPERIENCE_DISPLAY_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_COPY, "EXPERIENCE_DISPLAY_COPY");
 
-            viewModel.PopLeft_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_TITLE, "EXPERIENCE_DISPLAY_POPLEFT_TITLE");
-            viewModel.PopLeft_Lede= GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY, "EXPERIENCE_DISPLAY_POPLEFT_COPY");
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_TITLE, "EXPERIENCE_DISPLAY_POPLEFT_TITLE");
+            viewModel.PopLeftLede= GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY, "EXPERIENCE_DISPLAY_POPLEFT_COPY");
 
-            viewModel.PopBottom_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE, "EXPERIENCE_DISPLAY_POPBOTTOM_TITLE");
-            viewModel.PopBottom_Lede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY");
+            viewModel.PopBottomHeadline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE, "EXPERIENCE_DISPLAY_POPBOTTOM_TITLE");
+            viewModel.PopBottomLede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY");
 
         }
 
@@ -240,6 +240,8 @@ namespace SurfaceStudioDemo.Services
 
             viewModel.DialTryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_DIAL_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_DIAL_TRYIT_TITLE");
             viewModel.DialTryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_DIAL_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_DIAL_TRYIT_COPY");
+
+            viewModel.ListHeadline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TITLE, "ACCESSORIES_INTERACTIVE_BULLET_TITLE");
 
             // bullet one
             viewModel.ListItems.Add(ListItem.CreateListItem(
@@ -311,12 +313,19 @@ namespace SurfaceStudioDemo.Services
             viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_TITLE, "ACCESSORIES_RIGHT_POPRIGHT_TITLE");
             viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_COPY, "ACCESSORIES_RIGHT_POPRIGHT_COPY");
             viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_LEGAL, "ACCESSORIES_RIGHT_POPRIGHT_LEGAL");
+
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_TITLE, "ACCESSORIES_RIGHT_POPTOP_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_COPY, "ACCESSORIES_RIGHT_POPTOP_COPY");
+            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_LEGAL, "ACCESSORIES_RIGHT_POPTOP_LEGAL");
         }
 
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
-            viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+            viewModel.BulletOneLegal = GetStringValue(_languageCurrent.BEST_BULLET_ONE_LEGAL, "BEST_BULLET_ONE_LEGAL");
+            viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.BEST_BULLET_TWO_LEGAL, "BEST_BULLET_TWO_LEGAL");
+            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+            viewModel.BulletFourLegal = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_LEGAL, "BEST_BULLET_FOUR_LEGAL");
 
             // bullet one
             viewModel.LeftItemList.Add(ListItem.CreateListItem(
@@ -341,15 +350,20 @@ namespace SurfaceStudioDemo.Services
             ));
 
             // bullet three OPTIONAL CHINA BULLET
-            viewModel.LeftItemList.Add(ListItem.CreateListItem(
-                2,
-                ListItemIcon.Custom,
-                viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "BEST_BULLET_FIVE_TITLE"),
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "BEST_BULLET_FIVE_COPY"),
-                null,
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
-            ));
+            string headline = GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "");
+            string lede = GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "");
+            if (!String.IsNullOrWhiteSpace(headline) && !String.IsNullOrWhiteSpace(lede))   // use AND here because BOM has headline AND lede and either one missing means we don't show the bullet
+            {
+                viewModel.LeftItemList.Add(ListItem.CreateListItem(
+                    2,
+                    ListItemIcon.Custom,
+                    viewModel.ICON_WIDTH,
+                    GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "BEST_BULLET_FIVE_TITLE"),
+                    GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "BEST_BULLET_FIVE_COPY"),
+                    null,
+                    GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
+                 ));
+            }
 
             // bullet four
             viewModel.RightItemList.Add(ListItem.CreateListItem(

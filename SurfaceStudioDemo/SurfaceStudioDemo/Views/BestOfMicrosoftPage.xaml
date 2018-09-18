@@ -29,14 +29,11 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="BestOfHeader" Grid.Row="1" Grid.Column="1"
-            Headline="{x:Bind Path=ViewModel.Headline}"
-            Lede=""
-            HeadlineStyle="PageHeadline"
-            LedeStyle="PageHeadline"
-            Width="{StaticResource HeaderWidth}"
+        <ctrl:TextBlockEx x:Name="BestOfHeader" Grid.Row="1" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Headline}"
+            TextStyle="PageHeadline"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Center" />
 
         <ctrl:List x:Name="BOM_LEFT" Grid.Row="3" Grid.Column="1"
             ListItems="{x:Bind Path=ViewModel.LeftItemList}"
@@ -51,7 +48,7 @@
             VerticalAlignment="Top"/>
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
-            Text="{x:Bind Path=ViewModel.Legal}"
+            Text="{x:Bind Path=ViewModel.BulletTwoLegal}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"

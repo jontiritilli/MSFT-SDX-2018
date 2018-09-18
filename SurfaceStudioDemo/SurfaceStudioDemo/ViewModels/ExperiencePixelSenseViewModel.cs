@@ -38,13 +38,13 @@ namespace SurfaceStudioDemo.ViewModels
         public string Headline;
         public string Lede;        
 
-        public string PopLeft_Headline;
-        public string PopLeft_Lede;
-        public string PopLeft_Legal;
+        public string PopLeftHeadline;
+        public string PopLeftLede;
+        public string PopLeftLegal;
 
-        public string PopBottom_Headline;
-        public string PopBottom_Lede;
-        public string PopBottom_Legal;
+        public string PopBottomHeadline;
+        public string PopBottomLede;
+        public string PopBottomLegal;
 
         #endregion
 
