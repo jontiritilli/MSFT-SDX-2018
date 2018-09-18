@@ -36,7 +36,7 @@
             HeadlineStyle="PageHeadline"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center"/>
 
         <ctrl:ImageEx Grid.Row="4" Grid.Column="1"
             x:Name="img_Right"

@@ -63,6 +63,7 @@ namespace SDX.Toolkit.Helpers
         AccessoriesPenListIconWidth,
         BestOfMicrosoftListIconWidth,
         BestOfMicrosoftRowSpacerHeight,
+        BestOfMicrosoftColumnSpacerWidth,
         CompareListIconWidth,
         AccessoryColorSelectorIconWidth,
         AccessoryPrimaryImageWidth,
@@ -213,6 +214,7 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT = "BestOfMicrosoftRowSpacerHeight";
+        public const string SIZE_BESTOFMICROSOFT_COLSPACERWIDTH = "BestOfMicrosoftColumnSpacerWidth"; 
         public const string SIZE_COMPARE_LISTICONWIDTH = "CompareListIconWidth";
 
         public const string SIZE_ACCESSORIES_COLORICONWIDTH = "AccessoryColorSelectorIconWidth";
@@ -401,6 +403,10 @@ namespace SDX.Toolkit.Helpers
 
                 case LayoutSizes.BestOfMicrosoftRowSpacerHeight:
                     value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT);
+                    break;
+
+                case LayoutSizes.BestOfMicrosoftColumnSpacerWidth:
+                    value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_COLSPACERWIDTH);
                     break;
                     
                 case LayoutSizes.CompareListIconWidth:
