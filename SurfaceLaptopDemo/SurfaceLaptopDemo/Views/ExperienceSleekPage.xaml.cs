@@ -10,8 +10,6 @@ namespace SurfaceLaptopDemo.Views
 {
     public sealed partial class ExperienceSleekPage : Page, INavigate
     {
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
 
         #region Private Members
 
@@ -27,14 +25,9 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceSleekPage()
         {
             InitializeComponent();
-            Canvas.SetTop(rBtnTopPerformance, _canvasHeight * .25);
-            Canvas.SetLeft(rBtnTopPerformance, _canvasWidth * .82);
-
-            Canvas.SetTop(rBtnLeftPerformance, _canvasHeight * .67);
-            Canvas.SetLeft(rBtnLeftPerformance, _canvasWidth * .4);
-
-            Canvas.SetTop(rBtnBottomPerformance, _canvasHeight * .75);
-            Canvas.SetLeft(rBtnBottomPerformance, _canvasWidth * .8);
+            this.rBtnBottomPerformance.PopupChild = PopBottom;
+            this.rBtnLeftPerformance.PopupChild = PopLeft;
+            this.rBtnTopPerformance.PopupChild = PopTop;
         }
 
         #endregion

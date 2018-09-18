@@ -65,6 +65,8 @@
     <x:Double x:Key="AppCloseWidth">61.333</x:Double>
     <x:Double x:Key="AppCloseHeight">42.667</x:Double>
 
+    <x:Double x:Key="AppSelectorButtonWidth">48</x:Double>
+
     <x:Double x:Key="HeaderWidth">474</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">24.533</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">19.467</x:Double>

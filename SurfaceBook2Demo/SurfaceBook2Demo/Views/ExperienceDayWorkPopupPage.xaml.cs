@@ -1,4 +1,5 @@
-﻿using SurfaceBook2Demo.ViewModels;
+﻿using SDX.Toolkit.Helpers;
+using SurfaceBook2Demo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,6 +44,7 @@ namespace SurfaceBook2Demo.Views
             this.InitializeComponent();
             ExperienceDayWorkPopupPage.Current = this;
             this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
+            this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
         }
 
         public void NavigateToPage()

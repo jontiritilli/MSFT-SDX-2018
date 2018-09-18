@@ -70,6 +70,8 @@ namespace SDX.Toolkit.Controls
         private readonly double DOUBLE_COLORING_BOOK_BUTTON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookButtonWidth);
         private readonly double DOUBLE_COLORING_BOOK_BUTTON_HEIGHT = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookButtonHeight);
 
+        private readonly double DOUBLE_COLORING_BOOK_IMAGE_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookImageWidth);
+
         #endregion
 
         #region Private Members
@@ -420,8 +422,7 @@ namespace SDX.Toolkit.Controls
             Image ColoringImage = new Image()
             {                
                 Source = BMIMAGE_COLORING_BOOK,
-                Width = BMIMAGE_COLORING_BOOK.DecodePixelWidth,
-                Height = BMIMAGE_COLORING_BOOK.DecodePixelHeight,
+                Width = DOUBLE_COLORING_BOOK_IMAGE_WIDTH,                
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
                 Opacity = 1.0,
@@ -444,7 +445,7 @@ namespace SDX.Toolkit.Controls
                 NotSelected = new Image()
                 {
                     Source = BMIMAGE_COLOR_RED,
-                    Width = BMIMAGE_COLOR_RED.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -452,7 +453,7 @@ namespace SDX.Toolkit.Controls
                 Selected = new Image()
                 {
                     Source = BMIMAGE_COLOR_RED_SELECTED,
-                    Width = BMIMAGE_COLOR_RED_SELECTED.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -464,7 +465,7 @@ namespace SDX.Toolkit.Controls
                 NotSelected = new Image()
                 {
                     Source = BMIMAGE_COLOR_BLUE,
-                    Width = BMIMAGE_COLOR_BLUE.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -472,7 +473,7 @@ namespace SDX.Toolkit.Controls
                 Selected = new Image()
                 {
                     Source = BMIMAGE_COLOR_BLUE_SELECTED,
-                    Width = BMIMAGE_COLOR_BLUE_SELECTED.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -484,7 +485,7 @@ namespace SDX.Toolkit.Controls
                 NotSelected = new Image()
                 {
                     Source = BMIMAGE_COLOR_TEAL,
-                    Width = BMIMAGE_COLOR_TEAL.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -492,7 +493,7 @@ namespace SDX.Toolkit.Controls
                 Selected = new Image()
                 {
                     Source = BMIMAGE_COLOR_TEAL_SELECTED,
-                    Width = BMIMAGE_COLOR_TEAL_SELECTED.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -504,7 +505,7 @@ namespace SDX.Toolkit.Controls
                 NotSelected = new Image()
                 {
                     Source = BMIMAGE_COLOR_ORANGE,
-                    Width = BMIMAGE_COLOR_ORANGE.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -512,7 +513,7 @@ namespace SDX.Toolkit.Controls
                 Selected = new Image()
                 {
                     Source = BMIMAGE_COLOR_ORANGE_SELECTED,
-                    Width = BMIMAGE_COLOR_ORANGE_SELECTED.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -524,7 +525,7 @@ namespace SDX.Toolkit.Controls
                 NotSelected = new Image()
                 {
                     Source = BMIMAGE_COLOR_PURPLE,
-                    Width = BMIMAGE_COLOR_PURPLE.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -532,7 +533,7 @@ namespace SDX.Toolkit.Controls
                 Selected = new Image()
                 {
                     Source = BMIMAGE_COLOR_PURPLE_SELECTED,
-                    Width = BMIMAGE_COLOR_PURPLE_SELECTED.DecodePixelWidth,
+                    Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 1.0
@@ -555,7 +556,7 @@ namespace SDX.Toolkit.Controls
                     NotSelected = new Image()
                     {
                         Source = BMIMAGE_CLEARBUTTON,
-                        Width = BMIMAGE_CLEARBUTTON.DecodePixelWidth,
+                        Width = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Opacity = 1.0

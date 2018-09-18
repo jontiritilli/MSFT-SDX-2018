@@ -96,6 +96,7 @@ namespace SDX.Toolkit.Helpers
         RadiatingButtonCaptionHeight,
         ColoringBookButtonWidth,
         ColoringBookButtonHeight,
+        ColoringBookImageWidth,
         AppSelectorButtonWidth,
         AppSelectorButtonHeight,
         PlayerHeight,
@@ -256,6 +257,7 @@ namespace SDX.Toolkit.Helpers
 
         public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
         public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
+        public const string SIZE_COLORINGBOOKIMAGEWIDTH = "ColoringBookBitmapImageWidth";
 
         public const string SIZE_APPSELECTORBUTTONWIDTH = "AppSelectorButtonWidth";
         public const string SIZE_APPSELECTORBUTTONHEIGHT = "AppSelectorButtonHeight";
@@ -526,6 +528,10 @@ namespace SDX.Toolkit.Helpers
 
                 case LayoutSizes.ColoringBookButtonWidth:
                     value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.ColoringBookImageWidth:
+                    value = GetApplicationDouble(SIZE_COLORINGBOOKIMAGEWIDTH);
                     break;
 
                 case LayoutSizes.ColoringBookButtonHeight:

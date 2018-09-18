@@ -4,7 +4,6 @@ using SDX.Toolkit.Controls;
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
-using SDX.Toolkit.Helpers;
 
 namespace SurfaceProDemo.Views
 {
@@ -16,8 +15,7 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as AccessoriesMouseViewModel; }
         }
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #endregion
 
         #region Public Members
@@ -33,11 +31,8 @@ namespace SurfaceProDemo.Views
             this.AppSelectorImageMouse.AppSelector = this.AppSelectorMouse;
             this.AppSelectorMouse.SelectedIDChanged += SelectedIDChanged;
 
-            Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
-            Canvas.SetLeft(rBtnLeft, _canvasWidth * .10);
-
-            Canvas.SetTop(rBtnRight, _canvasHeight * .60);
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .75);
+            rBtnLeft.PopupChild = PopLeft;
+            rBtnRight.PopupChild = PopRight;
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)

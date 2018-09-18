@@ -280,10 +280,7 @@ namespace SDX.Toolkit.Controls
             set { SetValue(RadiateStaggerDelayInMillisecondsProperty, value); }
         }
 
-        #endregion
-
-        #region Public Properties
-
+      
         public Popup PopupChild
         {
             get => _popupChild;
@@ -296,7 +293,8 @@ namespace SDX.Toolkit.Controls
                 {
                     // catch the closed event for the popup
                     _popupChild.Closed += this.Popup_Closed;
-
+                    //_popupChild.HorizontalOffset = -1;
+                    //_popupChild.VerticalOffset = -1;
                     // catch the image gallery Closed event
                     object contentChild = _popupChild.Child;
 
@@ -311,7 +309,12 @@ namespace SDX.Toolkit.Controls
                 }
             }
         }
-        
+        #endregion
+
+        #region Public Properties
+
+
+
         //public double RadiateOffset { get => -1 * (BUTTON_SIZE - ENTRANCE_SIZE); }
         public double RadiateOffset { get => -16; }
 
@@ -672,8 +675,7 @@ namespace SDX.Toolkit.Controls
                     //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                 }
             }
-
-            if (null != this.PopupChild)
+            else  if (null != this.PopupChild)
             {
                 if (this.PopupChild.IsOpen)
                 {
@@ -1107,6 +1109,24 @@ namespace SDX.Toolkit.Controls
 
                 object popupContent = this.PopupChild.Child;
 
+                if (popupContent is PopupMedia popup)
+                {
+                    switch (popup.PopupType)
+                    {
+                        case PopupTypes.Text:
+                            popupWidth = popup.Width;
+                            break;
+                        case PopupTypes.Image:
+                            popupWidth = popup.MediaWidth;
+                            break;
+                        case PopupTypes.Video:
+                            popupWidth = popup.MediaWidth;
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
                 //if (popupContent is PopupContentText pct)
                 //{
                 //    popupWidth = pct.Width;
@@ -1133,7 +1153,8 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.X - popupWidth - POPUP_SPACER;
+                        offset = point.X - popupWidth - _grid.ActualWidth - POPUP_SPACER;
+                        
                         break;
 
                     case PopupPositions.Right:
@@ -1174,11 +1195,11 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.Y + (_grid.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y;// + (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.Y + (_grid.ActualHeight / 2) - (popupHeight / 2);
+                        offset = point.Y;// + (_grid.ActualHeight / 2) - (popupHeight / 2);
                         break;
                 }
             }

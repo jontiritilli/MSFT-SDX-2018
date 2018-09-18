@@ -351,16 +351,20 @@
     <Content Include="Assets\Experience\sb2_appIcon_sketchBook.png" />
     <Content Include="Assets\Experience\sb2_create_sb15.png" />
     <Content Include="Assets\Experience\sb2_hero_dial.png" />
-    <Content Include="Assets\Experience\sb2_hero_insetCompare.png" />
-    <Content Include="Assets\Experience\sb2_hero_insetPixelsense.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetCompare_sb13.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetCompare_sb15.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetPixelsense_sb13.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetPixelsense_sb15.png" />
     <Content Include="Assets\Experience\sb2_hero_pen.png" />
     <Content Include="Assets\Experience\sb2_hero_sb13.png" />
     <Content Include="Assets\Experience\sb2_hero_sb15.png" />
     <Content Include="Assets\Experience\sb2_play_sb15.png" />
-    <Content Include="Assets\Experience\sb2_relax_insetHinge.png" />
+    <Content Include="Assets\Experience\sb2_relax_insetHinge_sb13.png" />
+    <Content Include="Assets\Experience\sb2_relax_insetHinge_sb15.png" />
     <Content Include="Assets\Experience\sb2_relax_sb15.png" />
     <Content Include="Assets\Experience\sb2_work_appScreen_photoshop.png" />
-    <Content Include="Assets\Experience\sb2_work_insetConnections.png" />
+    <Content Include="Assets\Experience\sb2_work_insetConnections_sb13.png" />
+    <Content Include="Assets\Experience\sb2_work_insetConnections_sb15.png" />
     <Content Include="Assets\Experience\sb2_work_sb15.png" />
     <Content Include="Assets\Icons\ArtworkColors\sb2_13_blue.png" />
     <Content Include="Assets\Icons\ArtworkColors\sb2_13_blue_active.png" />
@@ -441,11 +445,8 @@
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
-    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-100.png" />
-    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-125.png" />
-    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-150.png" />
-    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-200.png" />
-    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\Universal\tryit.png" />
+    <Content Include="Assets\Universal\tryit_pen.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

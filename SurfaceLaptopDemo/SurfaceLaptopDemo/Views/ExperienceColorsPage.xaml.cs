@@ -28,6 +28,7 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorImageExpColors.AppSelector = this.AppSelectorExpColors;
             ViewModel.BackgroundUri = ViewModel.lifeStyleColorSelectorImageURIs[AppSelectorImageExpColors.SelectedID].URI;
             this.AppSelectorExpColors.SelectedIDChanged += SelectedIDChanged;
+            this.rBtnLeft.PopupChild = this.PopLeft;
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)
@@ -44,11 +45,15 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateToPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            this.rBtnLeft.StartEntranceAnimation();
+            this.rBtnLeft.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            this.rBtnLeft.ResetEntranceAnimation();
+            this.rBtnLeft.ResetRadiateAnimation();
         }
 
         #endregion

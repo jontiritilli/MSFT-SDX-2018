@@ -17,8 +17,8 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_create.png";
 
         private const string URI_HERO = "ms-appx:///Assets/Experience/sb2_create_sb15.png";
-
-        private const string URI_TRANSFORM_VIDEO_URI = "ms-appx:///Assets/Experience/transform.mp4"; //TODO
+        //"ms-appx:///Assets/Experience/transform.mp4";
+        private const string URI_TRANSFORM_VIDEO_URI = "ms-appx:///Assets/Attractor/attractor.mp4"; //TODO
 
         #endregion
 
@@ -38,6 +38,8 @@ namespace SurfaceBook2Demo.ViewModels
         public string PopupTransformHeadline;
         public string PopupTransformLede;
         public string PopupTransformVideoUri;
+        public double PopupTransformVideoWidth;
+        public double PopupTransformVideoHeight;
 
         #endregion
 
@@ -51,7 +53,7 @@ namespace SurfaceBook2Demo.ViewModels
             {
                 case DeviceType.Book15:
                     this.BackgroundUri = URI_BACKGROUND15;
-                    this.HeroUri = URI_HERO;
+                    this.HeroUri = URI_HERO;                    
                     break;
 
                 case DeviceType.Book13:
@@ -63,6 +65,8 @@ namespace SurfaceBook2Demo.ViewModels
 
             // video uri for transform popup
             this.PopupTransformVideoUri = URI_TRANSFORM_VIDEO_URI;
+            this.PopupTransformVideoWidth = 400;
+            this.PopupTransformVideoHeight = 300;
 
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();

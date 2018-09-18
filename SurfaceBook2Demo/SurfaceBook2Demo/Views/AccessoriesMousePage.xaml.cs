@@ -1,5 +1,4 @@
 ﻿using System;
-
 using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
@@ -14,7 +13,6 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as AccessoriesMouseViewModel; }
         }
-
         #endregion
 
 
@@ -23,6 +21,8 @@ namespace SurfaceBook2Demo.Views
         public AccessoriesMousePage()
         {
             InitializeComponent();
+
+            rBtnLeft.PopupChild = PopLeft;
         }
 
         #endregion
@@ -33,11 +33,15 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage()
         {
             // animations in
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            rBtnLeft.ResetEntranceAnimation();
+            rBtnLeft.ResetRadiateAnimation();
         }
 
         #endregion

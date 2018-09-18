@@ -3,7 +3,7 @@ using SDX.Toolkit.Controls;
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
-using SDX.Toolkit.Helpers;
+
 
 namespace SurfaceProDemo.Views
 {
@@ -15,8 +15,7 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as AccessoriesKeyboardViewModel; }
         }
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #endregion
 
         #region Public Members
@@ -32,11 +31,11 @@ namespace SurfaceProDemo.Views
             this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
             this.AppSelectorKB.SelectedIDChanged += SelectedIDChanged;
 
-            Canvas.SetTop(rBtnTop, _canvasHeight * .20);
-            Canvas.SetLeft(rBtnTop, _canvasWidth * .55);
+            rBtnTop.PopupChild = PopTop;
+            rBtnBottom.PopupChild = PopBottom;
+            
 
-            Canvas.SetTop(rBtnBottom, _canvasHeight * .80);
-            Canvas.SetLeft(rBtnBottom, _canvasWidth * .55);
+
         }
 
         public void SelectedIDChanged(object sender, EventArgs e) {

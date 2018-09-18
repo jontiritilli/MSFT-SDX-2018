@@ -6,8 +6,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"       
     DataContext="{Binding ExperienceIntroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+
     <Grid
         x:Name="ContentArea">
         <Grid.Background>
@@ -62,12 +70,61 @@
                 Grid.ColumnSpan="4"
                 Canvas.ZIndex="101">
 
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                        
+                        Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopLeftLede}"
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopTop"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                        
+                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopRight"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                        
+                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                        />
+                </Popup.Child>
+            </Popup>
+
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 EntranceDurationInMilliseconds = "400"
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.45}"                                                               
+                PopupPosition="Left"                
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -76,6 +133,9 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.24}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.62}"                                                
+                PopupPosition="Right"                
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -84,8 +144,10 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.40}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.30}"                                                                 
+                PopupPosition="Below"                
                 AutoStart = "false"/>
-
         </Canvas>
         
         <ctrl:ImageEx

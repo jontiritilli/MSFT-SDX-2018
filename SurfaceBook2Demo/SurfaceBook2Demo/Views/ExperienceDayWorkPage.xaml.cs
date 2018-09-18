@@ -29,16 +29,19 @@ namespace SurfaceBook2Demo.Views
             timer.Tick += (sender, args) =>
             {// well this works? but ew
                 timer.Stop();
-                this.rButtonOne.PopupChild = FlipViewPage.Current.GetExperienceDayWorkPagePopup();
+                this.rBtnTop.PopupChild = FlipViewPage.Current.GetExperienceDayWorkPagePopup();
                 ExperienceDayWorkPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
 
+
+            rBtnLeft.PopupChild = PopLeft;
+            rBtnRight.PopupChild = PopRight;
 
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.rButtonOne.HandleClick();
+            this.rBtnTop.HandleClick();
         }
 
         #endregion
@@ -50,16 +53,27 @@ namespace SurfaceBook2Demo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            this.rButtonOne.StartEntranceAnimation();
-            this.rButtonOne.StartRadiateAnimation();
+            rBtnTop.StartEntranceAnimation();
+            rBtnTop.StartRadiateAnimation();
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
-            this.rButtonOne.ResetEntranceAnimation();
-            this.rButtonOne.ResetRadiateAnimation();
+            rBtnTop.ResetEntranceAnimation();
+            rBtnTop.ResetRadiateAnimation();
+
+            rBtnLeft.ResetEntranceAnimation();
+            rBtnLeft.ResetRadiateAnimation();
+
+            rBtnRight.ResetEntranceAnimation();
+            rBtnRight.ResetRadiateAnimation();
         }
 
         #endregion

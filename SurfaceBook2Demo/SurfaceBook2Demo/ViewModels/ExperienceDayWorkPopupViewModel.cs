@@ -40,11 +40,6 @@ namespace SurfaceBook2Demo.ViewModels
         private readonly BitmapImage BITMAPIMAGE_APPSELECTOR_APP_4_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.PagePopupAppIcon_Selected_4);
         private readonly BitmapImage BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED = StyleHelper.GetApplicationBitmapImage(BitmapImages.PagePopupAppIcon_Selected_5);
 
-        private const int APPSELECTOR_BUTTON_WIDTH = 60;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 60;
-
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 588;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 1176;
 
         private readonly double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
         private readonly double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;
@@ -52,6 +47,9 @@ namespace SurfaceBook2Demo.ViewModels
         private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");
         private readonly double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
         private readonly double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
+
+        private readonly int APPSELECTOR_BUTTON_WIDTH = System.Convert.ToInt32(Math.Round((double)Application.Current.Resources["AppSelectorButtonWidth"], 0)); 
+        private readonly int APPSELECTOR_BUTTON_HEIGHT = System.Convert.ToInt32(Math.Round((double)Application.Current.Resources["AppSelectorButtonWidth"], 0));
         #endregion
 
 
@@ -77,8 +75,7 @@ namespace SurfaceBook2Demo.ViewModels
         public int AppSelectorButtonWidth;
         public int AppSelectorButtonHeight;
 
-        public string ColoringBookClearButtonURI;
-        public double ICON_WIDTH = 96d;
+        public string ColoringBookClearButtonURI;        
 
         public GridLength AppCloseWidth
         {
@@ -107,12 +104,10 @@ namespace SurfaceBook2Demo.ViewModels
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
             // set the header and lede and colors list for app selector
             // use the event to handle color changed
-
-            AppSelectorButtonWidth = BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED.DecodePixelWidth;
-            AppSelectorButtonHeight = BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED.DecodePixelHeight;
-            ICON_WIDTH = BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED.DecodePixelWidth;
-            this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
+            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
+            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;           
+            this.ImageSelectorImageWidth = BITMAPIMAGE_IMAGESELECTOR_IMAGE_1.DecodePixelWidth;
+            this.ImageSelectorImageHeight = BITMAPIMAGE_IMAGESELECTOR_IMAGE_1.DecodePixelHeight;
 
             CloseButtonXURI = URI_X_IMAGE;
             closeEllipseTopMargin = _closeEllipseTopMargin;

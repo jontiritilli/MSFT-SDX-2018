@@ -1,5 +1,5 @@
 ﻿using System;
-
+using SDX.Toolkit.Helpers;
 using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
@@ -14,7 +14,8 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as AccessoriesPenViewModel; }
         }
-
+        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         #endregion
 
 
@@ -23,6 +24,8 @@ namespace SurfaceBook2Demo.Views
         public AccessoriesPenPage()
         {
             InitializeComponent();
+            Canvas.SetTop(rBtnCenter, _canvasHeight * .40);
+            Canvas.SetLeft(rBtnCenter, _canvasWidth * .50);
         }
 
         #endregion
@@ -34,12 +37,16 @@ namespace SurfaceBook2Demo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            this.rBtnCenter.StartEntranceAnimation();
+            this.rBtnCenter.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            this.rBtnCenter.ResetEntranceAnimation();
+            this.rBtnCenter.ResetRadiateAnimation();
         }
 
         #endregion

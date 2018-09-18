@@ -118,10 +118,29 @@ namespace SDX.Toolkit.Controls
             set => SetValue(MediaSourceUriProperty, value);
         }
 
+        public static readonly DependencyProperty MediaHeightProperty =
+    DependencyProperty.Register("MediaHeight", typeof(double), typeof(RadiatingButton), new PropertyMetadata(0d));
+
+        public double MediaHeight
+        {
+            get => (double)GetValue(MediaHeightProperty);
+            set => SetValue(MediaHeightProperty, value);
+        }
+
+
+        public static readonly DependencyProperty MediaWidthProperty =
+    DependencyProperty.Register("MediaWidth", typeof(double), typeof(RadiatingButton), new PropertyMetadata(0d));
+
+        public double MediaWidth
+        {
+            get => (double)GetValue(MediaWidthProperty);
+            set => SetValue(MediaWidthProperty, value);
+        }
+
 
         // AutoStart
         public static readonly DependencyProperty AutoStartProperty =
-            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnAutoStartChanged));
+            DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnAutoStartChanged));
 
         public bool AutoStart
         {
@@ -284,7 +303,7 @@ namespace SDX.Toolkit.Controls
                 _image = new ImageEx()
                 {
                     ImageSource = this.MediaSourceUri.OriginalString,
-                    Width = this.Width
+                    ImageWidth = this.MediaWidth
                 };
 
                 // add to the grid
@@ -298,6 +317,8 @@ namespace SDX.Toolkit.Controls
                 _player = new LoopPlayer()
                 {
                     MediaSourceUri = this.MediaSourceUri,
+                    VideoWidth = this.MediaWidth,
+                    VideoHeight = this.MediaHeight
                 };
 
                 // add to the grid

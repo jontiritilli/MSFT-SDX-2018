@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
 using Windows.UI.Xaml;
-using SDX.Toolkit.Helpers;
+
 
 namespace SurfaceProDemo.Views
 {
@@ -16,9 +16,6 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperiencePerformanceViewModel; }
         }
-
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         #endregion
 
 
@@ -35,14 +32,9 @@ namespace SurfaceProDemo.Views
                 this.rBtnTop.PopupChild = FlipViewPage.Current.GetExperiencePagePopup();
                 ExperiencePopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
-            Canvas.SetTop(rBtnLeft, _canvasHeight * .50);
-            Canvas.SetLeft(rBtnLeft, _canvasWidth * .45);
 
-            Canvas.SetTop(rBtnTop, _canvasHeight * .30);
-            Canvas.SetLeft(rBtnTop, _canvasWidth * .55);
-
-            Canvas.SetTop(rBtnRight, _canvasHeight * .30);
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .85);
+            rBtnLeft.PopupChild = PopLeft;
+            rBtnRight.PopupChild = PopRight;         
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)

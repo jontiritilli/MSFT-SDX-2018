@@ -65,6 +65,64 @@
                 Margin="0"
                 Width="{StaticResource CanvasWidth}"
                 Height="{StaticResource CanvasHeight}">
+            <ctrl:RadiatingButton
+                x:Name="rBtnLeft"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.ZIndex="101"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"
+                PopupPosition="Right"  
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnRight"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.ZIndex="101"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"                
+                PopupPosition="Left"  
+                AutoStart = "false"/>
+
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                Canvas.ZIndex="102"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                   
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupPixelSenseInsetImage}"
+                        Headline="{x:Bind Path=ViewModel.PopupPixelSenseHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopupPixelSenseLede}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupPixelSenseImageWidth}"
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopRight"
+                IsOpen = "False"
+                Canvas.ZIndex="102"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                   
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupCompareInsetImage}"
+                        Headline="{x:Bind Path=ViewModel.PopupCompareHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopupCompareLede}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupCompareImageWidth}"
+                        />
+                </Popup.Child>
+            </Popup>
 
             <ctrl:ImageEx x:Name="SurfaceBook15"
                           ImageSource="{x:Bind Path=ViewModel.Book15Uri}"

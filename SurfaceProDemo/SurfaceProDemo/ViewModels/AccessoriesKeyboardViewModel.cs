@@ -49,9 +49,9 @@ namespace SurfaceProDemo.ViewModels
         public string Headline;
         public string Lede;
 
-        public string PopLeftHeadline;
-        public string PopLeftLede;
-        public string PopLeftLegal;
+        public string PopBottomHeadline;
+        public string PopBottomLede;
+        public string PopBottomLegal;
         public string PopTopHeadline;
         public string PopTopLede;
         public string PopTopLegal;

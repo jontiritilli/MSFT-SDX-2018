@@ -36,7 +36,7 @@ namespace SurfaceStudioDemo.Views
             {// well this works? but ew
                 timer.Stop();
                 ReadyScreen = FlipViewPage.Current.GetAccessoriesPenPopup();
-                AccessoriesPenPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
+                AccessoriesPenPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;                
             };
         }
 

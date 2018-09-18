@@ -33,8 +33,7 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_APPSELECTOR_COLOR_2_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_burgundy_active.png";
         private const string URI_APPSELECTOR_COLOR_3_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_cobalt_active.png";
         private const string URI_APPSELECTOR_COLOR_4_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_platinum_active.png";
-        //private const string URI_APPSELECTOR_COLOR_5_SELECTED = "ms-appx:///Assets/Colors/fox_coral_active.png";
-
+        //private const string URI_APPSELECTOR_COLOR_5_SELECTED = "ms-appx:///Assets/Colors/fox_coral_active.png";        
         #endregion
 
         #region Public Members
@@ -42,6 +41,9 @@ namespace SurfaceLaptopDemo.ViewModels
         public string Headline;
         public string Lede;
         public string Legal;
+
+        public string PopupHeadline;
+        public string PopupLede;
 
         public string BackgroundUri;
 

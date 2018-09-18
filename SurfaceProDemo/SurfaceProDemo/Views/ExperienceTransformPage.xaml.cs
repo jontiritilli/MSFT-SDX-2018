@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
 using SDX.Toolkit.Helpers;
-
+using SDX.Toolkit.Controls;
 namespace SurfaceProDemo.Views
 {
     public sealed partial class ExperienceTransformPage : Page, INavigate
@@ -26,8 +26,7 @@ namespace SurfaceProDemo.Views
         public ExperienceTransformPage()
         {
             InitializeComponent();
-            Canvas.SetTop(rBtnRight, _canvasHeight * .55);
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .81);
+            rBtnRight.PopupChild = PopRight;
         }
 
         #endregion

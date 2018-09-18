@@ -94,6 +94,26 @@ namespace SDX.Toolkit.Controls
             set { SetValue(AutoPlayProperty, value); }
         }
 
+        // VideoWidth
+        public static readonly DependencyProperty VideoWidthProperty =
+        DependencyProperty.Register("VideoWidth", typeof(double), typeof(LoopPlayer), new PropertyMetadata(0));
+
+        public double VideoWidth
+        {
+            get { return (double)GetValue(VideoWidthProperty); }
+            set { SetValue(VideoWidthProperty, value); }
+        }
+
+        // VideoHeight
+        public static readonly DependencyProperty VideoHeightProperty =
+        DependencyProperty.Register("VideoHeight", typeof(double), typeof(LoopPlayer), new PropertyMetadata(0));
+
+        public double VideoHeight
+        {
+            get { return (double)GetValue(VideoHeightProperty); }
+            set { SetValue(VideoHeightProperty, value); }
+        }
+
         #endregion
 
 
@@ -239,8 +259,8 @@ namespace SDX.Toolkit.Controls
                 Source = Source,
                 AutoPlay = this.AutoPlay,
                 AreTransportControlsEnabled = false,
-                Width = 400,
-                Height = 400
+                Width = VideoWidth,
+                Height = VideoHeight
             };
 
 

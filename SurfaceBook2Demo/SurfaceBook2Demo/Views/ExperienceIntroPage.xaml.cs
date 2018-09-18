@@ -1,5 +1,4 @@
 ﻿using System;
-
 using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
@@ -14,7 +13,6 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as ExperienceIntroViewModel; }
         }
-
         #endregion
 
 
@@ -23,6 +21,10 @@ namespace SurfaceBook2Demo.Views
         public ExperienceIntroPage()
         {
             InitializeComponent();
+
+            rBtnLeft.PopupChild = PopLeft;
+            rBtnRight.PopupChild = PopRight;
+
         }
 
         #endregion
@@ -33,11 +35,21 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage()
         {
             // animations in
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            rBtnLeft.ResetEntranceAnimation();
+            rBtnLeft.ResetRadiateAnimation();
+
+            rBtnRight.ResetEntranceAnimation();
+            rBtnRight.ResetRadiateAnimation();
         }
 
         #endregion

@@ -23,7 +23,7 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
         private const string URI_LEFT = "ms-appx:///Assets/Experience/appsDesktop.png";
         private const string URI_RIGHT = "ms-appx:///Assets/Experience/appsStudio.png";
-        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-app-x.png";
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
 
         private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/sketchbook.png";

@@ -6,8 +6,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"       
     DataContext="{Binding ExperienceTransformViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+
     <Grid
         x:Name="ContentArea">
         <Grid.Background>
@@ -50,8 +58,26 @@
                 TryItText="{x:Bind ViewModel.PopTryItCaption}"                
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
+                PopupPosition="Left"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                                                                                             
                 AutoStart = "false"/>
-
+            <Popup
+                x:Name="PopRight"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
+                        Headline="{x:Bind Path=ViewModel.PopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopLede}"
+                        MediaWidth="450"
+                        />
+                </Popup.Child>
+            </Popup>
         </Canvas>
         <ctrl:ImageEx
             Grid.Row="3"

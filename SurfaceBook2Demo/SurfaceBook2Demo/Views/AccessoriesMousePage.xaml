@@ -5,8 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"    
     DataContext="{Binding AccessoriesMouseViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -35,11 +41,45 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" />
 
-        <!-- TODO: There is now a title and a caption for the Try It button -->
-        
-        <!-- TODO: Color Selector Goes Here -->
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
 
-        <!-- TODO: This should be an ImageSelector -->
+            <ctrl:RadiatingButton
+                x:Name="rBtnLeft"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"                
+                TryItEnabled="True"
+                RadiatingButtonIcon="touch"
+                TryItText="{x:Bind Path=ViewModel.PopupMouseTryItTitle}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.6}"                                                                     
+                PopupPosition="Left"
+                AutoStart = "false"/>
+
+
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                   
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        Headline="{x:Bind Path=ViewModel.PopupMouseHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopupMouseLede}"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupMouseInsetImage}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupMouseImageWidth}"
+                        />
+                </Popup.Child>
+            </Popup>
+        </Canvas>
         <Image x:Name="Hero" Width="1188" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="3">
             <Image.Source>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1188" DecodePixelType="Physical"/>
