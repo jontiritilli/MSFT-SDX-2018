@@ -265,8 +265,8 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ContentPresenter x:Name="ContentPresenter"
-                            BorderBrush="Red"
-                            BorderThickness="2"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
                             Content="{TemplateBinding Content}"
                             ContentTransitions="{TemplateBinding ContentTransitions}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"

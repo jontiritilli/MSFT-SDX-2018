@@ -263,8 +263,8 @@ namespace SDX.Toolkit.Controls
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
             }
 
-            // set our margin
-            _layoutRoot.Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupMargin);
+            // set our Padding
+            _layoutRoot.Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
 
             // figure out our width
             // if the control width is infinity or not a number
@@ -289,7 +289,7 @@ namespace SDX.Toolkit.Controls
                 LedeStyle = TextStyles.PopupLede,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Width = this.Width,
+                Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
             };
 
             // add it to the layout

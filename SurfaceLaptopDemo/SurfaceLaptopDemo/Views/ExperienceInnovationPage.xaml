@@ -69,18 +69,18 @@
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
-                x:Name="rBtnTopInnovation"
+                x:Name="rBtnRightInnovation"
                 EntranceDurationInMilliseconds = "400"
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.74}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                 
-                PopupPosition="Right" 
+                PopupPosition="Left" 
                 AutoStart = "false"/>
         
             <ctrl:RadiatingButton
-                x:Name="rBtnRightInnovation"
+                x:Name="rBtnTopInnovation"
                 EntranceDurationInMilliseconds = "400"
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
