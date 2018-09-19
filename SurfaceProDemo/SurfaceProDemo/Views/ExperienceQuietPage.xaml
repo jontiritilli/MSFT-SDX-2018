@@ -76,7 +76,7 @@
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                    
-                PopupPosition="Below"                
+                PopupPosition="Left"                
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopLeft"

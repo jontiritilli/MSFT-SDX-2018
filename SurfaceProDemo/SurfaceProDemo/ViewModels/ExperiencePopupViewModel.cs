@@ -40,7 +40,7 @@ namespace SurfaceProDemo.ViewModels
         private const int APPSELECTOR_BUTTON_HEIGHT = 60;
 
         private const int SELECTORIMAGE_IMAGEHEIGHT = 588;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 1176;
+        private const int SELECTORIMAGE_IMAGEWIDTH = 900;
 
         private readonly double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
         private readonly double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;

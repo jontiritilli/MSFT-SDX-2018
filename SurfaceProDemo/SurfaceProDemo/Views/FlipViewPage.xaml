@@ -117,7 +117,7 @@
 
         <Popup x:Name="ExperiencePopup"
                 IsOpen = "False"
-                IsLightDismissEnabled="True"
+                IsLightDismissEnabled="False"
                 HorizontalOffset="0"
                 VerticalOffset="0">
             <Popup.Child>
