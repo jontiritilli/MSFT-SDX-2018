@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" IgnorableNamespaces="uap mp genTemplate">
-  <Identity Name="EFMAgency.SurfaceBook2Demo" Publisher="CN=Patrick" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="D7A9F1DD-1613-4A51-9F08-D9E0E768109F" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="EFMAgency.SurfaceBook2Demo" Publisher="CN=7CAE1DFA-3FB6-42F3-9105-9DC5AD638228" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="31508ec2-568e-4882-935e-69702c185d41" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>SurfaceBook2Demo</DisplayName>
-    <PublisherDisplayName>Patrick</PublisherDisplayName>
+    <PublisherDisplayName>EFM Agency</PublisherDisplayName>
     <Logo>Assets\StoreIcons\PackageLogo50x50.png</Logo>
   </Properties>
   <Dependencies>
