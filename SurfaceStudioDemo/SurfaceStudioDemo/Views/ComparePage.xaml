@@ -212,8 +212,9 @@
         </Canvas>
         <ctrl:ImageEx
             Grid.Row="3"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Grid.RowSpan="4"
             x:Name="img_Family"
             ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
             ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
