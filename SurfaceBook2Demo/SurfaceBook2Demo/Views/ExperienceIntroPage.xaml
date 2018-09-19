@@ -32,14 +32,15 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".3*"/>
+            <ColumnDefinition Width=".7*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-
+        <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                         Headline="{x:Bind Path=ViewModel.Headline}"
                         Lede="{x:Bind Path=ViewModel.Lede}"
-                        Width="{StaticResource HeaderWidth}"
+
                         HeadlineStyle="PageHeadlineDark"
                         LedeStyle="PageLedeDark"
                         HorizontalAlignment="Left"
@@ -61,7 +62,7 @@
 
         <Canvas x:Name="PageCanvas"
                 Grid.Row="0" Grid.RowSpan="7"
-                Grid.Column="0" Grid.ColumnSpan="3"
+                Grid.Column="0" Grid.ColumnSpan="4"
                 Margin="0"
                 Width="{StaticResource CanvasWidth}"
                 Height="{StaticResource CanvasHeight}">
@@ -72,7 +73,7 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.ZIndex="101"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"
                 PopupPosition="Right"  
                 AutoStart = "false"/>
@@ -84,7 +85,7 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.ZIndex="101"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.85}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"                
                 PopupPosition="Left"  
                 AutoStart = "false"/>
@@ -126,27 +127,27 @@
 
             <ctrl:ImageEx x:Name="SurfaceBook15"
                           ImageSource="{x:Bind Path=ViewModel.Book15Uri}"
-                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
-                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"/>
 
             <ctrl:ImageEx x:Name="SurfaceBook13"
                           ImageSource="{x:Bind Path=ViewModel.Book13Uri}"
-                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
-                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.6}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"/>
 
             <ctrl:ImageEx x:Name="Dial"
                           ImageSource="{x:Bind Path=ViewModel.DialUri}"
-                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.15}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.7}"/>
 
             <ctrl:ImageEx x:Name="Pen"
                           ImageSource="{x:Bind Path=ViewModel.PenUri}"
-                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
-                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.3}"/>
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.7}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.8}"/>
 
         </Canvas>
     </Grid>
