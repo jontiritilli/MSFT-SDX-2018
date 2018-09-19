@@ -303,6 +303,8 @@
     <Content Include="Assets\Accessories\inkingFish.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
+    <Content Include="Assets\Backgrounds\generic_bg.jpg" />
+    <Content Include="Assets\Backgrounds\hero_bg.jpg" />
     <Content Include="Assets\Experience\appsDesktop.png" />
     <Content Include="Assets\Experience\appsStudio.png" />
     <Content Include="Assets\Experience\craftmanship.png" />

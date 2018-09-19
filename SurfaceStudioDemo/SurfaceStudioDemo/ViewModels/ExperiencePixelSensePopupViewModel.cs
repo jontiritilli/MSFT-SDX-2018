@@ -44,9 +44,6 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_APPSELECTOR_APP_SELECTED_4 = "ms-appx:///Assets/Icons/AppIcons/bluebeam.png";
         private const string URI_APPSELECTOR_APP_SELECTED_5 = "ms-appx:///Assets/Icons/AppIcons/psd.png";
 
-        private const int APPSELECTOR_BUTTON_WIDTH = 60;
-        private const int APPSELECTOR_BUTTON_HEIGHT = 60;
-
         private const double SELECTORIMAGE_IMAGEHEIGHT = 1200;
         private const double SELECTORIMAGE_IMAGEWIDTH = 1134.5;
 
@@ -67,7 +64,7 @@ namespace SurfaceStudioDemo.ViewModels
         public List<AppSelectorImageURI> ImageURIS = new List<AppSelectorImageURI>();
 
         public double radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
-        public double closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;
+        public double closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
 
         public double MaxImageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
         public double MaxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");

@@ -121,6 +121,7 @@ namespace SDX.Toolkit.Controls
             get => (bool)GetValue(IsPenOnlyProperty);
             set => SetValue(IsPenOnlyProperty, value);
         }
+
         // IsTouchOnly
         public static readonly DependencyProperty IsTouchOnlyProperty =
             DependencyProperty.Register("IsTouchOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
@@ -148,6 +149,16 @@ namespace SDX.Toolkit.Controls
         {
             get => (string)GetValue(TryItTextProperty);
             set => SetValue(TryItTextProperty, value);
+        }
+
+        // TryItCaptionColor
+        public static readonly DependencyProperty TryItCaptionColorProperty =
+            DependencyProperty.Register("TryItCaptionColor", typeof(string), typeof(RadiatingButton), new PropertyMetadata("Black"));
+
+        public string TryItCaptionColor
+        {
+            get => (string)GetValue(TryItCaptionColorProperty);
+            set => SetValue(TryItCaptionColorProperty, value);
         }
 
         // TryItCaption
@@ -886,11 +897,23 @@ namespace SDX.Toolkit.Controls
 
                     _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
 
+                    TextStyles TryItCaption = TextStyles.ButtonCaption;
+
+                    switch (this.TryItCaptionColor)
+                    {
+                        case "Black":
+                            TryItCaption = TextStyles.ButtonCaption;
+                            break;
+                        case "White":
+                            TryItCaption = TextStyles.ButtonCaptionDark;
+                            break;
+                    }
+
                     _tryItButtonCaption = new TextBlockEx
                     {
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
-                        TextStyle = TextStyles.ButtonCaption,
+                        TextStyle = TryItCaption,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center

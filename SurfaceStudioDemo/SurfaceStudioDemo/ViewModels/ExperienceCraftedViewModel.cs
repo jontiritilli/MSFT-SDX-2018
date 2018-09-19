@@ -12,7 +12,7 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
         private const string URI_CRAFTMANSHIP = "ms-appx:///Assets/Experience/craftmanship.png";
 
         #endregion
