@@ -39,64 +39,64 @@ namespace SurfaceBook2Demo.Views
                 switch (this.DayFlipView.SelectedIndex)
                 {
                     case 0:
-                        if (SnapPositions.Morning != this.DaySlider.Position)
+                        if (DaySliderSnapPositions.Morning != this.DaySlider.Position)
                         {
-                            this.DaySlider.SnapTo(SnapPositions.Morning);
+                            this.DaySlider.SnapTo(DaySliderSnapPositions.Morning);
                         }
                         break;
 
                     case 1:
-                        if (SnapPositions.Afternoon != this.DaySlider.Position)
+                        if (DaySliderSnapPositions.Afternoon != this.DaySlider.Position)
                         {
-                            this.DaySlider.SnapTo(SnapPositions.Afternoon);
+                            this.DaySlider.SnapTo(DaySliderSnapPositions.Afternoon);
                         }
                         break;
 
                     case 2:
-                        if (SnapPositions.Evening != this.DaySlider.Position)
+                        if (DaySliderSnapPositions.Evening != this.DaySlider.Position)
                         {
-                            this.DaySlider.SnapTo(SnapPositions.Evening);
+                            this.DaySlider.SnapTo(DaySliderSnapPositions.Evening);
                         }
                         break;
 
                     case 3:
-                        if (SnapPositions.Night != this.DaySlider.Position)
+                        if (DaySliderSnapPositions.Night != this.DaySlider.Position)
                         {
-                            this.DaySlider.SnapTo(SnapPositions.Night);
+                            this.DaySlider.SnapTo(DaySliderSnapPositions.Night);
                         }
                         break;
                 }
             }
         }
 
-        private void DaySlider_Snapped(object sender, SDX.Toolkit.Controls.SnappedEventArgs e)
+        private void DaySlider_Snapped(object sender, SDX.Toolkit.Controls.DaySliderSnappedEventArgs e)
         {
             if ((null != this.DayFlipView) && (null != this.DaySlider))
             {
                 switch (e.SnapPosition)
                 {
-                    case SnapPositions.Morning:
+                    case DaySliderSnapPositions.Morning:
                         if (0 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 0;
                         }
                         break;
 
-                    case SnapPositions.Afternoon:
+                    case DaySliderSnapPositions.Afternoon:
                         if (1 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 1;
                         }
                         break;
 
-                    case SnapPositions.Evening:
+                    case DaySliderSnapPositions.Evening:
                         if (2 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 2;
                         }
                         break;
 
-                    case SnapPositions.Night:
+                    case DaySliderSnapPositions.Night:
                         if (3 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 3;

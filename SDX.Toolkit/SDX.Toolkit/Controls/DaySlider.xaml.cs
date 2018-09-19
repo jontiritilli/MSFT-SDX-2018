@@ -20,7 +20,7 @@ using SDX.Toolkit.Helpers;
 
 namespace SDX.Toolkit.Controls
 {
-    public enum SnapPositions
+    public enum DaySliderSnapPositions
     {
         Morning,
         Afternoon,
@@ -28,21 +28,15 @@ namespace SDX.Toolkit.Controls
         Night
     }
 
-    public sealed class ValueEventArgs : EventArgs
+    public sealed class DaySliderValueEventArgs : EventArgs
     {
         public double OldValue;
         public double NewValue;
     }
 
-    public sealed class SnappedEventArgs : EventArgs
+    public sealed class DaySliderSnappedEventArgs : EventArgs
     {
-        public SnapPositions SnapPosition;
-    }
-
-    public sealed class SnapDestination
-    {
-        public double DestinationValue;
-        public SnapPositions SnapPosition;
+        public DaySliderSnapPositions SnapPosition;
     }
 
     public sealed partial class DaySlider : UserControl
@@ -113,7 +107,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // set defaults
-            this.Position = SnapPositions.Morning;
+            this.Position = DaySliderSnapPositions.Morning;
             this.BatteryImageUri = uriBattery1;
         }
 
@@ -128,43 +122,49 @@ namespace SDX.Toolkit.Controls
 
         #region Public Properties
 
-        public SnapPositions Position { get; private set; }
+        public DaySliderSnapPositions Position { get; private set; }
 
         #endregion
 
 
         #region Public Methods
 
-        public void SnapTo(SnapPositions snapPosition)
+        public void SnapTo(DaySliderSnapPositions snapPosition)
         {
-            double startingValue = this.Value;
-            double endingValue = this.Value;
+            double endingValue = SLIDER_MINIMUM;    // default to setting to the leftmost position
 
-            // calculate the eneding value
+            // calculate the eneding value and update the battery image
             switch (snapPosition)
             {
-                case SnapPositions.Morning:
+                case DaySliderSnapPositions.Morning:
                     endingValue = SLIDER_MINIMUM;
+                    this.BatteryImageUri = uriBattery1;
                     break;
 
-                case SnapPositions.Afternoon:
-                    endingValue = (SLIDER_MAXIMUM - SLIDER_MINIMUM) / 3;
+                case DaySliderSnapPositions.Afternoon:
+                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) / 3.0);
+                    this.BatteryImageUri = uriBattery2;
                     break;
 
-                case SnapPositions.Evening:
-                    endingValue = (SLIDER_MAXIMUM - SLIDER_MINIMUM) * (2 / 3);
+                case DaySliderSnapPositions.Evening:
+                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) * (2.0 / 3.0));
+                    this.BatteryImageUri = uriBattery3;
                     break;
 
-                case SnapPositions.Night:
+                case DaySliderSnapPositions.Night:
                     endingValue = SLIDER_MAXIMUM;
+                    this.BatteryImageUri = uriBattery4;
                     break;
             }
 
-            // snap the thumb
-            this.SnapThumb(startingValue, endingValue);
-
             // save the position
             this.Position = snapPosition;
+
+            // save the value
+            this.Value = endingValue;
+
+            // update the thumb
+            UpdateThumb(GetPositionFromValue(endingValue));
 
             // raise the snapped event
             this.RaiseSnappedEvent(this, snapPosition);
@@ -227,8 +227,6 @@ namespace SDX.Toolkit.Controls
             set => SetValue(NightImageUriProperty, value);
         }
 
-
-
         #endregion
 
 
@@ -247,7 +245,7 @@ namespace SDX.Toolkit.Controls
 
                 slider.UpdateThumb(slider.GetPositionFromValue(newValue));
 
-                slider.RaiseValueChangedEvent(slider, new ValueEventArgs() { NewValue = newValue, OldValue = (double)e.OldValue });
+                slider.RaiseValueChangedEvent(slider, new DaySliderValueEventArgs() { NewValue = newValue, OldValue = (double)e.OldValue });
             }
         }
 
@@ -271,45 +269,33 @@ namespace SDX.Toolkit.Controls
                     // get the tap x
                     double X = p.X;
 
-                    // move the thumb here
-                    UpdateThumb(X);
-
-                    //// get the starting value
-                    //double startingValue = GetValueFromPosition(X);
-
-                    // calculate the destination value for the snap animation
-                    SnapDestination snapDestination = CalculateDestinationValue(X);
+                    // calculate the snap-to position from the position of the tap
+                    DaySliderSnapPositions snapPosition = CalculateSnapToFromPosition(X);
 
                     // snap to the destination
-                    this.SnapThumb(startingValue, snapDestination.DestinationValue);
-
-                    // update the thumb
-                    UpdateThumb(GetPositionFromValue(snapDestination.DestinationValue));
-
-                    // raise the snapped event
-                    this.RaiseSnappedEvent(this, snapDestination.SnapPosition);
+                    this.SnapTo(snapPosition);
                 }
             }
         }
 
         private void MorningTick_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.SnapTo(SnapPositions.Morning);
+            this.SnapTo(DaySliderSnapPositions.Morning);
         }
 
         private void AfternoonTick_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.SnapTo(SnapPositions.Afternoon);
+            this.SnapTo(DaySliderSnapPositions.Afternoon);
         }
 
         private void EveningTick_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.SnapTo(SnapPositions.Evening);
+            this.SnapTo(DaySliderSnapPositions.Evening);
         }
 
         private void NightTick_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.SnapTo(SnapPositions.Night);
+            this.SnapTo(DaySliderSnapPositions.Night);
         }
 
         private void ContainerCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -344,64 +330,64 @@ namespace SDX.Toolkit.Controls
             // get the current X position; this will have been updated by Thumb_ManipulationDelta
             double X = this.ManipulationTranslation.X;
 
-            // calculate the destination value
-            SnapDestination snapDestination = CalculateDestinationValue(X);
+            // calculate the snap position from the current X position
+            DaySliderSnapPositions snapPosition = CalculateSnapToFromPosition(X);
 
-            // raise the snapbegan event
-            RaiseSnappedEvent(this, snapDestination.SnapPosition);
-
-            // snap the thumb to the destination
-            this.SnapThumb(this.Value, snapDestination.DestinationValue);
+            // snap to the destination
+            SnapTo(snapPosition);
         }
 
-        private SnapDestination CalculateDestinationValue(double currentX)
+        #endregion
+
+
+        #region Public Events
+
+        // ValueChanged
+        public delegate void ValueChangedEventHandler(object sender, DaySliderValueEventArgs e);
+
+        public event ValueChangedEventHandler ValueChanged;
+
+        private void RaiseValueChangedEvent(DaySlider daySlider, DaySliderValueEventArgs e)
         {
-            SnapDestination snapDestination = new SnapDestination();
-
-            // calculate stops
-            double morningStop = 0;
-            double nightStop = (ContainerCanvas.ActualWidth);
-            double afternoonStop = (nightStop - morningStop) / 3;
-            double eveningStop = afternoonStop * 2;
-
-            // calculate attractor boundaries
-            double morningAfternoonAttractor = afternoonStop * 0.33;
-            double afternoonEveningAttractor = afternoonStop + ((eveningStop - afternoonStop) * 0.33);
-            double eveningNightAttractor = eveningStop + ((nightStop - eveningStop) * 0.33);
-
-            // which stop are we going to move to?
-            double destinationX = 0;
-
-            if (currentX < morningAfternoonAttractor)
-            {
-                // move to the morning stop
-                destinationX = morningStop;
-                snapDestination.SnapPosition = SnapPositions.Morning;
-            }
-            else if (currentX < afternoonEveningAttractor)
-            {
-                // move to the afternoon stop
-                destinationX = afternoonStop;
-                snapDestination.SnapPosition = SnapPositions.Afternoon;
-            }
-            else if (currentX < eveningNightAttractor)
-            {
-                // move to the evening stop
-                destinationX = eveningStop;
-                snapDestination.SnapPosition = SnapPositions.Evening;
-            }
-            else
-            {
-                // move to the night stop
-                destinationX = nightStop;
-                snapDestination.SnapPosition = SnapPositions.Night;
-            }
-
-            // calculate the destination value
-            snapDestination.DestinationValue = GetValueFromPosition(destinationX);
-
-            return snapDestination;
+            ValueChanged?.Invoke(daySlider, e);
         }
+
+        private void RaiseValueChangedEvent(DaySlider daySlider, double oldValue, double newValue)
+        {
+            DaySliderValueEventArgs args = new DaySliderValueEventArgs()
+            {
+                OldValue = oldValue,
+                NewValue = newValue
+            };
+
+            this.RaiseValueChangedEvent(daySlider, args);
+        }
+
+        // Snapped
+        public delegate void SnappedEventHandler(object sender, DaySliderSnappedEventArgs e);
+
+        public event SnappedEventHandler Snapped;
+
+        private void RaiseSnappedEvent(DaySlider daySlider, DaySliderSnappedEventArgs e)
+        {
+            Snapped?.Invoke(daySlider, e);
+        }
+
+        private void RaiseSnappedEvent(DaySlider daySlider, DaySliderSnapPositions snapPosition)
+        {
+            DaySliderSnappedEventArgs args = new DaySliderSnappedEventArgs()
+            {
+                SnapPosition = snapPosition
+            };
+
+            this.RaiseSnappedEvent(daySlider, args);
+        }
+
+
+        #endregion
+
+
+        #region UI Methods
 
         private void UpdateThumb(double position, bool update = false)
         {
@@ -414,33 +400,43 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void SnapThumb(double startingValue, double endingValue)
+        private DaySliderSnapPositions CalculateSnapToFromPosition(double currentX)
         {
-            // set thumb position by setting value
-            this.Value = endingValue;
+            DaySliderSnapPositions snapPosition;
 
-            // update the battery image
-            switch (this.Position)
+            // calculate stops
+            double morningStop = 0;
+            double nightStop = (ContainerCanvas.ActualWidth);
+            double afternoonStop = (nightStop - morningStop) / 3;
+            double eveningStop = afternoonStop * 2;
+
+            // calculate attractor boundaries
+            double morningAfternoonAttractor = afternoonStop * 0.33;
+            double afternoonEveningAttractor = afternoonStop + ((eveningStop - afternoonStop) * 0.33);
+            double eveningNightAttractor = eveningStop + ((nightStop - eveningStop) * 0.33);
+
+            if (currentX < morningAfternoonAttractor)
             {
-                case SnapPositions.Morning:
-                    this.BatteryImageUri = uriBattery1;
-                    break;
-
-                case SnapPositions.Afternoon:
-                    this.BatteryImageUri = uriBattery2;
-                    break;
-
-                case SnapPositions.Evening:
-                    this.BatteryImageUri = uriBattery3;
-                    break;
-
-                case SnapPositions.Night:
-                    this.BatteryImageUri = uriBattery4;
-                    break;
-
-                default:
-                    break;
+                // move to the morning stop
+                snapPosition = DaySliderSnapPositions.Morning;
             }
+            else if (currentX < afternoonEveningAttractor)
+            {
+                // move to the afternoon stop
+                snapPosition = DaySliderSnapPositions.Afternoon;
+            }
+            else if (currentX < eveningNightAttractor)
+            {
+                // move to the evening stop
+                snapPosition = DaySliderSnapPositions.Evening;
+            }
+            else
+            {
+                // move to the night stop
+                snapPosition = DaySliderSnapPositions.Night;
+            }
+
+            return snapPosition;
         }
 
         private double GetPositionFromValue(double value)
@@ -456,59 +452,6 @@ namespace SDX.Toolkit.Controls
             return SLIDER_MINIMUM + ((position / ContainerCanvas.ActualWidth) * (SLIDER_MAXIMUM - SLIDER_MINIMUM));
             //return SLIDER_MINIMUM + ((position / (ContainerCanvas.ActualWidth - (THUMB_WIDTH / 2))) * (SLIDER_MAXIMUM - SLIDER_MINIMUM));
         }
-
-        #endregion
-
-
-        #region Public Events
-
-        // ValueChanged
-        public delegate void ValueChangedEventHandler(object sender, ValueEventArgs e);
-
-        public event ValueChangedEventHandler ValueChanged;
-
-        private void RaiseValueChangedEvent(DaySlider daySlider, ValueEventArgs e)
-        {
-            ValueChanged?.Invoke(daySlider, e);
-        }
-
-        private void RaiseValueChangedEvent(DaySlider daySlider, double oldValue, double newValue)
-        {
-            ValueEventArgs args = new ValueEventArgs()
-            {
-                OldValue = oldValue,
-                NewValue = newValue
-            };
-
-            this.RaiseValueChangedEvent(daySlider, args);
-        }
-
-        // Snapped
-        public delegate void SnappedEventHandler(object sender, SnappedEventArgs e);
-
-        public event SnappedEventHandler Snapped;
-
-        private void RaiseSnappedEvent(DaySlider daySlider, SnappedEventArgs e)
-        {
-            Snapped?.Invoke(daySlider, e);
-        }
-
-        private void RaiseSnappedEvent(DaySlider daySlider, SnapPositions snapPosition)
-        {
-            SnappedEventArgs args = new SnappedEventArgs()
-            {
-                SnapPosition = snapPosition
-            };
-
-            this.RaiseSnappedEvent(daySlider, args);
-        }
-
-
-        #endregion
-
-
-        #region UI Methods
-
 
         #endregion
     }

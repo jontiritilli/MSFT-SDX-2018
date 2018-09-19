@@ -36,10 +36,10 @@ namespace SDX.Toolkit.Controls
 
     public enum RadiatingButtonIcons
     {
-        dial,
-        pen,        
-        pinch,
-        touch
+        Dial,
+        Pen,        
+        Pinch,
+        Touch
     }
     public sealed class RadiatingButton : Control
     {
@@ -172,7 +172,7 @@ namespace SDX.Toolkit.Controls
 
         // RBIcon
         public static readonly DependencyProperty RadiatingButtonIconProperty =
-            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.dial));
+            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.Dial));
 
         public RadiatingButtonIcons RadiatingButtonIcon
         {
@@ -945,19 +945,19 @@ namespace SDX.Toolkit.Controls
 
                     // set correct icon for radiating button
                     switch (RadiatingButtonIcon) {
-                        case RadiatingButtonIcons.dial:
+                        case RadiatingButtonIcons.Dial:
                             TRY_IT_IMAGE = URI_TRY_IT_DIAL_IMAGE;
                             break;
 
-                        case RadiatingButtonIcons.pen:
+                        case RadiatingButtonIcons.Pen:
                             TRY_IT_IMAGE = URI_TRY_IT_PEN_IMAGE;
                             break;
 
-                        case RadiatingButtonIcons.pinch:
+                        case RadiatingButtonIcons.Pinch:
                             TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
                             break;
 
-                        case RadiatingButtonIcons.touch:
+                        case RadiatingButtonIcons.Touch:
                             TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
                             break;
 
