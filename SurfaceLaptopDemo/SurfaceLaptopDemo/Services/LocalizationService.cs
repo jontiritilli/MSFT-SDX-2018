@@ -227,14 +227,16 @@ namespace SurfaceLaptopDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_POWERFUL_HEADLINE, "EXPERIENCE_POWERFUL_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_POWERFUL_COPY, "EXPERIENCE_POWERFUL_COPY");
 
-            viewModel.PopTop_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DESIGN_POPTOP_TITLE, "EXPERIENCE_DESIGN_POPTOP_TITLE");
-            viewModel.PopTop_Lede = GetStringValue(_languageCurrent.EXPERIENCE_DESIGN_POPTOP_COPY, "EXPERIENCE_DESIGN_POPTOP_COPY");
+            viewModel.PopTop_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPRIGHT_TITLE, "EXPERIENCE_POPRIGHT_TITLE");
+            viewModel.PopTop_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPRIGHT_COPY, "EXPERIENCE_POPRIGHT_COPY");
 
-            viewModel.PopLeft_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DESIGN_POPTOP_TITLE, "EXPERIENCE_DESIGN_POPTOP_TITLE");
-            viewModel.PopLeft_Lede = GetStringValue(_languageCurrent.EXPERIENCE_DESIGN_POPTOP_COPY, "EXPERIENCE_DESIGN_POPTOP_COPY");
+            viewModel.PopLeft_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPLEFT_TITLE, "EXPERIENCE_POPLEFT_TITLE");
+            viewModel.PopLeft_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPLEFT_COPY, "EXPERIENCE_POPLEFT_COPY");
 
-            viewModel.PopBattery_Headline = GetStringValue(_languageCurrent.EXPERIENCE_DESIGN_POPRIGHT_TITLE, "EXPERIENCE_DESIGN_POPRIGHT_TITLE");
-            viewModel.PopBattery_Lede = GetStringValue(_languageCurrent.EXPERIENCE_DESIGN_POPRIGHT_COPY, "EXPERIENCE_DESIGN_POPRIGHT_COPY");
+            viewModel.PopBattery_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_TITLE, "EXPERIENCE_POPBOTTOM_TITLE");
+            viewModel.PopBattery_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_COPY, "EXPERIENCE_POPBOTTOM_COPY");
+            viewModel.PopBattery_Legal = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_LEGAL, "EXPERIENCE_POPBOTTOM_LEGAL");
+
         }
 
         public void LoadAccessoriesTouchViewModel(AccessoriesTouchViewModel viewModel)

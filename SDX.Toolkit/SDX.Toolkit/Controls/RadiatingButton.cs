@@ -1176,11 +1176,14 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
+                       // offset = point.X - popupWidth;//- _grid.ActualWidth  - POPUP_SPACER
+
                         offset = point.X - popupWidth - POPUP_SPACER;
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.X + POPUP_SPACER;
+                        offset = point.X + _grid.ActualWidth; // + POPUP_SPACER
+                       // offset = point.X + POPUP_SPACER;
                         break;
                 }
             }
@@ -1205,23 +1208,24 @@ namespace SDX.Toolkit.Controls
 
                 object popupContent = this.PopupChild.Child;
 
-                if (popupContent is PopupMedia popup)
-                {
-                    switch (popup.PopupType)
-                    {
-                        case PopupTypes.Text:
-                            Height = popup.Height;
-                            break;
-                        case PopupTypes.Image:
-                            Height = popup.MediaHeight;
-                            break;
-                        case PopupTypes.Video:
-                            Height = popup.MediaHeight;
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                // not working. popupheight is NaN and then /2 causes exception. 
+                //if (popupContent is PopupMedia popup)
+                //{
+                //    switch (popup.PopupType)
+                //    {
+                //        case PopupTypes.Text:
+                //            popupHeight = popup.Height;
+                //            break;
+                //        case PopupTypes.Image:
+                //            popupHeight = popup.MediaHeight;
+                //            break;
+                //        case PopupTypes.Video:
+                //            popupHeight = popup.MediaHeight;
+                //            break;
+                //        default:
+                //            break;
+                //    }
+                //}
 
                 // which position?
                 switch (this.PopupPosition)

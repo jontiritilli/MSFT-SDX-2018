@@ -32,6 +32,7 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string PopBattery_Headline;
         public string PopBattery_Lede;
+        public string PopBattery_Legal;
 
         public string DesignUri;
         public string BackgroundUri;

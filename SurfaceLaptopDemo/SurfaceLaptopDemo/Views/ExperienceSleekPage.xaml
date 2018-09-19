@@ -37,7 +37,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
               
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
+        <ctrl:Header Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
             x:Name="PageHeader" 
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
@@ -68,7 +68,7 @@
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.82}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.25}"
-                PopupPosition="Below"                       
+                PopupPosition="Left"                       
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton

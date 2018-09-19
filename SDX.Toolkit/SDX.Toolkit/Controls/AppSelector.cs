@@ -655,9 +655,10 @@ namespace SDX.Toolkit.Controls
 
             if (this.MainOrientation == Orientation.Vertical && this.ShowMessages)
             {
-                TextBlock tbMessage = new TextBlock()
+                TextBlockEx tbMessage = new TextBlockEx()
                 {
                     Text = AppSelectorData.Message,
+                    TextStyle = TextStyles.ListLede,
                     FontSize = 20,
                     Opacity = 1,
                     VerticalAlignment = VerticalAlignment.Center
