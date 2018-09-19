@@ -468,6 +468,11 @@
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-150.png" />
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Assets\Universal\tryit_dot.png" />
