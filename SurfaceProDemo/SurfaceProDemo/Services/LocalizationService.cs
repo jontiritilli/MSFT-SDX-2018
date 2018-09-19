@@ -205,6 +205,13 @@ namespace SurfaceProDemo.Services
             viewModel.PopTopLegal = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPTOP_LEGAL, "EXPERIENCE_OVERVIEW_POPTOP_LEGAL");
         }
 
+        public void LoadExperienceFlipViewViewModel(ExperienceFlipViewViewModel viewModel)
+        {
+            viewModel.StudioCaptionText = GetStringValue(_languageCurrent.STUDIO, "STUDIO");
+            viewModel.LaptopCaptionText = GetStringValue(_languageCurrent.LAPTOP, "LAPTOP");
+            viewModel.TabletCaptionText = GetStringValue(_languageCurrent.TABLET, "TABLET");
+        }
+
         public void LoadExperienceTransformViewModel(ExperienceTransformViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_STUDIO_HEADLINE, "EXPERIENCE_STUDIO_HEADLINE");

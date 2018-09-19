@@ -59,10 +59,10 @@ namespace SurfaceProDemo.Views
             NavigationServiceEx NavigationService = Locator?.NavigationService;
 
             // navigate to the starting page
-            if (ConfigurationService.Current.IsLoaded && ConfigurationService.Current.Configuration.IsChoosePathPageEnabled)
-            {                
+            if ((ConfigurationService.Current.IsLoaded) && (ConfigurationService.Current.Configuration.IsChoosePathPageEnabled))
+            {
                 // go to the choose path page
-                NavigationService?.Navigate(typeof(ChoosePathViewModel).FullName);                
+                NavigationService?.Navigate(typeof(ChoosePathViewModel).FullName);
             }
             else
             {

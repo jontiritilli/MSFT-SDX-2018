@@ -69,7 +69,7 @@ namespace SurfaceBook2Demo.Views
             }
         }
 
-        private void DaySlider_Snapped(object sender, SDX.Toolkit.Controls.DaySliderSnappedEventArgs e)
+        private void DaySlider_Snapped(object sender, SDX.Toolkit.Controls.DeviceModeSliderSnappedEventArgs e)
         {
             if ((null != this.DayFlipView) && (null != this.DaySlider))
             {
