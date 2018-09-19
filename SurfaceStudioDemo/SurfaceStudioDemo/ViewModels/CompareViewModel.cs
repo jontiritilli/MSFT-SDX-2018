@@ -15,10 +15,10 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
 
         private const string URI_FAMILY = "ms-appx:///Assets/Comparison/comparisonFamily.png";
-        private const int IMG_FAMILY_WIDTH = 1368;//2736
-        private const int IMG_FAMILY_HEIGHT = 492;//984
-
-        private const string URI_PRO = "ms-appx:///Assets/Comparison/comparisonCruz.png";
+        private const int IMG_FAMILY_WIDTH = 2750;//4500
+        private const int IMG_FAMILY_HEIGHT = 726;//1452
+        //NOTE TO FUTURE DEV- THE WIDTHS BELOW ARE NOT CORRECTED FOR ACTUAL ASSETS. PLS CHECK WITH ASSETS
+        private const string URI_PRO = "ms-appx:///Assets/Comparison/comparisonPro.png";
         private const int IMG_PRO_WIDTH = 702;//1404
         private const int IMG_PRO_HEIGHT = 630;//1260
 
@@ -26,11 +26,11 @@ namespace SurfaceStudioDemo.ViewModels
         private const int IMG_BOOK_WIDTH = 702;//1404
         private const int IMG_BOOK_HEIGHT = 630;//1260
 
-        private const string URI_STUDIO = "ms-appx:///Assets/Comparison/comparisonCaprock.png";
+        private const string URI_STUDIO = "ms-appx:///Assets/Comparison/comparisonStudio.png";
         private const int IMG_STUDIO_WIDTH = 702;//1404
         private const int IMG_STUDIO_HEIGHT = 630;//1260
 
-        private const string URI_LAPTOP = "ms-appx:///Assets/Comparison/comparisonFoxburg.png";
+        private const string URI_LAPTOP = "ms-appx:///Assets/Comparison/comparisonLaptop.png";
         private const int IMG_LAPTOP_WIDTH = 702;//1404
         private const int IMG_LAPTOP_HEIGHT = 630;//1260
 

@@ -2,7 +2,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-
+using SDX.Toolkit.Helpers;
 using SurfaceBook2Demo.Services;
 
 
@@ -15,10 +15,15 @@ namespace SurfaceBook2Demo.ViewModels
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
+        //NOTE TO DEV- THE WIDTHS ARE NOT RECONCILED WITH THE ASSETS. AND THE 13 TO 15 DISTINCTION IS ALSO NOT MADE
+        // THIS CHECK IN WAS MADE FOR THE BETA AND NEEDS TO BE FIXED AFTER TY
+        private const string URI_FAMILY_13 = "ms-appx:///Assets/Comparison/comparisonFamily_13.png";
+        private const int IMG_FAMILY_WIDTH_13 = 1500;//3000
+        private const int IMG_FAMILY_HEIGHT_13 = 534;//1068
 
-        private const string URI_FAMILY = "ms-appx:///Assets/Comparison/comparisonFamily.png";
-        private const int IMG_FAMILY_WIDTH = 1368;//2736
-        private const int IMG_FAMILY_HEIGHT = 492;//984
+        private const string URI_FAMILY_15 = "ms-appx:///Assets/Comparison/comparisonFamily_15.png";
+        private const int IMG_FAMILY_WIDTH_15 = 1620;//3240
+        private const int IMG_FAMILY_HEIGHT_15 = 582;//1164
 
         private const string URI_PRO = "ms-appx:///Assets/Comparison/comparisonCruz.png";
         private const int IMG_PRO_WIDTH = 702;//1404
@@ -49,9 +54,9 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string BackgroundUri = URI_BACKGROUND;
 
-        public string FamilyUri = URI_FAMILY;
-        public int FamilyHeight = IMG_FAMILY_HEIGHT;
-        public int FamilyWidth = IMG_FAMILY_WIDTH;
+        public string FamilyUri;
+        public int FamilyHeight;
+        public int FamilyWidth;
 
         public string ProUri = URI_PRO;
         public int ProHeight = IMG_PRO_HEIGHT;
@@ -84,8 +89,24 @@ namespace SurfaceBook2Demo.ViewModels
 
         public CompareViewModel()
         {
-            // get the localization service
-            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+            // populate our images based on size of device
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Book15:
+                    this.FamilyUri = URI_FAMILY_15;
+                    this.FamilyHeight = IMG_FAMILY_HEIGHT_15;
+                    this.FamilyWidth = IMG_FAMILY_WIDTH_15;
+                    break;
+                case DeviceType.Book13:
+                    this.FamilyUri = URI_FAMILY_13;
+                    this.FamilyHeight = IMG_FAMILY_HEIGHT_13;
+                    this.FamilyWidth = IMG_FAMILY_WIDTH_13;
+                    break;
+                default:
+                    break;
+            }
+                    // get the localization service
+                    LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
             // if we got it
             if (null != localizationService)
