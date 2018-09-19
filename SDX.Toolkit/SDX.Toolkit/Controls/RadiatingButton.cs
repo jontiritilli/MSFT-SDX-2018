@@ -53,7 +53,7 @@ namespace SDX.Toolkit.Controls
         private const double TRY_IT_DELAY = 4000;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
-        private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit.png";
+        private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/Universal/tryit_dot.png";
         private const string URI_TRY_IT_PEN_IMAGE = @"ms-appx:///Assets/Universal/tryit_pen.png";
         private const string URI_TRY_IT_DIAL_IMAGE = @"ms-appx:///Assets/Universal/tryit_dial.png";
         private const string URI_PINCH_ZOOM_IMAGE = @"ms-appx:///Assets/Universal/pinch.png";
@@ -183,7 +183,7 @@ namespace SDX.Toolkit.Controls
 
         // RBIcon
         public static readonly DependencyProperty RadiatingButtonIconProperty =
-            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.Dial));
+            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.Touch));
 
         public RadiatingButtonIcons RadiatingButtonIcon
         {
@@ -927,7 +927,6 @@ namespace SDX.Toolkit.Controls
                     // set up the story board
                     _tryItCaptionStoryboard = AnimationHelper.CreateEasingAnimation(_tryItButtonCaption, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
 
-
                     _radiateEllipse = new Ellipse()
                     {
                         Name = this.Name + "radiateEllipse",
@@ -1101,7 +1100,7 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = this.Name + "ImageX",
                         ImageSource = URI_X_IMAGE,
-                        ImageWidth = IconWidth,
+                        ImageWidth = IconWidth/2,
                         Opacity = 0.0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,

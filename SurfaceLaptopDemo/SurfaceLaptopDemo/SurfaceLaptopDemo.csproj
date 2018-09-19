@@ -387,7 +387,11 @@
     <Content Include="Assets\Square71x71Logo.scale-150.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Universal\close-icon.png" />
+    <Content Include="Assets\Universal\tryit_dot.png" />
     <Content Include="Assets\Universal\pinch.png" />
     <Content Include="Assets\List\specs_audio.png" />
     <Content Include="Assets\List\specs_battery.png" />

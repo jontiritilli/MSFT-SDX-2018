@@ -47,6 +47,7 @@
                     TryItEnabled="true"
                     IsRemovedOnInteraction="True"
                     RadiatingButtonIcon="pinch"
+                    TryItCaptionColor="White"
                     TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
                     TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
                     EntranceDurationInMilliseconds = "400"

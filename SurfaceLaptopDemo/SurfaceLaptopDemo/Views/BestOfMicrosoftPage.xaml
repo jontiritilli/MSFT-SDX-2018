@@ -25,37 +25,40 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="BestOfHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede=""
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageHeadline"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede=""
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageHeadline"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
 
         <ctrl:List x:Name="BOM_LEFT" Grid.Row="3" Grid.Column="1"
-                   ListItems="{x:Bind Path=ViewModel.LeftItemList}"
-                   ListStyle="BestOf"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"/>
+            ListItems="{x:Bind Path=ViewModel.LeftItemList}"
+            ListStyle="BestOf"
+            Width="{x:Bind Path=ViewModel.ListWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
 
-        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="3" Grid.Column="2"
-                   ListItems="{x:Bind Path=ViewModel.RightItemList}"
-                   ListStyle="BestOf"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"/>
+        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="3" Grid.Column="3"
+            ListItems="{x:Bind Path=ViewModel.RightItemList}"
+            ListStyle="BestOf"
+            Width="{x:Bind Path=ViewModel.ListWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.Legal}"
-                       TextStyle="Legal"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Visibility="Visible" />
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Visibility="Visible" />
     </Grid>
 </Page>

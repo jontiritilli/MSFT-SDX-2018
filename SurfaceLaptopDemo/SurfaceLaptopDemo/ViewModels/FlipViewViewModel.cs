@@ -147,13 +147,14 @@ namespace SurfaceLaptopDemo.ViewModels
             }
             );
 
+            // Pen page removed as of version 6 of design
             // AccessoriesPenPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AccessoriesPenPage",
-                Order = 2
-            }
-            );
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "AccessoriesPenPage",
+            //    Order = 2
+            //}
+            //);
 
             // add the section to the list
             this.Sections.Add(section);

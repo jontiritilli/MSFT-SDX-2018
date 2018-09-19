@@ -35,8 +35,13 @@ namespace SurfaceLaptopDemo.Views
         {
             //capture selected changed event so we can pass the id to the other page and force link            
             AppSelector appSelector = (AppSelector)sender;
-            this.PageHeader.HeadlineStyle = (appSelector.SelectedID == 0) ? TextStyles.PageHeadline : TextStyles.PageHeadlineDark;
-            this.PageHeader.LedeStyle = (appSelector.SelectedID == 0) ? TextStyles.PageLede : TextStyles.PageLedeDark;
+
+            // change headline and lead style if the black option is chosen
+            this.PageHeader.HeadlineStyle = (appSelector.SelectedID == 1) ? TextStyles.PageHeadline : TextStyles.PageHeadlineDark;
+            this.PageHeader.LedeStyle = (appSelector.SelectedID == 1) ? TextStyles.PageLede : TextStyles.PageLedeDark;
+
+            // show the radiating button if the black option is chosen
+            this.rBtnLeft.Opacity = (appSelector.SelectedID == 1) ? 1 : 0;
         }
         #endregion
 

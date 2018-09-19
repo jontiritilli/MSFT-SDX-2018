@@ -26,8 +26,8 @@ namespace SDX.Toolkit.Controls
     {
         #region Constants
         // Still need assets
-        private readonly string URI_IMAGE_BATTERY = @"ms-appx:///Assets/FastCharge/battery-outline.png";
-        private readonly string URI_IMAGE_CHARGE = @"ms-appx:///Assets/FastCharge/blue-charge.png";
+        private readonly string URI_IMAGE_BATTERY = @"ms-appx:///Assets/BatteryLifePopup/battery-outline.png";
+        private readonly string URI_IMAGE_CHARGE = @"ms-appx:///Assets/BatteryLifePopup/blue-charge.png";
 
         private static readonly double CANVAS_X = 410d;
         private static readonly double CANVAS_Y = 175d;
@@ -68,12 +68,8 @@ namespace SDX.Toolkit.Controls
         private Header _header = null;
         private AnimatableInteger _hours = null;
         private TextBlockEx _hrs = null;
-        private TextBlockEx _legal = null;
-        private Image _imageBattery = null;
-        private Image _imageCharge = null;
-
-        private BitmapImage _battery = null;
-        private BitmapImage _charge = null;
+        private ImageEx _imageBattery = null;
+        private ImageEx _imageCharge = null;
 
         private Storyboard _chargeStoryboard = null;
         private Storyboard _positionStoryboard = null;
@@ -85,22 +81,12 @@ namespace SDX.Toolkit.Controls
         public PopupContentBatteryLife()
         {
             this.DefaultStyleKey = typeof(PopupContentBatteryLife);
-
-            Initialization = PreLoadImages();
-
             this.Loaded += OnLoaded;
-        }
-
-        private async Task PreLoadImages()
-        {
-            _battery = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_IMAGE_BATTERY), 400);
-            _charge = await BitmapHelper.LoadBitMapFromFileAsync(new Uri(URI_IMAGE_CHARGE), 400);
         }
 
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
             this.RenderUI();
         }
 
@@ -141,7 +127,7 @@ namespace SDX.Toolkit.Controls
 
         // Hour
         public static readonly DependencyProperty HourProperty =
-            DependencyProperty.Register("Hour", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata(null, OnPropertyChanged));
+            DependencyProperty.Register("Hour", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata("hrs", OnPropertyChanged));
 
         public string Hour
         {
@@ -325,9 +311,9 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
-            _layoutRoot.Background = StyleHelper.GetAcrylicBrush();
-            _layoutRoot.BorderBrush = new SolidColorBrush(Colors.White);
-            _layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
+            //_layoutRoot.Background = StyleHelper.GetAcrylicBrush();
+            //_layoutRoot.BorderBrush = new SolidColorBrush(Colors.White);
+            //_layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
 
             // create the header
             _header = new Header()
@@ -353,23 +339,23 @@ namespace SDX.Toolkit.Controls
             _header.SetBinding(PopupContentBatteryLife.HourProperty,
                 new Binding() { Source = this, Path = new PropertyPath("Hour"), Mode = BindingMode.OneWay });
 
-            // create the legal notice
-            _legal = new TextBlockEx()
-            {
-                Name = "Legal",
-                //Text = this.Legal,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                TextWrapping = TextWrapping.WrapWholeWords,
-                Width = CANVAS_X, 
-                TextStyle = TextStyles.Legal
-            };
-            Grid.SetRow(_legal, 4);
-            Grid.SetColumn(_legal, 1);
-            _layoutRoot.Children.Add(_legal);
+            //// create the legal notice
+            //_legal = new TextBlockEx()
+            //{
+            //    Name = "Legal",
+            //    Text = this.Legal,
+            //    HorizontalAlignment = HorizontalAlignment.Left,
+            //    TextWrapping = TextWrapping.WrapWholeWords,
+            //    Width = CANVAS_X, 
+            //    TextStyle = TextStyles.Legal
+            //};
+            //Grid.SetRow(_legal, 4);
+            //Grid.SetColumn(_legal, 1);
+            //_layoutRoot.Children.Add(_legal);
 
-            // set legal binding
-            _legal.SetBinding(TextBlock.TextProperty,
-                new Binding() { Source = this, Path = new PropertyPath("Legal"), Mode = BindingMode.OneWay });
+            //// set legal binding
+            //_legal.SetBinding(TextBlock.TextProperty,
+            //    new Binding() { Source = this, Path = new PropertyPath("Legal"), Mode = BindingMode.OneWay });
 
             // create the canvas
             _canvas = new Canvas()
@@ -382,10 +368,10 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Add(_canvas);
 
             // create the battery
-            _imageBattery = new Image()
+            _imageBattery = new ImageEx()
             {
-                Source = _battery,
-                Width = WIDTH_BATTERY
+                ImageSource = URI_IMAGE_BATTERY,
+                ImageWidth = WIDTH_BATTERY
             };
             Canvas.SetLeft(_imageBattery, LEFT_HEADER);
             Canvas.SetTop(_imageBattery, TOP_BATTERY);
@@ -393,12 +379,10 @@ namespace SDX.Toolkit.Controls
             _canvas.Children.Add(_imageBattery);
 
             // create the charge
-            _imageCharge = new Image()
+            _imageCharge = new ImageEx()
             {
-                Source = _charge,
-                Stretch = Stretch.Fill,
-                Width = WIDTH_CHARGE_START,
-                Height = HEIGHT_CHARGE
+                ImageSource = URI_IMAGE_CHARGE,
+                ImageWidth = WIDTH_CHARGE_START,
             };
             Canvas.SetLeft(_imageCharge, LEFT_CHARGE);
             Canvas.SetTop(_imageCharge, TOP_CHARGE);
@@ -432,7 +416,7 @@ namespace SDX.Toolkit.Controls
             _chargeStoryboard = SetupChargeAnimation(_imageCharge, WIDTH_CHARGE_START, WIDTH_CHARGE_END, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
         }
 
-        private Storyboard SetupChargeAnimation(Image image, double startingWidth, double finalWidth, double duration, double staggerDelay)
+        private Storyboard SetupChargeAnimation(ImageEx image, double startingWidth, double finalWidth, double duration, double staggerDelay)
         {
             double totalDuration = duration + staggerDelay;
 

@@ -24,15 +24,15 @@ namespace SurfaceLaptopDemo.ViewModels
         public string Headline;
         public string Lede;
         
-        public string PopTop_Headline;
-        public string PopTop_Lede;
+        public string PopRight_Headline;
+        public string PopRight_Lede;
 
         public string PopLeft_Headline;
         public string PopLeft_Lede;
 
-        public string PopBattery_Headline;
-        public string PopBattery_Lede;
-        public string PopBattery_Legal;
+        public string PopBottom_Headline;
+        public string PopBottom_Lede;
+        public string PopBottom_Legal;
 
         public string DesignUri;
         public string BackgroundUri;

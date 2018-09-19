@@ -44,6 +44,10 @@ namespace SurfaceLaptopDemo.ViewModels
         public string PopLeftHeadline;
         public string PopLeftLede;
         public string PopLeftLegal;
+
+        public string PopCenterHeadline;
+        public string PopCenterLede;
+
         public string PopRightHeadline;
         public string PopRightLede;
 
