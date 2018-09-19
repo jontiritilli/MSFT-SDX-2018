@@ -16,6 +16,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>

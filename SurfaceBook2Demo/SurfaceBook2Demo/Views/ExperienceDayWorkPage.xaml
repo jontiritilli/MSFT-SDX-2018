@@ -18,7 +18,7 @@
     
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
-            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" ImageFailed="ImageBrush_ImageFailed"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>
