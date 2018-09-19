@@ -190,8 +190,8 @@ namespace SurfaceLaptopDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_HEADLINE, "EXPERIENCE_STYLE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_COPY, "EXPERIENCE_STYLE_COPY");
-            viewModel.PopupHeadline = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_HEADLINE, "EXPERIENCE_STYLE_HEADLINE");
-            viewModel.PopupLede = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_COPY, "EXPERIENCE_STYLE_COPY");
+            viewModel.PopupHeadline = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_POP_TITLE, "EXPERIENCE_STYLE_POP_TITLE");
+            viewModel.PopupLede = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_POP_COPY, "EXPERIENCE_STYLE_POP_COPY");
         }
 
         public void LoadExperienceInnovationViewModel(ExperienceInnovationViewModel viewModel)
@@ -227,16 +227,15 @@ namespace SurfaceLaptopDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_POWERFUL_HEADLINE, "EXPERIENCE_POWERFUL_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_POWERFUL_COPY, "EXPERIENCE_POWERFUL_COPY");
 
-            viewModel.PopTop_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPRIGHT_TITLE, "EXPERIENCE_POPRIGHT_TITLE");
-            viewModel.PopTop_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPRIGHT_COPY, "EXPERIENCE_POPRIGHT_COPY");
+            viewModel.PopRight_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPRIGHT_TITLE, "EXPERIENCE_POPRIGHT_TITLE");
+            viewModel.PopRight_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPRIGHT_COPY, "EXPERIENCE_POPRIGHT_COPY");
 
             viewModel.PopLeft_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPLEFT_TITLE, "EXPERIENCE_POPLEFT_TITLE");
             viewModel.PopLeft_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPLEFT_COPY, "EXPERIENCE_POPLEFT_COPY");
 
-            viewModel.PopBattery_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_TITLE, "EXPERIENCE_POPBOTTOM_TITLE");
-            viewModel.PopBattery_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_COPY, "EXPERIENCE_POPBOTTOM_COPY");
-            viewModel.PopBattery_Legal = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_LEGAL, "EXPERIENCE_POPBOTTOM_LEGAL");
-
+            viewModel.PopBottom_Headline = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_TITLE, "EXPERIENCE_POPBOTTOM_TITLE");
+            viewModel.PopBottom_Lede = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_COPY, "EXPERIENCE_POPBOTTOM_COPY");
+            viewModel.PopBottom_Legal = GetStringValue(_languageCurrent.EXPERIENCE_POPBOTTOM_LEGAL, "EXPERIENCE_POPBOTTOM_LEGAL");
         }
 
         public void LoadAccessoriesTouchViewModel(AccessoriesTouchViewModel viewModel)
@@ -257,6 +256,9 @@ namespace SurfaceLaptopDemo.Services
             viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
             viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_LEGAL, "ACCESSORIES_LEFT_POPLEFT_LEGAL");
 
+            viewModel.PopCenterHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_TITLE, "ACCESSORIES_RIGHT_POPCENTER_TITLE");
+            viewModel.PopCenterLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_COPY, "ACCESSORIES_RIGHT_POPCENTER_COPY");
+
             viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
             viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
 
@@ -266,9 +268,6 @@ namespace SurfaceLaptopDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_COPY, "ACCESSORIES_LEFT_COPY");
-
-            viewModel.PopCenterHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_TITLE, "ACCESSORIES_RIGHT_POPCENTER_TITLE");
-            viewModel.PopCenterLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_COPY, "ACCESSORIES_RIGHT_POPCENTER_COPY");
         }
 
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)

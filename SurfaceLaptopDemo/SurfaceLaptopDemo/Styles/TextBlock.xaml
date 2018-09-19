@@ -331,20 +331,24 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
-
+    
     <Style x:Key="ButtonCaption" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="21.333" />    <!-- 2/3 -->
+        <Setter Property="FontSize" Value="20" />    <!-- 1/2 -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="28" />    <!-- 2/3 -->
+        <Setter Property="LineHeight" Value="21" />    <!-- 1/2 -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ButtonCaptionDark" TargetType="TextBlock" BasedOn="{StaticResource ButtonCaption}">
+        <Setter Property="Foreground" Value="White"/>
     </Style>
     
     <Style x:Key="NavigationSection" TargetType="TextBlock">

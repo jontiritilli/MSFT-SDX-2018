@@ -29,7 +29,8 @@ namespace SDX.Toolkit.Controls
         None,
         Text,
         Image,
-        Video
+        Video,
+        Battery
     }
 
     public sealed class PopupMedia : Control
@@ -41,6 +42,7 @@ namespace SDX.Toolkit.Controls
         Header _header = null;
         ImageEx _image = null;
         LoopPlayer _player = null;
+        PopupContentBatteryLife _batteryLife = null;
 
         Storyboard _storyboard = null;
 
@@ -85,6 +87,16 @@ namespace SDX.Toolkit.Controls
         {
             get => (string)GetValue(LedeProperty);
             set => SetValue(LedeProperty, value);
+        }
+
+        // Hour
+        public static readonly DependencyProperty HourProperty =
+            DependencyProperty.Register("Lede", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnHourChanged));
+
+        public string Hour
+        {
+            get => (string)GetValue(HourProperty);
+            set => SetValue(HourProperty, value);
         }
 
         // PopupType
@@ -213,6 +225,10 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        private static void OnHourChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
         private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 
@@ -259,7 +275,7 @@ namespace SDX.Toolkit.Controls
                 // spacer
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PopupSpacer))});
 
-                // image/video
+                // image/video/battery
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
             }
 
@@ -324,6 +340,26 @@ namespace SDX.Toolkit.Controls
                 // add to the grid
                 Grid.SetRow(_player, 2);
                 _layoutRoot.Children.Add(_player);
+            }
+            // if this is a popup with a battery life
+            else if (this.PopupType == PopupTypes.Battery)
+            {
+                // create the loop player and add it to the grid
+                _batteryLife = new PopupContentBatteryLife()
+                {
+                    Name = "BatteryLife",
+                    Hour = this.Hour,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
+                    DurationInMilliseconds = 400d,
+                    StaggerDelayInMilliseconds = 800d,
+                    AutoStart = false
+                };
+
+                // add to the grid
+                Grid.SetRow(_batteryLife, 2);
+                _layoutRoot.Children.Add(_batteryLife);
             }
 
         }

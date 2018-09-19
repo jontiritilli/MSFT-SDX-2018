@@ -2,6 +2,7 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
+using SDX.Toolkit.Helpers;
 using Windows.UI.Xaml.Controls;
 
 

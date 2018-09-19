@@ -127,8 +127,8 @@ namespace SDX.Toolkit.Controls
             if (null == _layoutRoot) { return; }
 
             // get sizes for everything
-            double _maxImageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
-            double _maxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");
+            double _maxImageWidth = StyleHelper.GetApplicationDouble("CanvasWidth");
+            double _maxImageHeight = StyleHelper.GetApplicationDouble("CanvasHeight");
 
             double _startImageWidth = StyleHelper.GetApplicationDouble("PinchZoomImageWidth");
             double _startImageHeight = StyleHelper.GetApplicationDouble("PinchZoomImageHeight");

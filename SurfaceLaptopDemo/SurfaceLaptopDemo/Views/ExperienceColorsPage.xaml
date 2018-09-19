@@ -34,11 +34,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="4"
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="3"
             x:Name="AppSelectorImageExpColors"
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
             ImageHeight="{StaticResource CanvasHeight}"
@@ -57,8 +56,8 @@
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
+                Grid.RowSpan="8"
+                Grid.ColumnSpan="3"
                 Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
@@ -67,6 +66,7 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.60}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                                 
                 PopupPosition="Right"                 

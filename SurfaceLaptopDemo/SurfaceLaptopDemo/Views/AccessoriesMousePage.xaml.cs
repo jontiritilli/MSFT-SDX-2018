@@ -72,6 +72,9 @@ namespace SurfaceLaptopDemo.Views
             rBtnLeftMouse.StartEntranceAnimation();
             rBtnLeftMouse.StartRadiateAnimation();
 
+            rBtnCenterMouse.StartEntranceAnimation();
+            rBtnCenterMouse.StartRadiateAnimation();
+
             rBtnRightMouse.StartEntranceAnimation();
             rBtnRightMouse.StartRadiateAnimation();
         }
@@ -82,6 +85,9 @@ namespace SurfaceLaptopDemo.Views
 
             rBtnLeftMouse.ResetEntranceAnimation();
             rBtnLeftMouse.ResetRadiateAnimation();
+
+            rBtnCenterMouse.ResetEntranceAnimation();
+            rBtnCenterMouse.ResetRadiateAnimation();
 
             rBtnRightMouse.ResetEntranceAnimation();
             rBtnRightMouse.ResetRadiateAnimation();

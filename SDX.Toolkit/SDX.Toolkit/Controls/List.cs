@@ -159,9 +159,6 @@ namespace SDX.Toolkit.Controls
 
             if (null == _layoutRoot) { return; }
 
-            // get sizes
-            double parentWidth = this.ListWidth;
-
             // generic, but doesn't work for "best of list". Will have to be set seperate in the bestof case below
             double ColumnSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListColumnSpacerWidth);
             double RowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.ListRowSpacerHeight);
@@ -199,9 +196,6 @@ namespace SDX.Toolkit.Controls
                                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RowSpacing) });
                             }
 
-                            // how wide is the text
-                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
-
                             // create icon image and add to grid
                             ImageEx icon = new ImageEx()
                             {
@@ -220,6 +214,7 @@ namespace SDX.Toolkit.Controls
                             {
                                 LedeStyle = TextStyles.ListItemLedePenTouch,
                                 Lede = item.Lede,
+                                Width = this.Width,
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Center
@@ -260,9 +255,6 @@ namespace SDX.Toolkit.Controls
                                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RowSpacing) });
                             }
 
-                            // how wide is the text
-                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
-
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
 
                             // create icon image
@@ -287,6 +279,7 @@ namespace SDX.Toolkit.Controls
                                 Headline = item.Headline,
                                 LedeStyle = TextStyles.ListLede,
                                 Lede = item.Lede,
+                                Width = this.Width,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
                                 HeaderAlignment = TextAlignment.Left,
@@ -315,6 +308,8 @@ namespace SDX.Toolkit.Controls
                         int Index = 0;
                         int ListLength = _listItems.Count() - 1;
 
+                        double ListTextWidth = StyleHelper.GetApplicationDouble("BestOfMicrosoftListTextWidth");
+
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
                         {
@@ -332,9 +327,6 @@ namespace SDX.Toolkit.Controls
                             {
                                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
                             }
-
-                            // how wide is the text
-                            double itemTextWidth = parentWidth - ColumnSpacing - item.IconWidth;
 
                             GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
 
@@ -361,6 +353,7 @@ namespace SDX.Toolkit.Controls
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
+                                Width = ListTextWidth,
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Top

@@ -74,11 +74,11 @@
                     <views:AccessoriesMousePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
+            <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
                 <Frame>
                     <views:AccessoriesPenPage/>
                 </Frame>
-            </ctrl:FlipViewItemEx>
+            </ctrl:FlipViewItemEx>-->
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_BestOfMicrosoftPage">
                 <Frame>
                     <views:BestOfMicrosoftPage/>
