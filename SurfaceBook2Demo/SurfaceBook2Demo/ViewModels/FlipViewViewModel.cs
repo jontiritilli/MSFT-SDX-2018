@@ -97,6 +97,14 @@ namespace SurfaceBook2Demo.ViewModels
             }
             );
 
+            // ExperienceIntroPage
+            section.Pages.Add(new NavigationPage()
+            {
+                Name = "ExperienceIntroPage",
+                Order = 0
+            }
+            );
+
             // ExperienceDayPage
             section.Pages.Add(new NavigationPage()
             {
