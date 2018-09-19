@@ -229,6 +229,7 @@ namespace SurfaceProDemo.Views
         {
             return this.ExperiencePopup;
         }
+
         #endregion
     }
 }
