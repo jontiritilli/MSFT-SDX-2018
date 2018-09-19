@@ -304,6 +304,12 @@
     <Content Include="Assets\Accessories\Icons\fox_accs_cobalt_active.png" />
     <Content Include="Assets\Accessories\Icons\fox_accs_platinum.png" />
     <Content Include="Assets\Accessories\Icons\fox_accs_platinum_active.png" />
+    <Content Include="Assets\Comparison\comparisonFamily.png" />
+    <Content Include="Assets\Comparison\comparisonGo.png" />
+    <Content Include="Assets\Comparison\comparisonLaptop.png" />
+    <Content Include="Assets\Comparison\comparisonPro.png" />
+    <Content Include="Assets\Comparison\comparisonSb2.png" />
+    <Content Include="Assets\Comparison\comparisonStudio.png" />
     <Content Include="Assets\Experience\Colors\foxburg_black_lifestyle.png" />
     <Content Include="Assets\Experience\Colors\foxburg_burgundy_lifestyle.png" />
     <Content Include="Assets\Experience\Colors\foxburg_cobalt_lifestyle.png" />
