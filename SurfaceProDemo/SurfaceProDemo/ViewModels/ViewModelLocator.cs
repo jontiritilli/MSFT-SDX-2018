@@ -24,6 +24,7 @@ namespace SurfaceProDemo.ViewModels
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
             Register<ExperienceIntroViewModel, ExperienceIntroPage>();
+            Register<ExperienceFlipViewViewModel, ExperienceFlipViewPage>();
             Register<ExperienceTransformViewModel, ExperienceTransformPage>();
             Register<ExperiencePerformanceViewModel, ExperiencePerformancePage>();
             Register<ExperiencePopupViewModel, ExperiencePopupPage>();
@@ -55,6 +56,8 @@ namespace SurfaceProDemo.ViewModels
         public ExperiencePopupViewModel ExperiencePopupViewModel => ServiceLocator.Current.GetInstance<ExperiencePopupViewModel>();
 
         public ExperienceTransformViewModel ExperienceTransformViewModel => ServiceLocator.Current.GetInstance<ExperienceTransformViewModel>();
+
+        public ExperienceFlipViewViewModel ExperienceFlipViewViewModel => ServiceLocator.Current.GetInstance<ExperienceFlipViewViewModel>();
 
         public ExperienceIntroViewModel ExperienceIntroViewModel => ServiceLocator.Current.GetInstance<ExperienceIntroViewModel>();
 

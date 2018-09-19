@@ -115,6 +115,9 @@
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
     <Compile Include="Controls\CanvasEx.cs" />
     <Compile Include="Controls\ColoringBook.cs" />
+    <Compile Include="Controls\DeviceModeSlider.xaml.cs">
+      <DependentUpon>DeviceModeSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DaySlider.xaml.cs">
       <DependentUpon>DaySlider.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
     <Page Include="Controls\AnimatedIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DeviceModeSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\DaySlider.xaml">
       <SubType>Designer</SubType>
