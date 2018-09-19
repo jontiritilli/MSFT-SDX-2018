@@ -97,6 +97,14 @@ namespace SurfaceBook2Demo.ViewModels
             }
             );
 
+            // ExperienceIntroPage
+            section.Pages.Add(new NavigationPage()
+            {
+                Name = "ExperienceIntroPage",
+                Order = 0
+            }
+            );
+
             // ExperienceDayPage
             section.Pages.Add(new NavigationPage()
             {
@@ -105,37 +113,37 @@ namespace SurfaceBook2Demo.ViewModels
             }
             );
 
-            // ExperienceDayWorkPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceDayWorkPage",
-                Order = 2
-            }
-            );
+            //// ExperienceDayWorkPage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperienceDayWorkPage",
+            //    Order = 2
+            //}
+            //);
 
-            // ExperienceDayCreatePage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceDayCreatePage",
-                Order = 3
-            }
-            );
+            //// ExperienceDayCreatePage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperienceDayCreatePage",
+            //    Order = 3
+            //}
+            //);
 
-            // ExperienceDayRelaxPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceDayRelaxPage",
-                Order = 4
-            }
-            );
+            //// ExperienceDayRelaxPage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperienceDayRelaxPage",
+            //    Order = 4
+            //}
+            //);
 
-            // ExperienceDayPlayPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceDayPlayPage",
-                Order = 5
-            }
-            );
+            //// ExperienceDayPlayPage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperienceDayPlayPage",
+            //    Order = 5
+            //}
+            //);
 
             // add the section to the list
             this.Sections.Add(section);

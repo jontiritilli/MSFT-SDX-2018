@@ -77,5 +77,10 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
+
+        private void ImageBrush_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            int x = 0;
+        }
     }
 }

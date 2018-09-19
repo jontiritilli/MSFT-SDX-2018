@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
     <Compile Include="ViewModels\ChoosePathViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceFlipViewViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
     <Compile Include="ViewModels\ExperienceIntroViewModel.cs" />
     <Compile Include="ViewModels\ExperiencePerformanceViewModel.cs" />
@@ -163,6 +164,9 @@
     </Compile>
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperienceFlipViewPage.xaml.cs">
+      <DependentUpon>ExperienceFlipViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceHeroPage.xaml.cs">
       <DependentUpon>ExperienceHeroPage.xaml</DependentUpon>
@@ -258,6 +262,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ComparePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExperienceFlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

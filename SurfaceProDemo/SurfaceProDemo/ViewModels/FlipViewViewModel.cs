@@ -66,6 +66,8 @@ namespace SurfaceProDemo.ViewModels
         #endregion
 
 
+        #region Navigation Bar Setup
+
         public void RenderNavigation()
         {
             // This method creates the sections and the pages in each section.
@@ -99,29 +101,37 @@ namespace SurfaceProDemo.ViewModels
             }
             );
 
-            // ExperienceTransformPage
+            // ExperienceFlipViewPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "ExperienceTransformPage",
+                Name = "ExperienceFlipViewPage",
                 Order = 2
             }
             );
 
-            // ExperiencePerformancePage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperiencePerformancePage",
-                Order = 3
-            }
-            );
+            //// ExperienceTransformPage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperienceTransformPage",
+            //    Order = 2
+            //}
+            //);
 
-            // ExperienceQuietPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceQuietPage",
-                Order = 4
-            }
-            );
+            //// ExperiencePerformancePage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperiencePerformancePage",
+            //    Order = 3
+            //}
+            //);
+
+            //// ExperienceQuietPage
+            //section.Pages.Add(new NavigationPage()
+            //{
+            //    Name = "ExperienceQuietPage",
+            //    Order = 4
+            //}
+            //);
 
             // add the section to the list
             this.Sections.Add(section);
@@ -213,6 +223,7 @@ namespace SurfaceProDemo.ViewModels
             // =================================================
 
         }
-    }
 
+        #endregion
+    }
 }

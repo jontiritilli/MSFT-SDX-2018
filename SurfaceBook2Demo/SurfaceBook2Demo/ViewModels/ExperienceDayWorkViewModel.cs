@@ -13,8 +13,8 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
-        private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
+        private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_work.jpg";
+        private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_work.jpg";
 
         private const string URI_HERO = "ms-appx:///Assets/Experience/sb2_work_sb15.png";
 

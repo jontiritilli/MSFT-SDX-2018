@@ -51,7 +51,13 @@
                     <views:ExperienceIntroPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceTransformPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceFlipViewPage">
+                <Frame>
+                    <views:ExperienceFlipViewPage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <!-- These pages are now hosted in ExperienceFlipViewPage -->
+            <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceTransformPage">
                 <Frame>
                     <views:ExperienceTransformPage/>
                 </Frame>
@@ -65,7 +71,7 @@
                 <Frame>
                     <views:ExperienceQuietPage/>
                 </Frame>
-            </ctrl:FlipViewItemEx>
+            </ctrl:FlipViewItemEx>-->
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
                 <Frame>
                     <views:AccessoriesPenPage/>

@@ -17,6 +17,8 @@ namespace SurfaceBook2Demo.Views
             get { return DataContext as ExperienceDayViewModel; }
         }
 
+        private INavigate _previousPage = null;
+
         #endregion
 
 
@@ -25,6 +27,20 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayPage()
         {
             InitializeComponent();
+
+            this.Loaded += this.ExperienceDayPage_Loaded;
+        }
+
+        private void ExperienceDayPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            // set the current page
+            this.DayFlipView.SelectedIndex = 0;
+
+            // save the current page so we can navigate from it
+            _previousPage = (INavigate)((FlipViewItemEx)this.DayFlipView.SelectedItem).GetChildViewAsObject();
+
+            // navigate to it
+            _previousPage.NavigateToPage();
         }
 
         #endregion
@@ -36,6 +52,23 @@ namespace SurfaceBook2Demo.Views
         {
             if ((null != this.DayFlipView) && (null != this.DaySlider))
             {
+                // navigate from the previous page
+                if (null != _previousPage)
+                {
+                    _previousPage.NavigateFromPage();
+                }
+
+                // navigate to the current page
+                if (null != this.DayFlipView.SelectedItem)
+                {
+                    // save the current page so we can navigate from it
+                    _previousPage = (INavigate)((FlipViewItemEx)DayFlipView.SelectedItem).GetChildViewAsObject();
+
+                    // navigate to it
+                    _previousPage.NavigateToPage();
+                }
+
+                // update the slider
                 switch (this.DayFlipView.SelectedIndex)
                 {
                     case 0:
@@ -69,7 +102,7 @@ namespace SurfaceBook2Demo.Views
             }
         }
 
-        private void DaySlider_Snapped(object sender, SDX.Toolkit.Controls.DaySliderSnappedEventArgs e)
+        private void DaySlider_Snapped(object sender, DaySliderSnappedEventArgs e)
         {
             if ((null != this.DayFlipView) && (null != this.DaySlider))
             {

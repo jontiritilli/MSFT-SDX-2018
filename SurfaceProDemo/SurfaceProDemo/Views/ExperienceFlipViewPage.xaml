@@ -1,22 +1,17 @@
 ﻿<Page
-    x:Class="SurfaceBook2Demo.Views.ExperienceDayPage"
+    x:Class="SurfaceProDemo.Views.ExperienceFlipViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="using:SurfaceBook2Demo.Views"
+    xmlns:views="using:SurfaceProDemo.Views"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
-    DataContext="{Binding ExperienceDayViewModel, Source={StaticResource Locator}}"
+    DataContext="{Binding ExperienceFlipViewViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <Grid.Background>
-            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
-        </Grid.Background>
-
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>
@@ -24,7 +19,7 @@
             <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:FlipViewEx x:Name="DayFlipView"
+        <ctrl:FlipViewEx x:Name="DeviceModeFlipView"
                Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="3"
@@ -32,34 +27,31 @@
                Padding="0"
                Background="Transparent"
                AllowFocusOnInteraction="False"
-               SelectionChanged="DayFlipView_SelectionChanged">
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayWorkPage">
+               SelectionChanged="DeviceModeFlipView_SelectionChanged">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceTransformPage">
                 <Frame>
-                    <views:ExperienceDayWorkPage/>
+                    <views:ExperienceTransformPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayCreatePage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperiencePerformancePage">
                 <Frame>
-                    <views:ExperienceDayCreatePage/>
+                    <views:ExperiencePerformancePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayRelaxPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceQuietPage">
                 <Frame>
-                    <views:ExperienceDayRelaxPage/>
-                </Frame>
-            </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayPlayPage">
-                <Frame>
-                    <views:ExperienceDayPlayPage/>
+                    <views:ExperienceQuietPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
         </ctrl:FlipViewEx>
         
-        <ctrl:DaySlider x:Name="DaySlider"
-                        BatteryLifeText="{x:Bind Path=ViewModel.SliderBatteryCopy}"
+        <ctrl:DeviceModeSlider x:Name="DeviceModeSlider"
+                        StudioCaptionText="{x:Bind Path=ViewModel.StudioCaptionText}"
+                        LaptopCaptionText="{x:Bind Path=ViewModel.LaptopCaptionText}"
+                        TabletCaptionText="{x:Bind Path=ViewModel.TabletCaptionText}"
                         VerticalAlignment="Bottom"
                         Grid.Row="0" Grid.Column="1"
-                        Snapped="DaySlider_Snapped"/>
+                        Snapped="DeviceModeSlider_Snapped"/>
 
     </Grid>
 </Page>
