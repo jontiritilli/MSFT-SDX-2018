@@ -245,7 +245,7 @@ namespace SurfaceBook2Demo.Services
             viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPLEFT_COPY, "EXPERIENCE_CREATE_POPLEFT_COPY");
 
             viewModel.PopupPenHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_TITLE, "EXPERIENCE_CREATE_POPRIGHT_TITLE");
-            viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_COPY, "EXPERIENCE_CREATE_POPRIGHT_COPY");
+            viewModel.PopupPenLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPRIGHT_COPY, "EXPERIENCE_CREATE_POPRIGHT_COPY");
 
             viewModel.PopupTransformHeadline= GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPTOP_TITLE, "EXPERIENCE_CREATE_POPTOP_TITLE");
             viewModel.PopupTransformLede= GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPTOP_COPY, "EXPERIENCE_CREATE_POPTOP_COPY");

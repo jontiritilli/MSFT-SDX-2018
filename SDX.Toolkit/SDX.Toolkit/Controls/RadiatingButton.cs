@@ -1153,12 +1153,12 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                        offset = point.X - popupWidth - _grid.ActualWidth - POPUP_SPACER;
-                        
+                        offset = point.X - popupWidth;//- _grid.ActualWidth  - POPUP_SPACER
+
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.X + _grid.ActualWidth + POPUP_SPACER;
+                        offset = point.X + _grid.ActualWidth; // + POPUP_SPACER
                         break;
                 }
             }
