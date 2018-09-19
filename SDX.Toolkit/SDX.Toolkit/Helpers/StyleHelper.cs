@@ -22,6 +22,7 @@ namespace SDX.Toolkit.Helpers
         PageHeadlineDark,
         PageLede,
         PageLedeDark,
+        ReadyPageHeadline,
         ListHeadline,
         ListLede,
         ListItemHeadlinePenTouch,
@@ -38,6 +39,7 @@ namespace SDX.Toolkit.Helpers
         Legal,
         TryIt,
         ButtonCaption,
+        ReadyButtonCaption,
         NavigationSection,
         NavigationSectionActive,
         PlayerArtistName,
@@ -167,6 +169,7 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark";
         public const string STYLE_PAGE_LEDE = "PageLede";
         public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
+        public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
         public const string STYLE_LIST_HEADLINE = "ListHeadline";
         public const string STYLE_LIST_LEDE = "ListLede";
         public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
@@ -182,7 +185,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_SLIDER_BATTERYLIFE = "SliderBatteryLife";
         public const string STYLE_LEGAL = "Legal";
         public const string STYLE_TRYIT = "TryIt";
-        public const string STYLE_BUTTONCAPTION = "ButtonCaption";
+        public const string STYLE_BUTTONCAPTION = "ButtonCaption"; 
+        public const string STYLE_READYBUTTONCAPTION = "ReadyButtonCaption";
         public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
         public const string STYLE_PLAYER_ARTISTNAME = "PlayerArtistName";
@@ -642,6 +646,10 @@ namespace SDX.Toolkit.Helpers
                     style = GetApplicationStyle(STYLE_PAGE_LEDE_DARK);
                     break;
 
+                case TextStyles.ReadyPageHeadline:
+                    style = GetApplicationStyle(STYLE_PAGE_READYHEADLINE);
+                    break;
+
                 case TextStyles.ListHeadline:
                     style = GetApplicationStyle(STYLE_LIST_HEADLINE);
                     break;
@@ -704,6 +712,10 @@ namespace SDX.Toolkit.Helpers
 
                 case TextStyles.ButtonCaption:
                     style = GetApplicationStyle(STYLE_BUTTONCAPTION);
+                    break;
+
+                case TextStyles.ReadyButtonCaption:
+                    style = GetApplicationStyle(STYLE_READYBUTTONCAPTION);
                     break;
 
                 case TextStyles.NavigationSection:

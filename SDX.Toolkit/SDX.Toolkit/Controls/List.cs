@@ -218,13 +218,11 @@ namespace SDX.Toolkit.Controls
                             // create the lede and add to grid
                             Header lede = new Header()
                             {
-                                HeadlineStyle = TextStyles.ListHeadline,
-                                Headline = "",
-                                LedeStyle = TextStyles.ListLede,
+                                LedeStyle = TextStyles.ListItemLedePenTouch,
                                 Lede = item.Lede,
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top
+                                VerticalAlignment = VerticalAlignment.Center
                             };
                             Grid.SetColumn(lede, 2);
                             Grid.SetRow(lede, RowToAdd);

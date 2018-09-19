@@ -326,10 +326,6 @@ namespace SDX.Toolkit.Controls
         public void ForceColorChange(int ID)
         {
             this._AppSelector.SelectedID = ID;
-            this._AppSelector.UpdateUI();
-            this.ColorID = ID;
-            this._SelectedColor = this.Colors[ID];
-            SetupBrush();
         }
         #endregion
 
@@ -630,11 +626,10 @@ namespace SDX.Toolkit.Controls
         private void _AppSelector_SelectedIDChanged(object sender, EventArgs e)
         {
             // need to change the mouse page too
-            if ((null != _AppSelector))
+            if (null != _AppSelector)
             {
-                AppSelector appSelector = (AppSelector)sender;
-                this._SelectedColor = this.Colors[appSelector.SelectedID];
-                this.ColorID = appSelector.SelectedID;
+                this._SelectedColor = this.Colors[_AppSelector.SelectedID];
+                this.ColorID = _AppSelector.SelectedID;
                 SetupBrush();
             }
         }
@@ -642,7 +637,7 @@ namespace SDX.Toolkit.Controls
         private void _AppSelector_ClearClickedChanged(object sender, EventArgs e)
         {
             // need to change the mouse page too
-            if ((null != _AppSelector))
+            if (null != _AppSelector)
             {
                 AppSelector appSelector = (AppSelector)sender;
                 _inkCanvas.InkPresenter.StrokeContainer.Clear();                               

@@ -32,6 +32,8 @@ namespace SurfaceStudioDemo.ViewModels
         public string PenTryItTitle;
         public string PenTryItLede;
 
+        public string ListHeadline;
+
         public List<ListItem> ListItems = new List<ListItem>();
         public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.AccessoriesPenListIconWidth);
 

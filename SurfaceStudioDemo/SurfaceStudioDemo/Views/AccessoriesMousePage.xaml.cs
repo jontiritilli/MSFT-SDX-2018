@@ -24,6 +24,9 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesMousePage()
         {
             InitializeComponent();
+            this.rBtnLeftAccRight.PopupChild = PopLeft;
+            this.rBtnRightAccRight.PopupChild = PopRight;
+            this.rBtnTopAccRight.PopupChild = PopTop;
         }
 
         #endregion
@@ -33,12 +36,26 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage()
         {
-            // animations in
+            rBtnLeftAccRight.StartEntranceAnimation();
+            rBtnLeftAccRight.StartRadiateAnimation();
+
+            rBtnRightAccRight.StartEntranceAnimation();
+            rBtnRightAccRight.StartRadiateAnimation();
+
+            rBtnTopAccRight.StartEntranceAnimation();
+            rBtnTopAccRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
-            // animations out
+            rBtnLeftAccRight.ResetEntranceAnimation();
+            rBtnLeftAccRight.ResetRadiateAnimation();
+
+            rBtnRightAccRight.ResetEntranceAnimation();
+            rBtnRightAccRight.ResetRadiateAnimation();
+
+            rBtnTopAccRight.ResetEntranceAnimation();
+            rBtnTopAccRight.ResetRadiateAnimation();
         }
 
         #endregion

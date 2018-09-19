@@ -69,12 +69,10 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage()
         {
-            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion
