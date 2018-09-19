@@ -314,9 +314,9 @@ namespace SurfaceStudioDemo.Services
             viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_COPY, "ACCESSORIES_RIGHT_POPRIGHT_COPY");
             viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPRIGHT_LEGAL, "ACCESSORIES_RIGHT_POPRIGHT_LEGAL");
 
-            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_TITLE, "ACCESSORIES_RIGHT_POPTOP_TITLE");
-            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_COPY, "ACCESSORIES_RIGHT_POPTOP_COPY");
-            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_LEGAL, "ACCESSORIES_RIGHT_POPTOP_LEGAL");
+            viewModel.PopTopHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_TITLE, "ACCESSORIES_RIGHT_POPTOP_TITLE");
+            viewModel.PopTopLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_COPY, "ACCESSORIES_RIGHT_POPTOP_COPY");
+            viewModel.PopTopLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPTOP_LEGAL, "ACCESSORIES_RIGHT_POPTOP_LEGAL");
         }
 
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)

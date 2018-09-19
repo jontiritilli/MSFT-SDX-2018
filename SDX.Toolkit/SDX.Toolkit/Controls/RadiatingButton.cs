@@ -36,10 +36,10 @@ namespace SDX.Toolkit.Controls
 
     public enum RadiatingButtonIcons
     {
-        dial,
-        pen,        
-        pinch,
-        touch
+        Dial,
+        Pen,        
+        Pinch,
+        Touch
     }
 
     public sealed class RadiatingButton : Control
@@ -121,6 +121,7 @@ namespace SDX.Toolkit.Controls
             get => (bool)GetValue(IsPenOnlyProperty);
             set => SetValue(IsPenOnlyProperty, value);
         }
+
         // IsTouchOnly
         public static readonly DependencyProperty IsTouchOnlyProperty =
             DependencyProperty.Register("IsTouchOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
@@ -150,6 +151,16 @@ namespace SDX.Toolkit.Controls
             set => SetValue(TryItTextProperty, value);
         }
 
+        // TryItCaptionColor
+        public static readonly DependencyProperty TryItCaptionColorProperty =
+            DependencyProperty.Register("TryItCaptionColor", typeof(string), typeof(RadiatingButton), new PropertyMetadata("Black"));
+
+        public string TryItCaptionColor
+        {
+            get => (string)GetValue(TryItCaptionColorProperty);
+            set => SetValue(TryItCaptionColorProperty, value);
+        }
+
         // TryItCaption
         public static readonly DependencyProperty TryItCaptionProperty =
             DependencyProperty.Register("TryItCaption", typeof(string), typeof(RadiatingButton), new PropertyMetadata(""));
@@ -172,7 +183,7 @@ namespace SDX.Toolkit.Controls
 
         // RBIcon
         public static readonly DependencyProperty RadiatingButtonIconProperty =
-            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.dial));
+            DependencyProperty.Register("RadiatingButtonIcon", typeof(RadiatingButtonIcons), typeof(RadiatingButton), new PropertyMetadata(RadiatingButtonIcons.Dial));
 
         public RadiatingButtonIcons RadiatingButtonIcon
         {
@@ -886,11 +897,23 @@ namespace SDX.Toolkit.Controls
 
                     _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
 
+                    TextStyles TryItCaption = TextStyles.ButtonCaption;
+
+                    switch (this.TryItCaptionColor)
+                    {
+                        case "Black":
+                            TryItCaption = TextStyles.ButtonCaption;
+                            break;
+                        case "White":
+                            TryItCaption = TextStyles.ButtonCaptionDark;
+                            break;
+                    }
+
                     _tryItButtonCaption = new TextBlockEx
                     {
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
-                        TextStyle = TextStyles.ButtonCaption,
+                        TextStyle = TryItCaption,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
@@ -961,19 +984,19 @@ namespace SDX.Toolkit.Controls
 
                     // set correct icon for radiating button
                     switch (RadiatingButtonIcon) {
-                        case RadiatingButtonIcons.dial:
+                        case RadiatingButtonIcons.Dial:
                             TRY_IT_IMAGE = URI_TRY_IT_DIAL_IMAGE;
                             break;
 
-                        case RadiatingButtonIcons.pen:
+                        case RadiatingButtonIcons.Pen:
                             TRY_IT_IMAGE = URI_TRY_IT_PEN_IMAGE;
                             break;
 
-                        case RadiatingButtonIcons.pinch:
+                        case RadiatingButtonIcons.Pinch:
                             TRY_IT_IMAGE = URI_PINCH_ZOOM_IMAGE;
                             break;
 
-                        case RadiatingButtonIcons.touch:
+                        case RadiatingButtonIcons.Touch:
                             TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
                             break;
 

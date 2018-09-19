@@ -39,6 +39,7 @@ namespace SDX.Toolkit.Helpers
         Legal,
         TryIt,
         ButtonCaption,
+        ButtonCaptionDark,
         ReadyButtonCaption,
         NavigationSection,
         NavigationSectionActive,
@@ -184,8 +185,9 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_POPUP_BATTERYLIFE = "PopupBatteryLife";
         public const string STYLE_SLIDER_BATTERYLIFE = "SliderBatteryLife";
         public const string STYLE_LEGAL = "Legal";
-        public const string STYLE_TRYIT = "TryIt";
+        public const string STYLE_TRYIT = "TryIt"; 
         public const string STYLE_BUTTONCAPTION = "ButtonCaption"; 
+        public const string STYLE_BUTTONCAPTION_DARK = "ButtonCaptionDark";
         public const string STYLE_READYBUTTONCAPTION = "ReadyButtonCaption";
         public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
@@ -708,10 +710,14 @@ namespace SDX.Toolkit.Helpers
 
                 case TextStyles.TryIt:
                     style = GetApplicationStyle(STYLE_TRYIT);
-                    break;
+                    break; 
 
                 case TextStyles.ButtonCaption:
                     style = GetApplicationStyle(STYLE_BUTTONCAPTION);
+                    break;
+
+                case TextStyles.ButtonCaptionDark:
+                    style = GetApplicationStyle(STYLE_BUTTONCAPTION_DARK);
                     break;
 
                 case TextStyles.ReadyButtonCaption:

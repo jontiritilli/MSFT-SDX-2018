@@ -58,7 +58,7 @@
                     <views:ExperienceDayPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayWorkPage">
+            <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayWorkPage">
                 <Frame>
                     <views:ExperienceDayWorkPage/>
                 </Frame>
@@ -77,7 +77,7 @@
                 <Frame>
                     <views:ExperienceDayPlayPage/>
                 </Frame>
-            </ctrl:FlipViewItemEx>
+            </ctrl:FlipViewItemEx>-->
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
                 <Frame>
                     <views:AccessoriesPenPage/>

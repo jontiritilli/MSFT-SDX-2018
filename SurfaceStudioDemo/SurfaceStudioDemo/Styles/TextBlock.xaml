@@ -346,9 +346,9 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
-
+    
     <Style x:Key="ButtonCaption" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
@@ -362,6 +362,10 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
+    <Style x:Key="ButtonCaptionDark" TargetType="TextBlock" BasedOn="{StaticResource ButtonCaption}">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    
     <Style x:Key="ReadyButtonCaption" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF0078D4"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
