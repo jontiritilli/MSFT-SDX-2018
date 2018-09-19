@@ -17,6 +17,8 @@ namespace SurfaceProDemo.Views
             get { return DataContext as ExperienceFlipViewViewModel; }
         }
 
+        private INavigate _previousPage = null;
+
         #endregion
 
 
@@ -25,6 +27,20 @@ namespace SurfaceProDemo.Views
         public ExperienceFlipViewPage()
         {
             InitializeComponent();
+
+            this.Loaded += this.ExperienceFlipViewPage_Loaded;
+        }
+
+        private void ExperienceFlipViewPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            // set the current page
+            this.DeviceModeFlipView.SelectedIndex = 0;
+
+            // save the current page so we can navigate from it
+            _previousPage = (INavigate)((FlipViewItemEx)this.DeviceModeFlipView.SelectedItem).GetChildViewAsObject();
+
+            // navigate to it
+            _previousPage.NavigateToPage();
         }
 
         #endregion
@@ -36,6 +52,23 @@ namespace SurfaceProDemo.Views
         {
             if ((null != this.DeviceModeFlipView) && (null != this.DeviceModeSlider))
             {
+                // navigate from the previous page
+                if (null != _previousPage)
+                {
+                    _previousPage.NavigateFromPage();
+                }
+
+                // navigate to the current page
+                if (null != this.DeviceModeFlipView.SelectedItem)
+                {
+                    // save the current page so we can navigate from it
+                    _previousPage = (INavigate)((FlipViewItemEx)this.DeviceModeFlipView.SelectedItem).GetChildViewAsObject();
+
+                    // navigate to it
+                    _previousPage.NavigateToPage();
+                }
+
+                // update slider
                 switch (this.DeviceModeFlipView.SelectedIndex)
                 {
                     case 0:
