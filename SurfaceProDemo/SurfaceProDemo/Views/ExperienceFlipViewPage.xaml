@@ -12,6 +12,7 @@
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>

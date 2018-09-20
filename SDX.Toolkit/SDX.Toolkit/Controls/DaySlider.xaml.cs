@@ -65,6 +65,7 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+
         #region Private Members
 
         private string uriBattery1;
@@ -164,7 +165,7 @@ namespace SDX.Toolkit.Controls
             this.Value = endingValue;
 
             // update the thumb
-            UpdateThumb(GetPositionFromValue(endingValue));
+            UpdateThumb(GetPositionFromValue(endingValue), true);
 
             // raise the snapped event
             this.RaiseSnappedEvent(this, snapPosition);
