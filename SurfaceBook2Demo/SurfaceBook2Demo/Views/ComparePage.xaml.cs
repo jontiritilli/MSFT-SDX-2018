@@ -35,7 +35,7 @@ namespace SurfaceBook2Demo.Views
 
         #region INavigate Interface
 
-        public void NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);

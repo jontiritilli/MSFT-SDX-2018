@@ -32,7 +32,7 @@ namespace SurfaceBook2Demo.Views
 
         #region INavigate Interface
 
-        public void NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
             rBtnLeft.StartEntranceAnimation();
