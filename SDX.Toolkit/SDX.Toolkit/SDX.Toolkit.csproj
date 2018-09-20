@@ -159,6 +159,8 @@
     <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Converters\TextStylesToStyleConverter.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="Models\INavigationItem.cs" />
+    <Compile Include="Models\NavigationFlipView.cs" />
     <Compile Include="Models\NavigationPage.cs" />
     <Compile Include="Models\NavigationSection.cs" />
     <Compile Include="Models\Playlist.cs" />

@@ -762,14 +762,14 @@ namespace SDX.Toolkit.Controls
 
             // if the section and page are valid
             if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0)
-                && (null != section) && (null != section.Pages) && (section.Pages.Count > 0)
+                && (null != section) && (null != section.Items) && (section.Items.Count > 0)
                 && (null != page))
             {
                 // get the index of the section in the list of sections
                 int sectionIndex = this.NavigationSections.IndexOf(section);
 
                 // get the index of the page in the current section
-                int pageIndex = section.Pages.IndexOf(page);
+                int pageIndex = section.Items.IndexOf(page);
 
                 // if both are valid
                 if ((0 <= sectionIndex) && (0 <= pageIndex))
@@ -789,10 +789,10 @@ namespace SDX.Toolkit.Controls
                         for (int i = 0; i < sectionIndex; i++)
                         {
                             // make sure there's a section here and it has pages
-                            if ((null != this.NavigationSections[i]) && (null != this.NavigationSections[i].Pages))
+                            if ((null != this.NavigationSections[i]) && (null != this.NavigationSections[i].Items))
                             {
                                 // it does, so add those pages to our count
-                                previousPageCount += this.NavigationSections[i].Pages.Count;
+                                previousPageCount += this.NavigationSections[i].Items.Count;
                             }
                         }
 
@@ -818,17 +818,17 @@ namespace SDX.Toolkit.Controls
                 foreach (NavigationSection navigationSection in this.NavigationSections)
                 {
                     // does the section have pages?
-                    if ((null != navigationSection) && (null != navigationSection.Pages))
+                    if ((null != navigationSection) && (null != navigationSection.Items))
                     {
                         // how many pages are in this section?
-                        int pageCount = navigationSection.Pages.Count;
+                        int pageCount = navigationSection.Items.Count;
 
                         // if there are more pages in this section than remain in the index
                         if (pageCount > pageIndex)
                         {
                             // this is the section where our page will be
                             section = navigationSection;
-                            page = section.Pages[pageIndex];
+                            page = section.Items[pageIndex];
 
                             return;
                         }
@@ -880,7 +880,7 @@ namespace SDX.Toolkit.Controls
             {
                 // get the indices of the selected section and page
                 int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Pages.IndexOf(page);
+                int pageIndex = this.SelectedSection.Items.IndexOf(page);
 
                 // is the current page the first in the current section?
                 if (0 == pageIndex)
@@ -897,17 +897,17 @@ namespace SDX.Toolkit.Controls
                         section = this.NavigationSections[sectionIndex - 1];
 
                         // if it's valid and has pages
-                        if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+                        if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
                         {
                             // get its last page
-                            page = section.Pages[section.Pages.Count - 1];
+                            page = section.Items[section.Items.Count - 1];
                         }
                     }
                 }
                 else
                 {
                     // get the previous page
-                    page = section.Pages[pageIndex - 1];
+                    page = section.Items[pageIndex - 1];
                 }
 
                 // if we made it through the gauntlet with non-null section and page
@@ -929,10 +929,10 @@ namespace SDX.Toolkit.Controls
             {
                 // get the indices of the selected section and page
                 int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Pages.IndexOf(page);
+                int pageIndex = this.SelectedSection.Items.IndexOf(page);
 
                 // is the current page the last in the current section?
-                if ((section.Pages.Count - 1) == pageIndex)
+                if ((section.Items.Count - 1) == pageIndex)
                 {
                     // is the current section the last?
                     if ((this.NavigationSections.Count - 1) == sectionIndex)
@@ -946,17 +946,17 @@ namespace SDX.Toolkit.Controls
                         section = this.NavigationSections[sectionIndex + 1];
 
                         // if it's valid and has pages
-                        if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+                        if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
                         {
                             // get its first page
-                            page = section.Pages[0];
+                            page = section.Items[0];
                         }
                     }
                 }
                 else
                 {
                     // get the next page
-                    page = section.Pages[pageIndex + 1];
+                    page = section.Items[pageIndex + 1];
                 }
 
                 // if we made it through the gauntlet with non-null section and page
@@ -970,10 +970,10 @@ namespace SDX.Toolkit.Controls
         public void MoveToSection(NavigationSection section)
         {
             // if the section is valid and it has pages
-            if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+            if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
             {
                 // get the first page of the section
-                NavigationPage page = section.Pages.First<NavigationPage>();
+                NavigationPage page = section.Items.First<INavigationItem>();
 
                 // if we got it
                 if (null != page)
@@ -984,23 +984,23 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void MoveToPage(NavigationSection section, NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown)
+        public void MoveToPage(NavigationSection section, INavigationItem item, NavigationActions navigationAction = NavigationActions.Unknown)
         {
             // if the section is valid and it has pages
-            if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+            if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
             {
                 // does the section contain the page we've been passed?
-                if (section.Pages.Contains<NavigationPage>(page))
+                if (section.Items.Contains<INavigationItem>(item))
                 {
                     // it does, so save this section and page as selected
                     this.SelectedSection = section;
-                    this.SelectedPage = page;
+                    this.SelectedPage = item;
 
                     // set our go back/forward flags
 
                     // what's the index of this section and page
                     int sectionIndex = this.NavigationSections.IndexOf(section);
-                    int pageIndex = section.Pages.IndexOf(page);
+                    int pageIndex = section.Items.IndexOf(item);
 
                     // if this is the first section
                     if (0 == sectionIndex)
@@ -1026,7 +1026,7 @@ namespace SDX.Toolkit.Controls
                     if ((this.NavigationSections.Count - 1) == sectionIndex)
                     {
                         // is this the last page?
-                        if ((section.Pages.Count - 1) == pageIndex)
+                        if ((section.Items.Count - 1) == pageIndex)
                         {
                             // this is the last page, so can't go forward
                             this.CanGoForward = false;

@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Windows.UI.Xaml.Controls;
-
-using SDX.Toolkit.Controls;
-
-
 namespace SDX.Toolkit.Models
 {
-    public class NavigationSection : INavigationItem
+    public class NavigationFlipView : INavigationItem
     {
         #region Private Members
 
@@ -25,8 +20,6 @@ namespace SDX.Toolkit.Models
         #region Public Properties
 
         public List<INavigationItem> Items = new List<INavigationItem>();
-        public Button UIButton = null;
-        public TextBlockEx UIText = null;
 
         #endregion
 
@@ -42,9 +35,9 @@ namespace SDX.Toolkit.Models
 
         #region Public Methods
 
-        public int GetPageIndex(NavigationPage page)
+        public int GetItemIndex(INavigationItem item)
         {
-            return this.Items.IndexOf(page);
+            return this.Items.IndexOf(item);
         }
 
         #endregion
