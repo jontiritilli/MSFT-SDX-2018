@@ -12,12 +12,13 @@
     <Grid
         x:Name="ContentArea"
         Width="{StaticResource CanvasWidth}"
-        Height="{StaticResource CanvasHeight}">
+        Height="{StaticResource ScreenHeight}">
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
@@ -31,7 +32,9 @@
             <ColumnDefinition Width=".2*"/>
             <ColumnDefinition Width=".6*"/>
         </Grid.ColumnDefinitions>
-            <ctrl:Header x:Name="PageHeader" Grid.Row="1"
+            <ctrl:Header x:Name="PageHeader"
+                Grid.Row="1"
+                Grid.RowSpan="2"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
                 Headline="{x:Bind Path=ViewModel.Headline}"
@@ -51,26 +54,27 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Opacity="1"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
+            Grid.ColumnSpan="2"
             ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
             ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
             />
         <ctrl:AppSelectorImage
             x:Name="AppSelectorImageKB"
-            Grid.Row="1"
-            Grid.RowSpan="4"
+            Grid.Row="2"
+            Grid.RowSpan="6"
             Grid.Column="2"
             Grid.ColumnSpan="2"
             Opacity="1"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             VerticalAlignment="Center"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
 
         <ctrl:TextBlockEx
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
             Opacity="1"
@@ -79,7 +83,7 @@
         <Canvas x:Name="CloseButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.RowSpan="7"
+                Grid.RowSpan="8"
                 Grid.ColumnSpan="4">
             <Grid x:Name="grdCloseButton"
               Canvas.Left="{x:Bind Path=ViewModel.ellipseGridCanvasSetLeft}"              
