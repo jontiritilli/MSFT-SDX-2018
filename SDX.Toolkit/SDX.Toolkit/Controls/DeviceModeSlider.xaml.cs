@@ -101,7 +101,7 @@ namespace SDX.Toolkit.Controls
         {
             double endingValue = SLIDER_MINIMUM;    // default to setting to the leftmost position
 
-            // calculate the eneding value and update the battery image
+            // calculate the eneding value
             switch (snapPosition)
             {
                 case DeviceModeSliderSnapPositions.Studio:
@@ -117,14 +117,14 @@ namespace SDX.Toolkit.Controls
                     break;
             }
 
-            // save the position
-            this.Position = snapPosition;
-
             // save the value
             this.Value = endingValue;
 
+            // save the position
+            this.Position = snapPosition;
+
             // update the thumb
-            UpdateThumb(GetPositionFromValue(endingValue));
+            UpdateThumb(GetPositionFromValue(endingValue), true);
 
             // raise the snapped event
             this.RaiseSnappedEvent(this, snapPosition);
@@ -209,9 +209,6 @@ namespace SDX.Toolkit.Controls
 
                 if (null != tapPoint)
                 {
-                    // get our starting value; where we are now
-                    double startingValue = this.Value;
-
                     // get the position of the tap in relation to the ContainerCanvas
                     GeneralTransform ttv = grid.TransformToVisual(this.ContainerCanvas);
                     Point p = ttv.TransformPoint(tapPoint);
@@ -355,8 +352,8 @@ namespace SDX.Toolkit.Controls
             double laptopStop = (tabletStop - studioStop) / 2;
 
             // calculate attractor boundaries
-            double studioLaptopAttractor = laptopStop * 0.33;
-            double laptopTabletAttractor = studioStop + ((tabletStop - laptopStop) * 0.33);
+            double studioLaptopAttractor = studioStop + laptopStop * 0.33;
+            double laptopTabletAttractor = laptopStop + ((tabletStop - laptopStop) * 0.33);
 
             if (currentX < studioLaptopAttractor)
             {

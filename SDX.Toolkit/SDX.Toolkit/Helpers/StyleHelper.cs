@@ -20,6 +20,7 @@ namespace SDX.Toolkit.Helpers
         Swipe,
         PageHeadline,
         PageHeadlineDark,
+        PageHeadlineLarge,
         PageLede,
         PageLedeDark,
         ReadyPageHeadline,
@@ -168,7 +169,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_HERO = "Hero";
         public const string STYLE_SWIPE = "Swipe";
         public const string STYLE_PAGE_HEADLINE = "PageHeadline";
-        public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark";
+        public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark"; 
+        public const string STYLE_PAGE_HEADLINE_LARGE = "PageHeadlineLarge";
         public const string STYLE_PAGE_LEDE = "PageLede";
         public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
         public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
@@ -639,7 +641,11 @@ namespace SDX.Toolkit.Helpers
                     break;
 
                 case TextStyles.PageHeadlineDark:
-                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE_DARK);
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE_DARK); 
+                    break;
+
+                case TextStyles.PageHeadlineLarge:
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE_LARGE); 
                     break;
 
                 case TextStyles.PageLede:
@@ -1024,16 +1030,33 @@ namespace SDX.Toolkit.Helpers
             }
         }
 
-        public static AcrylicBrush GetAcrylicBrush()
+        public static AcrylicBrush GetAcrylicBrush(string Color = "Light")
         {
-            AcrylicBrush brush = new AcrylicBrush()
+            AcrylicBrush brush;
+
+            if (Color == "Light")
             {
-                BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                Opacity = 0.9,
-                TintColor = Colors.Gray,
-                TintOpacity = 0.4,
-                FallbackColor = Colors.LightGray,
-            };
+                brush = new AcrylicBrush()
+                {
+                    BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                    Opacity = 0.995,
+                    TintColor = Colors.White,
+                    TintOpacity = 0.8,
+                    FallbackColor = Colors.LightGray,
+                };
+            }
+            else // color must be set to dark
+            {
+                brush = new AcrylicBrush()
+                {
+                    BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                    Opacity = 0.995,
+                    TintColor = Colors.Black,
+                    TintOpacity = 0.45,
+                    FallbackColor = Colors.LightGray,
+                };
+
+            }
 
             return brush;
         }

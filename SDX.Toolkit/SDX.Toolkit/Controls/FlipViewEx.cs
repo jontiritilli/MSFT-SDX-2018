@@ -24,6 +24,22 @@ namespace SDX.Toolkit.Controls
         {
             return new FlipViewItemEx();
         }
+
+        public int GetIndexOfChildView(object page)
+        {
+            int index = -1;
+
+            for (int i = 0; i < this.Items.Count; i++)
+            {
+                if (page == ((FlipViewItemEx)this.Items[i]).GetChildViewAsObject())
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+        }
     }
 
     public sealed class FlipViewItemEx : FlipViewItem

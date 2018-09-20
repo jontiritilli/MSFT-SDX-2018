@@ -227,6 +227,11 @@ namespace SurfaceStudioDemo.Views
         {
             return this.AccessoriesPenPopup;
         }
+
+        public Popup GetComparePagePopupStudio()
+        {
+            return this.CompareStudioPopup;
+        }
         #endregion
     }
 }

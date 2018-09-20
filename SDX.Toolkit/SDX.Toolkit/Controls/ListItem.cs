@@ -28,13 +28,15 @@ namespace SDX.Toolkit.Controls
         Palm,
         // for product highlight modals
         Design,
-        Power,
+        Performance,
         Laptop,
+        ScreenSize,
         Display,
         Sound,
         Lightweight,
         Battery,
         Detail,
+        Creative,
         Size,
         Connection,
         Versatile,
@@ -60,6 +62,7 @@ namespace SDX.Toolkit.Controls
         private const string ICON_DESIGN_URI = @"ms-appx:///Assets/List/specs_design.png";
         private const string ICON_PERFORMANCE_URI = @"ms-appx:///Assets/List/specs_performance.png";
         private const string ICON_LAPTOP_URI = @"ms-appx:///Assets/List/specs_laptop.png";
+        private const string ICON_SCREENSIZE_URI = @"ms-appx:///Assets/List/specs_screenSize.png";
         private const string ICON_DISPLAY_URI = @"ms-appx:///Assets/List/specs_eye.png";
         private const string ICON_AUDIO_URI = @"ms-appx:///Assets/List/specs_audio.png";
         private const string ICON_LIGHTWEIGHT_URI = @"ms-appx:///Assets/List/specs_feather.png";
@@ -67,7 +70,7 @@ namespace SDX.Toolkit.Controls
         private const string ICON_CREATIVE_URI = @"ms-appx:///Assets/List/specs_creative.png";
         private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/specs_size.png";
         private const string ICON_VERSATILE_URI = @"ms-appx:///Assets/List/specs_versatile.png";
-        private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/specs_connection.png";
+        private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/specs_connections.png";
         private const string ICON_PEN_URI = @"ms-appx:///Assets/List/specs_pen.png";
         // BOM icons
         private const string ICON_START_URI = @"ms-appx:///Assets/List/bom_windows.png";
@@ -144,14 +147,17 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_DESIGN_URI;
                         break;
 
-                    case ListItemIcon.Power:
+                    case ListItemIcon.Performance:
                         iconPath = ICON_PERFORMANCE_URI;
                         break;
 
                     case ListItemIcon.Laptop:
                         iconPath = ICON_LAPTOP_URI;
                         break;
-
+                    case ListItemIcon.ScreenSize:
+                        iconPath = ICON_SCREENSIZE_URI;
+                        break;
+                        
                     case ListItemIcon.Display:
                         iconPath = ICON_DISPLAY_URI;
                         break;
@@ -168,7 +174,7 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_BATTERY_URI;
                         break;
 
-                    case ListItemIcon.Detail:
+                    case ListItemIcon.Creative:
                         iconPath = ICON_CREATIVE_URI;
                         break;
 

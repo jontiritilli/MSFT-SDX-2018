@@ -64,7 +64,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region INavigate Interface
 
         public void NavigateToPage()

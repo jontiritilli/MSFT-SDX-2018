@@ -119,6 +119,6 @@
     <x:Double x:Key="NavigationBarLineHeight">7.5</x:Double>
     <x:Double x:Key="NavigationBarMargin">33.333</x:Double>
     <x:Double x:Key="NavigationBarSpacer">64.667</x:Double>
-    <x:Double x:Key="NavigationBarArrowWidth">13.333</x:Double>
-    <!--<x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    --><!-- Home does not appear in this app -->
+    <x:Double x:Key="NavigationBarArrowWidth">32</x:Double>
+    <x:Double x:Key="NavigationBarHomeWidth">32</x:Double>  <!-- Home does not appear in this app -->
 </ResourceDictionary>

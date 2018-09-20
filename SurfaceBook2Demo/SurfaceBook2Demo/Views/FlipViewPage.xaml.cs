@@ -104,7 +104,7 @@ namespace SurfaceBook2Demo.Views
             _previousPage = (INavigate)((FlipViewItemEx)this.ContentFlipView.SelectedItem).GetChildViewAsObject();
 
             // navigate to it
-            _previousPage.NavigateToPage();
+            _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
 
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
@@ -132,20 +132,39 @@ namespace SurfaceBook2Demo.Views
                         _previousPage.NavigateFromPage();
                     }
 
-                    // get the pageIndex of the new page
-                    int pageIndex = flipView.SelectedIndex;
-
-                    // tell the navbar to move to it
-                    this.BottomNavBar.MoveToPageIndex(pageIndex);
-
-                    // navigate to the current page
+                    // navigate to the new page
                     if (null != flipView.SelectedItem)
                     {
-                        // save the current page so we can navigate from it
+                        INavigateMoveDirection moveDirection = INavigateMoveDirection.Unknown;
+
+                        // get the pageIndex of the new page
+                        int nextPageIndex = flipView.SelectedIndex;
+
+                        // find the index of the previous page
+                        int previousPageIndex = flipView.GetIndexOfChildView(_previousPage);
+
+                        // if we got it
+                        if (-1 != previousPageIndex)
+                        {
+                            // are we moving forward or backward to get to the new page?
+                            if (previousPageIndex < nextPageIndex)
+                            {
+                                moveDirection = INavigateMoveDirection.Forward;
+                            }
+                            else if (nextPageIndex < previousPageIndex)
+                            {
+                                moveDirection = INavigateMoveDirection.Backward;
+                            }
+                        }
+
+                        // save the current page so we can navigate away from it later
                         _previousPage = (INavigate)((FlipViewItemEx)flipView.SelectedItem).GetChildViewAsObject();
 
                         // navigate to it
-                        _previousPage.NavigateToPage();
+                        _previousPage.NavigateToPage(moveDirection);
+
+                        // tell the navbar to move to it
+                        this.BottomNavBar.MoveToPageIndex(nextPageIndex);
                     }
                 }
             }

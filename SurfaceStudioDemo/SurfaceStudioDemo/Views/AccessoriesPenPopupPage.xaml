@@ -31,14 +31,6 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:TextBlockEx x:Name="PageHeadline" Grid.Row="3" Grid.Column="1"
-                Text="{x:Bind Path=ViewModel.Headline}"
-                TextAlignment="Center"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Width="1300"
-                TextStyle="ReadyPageHeadline"/>
-
         <ctrl:ImageEx Grid.Row="4" Grid.Column="1"
             x:Name="img_Right"
             ImageWidth="{x:Bind Path=ViewModel.READY_IMAGE_WIDTH}"
@@ -64,5 +56,14 @@
                 VerticalAlignment="Center"
                 TextStyle="ReadyButtonCaption"/>
         </Border>
+        
+        <ctrl:TextBlockEx x:Name="PageHeadline" Grid.Row="3" Grid.Column="1"
+                Text="{x:Bind Path=ViewModel.Headline}"
+                TextAlignment="Center"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="1300"
+                TextStyle="ReadyPageHeadline"/>
+
     </Grid>
 </Page>

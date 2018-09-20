@@ -128,6 +128,16 @@
                 <views:AccessoriesPenPopupPage/>
             </Popup.Child>
         </Popup>
+        
+        <Popup x:Name="CompareStudioPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ComparePagePopupStudio/>
+            </Popup.Child>
+        </Popup>
         <!-- TEST ONLY -->
         <!--<Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>
         <Border Grid.Row="0" Grid.Column="1" BorderBrush="White" BorderThickness="2"/>

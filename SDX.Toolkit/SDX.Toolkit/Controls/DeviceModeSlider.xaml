@@ -64,8 +64,8 @@
         <Ellipse x:Name="LaptopTick" 
                  Stroke="White" Fill="White"
                  Width="{StaticResource TickWidth}" Height="{StaticResource TickWidth}" 
-                 HorizontalAlignment="Right" VerticalAlignment="Center"
-                 Grid.Row="0" Grid.Column="1"
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                  Tapped="LaptopTick_Tapped">
         </Ellipse>
         <Ellipse x:Name="TabletTick" 
@@ -97,9 +97,9 @@
         <ctrl:TextBlockEx x:Name="LaptopCaption"
                             Text="{x:Bind Path=LaptopCaptionText}"
                             TextStyle="SliderCaption"
-                            HorizontalAlignment="Right" VerticalAlignment="Center"
-                            HorizontalContentAlignment="Right"
-                            Grid.Row="2" Grid.Column="1"/>
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
         <ctrl:TextBlockEx x:Name="TabletCaption"
                             Text="{x:Bind Path=TabletCaptionText}"
                             TextStyle="SliderCaption"

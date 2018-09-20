@@ -30,9 +30,12 @@ namespace SurfaceStudioDemo.ViewModels
             Register<AccessoriesPenPopupViewModel, AccessoriesPenPopupPage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
             Register<CompareViewModel, ComparePage>();
+            Register<ComparePopupStudioViewModel, ComparePagePopupStudio>();
         }
 
         public CompareViewModel CompareViewModel => ServiceLocator.Current.GetInstance<CompareViewModel>();
+
+        public ComparePopupStudioViewModel ComparePopupStudioViewModel => ServiceLocator.Current.GetInstance<ComparePopupStudioViewModel>();
 
         public BestOfMicrosoftViewModel BestOfMicrosoftViewModel => ServiceLocator.Current.GetInstance<BestOfMicrosoftViewModel>();
 
