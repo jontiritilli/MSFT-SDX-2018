@@ -73,7 +73,7 @@ namespace SurfaceStudioDemo.Views
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.ReadyScreen.IsOpen = false;
+            //this.ReadyScreen.IsOpen = false;
         }
 
         private void ShowPopup()

@@ -138,6 +138,7 @@
     <Compile Include="ViewModels\AccessoriesTryItViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceCraftedViewModel.cs" />
     <Compile Include="ViewModels\ExperienceCreativityViewModel.cs" />
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
+      <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceCraftedPage.xaml.cs">
       <DependentUpon>ExperienceCraftedPage.xaml</DependentUpon>
@@ -262,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ComparePagePopupStudio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExperienceCraftedPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -313,6 +321,7 @@
     <Content Include="Assets\Comparison\comparisonStudio.png" />
     <Content Include="Assets\Experience\appsDesktop.png" />
     <Content Include="Assets\Experience\appsStudio.png" />
+    <Content Include="Assets\Experience\inkingGateway.png" />
     <Content Include="Assets\Experience\craftmanship.png" />
     <Content Include="Assets\Experience\hero01.jpg" />
     <Content Include="Assets\Experience\hero02.jpg" />
@@ -347,6 +356,7 @@
     <Content Include="Assets\List\specs_laptop.png" />
     <Content Include="Assets\List\specs_pen.png" />
     <Content Include="Assets\List\specs_performance.png" />
+    <Content Include="Assets\List\specs_screenSize.png" />
     <Content Include="Assets\List\specs_versatile.png" />
     <Content Include="Assets\List\specs_wifi.png" />
     <Content Include="Assets\List\inkingDraw.png" />
@@ -376,9 +386,8 @@
     <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
     <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="Assets\Universal\tryit_dial.png" />
-    <Content Include="Assets\Universal\tryit_pen.png" />
-    <Content Include="Assets\Universal\tryit_tap.png" />
+    <Content Include="Assets\RadiatingButton\tryit_dial.png" />
+    <Content Include="Assets\RadiatingButton\tryit_pen.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Properties\Default.rd.xml" />

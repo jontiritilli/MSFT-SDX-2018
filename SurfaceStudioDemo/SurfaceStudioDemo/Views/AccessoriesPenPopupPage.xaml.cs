@@ -58,7 +58,7 @@ namespace SurfaceStudioDemo.Views
         {
             this.InitializeComponent();
             AccessoriesPenPopupPage.Current = this;
-            this.PenPagePopup.Background = StyleHelper.GetAcrylicBrush();
+            this.PenPagePopup.Background = StyleHelper.GetAcrylicBrush("Dark");
         }
 
         #endregion

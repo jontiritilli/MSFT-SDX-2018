@@ -16,7 +16,7 @@ namespace SurfaceStudioDemo.ViewModels
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
-        private const string URI_READY = "ms-appx:///Assets/Experience/appsDesktop.png";
+        private const string URI_READY = "ms-appx:///Assets/Experience/inkingGateway.png";
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
         public double READY_IMAGE_WIDTH = 1000;

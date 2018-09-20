@@ -13,37 +13,33 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-using SurfaceStudioDemo.ViewModels;
-
 using SDX.Toolkit.Helpers;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using SurfaceStudioDemo.ViewModels;
 
 namespace SurfaceStudioDemo.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ExperiencePixelSensePopupPage : Page, INavigate
+    public sealed partial class ComparePagePopupStudio : Page, INavigate
     {
         public RoutedEventHandler CloseButton_Clicked;
 
         #region Private Members
 
-        private ExperiencePixelSensePopupViewModel ViewModel
+        private ComparePopupStudioViewModel ViewModel
         {
-            get { return DataContext as ExperiencePixelSensePopupViewModel; }
+            get { return DataContext as ComparePopupStudioViewModel; }
         }
 
         #endregion
 
         #region Construction
 
-        public ExperiencePixelSensePopupPage()
+        public ComparePagePopupStudio()
         {
             InitializeComponent();
-            ExperiencePixelSensePopupPage.Current = this;
-            this.AppSelectorImagePixel.AppSelector = this.AppSelectorPixel;
+            ComparePagePopupStudio.Current = this;
             this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
         }
 
@@ -51,7 +47,7 @@ namespace SurfaceStudioDemo.Views
 
         #region Public Static Properties
 
-        public static ExperiencePixelSensePopupPage Current { get; private set; }
+        public static ComparePagePopupStudio Current { get; private set; }
 
         #endregion
 

@@ -24,7 +24,8 @@ namespace SDX.Toolkit.Controls
     {
         LedeOnly,            // List has a header and lede-only items (i.e. interactive pages)
         HeadlineAndLede,     // List items have individual headlines (i.e. product highlights page)
-        BestOf               // best of page
+        BestOf,               // best of page
+        Compare
     }
 
     public sealed class List : Control
@@ -350,6 +351,78 @@ namespace SDX.Toolkit.Controls
                                 HeadlineStyle = TextStyles.ListItemHeadlineBestOf,
                                 Headline = item.Headline,
                                 LedeStyle = TextStyles.ListItemLedeBestOf,
+                                Lede = item.Lede,
+                                CTAText = item.CTAText,
+                                CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
+                                Width = ListTextWidth,
+                                HeaderAlignment = TextAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalAlignment = VerticalAlignment.Top
+                            };
+                            Grid.SetColumn(headline, 2);
+                            Grid.SetRow(headline, RowToAdd);
+
+                            _layoutRoot.Children.Add(headline);
+
+                            // increment index
+                            Index++;
+                        }
+                    }
+                    break;
+
+                case ListStyles.Compare: // Used for product highlights page wherein each item has its own lede-headline
+                    {
+                        // add columns
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble("CompareColumnSpacerWidth")) });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                        // create a counter to know when we reach the end of list
+                        int Index = 0;
+                        int ListLength = _listItems.Count() - 1;
+
+                        double ListTextWidth = StyleHelper.GetApplicationDouble("CompareListTextWidth");
+
+                        // create the list items and add to the grid
+                        foreach (ListItem item in _listItems)
+                        {
+                            // get correct row to add content, don't want to add to a spacer row
+                            int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
+
+                            // set row spacing
+                            double rowSpacing = StyleHelper.GetApplicationDouble("CompareRowSpacerHeight");
+
+                            // create the row for content
+                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            // if it's not the last row, create a spacer row
+                            if (Index < ListLength)
+                            {
+                                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
+                            }
+
+                            GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
+
+                            // create icon image
+                            ImageEx icon = new ImageEx()
+                            {
+                                Name = String.Format("Icon_{0}", item.Order),
+                                ImageSource = item.IconPath,
+                                ImageWidth = item.IconWidth,
+                                VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
+                                VerticalContentAlignment = VerticalAlignment.Top,
+                            };
+
+                            Grid.SetColumn(icon, 0);
+                            Grid.SetRow(icon, RowToAdd);
+                            _layoutRoot.Children.Add(icon);
+
+                            // create the headline (bold text) if one is provided
+                            Header headline = new Header()
+                            {
+                                HeadlineStyle = TextStyles.ListItemHeadlineCompare,
+                                Headline = item.Headline,
+                                LedeStyle = TextStyles.ListItemLedeCompare,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),

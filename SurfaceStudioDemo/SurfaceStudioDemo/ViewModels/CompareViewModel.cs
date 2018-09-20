@@ -39,7 +39,6 @@ namespace SurfaceStudioDemo.ViewModels
         private const int IMG_GO_HEIGHT = 630;//1260
         #endregion
 
-
         #region Public Properties
 
         public string Headline;
@@ -76,6 +75,7 @@ namespace SurfaceStudioDemo.ViewModels
         public string StudioTitle;
         public string LaptopTitle;
         public string GoTitle;
+
         #endregion
 
         #region Construction
