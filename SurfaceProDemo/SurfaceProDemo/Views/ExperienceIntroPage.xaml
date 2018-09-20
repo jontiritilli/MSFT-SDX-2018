@@ -37,12 +37,13 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 HeadlineStyle="{x:Bind Path=ViewModel.HeadlineStyle}"
                 LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 Lede="{x:Bind Path=ViewModel.Lede}"                
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top" />
 
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"

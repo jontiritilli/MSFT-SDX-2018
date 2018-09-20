@@ -6,6 +6,7 @@ using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 using SurfaceProDemo.Services;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 namespace SurfaceProDemo.ViewModels
@@ -82,6 +83,14 @@ namespace SurfaceProDemo.ViewModels
         public double closeEllipseTopMargin;
 
         public SolidColorBrush ellipseStroke;
+
+        public GridLength AppCloseWidth
+        {
+            get
+            {
+                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.AppCloseWidth));
+            }
+        }
         #endregion
 
 

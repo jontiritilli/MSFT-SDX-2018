@@ -36,11 +36,9 @@
             <ColumnDefinition Width=".7*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                         Headline="{x:Bind Path=ViewModel.Headline}"
-                        Lede="{x:Bind Path=ViewModel.Lede}"
-
+                        Lede="{x:Bind Path=ViewModel.Lede}"                        
                         HeadlineStyle="PageHeadlineDark"
                         LedeStyle="PageLedeDark"
                         HorizontalAlignment="Left"

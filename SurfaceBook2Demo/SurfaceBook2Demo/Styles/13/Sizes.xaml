@@ -60,7 +60,7 @@
     <x:Double x:Key="AppCloseWidth">48</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 
-    <x:Double x:Key="HeaderWidth">640</x:Double>
+    <x:Double x:Key="HeaderWidth">540</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">32.34</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">15</x:Double>
@@ -87,7 +87,7 @@
     <x:Double x:Key="PopupDefaultWidth">486</x:Double>
     <x:Double x:Key="PopupSpacer">60</x:Double>
     
-    <x:Double x:Key="RadiatingButtonEllipseRadius">66.667</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseRadius">50</x:Double>
     <x:Double x:Key="RadiatingButtonGridWidth">138.667</x:Double>
     <x:Double x:Key="RadiatingButtonEllipseTopSpacer">16.367</x:Double>
     <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">24.48</x:Double>
@@ -101,13 +101,13 @@
     <!--width of the triangle at the bottom of the messagebox-->
     <x:Double x:Key="TryItIconHeight">40</x:Double>
 
-    <x:Double x:Key="CanvasWidth">1620</x:Double>
-    <x:Double x:Key="CanvasHeight">980.64</x:Double>  <!-- 2160 - 198.72 (navbar) = 1961.28, 1961.28 / 2 (200% scaling) = 980.64 -->
+    <x:Double x:Key="CanvasWidth">1500</x:Double>
+    <x:Double x:Key="CanvasHeight">908</x:Double>  <!-- 2000 - 184 (navbar) = 1816, 1961.28 / 2 (200% scaling) = 980.64 -->
 
     <x:Double x:Key="ScreenWidth">1500</x:Double>
     <x:Double x:Key="ScreenHeight">1000</x:Double>
-    <x:Double x:Key="CloseButtonRightMargin">100</x:Double>
-    <x:Double x:Key="CloseButtonTopMargin">81.405</x:Double>
+    <x:Double x:Key="CloseButtonRightMargin">50</x:Double><!--100 pixels so 50-->
+    <x:Double x:Key="CloseButtonTopMargin">50</x:Double>
 
 
     <x:Double x:Key="NavigationBarHeight">92</x:Double>
