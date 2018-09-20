@@ -421,9 +421,11 @@
     <Content Include="Assets\List\inkingPalm.png" />
     <Content Include="Assets\List\inkingPressure.png" />
     <Content Include="Assets\List\inkingWrite.png" />
+    <Content Include="Assets\NavigationBar\navChevronLeft13.png" />
+    <Content Include="Assets\NavigationBar\navChevronLeft15.png" />
+    <Content Include="Assets\NavigationBar\navChevronRight13.png" />
+    <Content Include="Assets\NavigationBar\navChevronRight15.png" />
     <Content Include="Assets\NavigationBar\navHome.png" />
-    <Content Include="Assets\NavigationBar\navChevronLeft.png" />
-    <Content Include="Assets\NavigationBar\navChevronRight.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-100.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-125.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-150.png" />
