@@ -392,6 +392,8 @@
     <Content Include="Assets\Experience\sb2_relax_insetHinge_sb13.png" />
     <Content Include="Assets\Experience\sb2_relax_insetHinge_sb15.png" />
     <Content Include="Assets\Experience\sb2_relax_sb15.png" />
+    <Content Include="Assets\Experience\sb2_transform_13.png" />
+    <Content Include="Assets\Experience\sb2_transform_15.png" />
     <Content Include="Assets\Experience\sb2_work_appScreen_bluebeam_13.png" />
     <Content Include="Assets\Experience\sb2_work_appScreen_bluebeam_15.png" />
     <Content Include="Assets\Experience\sb2_work_appScreen_maya_13.png" />

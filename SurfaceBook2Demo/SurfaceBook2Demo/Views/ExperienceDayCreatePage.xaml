@@ -55,8 +55,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.60}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                                 
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                                 
                 PopupPosition="Left"                 
                 AutoStart = "false"/>
 
@@ -66,8 +66,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.20}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                 
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.13}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.52}"                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
@@ -77,8 +77,8 @@
                     EntranceStaggerDelayInMilliseconds = "0"
                     RadiateDurationInMilliseconds = "1800"
                     RadiateStaggerDelayInMilliseconds = "5000"
-                    Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
-                    Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"                                 
+                    Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
+                    Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.33}"                                 
                     PopupPosition="Below"                 
                     AutoStart = "false"                                       
                     />
@@ -106,12 +106,12 @@
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Video"
+                        PopupType="Image"
                         Headline="{x:Bind Path=ViewModel.PopupTransformHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupTransformLede}"
-                        MediaSourceUri="{x:Bind Path=ViewModel.PopupTransformVideoUri}"
-                        MediaWidth="{x:Bind Path=ViewModel.PopupTransformVideoWidth}"
-                        MediaHeight="{x:Bind Path=ViewModel.PopupTransformVideoHeight}"                        
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupTransformImageUri}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupTransformImageWidth}"
+                        MediaHasMargin="false"
                         />
                 </Popup.Child>
             </Popup>
