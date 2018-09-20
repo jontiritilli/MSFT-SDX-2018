@@ -88,24 +88,44 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        private const string URI_HOME = "ms-appx:///Assets/NavigationBar/navHome.png";
-        private const string URI_CHEVRON_BACK = "ms-appx:///Assets/NavigationBar/navChevronLeft.png";
-        private const string URI_CHEVRON_FORWARD = "ms-appx:///Assets/NavigationBar/navChevronRight.png";
+        private const string URI_HOME_CRUZ = "ms-appx:///Assets/NavigationBar/cruz_home.png";
+        private const string URI_HOME_JACK = "ms-appx:///Assets/NavigationBar/joplin_home.png";
+
+        private const string URI_CHEVRON_BACK_STUDIO = "ms-appx:///Assets/NavigationBar/cap_nav_chevronLeft.png";
+        private const string URI_CHEVRON_FORWARD_STUDIO = "ms-appx:///Assets/NavigationBar/cap_nav_chevronRight.png";
+
+        private const string URI_CHEVRON_BACK_PRO = "ms-appx:///Assets/NavigationBar/cruz_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_PRO = "ms-appx:///Assets/NavigationBar/cruz_chevron_right.png";
+
+        private const string URI_CHEVRON_BACK_LAPTOP = "ms-appx:///Assets/NavigationBar/fox_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_LAPTOP = "ms-appx:///Assets/NavigationBar/fox_chevron_right.png";
+
+        private const string URI_CHEVRON_BACK_SB2_13 = "ms-appx:///Assets/NavigationBar/sb2_13_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_SB2_13 = "ms-appx:///Assets/NavigationBar/sb2_13_chevron_right.png";
+
+        private const string URI_CHEVRON_BACK_SB2_15 = "ms-appx:///Assets/NavigationBar/sb2_15_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_SB2_15 = "ms-appx:///Assets/NavigationBar/sb2_15_chevron_right.png";
+
 
         #endregion
 
         #region Private Members
 
+        // device-dependent images
+        private string ChevronLeftUri;
+        private string ChevronRightUri;
+        private string HomeUri;
+
         // UI members we need to keep track of
-        Grid _layoutRoot;
-        Canvas _lineCanvas;
-        Line _navLine;
-        Button _navGoBack;
-        Button _navGoForward;
-        Button _navHome = null;
-        Image _imgGoBack;
-        Image _imgGoForward;
-        Image _imgHome;
+        private Grid _layoutRoot;
+        private Canvas _lineCanvas;
+        private Line _navLine;
+        private Button _navGoBack;
+        private Button _navGoForward;
+        private Button _navHome = null;
+        private Image _imgGoBack;
+        private Image _imgGoForward;
+        private Image _imgHome;
 
         #endregion
 
@@ -132,6 +152,42 @@ namespace SDX.Toolkit.Controls
             if (null == this.NavigationSections)
             {
                 this.NavigationSections = new List<NavigationSection>();
+            }
+
+            // populate our images based on size of device
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Studio:
+                    ChevronLeftUri = URI_CHEVRON_BACK_STUDIO;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_STUDIO;
+                    HomeUri = URI_HOME_JACK;
+                    break;
+
+                case DeviceType.Pro:
+                default:
+                    ChevronLeftUri = URI_CHEVRON_BACK_PRO;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_PRO;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
+                case DeviceType.Laptop:
+                    ChevronLeftUri = URI_CHEVRON_BACK_LAPTOP;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_LAPTOP;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
+                case DeviceType.Book15:
+                    ChevronLeftUri = URI_CHEVRON_BACK_SB2_15;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_SB2_15;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
+                case DeviceType.Book13:
+                    ChevronLeftUri = URI_CHEVRON_BACK_SB2_13;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_SB2_13;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
             }
         }
 
@@ -389,7 +445,7 @@ namespace SDX.Toolkit.Controls
             // columns - this is dynamic based on sections
             // margin, go back, and greedy-eater
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth + 16) }); // includes style margins
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
 
             // column for each section
@@ -406,7 +462,7 @@ namespace SDX.Toolkit.Controls
 
             // greedy-eater, go forward, and margin
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth + 16) }); // includes style margins
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
 
             // AreGridLinesEnabled
@@ -457,7 +513,7 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoBack = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri(URI_CHEVRON_BACK), DecodePixelWidth = (int)_arrowWidth },
+                        Source = new BitmapImage() { UriSource = new Uri(ChevronLeftUri), DecodePixelWidth = (int)_arrowWidth, DecodePixelType = DecodePixelType.Logical },
                         Width = _arrowWidth
                     };
                 }
@@ -492,7 +548,7 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoForward = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri(URI_CHEVRON_FORWARD), DecodePixelWidth = (int)_arrowWidth },
+                        Source = new BitmapImage() { UriSource = new Uri(ChevronRightUri), DecodePixelWidth = (int)_arrowWidth, DecodePixelType = DecodePixelType.Logical },
                         Width = _arrowWidth
                     };
                 }
@@ -530,11 +586,9 @@ namespace SDX.Toolkit.Controls
                     {
                         _imgHome = new Image()
                         {
-                            Source = new BitmapImage() { UriSource = new Uri(URI_HOME), DecodePixelWidth = (int)_homeWidth },
+                            Source = new BitmapImage() { UriSource = new Uri(HomeUri), DecodePixelWidth = (int)_homeWidth, DecodePixelType = DecodePixelType.Logical },
                             Width = _homeWidth,
                             Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed),
-                            VerticalAlignment = VerticalAlignment.Center,
-                            HorizontalAlignment = HorizontalAlignment.Center,
                         };
                     }
 
@@ -543,7 +597,9 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "Home",
                         Content = _imgHome,
-                        Visibility = Visibility.Collapsed
+                        Visibility = Visibility.Collapsed,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
                     };
                     if (null != buttonStyle) { _navHome.Style = buttonStyle; }
 

@@ -223,7 +223,7 @@ namespace SDX.Toolkit.Controls
                             // assume this is a bmp, png, jpg, gif or other supported raster image
 
                             // Image understands ms-appx: and ms-appdata:, so just set the image source
-                            _image.Source = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth };
+                            _image.Source = new BitmapImage() { UriSource = new Uri(this.ImageSource), DecodePixelWidth = (int)this.ImageWidth, DecodePixelType = DecodePixelType.Logical };
                         }
                     }
                 }
