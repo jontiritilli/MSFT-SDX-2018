@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace SurfaceProDemo.Views
 {
+    public enum INavigateMoveDirection
+    {
+        Unknown,
+        Backward,
+        Forward
+    }
+
     interface INavigate
     {
-        void NavigateToPage();
+        void NavigateToPage(INavigateMoveDirection moveDirection);
 
         void NavigateFromPage();
     }

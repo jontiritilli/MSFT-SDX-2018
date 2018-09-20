@@ -47,7 +47,7 @@ namespace SurfaceBook2Demo.Views
             this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
         }
 
-        public void NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
         }

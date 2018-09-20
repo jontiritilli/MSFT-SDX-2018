@@ -47,7 +47,7 @@ namespace SurfaceBook2Demo.Views
 
         #region INavigate Interface
 
-        public void NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             //this.RadiatingButtonPen.StartEntranceAnimation();
             //this.RadiatingButtonPen.StartRadiateAnimation();

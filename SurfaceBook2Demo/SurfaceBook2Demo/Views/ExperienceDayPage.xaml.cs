@@ -40,7 +40,7 @@ namespace SurfaceBook2Demo.Views
             _previousPage = (INavigate)((FlipViewItemEx)this.DayFlipView.SelectedItem).GetChildViewAsObject();
 
             // navigate to it
-            _previousPage.NavigateToPage();
+            _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
         }
 
         #endregion
@@ -61,17 +61,40 @@ namespace SurfaceBook2Demo.Views
                 // navigate to the current page
                 if (null != this.DayFlipView.SelectedItem)
                 {
+                    INavigateMoveDirection moveDirection = INavigateMoveDirection.Unknown;
+
+                    // get the pageIndex of the new page
+                    int nextPageIndex = this.DayFlipView.SelectedIndex;
+
+                    // find the index of the previous page
+                    int previousPageIndex = this.DayFlipView.Items.IndexOf(_previousPage);
+
+                    // if we got it
+                    if (-1 != previousPageIndex)
+                    {
+                        // are we moving forward or backward?
+                        if (previousPageIndex < nextPageIndex)
+                        {
+                            moveDirection = INavigateMoveDirection.Forward;
+                        }
+                        else if (nextPageIndex < previousPageIndex)
+                        {
+                            moveDirection = INavigateMoveDirection.Backward;
+                        }
+                    }
+
                     // save the current page so we can navigate from it
-                    _previousPage = (INavigate)((FlipViewItemEx)DayFlipView.SelectedItem).GetChildViewAsObject();
+                    _previousPage = (INavigate)((FlipViewItemEx)this.DayFlipView.SelectedItem).GetChildViewAsObject();
 
                     // navigate to it
-                    _previousPage.NavigateToPage();
+                    _previousPage.NavigateToPage(moveDirection);
                 }
 
                 // update the slider
                 switch (this.DayFlipView.SelectedIndex)
                 {
                     case 0:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (DaySliderSnapPositions.Morning != this.DaySlider.Position)
                         {
                             this.DaySlider.SnapTo(DaySliderSnapPositions.Morning);
@@ -79,6 +102,7 @@ namespace SurfaceBook2Demo.Views
                         break;
 
                     case 1:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (DaySliderSnapPositions.Afternoon != this.DaySlider.Position)
                         {
                             this.DaySlider.SnapTo(DaySliderSnapPositions.Afternoon);
@@ -86,6 +110,7 @@ namespace SurfaceBook2Demo.Views
                         break;
 
                     case 2:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (DaySliderSnapPositions.Evening != this.DaySlider.Position)
                         {
                             this.DaySlider.SnapTo(DaySliderSnapPositions.Evening);
@@ -93,6 +118,7 @@ namespace SurfaceBook2Demo.Views
                         break;
 
                     case 3:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (DaySliderSnapPositions.Night != this.DaySlider.Position)
                         {
                             this.DaySlider.SnapTo(DaySliderSnapPositions.Night);
@@ -109,6 +135,7 @@ namespace SurfaceBook2Demo.Views
                 switch (e.SnapPosition)
                 {
                     case DaySliderSnapPositions.Morning:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (0 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 0;
@@ -116,6 +143,7 @@ namespace SurfaceBook2Demo.Views
                         break;
 
                     case DaySliderSnapPositions.Afternoon:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (1 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 1;
@@ -123,6 +151,7 @@ namespace SurfaceBook2Demo.Views
                         break;
 
                     case DaySliderSnapPositions.Evening:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (2 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 2;
@@ -130,6 +159,7 @@ namespace SurfaceBook2Demo.Views
                         break;
 
                     case DaySliderSnapPositions.Night:
+                        // to avoid infinite event loops, only update if it's not already set to the new value 
                         if (3 != this.DayFlipView.SelectedIndex)
                         {
                             this.DayFlipView.SelectedIndex = 3;
@@ -144,8 +174,29 @@ namespace SurfaceBook2Demo.Views
 
         #region INavigate Interface
 
-        public void NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
+            // if we're navigating to this flipview page,
+            // we need to know which direction we're coming from
+            // so that we know which page in the flipview to show
+            switch (moveDirection)
+            {
+                case INavigateMoveDirection.Backward:
+                    // moving backwards to get here, so set to the last page in the flipview
+                    this.DayFlipView.SelectedIndex = 3;
+                    break;
+
+                case INavigateMoveDirection.Forward:
+                    // moving forwards, so set to first
+                    this.DayFlipView.SelectedIndex = 0;
+                    break;
+
+                case INavigateMoveDirection.Unknown:
+                default:
+                    // don't do anything for Unknown
+                    break;
+            }
+
             // animations in
         }
 
