@@ -860,8 +860,7 @@ namespace SDX.Toolkit.Controls
             }
                 this.SelectedID = sbButton.ID;
                 this.SelectedButton = sbButton;
-                this.Selector_ChangeBold(sbButton.Content);
-            }
+                this.Selector_ChangeBold(sbButton);
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
