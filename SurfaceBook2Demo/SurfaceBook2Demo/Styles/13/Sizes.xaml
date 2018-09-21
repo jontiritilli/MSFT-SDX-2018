@@ -85,7 +85,7 @@
     <x:Double x:Key="SwipeToContinueSpacer">5.93</x:Double>
 
     <x:Double x:Key="PopupDefaultWidth">486</x:Double>
-    <x:Double x:Key="PopupSpacer">60</x:Double>
+    <x:Double x:Key="PopupSpacer">43.625</x:Double>
     
     <x:Double x:Key="RadiatingButtonEllipseRadius">50</x:Double>
     <x:Double x:Key="RadiatingButtonGridWidth">138.667</x:Double>

@@ -93,7 +93,7 @@
                 IsOpen = "False"
                 Canvas.ZIndex="102"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                   
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                   
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -110,7 +110,7 @@
                 IsOpen = "False"
                 Canvas.ZIndex="102"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                   
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"             
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

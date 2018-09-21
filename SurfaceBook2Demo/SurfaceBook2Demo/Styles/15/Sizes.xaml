@@ -99,7 +99,7 @@
     <x:Double x:Key="TryItIconHeight">40</x:Double>
 
     <x:Double x:Key="PopupDefaultWidth">700</x:Double>
-    <x:Double x:Key="PopupSpacer">60</x:Double>
+    <x:Double x:Key="PopupSpacer">56.155</x:Double>
 
     <x:Double x:Key="CanvasWidth">1620</x:Double>
     <x:Double x:Key="CanvasHeight">980.64</x:Double>  <!-- 2160 - 198.72 (navbar) = 1961.28, 1961.28 / 2 (200% scaling) = 980.64 -->

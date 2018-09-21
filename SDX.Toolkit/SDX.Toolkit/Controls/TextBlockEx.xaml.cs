@@ -76,6 +76,15 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        public void SetOpacity(double opacity)
+        {
+            if ((opacity < 0.0) || (opacity > 1.0)) { return; }
+            this.Opacity = opacity;
+            if (null != this.LayoutRoot)
+            {
+                this.LayoutRoot.Opacity = opacity;
+            }
+        }
         #endregion
 
 
