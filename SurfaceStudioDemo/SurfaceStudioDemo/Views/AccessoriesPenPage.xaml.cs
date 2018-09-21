@@ -73,7 +73,7 @@ namespace SurfaceStudioDemo.Views
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            //this.ReadyScreen.IsOpen = false;
+            this.ReadyScreen.IsOpen = false;
         }
 
         private void ShowPopup()
@@ -84,7 +84,6 @@ namespace SurfaceStudioDemo.Views
                 {
                     ReadyScreen.IsOpen = true;
                 }
-                Visited = true;
             }
         }
 
@@ -96,6 +95,7 @@ namespace SurfaceStudioDemo.Views
                 {
                     ReadyScreen.IsOpen = false;
                 }
+                Visited = true;
             }
         }
 

@@ -19,7 +19,7 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_READY = "ms-appx:///Assets/Experience/inkingGateway.png";
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
-        public double READY_IMAGE_WIDTH = 1000;
+        public double READY_IMAGE_WIDTH = 1350;
 
         #endregion
 

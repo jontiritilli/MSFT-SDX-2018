@@ -19,7 +19,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public ExperienceCreativityPage()
@@ -29,17 +28,18 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region INavigate Interface
 
         public void NavigateToPage()
         {
             AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformFadeIn(this.backgroundImage2, 1100d, 750d);
         }
 
         public void NavigateFromPage()
         {
             AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformFadeOut(this.backgroundImage2, 0d, 0d);
         }
 
         #endregion

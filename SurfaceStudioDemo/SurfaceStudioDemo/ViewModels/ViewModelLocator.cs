@@ -25,7 +25,7 @@ namespace SurfaceStudioDemo.ViewModels
             Register<ExperiencePixelSenseViewModel, ExperiencePixelSensePage>();
             Register<ExperiencePixelSensePopupViewModel, ExperiencePixelSensePopupPage>();
             Register<AccessoriesMouseViewModel, AccessoriesMousePage>();
-            Register<AccessoriesTryItViewModel, AccessoriesTryItPage>();
+            Register<AccessoriesDialViewModel, AccessoriesDialPage>();
             Register<AccessoriesPenViewModel, AccessoriesPenPage>();
             Register<AccessoriesPenPopupViewModel, AccessoriesPenPopupPage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
@@ -43,7 +43,7 @@ namespace SurfaceStudioDemo.ViewModels
 
         public AccessoriesPenPopupViewModel AccessoriesPenPopupViewModel => ServiceLocator.Current.GetInstance<AccessoriesPenPopupViewModel>();
 
-        public AccessoriesTryItViewModel AccessoriesTryItViewModel => ServiceLocator.Current.GetInstance<AccessoriesTryItViewModel>();
+        public AccessoriesDialViewModel AccessoriesDialViewModel => ServiceLocator.Current.GetInstance<AccessoriesDialViewModel>();
 
         public AccessoriesMouseViewModel AccessoriesMouseViewModel => ServiceLocator.Current.GetInstance<AccessoriesMouseViewModel>();
 

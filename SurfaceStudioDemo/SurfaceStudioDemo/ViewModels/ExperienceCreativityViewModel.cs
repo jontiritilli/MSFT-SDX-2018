@@ -22,7 +22,8 @@ namespace SurfaceStudioDemo.ViewModels
 
         public string Headline;
         public string Lede;
-        public string BackgroundUri = URI_BACKGROUND1;
+        public string BackgroundOneUri = URI_BACKGROUND1;
+        public string BackgroundTwoUri = URI_BACKGROUND2;
 
         #endregion
 

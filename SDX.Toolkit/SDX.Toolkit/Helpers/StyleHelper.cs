@@ -26,6 +26,7 @@ namespace SDX.Toolkit.Helpers
         ReadyPageHeadline,
         ListHeadline,
         ListLede,
+        ListLedeBold,
         ListItemHeadlinePenTouch,
         ListItemLedePenTouch,
         ListItemHeadlineBestOf,
@@ -176,6 +177,7 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
         public const string STYLE_LIST_HEADLINE = "ListHeadline";
         public const string STYLE_LIST_LEDE = "ListLede";
+        public const string STYLE_LIST_LEDE_BOLD = "ListLedeBold";
         public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
         public const string STYLE_LISTITEM_LEDE_PENTOUCH = "ListItemLedePenTouch";
         public const string STYLE_LISTITEM_HEADLINE_BESTOF = "ListItemHeadlineBestOf";
@@ -668,6 +670,10 @@ namespace SDX.Toolkit.Helpers
                     style = GetApplicationStyle(STYLE_LIST_LEDE);
                     break;
 
+                case TextStyles.ListLedeBold:
+                    style = GetApplicationStyle(STYLE_LIST_LEDE_BOLD);
+                    break;
+
                 case TextStyles.ListItemHeadlinePenTouch:
                     style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_PENTOUCH);
                     break;
@@ -1039,7 +1045,7 @@ namespace SDX.Toolkit.Helpers
                 brush = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.995,
+                    Opacity = 0.993,
                     TintColor = Colors.White,
                     TintOpacity = 0.8,
                     FallbackColor = Colors.LightGray,
@@ -1050,7 +1056,7 @@ namespace SDX.Toolkit.Helpers
                 brush = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.995,
+                    Opacity = 0.997,
                     TintColor = Colors.Black,
                     TintOpacity = 0.45,
                     FallbackColor = Colors.LightGray,

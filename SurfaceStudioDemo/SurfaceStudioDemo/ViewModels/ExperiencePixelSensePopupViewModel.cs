@@ -25,24 +25,17 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_RIGHT = "ms-appx:///Assets/Experience/appsStudio.png";
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
+        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/caprock_adobecc.png";
+        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/caprock_sketchbook.png";
+        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/caprock_bluebeam.png";
 
-        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/sketchbook.png";
-        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/sketchbook.png";
-        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/sketchbook.png";
-        private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Experience/sketchbook.png";
-        private const string URI_IMAGESELECTOR_IMAGE_5 = "ms-appx:///Assets/Experience/sketchbook.png";
+        private const string URI_APPSELECTOR_APP_1 = "ms-appx:///Assets/Icons/AppIcons/adobecc.png";
+        private const string URI_APPSELECTOR_APP_2 = "ms-appx:///Assets/Icons/AppIcons/autodesk.png";
+        private const string URI_APPSELECTOR_APP_3 = "ms-appx:///Assets/Icons/AppIcons/bluebeam.png";
 
-        private const string URI_APPSELECTOR_APP_1 = "ms-appx:///Assets/Icons/AppIcons/premiere.png";
-        private const string URI_APPSELECTOR_APP_2 = "ms-appx:///Assets/Icons/AppIcons/maya.png";
-        private const string URI_APPSELECTOR_APP_3 = "ms-appx:///Assets/Icons/AppIcons/sketchbook.png";
-        private const string URI_APPSELECTOR_APP_4 = "ms-appx:///Assets/Icons/AppIcons/bluebeam.png";
-        private const string URI_APPSELECTOR_APP_5 = "ms-appx:///Assets/Icons/AppIcons/psd.png";
-
-        private const string URI_APPSELECTOR_APP_SELECTED_1 = "ms-appx:///Assets/Icons/AppIcons/premiere.png";
-        private const string URI_APPSELECTOR_APP_SELECTED_2 = "ms-appx:///Assets/Icons/AppIcons/maya.png";
-        private const string URI_APPSELECTOR_APP_SELECTED_3 = "ms-appx:///Assets/Icons/AppIcons/sketchbook.png";
-        private const string URI_APPSELECTOR_APP_SELECTED_4 = "ms-appx:///Assets/Icons/AppIcons/bluebeam.png";
-        private const string URI_APPSELECTOR_APP_SELECTED_5 = "ms-appx:///Assets/Icons/AppIcons/psd.png";
+        private const string URI_APPSELECTOR_APP_SELECTED_1 = "ms-appx:///Assets/Icons/AppIcons/adobecc.png";
+        private const string URI_APPSELECTOR_APP_SELECTED_2 = "ms-appx:///Assets/Icons/AppIcons/autodesk.png";
+        private const string URI_APPSELECTOR_APP_SELECTED_3 = "ms-appx:///Assets/Icons/AppIcons/bluebeam.png";
 
         private const double SELECTORIMAGE_IMAGEHEIGHT = 1200;
         private const double SELECTORIMAGE_IMAGEWIDTH = 1134.5;
@@ -102,18 +95,6 @@ namespace SurfaceStudioDemo.ViewModels
                 Source_SelectedImage = URI_APPSELECTOR_APP_SELECTED_3
             });
 
-            IconURIS.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_APP_4,
-                Source_SelectedImage = URI_APPSELECTOR_APP_SELECTED_4
-            });
-
-            IconURIS.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_APP_5,
-                Source_SelectedImage = URI_APPSELECTOR_APP_SELECTED_5
-            });
-
             ImageURIS.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_1,
@@ -132,17 +113,6 @@ namespace SurfaceStudioDemo.ViewModels
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
 
-            ImageURIS.Add(new AppSelectorImageURI()
-            {
-                URI = URI_IMAGESELECTOR_IMAGE_4,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
-
-            ImageURIS.Add(new AppSelectorImageURI()
-            {
-                URI = URI_IMAGESELECTOR_IMAGE_5,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

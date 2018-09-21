@@ -226,8 +226,6 @@ namespace SurfaceStudioDemo.Services
             viewModel.IconURIS[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE");
             viewModel.IconURIS[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO, "EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO");
             viewModel.IconURIS[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE");
-            viewModel.IconURIS[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR");
-            viewModel.IconURIS[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE");
         }
 
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
@@ -287,7 +285,7 @@ namespace SurfaceStudioDemo.Services
             viewModel.ButtonText = GetStringValue(_languageCurrent.ACCESSORIES_GATEWAY_CTA, "ACCESSORIES_GATEWAY_CTA");
         }
 
-        public void LoadAccessoriesTryItViewModel(AccessoriesTryItViewModel viewModel)
+        public void LoadAccessoriesDialViewModel(AccessoriesDialViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_COPY, "ACCESSORIES_LEFT_COPY");
