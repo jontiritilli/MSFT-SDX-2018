@@ -1039,7 +1039,7 @@ namespace SDX.Toolkit.Helpers
                 brush = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.995,
+                    Opacity = 0.993,
                     TintColor = Colors.White,
                     TintOpacity = 0.8,
                     FallbackColor = Colors.LightGray,
@@ -1050,7 +1050,7 @@ namespace SDX.Toolkit.Helpers
                 brush = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.995,
+                    Opacity = 0.997,
                     TintColor = Colors.Black,
                     TintOpacity = 0.45,
                     FallbackColor = Colors.LightGray,

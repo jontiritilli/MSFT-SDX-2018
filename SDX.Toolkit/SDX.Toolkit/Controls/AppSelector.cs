@@ -2,6 +2,7 @@
 using SDX.Toolkit.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -55,14 +56,16 @@ namespace SDX.Toolkit.Controls
 
         private const double WIDTH_GRID = 340d;
         private const double WIDTH_GRID_COLUMNSPACING = 10d;
-        private const double WIDTH_GRID_ROWSPACING = 10d;        
+        private const double WIDTH_GRID_ROWSPACING = 10d;
+        private const double LINE_OFFSET = 2d;
         private Style _buttonStyle;
 
         #endregion
 
         #region Private Members
 
-        private Grid _layoutRoot = null;        
+        private Grid _layoutRoot = null;
+        private Grid btnGrid = null;
         private Storyboard _storyboardFadeIn = null;
         private Storyboard _storyboardFadeOut = null;
         private int _syncID = -1;// cant be 0 b/c 0 is first part of index in list
@@ -72,6 +75,7 @@ namespace SDX.Toolkit.Controls
         private TranslateTransform translateTransform = new TranslateTransform();
         private Storyboard storyboard = new Storyboard();
         private DoubleAnimation daAnimation = new DoubleAnimation();
+
         #endregion
 
         #region Construction
@@ -462,7 +466,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Render UI
 
         private void RenderUI()
@@ -536,15 +539,16 @@ namespace SDX.Toolkit.Controls
 
             if (this.ShowSelectedLine)
             {
-                //int margin = 5;
-                selectedLine.StrokeThickness = 10;
+                selectedLine.StrokeThickness = 5;
+                double LineRightMargin = 10.5;
+
                 if (this.MainOrientation == Orientation.Vertical)
                 {
-                    selectedLine.X1 = 0;
-                    selectedLine.Y1 = 2;
+                    selectedLine.X1 = -LineRightMargin;
+                    selectedLine.Y1 = LINE_OFFSET;
 
-                    selectedLine.X2 = 0;
-                    selectedLine.Y2 = this.ButtonHeight + 4;
+                    selectedLine.X2 = -LineRightMargin;
+                    selectedLine.Y2 = this.ButtonHeight + LINE_OFFSET;
                 }
                 if (this.MainOrientation == Orientation.Horizontal)
                 {
@@ -555,9 +559,10 @@ namespace SDX.Toolkit.Controls
                     selectedLine.Y2 = this.ButtonHeight + 10;
                 }
 
+                SolidColorBrush SelectedLineColor = RadiatingButton.GetSolidColorBrush("#FF0078D4");
 
-                selectedLine.Stroke = new SolidColorBrush(Colors.LightSteelBlue);
-                selectedLine.Fill = new SolidColorBrush(Colors.LightSteelBlue);
+                selectedLine.Stroke = SelectedLineColor;
+                selectedLine.Fill = SelectedLineColor;
                 _layoutRoot.Children.Add(selectedLine);
 
                 this.SelectedButton = this.Buttons[0];// set the first button as the selected button for line moving
@@ -598,16 +603,16 @@ namespace SDX.Toolkit.Controls
 
         private void GenerateButton(AppSelectorData AppSelectorData, int index)
         {
-            Grid grid = new Grid()
+            btnGrid = new Grid()
             {
                 Margin = new Thickness(0),
                 Padding = new Thickness(0)
             };
             if (this.ShowMessages && this.MainOrientation == Orientation.Vertical)
             {
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
-                grid.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
+                btnGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                btnGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.5, GridUnitType.Star) });
+                btnGrid.ColumnSpacing = WIDTH_GRID_COLUMNSPACING;
             }
 
             ImagePair images = new ImagePair()
@@ -648,15 +653,16 @@ namespace SDX.Toolkit.Controls
             //images.Selected.Source
             Grid.SetRow(images.NotSelected, 0);
             Grid.SetColumn(images.NotSelected, 0);
-            grid.Children.Add(images.NotSelected);
+            btnGrid.Children.Add(images.NotSelected);
             Grid.SetRow(images.Selected, 0);
             Grid.SetColumn(images.Selected, 0);
-            grid.Children.Add(images.Selected);
+            btnGrid.Children.Add(images.Selected);
 
             if (this.MainOrientation == Orientation.Vertical && this.ShowMessages)
             {
                 TextBlockEx tbMessage = new TextBlockEx()
                 {
+                    Name = "Text",
                     Text = AppSelectorData.Message,
                     TextStyle = TextStyles.ListLede,
                     FontSize = 20,
@@ -665,7 +671,7 @@ namespace SDX.Toolkit.Controls
                 };
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
-                grid.Children.Add(tbMessage);
+                btnGrid.Children.Add(tbMessage);
             }
             if (!AppSelectorData.IsClearButton) {
                 this.ImagePairs.Add(index, images);
@@ -684,7 +690,7 @@ namespace SDX.Toolkit.Controls
                 Background = new SolidColorBrush(Colors.Transparent),
                 HorizontalAlignment = horizontalAlignment,
                 VerticalAlignment = VerticalAlignment.Center,
-                Content = grid
+                Content = btnGrid
             };
 
             //only set the dimensions of the button if the control variables are passed in
@@ -710,7 +716,7 @@ namespace SDX.Toolkit.Controls
             {
                 sbButton.Click += Selector_ButtonClick;
             }
-            grid.PointerEntered += pointerEntered;
+            btnGrid.PointerEntered += pointerEntered;
 
 
             if (this.MainOrientation == Orientation.Horizontal)
@@ -836,13 +842,22 @@ namespace SDX.Toolkit.Controls
             if (this.ShowSelectedLine && this.SelectedButton.ID != sbButton.ID)
             {// transform the line so it moves to underneath the sender
                 this.Selector_SlideLine(sbButton);
+                this.SelectedID = sbButton.ID;
+                this.SelectedButton = sbButton;
+                this.Selector_ChangeBold(sbButton.Content);
             }
-            this.SelectedID = sbButton.ID;
-            this.SelectedButton = sbButton;
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
 
+        }
+
+        private void Selector_ChangeBold(object Selected)
+        {
+            //foreach(UIElement child in ((Windows.UI.Xaml.Controls.Grid)_layoutRoot.Children).Content)
+            //{
+
+            //}
         }
 
         private void Selector_ClearButtonClick(object sender, RoutedEventArgs e)
@@ -865,19 +880,21 @@ namespace SDX.Toolkit.Controls
                 *** SPECIAL NOTE if u storyboard a  translatetransform with a double animation, the
                 the translatetransform gets no value and the animation gets it instead in the To prop
             */
-            Double iDistanceInButtons = End.ID;
-            Double iDistance = 0;
+            double iDistanceInButtons = End.ID;
+            double iDistance = 0;
+            double LineOffset = End.ID == 0 ? 0 : LINE_OFFSET;
+
 
             // move left or right
             if (this.MainOrientation == Orientation.Horizontal)
             {
-                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * ((int)WIDTH_GRID_COLUMNSPACING + 8));
+                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * (WIDTH_GRID_COLUMNSPACING + 8));
             }
 
             // move up or down
-            else //if (this.Orientation == Orientation.Vertical)
+            else // orientation must be vertical
             {
-                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * ((int)WIDTH_GRID_ROWSPACING) + 4);
+                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * WIDTH_GRID_ROWSPACING) + LineOffset;
             }
             daAnimation.To = iDistance;
             this.storyboard.Begin();
@@ -920,11 +937,9 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region UI Helpers
 
         #endregion
-
 
         #region Code Helpers
 

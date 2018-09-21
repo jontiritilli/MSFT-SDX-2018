@@ -19,7 +19,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public ExperienceHeroPage()
@@ -28,7 +27,6 @@ namespace SurfaceStudioDemo.Views
         }
 
         #endregion
-
 
         #region INavigate Interface
 

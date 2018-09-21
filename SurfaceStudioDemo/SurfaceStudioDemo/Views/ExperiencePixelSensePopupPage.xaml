@@ -10,8 +10,8 @@
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
-        Width="{StaticResource CanvasWidth}"
-        Height="{StaticResource CanvasHeight}">
+        Height="{StaticResource ScreenHeight}"
+        Width="{StaticResource ScreenWidth}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
