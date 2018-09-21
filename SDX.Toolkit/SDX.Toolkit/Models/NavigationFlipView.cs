@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+
+
 namespace SDX.Toolkit.Models
 {
     public class NavigationFlipView : INavigationItem
@@ -20,6 +24,7 @@ namespace SDX.Toolkit.Models
         #region Public Properties
 
         public List<INavigationItem> Items = new List<INavigationItem>();
+        public int SelectedItem = 0;
 
         #endregion
 

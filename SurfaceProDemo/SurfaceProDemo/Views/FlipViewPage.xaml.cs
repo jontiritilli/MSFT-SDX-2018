@@ -195,10 +195,13 @@ namespace SurfaceProDemo.Views
                 if (sender is NavigationBar navBar)
                 {
                     // convert the section/page from the event args to a page index
-                    int pageIndex = navBar.GetPageIndexFromPage(e.NavSection, e.NavPage);
+                    int pageIndex = navBar.GetPageIndexFromPage(e.NavSection, e.NavItem);
 
                     // move the flipview to that index
-                    this.ContentFlipView.SelectedIndex = pageIndex;
+                    if (this.ContentFlipView.SelectedIndex != pageIndex)
+                    {
+                        this.ContentFlipView.SelectedIndex = pageIndex;
+                    }
                 }
             }
         }

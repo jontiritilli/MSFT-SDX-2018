@@ -86,7 +86,7 @@ namespace SurfaceProDemo.ViewModels
             };
 
             // ExperienceHeroPage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceHeroPage",
                 Order = 0
@@ -94,49 +94,54 @@ namespace SurfaceProDemo.ViewModels
             );
 
             // ExperienceIntroPage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceIntroPage",
                 Order = 1
             }
             );
 
+            // -------------------------------------------------
             // ExperienceFlipViewPage
-            section.Pages.Add(new NavigationPage()
+            // -------------------------------------------------
+            NavigationFlipView flipView = new NavigationFlipView()
             {
                 Name = "ExperienceFlipViewPage",
+                Order = 2
+            };
+
+            // -------------------------------------------------
+            // ExperienceTransformPage
+            flipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceTransformPage",
+                Order = 0
+            }
+            );
+
+            // ExperiencePerformancePage
+            flipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperiencePerformancePage",
+                Order = 1
+            }
+            );
+
+            // ExperienceQuietPage
+            flipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceQuietPage",
                 Order = 2
             }
             );
 
-            //// ExperienceTransformPage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperienceTransformPage",
-            //    Order = 2
-            //}
-            //);
-
-            //// ExperiencePerformancePage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperiencePerformancePage",
-            //    Order = 3
-            //}
-            //);
-
-            //// ExperienceQuietPage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperienceQuietPage",
-            //    Order = 4
-            //}
-            //);
+            // add the flipview to the section
+            section.Items.Add(flipView);
+            // -------------------------------------------------
 
             // add the section to the list
             this.Sections.Add(section);
             // =================================================
-
 
             // =================================================
             // Accessories Section
@@ -149,7 +154,7 @@ namespace SurfaceProDemo.ViewModels
             };
 
             // AccessoriesPenPage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "AccessoriesPenPage",
                 Order = 0
@@ -157,7 +162,7 @@ namespace SurfaceProDemo.ViewModels
             );
 
             // AccessoriesKeyboardPage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "AccessoriesKeyboardPage",
                 Order = 1
@@ -165,7 +170,7 @@ namespace SurfaceProDemo.ViewModels
             );
 
             // AccessoriesMousePage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "AccessoriesMousePage",
                 Order = 2
@@ -188,7 +193,7 @@ namespace SurfaceProDemo.ViewModels
             };
 
             // BestOfMicrosoftPage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "BestOfMicrosoftPage",
                 Order = 0
@@ -211,7 +216,7 @@ namespace SurfaceProDemo.ViewModels
             };
 
             // ComparePage
-            section.Pages.Add(new NavigationPage()
+            section.Items.Add(new NavigationPage()
             {
                 Name = "ComparePage",
                 Order = 0

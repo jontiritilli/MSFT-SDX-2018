@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+
+
 namespace SDX.Toolkit.Models
 {
     public class NavigationPage : INavigationItem
@@ -18,8 +22,6 @@ namespace SDX.Toolkit.Models
 
 
         #region Public Properties
-
-        public string ParentId;
 
         #endregion
 

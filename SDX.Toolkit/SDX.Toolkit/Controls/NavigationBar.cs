@@ -42,7 +42,7 @@ namespace SDX.Toolkit.Controls
 
         private NavigationActions _navAction;
         private NavigationSection _navSection;
-        private NavigationPage _navPage;
+        private INavigationItem _navItem;
 
         #endregion
 
@@ -52,11 +52,11 @@ namespace SDX.Toolkit.Controls
         {
         }
 
-        public NavigateEventArgs(NavigationActions navAction, NavigationSection navSection, NavigationPage navPage)
+        public NavigateEventArgs(NavigationActions navAction, NavigationSection navSection, INavigationItem navItem)
         {
             NavAction = navAction;
             NavSection = navSection;
-            NavPage = navPage;
+            NavItem = navItem;
         }
 
         #endregion
@@ -75,10 +75,10 @@ namespace SDX.Toolkit.Controls
             set { _navSection = value; }
         }
 
-        public NavigationPage NavPage
+        public INavigationItem NavItem
         {
-            get { return _navPage; }
-            set { _navPage = value; }
+            get { return _navItem; }
+            set { _navItem = value; }
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace SDX.Toolkit.Controls
 
             // set default properties
             this.SelectedSection = null;
-            this.SelectedPage = null;
+            this.SelectedItem = null;
             this.CanGoBack = false;
             this.CanGoForward = true;
 
@@ -206,7 +206,7 @@ namespace SDX.Toolkit.Controls
 
         public NavigationSection SelectedSection { get; private set; }
 
-        public NavigationPage SelectedPage { get; private set; }
+        public INavigationItem SelectedItem { get; private set; }
 
         public bool CanGoBack { get; private set; }
 
@@ -259,9 +259,9 @@ namespace SDX.Toolkit.Controls
             Navigate?.Invoke(navigationBar, e);
         }
 
-        private void RaiseNavigateEvent(NavigationBar navigationBar, NavigationActions navAction, NavigationSection navSection, NavigationPage navPage)
+        private void RaiseNavigateEvent(NavigationBar navigationBar, NavigationActions navAction, NavigationSection navSection, INavigationItem navItem)
         {
-            NavigateEventArgs args = new NavigateEventArgs(navAction, navSection, navPage);
+            NavigateEventArgs args = new NavigateEventArgs(navAction, navSection, navItem);
 
             RaiseNavigateEvent(navigationBar, args);
         }
@@ -756,34 +756,34 @@ namespace SDX.Toolkit.Controls
 
         #region UI Helpers
 
-        public int GetPageIndexFromPage(NavigationSection section, NavigationPage page)
+        public int GetPageIndexFromPage(NavigationSection section, INavigationItem item)
         {
             int index = -1;     // -1 is an error
 
             // if the section and page are valid
             if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0)
                 && (null != section) && (null != section.Items) && (section.Items.Count > 0)
-                && (null != page))
+                && (null != item))
             {
                 // get the index of the section in the list of sections
                 int sectionIndex = this.NavigationSections.IndexOf(section);
 
-                // get the index of the page in the current section
-                int pageIndex = section.Items.IndexOf(page);
+                // get the index of the item in the current section
+                int itemIndex = section.GetItemIndex(item);
 
                 // if both are valid
-                if ((0 <= sectionIndex) && (0 <= pageIndex))
+                if ((0 <= sectionIndex) && (0 <= itemIndex))
                 {
                     // if this is the first section
                     if (0 == sectionIndex)
                     {
                         // then the page index is our value
-                        index = pageIndex;
+                        index = itemIndex;
                     }
                     else
                     {
-                        // if the section isn't the first, we have to add the pages from the previous sections
-                        int previousPageCount = 0;
+                        // if the section isn't the first, we have to add the items from the previous sections
+                        int previousItemCount = 0;
 
                         // loop through the previous sections and add their page counts
                         for (int i = 0; i < sectionIndex; i++)
@@ -792,12 +792,12 @@ namespace SDX.Toolkit.Controls
                             if ((null != this.NavigationSections[i]) && (null != this.NavigationSections[i].Items))
                             {
                                 // it does, so add those pages to our count
-                                previousPageCount += this.NavigationSections[i].Items.Count;
+                                previousItemCount += this.NavigationSections[i].Items.Count;
                             }
                         }
 
                         // take the count of previous pages and add the page index to it 
-                        index = previousPageCount + pageIndex;
+                        index = previousItemCount + itemIndex;
                     }
                 }
             }
@@ -805,11 +805,11 @@ namespace SDX.Toolkit.Controls
             return index;
         }
 
-        public void GetPageFromPageIndex(int pageIndex, out NavigationSection section, out NavigationPage page)
+        public void GetPageFromPageIndex(int pageIndex, out NavigationSection section, out INavigationItem item)
         {
             // default values
             section = null;
-            page = null;
+            item = null;
 
             // if there are sections
             if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0))
@@ -828,7 +828,7 @@ namespace SDX.Toolkit.Controls
                         {
                             // this is the section where our page will be
                             section = navigationSection;
-                            page = section.Items[pageIndex];
+                            item = section.Items[pageIndex];
 
                             return;
                         }
@@ -849,13 +849,13 @@ namespace SDX.Toolkit.Controls
 
             // we need a section and page
             NavigationSection section = null;
-            NavigationPage page = null;
+            INavigationItem item = null;
 
             // convert the index to section and page
-            this.GetPageFromPageIndex(pageIndex, out section, out page);
+            this.GetPageFromPageIndex(pageIndex, out section, out item);
 
             // if we got them
-            if ((null != section) && (null != page))
+            if ((null != section) && (null != item))
             {
                 // what action?
                 if (0 == pageIndex)
@@ -865,7 +865,7 @@ namespace SDX.Toolkit.Controls
                 }
 
                 // move to it
-                MoveToPage(section, page, navigationAction);
+                MoveToPage(section, item, navigationAction);
             }
         }
 
@@ -873,17 +873,17 @@ namespace SDX.Toolkit.Controls
         {
             // get the selected section and page
             NavigationSection section = this.SelectedSection;
-            NavigationPage page = this.SelectedPage;
+            INavigationItem item = this.SelectedItem;
 
             // if we can go back and we have a selected section and page
-            if ((this.CanGoBack) && (null != this.SelectedSection) && (null != this.SelectedPage))
+            if ((this.CanGoBack) && (null != this.SelectedSection) && (null != this.SelectedItem))
             {
                 // get the indices of the selected section and page
                 int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Items.IndexOf(page);
+                int itemIndex = this.SelectedSection.Items.IndexOf(item);
 
                 // is the current page the first in the current section?
-                if (0 == pageIndex)
+                if (0 == itemIndex)
                 {
                     // is the current section the first?
                     if (0 == sectionIndex)
@@ -900,20 +900,20 @@ namespace SDX.Toolkit.Controls
                         if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
                         {
                             // get its last page
-                            page = section.Items[section.Items.Count - 1];
+                            item = section.Items[section.Items.Count - 1];
                         }
                     }
                 }
                 else
                 {
                     // get the previous page
-                    page = section.Items[pageIndex - 1];
+                    item = section.Items[itemIndex - 1];
                 }
 
                 // if we made it through the gauntlet with non-null section and page
-                if ((null != section) && (null != page))
+                if ((null != section) && (null != item))
                 {
-                    MoveToPage(section, page, NavigationActions.GoBack);
+                    MoveToPage(section, item, NavigationActions.GoBack);
                 }
             }
         }
@@ -922,17 +922,17 @@ namespace SDX.Toolkit.Controls
         {
             // get the selected section and page
             NavigationSection section = this.SelectedSection;
-            NavigationPage page = this.SelectedPage;
+            INavigationItem item = this.SelectedItem;
 
             // if we can go forward and we have a selected section and page
-            if ((this.CanGoForward) && (null != this.SelectedSection) && (null != this.SelectedPage))
+            if ((this.CanGoForward) && (null != this.SelectedSection) && (null != this.SelectedItem))
             {
                 // get the indices of the selected section and page
                 int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Items.IndexOf(page);
+                int itemIndex = this.SelectedSection.Items.IndexOf(item);
 
                 // is the current page the last in the current section?
-                if ((section.Items.Count - 1) == pageIndex)
+                if ((section.Items.Count - 1) == itemIndex)
                 {
                     // is the current section the last?
                     if ((this.NavigationSections.Count - 1) == sectionIndex)
@@ -949,20 +949,20 @@ namespace SDX.Toolkit.Controls
                         if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
                         {
                             // get its first page
-                            page = section.Items[0];
+                            item = section.Items[0];
                         }
                     }
                 }
                 else
                 {
                     // get the next page
-                    page = section.Items[pageIndex + 1];
+                    item = section.Items[itemIndex + 1];
                 }
 
                 // if we made it through the gauntlet with non-null section and page
-                if ((null != section) && (null != page))
+                if ((null != section) && (null != item))
                 {
-                    MoveToPage(section, page, NavigationActions.GoForward);
+                    MoveToPage(section, item, NavigationActions.GoForward);
                 }
             }
         }
@@ -973,13 +973,13 @@ namespace SDX.Toolkit.Controls
             if ((null != section) && (null != section.Items) && (section.Items.Count > 0))
             {
                 // get the first page of the section
-                NavigationPage page = section.Items.First<INavigationItem>();
+                INavigationItem item = section.Items.First<INavigationItem>();
 
                 // if we got it
-                if (null != page)
+                if (null != item)
                 {
                     // move to the section and page; assume we're triggered by a button click
-                    MoveToPage(section, page, NavigationActions.Section);
+                    MoveToPage(section, item, NavigationActions.Section);
                 }
             }
         }
@@ -994,18 +994,18 @@ namespace SDX.Toolkit.Controls
                 {
                     // it does, so save this section and page as selected
                     this.SelectedSection = section;
-                    this.SelectedPage = item;
+                    this.SelectedItem = item;
 
                     // set our go back/forward flags
 
                     // what's the index of this section and page
                     int sectionIndex = this.NavigationSections.IndexOf(section);
-                    int pageIndex = section.Items.IndexOf(item);
+                    int itemIndex = section.Items.IndexOf(item);
 
                     // if this is the first section
                     if (0 == sectionIndex)
                     {
-                        if (0 == pageIndex)
+                        if (0 == itemIndex)
                         {
                             // we can't go back from the first page of the first section
                             this.CanGoBack = false;
@@ -1026,7 +1026,7 @@ namespace SDX.Toolkit.Controls
                     if ((this.NavigationSections.Count - 1) == sectionIndex)
                     {
                         // is this the last page?
-                        if ((section.Items.Count - 1) == pageIndex)
+                        if ((section.Items.Count - 1) == itemIndex)
                         {
                             // this is the last page, so can't go forward
                             this.CanGoForward = false;
@@ -1047,7 +1047,7 @@ namespace SDX.Toolkit.Controls
                     this.UpdateUI();
 
                     // raise our navigate event
-                    RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedPage);
+                    RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
 
                 }
             }
