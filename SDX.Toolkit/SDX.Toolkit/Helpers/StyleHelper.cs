@@ -26,6 +26,7 @@ namespace SDX.Toolkit.Helpers
         ReadyPageHeadline,
         ListHeadline,
         ListLede,
+        ListLedeBold,
         ListItemHeadlinePenTouch,
         ListItemLedePenTouch,
         ListItemHeadlineBestOf,
@@ -176,6 +177,7 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
         public const string STYLE_LIST_HEADLINE = "ListHeadline";
         public const string STYLE_LIST_LEDE = "ListLede";
+        public const string STYLE_LIST_LEDE_BOLD = "ListLedeBold";
         public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
         public const string STYLE_LISTITEM_LEDE_PENTOUCH = "ListItemLedePenTouch";
         public const string STYLE_LISTITEM_HEADLINE_BESTOF = "ListItemHeadlineBestOf";
@@ -666,6 +668,10 @@ namespace SDX.Toolkit.Helpers
 
                 case TextStyles.ListLede:
                     style = GetApplicationStyle(STYLE_LIST_LEDE);
+                    break;
+
+                case TextStyles.ListLedeBold:
+                    style = GetApplicationStyle(STYLE_LIST_LEDE_BOLD);
                     break;
 
                 case TextStyles.ListItemHeadlinePenTouch:

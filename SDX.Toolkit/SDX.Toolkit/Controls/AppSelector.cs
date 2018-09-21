@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -66,9 +67,10 @@ namespace SDX.Toolkit.Controls
 
         private Grid _layoutRoot = null;
         private Grid btnGrid = null;
+        private List<AppSelectorButton> _buttonList = new List<AppSelectorButton>();
         private Storyboard _storyboardFadeIn = null;
         private Storyboard _storyboardFadeOut = null;
-        private int _syncID = -1;// cant be 0 b/c 0 is first part of index in list
+        private int _syncID = -1; // cant be 0 b/c 0 is first part of index in list
         private List<AppSelectorButton> Buttons;
         private Line selectedLine = new Line();
         private AppSelectorButton SelectedButton;
@@ -421,7 +423,6 @@ namespace SDX.Toolkit.Controls
             {
                 // update the UI with the new color
                 selector.UpdateUI();
-
                 // only raise the event if this was NOT a sync change
                 if (selector.SelectedID != selector._syncID)
                 {
@@ -669,6 +670,10 @@ namespace SDX.Toolkit.Controls
                     Opacity = 1,
                     VerticalAlignment = VerticalAlignment.Center
                 };
+                if (index == 0)
+                {
+                    tbMessage.TextStyle = TextStyles.ListLedeBold;
+                }
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 btnGrid.Children.Add(tbMessage);
@@ -734,6 +739,7 @@ namespace SDX.Toolkit.Controls
                 this.Buttons.Add(sbButton);
             }            
             _layoutRoot.Children.Add(sbButton);
+            _buttonList.Add(sbButton);
         }
 
         private void GenerateButton(ImagePair imagePair, int i, int position)
@@ -764,15 +770,21 @@ namespace SDX.Toolkit.Controls
                 horizontalAlignment = HorizontalAlignment.Left;
                 TextBlockEx tbMessage = new TextBlockEx()
                 {
+                    Name = "TheText",
                     Text = imagePair.Message,
                     TextStyle= TextStyles.ListLede,
                     FontSize = 20,
                     Opacity = 1,
                     VerticalAlignment = VerticalAlignment.Center
                 };
+                if (i == 0)
+                {
+                    tbMessage.TextStyle = TextStyles.ListLedeBold;
+                }
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 grid.Children.Add(tbMessage);
+
             }
 
             AppSelectorButton sbButton = new AppSelectorButton()
@@ -825,6 +837,8 @@ namespace SDX.Toolkit.Controls
                 this.Buttons.Add(sbButton);
             }
             _layoutRoot.Children.Add(sbButton);
+            _buttonList.Add(sbButton);
+
         }
 
         private void pointerEntered(object sender, PointerRoutedEventArgs e)
@@ -842,6 +856,8 @@ namespace SDX.Toolkit.Controls
             if (this.ShowSelectedLine && this.SelectedButton.ID != sbButton.ID)
             {// transform the line so it moves to underneath the sender
                 this.Selector_SlideLine(sbButton);
+                this.Selector_ChangeBold(sbButton);
+            }
                 this.SelectedID = sbButton.ID;
                 this.SelectedButton = sbButton;
                 this.Selector_ChangeBold(sbButton.Content);
@@ -849,15 +865,26 @@ namespace SDX.Toolkit.Controls
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
-
         }
 
-        private void Selector_ChangeBold(object Selected)
+        private void Selector_ChangeBold(AppSelectorButton sbButton)
         {
-            //foreach(UIElement child in ((Windows.UI.Xaml.Controls.Grid)_layoutRoot.Children).Content)
-            //{
-
-            //}
+            foreach(AppSelectorButton button in _buttonList)
+            {
+                if(((Panel)button.Content).Children[2] is TextBlockEx)
+                {
+                    TextBlockEx text = (TextBlockEx)((Panel)button.Content).Children[2];
+                    
+                    if(button.ID == sbButton.ID)
+                    {
+                        text.TextStyle = TextStyles.ListLedeBold;
+                    }
+                    else
+                    {
+                        text.TextStyle = TextStyles.ListLede;
+                    }
+                }
+            }
         }
 
         private void Selector_ClearButtonClick(object sender, RoutedEventArgs e)
@@ -924,7 +951,6 @@ namespace SDX.Toolkit.Controls
                         this.ImagePairs[i].Selected.Opacity = 0;
                         this.ImagePairs[i].NotSelected.Opacity = 1;
                     }
-
                 }
             }
             else
@@ -932,7 +958,6 @@ namespace SDX.Toolkit.Controls
                 //on button 
 
             }
-
         }
 
         #endregion
