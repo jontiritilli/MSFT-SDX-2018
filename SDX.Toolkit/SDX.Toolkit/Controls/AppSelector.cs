@@ -58,7 +58,8 @@ namespace SDX.Toolkit.Controls
         private const double WIDTH_GRID = 340d;
         private const double WIDTH_GRID_COLUMNSPACING = 10d;
         private const double WIDTH_GRID_ROWSPACING = 10d;
-        private const double LINE_OFFSET = 2d;
+        private const double HORIZONTAL_LINE_OFFSET = 3d;
+        private const double VERTICAL_LINE_OFFSET = 2d;
         private Style _buttonStyle;
 
         #endregion
@@ -541,23 +542,24 @@ namespace SDX.Toolkit.Controls
             if (this.ShowSelectedLine)
             {
                 selectedLine.StrokeThickness = 5;
-                double LineRightMargin = 10.5;
+                double LineRightMargin = StyleHelper.GetApplicationDouble("AppSelectorLineBottomMargin");
+                double LineBottomMargin = StyleHelper.GetApplicationDouble("AppSelectorLineBottomMargin");
 
                 if (this.MainOrientation == Orientation.Vertical)
                 {
                     selectedLine.X1 = -LineRightMargin;
-                    selectedLine.Y1 = LINE_OFFSET;
+                    selectedLine.Y1 = VERTICAL_LINE_OFFSET;
 
                     selectedLine.X2 = -LineRightMargin;
-                    selectedLine.Y2 = this.ButtonHeight + LINE_OFFSET;
+                    selectedLine.Y2 = this.ButtonHeight + VERTICAL_LINE_OFFSET;
                 }
                 if (this.MainOrientation == Orientation.Horizontal)
                 {
-                    selectedLine.X1 = 5;
-                    selectedLine.Y1 = this.ButtonHeight + 10;
+                    selectedLine.X1 = 3;
+                    selectedLine.Y1 = this.ButtonHeight + 5 + LineBottomMargin;
 
-                    selectedLine.X2 = this.ButtonWidth + 14;// border thickness for some reason 2 on both sides
-                    selectedLine.Y2 = this.ButtonHeight + 10;
+                    selectedLine.X2 = this.ButtonWidth + 4;// border thickness for some reason 2 on both sides
+                    selectedLine.Y2 = this.ButtonHeight + 5 + LineBottomMargin;
                 }
 
                 SolidColorBrush SelectedLineColor = RadiatingButton.GetSolidColorBrush("#FF0078D4");
@@ -908,19 +910,20 @@ namespace SDX.Toolkit.Controls
             */
             double iDistanceInButtons = End.ID;
             double iDistance = 0;
-            double LineOffset = End.ID == 0 ? 0 : LINE_OFFSET;
+            double VerticalLineOffset = End.ID == 0 ? 0 : VERTICAL_LINE_OFFSET;
+            double HorizontalLineOffset = End.ID == 0 ? 0 : HORIZONTAL_LINE_OFFSET;
 
 
             // move left or right
             if (this.MainOrientation == Orientation.Horizontal)
             {
-                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * (WIDTH_GRID_COLUMNSPACING + 8));
+                iDistance = iDistanceInButtons * (this.ButtonWidth) + (iDistanceInButtons * (WIDTH_GRID_COLUMNSPACING) + HorizontalLineOffset);
             }
 
             // move up or down
             else // orientation must be vertical
             {
-                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * WIDTH_GRID_ROWSPACING) + LineOffset;
+                iDistance = iDistanceInButtons * (this.ButtonHeight) + (iDistanceInButtons * WIDTH_GRID_ROWSPACING) + VerticalLineOffset;
             }
             daAnimation.To = iDistance;
             this.storyboard.Begin();

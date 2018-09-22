@@ -128,7 +128,7 @@
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                  
-                IsLightDismissEnabled="False">
+                IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Battery"

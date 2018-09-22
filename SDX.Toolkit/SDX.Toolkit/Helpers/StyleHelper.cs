@@ -101,6 +101,7 @@ namespace SDX.Toolkit.Helpers
         RadiatingButtonEllipseTopSpacer,
         RadiatingButtonEllipseBottomSpacer,
         RadiatingButtonCaptionHeight,
+        RadiatingButtonCloseIconWidth,
         ColoringBookButtonWidth,
         ColoringBookButtonHeight,
         ColoringBookImageWidth,
@@ -267,7 +268,8 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_RADIATING_BUTTON_GRID_WIDTH = "RadiatingButtonGridWidth";
         public const string SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT = "RadiatingButtonEllipseTopSpacer";
         public const string SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT = "RadiatingButtonEllipseBottomSpacer";
-        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight";
+        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight"; 
+        public const string SIZE_RADIATING_BUTTON_CLOSEICON_WIDTH = "RadiatingButtonCloseIconWidth";
 
         public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
         public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
@@ -542,6 +544,10 @@ namespace SDX.Toolkit.Helpers
 
                 case LayoutSizes.RadiatingButtonCaptionHeight:
                     value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CAPTION_HEIGHT);
+                    break; 
+
+                case LayoutSizes.RadiatingButtonCloseIconWidth:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CLOSEICON_WIDTH);
                     break;
 
                 case LayoutSizes.ColoringBookButtonWidth:

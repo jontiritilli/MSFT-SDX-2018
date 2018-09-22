@@ -324,8 +324,6 @@ namespace SDX.Toolkit.Controls
 
         #region Public Properties
 
-
-
         //public double RadiateOffset { get => -1 * (BUTTON_SIZE - ENTRANCE_SIZE); }
         public double RadiateOffset { get => -16; }
 
@@ -776,6 +774,9 @@ namespace SDX.Toolkit.Controls
 
                 double radiateEllipseHeight = RadiatingButtonHeight * .9; // set this slightly smaller so it doesn't peek out from behind the button
 
+                // get the size for close icons
+                double CloseIconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCloseIconWidth);
+
                 // height of the radiating button with a little added space for the radiating animation
                 double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.7;
 
@@ -832,7 +833,6 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "TryItBg",
                         Height = TryItBoxHeight,
-                        //Width = TryItBoxWidth,
                         Background = TryItColor,
                         BorderBrush = new SolidColorBrush(Colors.White),
                         BorderThickness = new Thickness(2),
@@ -847,7 +847,6 @@ namespace SDX.Toolkit.Controls
                         Name = "TryItText",
                         Text = this.TryItText,
                         TextStyle = TextStyles.TryIt,
-                        //Width = GridWidth,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
@@ -977,9 +976,6 @@ namespace SDX.Toolkit.Controls
                     // create storyboard
                     _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
-                    // get the size for icons
-                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
-
                     // set correct icon for radiating button
                     switch (RadiatingButtonIcon) {
                         case RadiatingButtonIcons.Dial:
@@ -1025,7 +1021,7 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = this.Name + "ImageX",
                         ImageSource = URI_X_IMAGE,
-                        ImageWidth = IconWidth,
+                        ImageWidth = CloseIconWidth,
                         Opacity = 0.0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -1095,15 +1091,12 @@ namespace SDX.Toolkit.Controls
                     // add to the grid
                     _grid.Children.Add(_entranceEllipse);
 
-                    // get the size for icons
-                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
-
                     // create the X image
                     _imageX = new ImageEx()
                     {
                         Name = this.Name + "ImageX",
                         ImageSource = URI_X_IMAGE,
-                        ImageWidth = IconWidth,
+                        ImageWidth = CloseIconWidth,
                         Opacity = 0.0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,

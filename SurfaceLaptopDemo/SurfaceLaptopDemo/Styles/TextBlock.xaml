@@ -151,6 +151,10 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
+    <Style x:Key="ListLedeBold" TargetType="TextBlock" BasedOn="{StaticResource ListLede}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
     <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
