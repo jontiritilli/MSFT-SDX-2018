@@ -39,7 +39,8 @@
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
@@ -103,7 +104,7 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
-        <!--Width="{StaticResource HeaderWidth}"-->
+        
         <ctrl:AppSelector
             x:Name="AppSelectorMouse"
             URIs="{x:Bind Path=ViewModel.appSelectorData}"
@@ -111,6 +112,7 @@
             VerticalAlignment="Top"
             Grid.Row="3"
             Grid.Column="2"
+            Canvas.ZIndex="101"
             ButtonWidth="{StaticResource AppSelectorButtonWidth}"
             ButtonHeight="{StaticResource AppSelectorButtonWidth}"            
             />
@@ -119,7 +121,7 @@
             Grid.Row="0"
             Grid.RowSpan="4"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             HorizontalAlignment="Left"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"

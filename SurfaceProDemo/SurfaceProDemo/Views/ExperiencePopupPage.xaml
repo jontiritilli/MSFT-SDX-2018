@@ -6,12 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    xmlns:ctrl="using:SDX.Toolkit.Controls"    
+    xmlns:ctrl="using:SDX.Toolkit.Controls"                                             
     DataContext="{Binding ExperiencePopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Canvas x:Name="LayoutRoot">
+
             <Grid
-            x:Name="ContentArea">
+                x:Name="ContentArea"
+                Width="{StaticResource CanvasWidth}"
+                Height="{StaticResource CanvasHeight}">
             <Grid.Background>
                 <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
             </Grid.Background>
@@ -26,9 +28,9 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-                <ColumnDefinition Width=".3*"/>
-                <ColumnDefinition Width=".7*"/>
-                <ColumnDefinition Width="{StaticResource RightMargin}"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>
             </Grid.ColumnDefinitions>
             <ctrl:Header x:Name="PageHeader" Grid.Row="1"
                     Grid.Column="1"
@@ -73,13 +75,13 @@
                 Text="{x:Bind Path=ViewModel.PopLeftLegal}"
                 TextStyle="Legal"
                 />
-        </Grid>
-
-        <Grid x:Name="grdCloseButton"
+        <Canvas x:Name="LayoutRoot"
+                Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3">
+            <Grid x:Name="grdCloseButton"
               Canvas.Left="{x:Bind Path=ViewModel.ellipseGridCanvasSetLeft}"              
               PointerPressed="PopClose_Click"
               Canvas.Top="{x:Bind Path=ViewModel.closeEllipseTopMargin}">
-            <Ellipse
+                <Ellipse
                 Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
                 Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
                 Fill="White"
@@ -89,14 +91,17 @@
                 VerticalAlignment="Center"
                 Margin="0"
                 />
-            <ctrl:ImageEx
+                <ctrl:ImageEx
                 x:Name="CloseButtonImage"
                 ImageSource="{x:Bind Path=ViewModel.CloseButtonXURI}"
                 ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"                
                 Margin="0"/>
-        </Grid>
-        
+            </Grid>
+
     </Canvas>
+    </Grid>
+
+
 </Page>

@@ -51,8 +51,7 @@ namespace SurfaceBook2Demo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            // animations in            
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
             rBtnLeft.StartEntranceAnimation();
@@ -64,8 +63,7 @@ namespace SurfaceBook2Demo.Views
 
         public void NavigateFromPage()
         {
-            // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            // animations out            
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
 
@@ -81,6 +79,26 @@ namespace SurfaceBook2Demo.Views
         private void ImageBrush_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
             int x = 0;
+        }
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LegalBatteryLife.SetOpacity(1);
+        }
+
+        private void PopRight_Opened(object sender, object e)
+        {
+            this.LegalConnections.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LegalBatteryLife.SetOpacity(0);
+        }
+
+        private void PopRight_Closed(object sender, object e)
+        {
+            this.LegalConnections.SetOpacity(0);
         }
     }
 }

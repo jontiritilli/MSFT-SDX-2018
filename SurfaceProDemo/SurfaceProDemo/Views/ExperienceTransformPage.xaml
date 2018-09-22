@@ -39,7 +39,8 @@
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"

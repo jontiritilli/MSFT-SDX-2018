@@ -1146,19 +1146,22 @@ namespace SDX.Toolkit.Controls
                 double POPUP_SPACER = StyleHelper.GetApplicationDouble("PopupSpacer");
 
                 object popupContent = this.PopupChild.Child;
-
+                Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
                 if (popupContent is PopupMedia popup)
                 {
                     switch (popup.PopupType)
                     {
                         case PopupTypes.Text:
-                            popupWidth = popup.Width;
+                            //Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+                            popupWidth = popup.Width;// - Padding.Left - Padding.Right;
                             break;
                         case PopupTypes.Image:
-                            popupWidth = popup.MediaWidth;
+                            // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
+                            popupWidth = popup.MediaWidth + Padding.Left + Padding.Right;
                             break;
                         case PopupTypes.Video:
-                            popupWidth = popup.MediaWidth;
+                            // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
+                            popupWidth = popup.MediaWidth + Padding.Left + Padding.Right;
                             break;
                         default:
                             break;
@@ -1178,9 +1181,9 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                       // offset = point.X - popupWidth;//- _grid.ActualWidth  - POPUP_SPACER
+                        // offset = point.X - popupWidth;//- _grid.ActualWidth  - POPUP_SPACER
 
-                        offset = point.X - popupWidth - POPUP_SPACER;
+                        offset = point.X - popupWidth;
                         break;
 
                     case PopupPositions.Right:

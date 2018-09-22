@@ -24,16 +24,16 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".25*"/>
-            <ColumnDefinition Width=".75*"/>
+            <ColumnDefinition Width=".375*"/>
+            <ColumnDefinition Width=".625*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-<!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
                 LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"

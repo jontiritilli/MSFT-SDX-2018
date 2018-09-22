@@ -14,10 +14,10 @@ namespace SurfaceProDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
 
-        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Accessories/Images/mouse_right.png";
-        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Accessories/Images/mouse_right.png";
-        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Accessories/Images/mouse_right.png";
-        private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Accessories/Images/mouse_right.png";
+        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Accessories/Images/cobalt-right.png";
+        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Accessories/Images/black-right.png";
+        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Accessories/Images/platinum-right.png";
+        private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Accessories/Images/bugundy-right.png";
 
         private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Icons/AccessoriesColors/cobalt.png";
         private const string URI_APPSELECTOR_COLOR_2 = "ms-appx:///Assets/Icons/AccessoriesColors/black.png";
@@ -32,8 +32,8 @@ namespace SurfaceProDemo.ViewModels
         private const int APPSELECTOR_BUTTON_WIDTH = 40;
         private const int APPSELECTOR_BUTTON_HEIGHT = 40;
 
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 810;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 954;
+        private const int SELECTORIMAGE_IMAGEHEIGHT = 912;
+        private const int SELECTORIMAGE_IMAGEWIDTH = 1368;
         #endregion
 
 
@@ -82,11 +82,15 @@ namespace SurfaceProDemo.ViewModels
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_1_SELECTED
             });
-            this.appSelectorData.Add(new AppSelectorData()
+            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
-                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
-                Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
-            });
+                this.appSelectorData.Add(new AppSelectorData()
+                {
+                    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
+                    Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
+                });
+            }
+            
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
@@ -103,11 +107,14 @@ namespace SurfaceProDemo.ViewModels
                 URI = URI_IMAGESELECTOR_IMAGE_1,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
-                URI = URI_IMAGESELECTOR_IMAGE_2,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
+                this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+                {
+                    URI = URI_IMAGESELECTOR_IMAGE_2,
+                    Width = SELECTORIMAGE_IMAGEWIDTH
+                });
+            }
             this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,

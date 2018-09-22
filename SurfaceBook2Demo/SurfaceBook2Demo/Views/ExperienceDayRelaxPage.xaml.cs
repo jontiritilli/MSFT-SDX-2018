@@ -24,22 +24,9 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayRelaxPage()
         {
             InitializeComponent();
-            Canvas.SetLeft(rBtnLeft, _canvasWidth * .40);
-            Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
-
-            Canvas.SetLeft(rBtnRight, _canvasWidth * .55);
-            Canvas.SetTop(rBtnRight, _canvasHeight * .30);
-
-
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
-
-            //PopLeft.HorizontalOffset = _canvasWidth * .40;
-            //PopLeft.VerticalOffset = _canvasHeight * .70;
-
-            //PopRight.HorizontalOffset = _canvasWidth * .55;
-            //PopRight.VerticalOffset = _canvasHeight * .30;
 
         }
 
