@@ -98,6 +98,8 @@ namespace SurfaceBook2Demo.Services
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<SuspendAndResumeService>.Instance;
+            yield return Singleton<DefaultLaunchActivationHandler>.Instance;
+            yield return Singleton<SchemeActivationHandler>.Instance;
         }
 
         private bool IsInteractive(object args)

@@ -38,6 +38,12 @@ namespace SurfaceBook2Demo.Activation
                     // yes, go to it
                     NavigationService.Navigate(typeof(ViewModels.AttractorLoopViewModel).FullName);
                 }
+                //// is the choose path page enabled?
+                //else if (configurationService.Configuration.IsChoosePathPageEnabled)
+                //{
+                //    // yes, go to it
+                //    NavigationService.Navigate(typeof(ViewModels.ChoosePathViewModel).FullName);
+                //}
                 else
                 {
                     // no, go to the root flipview

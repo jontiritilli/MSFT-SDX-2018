@@ -26,8 +26,8 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="wtsapp">
-            <uap:Logo>Assets\StoreIcons\Icon.png</uap:Logo>
+          <uap:Protocol Name="surfacejackdemo">
+            <uap:Logo>Assets\StoreIcons\Square44x44Logo-UriScheme.png</uap:Logo>
             <uap:DisplayName>SurfaceJackDemo</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>

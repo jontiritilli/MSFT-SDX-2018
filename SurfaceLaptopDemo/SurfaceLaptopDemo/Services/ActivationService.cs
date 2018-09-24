@@ -98,6 +98,8 @@ namespace SurfaceLaptopDemo.Services
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
+            yield return Singleton<SuspendAndResumeService>.Instance;
+            yield return Singleton<DefaultLaunchActivationHandler>.Instance;
             yield return Singleton<SchemeActivationHandler>.Instance;
         }
 

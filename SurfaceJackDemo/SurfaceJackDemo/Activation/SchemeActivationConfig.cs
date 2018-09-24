@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SurfaceBook2Demo.Activation
+namespace SurfaceJackDemo.Activation
 {
     public static class SchemeActivationConfig
     {
@@ -12,7 +12,7 @@ namespace SurfaceBook2Demo.Activation
         {
             // TODO WTS: Add the pages that can be opened from scheme activation in your app here.
             { "attractor", typeof(ViewModels.AttractorLoopViewModel).FullName },
-            //{ "choosepath", typeof(ViewModels.ChoosePathViewModel).FullName },
+            { "choosepath", typeof(ViewModels.ChoosePathViewModel).FullName },
             { "main", typeof(ViewModels.FlipViewViewModel).FullName },
             { "", typeof(ViewModels.FlipViewViewModel).FullName }
         };

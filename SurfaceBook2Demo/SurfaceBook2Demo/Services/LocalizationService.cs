@@ -229,11 +229,11 @@ namespace SurfaceBook2Demo.Services
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_COPY, "EXPERIENCE_WORK_POPTOP_COPY");
             viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_LEGAL, "EXPERIENCE_WORK_POPTOP_LEGAL");
     
-            viewModel.appSelectorData[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_ONE, "EXPERIENCE_WORK_POPTOP_BULLET_ONE");
-            viewModel.appSelectorData[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_TWO, "EXPERIENCE_WORK_POPTOP_BULLET_TWO");
-            viewModel.appSelectorData[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_THREE, "EXPERIENCE_WORK_POPTOP_BULLET_THREE");
-            viewModel.appSelectorData[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_FOUR, "EXPERIENCE_WORK_POPTOP_BULLET_FOUR");
-            viewModel.appSelectorData[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_FIVE, "EXPERIENCE_WORK_POPTOP_BULLET_FIVE");
+            viewModel.appSelectorData.Add(new AppSelectorData() { Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_ONE, "EXPERIENCE_WORK_POPTOP_BULLET_ONE") });
+            viewModel.appSelectorData.Add(new AppSelectorData() { Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_TWO, "EXPERIENCE_WORK_POPTOP_BULLET_TWO") });
+            viewModel.appSelectorData.Add(new AppSelectorData() { Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_THREE, "EXPERIENCE_WORK_POPTOP_BULLET_THREE") });
+            viewModel.appSelectorData.Add(new AppSelectorData() { Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_FOUR, "EXPERIENCE_WORK_POPTOP_BULLET_FOUR") });
+            viewModel.appSelectorData.Add(new AppSelectorData() { Message = GetStringValue(_languageCurrent.EXPERIENCE_WORK_POPTOP_BULLET_FIVE, "EXPERIENCE_WORK_POPTOP_BULLET_FIVE") });
         }
 
         public void LoadExperienceDayCreateViewModel(ExperienceDayCreateViewModel viewModel)

@@ -230,27 +230,8 @@ namespace SurfaceJackDemo
 
         private ActivationService CreateActivationService()
         {
-            // get the configuration service
-            ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
-
-            // if we got it
-            if (null != configurationService)
-            {
-                // is the attractor loop enabled?
-                if (configurationService.Configuration.IsAttractorLoopEnabled)
-                {
-                    // yes, return the attractor
-                    return new ActivationService(this, typeof(ViewModels.AttractorLoopViewModel));
-                }
-                else
-                {
-                    // no, return the flipview
-                    return new ActivationService(this, typeof(ViewModels.ChoosePathViewModel));
-                }
-            }
-
             // return the flipview by default
-            return new ActivationService(this, typeof(ViewModels.FlipViewViewModel));
+            return new ActivationService(this);
         }
 
         #endregion

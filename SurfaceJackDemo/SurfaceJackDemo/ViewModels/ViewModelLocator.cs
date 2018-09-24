@@ -27,10 +27,7 @@ namespace SurfaceJackDemo.ViewModels
             Register<ProductivityViewModel, ProductivityPage>();
             Register<SpecsViewModel, SpecsPage>();
             Register<PartnerViewModel, PartnerPage>();
-            Register<UriSchemeExampleViewModel, UriSchemeExamplePage>();
         }
-
-        public UriSchemeExampleViewModel UriSchemeExampleViewModel => ServiceLocator.Current.GetInstance<UriSchemeExampleViewModel>();
 
         public PartnerViewModel PartnerViewModel => ServiceLocator.Current.GetInstance<PartnerViewModel>();
 
