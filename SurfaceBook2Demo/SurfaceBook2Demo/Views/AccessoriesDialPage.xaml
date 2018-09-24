@@ -75,7 +75,9 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                  
+                VerticalOffset="-1"
+                Opened="PopDial_Opened"
+                Closed="PopDial_Closed"                
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -90,7 +92,9 @@
                 x:Name="PopTop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                  
+                VerticalOffset="-1"
+                Opened="PopPen_Opened"
+                Closed="PopPen_Closed"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -110,26 +114,19 @@
             </Image.Source>
         </Image>
 
-        <!--<ctrl:RadiatingButton x:Name="RadiatingButtonPen" Grid.Row="3" Grid.Column="1"
-                EntranceDurationInMilliseconds = "200"
-                EntranceStaggerDelayInMilliseconds = "800"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "1000"
-                
-                PopupPosition = "Right"
-                TryItEnabled="True"/>-->
-        
         <ctrl:TextBlockEx x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupDialLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed" />
+                       TextStyle="Legal"
+                       Opacity="0" />
 
         <ctrl:TextBlockEx x:Name="LegalPen" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupPenLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed" />
+                       TextStyle="Legal"
+                       Opacity="0" />
 
     </Grid>
 </Page>

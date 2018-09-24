@@ -1126,7 +1126,7 @@ namespace SDX.Toolkit.Controls
         private double GetPopupHorizontalOffset()
         {
             double offset = 0d;
-
+            double RadiatingButtonHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
             if ((null != _grid) && (null != this.PopupChild) && (null != this.PopupChild.Child))
             {
                 // get the position of our host button on the window
@@ -1140,6 +1140,7 @@ namespace SDX.Toolkit.Controls
 
                 object popupContent = this.PopupChild.Child;
                 Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+                double defaultPopupWidth = StyleHelper.GetApplicationDouble(LayoutSizes.PopupDefaultWidth);
                 if (popupContent is PopupMedia popup)
                 {
                     switch (popup.PopupType)
@@ -1151,10 +1152,22 @@ namespace SDX.Toolkit.Controls
                         case PopupTypes.Image:
                             // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
                             popupWidth = popup.MediaWidth + Padding.Left + Padding.Right;
+                            // the width of the popup is defaulted. unsure if a larger width on the media will win but it should
+                            // however this will ensure that the width used for position is correct
+                            if (defaultPopupWidth > popupWidth)
+                            {
+                                popupWidth = defaultPopupWidth;
+                            }
                             break;
                         case PopupTypes.Video:
                             // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
                             popupWidth = popup.MediaWidth + Padding.Left + Padding.Right;
+                            // the width of the popup is defaulted. unsure if a larger width on the media will win but it should
+                            // however this will ensure that the width used for position is correct
+                            if (defaultPopupWidth > popupWidth)
+                            {
+                                popupWidth = defaultPopupWidth;
+                            }
                             break;
                         default:
                             break;
@@ -1174,14 +1187,14 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                        // offset = point.X - popupWidth;//- _grid.ActualWidth  - POPUP_SPACER
-
-                        offset = point.X - popupWidth;
+                        // try it button grid could be huge so center on the 1/2 grid b/c the button will always be in the middle
+                        // of the grid and then +- the button width + the spacer
+                        // + (_grid.ActualWidth /2) centers the x point to the center of the button
+                        offset = point.X + (_grid.ActualWidth / 2) - popupWidth - (RadiatingButtonHeight / 2) - POPUP_SPACER ;
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.X + _grid.ActualWidth; // + POPUP_SPACER
-                       // offset = point.X + POPUP_SPACER;
+                        offset = point.X + (_grid.ActualWidth / 2) + (RadiatingButtonHeight / 2) + POPUP_SPACER;                       
                         break;
                 }
             }

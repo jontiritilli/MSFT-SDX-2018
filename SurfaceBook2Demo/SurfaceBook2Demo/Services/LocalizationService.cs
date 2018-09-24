@@ -240,6 +240,7 @@ namespace SurfaceBook2Demo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_HEADLINE, "EXPERIENCE_CREATE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_COPY, "EXPERIENCE_CREATE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_COPY_LEGAL, "EXPERIENCE_CREATE_COPY_LEGAL");
 
             viewModel.PopupDialHeadline = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPLEFT_TITLE, "EXPERIENCE_CREATE_POPLEFT_TITLE");
             viewModel.PopupDialLede = GetStringValue(_languageCurrent.EXPERIENCE_CREATE_POPLEFT_COPY, "EXPERIENCE_CREATE_POPLEFT_COPY");

@@ -32,6 +32,7 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string Headline;
         public string Lede;
+        public string Legal;
         public string PopupDialHeadline;
         public string PopupDialLede;
         public string PopupPenHeadline;
