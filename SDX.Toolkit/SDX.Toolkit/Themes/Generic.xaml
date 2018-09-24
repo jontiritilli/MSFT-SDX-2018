@@ -367,5 +367,15 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style TargetType="ctrl:PopupContentBatteryLife">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:PopupContentBatteryLife">
+                    <Canvas x:Name="LayoutRoot"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

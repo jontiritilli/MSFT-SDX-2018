@@ -42,6 +42,7 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorAccLeft.SelectedIDChanged += SelectedIDChanged;
 
             this.rBtnLeftMouse.PopupChild = PopLeft;
+            this.rBtnCenterMouse.PopupChild = PopCenter;
             this.rBtnRightMouse.PopupChild = PopRight;
 
         }

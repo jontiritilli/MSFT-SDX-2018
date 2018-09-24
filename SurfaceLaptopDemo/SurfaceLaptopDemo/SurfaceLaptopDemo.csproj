@@ -339,12 +339,12 @@
     <Content Include="Assets\Experience\Performance\Icons\ppt.png" />
     <Content Include="Assets\Experience\Performance\Icons\word.png" />
     <Content Include="Assets\Experience\Sleek\foxburg_morepower.png" />
-    <Content Include="Assets\Experience\Speaker\foxburg_enjoy_movie.png" />
-    <Content Include="Assets\Experience\Speaker\foxburg_enjoy_music.png" />
-    <Content Include="Assets\Experience\Speaker\foxburg_enjoy_skype.png" />
     <Content Include="Assets\Experience\Performance\foxburg_plant.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_music.png" />
     <Content Include="Assets\Experience\Speaker\foxburg_popcorn.png" />
     <Content Include="Assets\Experience\Speaker\foxburg_coffee.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_skype.png" />
+    <Content Include="Assets\Experience\Speaker\foxburg_video.png" />
     <Content Include="Assets\Experience\Speaker\Icons\movie.png" />
     <Content Include="Assets\Experience\Speaker\Icons\music.png" />
     <Content Include="Assets\Experience\Speaker\Icons\skype.png" />
@@ -420,8 +420,8 @@
     <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\Universal\close-icon.png" />
-    <Content Include="Assets\Universal\tryit_dot.png" />
-    <Content Include="Assets\Universal\pinch.png" />
+    <Content Include="Assets\RadiatingButton\tryit_dot.png" />
+    <Content Include="Assets\RadiatingButton\pinch.png" />
     <Content Include="Assets\List\specs_audio.png" />
     <Content Include="Assets\List\specs_battery.png" />
     <Content Include="Assets\List\specs_connections.png" />
@@ -435,10 +435,10 @@
     <Content Include="Assets\List\specs_size.png" />
     <Content Include="Assets\List\specs_versatile.png" />
     <Content Include="Assets\List\specs_wifi.png" />
-    <Content Include="Assets\Universal\tryit.png" />
+    <Content Include="Assets\RadiatingButton\tryit.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
-    <Content Include="Assets\Universal\tryit_dial.png" />
+    <Content Include="Assets\RadiatingButton\tryit_dial.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>

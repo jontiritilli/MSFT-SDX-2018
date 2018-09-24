@@ -25,12 +25,9 @@ namespace SDX.Toolkit.Controls
     public sealed class PopupContentBatteryLife : Control
     {
         #region Constants
-        // Still need assets
+
         private readonly string URI_IMAGE_BATTERY = @"ms-appx:///Assets/BatteryLifePopup/battery-outline.png";
         private readonly string URI_IMAGE_CHARGE = @"ms-appx:///Assets/BatteryLifePopup/blue-charge.png";
-
-        private static readonly double CANVAS_X = 410d;
-        private static readonly double CANVAS_Y = 175d;
 
         private static readonly double LEFT_HEADER = 20d;
         private static readonly double TOP_HEADER = 20d;
@@ -40,7 +37,7 @@ namespace SDX.Toolkit.Controls
         private static readonly double WIDTH_BATTERY = 350d;
         private static readonly double HEIGHT_BATTERY = 134d;
 
-        private static readonly double MARGIN_CHARGE_LEFT = 20d;
+        private static readonly double MARGIN_CHARGE_LEFT = 30d;
         private static readonly double MARGIN_CHARGE_TOP = 25d;
         private static readonly double TOP_CHARGE = TOP_BATTERY + MARGIN_CHARGE_TOP;
         private static readonly double LEFT_CHARGE = LEFT_BATTERY + MARGIN_CHARGE_LEFT;
@@ -63,13 +60,11 @@ namespace SDX.Toolkit.Controls
 
         #region Private Members
 
-        private Grid _layoutRoot = null;
-        private Canvas _canvas = null;
-        private Header _header = null;
+        private Canvas _layoutRoot = null;
         private AnimatableInteger _hours = null;
         private TextBlockEx _hrs = null;
         private ImageEx _imageBattery = null;
-        private ImageEx _imageCharge = null;
+        private Image _imageCharge = null;
 
         private Storyboard _chargeStoryboard = null;
         private Storyboard _positionStoryboard = null;
@@ -92,10 +87,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region Public Static Methods
-
-        #endregion
-
         #region Public Properties
 
         // used for async image loading
@@ -105,26 +96,6 @@ namespace SDX.Toolkit.Controls
 
         #region Dependency Properties
 
-        // Headline
-        public static readonly DependencyProperty HeadlineProperty =
-            DependencyProperty.Register("Headline", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata(null, OnPropertyChanged));
-
-        public string Headline
-        {
-            get { return (string)GetValue(HeadlineProperty); }
-            set { SetValue(HeadlineProperty, value); }
-        }
-
-        // Lede
-        public static readonly DependencyProperty LedeProperty =
-            DependencyProperty.Register("Lede", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata(null, OnPropertyChanged));
-
-        public string Lede
-        {
-            get { return (string)GetValue(LedeProperty); }
-            set { SetValue(LedeProperty, value); }
-        }
-
         // Hour
         public static readonly DependencyProperty HourProperty =
             DependencyProperty.Register("Hour", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata("hrs", OnPropertyChanged));
@@ -133,16 +104,6 @@ namespace SDX.Toolkit.Controls
         {
             get { return (string)GetValue(HourProperty); }
             set { SetValue(HourProperty, value); }
-        }
-
-        // Legal
-        public static readonly DependencyProperty LegalProperty =
-            DependencyProperty.Register("Legal", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata(null, OnPropertyChanged));
-
-        public string Legal
-        {
-            get { return (string)GetValue(LegalProperty); }
-            set { SetValue(LegalProperty, value); }
         }
 
         // TimeStart
@@ -303,7 +264,7 @@ namespace SDX.Toolkit.Controls
         private void RenderUI()
         {
             // get the layout base (a border here)
-            _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
+            _layoutRoot = (Canvas)this.GetTemplateChild("LayoutRoot");
 
             // if we can't get the layout root, we can't do anything
             if (null == _layoutRoot)
@@ -311,83 +272,36 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
-            //_layoutRoot.Background = StyleHelper.GetAcrylicBrush();
-            //_layoutRoot.BorderBrush = new SolidColorBrush(Colors.White);
-            //_layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
-
-            // create the header
-            _header = new Header()
-            {
-                Name = "FastCharge",
-                HeadlineStyle = TextStyles.PopupHeadline,
-                LedeStyle = TextStyles.PopupLede,
-                Width = CANVAS_X,
-            };
-            Grid.SetRow(_header, 1);
-            Grid.SetColumn(_header, 1);
-            _layoutRoot.Children.Add(_header);
-
-            // set headline binding
-            _header.SetBinding(Header.HeadlineProperty,
-                new Binding() { Source = this, Path = new PropertyPath("Headline"), Mode = BindingMode.OneWay });
-
-            // set lede binding
-            _header.SetBinding(Header.LedeProperty,
-                new Binding() { Source = this, Path = new PropertyPath("Lede"), Mode = BindingMode.OneWay });
-
-            // set hour binding
-            _header.SetBinding(PopupContentBatteryLife.HourProperty,
-                new Binding() { Source = this, Path = new PropertyPath("Hour"), Mode = BindingMode.OneWay });
-
-            //// create the legal notice
-            //_legal = new TextBlockEx()
-            //{
-            //    Name = "Legal",
-            //    Text = this.Legal,
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    TextWrapping = TextWrapping.WrapWholeWords,
-            //    Width = CANVAS_X, 
-            //    TextStyle = TextStyles.Legal
-            //};
-            //Grid.SetRow(_legal, 4);
-            //Grid.SetColumn(_legal, 1);
-            //_layoutRoot.Children.Add(_legal);
-
-            //// set legal binding
-            //_legal.SetBinding(TextBlock.TextProperty,
-            //    new Binding() { Source = this, Path = new PropertyPath("Legal"), Mode = BindingMode.OneWay });
-
-            // create the canvas
-            _canvas = new Canvas()
-            {
-                Width = CANVAS_X,
-                Height = CANVAS_Y
-            };
-            Grid.SetRow(_canvas, 2);
-            Grid.SetColumn(_canvas, 1);
-            _layoutRoot.Children.Add(_canvas);
+            // set up the canvas
+            _layoutRoot.Width = this.Width;
+            _layoutRoot.Height = HEIGHT_CHARGE;
 
             // create the battery
             _imageBattery = new ImageEx()
             {
+                Name = "Battery",
                 ImageSource = URI_IMAGE_BATTERY,
                 ImageWidth = WIDTH_BATTERY
             };
+
             Canvas.SetLeft(_imageBattery, LEFT_HEADER);
             Canvas.SetTop(_imageBattery, TOP_BATTERY);
             Canvas.SetZIndex(_imageBattery, Z_ORDER_BATTERY);
-            _canvas.Children.Add(_imageBattery);
+            _layoutRoot.Children.Add(_imageBattery);
 
             // create the charge
-            _imageCharge = new ImageEx()
+            _imageCharge = new Image()
             {
-                ImageSource = URI_IMAGE_CHARGE,
-                ImageWidth = WIDTH_CHARGE_START,
+                Name = "ChargeBar",
+                Source = new BitmapImage(new Uri(URI_IMAGE_CHARGE)),
+                Width = WIDTH_CHARGE_START,
+                Height = HEIGHT_CHARGE
             };
+
             Canvas.SetLeft(_imageCharge, LEFT_CHARGE);
             Canvas.SetTop(_imageCharge, TOP_CHARGE);
             Canvas.SetZIndex(_imageCharge, Z_ORDER_CHARGE);
-            _canvas.Children.Add(_imageCharge);
+            _layoutRoot.Children.Add(_imageCharge);
 
             // create the percent overlay
             _hours = new AnimatableInteger()
@@ -398,7 +312,7 @@ namespace SDX.Toolkit.Controls
             Canvas.SetLeft(_hours, LEFT_HOURS);
             Canvas.SetTop(_hours, TOP_HOURS);
             Canvas.SetZIndex(_hours, Z_ORDER_CONTROLS);
-            _canvas.Children.Add(_hours);
+            _layoutRoot.Children.Add(_hours);
 
             // create hours overlay
             _hrs = new TextBlockEx()
@@ -407,16 +321,17 @@ namespace SDX.Toolkit.Controls
                 TextAlignment = TextAlignment.Left,
                 TextStyle = TextStyles.PopupBatteryLife,
             };
+
             Canvas.SetLeft(_hrs, LEFT_HOURS);
             Canvas.SetTop(_hrs, TOP_HOURS);
             Canvas.SetZIndex(_hrs, Z_ORDER_CONTROLS);
-            _canvas.Children.Add(_hrs);
-            
+            _layoutRoot.Children.Add(_hrs);
+
             // create the charge animation
             _chargeStoryboard = SetupChargeAnimation(_imageCharge, WIDTH_CHARGE_START, WIDTH_CHARGE_END, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
         }
 
-        private Storyboard SetupChargeAnimation(ImageEx image, double startingWidth, double finalWidth, double duration, double staggerDelay)
+        private Storyboard SetupChargeAnimation(Image image, double startingWidth, double finalWidth, double duration, double staggerDelay)
         {
             double totalDuration = duration + staggerDelay;
 
@@ -555,14 +470,6 @@ namespace SDX.Toolkit.Controls
 
             return storyboard;
         }
-
-        #endregion
-
-        #region UI Helpers
-
-        #endregion
-
-        #region Code Helpers
 
         #endregion
 
