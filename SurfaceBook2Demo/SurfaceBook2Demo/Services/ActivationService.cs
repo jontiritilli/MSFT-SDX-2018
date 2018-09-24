@@ -73,7 +73,7 @@ namespace SurfaceBook2Demo.Services
 
             if (IsInteractive(activationArgs))
             {
-                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem);
+                var defaultHandler = new DefaultLaunchActivationHandler();
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);
