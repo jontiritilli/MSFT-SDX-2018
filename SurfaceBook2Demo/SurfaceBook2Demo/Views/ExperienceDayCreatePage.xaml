@@ -119,7 +119,7 @@
                 x:Name="PopRight"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.57}"        
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -137,6 +137,11 @@
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
             </Image.Source>
         </Image>
+        <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
+                            Text="{x:Bind Path=ViewModel.Legal}"
+                            TextStyle="Legal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

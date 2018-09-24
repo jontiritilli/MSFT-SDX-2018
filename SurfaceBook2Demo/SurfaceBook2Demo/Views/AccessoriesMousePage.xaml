@@ -38,6 +38,7 @@
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
+                HeaderAlignment="Right"                     
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" />
 
@@ -67,7 +68,9 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                                                                                        
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                Opened="PopMouse_Opened"
+                Closed="PopMouse_Closed"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -86,10 +89,11 @@
             </Image.Source>
         </Image>
 
-        <ctrl:TextBlockEx x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="LegalMouse" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
-                       HorizontalAlignment="Left"
+                       HorizontalAlignment="Right"
                        VerticalAlignment="Top"
-                       Visibility="Collapsed" />
+                       TextStyle="Legal"                          
+                       Opacity="0" />
     </Grid>
 </Page>

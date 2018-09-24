@@ -35,73 +35,6 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
-        <!--<Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
-
-            <ctrl:RadiatingButton
-                x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                AutoStart = "false"/>
-
-            <ctrl:RadiatingButton
-                x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                AutoStart = "false"/>
-
-            <ctrl:RadiatingButton
-                x:Name="rBtnTop"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                AutoStart = "false"/>
-            <Popup
-                x:Name="PopLeft"
-                IsOpen = "False"
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
-                        Lede="{x:Bind Path=ViewModel.PopLeftLede}"
-                        />
-                </Popup.Child>
-            </Popup>
-            <Popup
-                x:Name="PopTop"
-                IsOpen = "False"
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
-                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
-                        />
-                </Popup.Child>
-            </Popup>
-            <Popup
-                x:Name="PopRight"
-                IsOpen = "False"
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
-                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
-                        />
-                </Popup.Child>
-            </Popup>
-        </Canvas>-->
 
         <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
             <Image.Source>
@@ -110,9 +43,9 @@
         </Image>
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.Legal}"
+                       Text="{x:Bind Path=ViewModel.Legal}"                           
+                       TextStyle="Legal"                          
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Visibility="Collapsed" />
+                       VerticalAlignment="Top"/>
     </Grid>
 </Page>

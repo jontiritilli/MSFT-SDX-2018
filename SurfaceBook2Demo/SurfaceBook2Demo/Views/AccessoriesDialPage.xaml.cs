@@ -44,6 +44,27 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+        #region Event Handlers
+        private void PopDial_Opened(object sender, object e)
+        {
+            this.LegalDial.SetOpacity(1);
+        }
+
+        private void PopPen_Opened(object sender, object e)
+        {
+            this.LegalPen.SetOpacity(1);
+        }
+
+        private void PopDial_Closed(object sender, object e)
+        {
+            this.LegalDial.SetOpacity(0);
+        }
+
+        private void PopPen_Closed(object sender, object e)
+        {
+            this.LegalPen.SetOpacity(0);
+        }
+        #endregion
 
         #region INavigate Interface
 

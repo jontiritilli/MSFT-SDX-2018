@@ -205,7 +205,7 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
