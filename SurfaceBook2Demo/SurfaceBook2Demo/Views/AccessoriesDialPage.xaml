@@ -38,7 +38,7 @@
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
-
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 

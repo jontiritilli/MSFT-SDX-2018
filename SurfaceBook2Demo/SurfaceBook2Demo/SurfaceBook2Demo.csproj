@@ -140,6 +140,7 @@
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupSurfaceBook2ViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayCreateViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayPlayViewModel.cs" />

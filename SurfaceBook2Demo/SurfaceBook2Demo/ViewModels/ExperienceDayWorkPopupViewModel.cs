@@ -195,7 +195,7 @@ namespace SurfaceBook2Demo.ViewModels
 
                     break;
 
-                case DeviceType.Book13:
+                case DeviceType.Book13: default:
 
                     AppSelectorButtonWidth = APPSELECTORIMAGE_WIDTH_13;
                     AppSelectorButtonHeight = APPSELECTORIMAGE_WIDTH_13;
@@ -254,8 +254,7 @@ namespace SurfaceBook2Demo.ViewModels
                         Width = IMAGESELECTORIMAGE_WIDTH_13
                     });
                     break;
-                default:
-                    break;
+               
             }
 
             //        this.ImagePairs = new Dictionary<int, ImagePair>();

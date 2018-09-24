@@ -38,6 +38,7 @@
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
+                HeaderAlignment="Right"                     
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" />
 

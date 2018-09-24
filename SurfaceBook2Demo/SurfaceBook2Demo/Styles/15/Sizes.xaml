@@ -60,7 +60,7 @@
     <x:Double x:Key="AppCloseWidth">46</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 
-    <x:Double x:Key="HeaderWidth">700</x:Double>
+    <x:Double x:Key="HeaderWidth">540</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">32.34</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">15</x:Double>
