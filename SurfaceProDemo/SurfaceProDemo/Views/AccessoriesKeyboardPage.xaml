@@ -40,6 +40,7 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
                 LedeStyle="PageLede"                
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
@@ -55,8 +56,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"                                                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                    
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
@@ -66,8 +67,8 @@
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                                                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.17}"                                                    
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
@@ -102,12 +103,12 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
-        <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:AppSelector
             x:Name="AppSelectorKB"
             URIs="{x:Bind Path=ViewModel.appSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Canvas.ZIndex="101"
             Grid.Row="3"
             Grid.Column="1"
             ButtonWidth="{StaticResource AppSelectorButtonWidth}"
@@ -117,7 +118,7 @@
             x:Name="AppSelectorImageKB"
             Grid.Row="0"
             Grid.RowSpan="4"
-            Grid.Column="2"
+            Grid.Column="1"
             Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"

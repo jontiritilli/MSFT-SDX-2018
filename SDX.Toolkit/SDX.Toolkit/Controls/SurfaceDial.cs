@@ -225,15 +225,15 @@ namespace SDX.Toolkit.Controls
         {
             double RotationInterval = angle * 2;
 
+            _currentAngle = (double)Utilities.ClampAngle(_currentAngle + RotationInterval);
+
+            prevColorId = ColorID;
+            UpdateColorId();
+
             if (isRotating)
             {
-                prevColorId = ColorID;
-                UpdateColorId();
                 CompleteRotation();
-                return;
             }
-
-            _currentAngle = (double)Utilities.ClampAngle(_currentAngle + RotationInterval);
 
             DoubleAnimation colorSelectorAnimation = new DoubleAnimation();
             colorSelectorAnimation.To = _currentAngle;
@@ -271,8 +271,6 @@ namespace SDX.Toolkit.Controls
             double angleToIndex = _currentAngle / 64.8;
 
             ColorID = System.Convert.ToInt32(Math.Round((double)angleToIndex, 0)) - 1;
-
-            Debug.WriteLine("ColorID {0}", ColorID);
         }
 
         #endregion
@@ -300,13 +298,11 @@ namespace SDX.Toolkit.Controls
         public void ForceRotation(int ID)
         {
             this.ColorID = ID;
+            prevColorId = ColorID;
 
             if (isRotating)
             {
-                prevColorId = ColorID;
-                UpdateColorId();
                 CompleteRotation();
-                return;
             }
 
             _currentAngle = (ColorID * 72) + ROTATION_DEGREES;

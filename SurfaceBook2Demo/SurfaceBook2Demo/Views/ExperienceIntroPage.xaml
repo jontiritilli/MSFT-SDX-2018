@@ -36,11 +36,9 @@
             <ColumnDefinition Width=".7*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <!--Width="{StaticResource HeaderWidth}"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                         Headline="{x:Bind Path=ViewModel.Headline}"
-                        Lede="{x:Bind Path=ViewModel.Lede}"
-
+                        Lede="{x:Bind Path=ViewModel.Lede}"                        
                         HeadlineStyle="PageHeadlineDark"
                         LedeStyle="PageLedeDark"
                         HorizontalAlignment="Left"
@@ -95,7 +93,7 @@
                 IsOpen = "False"
                 Canvas.ZIndex="102"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                   
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                   
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -112,7 +110,7 @@
                 IsOpen = "False"
                 Canvas.ZIndex="102"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                   
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"             
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

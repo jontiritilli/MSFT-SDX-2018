@@ -5,9 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"
     Style="{StaticResource PageStyle}"
     DataContext="{Binding ExperiencePerformanceViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -19,8 +26,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="2*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -30,7 +35,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
                     x:Name="PageHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
@@ -39,14 +44,27 @@
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>
+        
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3">
+            <ctrl:AppSelectorImage 
+                x:Name="AppSelectorImageMinorPerf"
+                URIs="{x:Bind Path=ViewModel.performanceSelectorMinorImageURIs}"
+                ImageHeight="{x:Bind ViewModel.ImageSelectorMinorImageHeight}"
+                ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
+                Opacity="1"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.17}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.39}" />
+        </Canvas>
 
-        <ctrl:AppSelectorImage Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" 
+        <ctrl:AppSelectorImage Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" 
             x:Name="AppSelectorImagePerf"
             URIs="{x:Bind Path=ViewModel.performanceSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
-        
-        <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"/>
+
+        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
             x:Name="AppSelectorPerf"
             URIs="{x:Bind Path=ViewModel.performanceSelectorData}"
             ShowSelectedLine="true"

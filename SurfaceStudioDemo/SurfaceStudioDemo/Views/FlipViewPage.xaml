@@ -66,9 +66,9 @@
                     <views:AccessoriesPenPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesTryItPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesDialPage">
                 <Frame>
-                    <views:AccessoriesTryItPage/>
+                    <views:AccessoriesDialPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesMousePage">

@@ -117,6 +117,10 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
+    <Style x:Key="ListLedeBold" TargetType="TextBlock" BasedOn="{StaticResource ListLede}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
     <Style x:Key="PageLedeDark" TargetType="TextBlock" BasedOn="{StaticResource PageLede}">
         <Setter Property="Foreground" Value="White"/>
     </Style>

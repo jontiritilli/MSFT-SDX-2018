@@ -3,6 +3,7 @@
 using SurfaceLaptopDemo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceLaptopDemo.Views
@@ -24,6 +25,7 @@ namespace SurfaceLaptopDemo.Views
         {
             InitializeComponent();
             this.AppSelectorImageSpeakers.AppSelector = this.AppSelectorSpeakers;
+            this.AppSelectorImageMinorSpeakers.AppSelector = this.AppSelectorSpeakers;
         }
 
         #endregion
@@ -33,12 +35,12 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

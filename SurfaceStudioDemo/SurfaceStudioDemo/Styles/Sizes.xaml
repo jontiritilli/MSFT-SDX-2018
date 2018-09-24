@@ -60,7 +60,7 @@
     <x:Double x:Key="AppCloseWidth">46</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 
-    <x:Double x:Key="HeaderWidth">724.5</x:Double>
+    <x:Double x:Key="HeaderWidth">730</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">42.175</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeaderPenTouch">9.5</x:Double>
@@ -68,20 +68,24 @@
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeaderCompare">15</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPopupHeader">23.07</x:Double>
     
-    <x:Double x:Key="ReadyButtonHeight">50</x:Double>
-    <x:Double x:Key="ReadyButtonWidth">150</x:Double>
-    
+    <x:Double x:Key="ReadyButtonHeight">78</x:Double>
+    <x:Double x:Key="ReadyButtonWidth">264</x:Double>
+
     <x:Double x:Key="AccessoriesPenListIconWidth">72</x:Double>
+    <x:Double x:Key="AccessoriesPenListTextWidth">359</x:Double>
+    <x:Double x:Key="ListColumnSpacerWidth">19</x:Double>
+    <x:Double x:Key="ListRowSpacerHeight">16</x:Double>
+
     <x:Double x:Key="BestOfMicrosoftListIconWidth">78</x:Double>
     <x:Double x:Key="BestOfMicrosoftListTextWidth">650</x:Double>
     <x:Double x:Key="BestOfMicrosoftRowSpacerHeight">200</x:Double>
     <x:Double x:Key="BestOfMicrosoftColumnSpacerWidth">37.867</x:Double>
+    
     <x:Double x:Key="CompareListIconWidth">48</x:Double>
     <x:Double x:Key="CompareListTextWidth">656</x:Double>
     <x:Double x:Key="CompareRowSpacerHeight">50</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">38.515</x:Double>
-    <x:Double x:Key="ListColumnSpacerWidth">19</x:Double>
-    <x:Double x:Key="ListRowSpacerHeight">16</x:Double>
+    
 
     <x:Double x:Key="SwipeLeftEllipseRadius">54</x:Double>
     <x:Double x:Key="SwipeLeftSpacer">26.315</x:Double>
@@ -100,6 +104,7 @@
     <x:Double x:Key="RadiatingButtonEllipseTopSpacer">23.775</x:Double>
     <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">24.48</x:Double>
     <x:Double x:Key="RadiatingButtonCaptionHeight">47.5</x:Double>
+    <x:Double x:Key="RadiatingButtonCloseIconWidth">30</x:Double>
 
     <x:Double x:Key="TryItBoxWidth">87.935</x:Double>
     <x:Double x:Key="TryItBoxHeight">41.08</x:Double>
@@ -109,14 +114,14 @@
 
     <x:Double x:Key="CanvasWidth">2250</x:Double>
     <x:Double x:Key="CanvasHeight">1408</x:Double>  <!-- 3000 - 184 (navbar) = 2816, 2816 / 2 (200% scaling) = 1408 -->
-
+    <x:Double x:Key="ScreenWidth">2250</x:Double>
+    <x:Double x:Key="ScreenHeight">1500</x:Double>
+    
     <x:Double x:Key="DialDiameter">350</x:Double>
     <x:Double x:Key="SelectorCenterOffset">270</x:Double>
     <x:Double x:Key="SelectorDiameter">12</x:Double>
     <x:Double x:Key="ColorRingThickness">15</x:Double>
 
-    <x:Double x:Key="ScreenWidth">2250</x:Double>
-    <x:Double x:Key="ScreenHeight">1500</x:Double>
     <x:Double x:Key="CloseButtonRightMargin">112</x:Double>
     <x:Double x:Key="CloseButtonTopMargin">75.905</x:Double>
 
@@ -127,8 +132,9 @@
     <x:Double x:Key="NavigationBarArrowWidth">13.3</x:Double>
     <x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    <!-- Home does not appear in this app -->
 
-    <x:Double x:Key="AppSelectorSliderHeight">5</x:Double>
     <x:Double x:Key="AppSelectorButtonWidth">60</x:Double>
     <x:Double x:Key="AppSelectorButtonHeight">60</x:Double>
+    <x:Double x:Key="AppSelectorLineBottomMargin">20</x:Double>
+    <x:Double x:Key="AppSelectorLineLeftMargin">10.5</x:Double>
 
 </ResourceDictionary>

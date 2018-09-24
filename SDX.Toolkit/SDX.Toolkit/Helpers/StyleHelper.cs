@@ -26,6 +26,7 @@ namespace SDX.Toolkit.Helpers
         ReadyPageHeadline,
         ListHeadline,
         ListLede,
+        ListLedeBold,
         ListItemHeadlinePenTouch,
         ListItemLedePenTouch,
         ListItemHeadlineBestOf,
@@ -100,6 +101,7 @@ namespace SDX.Toolkit.Helpers
         RadiatingButtonEllipseTopSpacer,
         RadiatingButtonEllipseBottomSpacer,
         RadiatingButtonCaptionHeight,
+        RadiatingButtonCloseIconWidth,
         ColoringBookButtonWidth,
         ColoringBookButtonHeight,
         ColoringBookImageWidth,
@@ -176,6 +178,7 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
         public const string STYLE_LIST_HEADLINE = "ListHeadline";
         public const string STYLE_LIST_LEDE = "ListLede";
+        public const string STYLE_LIST_LEDE_BOLD = "ListLedeBold";
         public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
         public const string STYLE_LISTITEM_LEDE_PENTOUCH = "ListItemLedePenTouch";
         public const string STYLE_LISTITEM_HEADLINE_BESTOF = "ListItemHeadlineBestOf";
@@ -265,7 +268,8 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_RADIATING_BUTTON_GRID_WIDTH = "RadiatingButtonGridWidth";
         public const string SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT = "RadiatingButtonEllipseTopSpacer";
         public const string SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT = "RadiatingButtonEllipseBottomSpacer";
-        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight";
+        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight"; 
+        public const string SIZE_RADIATING_BUTTON_CLOSEICON_WIDTH = "RadiatingButtonCloseIconWidth";
 
         public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
         public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
@@ -540,6 +544,10 @@ namespace SDX.Toolkit.Helpers
 
                 case LayoutSizes.RadiatingButtonCaptionHeight:
                     value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CAPTION_HEIGHT);
+                    break; 
+
+                case LayoutSizes.RadiatingButtonCloseIconWidth:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CLOSEICON_WIDTH);
                     break;
 
                 case LayoutSizes.ColoringBookButtonWidth:
@@ -666,6 +674,10 @@ namespace SDX.Toolkit.Helpers
 
                 case TextStyles.ListLede:
                     style = GetApplicationStyle(STYLE_LIST_LEDE);
+                    break;
+
+                case TextStyles.ListLedeBold:
+                    style = GetApplicationStyle(STYLE_LIST_LEDE_BOLD);
                     break;
 
                 case TextStyles.ListItemHeadlinePenTouch:
@@ -1039,7 +1051,7 @@ namespace SDX.Toolkit.Helpers
                 brush = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.995,
+                    Opacity = 0.993,
                     TintColor = Colors.White,
                     TintOpacity = 0.8,
                     FallbackColor = Colors.LightGray,
@@ -1050,7 +1062,7 @@ namespace SDX.Toolkit.Helpers
                 brush = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.995,
+                    Opacity = 0.997,
                     TintColor = Colors.Black,
                     TintOpacity = 0.45,
                     FallbackColor = Colors.LightGray,

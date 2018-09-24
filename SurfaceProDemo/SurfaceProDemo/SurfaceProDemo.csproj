@@ -321,6 +321,14 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Accessories\Images\black-left.png" />
+    <Content Include="Assets\Accessories\Images\black-right.png" />
+    <Content Include="Assets\Accessories\Images\bugundy-right.png" />
+    <Content Include="Assets\Accessories\Images\burgundy-left.png" />
+    <Content Include="Assets\Accessories\Images\cobalt-left.png" />
+    <Content Include="Assets\Accessories\Images\cobalt-right.png" />
+    <Content Include="Assets\Accessories\Images\platinum-left.png" />
+    <Content Include="Assets\Accessories\Images\platinum-right.png" />
     <Content Include="Assets\Experience\detached_keyboard.jpg" />
     <Content Include="Assets\Experience\laptop_bluebeam.png" />
     <Content Include="Assets\Experience\laptop_premiere.png" />
