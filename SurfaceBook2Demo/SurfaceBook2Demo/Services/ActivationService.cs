@@ -21,7 +21,6 @@ namespace SurfaceBook2Demo.Services
     {
         private readonly App _app;
         private readonly Lazy<UIElement> _shell;
-        private readonly Type _defaultNavItem;
 
         private static ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
 
@@ -31,11 +30,10 @@ namespace SurfaceBook2Demo.Services
 
         public static readonly KeyboardAccelerator BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
+        public ActivationService(App app, Lazy<UIElement> shell = null)
         {
             _app = app;
             _shell = shell;
-            _defaultNavItem = defaultNavItem;
         }
 
         public async Task ActivateAsync(object activationArgs)
