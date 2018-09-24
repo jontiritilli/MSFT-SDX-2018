@@ -118,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\SchemeActivationConfig.cs" />
+    <Compile Include="Activation\SchemeActivationData.cs" />
+    <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
@@ -388,6 +391,7 @@
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\RadiatingButton\tryit_dial.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-UriScheme.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Properties\Default.rd.xml" />
