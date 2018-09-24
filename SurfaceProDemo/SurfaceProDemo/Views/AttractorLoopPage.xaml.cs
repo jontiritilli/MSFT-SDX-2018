@@ -58,7 +58,7 @@ namespace SurfaceProDemo.Views
             // use it to get the navigation service
             NavigationServiceEx NavigationService = Locator?.NavigationService;
 
-            // navigate to the starting page
+            // navigate to the starting page - is choose pah enabled?
             if ((ConfigurationService.Current.IsLoaded) && (ConfigurationService.Current.Configuration.IsChoosePathPageEnabled))
             {
                 // go to the choose path page
