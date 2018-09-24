@@ -89,7 +89,7 @@
     <x:Double x:Key="SwipeLeftEllipseRadius">50</x:Double>
     <x:Double x:Key="SwipeLeftSpacer">30.105</x:Double>
 
-    <x:Double x:Key="SwipeToContinueArrowWidth">6.8</x:Double>
+    <x:Double x:Key="SwipeToContinueArrowWidth">16</x:Double>
     <x:Double x:Key="SwipeToContinueSpacer">10.2</x:Double>
 
     <x:Double x:Key="PopupDefaultWidth">459.575</x:Double>

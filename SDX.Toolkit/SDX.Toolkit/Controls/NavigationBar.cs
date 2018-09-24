@@ -653,7 +653,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // move to the first page
-            MoveToPageIndex(0);
+            MoveToPageIndex(0, true);
         }
 
         private void UpdateUI()
@@ -843,7 +843,7 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void MoveToPageIndex(int pageIndex)
+        public void MoveToPageIndex(int pageIndex, bool doNotRaiseEvent = false)
         {
             NavigationActions navigationAction = NavigationActions.Unknown;
 
@@ -865,11 +865,11 @@ namespace SDX.Toolkit.Controls
                 }
 
                 // move to it
-                MoveToPage(section, page, navigationAction);
+                MoveToPage(section, page, navigationAction, doNotRaiseEvent);
             }
         }
 
-        public void MoveToPreviousPage()
+        public void MoveToPreviousPage(bool doNotRaiseEvent = false)
         {
             // get the selected section and page
             NavigationSection section = this.SelectedSection;
@@ -913,12 +913,12 @@ namespace SDX.Toolkit.Controls
                 // if we made it through the gauntlet with non-null section and page
                 if ((null != section) && (null != page))
                 {
-                    MoveToPage(section, page, NavigationActions.GoBack);
+                    MoveToPage(section, page, NavigationActions.GoBack, doNotRaiseEvent);
                 }
             }
         }
 
-        public void MoveToNextPage()
+        public void MoveToNextPage(bool doNotRaiseEvent = false)
         {
             // get the selected section and page
             NavigationSection section = this.SelectedSection;
@@ -962,12 +962,12 @@ namespace SDX.Toolkit.Controls
                 // if we made it through the gauntlet with non-null section and page
                 if ((null != section) && (null != page))
                 {
-                    MoveToPage(section, page, NavigationActions.GoForward);
+                    MoveToPage(section, page, NavigationActions.GoForward, doNotRaiseEvent);
                 }
             }
         }
 
-        public void MoveToSection(NavigationSection section)
+        public void MoveToSection(NavigationSection section, bool doNotRaiseEvent = false)
         {
             // if the section is valid and it has pages
             if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
@@ -979,12 +979,13 @@ namespace SDX.Toolkit.Controls
                 if (null != page)
                 {
                     // move to the section and page; assume we're triggered by a button click
-                    MoveToPage(section, page, NavigationActions.Section);
+                    MoveToPage(section, page, NavigationActions.Section, doNotRaiseEvent);
                 }
             }
         }
 
-        public void MoveToPage(NavigationSection section, NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown)
+        public void MoveToPage(NavigationSection section, NavigationPage page, 
+            NavigationActions navigationAction = NavigationActions.Unknown, bool doNotRaiseEvent = false)
         {
             // if the section is valid and it has pages
             if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
@@ -1047,8 +1048,10 @@ namespace SDX.Toolkit.Controls
                     this.UpdateUI();
 
                     // raise our navigate event
-                    RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedPage);
-
+                    if (!doNotRaiseEvent)
+                    {
+                        RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedPage);
+                    }
                 }
             }
         }
