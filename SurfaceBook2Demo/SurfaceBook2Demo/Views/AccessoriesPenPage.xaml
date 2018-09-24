@@ -24,8 +24,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".375*"/>
-            <ColumnDefinition Width=".625*"/>
+            <ColumnDefinition Width=".4*"/>
+            <ColumnDefinition Width=".6*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
@@ -57,10 +57,9 @@
         </Canvas>
         <ctrl:List x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
-            ListStyle="LedeOnly"
-            Grid.Column="1"
-            Grid.Row="3"
-                   />
+            ListStyle="LedeOnly"            
+            Grid.Column="1"            
+            Grid.Row="3"/>
 
         <ctrl:ColoringBook
             x:Name="ColoringBook"
@@ -70,7 +69,14 @@
             Grid.ColumnSpan="4"
             ImageColumnSpan="1"            
             />
-
+        <ctrl:TextBlockEx x:Name="LegalConnections"
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"/>
 
     </Grid>
 </Page>
