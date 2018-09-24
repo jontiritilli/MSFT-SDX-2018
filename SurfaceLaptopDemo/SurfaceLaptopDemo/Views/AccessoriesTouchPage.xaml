@@ -50,10 +50,6 @@
                     TryItCaptionColor="White"
                     TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
                     TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
-                    EntranceDurationInMilliseconds = "400"
-                    EntranceStaggerDelayInMilliseconds = "0"
-                    RadiateDurationInMilliseconds = "1800"
-                    RadiateStaggerDelayInMilliseconds = "5000"
                     AutoStart = "false"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>

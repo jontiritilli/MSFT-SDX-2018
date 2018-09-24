@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
-using SDX.Toolkit.Controls;
-using SDX.Toolkit.Helpers;
-using SurfaceBook2Demo.Services;
+
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Media;
+
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
+
+using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
+
+using SurfaceBook2Demo.Services;
+using SDX.Toolkit.Helpers;
+
 
 namespace SurfaceBook2Demo.ViewModels
 {

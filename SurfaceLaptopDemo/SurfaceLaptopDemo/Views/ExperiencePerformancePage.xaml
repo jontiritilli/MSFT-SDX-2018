@@ -44,7 +44,15 @@
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>
-        
+
+        <ctrl:TextBlockEx Grid.Row="4" Grid.Column="1"
+            x:Name="Legal"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Visibility="Visible" />
+
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3">
             <ctrl:AppSelectorImage 
                 x:Name="AppSelectorImageMinorPerf"

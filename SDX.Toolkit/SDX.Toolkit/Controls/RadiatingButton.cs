@@ -243,7 +243,7 @@ namespace SDX.Toolkit.Controls
 
         // AnimationRepeat
         public static readonly DependencyProperty AnimationRepeatProperty =
-            DependencyProperty.Register("AnimationRepeat", typeof(RepeatBehavior), typeof(RadiatingButton), new PropertyMetadata(new RepeatBehavior(new TimeSpan(0, 0, 3)), OnAnimationOrderChanged));
+            DependencyProperty.Register("AnimationRepeat", typeof(RepeatBehavior), typeof(RadiatingButton), new PropertyMetadata(new RepeatBehavior(new TimeSpan(0, 0, 1)), OnAnimationOrderChanged));
 
         public RepeatBehavior AnimationRepeat
         {
@@ -253,7 +253,7 @@ namespace SDX.Toolkit.Controls
 
         // EntranceDurationInMilliseconds
         public static readonly DependencyProperty EntranceDurationInMillisecondsProperty =
-            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(400d, OnEntranceDurationInMillisecondsChanged));
+            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(300d, OnEntranceDurationInMillisecondsChanged));
 
         public double EntranceDurationInMilliseconds
         {
@@ -273,7 +273,7 @@ namespace SDX.Toolkit.Controls
 
         // RadiateDurationInMilliseconds
         public static readonly DependencyProperty RadiateDurationInMillisecondsProperty =
-            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(800d, OnRadiateDurationInMillisecondsChanged));
+            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1500d, OnRadiateDurationInMillisecondsChanged));
 
         public double RadiateDurationInMilliseconds
         {
@@ -283,7 +283,7 @@ namespace SDX.Toolkit.Controls
 
         // RadiateStaggerDelayInMilliseconds
         public static readonly DependencyProperty RadiateStaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(0d, OnRadiateStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(3000d, OnRadiateStaggerDelayInMillisecondsChanged));
 
         public double RadiateStaggerDelayInMilliseconds
         {
@@ -779,6 +779,10 @@ namespace SDX.Toolkit.Controls
 
                 // height of the radiating button with a little added space for the radiating animation
                 double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.7;
+                    
+                // calculate beginning and end of animation
+                double RADIATE_SIZE_START = RadiatingButtonHeight;
+                double RADIATE_SIZE_END = RadiatingButtonHeight * 1.6;
 
                 // create the grid
                 _grid = new Grid()
@@ -789,6 +793,9 @@ namespace SDX.Toolkit.Controls
                     RowSpacing = 0d,
                     ColumnSpacing = 0d
                 };
+
+                // set the grid width
+                _grid.Width = GridWidth;
 
                 // add pointer pressed event
                 _grid.PointerPressed += Grid_PointerPressed;
@@ -944,13 +951,9 @@ namespace SDX.Toolkit.Controls
                     // add it to the grid
                     _grid.Children.Add(_radiateEllipse);
 
-                    // calculate beginning and end of animation
-                    double RADIATE_SIZE_START = RadiatingButtonHeight;
-                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.6;
-
                     // create storyboards
-                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
-                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
                     _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                     // create the entrance ellipse
@@ -1036,8 +1039,8 @@ namespace SDX.Toolkit.Controls
                 // if try it is NOT enabled
                 else
                 {
-                    // set the grid width
-                    _grid.Width = GridWidth;
+                    //// set the grid width
+                    //_grid.Width = GridWidth;
 
                     // only one column
                     _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
@@ -1062,13 +1065,9 @@ namespace SDX.Toolkit.Controls
                     // add it to the canvas
                     _grid.Children.Add(_radiateEllipse);
 
-                    // calculate beginning and end of animation
-                    double RADIATE_SIZE_START = RadiatingButtonHeight;
-                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.3;
-
                     // create storyboards
-                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
-                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
                     _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
 
                     // create the entrance ellipse

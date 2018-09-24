@@ -277,7 +277,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
 
             // add rows to the popup; only need to do this if we have an image or video
-            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType))
+            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType) || (PopupTypes.Battery == this.PopupType))
             {
                 // header
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });

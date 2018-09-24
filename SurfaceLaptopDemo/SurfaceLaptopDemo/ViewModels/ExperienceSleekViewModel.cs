@@ -16,6 +16,7 @@ namespace SurfaceLaptopDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
         private const string URI_DESIGN = "ms-appx:///Assets/Experience/Sleek/foxburg_morepower.png";
+        private const double IMAGE_WIDTH = 1300d;
 
         #endregion
 
@@ -34,16 +35,15 @@ namespace SurfaceLaptopDemo.ViewModels
         public string PopBottom_Lede;
         public string PopBottom_Legal;
 
-        public string DesignUri;
-        public string BackgroundUri;
+        public string DesignUri = URI_DESIGN;
+        public string BackgroundUri = URI_BACKGROUND;
+
+        public double PrimaryImageWidth = IMAGE_WIDTH;
 
         #endregion
 
         public ExperienceSleekViewModel()
         {
-            DesignUri = URI_DESIGN;
-            BackgroundUri = URI_BACKGROUND;
-
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

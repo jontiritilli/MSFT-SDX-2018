@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
+
 namespace SurfaceLaptopDemo.Services
 {
     // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
@@ -21,7 +22,6 @@ namespace SurfaceLaptopDemo.Services
     {
         private readonly App _app;
         private readonly Lazy<UIElement> _shell;
-        private readonly Type _defaultNavItem;
 
         private static ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
 
@@ -31,11 +31,10 @@ namespace SurfaceLaptopDemo.Services
 
         public static readonly KeyboardAccelerator BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
+        public ActivationService(App app, Lazy<UIElement> shell = null)
         {
             _app = app;
             _shell = shell;
-            _defaultNavItem = defaultNavItem;
         }
 
         public async Task ActivateAsync(object activationArgs)
@@ -73,7 +72,7 @@ namespace SurfaceLaptopDemo.Services
 
             if (IsInteractive(activationArgs))
             {
-                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem);
+                var defaultHandler = new DefaultLaunchActivationHandler();
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);
@@ -100,6 +99,8 @@ namespace SurfaceLaptopDemo.Services
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
             yield return Singleton<SuspendAndResumeService>.Instance;
+            yield return Singleton<DefaultLaunchActivationHandler>.Instance;
+            yield return Singleton<SchemeActivationHandler>.Instance;
         }
 
         private bool IsInteractive(object args)
