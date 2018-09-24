@@ -151,7 +151,6 @@
     <Compile Include="ViewModels\ExperienceQuietViewModel.cs" />
     <Compile Include="ViewModels\ExperienceTransformViewModel.cs" />
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
-    <Compile Include="ViewModels\UriSchemeExampleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AccessoriesKeyboardPage.xaml.cs">
       <DependentUpon>AccessoriesKeyboardPage.xaml</DependentUpon>
@@ -199,9 +198,6 @@
       <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\INavigate.cs" />
-    <Compile Include="Views\UriSchemeExamplePage.xaml.cs">
-      <DependentUpon>UriSchemeExamplePage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -303,10 +299,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FlipViewPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UriSchemeExamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
