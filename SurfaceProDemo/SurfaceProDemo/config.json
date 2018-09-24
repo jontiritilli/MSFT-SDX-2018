@@ -7,5 +7,5 @@
   "TelemetryProdId": "",
   "TelemetryTestId": "",
   "IsBlackSchemeEnabled": true,
-  "IsChoosePathPageEnabled":  true
+  "IsChoosePathPageEnabled":  false
 }
