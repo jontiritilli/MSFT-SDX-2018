@@ -24,27 +24,18 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".5*"/>
-            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <!--Width="{StaticResource HeaderWidth}"-->
-        <!--HeadlineStyle="Headline"-->
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                 Headline="{x:Bind Path=ViewModel.Headline}"
-                
-                Lede=""
-
+                Width="600"                
+                HeadlineStyle="PageHeadline"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
-        <ctrl:List x:Name="BOM_LEFT" Grid.Row="3" Grid.Column="1"
-                   ListItems="{x:Bind Path=ViewModel.LeftItemList}"
-                   ListStyle="BestOf"
-                   />
-
-        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="3" Grid.Column="2"
-                   ListItems="{x:Bind Path=ViewModel.RightItemList}"
+        <ctrl:List x:Name="BOM" Grid.Row="3" Grid.Column="1"
+                   ListItems="{x:Bind Path=ViewModel.ItemList}"
                    ListStyle="BestOf"
                    />
         <!--ControlStyle="{StaticResource CompareLegal}"-->

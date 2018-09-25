@@ -28,8 +28,7 @@ namespace SurfaceProDemo.ViewModels
         public string BulletThreeCTA;
         public string BulletFourCTA;
         public string Legal;
-        public List<ListItem> LeftItemList = new List<ListItem>();
-        public List<ListItem> RightItemList = new List<ListItem>();
+        public List<ListItem> ItemList = new List<ListItem>();
         public double ICON_WIDTH = 60d;
         #endregion
 
