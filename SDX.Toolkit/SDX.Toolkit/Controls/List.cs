@@ -215,7 +215,7 @@ namespace SDX.Toolkit.Controls
                             {
                                 LedeStyle = TextStyles.ListItemLedePenTouch,
                                 Lede = item.Lede,
-                                Width = this.Width,
+                                Width = StyleHelper.GetApplicationDouble("AccessoriesPenListTextWidth"),
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
                                 VerticalAlignment = VerticalAlignment.Center

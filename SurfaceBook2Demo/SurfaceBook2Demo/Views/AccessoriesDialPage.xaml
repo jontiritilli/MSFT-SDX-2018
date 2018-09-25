@@ -69,7 +69,7 @@
                     AutoStart = "false"
                     Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.57}"
                     Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                   
-                    PopupPosition="Left"
+                    PopupPosition="Right"
                     />
             <Popup
                 x:Name="PopLeft"

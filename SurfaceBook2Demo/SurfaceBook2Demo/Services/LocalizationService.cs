@@ -275,6 +275,7 @@ namespace SurfaceBook2Demo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO_LEGAL, "ACCESSORIES_INTERACTIVE_BULLET_TWO_LEGAL");
 
             viewModel.TryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
             viewModel.TryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");
@@ -360,17 +361,17 @@ namespace SurfaceBook2Demo.Services
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_ONE_TITLE, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_ONE_COPY, "") // order
-                // null // custom icon path
+                                                                          // null // custom icon path
             ));
 
             // bullet two
             viewModel.LeftItemList.Add(ListItem.CreateListItem(
                 1, // order
-                ListItemIcon.Hello, // icon enum name
+                ListItemIcon.Sync, // icon enum name
                 viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""), // order
-                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "") // order
-                // null // custom icon path
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""),
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "")
+            // null // custom icon path
             ));
 
             // bullet three OPTIONAL BULLET
@@ -382,20 +383,20 @@ namespace SurfaceBook2Demo.Services
                     2, // order
                     ListItemIcon.Custom, // icon enum name
                     viewModel.ICON_WIDTH, // width
-                    headline, 
+                    headline,
                     lede
-                         // null // custom icon path
+                // null // custom icon path
                 ));
             }
 
             // bullet four
             viewModel.RightItemList.Add(ListItem.CreateListItem(
                 0, // order
-                ListItemIcon.Sync, // icon enum name
+                ListItemIcon.Hello, // icon enum name
                 viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, ""),
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "")
-                // null // custom icon path
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, ""), // order
+                GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "") // order
+                                                                          // null // custom icon path
             ));
 
             // bullet five
@@ -405,7 +406,7 @@ namespace SurfaceBook2Demo.Services
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, ""), // order
                 GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "") // order
-                // null // custom icon path
+                                                                           // null // custom icon path
             ));
         }
 
