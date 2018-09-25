@@ -38,22 +38,25 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:ImageEx Grid.Row="3" Grid.Column="1"
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="1" Grid.RowSpan="6"
             x:Name="img_Left"
             ImageWidth="{x:Bind Path=ViewModel.Left_Width}"
             ImageSource="{x:Bind Path=ViewModel.Left_URI}"
-            TranslateDirection="Right"/>
-        
-        <ctrl:ImageEx Grid.Row="3" Grid.Column="2"
+            Margin="0,0,0,75"
+            TranslateDirection="Right"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="2" Grid.RowSpan="6"
             x:Name="img_Right"
             ImageWidth="{x:Bind Path=ViewModel.Right_Width}"
             ImageSource="{x:Bind Path=ViewModel.Right_URI}"
-            Margin="0,0,0,75"
+            Margin="0,0,0,100"
             TranslateDirection="Left"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"/>
         
-        <ctrl:Header x:Name="PageHeader" Grid.Row="3" Grid.Column="2"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
             Headline="{x:Bind Path=ViewModel.Headline}"
             HeadlineStyle="PageHeadline"
             LedeStyle="PageLede"
@@ -63,45 +66,40 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"/>
 
-        <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="PopLeftLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             TextStyle="Legal"
-            Visibility="Collapsed"/>
+            Opacity="0" />
+
+        <ctrl:TextBlockEx x:Name="PopBottomLegal" Grid.Row="5" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.PopBottomLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"
+            Opacity="0" />
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightPixelSense"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
                 AutoStart = "false"/>
             
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftPixelSense"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Right"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.24}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.23}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.49}"
                 AutoStart = "false"/>
             
             <ctrl:RadiatingButton
                 x:Name="rBtnBottomPixelSense"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.68}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.66}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"
                 AutoStart = "false"/>
 
@@ -110,7 +108,9 @@
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                    
-                IsLightDismissEnabled="True">
+                IsLightDismissEnabled="True"
+                Opened="PopLeft_Opened"
+                Closed="PopLeft_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Text"
@@ -125,15 +125,19 @@
             <Popup
                 x:Name="PopBottom"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                    
-                IsLightDismissEnabled="True">
+                HorizontalOffset="830"
+                VerticalOffset="545"                    
+                IsLightDismissEnabled="False"
+                Opened="PopBottom_Opened"
+                Closed="PopBottom_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Text"
+                        PopupType="Video"
                         Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopBottomLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        MediaSourceUri = "{x:Bind Path=ViewModel.PopupDialVideo}"
+                        MediaWidth = "600"
+                        MediaHeight = "337.5"                    
                         />
                 </Popup.Child>
             </Popup>

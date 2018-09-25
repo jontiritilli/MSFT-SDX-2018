@@ -37,8 +37,8 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_APPSELECTOR_APP_SELECTED_2 = "ms-appx:///Assets/Icons/AppIcons/autodesk.png";
         private const string URI_APPSELECTOR_APP_SELECTED_3 = "ms-appx:///Assets/Icons/AppIcons/bluebeam.png";
 
-        private const double SELECTORIMAGE_IMAGEHEIGHT = 1200;
-        private const double SELECTORIMAGE_IMAGEWIDTH = 1134.5;
+        private const double SELECTORIMAGE_IMAGEHEIGHT = 1400;
+        private const double SELECTORIMAGE_IMAGEWIDTH = 1300;
 
         #endregion
 
