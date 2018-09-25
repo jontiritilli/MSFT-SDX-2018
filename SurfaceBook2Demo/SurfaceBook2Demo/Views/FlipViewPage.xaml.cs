@@ -110,7 +110,7 @@ namespace SurfaceBook2Demo.Views
             //Log.Trace("Entering FlipViewEx.Loaded.");
 
             // set the current page
-            this.ContentFlipView.SelectedIndex = 0;
+            //this.ContentFlipView.SelectedIndex = 0;   // not necessary and will interfere with page timer
 
             // save the current page so we can navigate from it
             _previousPage = (INavigate)((FlipViewItemEx)this.ContentFlipView.SelectedItem).GetChildViewAsObject();
