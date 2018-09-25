@@ -6,6 +6,8 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
+using MetroLog;
+
 using SurfaceBook2Demo.Services;
 
 using SDX.Toolkit.Helpers;
@@ -16,6 +18,8 @@ namespace SurfaceBook2Demo.ViewModels
 {
     public class FlipViewViewModel : ViewModelBase
     {
+        //private ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<FlipViewViewModel>();
+
         #region Public Properties
 
         // our navigation sections for the navigation bar
@@ -52,19 +56,26 @@ namespace SurfaceBook2Demo.ViewModels
 
         public FlipViewViewModel()
         {
+            //Log.Trace("Entering the constructor for FlipViewViewModel");
+
+            //Log.Trace("Attempting to locate the Localization Service");
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
             // if we got it
             if (null != localizationService)
             {
+                //Log.Trace("We retrieved the Localization Service; attempting to load ourself.");
                 // load ourself with values from the language file
                 localizationService.LoadFlipViewViewModel(this);
             }
 
+            //Log.Trace("We are about to call RenderNavigation");
             // render the navigation sections for the nav bar
             // (this has to happen AFTER the localization is loaded)
             RenderNavigation();
+
+            //Log.Trace("RenderNavigation was called.");
         }
 
         #endregion
@@ -101,7 +112,7 @@ namespace SurfaceBook2Demo.ViewModels
             section.Pages.Add(new NavigationPage()
             {
                 Name = "ExperienceIntroPage",
-                Order = 0
+                Order = 1
             }
             );
 
@@ -109,7 +120,7 @@ namespace SurfaceBook2Demo.ViewModels
             section.Pages.Add(new NavigationPage()
             {
                 Name = "ExperienceDayPage",
-                Order = 1
+                Order = 2
             }
             );
 

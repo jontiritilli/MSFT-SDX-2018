@@ -192,8 +192,6 @@ namespace SDX.Toolkit.Controls
                 HorizontalAlignment = HorizontalAlignment.Right,
                 TextStyle = TextStyles.PopupBatteryLife,
             };
-            _hours.SetBinding(TextBlock.TextProperty,
-                new Binding() { Source = this, Path = new PropertyPath("PercentText"), Mode = BindingMode.OneWay });
 
             // add it to the root
             _layoutRoot.Child = _hours;

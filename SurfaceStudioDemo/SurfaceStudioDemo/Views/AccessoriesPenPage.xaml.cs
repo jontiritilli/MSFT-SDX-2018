@@ -21,6 +21,8 @@ namespace SurfaceStudioDemo.Views
 
         public RoutedEventHandler BookColorIdChanged;
 
+        public RoutedEventHandler OnDialScreenContactStarted;
+
         public bool Visited = false;
 
         #region Private Members
@@ -48,7 +50,10 @@ namespace SurfaceStudioDemo.Views
             };
 
             this.ColoringBook.ColorIDChanged += BookColorIDChanged;
+            this.ColoringBook.OnPenScreenContacted += OnPenScreenContacted;
+
             this.SurfaceDial.ColorIDChanged += DialColorIDChanged;
+            this.SurfaceDial.OnDialScreenContactStarted += OnDialScreenContacted;
         }
 
         #endregion
@@ -71,9 +76,19 @@ namespace SurfaceStudioDemo.Views
             }
         }
 
+        private void OnDialScreenContacted(object sender, EventArgs e)
+        {
+            this.rBtnDial.Visibility = Visibility.Collapsed;
+        }
+
+        private void OnPenScreenContacted(object sender, EventArgs e)
+        {
+            this.rBtnPen.Visibility = Visibility.Collapsed;
+        }
+
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            //this.ReadyScreen.IsOpen = false;
+            this.ReadyScreen.IsOpen = false;
         }
 
         private void ShowPopup()
@@ -84,7 +99,6 @@ namespace SurfaceStudioDemo.Views
                 {
                     ReadyScreen.IsOpen = true;
                 }
-                Visited = true;
             }
         }
 
@@ -96,6 +110,7 @@ namespace SurfaceStudioDemo.Views
                 {
                     ReadyScreen.IsOpen = false;
                 }
+                Visited = true;
             }
         }
 

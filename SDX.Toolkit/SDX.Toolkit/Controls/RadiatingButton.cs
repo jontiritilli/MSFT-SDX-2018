@@ -49,8 +49,8 @@ namespace SDX.Toolkit.Controls
         private const double RADIATE_SIZE_DEFAULT = 0d;
         private const double RADIATE_OPACITY_DEFAULT = 0.0;
         private const double RADIATE_OPACITY_START = 0.6;
-        private const double RADIATE_OPACITY_END = 0.4;
-        private const double TRY_IT_DELAY = 4000;
+        private const double RADIATE_OPACITY_END = 0.3;
+        private const double TRY_IT_DELAY = 4500;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/RadiatingButton/tryit_dot.png";
@@ -243,7 +243,7 @@ namespace SDX.Toolkit.Controls
 
         // AnimationRepeat
         public static readonly DependencyProperty AnimationRepeatProperty =
-            DependencyProperty.Register("AnimationRepeat", typeof(RepeatBehavior), typeof(RadiatingButton), new PropertyMetadata(new RepeatBehavior(1d), OnAnimationOrderChanged));
+            DependencyProperty.Register("AnimationRepeat", typeof(RepeatBehavior), typeof(RadiatingButton), new PropertyMetadata(new RepeatBehavior(new TimeSpan(0, 0, 1)), OnAnimationOrderChanged));
 
         public RepeatBehavior AnimationRepeat
         {
@@ -253,7 +253,7 @@ namespace SDX.Toolkit.Controls
 
         // EntranceDurationInMilliseconds
         public static readonly DependencyProperty EntranceDurationInMillisecondsProperty =
-            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(400d, OnEntranceDurationInMillisecondsChanged));
+            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(300d, OnEntranceDurationInMillisecondsChanged));
 
         public double EntranceDurationInMilliseconds
         {
@@ -273,7 +273,7 @@ namespace SDX.Toolkit.Controls
 
         // RadiateDurationInMilliseconds
         public static readonly DependencyProperty RadiateDurationInMillisecondsProperty =
-            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(800d, OnRadiateDurationInMillisecondsChanged));
+            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1500d, OnRadiateDurationInMillisecondsChanged));
 
         public double RadiateDurationInMilliseconds
         {
@@ -283,7 +283,7 @@ namespace SDX.Toolkit.Controls
 
         // RadiateStaggerDelayInMilliseconds
         public static readonly DependencyProperty RadiateStaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(0d, OnRadiateStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(3000d, OnRadiateStaggerDelayInMillisecondsChanged));
 
         public double RadiateStaggerDelayInMilliseconds
         {
@@ -323,8 +323,6 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Public Properties
-
-
 
         //public double RadiateOffset { get => -1 * (BUTTON_SIZE - ENTRANCE_SIZE); }
         public double RadiateOffset { get => -16; }
@@ -776,19 +774,28 @@ namespace SDX.Toolkit.Controls
 
                 double radiateEllipseHeight = RadiatingButtonHeight * .9; // set this slightly smaller so it doesn't peek out from behind the button
 
+                // get the size for close icons
+                double CloseIconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCloseIconWidth);
+
                 // height of the radiating button with a little added space for the radiating animation
                 double RadiatingButtonRowHeight = RadiatingButtonHeight * 1.7;
+                    
+                // calculate beginning and end of animation
+                double RADIATE_SIZE_START = RadiatingButtonHeight;
+                double RADIATE_SIZE_END = RadiatingButtonHeight * 1.6;
 
                 // create the grid
                 _grid = new Grid()
                 {
                     Name = this.Name + "Grid",
-                    //Width = GridWidth,
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                     RowSpacing = 0d,
                     ColumnSpacing = 0d
                 };
+
+                // set the grid width
+                _grid.Width = GridWidth;
 
                 // add pointer pressed event
                 _grid.PointerPressed += Grid_PointerPressed;
@@ -833,7 +840,6 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "TryItBg",
                         Height = TryItBoxHeight,
-                        //Width = TryItBoxWidth,
                         Background = TryItColor,
                         BorderBrush = new SolidColorBrush(Colors.White),
                         BorderThickness = new Thickness(2),
@@ -848,7 +854,6 @@ namespace SDX.Toolkit.Controls
                         Name = "TryItText",
                         Text = this.TryItText,
                         TextStyle = TextStyles.TryIt,
-                        //Width = GridWidth,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
@@ -895,7 +900,7 @@ namespace SDX.Toolkit.Controls
                     // add it to the main grid
                     _grid.Children.Add(_tryItBox);
 
-                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
+                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1d));
 
                     TextStyles TryItCaption = TextStyles.ButtonCaption;
 
@@ -925,7 +930,7 @@ namespace SDX.Toolkit.Controls
                     _grid.Children.Add(_tryItButtonCaption);
 
                     // set up the story board
-                    _tryItCaptionStoryboard = AnimationHelper.CreateEasingAnimation(_tryItButtonCaption, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1));
+                    _tryItCaptionStoryboard = AnimationHelper.CreateEasingAnimation(_tryItButtonCaption, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1d));
 
                     _radiateEllipse = new Ellipse()
                     {
@@ -946,13 +951,9 @@ namespace SDX.Toolkit.Controls
                     // add it to the grid
                     _grid.Children.Add(_radiateEllipse);
 
-                    // calculate beginning and end of animation
-                    double RADIATE_SIZE_START = RadiatingButtonHeight;
-                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.6;
-
                     // create storyboards
-                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
                     _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                     // create the entrance ellipse
@@ -976,10 +977,7 @@ namespace SDX.Toolkit.Controls
                     _grid.Children.Add(_entranceEllipse);
 
                     // create storyboard
-                    _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
-
-                    // get the size for icons
-                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+                    _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                     // set correct icon for radiating button
                     switch (RadiatingButtonIcon) {
@@ -1019,14 +1017,14 @@ namespace SDX.Toolkit.Controls
 
                     _grid.Children.Add(_tryItImage);
 
-                    _tryItIconStoryboard = AnimationHelper.CreateEasingAnimation(_tryItImage, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
+                    _tryItIconStoryboard = AnimationHelper.CreateEasingAnimation(_tryItImage, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                     // create the X image
                     _imageX = new ImageEx()
                     {
                         Name = this.Name + "ImageX",
                         ImageSource = URI_X_IMAGE,
-                        ImageWidth = IconWidth/2,
+                        ImageWidth = CloseIconWidth,
                         Opacity = 0.0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -1041,7 +1039,11 @@ namespace SDX.Toolkit.Controls
                 // if try it is NOT enabled
                 else
                 {
-                    _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(GridWidth) });
+                    //// set the grid width
+                    //_grid.Width = GridWidth;
+
+                    // only one column
+                    _grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
                     // create the radiating ellipse
                     _radiateEllipse = new Ellipse()
@@ -1063,14 +1065,10 @@ namespace SDX.Toolkit.Controls
                     // add it to the canvas
                     _grid.Children.Add(_radiateEllipse);
 
-                    // calculate beginning and end of animation
-                    double RADIATE_SIZE_START = RadiatingButtonHeight;
-                    double RADIATE_SIZE_END = RadiatingButtonHeight * 1.3;
-
                     // create storyboards
-                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
-                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
 
                     // create the entrance ellipse
                     _entranceEllipse = new Ellipse()
@@ -1092,15 +1090,12 @@ namespace SDX.Toolkit.Controls
                     // add to the grid
                     _grid.Children.Add(_entranceEllipse);
 
-                    // get the size for icons
-                    double IconWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
-
                     // create the X image
                     _imageX = new ImageEx()
                     {
                         Name = this.Name + "ImageX",
                         ImageSource = URI_X_IMAGE,
-                        ImageWidth = IconWidth/2,
+                        ImageWidth = CloseIconWidth,
                         Opacity = 0.0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -1113,7 +1108,7 @@ namespace SDX.Toolkit.Controls
                     _grid.Children.Add(_imageX);
 
                     // create storyboard
-                    _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1));
+                    _entranceStoryboard = AnimationHelper.CreateEasingAnimation(_entranceEllipse, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                 }
             }
@@ -1121,16 +1116,12 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region Code Helpers
-        
-        #endregion
-
         #region UI Helpers
 
         private double GetPopupHorizontalOffset()
         {
             double offset = 0d;
-
+            double RadiatingButtonHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
             if ((null != _grid) && (null != this.PopupChild) && (null != this.PopupChild.Child))
             {
                 // get the position of our host button on the window
@@ -1143,19 +1134,35 @@ namespace SDX.Toolkit.Controls
                 double POPUP_SPACER = StyleHelper.GetApplicationDouble("PopupSpacer");
 
                 object popupContent = this.PopupChild.Child;
-
+                Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+                double defaultPopupWidth = StyleHelper.GetApplicationDouble(LayoutSizes.PopupDefaultWidth);
                 if (popupContent is PopupMedia popup)
                 {
                     switch (popup.PopupType)
                     {
                         case PopupTypes.Text:
-                            popupWidth = popup.Width;
+                            //Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+                            popupWidth = popup.Width;// - Padding.Left - Padding.Right;
                             break;
                         case PopupTypes.Image:
-                            popupWidth = popup.MediaWidth;
+                            // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
+                            popupWidth = popup.MediaWidth + Padding.Left + Padding.Right;
+                            // the width of the popup is defaulted. unsure if a larger width on the media will win but it should
+                            // however this will ensure that the width used for position is correct
+                            if (defaultPopupWidth > popupWidth)
+                            {
+                                popupWidth = defaultPopupWidth;
+                            }
                             break;
                         case PopupTypes.Video:
-                            popupWidth = popup.MediaWidth;
+                            // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
+                            popupWidth = popup.MediaWidth + Padding.Left + Padding.Right;
+                            // the width of the popup is defaulted. unsure if a larger width on the media will win but it should
+                            // however this will ensure that the width used for position is correct
+                            if (defaultPopupWidth > popupWidth)
+                            {
+                                popupWidth = defaultPopupWidth;
+                            }
                             break;
                         default:
                             break;
@@ -1175,14 +1182,14 @@ namespace SDX.Toolkit.Controls
                         break;
 
                     case PopupPositions.Left:
-                       // offset = point.X - popupWidth;//- _grid.ActualWidth  - POPUP_SPACER
-
-                        offset = point.X - popupWidth - POPUP_SPACER;
+                        // try it button grid could be huge so center on the 1/2 grid b/c the button will always be in the middle
+                        // of the grid and then +- the button width + the spacer
+                        // + (_grid.ActualWidth /2) centers the x point to the center of the button
+                        offset = point.X + (_grid.ActualWidth / 2) - popupWidth - (RadiatingButtonHeight / 2) - POPUP_SPACER ;
                         break;
 
                     case PopupPositions.Right:
-                        offset = point.X + _grid.ActualWidth; // + POPUP_SPACER
-                       // offset = point.X + POPUP_SPACER;
+                        offset = point.X + (_grid.ActualWidth / 2) + (RadiatingButtonHeight / 2) + POPUP_SPACER;                       
                         break;
                 }
             }

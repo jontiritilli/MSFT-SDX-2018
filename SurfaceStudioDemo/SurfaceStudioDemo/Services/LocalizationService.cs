@@ -210,9 +210,11 @@ namespace SurfaceStudioDemo.Services
 
             viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_TITLE, "EXPERIENCE_DISPLAY_POPLEFT_TITLE");
             viewModel.PopLeftLede= GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY, "EXPERIENCE_DISPLAY_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY_LEGAL, "EXPERIENCE_DISPLAY_POPLEFT_COPY_LEGAL");
 
             viewModel.PopBottomHeadline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE, "EXPERIENCE_DISPLAY_POPBOTTOM_TITLE");
             viewModel.PopBottomLede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY");
+            viewModel.PopBottomLegal = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY_LEGAL, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY_LEGAL");
 
         }
 
@@ -226,8 +228,6 @@ namespace SurfaceStudioDemo.Services
             viewModel.IconURIS[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE");
             viewModel.IconURIS[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO, "EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO");
             viewModel.IconURIS[2].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE");
-            viewModel.IconURIS[3].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR");
-            viewModel.IconURIS[4].Message = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE, "EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE");
         }
 
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)
@@ -246,7 +246,7 @@ namespace SurfaceStudioDemo.Services
             // bullet one
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 0, // order
-                ListItemIcon.Jot,
+                ListItemIcon.Write,
                 viewModel.ICON_WIDTH, // width
                 "", // header
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_ONE, "ACCESSORIES_INTERACTIVE_BULLET_ONE") // order
@@ -255,7 +255,7 @@ namespace SurfaceStudioDemo.Services
             // bullet two
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 1, // order
-                ListItemIcon.Write, // icon enum name
+                ListItemIcon.Pressure, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",//header
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO, "ACCESSORIES_INTERACTIVE_BULLET_TWO") // order
@@ -264,7 +264,7 @@ namespace SurfaceStudioDemo.Services
             // bullet three
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 2, // order
-                ListItemIcon.Pressure, // icon enum name
+                ListItemIcon.Palm, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",//header
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_THREE, "ACCESSORIES_INTERACTIVE_BULLET_THREE") // order
@@ -273,7 +273,7 @@ namespace SurfaceStudioDemo.Services
             // bullet four
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 3, // order
-                ListItemIcon.Palm, // icon enum name
+                ListItemIcon.Jot, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",// header
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_FOUR, "ACCESSORIES_INTERACTIVE_BULLET_FOUR") // order
@@ -287,18 +287,14 @@ namespace SurfaceStudioDemo.Services
             viewModel.ButtonText = GetStringValue(_languageCurrent.ACCESSORIES_GATEWAY_CTA, "ACCESSORIES_GATEWAY_CTA");
         }
 
-        public void LoadAccessoriesTryItViewModel(AccessoriesTryItViewModel viewModel)
+        public void LoadAccessoriesDialViewModel(AccessoriesDialViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_COPY, "ACCESSORIES_LEFT_COPY");
 
-            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
-            viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
-            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_LEGAL, "ACCESSORIES_LEFT_POPLEFT_LEGAL");
-
-            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
-            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPRIGHT_COPY");
-            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_LEGAL, "ACCESSORIES_LEFT_POPRIGHT_LEGAL");
+            viewModel.PopDialHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
+            viewModel.PopDialLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPRIGHT_COPY");
+            viewModel.PopDialLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_LEGAL, "ACCESSORIES_LEFT_POPRIGHT_LEGAL");
         }
 
         public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)

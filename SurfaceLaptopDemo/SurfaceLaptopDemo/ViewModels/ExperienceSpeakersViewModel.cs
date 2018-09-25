@@ -18,9 +18,13 @@ namespace SurfaceLaptopDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
 
-        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/Speaker/foxburg_enjoy_music.png";
-        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Speaker/foxburg_enjoy_movie.png";
-        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Speaker/foxburg_enjoy_skype.png";
+        private const string URI_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/Speaker/foxburg_music.png";
+        private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Speaker/foxburg_video.png";
+        private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Speaker/foxburg_skype.png";
+
+        private const string URI_MINOR_IMAGESELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/Speaker/foxburg_fake_URI_NO_IMAGE.png";
+        private const string URI_MINOR_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Speaker/foxburg_popcorn.png";
+        private const string URI_MINOR_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Speaker/foxburg_coffee.png";
 
         private const string URI_APPSELECTOR_IMAGE_1 = "ms-appx:///Assets/Experience/Speaker/Icons/music.png";
         private const string URI_APPSELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Speaker/Icons/movie.png";
@@ -30,8 +34,11 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_APPSELECTOR_IMAGE_2_SELECTED = "ms-appx:///Assets/Experience/Speaker/Icons/movie.png";
         private const string URI_APPSELECTOR_IMAGE_3_SELECTED = "ms-appx:///Assets/Experience/Speaker/Icons/skype.png";
         
-        private const double SELECTORIMAGE_IMAGEWIDTH = 1100;
-        private const double SELECTORIMAGE_IMAGEHEIGHT = 750;
+        private const double SELECTORIMAGE_IMAGEWIDTH = 975d;
+        private const double SELECTORIMAGE_IMAGEHEIGHT = 731.25d;
+
+        private const double SELECTORIMAGEMINOR_IMAGEWIDTH = 550d;
+        private const double SELECTORIMAGEMINOR_IMAGEHEIGHT = 366d;
 
         #endregion
 
@@ -48,8 +55,13 @@ namespace SurfaceLaptopDemo.ViewModels
         public double ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
         public double ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 
+        // complementary asset image sizes
+        public double ImageSelectorMinorImageWidth = SELECTORIMAGEMINOR_IMAGEWIDTH;
+        public double ImageSelectorMinorImageHeight = SELECTORIMAGEMINOR_IMAGEHEIGHT;
+
         public List<AppSelectorData> speakersSelectorData = new List<AppSelectorData>();
         public List<AppSelectorImageURI> speakersSelectorImageURIs = new List<AppSelectorImageURI>();
+        public List<AppSelectorImageURI> speakersSelectorMinorImageURIs = new List<AppSelectorImageURI>();
 
         #endregion
 
@@ -87,6 +99,23 @@ namespace SurfaceLaptopDemo.ViewModels
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,
                 Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+
+            // list of associated app complementary assets to display
+            this.speakersSelectorMinorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_MINOR_IMAGESELECTOR_IMAGE_1,
+                Width = SELECTORIMAGEMINOR_IMAGEWIDTH
+            });
+            this.speakersSelectorMinorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_MINOR_IMAGESELECTOR_IMAGE_2,
+                Width = SELECTORIMAGEMINOR_IMAGEWIDTH
+            });
+            this.speakersSelectorMinorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_MINOR_IMAGESELECTOR_IMAGE_3,
+                Width = SELECTORIMAGEMINOR_IMAGEWIDTH
             });
 
             // get the localization service

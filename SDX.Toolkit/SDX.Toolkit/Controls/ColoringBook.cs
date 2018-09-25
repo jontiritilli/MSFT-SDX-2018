@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 
 using SDX.Toolkit.Helpers;
+using Windows.Devices.Input;
 //using SDX.Toolkit.Views;
 //using SDX.Toolkit.Services;
 
@@ -345,6 +346,20 @@ namespace SDX.Toolkit.Controls
             this.RaiseColorIDChangedEvent(Book, new EventArgs());
         }
 
+        public delegate void OnPenScreenContactStartedEvent(object sender, EventArgs e);
+
+        public event OnPenScreenContactStartedEvent OnPenScreenContacted;
+
+        private void RaisePenScreenContactStartedEvent(ColoringBook Book, EventArgs e)
+        {
+            OnPenScreenContacted?.Invoke(Book, e);
+        }
+
+        private void RaisePenScreenContactStartedEvent(ColoringBook Book)
+        {
+            this.RaisePenScreenContactStartedEvent(Book, new EventArgs());
+        }
+
         #endregion
 
         #region Event Handlers
@@ -364,6 +379,11 @@ namespace SDX.Toolkit.Controls
                 book.RaiseColorIDChangedEvent(book);
                 book._AppSelector.SelectedID = book.ColorID;
             }
+        }
+
+        private void OnPenScreenContactStarted(InkStrokeInput input, PointerEventArgs e)
+        {
+            RaisePenScreenContactStartedEvent(this);
         }
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -396,18 +416,21 @@ namespace SDX.Toolkit.Controls
         //    }
         //}
         #endregion
-
+        
         #region UI Methods
 
         private void RenderUI()
         {
             // get the layoutroot
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
+
             //_layoutRoot.Opacity = 0;
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.95, GridUnitType.Star) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.05, GridUnitType.Star) });
 
             if (null == _layoutRoot) { return; }
+
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.95, GridUnitType.Star) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.05, GridUnitType.Star) });
+            //_layoutRoot.PointerPressed += OnPenScreenContactStarted;
 
             // create touch here canvas
             _touchHereCanvas = new Canvas()
@@ -459,6 +482,7 @@ namespace SDX.Toolkit.Controls
 
             };
 
+            _inkCanvas.InkPresenter.StrokeInput.StrokeStarted += OnPenScreenContactStarted;
             Grid.SetRow(_inkCanvas, 0);
             Grid.SetColumnSpan(_inkCanvas, this.ImageColumnSpan);
             Grid.SetColumn(_inkCanvas, 0);

@@ -38,7 +38,8 @@
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
@@ -116,9 +117,10 @@
 
 
         <ctrl:ImageEx
-            Grid.Row="3"
+            Grid.Row="1"
             Grid.Column="1"
             Grid.ColumnSpan="2"
+            Grid.RowSpan="3"
             x:Name="img_Laptop"
             ImageWidth="{x:Bind Path=ViewModel.LaptopWidth}"            
             ImageSource="{x:Bind Path=ViewModel.LaptopUri}"

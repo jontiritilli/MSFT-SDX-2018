@@ -36,11 +36,13 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.DesignUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
+        <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="2"
+            x:Name="Hero"
+            ImageSource="{x:Bind Path=ViewModel.DesignUri}"
+            ImageWidth="1300"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"/>
+
 
         <ctrl:Header Grid.Row="3" Grid.Column="1"
             x:Name="PageHeader" 
@@ -58,22 +60,13 @@
                 x:Name="rBtnTryItInnovation"
                 TryItEnabled="true"
                 TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
-                TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.18}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                                 
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.72}"                                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightInnovation"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.74}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                 
                 PopupPosition="Left" 
@@ -81,10 +74,6 @@
         
             <ctrl:RadiatingButton
                 x:Name="rBtnTopInnovation"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.37}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.18}"                                 
                 PopupPosition="Right"                 
@@ -94,15 +83,15 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                    
+                VerticalOffset="250"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Video"
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupMediaTryIt}"
                         Headline="{x:Bind Path=ViewModel.TryIt_Headline}"
                         Lede="{x:Bind Path=ViewModel.TryIt_Lede}"
-                        MediaSourceUri="{x:Bind Path=ViewModel.DesignUri}"
-                        MediaWidth="{x:Bind Path=ViewModel.MediaWidth}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupMediaWidth}"
                         />
                     
                 </Popup.Child>

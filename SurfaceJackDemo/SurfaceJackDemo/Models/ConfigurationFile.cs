@@ -13,6 +13,7 @@ namespace SurfaceJackDemo.Models
     {
         public bool IsAttractorLoopEnabled = true;
         public string AttractorLoopFileName = "ms-appx:///Assets/Attractor/attractor.mp4";
+        public bool IsChoosePathPageEnabled = true;
         public string Language = "en-US";
         public bool IsTelemetryEnabled = false;
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
@@ -26,6 +27,7 @@ namespace SurfaceJackDemo.Models
             ConfigurationFile config = new ConfigurationFile()
             {
                 IsAttractorLoopEnabled = true,
+                IsChoosePathPageEnabled = true,
                 Language = String.Empty,
                 IsTelemetryEnabled = false,
                 TelemetryKey = TelemetryKeys.Test,

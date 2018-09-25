@@ -214,6 +214,7 @@ namespace SurfaceLaptopDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_DOMORE_HEADLINE, "EXPERIENCE_DOMORE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_DOMORE_COPY, "EXPERIENCE_DOMORE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_DOMORE_LEGAL, "EXPERIENCE_DOMORE_LEGAL");
         }
 
         public void LoadExperienceSpeakersViewModel(ExperienceSpeakersViewModel viewModel)

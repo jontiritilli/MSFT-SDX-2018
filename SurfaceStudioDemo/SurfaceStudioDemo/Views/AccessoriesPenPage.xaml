@@ -59,7 +59,7 @@
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"/>
         
-        <ctrl:ColoringBook Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+        <ctrl:ColoringBook Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
             x:Name="ColoringBook"
             ImageColumnSpan="2" />
 
@@ -70,7 +70,7 @@
             Background="White">
         </Canvas>-->
         
-        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
             x:Name="GridCanvas">
             
             <ctrl:SurfaceDial
@@ -89,7 +89,7 @@
                 EntranceDurationInMilliseconds = "400"
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"
@@ -105,7 +105,7 @@
                 EntranceDurationInMilliseconds = "400"
                 EntranceStaggerDelayInMilliseconds = "0"
                 RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"

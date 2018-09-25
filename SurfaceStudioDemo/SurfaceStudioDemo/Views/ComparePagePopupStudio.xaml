@@ -11,8 +11,8 @@
 
     <Grid
         x:Name="ContentArea"
-        Width="{StaticResource CanvasWidth}"
-        Height="{StaticResource CanvasHeight}">
+        Height="{StaticResource ScreenHeight}"
+        Width="{StaticResource ScreenWidth}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
@@ -31,23 +31,18 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+        <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
             x:Name="Hero"
-            Width="1500"
+            ImageWidth="1300"
+            ImageSource="{x:Bind Path=ViewModel.PrimaryImageURI}"
             HorizontalAlignment="Right"
-            VerticalAlignment="Center">
+            VerticalAlignment="Center"/>
 
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.PrimaryImageURI}" DecodePixelWidth="1500" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
-        
         <ctrl:TextBlockEx x:Name="Headline" Grid.Row="1" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Headline}"
-            TextStyle="PageHeadlineLarge"
-            Width="{StaticResource HeaderWidth}"
+            TextStyle="PageHeadline"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom" />
+            VerticalAlignment="Center" />
 
         <ctrl:Header x:Name="SubHead" Grid.Row="3" Grid.Column="1"
             Headline="{x:Bind Path=ViewModel.SubHead}"
@@ -56,7 +51,7 @@
             LedeStyle="PopupLede"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom" />
+            VerticalAlignment="Center" />
 
         <ctrl:List Grid.Row="5" Grid.Column="1"
             x:Name="CompareList"
@@ -70,7 +65,7 @@
             TextStyle="Legal"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom" />
+            VerticalAlignment="Center" />
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3">
             <Grid x:Name="grdCloseButton"

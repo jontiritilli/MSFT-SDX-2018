@@ -140,10 +140,10 @@ namespace SurfaceStudioDemo.ViewModels
             }
             );
 
-            // AccessoriesTryItPage
+            // AccessoriesDialPage
             section.Pages.Add(new NavigationPage()
             {
-                Name = "AccessoriesTryItPage",
+                Name = "AccessoriesDialPage",
                 Order = 2
             }
             );

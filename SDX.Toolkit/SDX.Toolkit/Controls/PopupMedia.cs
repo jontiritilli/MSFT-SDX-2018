@@ -150,6 +150,16 @@ namespace SDX.Toolkit.Controls
         }
 
 
+        public static readonly DependencyProperty MediaHasMarginProperty =
+    DependencyProperty.Register("MediaHasMargin", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true));
+
+        public bool MediaHasMargin
+        {
+            get => (bool)GetValue(MediaHasMarginProperty);
+            set => SetValue(MediaHasMarginProperty, value);
+        }
+
+
         // AutoStart
         public static readonly DependencyProperty AutoStartProperty =
             DependencyProperty.Register("AutoStart", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false, OnAutoStartChanged));
@@ -267,7 +277,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
 
             // add rows to the popup; only need to do this if we have an image or video
-            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType))
+            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType) || (PopupTypes.Battery == this.PopupType))
             {
                 // header
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
@@ -280,7 +290,19 @@ namespace SDX.Toolkit.Controls
             }
 
             // set our Padding
-            _layoutRoot.Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+            if (this.PopupType == PopupTypes.Image && !this.MediaHasMargin)
+            {
+                // set our width
+                this.Width = this.MediaWidth;
+                _layoutRoot.Width = this.MediaWidth;
+                
+            }
+            else
+            {
+                _layoutRoot.Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+                // set our width
+                _layoutRoot.Width = this.Width;
+            }
 
             // figure out our width
             // if the control width is infinity or not a number
@@ -290,8 +312,7 @@ namespace SDX.Toolkit.Controls
                 this.Width = StyleHelper.GetApplicationDouble(LayoutSizes.PopupDefaultWidth);
             }
 
-            // set our width
-            _layoutRoot.Width = this.Width;
+
 
             // if we autostart, set our opacity to 0 to prepare for that
             if (this.AutoStart) { _layoutRoot.Opacity = 0.0; }
@@ -307,6 +328,17 @@ namespace SDX.Toolkit.Controls
                 VerticalAlignment = VerticalAlignment.Top,
                 Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
             };
+            if (this.PopupType == PopupTypes.Image && !this.MediaHasMargin)
+            {
+                Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
+                _header.Width = this.Width - Padding.Left - Padding.Right;
+                _header.Margin = new Thickness() {
+                    Left = Padding.Left,
+                    Right = Padding.Right,
+                    Top = Padding.Top
+                };                
+            }
+
 
             // add it to the layout
             Grid.SetRow(_header, 0);

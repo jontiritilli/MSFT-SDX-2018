@@ -118,7 +118,7 @@ namespace SurfaceProDemo.Views
         private void FlipViewEx_Loaded(object sender, RoutedEventArgs e)
         {
             // set the current page
-            this.ContentFlipView.SelectedIndex = 0;
+            //this.ContentFlipView.SelectedIndex = 0;   // not necessary and will interfere with page timer
 
             // save the current page so we can navigate from it
             _previousPage = (INavigate)((FlipViewItemEx)this.ContentFlipView.SelectedItem).GetChildViewAsObject();
@@ -139,6 +139,18 @@ namespace SurfaceProDemo.Views
                 // get the sender
                 if (sender is FlipViewEx flipView)
                 {
+                    // get the pageIndex of the new page
+                    int nextPageIndex = flipView.SelectedIndex;
+
+                    // find the index of the previous page
+                    int previousPageIndex = flipView.GetIndexOfChildView(_previousPage);
+
+                    // if the previous and next page are the same, then return
+                    if (nextPageIndex == previousPageIndex)
+                    {
+                        return;
+                    }
+
                     // navigate from the previous page
                     if (null != _previousPage)
                     {
@@ -149,12 +161,6 @@ namespace SurfaceProDemo.Views
                     if (null != flipView.SelectedItem)
                     {
                         INavigateMoveDirection moveDirection = INavigateMoveDirection.Unknown;
-
-                        // get the pageIndex of the new page
-                        int nextPageIndex = flipView.SelectedIndex;
-
-                        // find the index of the previous page
-                        int previousPageIndex = flipView.GetIndexOfChildView(_previousPage);
 
                         // if we got it
                         if (-1 != previousPageIndex)

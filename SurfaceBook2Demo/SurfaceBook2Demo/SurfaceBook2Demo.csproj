@@ -99,6 +99,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MetroLog">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.7</Version>
     </PackageReference>
@@ -118,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\SchemeActivationConfig.cs" />
+    <Compile Include="Activation\SchemeActivationData.cs" />
+    <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
@@ -137,6 +143,7 @@
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupSurfaceBook2ViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayCreateViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayPlayViewModel.cs" />
@@ -369,11 +376,16 @@
     <Content Include="Assets\DaySlider\sb2_15_battery_4.png" />
     <Content Include="Assets\DaySlider\sb2_15_moon.png" />
     <Content Include="Assets\DaySlider\sb2_15_sun.png" />
-    <Content Include="Assets\Experience\sb2_appIcon_blueBeam.png" />
-    <Content Include="Assets\Experience\sb2_appIcon_maya.png" />
-    <Content Include="Assets\Experience\sb2_appIcon_photoshop.png" />
-    <Content Include="Assets\Experience\sb2_appIcon_premiere.png" />
-    <Content Include="Assets\Experience\sb2_appIcon_sketchBook.png" />
+    <Content Include="Assets\Experience\sb2_13_bluebeam.png" />
+    <Content Include="Assets\Experience\sb2_13_maya.png" />
+    <Content Include="Assets\Experience\sb2_13_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_13_premiere.png" />
+    <Content Include="Assets\Experience\sb2_13_sketchbook.png" />
+    <Content Include="Assets\Experience\sb2_15_bluebeam.png" />
+    <Content Include="Assets\Experience\sb2_15_maya.png" />
+    <Content Include="Assets\Experience\sb2_15_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_15_premiere.png" />
+    <Content Include="Assets\Experience\sb2_15_sketchbook.png" />
     <Content Include="Assets\Experience\sb2_create_sb15.png" />
     <Content Include="Assets\Experience\sb2_hero_dial.png" />
     <Content Include="Assets\Experience\sb2_hero_insetCompare_sb13.png" />
@@ -387,7 +399,19 @@
     <Content Include="Assets\Experience\sb2_relax_insetHinge_sb13.png" />
     <Content Include="Assets\Experience\sb2_relax_insetHinge_sb15.png" />
     <Content Include="Assets\Experience\sb2_relax_sb15.png" />
+    <Content Include="Assets\Experience\sb2_transform_13.png" />
+    <Content Include="Assets\Experience\sb2_transform_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_bluebeam_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_bluebeam_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_maya_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_maya_15.png" />
     <Content Include="Assets\Experience\sb2_work_appScreen_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_photoshop_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_photoshop_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_premiere_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_premiere_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_sketchbook_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_sketchbook_15.png" />
     <Content Include="Assets\Experience\sb2_work_insetConnections_sb13.png" />
     <Content Include="Assets\Experience\sb2_work_insetConnections_sb15.png" />
     <Content Include="Assets\Experience\sb2_work_sb15.png" />
@@ -469,6 +493,7 @@
     <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-72.png" />
     <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-80.png" />
     <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-96.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-UriScheme.png" />
     <Content Include="Assets\StoreIcons\Square44x44Logo.scale-100.png" />
     <Content Include="Assets\StoreIcons\Square44x44Logo.scale-125.png" />
     <Content Include="Assets\StoreIcons\Square44x44Logo.scale-150.png" />

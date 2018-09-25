@@ -24,6 +24,14 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\StoreIcons\SplashScreen.png" BackgroundColor="black" />
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="surfacedemo">
+            <uap:Logo>Assets\StoreIcons\Square44x44Logo-UriScheme.png</uap:Logo>
+            <uap:DisplayName>SurfaceStudioDemo</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

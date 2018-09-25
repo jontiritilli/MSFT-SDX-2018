@@ -357,22 +357,6 @@ namespace SDX.Toolkit.Controls
                         this.Images[i].Opacity = 0;
                     }
                 }
-                
-                //ColorSelectorColors newColor = (ColorSelectorColors.None == forcedColor) ? this.ColorSelector.SelectedColor : forcedColor;
-
-                //// change images in two steps to avoid flashing
-
-                //// make the new color visible
-                //_imageBurgundy.Opacity = (ColorSelectorColors.Burgundy == newColor) ? 1.0 : _imageBurgundy.Opacity;
-                //_imageCobalt.Opacity = (ColorSelectorColors.Cobalt == newColor) ? 1.0 : _imageCobalt.Opacity;
-                //_imageBlack.Opacity = (ColorSelectorColors.Black == newColor) ? 1.0 : _imageBlack.Opacity;
-                //_imageSilver.Opacity = (ColorSelectorColors.Silver == newColor) ? 1.0 : _imageSilver.Opacity;
-
-                //// hide the old color
-                //_imageBurgundy.Opacity = (ColorSelectorColors.Burgundy != newColor) ? 0.0 : _imageBurgundy.Opacity;
-                //_imageCobalt.Opacity = (ColorSelectorColors.Cobalt != newColor) ? 0.0 : _imageCobalt.Opacity;
-                //_imageBlack.Opacity = (ColorSelectorColors.Black != newColor) ? 0.0 : _imageBlack.Opacity;
-                //_imageSilver.Opacity = (ColorSelectorColors.Silver != newColor) ? 0.0 : _imageSilver.Opacity;
             }
         }
 

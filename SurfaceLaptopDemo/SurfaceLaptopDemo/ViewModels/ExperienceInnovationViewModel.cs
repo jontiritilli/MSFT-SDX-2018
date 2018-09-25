@@ -16,7 +16,9 @@ namespace SurfaceLaptopDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/foxburg_generic_bg.jpg";
         private const string URI_DESIGN = "ms-appx:///Assets/Experience/Design/foxburg_design.png";
+        private const string URI_POPLEFT_MEDIA = "ms-appx:///Assets/Experience/Design/foxburg_alcantara.png";
         private const double WIDTH_MEDIA = 1136d;
+        private const double WIDTH_POPUP_MEDIA = 325d;
         #endregion
 
         #region Public Members
@@ -36,14 +38,18 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string DesignUri = URI_DESIGN;
         public string BackgroundUri = URI_BACKGROUND;
+        public string PopupMediaTryIt = URI_POPLEFT_MEDIA;
 
         public double MediaWidth;
+        public double PopupMediaWidth;
 
         #endregion
 
         public ExperienceInnovationViewModel()
         {
             MediaWidth = WIDTH_MEDIA;
+            PopupMediaWidth = WIDTH_POPUP_MEDIA;
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

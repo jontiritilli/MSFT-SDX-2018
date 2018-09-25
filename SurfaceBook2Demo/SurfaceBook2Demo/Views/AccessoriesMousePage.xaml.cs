@@ -27,6 +27,18 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+        #region Event Handlers
+        private void PopMouse_Opened(object sender, object e)
+        {
+            this.LegalMouse.SetOpacity(1);
+        }
+
+        private void PopMouse_Closed(object sender, object e)
+        {
+            this.LegalMouse.SetOpacity(0);
+        }
+
+        #endregion
 
         #region INavigate Interface
 

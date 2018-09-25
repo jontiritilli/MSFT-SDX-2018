@@ -118,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\SchemeActivationConfig.cs" />
+    <Compile Include="Activation\SchemeActivationData.cs" />
+    <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
@@ -135,7 +138,7 @@
     <Compile Include="ViewModels\AccessoriesMouseViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesPenPopupViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
-    <Compile Include="ViewModels\AccessoriesTryItViewModel.cs" />
+    <Compile Include="ViewModels\AccessoriesDialViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
     <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
@@ -156,8 +159,8 @@
     <Compile Include="Views\AccessoriesPenPopupPage.xaml.cs">
       <DependentUpon>AccessoriesPenPopupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccessoriesTryItPage.xaml.cs">
-      <DependentUpon>AccessoriesTryItPage.xaml</DependentUpon>
+    <Compile Include="Views\AccessoriesDialPage.xaml.cs">
+      <DependentUpon>AccessoriesDialPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AttractorLoopPage.xaml.cs">
       <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
@@ -250,7 +253,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AccessoriesTryItPage.xaml">
+    <Page Include="Views\AccessoriesDialPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -308,6 +311,7 @@
   <ItemGroup>
     <Content Include="Assets\Accessories\accessoriesLeft.png" />
     <Content Include="Assets\Accessories\accessoriesRight.png" />
+    <Content Include="Assets\Accessories\accLeftDialPopupVideo.mp4" />
     <Content Include="Assets\Accessories\inkingFish.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
@@ -321,16 +325,17 @@
     <Content Include="Assets\Comparison\comparisonStudio.png" />
     <Content Include="Assets\Experience\appsDesktop.png" />
     <Content Include="Assets\Experience\appsStudio.png" />
+    <Content Include="Assets\Experience\caprock_adobecc.png" />
+    <Content Include="Assets\Experience\caprock_bluebeam.png" />
+    <Content Include="Assets\Experience\caprock_sketchbook.png" />
+    <Content Include="Assets\Experience\pixelSensePopupVideo.mp4" />
     <Content Include="Assets\Experience\inkingGateway.png" />
     <Content Include="Assets\Experience\craftmanship.png" />
     <Content Include="Assets\Experience\hero01.jpg" />
     <Content Include="Assets\Experience\hero02.jpg" />
-    <Content Include="Assets\Experience\sketchbook.png" />
+    <Content Include="Assets\Icons\AppIcons\adobecc.png" />
+    <Content Include="Assets\Icons\AppIcons\autodesk.png" />
     <Content Include="Assets\Icons\AppIcons\bluebeam.png" />
-    <Content Include="Assets\Icons\AppIcons\maya.png" />
-    <Content Include="Assets\Icons\AppIcons\premiere.png" />
-    <Content Include="Assets\Icons\AppIcons\psd.png" />
-    <Content Include="Assets\Icons\AppIcons\sketchbook.png" />
     <Content Include="Assets\Icons\ArtworkColors\blue.png" />
     <Content Include="Assets\Icons\ArtworkColors\blue_active.png" />
     <Content Include="Assets\Icons\ArtworkColors\orange.png" />
@@ -388,6 +393,7 @@
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\RadiatingButton\tryit_dial.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-UriScheme.png" />
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Properties\Default.rd.xml" />
