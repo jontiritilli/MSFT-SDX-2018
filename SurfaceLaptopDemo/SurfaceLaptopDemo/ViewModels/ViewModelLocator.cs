@@ -32,9 +32,24 @@ namespace SurfaceLaptopDemo.ViewModels
             Register<AccessoriesPenViewModel, AccessoriesPenPage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
             Register<CompareViewModel, ComparePage>();
+            Register<ComparePopupProViewModel, ComparePagePopupPro>();
+            Register<ComparePopupBookViewModel, ComparePagePopupBook>();
+            Register<ComparePopupStudioViewModel, ComparePagePopupStudio>();
+            Register<ComparePopupLaptopViewModel, ComparePagePopupLaptop>();
+            Register<ComparePopupGoViewModel, ComparePagePopupGo>();
         }
 
         public CompareViewModel CompareViewModel => ServiceLocator.Current.GetInstance<CompareViewModel>();
+
+        public ComparePopupProViewModel ComparePopupProViewModel => ServiceLocator.Current.GetInstance<ComparePopupProViewModel>();
+
+        public ComparePopupBookViewModel ComparePopupBookViewModel => ServiceLocator.Current.GetInstance<ComparePopupBookViewModel>();
+
+        public ComparePopupStudioViewModel ComparePopupStudioViewModel => ServiceLocator.Current.GetInstance<ComparePopupStudioViewModel>();
+
+        public ComparePopupLaptopViewModel ComparePopupLaptopViewModel => ServiceLocator.Current.GetInstance<ComparePopupLaptopViewModel>();
+
+        public ComparePopupGoViewModel ComparePopupGoViewModel => ServiceLocator.Current.GetInstance<ComparePopupGoViewModel>();
 
         public BestOfMicrosoftViewModel BestOfMicrosoftViewModel => ServiceLocator.Current.GetInstance<BestOfMicrosoftViewModel>();
 

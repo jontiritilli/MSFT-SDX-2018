@@ -557,7 +557,7 @@ namespace SurfaceStudioDemo.Services
             // bullet four
             viewModel.CompareListItems.Add(ListItem.CreateListItem(
                 3,
-                ListItemIcon.ScreenSize,
+                ListItemIcon.Display,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE, "COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE"),
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY, "COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY")

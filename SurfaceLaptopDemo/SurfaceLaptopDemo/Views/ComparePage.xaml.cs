@@ -2,7 +2,10 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+
+using SDX.Toolkit.Helpers;
 
 
 namespace SurfaceLaptopDemo.Views
@@ -24,23 +27,72 @@ namespace SurfaceLaptopDemo.Views
         public ComparePage()
         {
             InitializeComponent();
-            this.rBtnPro.PopupChild = this.PopPro;
-            this.rBtnBook.PopupChild = this.PopBook;
-            this.rBtnStudio.PopupChild = this.PopStudio;
-            this.rBtnLaptop.PopupChild = this.PopLaptop;
-            this.rBtnGo.PopupChild = this.PopGo;
+
+            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
+            timer.Start();
+            timer.Tick += (sender, args) =>
+            {// well this works? but ew
+                timer.Stop();
+                this.rBtnPro.PopupChild = FlipViewPage.Current.GetComparePagePopupPro(); ;
+                ComparePagePopupPro.Current.CloseButton_Clicked += Close_Pro_Clicked;
+
+                this.rBtnBook.PopupChild = FlipViewPage.Current.GetComparePagePopupBook(); ;
+                ComparePagePopupBook.Current.CloseButton_Clicked += Close_Book_Clicked;
+
+                this.rBtnStudio.PopupChild = FlipViewPage.Current.GetComparePagePopupStudio();
+                ComparePagePopupStudio.Current.CloseButton_Clicked += Close_Studio_Clicked;
+
+                this.rBtnLaptop.PopupChild = FlipViewPage.Current.GetComparePagePopupLaptop();
+                ComparePagePopupLaptop.Current.CloseButton_Clicked += Close_Laptop_Clicked;
+
+                this.rBtnGo.PopupChild = FlipViewPage.Current.GetComparePagePopupGo();
+                ComparePagePopupGo.Current.CloseButton_Clicked += Close_Go_Clicked;
+            };
         }
 
         #endregion
 
+        #region Private Methods
+
+        private void Close_Pro_Clicked(object sender, RoutedEventArgs e)
+        {
+            rBtnPro.HandleClick();
+            FlipViewPage.Current.ShowAppClose();
+        }
+
+        private void Close_Book_Clicked(object sender, RoutedEventArgs e)
+        {
+            rBtnBook.HandleClick();
+            FlipViewPage.Current.ShowAppClose();
+        }
+
+        private void Close_Studio_Clicked(object sender, RoutedEventArgs e)
+        {
+            rBtnStudio.HandleClick();
+            FlipViewPage.Current.ShowAppClose();
+        }
+
+        private void Close_Laptop_Clicked(object sender, RoutedEventArgs e)
+        {
+            rBtnLaptop.HandleClick();
+            FlipViewPage.Current.ShowAppClose();
+        }
+
+        private void Close_Go_Clicked(object sender, RoutedEventArgs e)
+        {
+            rBtnGo.HandleClick();
+            FlipViewPage.Current.ShowAppClose();
+        }
+
+        #endregion
 
         #region INavigate Interface
 
         public void NavigateToPage()
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
+            AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
 
             rBtnPro.StartEntranceAnimation();
             rBtnPro.StartRadiateAnimation();

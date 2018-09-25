@@ -6,6 +6,7 @@ using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -215,6 +216,32 @@ namespace SurfaceLaptopDemo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        // load COMPARE PAGE full page popups
+        public Popup GetComparePagePopupPro()
+        {
+            return this.CompareProPopup;
+        }
+
+        public Popup GetComparePagePopupBook()
+        {
+            return this.CompareBookPopup;
+        }
+
+        public Popup GetComparePagePopupStudio()
+        {
+            return this.CompareStudioPopup;
+        }
+
+        public Popup GetComparePagePopupLaptop()
+        {
+            return this.CompareLaptopPopup;
+        }
+
+        public Popup GetComparePagePopupGo()
+        {
+            return this.CompareGoPopup;
         }
 
         #endregion
