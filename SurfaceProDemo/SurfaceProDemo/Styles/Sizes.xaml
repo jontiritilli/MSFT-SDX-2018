@@ -116,10 +116,11 @@
     <x:Double x:Key="TryItIconHeight">40</x:Double>
 
     <x:Double x:Key="CanvasWidth">1368</x:Double>
-    <x:Double x:Key="CanvasHeight">820</x:Double>  <!-- 3000 - 184 (navbar) = 2816, 2816 / 2 (200% scaling) = 1408 -->
+    <x:Double x:Key="CanvasHeight">820</x:Double>
 
-    <x:Double x:Key="ScreenWidth">1188</x:Double>
+    <x:Double x:Key="ScreenWidth">1368</x:Double>
     <x:Double x:Key="ScreenHeight">912</x:Double>
+    
     <x:Double x:Key="CloseButtonRightMargin">50</x:Double>
     <x:Double x:Key="CloseButtonTopMargin">50</x:Double>
     
