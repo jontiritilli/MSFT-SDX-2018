@@ -23,7 +23,7 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_PRIMARYIMAGE = "ms-appx:///Assets/Comparison/comparisonStudio.png";
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
-        private const double PRIMARY_IMAGEHEIGHT = 1200;
+        private const double PRIMARY_IMAGEHEIGHT = 795;
 
         #endregion
 
