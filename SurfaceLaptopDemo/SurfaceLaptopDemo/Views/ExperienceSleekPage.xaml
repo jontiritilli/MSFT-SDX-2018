@@ -36,7 +36,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
               
-        <ctrl:Header Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
             x:Name="PageHeader" 
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
@@ -46,7 +46,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"/>
 
-        <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="2"
+        <ctrl:ImageEx Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"
             x:Name="Power"
             ImageSource="{x:Bind Path=ViewModel.DesignUri}"
             ImageWidth="{x:Bind Path=ViewModel.PrimaryImageWidth}"
@@ -57,8 +57,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBottomPerformance"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.61}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.77}"
                 PopupPosition="Left"                       
                 AutoStart = "false"/>
 
@@ -71,8 +71,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftPerformance"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"
                 PopupPosition="Left"                       
                 AutoStart = "false"/>
 

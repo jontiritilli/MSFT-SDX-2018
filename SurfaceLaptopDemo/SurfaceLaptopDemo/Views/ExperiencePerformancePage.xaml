@@ -26,6 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -45,26 +46,26 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"/>
 
-        <ctrl:TextBlockEx Grid.Row="4" Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="5" Grid.Column="1"
             x:Name="Legal"
             Text="{x:Bind Path=ViewModel.Legal}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Bottom"
             Visibility="Visible" />
 
-        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3">
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
             <ctrl:AppSelectorImage 
                 x:Name="AppSelectorImageMinorPerf"
                 URIs="{x:Bind Path=ViewModel.performanceSelectorMinorImageURIs}"
                 ImageHeight="{x:Bind ViewModel.ImageSelectorMinorImageHeight}"
                 ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
                 Opacity="1"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.17}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.39}" />
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.16}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.34}" />
         </Canvas>
 
-        <ctrl:AppSelectorImage Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" 
+        <ctrl:AppSelectorImage Grid.Row="1" Grid.Column="1" Grid.RowSpan="7" 
             x:Name="AppSelectorImagePerf"
             URIs="{x:Bind Path=ViewModel.performanceSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"

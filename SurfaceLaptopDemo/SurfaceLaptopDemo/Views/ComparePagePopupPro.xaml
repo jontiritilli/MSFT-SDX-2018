@@ -17,9 +17,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="{StaticResource CompareSpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="{StaticResource CompareSpaceBelowSubHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
@@ -33,7 +33,7 @@
 
         <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
             x:Name="Hero"
-            ImageWidth="1300"
+            ImageWidth="784"
             ImageSource="{x:Bind Path=ViewModel.PrimaryImageURI}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"/>
@@ -53,7 +53,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center" />
 
-        <ctrl:List Grid.Row="5" Grid.Column="1"
+        <ctrl:List Grid.Row="5" Grid.Column="1" Grid.RowSpan="2"
             x:Name="CompareList"
             ListStyle="Compare"
             ListItems="{x:Bind Path=ViewModel.CompareListItems}"
@@ -70,7 +70,7 @@
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3">
             <Grid x:Name="grdCloseButton"
                 Canvas.Left="{x:Bind Path=ViewModel.EllipseGridCanvasSetLeft}"  
-                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseTopMargin}"            
+                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseMargin}"           
                 PointerPressed="PopClose_Click">
 
                 <Ellipse
@@ -86,7 +86,7 @@
                 <ctrl:ImageEx
                     x:Name="CloseButtonImage"
                     ImageSource="{x:Bind Path=ViewModel.x_ImageURI}"
-                    ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
+                    ImageWidth="{StaticResource RadiatingButtonCloseIconWidth}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"                
                     Margin="0"/>

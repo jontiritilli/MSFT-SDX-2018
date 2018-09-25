@@ -175,7 +175,9 @@
     <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
       <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ComparePageProStudio.xaml.cs" />
+    <Compile Include="Views\ComparePagePopupPro.xaml.cs">
+      <DependentUpon>ComparePagePopupPro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExperienceColorsPage.xaml.cs">
       <DependentUpon>ExperienceColorsPage.xaml</DependentUpon>
     </Compile>

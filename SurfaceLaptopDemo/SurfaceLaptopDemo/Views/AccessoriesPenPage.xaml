@@ -27,7 +27,6 @@
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="2*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -43,7 +42,7 @@
             ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
             ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"/>
 
-        <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
+        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
             x:Name="AppSelectorAccRight"
             URIs="{x:Bind Path=ViewModel.accRightSelectorData}"
             HorizontalAlignment="Right"
@@ -51,7 +50,7 @@
             ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
             ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
 
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
                     x:Name="AccRightHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
@@ -65,10 +64,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnPen"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.48}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.71}"                                 
                 PopupPosition="Right"                 
