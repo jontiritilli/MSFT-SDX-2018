@@ -29,7 +29,6 @@ namespace SurfaceProDemo.ViewModels
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;
         public string PrimaryImageURI = URI_PRIMARYIMAGE;
         public string Headline;
 
