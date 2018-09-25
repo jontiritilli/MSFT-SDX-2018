@@ -10,6 +10,24 @@ namespace SurfaceProDemo.Views
 {
     public sealed partial class ExperienceFlipViewPage : Page, INavigate
     {
+        #region Static
+
+        public static ExperienceFlipViewPage Current = null;
+
+        public static FlipViewEx GetDeviceModeFlipView()
+        {
+            FlipViewEx flipView = null;
+
+            if (null != ExperienceFlipViewPage.Current)
+            {
+                flipView = ExperienceFlipViewPage.Current.DeviceModeFlipView;
+            }
+
+            return flipView;
+        }
+
+        #endregion
+
         #region Private Members
 
         private ExperienceFlipViewViewModel ViewModel
@@ -26,6 +44,8 @@ namespace SurfaceProDemo.Views
 
         public ExperienceFlipViewPage()
         {
+            ExperienceFlipViewPage.Current = this;
+
             InitializeComponent();
 
             this.Loaded += this.ExperienceFlipViewPage_Loaded;

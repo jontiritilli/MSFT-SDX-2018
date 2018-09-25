@@ -22,6 +22,9 @@ namespace SurfaceBook2Demo.ViewModels
 
         #region Public Properties
 
+        // root of the page tree
+        public NavigationFlipView Root = null;
+
         // our navigation sections for the navigation bar
         public List<NavigationSection> Sections = new List<NavigationSection>();
 
@@ -85,164 +88,184 @@ namespace SurfaceBook2Demo.ViewModels
 
         public void RenderNavigation()
         {
-            // This method creates the sections and the pages in each section.
-            // This object structure is used by the NavigationBar control to
-            // render its section headers. This structure represents a hierachy
-            // that maps to the linear page structure of the flipview.
+            // This method creates the sections and the page tree
 
             // =================================================
-            // Experience Section
+            // Create the sections
             // =================================================
-            NavigationSection section = new NavigationSection()
+            NavigationSection sectionExperience = new NavigationSection()
             {
                 Name = "Experience",
                 Text = this.NavBarExperience,  // from language file
                 Order = 0
             };
+            this.Sections.Add(sectionExperience);
 
-            // ExperienceHeroPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceHeroPage",
-                Order = 0
-            }
-            );
-
-            // ExperienceIntroPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceIntroPage",
-                Order = 1
-            }
-            );
-
-            // ExperienceDayPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ExperienceDayPage",
-                Order = 2
-            }
-            );
-
-            //// ExperienceDayWorkPage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperienceDayWorkPage",
-            //    Order = 2
-            //}
-            //);
-
-            //// ExperienceDayCreatePage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperienceDayCreatePage",
-            //    Order = 3
-            //}
-            //);
-
-            //// ExperienceDayRelaxPage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperienceDayRelaxPage",
-            //    Order = 4
-            //}
-            //);
-
-            //// ExperienceDayPlayPage
-            //section.Pages.Add(new NavigationPage()
-            //{
-            //    Name = "ExperienceDayPlayPage",
-            //    Order = 5
-            //}
-            //);
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-
-            // =================================================
-            // Accessories Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionAccessories = new NavigationSection()
             {
                 Name = "Accessories",
                 Text = this.NavBarAccessories,  // from language file
                 Order = 1
             };
+            this.Sections.Add(sectionAccessories);
 
-            // AccessoriesPenPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AccessoriesPenPage",
-                Order = 0
-            }
-            );
-
-            // AccessoriesDialPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AccessoriesDialPage",
-                Order = 1
-            }
-            );
-
-            // AccessoriesMousePage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AccessoriesMousePage",
-                Order = 2
-            }
-            );
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-
-            // =================================================
-            // Best of Microsoft Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionBestOfMicrosoft = new NavigationSection()
             {
                 Name = "BestOfMicrosoft",
                 Text = this.NavBarBestOfMicrosoft,  // from language file
                 Order = 2
             };
+            this.Sections.Add(sectionBestOfMicrosoft);
 
-            // BestOfMicrosoftPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "BestOfMicrosoftPage",
-                Order = 0
-            }
-            );
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-
-            // =================================================
-            // Compare Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionCompare = new NavigationSection()
             {
                 Name = "Compare",
                 Text = this.NavBarCompare,  // from language file
                 Order = 3
             };
+            this.Sections.Add(sectionCompare);
+
+            // =================================================
+            // Create the page tree
+            // =================================================
+
+            // create the root
+            this.Root = new NavigationFlipView()
+            {
+                Name = "RootFlipView",
+                Order = 0,
+                SelectedIndex = 0,
+            };
+
+            // =================================================
+            // Create Experience pages
+            // =================================================
+
+            // ExperienceHeroPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceHeroPage",
+                Order = 0,
+                Section = sectionExperience,
+            }
+            );
+
+            // ExperienceIntroPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceIntroPage",
+                Order = 1,
+                Section = sectionExperience,
+            }
+            );
+
+            // ExperienceDayPage
+            NavigationFlipView experienceDayFlipView = new NavigationFlipView()
+            {
+                Name = "ExperienceDayPage",
+                Order = 2,
+                SelectedIndex = 0,
+                Section = sectionExperience,
+            };
+            this.Root.Items.Add(experienceDayFlipView);
+
+            // =================================================
+            // Children of ExperienceDayPage
+            // =================================================
+
+            // ExperienceDayWorkPage
+            experienceDayFlipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceDayWorkPage",
+                Order = 0,
+                Section = sectionExperience,
+            }
+            );
+
+            // ExperienceDayCreatePage
+            experienceDayFlipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceDayCreatePage",
+                Order = 1,
+                Section = sectionExperience,
+            }
+            );
+
+            // ExperienceDayRelaxPage
+            experienceDayFlipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceDayRelaxPage",
+                Order = 2,
+                Section = sectionExperience,
+            }
+            );
+
+            // ExperienceDayPlayPage
+            experienceDayFlipView.Items.Add(new NavigationPage()
+            {
+                Name = "ExperienceDayPlayPage",
+                Order = 4,
+                Section = sectionExperience,
+            }
+            );
+
+            // =================================================
+            // Create Accessories pages
+            // =================================================
+
+            // AccessoriesPenPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "AccessoriesPenPage",
+                Order = 3,
+                Section = sectionAccessories,
+            }
+            );
+
+            // AccessoriesDialPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "AccessoriesDialPage",
+                Order = 4,
+                Section = sectionAccessories,
+            }
+            );
+
+            // AccessoriesMousePage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "AccessoriesMousePage",
+                Order = 5,
+                Section = sectionAccessories,
+            }
+            );
+
+            // =================================================
+            // Create Best of Microsoft pages
+            // =================================================
+
+            // BestOfMicrosoftPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "BestOfMicrosoftPage",
+                Order = 6,
+                Section = sectionBestOfMicrosoft,
+            }
+            );
+
+
+            // =================================================
+            // Compare Section
+            // =================================================
 
             // ComparePage
-            section.Pages.Add(new NavigationPage()
+            this.Root.Items.Add(new NavigationPage()
             {
                 Name = "ComparePage",
-                Order = 0
+                Order = 7,
+                Section = sectionCompare,
             });
 
-
-            // add the section to the list
-            this.Sections.Add(section);
             // =================================================
 
         }

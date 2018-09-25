@@ -11,5 +11,9 @@ namespace SDX.Toolkit.Models
         string Name { get; set; }
         string Text { get; set; }
         int Order { get; set; }
+        NavigationSection Section { get; set; }
+
+        INavigationItem GetFirstPageChild();
+        INavigationItem GetLastPageChild();
     }
 }
