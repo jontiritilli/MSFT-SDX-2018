@@ -20,18 +20,20 @@ namespace SurfaceBook2Demo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
-        private const string URI_PRIMARYIMAGE = "ms-appx:///Assets/Comparison/comparisonGo.png";
+        private const string URI_PRIMARYIMAGE_13 = "ms-appx:///Assets/Comparison/comparisonGo_13.png";
+        private const string URI_PRIMARYIMAGE_15 = "ms-appx:///Assets/Comparison/comparisonGo_15.png";
+
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
-        private const double PRIMARY_IMAGEHEIGHT = 784;
+        private const double PRIMARY_IMAGEWIDTH_13 = 798;
+        private const double PRIMARY_IMAGEWIDTH_15 = 876;
 
         #endregion
 
         #region Public Properties
 
-        public string BackgroundUri = URI_BACKGROUND;
-        public string PrimaryImageURI = URI_PRIMARYIMAGE;
+        public string PrimaryImageURI;
+        public double PrimaryImageWidth;
         public string Headline;
 
         public string SubHead;
@@ -64,6 +66,21 @@ namespace SurfaceBook2Demo.ViewModels
         public ComparePopupGoViewModel()
         {
             EllipseGridCanvasSetLeft = PageWidth - CloseEllipseMargin - radiatingButtonRadius;
+
+            // populate our images based on size of device
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Book15:
+                    this.PrimaryImageURI = URI_PRIMARYIMAGE_15;
+                    this.PrimaryImageWidth = PRIMARY_IMAGEWIDTH_15;
+                    break;
+                case DeviceType.Book13:
+                    this.PrimaryImageURI = URI_PRIMARYIMAGE_13;
+                    this.PrimaryImageWidth = PRIMARY_IMAGEWIDTH_13;
+                    break;
+                default:
+                    break;
+            }
 
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();

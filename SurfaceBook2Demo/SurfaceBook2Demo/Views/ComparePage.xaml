@@ -35,72 +35,45 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"/>
-        <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"                
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+        
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+            x:Name="ButtonCanvas"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnPro"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.01}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                                                    
-                PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBook"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.185}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.59}"                                                    
-                PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnStudio"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.585}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                                    
-                PopupPosition="Left"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLaptop"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.76}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.64}"                                                    
-                PopupPosition="Left"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnGo"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.865}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"                                                    
-                PopupPosition="Left"                 
                 AutoStart = "false"/>
 
             <Popup
@@ -108,75 +81,35 @@
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                 
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="Surface Pro"
-                        Lede="Work In Progress"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
-                        />
-                </Popup.Child>
+                IsLightDismissEnabled="False">
             </Popup>
             <Popup
                 x:Name="PopBook"
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                 
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="Surface Book"
-                        Lede="Work In Progress"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
-                        />
-                </Popup.Child>
+                IsLightDismissEnabled="False">
             </Popup>
             <Popup
                 x:Name="PopStudio"
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                 
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="Surface Studio"
-                        Lede="Work In Progress"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
-                        />
-                </Popup.Child>
+                IsLightDismissEnabled="False">
             </Popup>
             <Popup
                 x:Name="PopLaptop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                 
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="Surface Laptop"
-                        Lede="Work In Progress"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
-                        />
-                </Popup.Child>
+                IsLightDismissEnabled="False">
             </Popup>
             <Popup
                 x:Name="PopGo"
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                 
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="Surface Go"
-                        Lede="Work In Progress"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
-                        />
-                </Popup.Child>
+                IsLightDismissEnabled="False">
             </Popup>
 
             <ctrl:TextBlockEx

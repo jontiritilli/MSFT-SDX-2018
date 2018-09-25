@@ -57,26 +57,6 @@ namespace SurfaceBook2Demo.ViewModels
         public int FamilyHeight;
         public int FamilyWidth;
 
-        public string ProUri = URI_PRO;
-        public int ProHeight = IMG_PRO_HEIGHT;
-        public int ProWidth = IMG_PRO_WIDTH;
-
-        public string BookUri = URI_BOOK;
-        public int BookHeight = IMG_BOOK_HEIGHT;
-        public int BookWidth = IMG_BOOK_WIDTH;
-
-        public string StudioUri = URI_STUDIO;
-        public int StudioHeight = IMG_STUDIO_HEIGHT;
-        public int StudioWidth = IMG_STUDIO_WIDTH;
-
-        public string LaptopUri = URI_LAPTOP;
-        public int LaptopHeight = IMG_LAPTOP_HEIGHT;
-        public int LaptopWidth = IMG_LAPTOP_WIDTH;
-
-        public string GoUri = URI_GO;
-        public int GoHeight = IMG_GO_HEIGHT;
-        public int GoWidth = IMG_GO_WIDTH;
-
         public string ProTitle;
         public string BookTitle;
         public string StudioTitle;
@@ -104,8 +84,8 @@ namespace SurfaceBook2Demo.ViewModels
                 default:
                     break;
             }
-                    // get the localization service
-                    LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
             // if we got it
             if (null != localizationService)

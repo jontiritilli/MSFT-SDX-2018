@@ -494,7 +494,7 @@
     <Content Include="Assets\List\specs_laptop.png" />
     <Content Include="Assets\List\specs_pen.png" />
     <Content Include="Assets\List\specs_performance.png" />
-    <Content Include="Assets\List\specs_size.png" />
+    <Content Include="Assets\List\specs_screenSize.png" />
     <Content Include="Assets\List\specs_versatile.png" />
     <Content Include="Assets\List\specs_wifi.png" />
     <Content Include="Assets\NavigationBar\cap_nav_chevronLeft.png" />
