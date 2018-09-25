@@ -141,6 +141,10 @@
     <Compile Include="ViewModels\AccessoriesDialViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupGoViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupLaptopViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupBookViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupProViewModel.cs" />
     <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceCraftedViewModel.cs" />
@@ -170,6 +174,18 @@
     </Compile>
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupBook.xaml.cs">
+      <DependentUpon>ComparePagePopupBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupLaptop.xaml.cs">
+      <DependentUpon>ComparePagePopupLaptop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupGo.xaml.cs">
+      <DependentUpon>ComparePagePopupGo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePageProStudio.xaml.cs">
+      <DependentUpon>ComparePagePopupPro.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
       <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
@@ -266,6 +282,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ComparePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupLaptop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupGo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupPro.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
