@@ -52,10 +52,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBottom"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                    
                 PopupPosition="Right"                 
@@ -63,10 +59,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.17}"                                                    
                 PopupPosition="Right"                 
