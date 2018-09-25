@@ -66,7 +66,7 @@
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">4</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPopupHeader">16.405</x:Double>
 
-    <x:Double x:Key="AccessoriesPenListIconWidth">66.545</x:Double>
+    <x:Double x:Key="AccessoriesPenListIconWidth">72</x:Double>
     <x:Double x:Key="AccessoriesPenListTextWidth">359</x:Double>
     <x:Double x:Key="ListColumnSpacerWidth">22</x:Double>
     <x:Double x:Key="ListRowSpacerHeight">16</x:Double>

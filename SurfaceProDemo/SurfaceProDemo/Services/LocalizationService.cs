@@ -271,7 +271,7 @@ namespace SurfaceProDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
-
+            viewModel.Legal = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_LEGAL, "ACCESSORIES_INTERACTIVE_LEGAL");
             viewModel.TryIt = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
             viewModel.TryItCaption = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");            
             // TODO: add code to load list
