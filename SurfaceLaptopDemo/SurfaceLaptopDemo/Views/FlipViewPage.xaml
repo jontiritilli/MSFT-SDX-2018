@@ -108,7 +108,6 @@
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
 
-
         <Popup x:Name="CompareProPopup"
                 IsOpen = "False"
                 IsLightDismissEnabled="False"

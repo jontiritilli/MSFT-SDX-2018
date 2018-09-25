@@ -262,7 +262,6 @@ namespace SurfaceLaptopDemo.Services
 
             viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
             viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
-
         }
 
         public void LoadAccessoriesPenViewModel(AccessoriesPenViewModel viewModel)

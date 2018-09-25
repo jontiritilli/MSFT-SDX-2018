@@ -76,6 +76,10 @@
     <x:Double x:Key="CompareListTextWidth">478.5</x:Double>
     <x:Double x:Key="CompareRowSpacerHeight">50</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">23.38</x:Double>
+    <x:Double x:Key="CompareCloseMargin">50</x:Double>
+
+    <GridLength x:Key="CompareSpaceBelowHeader">15</GridLength>
+    <GridLength x:Key="CompareSpaceBelowSubHeader">45</GridLength>
     
     <x:Double x:Key="BestOfMicrosoftListIconWidth">60</x:Double>
     <x:Double x:Key="BestOfMicrosoftListTextWidth">389</x:Double>

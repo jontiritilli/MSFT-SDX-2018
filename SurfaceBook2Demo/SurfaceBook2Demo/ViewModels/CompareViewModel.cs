@@ -46,7 +46,6 @@ namespace SurfaceBook2Demo.ViewModels
         private const int IMG_GO_HEIGHT = 630;//1260
         #endregion
 
-
         #region Public Properties
 
         public string Headline;

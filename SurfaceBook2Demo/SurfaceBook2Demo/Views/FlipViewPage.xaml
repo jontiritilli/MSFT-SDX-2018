@@ -125,6 +125,7 @@
                            Height="{StaticResource NavigationBarHeight}"
                            Navigate="BottomNavBar_OnNavigation">
         </ctrl:NavigationBar>
+        
         <Popup x:Name="ExperienceDayWorkPopup"
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
@@ -132,6 +133,56 @@
                 VerticalOffset="0">
             <Popup.Child>
                 <views:ExperienceDayWorkPopupPage/>
+            </Popup.Child>
+        </Popup>
+
+        <Popup x:Name="CompareProPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ComparePagePopupPro/>
+            </Popup.Child>
+        </Popup>
+
+        <Popup x:Name="CompareBookPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ComparePagePopupBook/>
+            </Popup.Child>
+        </Popup>
+
+        <Popup x:Name="CompareStudioPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ComparePagePopupStudio/>
+            </Popup.Child>
+        </Popup>
+
+        <Popup x:Name="CompareLaptopPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ComparePagePopupLaptop/>
+            </Popup.Child>
+        </Popup>
+
+        <Popup x:Name="CompareGoPopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"
+                VerticalOffset="0">
+            <Popup.Child>
+                <views:ComparePagePopupGo/>
             </Popup.Child>
         </Popup>
         <!-- TEST ONLY -->
