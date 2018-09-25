@@ -24,17 +24,18 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".375*"/>
-            <ColumnDefinition Width=".625*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader"
+            Grid.Row="1"
+            Grid.Column="1"            
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PageHeadline"
             LedeStyle="PageLede"                     
-            Width="Auto"
+            Width="500"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
 
@@ -70,8 +71,12 @@
             Grid.Column="0"
             Grid.RowSpan="8"
             Grid.ColumnSpan="4"
-            ImageColumnSpan="2"        
-        />
+            ImageColumnSpan="2" />
+        <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
+                       Text="{x:Bind Path=ViewModel.Legal}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       TextStyle="Legal"/>
 
     </Grid>
 </Page>

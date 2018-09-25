@@ -16,8 +16,8 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
         private const string URI_TABLET= "ms-appx:///Assets/Experience/tablet.png";
 
-        private const int IMG_TABLET_WIDTH = 1122;
-        private const int IMG_TABLET_HEIGHT = 402;
+        private const int IMG_TABLET_WIDTH = 1104;
+        private const int IMG_TABLET_HEIGHT = 504;
         #endregion
 
 

@@ -32,10 +32,15 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".325*"/>
+            <ColumnDefinition Width=".675*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader"
+                Grid.Row="1"                  
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 HeadlineStyle="PageHeadline"
@@ -51,32 +56,20 @@
                 Canvas.ZIndex="101">
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.32}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                    
                 PopupPosition="Right"                
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.85}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"                  
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                  
                 PopupPosition="Left"                
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"                              
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.84}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                    
                 PopupPosition="Left"                
                 AutoStart = "false"/>
             <Popup
@@ -127,9 +120,11 @@
 
         </Canvas>
         <ctrl:ImageEx
-            Grid.Row="3"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            Grid.RowSpan="8"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            VerticalAlignment="Center"
             x:Name="img_Tablet"
             ImageWidth="{x:Bind Path=ViewModel.TabletWidth}"            
             ImageSource="{x:Bind Path=ViewModel.TabletUri}"

@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SDX.Toolkit.Controls;
 using SurfaceProDemo.Services;
 using System.Collections.Generic;
+using SDX.Toolkit.Helpers;
 using Windows.UI;
 
 namespace SurfaceProDemo.ViewModels
@@ -22,13 +23,14 @@ namespace SurfaceProDemo.ViewModels
 
         public string Headline;
         public string Lede;
+        public string Legal;
 
         public string TryItCaption;
         public string TryIt;
         public string TryItLede;
         public List<ListItem> ListItems = new List<ListItem>();
 
-        public double ICON_WIDTH = 96d;
+        public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.AccessoriesPenListIconWidth);
 
         #endregion
 
