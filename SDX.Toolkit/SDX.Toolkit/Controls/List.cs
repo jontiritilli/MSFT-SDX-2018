@@ -300,36 +300,36 @@ namespace SDX.Toolkit.Controls
 
                 case ListStyles.BestOf: // Used for product highlights page wherein each item has its own lede-headline
                     {
-                        // add columns
-                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftColumnSpacerWidth)) });
-                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-
+                        // create a grid of grids. 2 columns and 2 or 3 rows base don # of units. star space them
+                        // and each inner grid handles its icon/text/spacer
+                        double rowPercent = (_listItems.Count > 4 ? 0.333 : 0.5);
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });                        
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
+                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
+                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
+                        if (_listItems.Count > 4)
+                        {//5th item handling
+                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
+                        }
                         // create a counter to know when we reach the end of list
                         int Index = 0;
                         int ListLength = _listItems.Count() - 1;
-
+                        int rowPos = 0;
+                        int colPos = 0;
                         double ListTextWidth = StyleHelper.GetApplicationDouble("BestOfMicrosoftListTextWidth");
 
                         // create the list items and add to the grid
                         foreach (ListItem item in _listItems)
                         {
                             // get correct row to add content, don't want to add to a spacer row
+                            Grid grid = new Grid();
+                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftColumnSpacerWidth)) });
+                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
                             int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
 
-                            // set row spacing
-                            double rowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftRowSpacerHeight);
-
                             // create the row for content
-                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                            // if it's not the last row, create a spacer row
-                            if (Index < ListLength)
-                            {
-                                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
-                            }
-
-                            GridLength ledeHeadlineRowHeight = (item.Headline == null) ? new GridLength(0) : GridLength.Auto;
+                            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
                             // create icon image
                             ImageEx icon = new ImageEx()
@@ -343,7 +343,7 @@ namespace SDX.Toolkit.Controls
 
                             Grid.SetColumn(icon, 0);
                             Grid.SetRow(icon, RowToAdd);
-                            _layoutRoot.Children.Add(icon);
+                            grid.Children.Add(icon);
 
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
@@ -362,10 +362,15 @@ namespace SDX.Toolkit.Controls
                             Grid.SetColumn(headline, 2);
                             Grid.SetRow(headline, RowToAdd);
 
-                            _layoutRoot.Children.Add(headline);
-
+                            grid.Children.Add(headline);
+                            Grid.SetRow(grid, rowPos);
+                            Grid.SetColumn(grid, colPos);                            
+                            _layoutRoot.Children.Add(grid);
                             // increment index
                             Index++;
+                            rowPos = (Index < 2 ? 0 : (Index < 4 ? 1 : 2));
+                            colPos = (colPos > 0 ? 0 : 1);
+
                         }
                     }
                     break;

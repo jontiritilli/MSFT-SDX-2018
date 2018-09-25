@@ -324,7 +324,7 @@ namespace SurfaceStudioDemo.Services
             viewModel.BulletFourLegal = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_LEGAL, "BEST_BULLET_FOUR_LEGAL");
 
             // bullet one
-            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+            viewModel.ItemList.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Start, // icon enum name
                 viewModel.ICON_WIDTH, // width
@@ -335,9 +335,9 @@ namespace SurfaceStudioDemo.Services
             ));
 
             // bullet two
-            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+            viewModel.ItemList.Add(ListItem.CreateListItem(
                 1,
-                ListItemIcon.Hello,
+                ListItemIcon.Sync,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, "BEST_BULLET_TWO_TITLE"),
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "BEST_BULLET_TWO_COPY"),
@@ -345,12 +345,34 @@ namespace SurfaceStudioDemo.Services
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA")
             ));
 
+            // bullet four
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.Hello,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, "BEST_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "BEST_BULLET_THREE_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA")
+            ));
+
+            // bullet five
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                3,
+                ListItemIcon.Office,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, "BEST_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "BEST_BULLET_FOUR_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA")
+            ));
+
             // bullet three OPTIONAL CHINA BULLET
-            string headline = GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "");
-            string lede = GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "");
-            if (!String.IsNullOrWhiteSpace(headline) && !String.IsNullOrWhiteSpace(lede))   // use AND here because BOM has headline AND lede and either one missing means we don't show the bullet
+
+            if (!String.IsNullOrWhiteSpace(_languageCurrent.BEST_BULLET_FIVE_TITLE)
+                && !String.IsNullOrWhiteSpace(_languageCurrent.BEST_BULLET_FIVE_COPY))   // use AND here because BOM has headline AND lede and either one missing means we don't show the bullet
             {
-                viewModel.LeftItemList.Add(ListItem.CreateListItem(
+                viewModel.ItemList.Add(ListItem.CreateListItem(
                     2,
                     ListItemIcon.Custom,
                     viewModel.ICON_WIDTH,
@@ -360,29 +382,6 @@ namespace SurfaceStudioDemo.Services
                     GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
                  ));
             }
-
-            // bullet four
-            viewModel.RightItemList.Add(ListItem.CreateListItem(
-                0,
-                ListItemIcon.Sync,
-                viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, "BEST_BULLET_THREE_TITLE"),
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "BEST_BULLET_THREE_COPY"),
-                null,
-                GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA")
-            ));
-
-            // bullet five
-            viewModel.RightItemList.Add(ListItem.CreateListItem(
-                1,
-                ListItemIcon.Office,
-                viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, "BEST_BULLET_FOUR_TITLE"),
-                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_COPY, "BEST_BULLET_FOUR_COPY"),
-                null,
-                GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA")
-            ));
-
         }
 
         public void LoadCompareViewModel(CompareViewModel viewModel)

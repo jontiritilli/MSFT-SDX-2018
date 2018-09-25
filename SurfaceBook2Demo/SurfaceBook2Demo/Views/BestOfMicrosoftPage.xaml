@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="{StaticResource BestOfMicrosoftSpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
@@ -24,7 +24,6 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
@@ -37,13 +36,8 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
 
-        <ctrl:List x:Name="BOM_LEFT" Grid.Row="3" Grid.Column="1"
-                   ListItems="{x:Bind Path=ViewModel.LeftItemList}"
-                   ListStyle="BestOf"
-                   />
-        
-        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="3" Grid.Column="2"
-                   ListItems="{x:Bind Path=ViewModel.RightItemList}"
+        <ctrl:List x:Name="BOM" Grid.Row="3" Grid.Column="1"
+                   ListItems="{x:Bind Path=ViewModel.ItemList}"
                    ListStyle="BestOf"
                    />
 
