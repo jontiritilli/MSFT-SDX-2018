@@ -32,7 +32,7 @@
             x:Name="PinchZoomElement"
             ImageUri ="{x:Bind Path=ViewModel.PinchZoomImageURI}"/>
 
-        <ctrl:Header Grid.Row="3" Grid.Column="1" 
+        <ctrl:Header Grid.Row="1" Grid.Column="1" 
             x:Name="PageHeader" 
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"

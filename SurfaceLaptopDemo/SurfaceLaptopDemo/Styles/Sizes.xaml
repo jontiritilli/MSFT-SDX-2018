@@ -88,8 +88,12 @@
 
     <x:Double x:Key="CompareListIconWidth">40</x:Double>
     <x:Double x:Key="CompareListTextWidth">589.333</x:Double>
-    <x:Double x:Key="CompareRowSpacerHeight">50</x:Double>
+    <x:Double x:Key="CompareRowSpacerHeight">30</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">28</x:Double>
+    <x:Double x:Key="CompareCloseMargin">50</x:Double>
+
+    <GridLength x:Key="CompareSpaceBelowHeader">15</GridLength>
+    <GridLength x:Key="CompareSpaceBelowSubHeader">45</GridLength>
     
     <x:Double x:Key="ExperienceAppIconWidth">64</x:Double>
 

@@ -26,6 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -46,7 +47,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"/>
 
-        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3">
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
             <ctrl:AppSelectorImage 
                 x:Name="AppSelectorImageMinorSpeakers"
                 URIs="{x:Bind Path=ViewModel.speakersSelectorMinorImageURIs}"
@@ -54,10 +55,10 @@
                 ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
                 Opacity="1"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.53}" />
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.51}" />
         </Canvas>
 
-        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="2"
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
             x:Name="AppSelectorImageSpeakers"
             URIs="{x:Bind Path=ViewModel.speakersSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
