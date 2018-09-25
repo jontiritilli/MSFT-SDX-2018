@@ -210,9 +210,11 @@ namespace SurfaceStudioDemo.Services
 
             viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_TITLE, "EXPERIENCE_DISPLAY_POPLEFT_TITLE");
             viewModel.PopLeftLede= GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY, "EXPERIENCE_DISPLAY_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPLEFT_COPY_LEGAL, "EXPERIENCE_DISPLAY_POPLEFT_COPY_LEGAL");
 
             viewModel.PopBottomHeadline = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE, "EXPERIENCE_DISPLAY_POPBOTTOM_TITLE");
             viewModel.PopBottomLede = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY");
+            viewModel.PopBottomLegal = GetStringValue(_languageCurrent.EXPERIENCE_DISPLAY_POPBOTTOM_COPY_LEGAL, "EXPERIENCE_DISPLAY_POPBOTTOM_COPY_LEGAL");
 
         }
 
@@ -290,13 +292,9 @@ namespace SurfaceStudioDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_HEADLINE, "ACCESSORIES_LEFT_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_COPY, "ACCESSORIES_LEFT_COPY");
 
-            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_TITLE, "ACCESSORIES_LEFT_POPLEFT_TITLE");
-            viewModel.PopLeftLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_COPY, "ACCESSORIES_LEFT_POPLEFT_COPY");
-            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPLEFT_LEGAL, "ACCESSORIES_LEFT_POPLEFT_LEGAL");
-
-            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
-            viewModel.PopRightLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPRIGHT_COPY");
-            viewModel.PopRightLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_LEGAL, "ACCESSORIES_LEFT_POPRIGHT_LEGAL");
+            viewModel.PopDialHeadline = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_TITLE, "ACCESSORIES_LEFT_POPRIGHT_TITLE");
+            viewModel.PopDialLede = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_COPY, "ACCESSORIES_LEFT_POPRIGHT_COPY");
+            viewModel.PopDialLegal = GetStringValue(_languageCurrent.ACCESSORIES_LEFT_POPRIGHT_LEGAL, "ACCESSORIES_LEFT_POPRIGHT_LEGAL");
         }
 
         public void LoadAccessoriesMouseViewModel(AccessoriesMouseViewModel viewModel)

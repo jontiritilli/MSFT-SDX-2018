@@ -311,6 +311,7 @@
   <ItemGroup>
     <Content Include="Assets\Accessories\accessoriesLeft.png" />
     <Content Include="Assets\Accessories\accessoriesRight.png" />
+    <Content Include="Assets\Accessories\accLeftDialPopupVideo.mp4" />
     <Content Include="Assets\Accessories\inkingFish.png" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
@@ -327,6 +328,7 @@
     <Content Include="Assets\Experience\caprock_adobecc.png" />
     <Content Include="Assets\Experience\caprock_bluebeam.png" />
     <Content Include="Assets\Experience\caprock_sketchbook.png" />
+    <Content Include="Assets\Experience\pixelSensePopupVideo.mp4" />
     <Content Include="Assets\Experience\inkingGateway.png" />
     <Content Include="Assets\Experience\craftmanship.png" />
     <Content Include="Assets\Experience\hero01.jpg" />

@@ -14,6 +14,7 @@ namespace SurfaceStudioDemo.ViewModels
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
         private const string URI_ACCESSORIES_PRIMARY = "ms-appx:///Assets/Accessories/accessoriesLeft.png";
+        private const string URI_POPBOTTOM_VIDEO = "ms-appx:///Assets/Experience/pixelSensePopupVideo.mp4";
 
         #endregion
 
@@ -25,13 +26,11 @@ namespace SurfaceStudioDemo.ViewModels
         public string Headline;
         public string Lede;
 
-        public string PopLeftHeadline;
-        public string PopLeftLede;
-        public string PopLeftLegal;
+        public string PopDialHeadline;
+        public string PopDialLede;
+        public string PopDialLegal;
 
-        public string PopRightHeadline;
-        public string PopRightLede;
-        public string PopRightLegal;
+        public string PopDialVideo = URI_POPBOTTOM_VIDEO;
 
         #endregion
 

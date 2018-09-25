@@ -36,18 +36,14 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
             x:Name="AccessoriesRight"
-            Width="3000"
+            ImageWidth="2100"
+            ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"/>
 
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.PrimaryImage}" DecodePixelWidth="3000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
-
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
             x:Name="PageHeader" 
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
@@ -62,34 +58,22 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftAccRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.39}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightAccRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "3000"
                 PopupPosition="Right"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.60}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.64}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.56}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnTopAccRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 PopupPosition="Right"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.49}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.47}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"
                 AutoStart = "false"/>
 
