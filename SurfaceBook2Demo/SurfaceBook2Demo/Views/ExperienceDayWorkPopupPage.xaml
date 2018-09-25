@@ -62,7 +62,7 @@
             />
         <ctrl:AppSelectorImage
             x:Name="AppSelectorImageKB"
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.RowSpan="6"
             Grid.Column="2"
             Grid.ColumnSpan="2"
