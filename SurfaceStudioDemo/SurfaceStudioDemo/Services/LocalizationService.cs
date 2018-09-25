@@ -396,6 +396,125 @@ namespace SurfaceStudioDemo.Services
             viewModel.GoTitle = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_TITLE, "COMPARE_DEVICE_FIVE_TITLE");
         }
 
+        // compare page one
+        public void LoadComparePopupProViewModel(ComparePopupProViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_HEADLINE, "COMPARE_DEVICE_ONE_POP_HEADLINE");
+            viewModel.SubHead = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_SUBHEAD, "COMPARE_DEVICE_ONE_POP_SUBHEAD");
+            viewModel.Lede = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_COPY, "COMPARE_DEVICE_ONE_POP_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_COPY_LEGAL, "COMPARE_DEVICE_ONE_POP_COPY_LEGAL");
+            viewModel.BulletOneLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_ONE_LEGAL, "COMPARE_DEVICE_ONE_POP_BULLET_ONE_LEGAL");
+            viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_TWO_LEGAL, "COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE");
+            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL, "COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL");
+            viewModel.BulletFourLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_LEGAL, "COMPARE_DEVICE_ONE_POP_BULLET_FOUR_LEGAL");
+            viewModel.BulletFiveLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_LEGAL, "COMPARE_DEVICE_ONE_POP_BULLET_FIVE_LEGAL");
+
+            // bullet one
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Performance, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_ONE_TITLE, "COMPARE_DEVICE_ONE_POP_BULLET_ONE_TITLE"), // headline
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_ONE_COPY, "COMPARE_DEVICE_ONE_POP_BULLET_ONE_COPY") // lede
+            ));
+
+            // bullet two
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                1,
+                ListItemIcon.Wifi,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE, "COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_TWO_COPY, "COMPARE_DEVICE_ONE_POP_BULLET_TWO_COPY")
+            ));
+
+            // bullet three
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.Battery,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_THREE_TITLE, "COMPARE_DEVICE_ONE_POP_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY, "COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY")
+            ));
+
+            // bullet four
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                3,
+                ListItemIcon.Display,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_TITLE, "COMPARE_DEVICE_ONE_POP_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY, "COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY")
+            ));
+
+            // bullet five
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                4,
+                ListItemIcon.Sound,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_TITLE, "COMPARE_DEVICE_ONE_POP_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_COPY, "COMPARE_DEVICE_ONE_POP_BULLET_FIVE_COPY")
+            ));
+        }
+
+        // compare page two
+        public void LoadComparePopupBookViewModel(ComparePopupBookViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_HEADLINE, "COMPARE_DEVICE_TWO_POP_HEADLINE");
+            viewModel.SubHead = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_SUBHEAD, "COMPARE_DEVICE_TWO_POP_SUBHEAD");
+            viewModel.Lede = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_COPY, "COMPARE_DEVICE_TWO_POP_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_COPY_LEGAL, "COMPARE_DEVICE_TWO_POP_COPY_LEGAL");
+            viewModel.BulletOneLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_ONE_LEGAL, "COMPARE_DEVICE_TWO_POP_BULLET_ONE_LEGAL");
+            viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL, "COMPARE_DEVICE_TWO_POP_BULLET_TWO_TITLE");
+            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_THREE_LEGAL, "COMPARE_DEVICE_TWO_POP_BULLET_THREE_LEGAL");
+            viewModel.BulletFourLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL, "COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL");
+            viewModel.BulletFiveLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL, "COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL");
+
+            // bullet one
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Design, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_ONE_TITLE, "COMPARE_DEVICE_TWO_POP_BULLET_ONE_TITLE"), // headline
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_ONE_COPY, "COMPARE_DEVICE_TWO_POP_BULLET_ONE_COPY") // lede
+            ));
+
+            // bullet two
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                1,
+                ListItemIcon.Battery,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_TWO_TITLE, "COMPARE_DEVICE_TWO_POP_BULLET_TWO_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_TWO_COPY, "COMPARE_DEVICE_TWO_POP_BULLET_TWO_COPY")
+            ));
+
+            // bullet three
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.ScreenSize,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_THREE_TITLE, "COMPARE_DEVICE_TWO_POP_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY, "COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY")
+            ));
+
+            // bullet four
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                3,
+                ListItemIcon.Laptop,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_TITLE, "COMPARE_DEVICE_TWO_POP_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_COPY, "COMPARE_DEVICE_TWO_POP_BULLET_FOUR_COPY")
+            ));
+
+            // bullet five
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                4,
+                ListItemIcon.Connection,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE, "COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY, "COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY")
+            ));
+        }
+
+        // compare page three
         public void LoadComparePopupStudioViewModel(ComparePopupStudioViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_HEADLINE, "COMPARE_DEVICE_THREE_POP_HEADLINE");
@@ -438,7 +557,7 @@ namespace SurfaceStudioDemo.Services
             // bullet four
             viewModel.CompareListItems.Add(ListItem.CreateListItem(
                 3,
-                ListItemIcon.ScreenSize,
+                ListItemIcon.Display,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE, "COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE"),
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY, "COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY")
@@ -451,6 +570,124 @@ namespace SurfaceStudioDemo.Services
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_TITLE, "COMPARE_DEVICE_THREE_POP_BULLET_FIVE_TITLE"),
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_COPY, "COMPARE_DEVICE_THREE_POP_BULLET_FIVE_COPY")
+            ));
+        }
+
+        // compare page four
+        public void LoadComparePopupLaptopViewModel(ComparePopupLaptopViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_HEADLINE, "COMPARE_DEVICE_FOUR_POP_HEADLINE");
+            viewModel.SubHead = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_SUBHEAD, "COMPARE_DEVICE_FOUR_POP_SUBHEAD");
+            viewModel.Lede = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_COPY, "COMPARE_DEVICE_FOUR_POP_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_COPY_LEGAL, "COMPARE_DEVICE_FOUR_POP_COPY_LEGAL");
+            viewModel.BulletOneLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL, "COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL");
+            viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL, "COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE");
+            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_LEGAL, "COMPARE_DEVICE_FOUR_POP_BULLET_THREE_LEGAL");
+            viewModel.BulletFourLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_LEGAL, "COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_LEGAL");
+            viewModel.BulletFiveLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL, "COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL");
+
+            // bullet one
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Creative, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE, "COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE"), // headline
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY, "COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY") // lede
+            ));
+
+            // bullet two
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                1,
+                ListItemIcon.Performance,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE, "COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY, "COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY")
+            ));
+
+            // bullet three
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.Laptop,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_TITLE, "COMPARE_DEVICE_FOUR_POP_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY, "COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY")
+            ));
+
+            // bullet four
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                3,
+                ListItemIcon.Display,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_TITLE, "COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_COPY, "COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_COPY")
+            ));
+
+            // bullet five
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                4,
+                ListItemIcon.Sound,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE, "COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY, "COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY")
+            ));
+        }
+
+        // compare page five
+        public void LoadComparePopupGoViewModel(ComparePopupGoViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_HEADLINE, "COMPARE_DEVICE_FIVE_POP_HEADLINE");
+            viewModel.SubHead = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_SUBHEAD, "COMPARE_DEVICE_FIVE_POP_SUBHEAD");
+            viewModel.Lede = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_COPY, "COMPARE_DEVICE_FIVE_POP_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_COPY_LEGAL, "COMPARE_DEVICE_FIVE_POP_COPY_LEGAL");
+            viewModel.BulletOneLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_LEGAL, "COMPARE_DEVICE_FIVE_POP_BULLET_ONE_LEGAL");
+            viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_TWO_LEGAL, "COMPARE_DEVICE_FIVE_POP_BULLET_TWO_TITLE");
+            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_LEGAL, "COMPARE_DEVICE_FIVE_POP_BULLET_THREE_LEGAL");
+            viewModel.BulletFourLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_LEGAL, "COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_LEGAL");
+            viewModel.BulletFiveLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL, "COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL");
+
+            // bullet one
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Lightweight, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_TITLE, "COMPARE_DEVICE_FIVE_POP_BULLET_ONE_TITLE"), // headline
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY, "COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY") // lede
+            ));
+
+            // bullet two
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                1,
+                ListItemIcon.Performance,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_TWO_TITLE, "COMPARE_DEVICE_FIVE_POP_BULLET_TWO_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_TWO_COPY, "COMPARE_DEVICE_FIVE_POP_BULLET_TWO_COPY")
+            ));
+
+            // bullet three
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.Battery,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_TITLE, "COMPARE_DEVICE_FIVE_POP_BULLET_THREE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_COPY, "COMPARE_DEVICE_FIVE_POP_BULLET_THREE_COPY")
+            ));
+
+            // bullet four
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                3,
+                ListItemIcon.Display,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_TITLE, "COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_COPY, "COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_COPY")
+            ));
+
+            // bullet five
+            viewModel.CompareListItems.Add(ListItem.CreateListItem(
+                4,
+                ListItemIcon.Versatile,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE, "COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY, "COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY")
             ));
         }
 

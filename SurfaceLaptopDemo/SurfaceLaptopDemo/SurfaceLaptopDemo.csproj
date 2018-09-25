@@ -133,6 +133,11 @@
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesTouchViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupBookViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupGoViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupLaptopViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupProViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceColorsViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
@@ -158,6 +163,19 @@
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ComparePagePopupBook.xaml.cs">
+      <DependentUpon>ComparePagePopupBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupGo.xaml.cs">
+      <DependentUpon>ComparePagePopupGo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupLaptop.xaml.cs">
+      <DependentUpon>ComparePagePopupLaptop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
+      <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePageProStudio.xaml.cs" />
     <Compile Include="Views\ExperienceColorsPage.xaml.cs">
       <DependentUpon>ExperienceColorsPage.xaml</DependentUpon>
     </Compile>
@@ -240,6 +258,26 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ComparePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupGo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupLaptop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupPro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupStudio.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -432,7 +470,7 @@
     <Content Include="Assets\List\specs_laptop.png" />
     <Content Include="Assets\List\specs_pen.png" />
     <Content Include="Assets\List\specs_performance.png" />
-    <Content Include="Assets\List\specs_size.png" />
+    <Content Include="Assets\List\specs_screenSize.png" />
     <Content Include="Assets\List\specs_versatile.png" />
     <Content Include="Assets\List\specs_wifi.png" />
     <Content Include="Assets\RadiatingButton\tryit.png" />
