@@ -322,6 +322,7 @@
     <Content Include="Assets\Accessories\Images\platinum-left.png" />
     <Content Include="Assets\Accessories\Images\platinum-right.png" />
     <Content Include="Assets\Experience\detached_keyboard.jpg" />
+    <Content Include="Assets\Experience\kickRotate_720p30.mp4" />
     <Content Include="Assets\Experience\laptop_bluebeam.png" />
     <Content Include="Assets\Experience\laptop_premiere.png" />
     <Content Include="Assets\Experience\laptop_sketchbook.png" />
