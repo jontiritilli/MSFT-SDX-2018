@@ -31,17 +31,13 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+        <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
             x:Name="Hero"
-            Width="1500"
+            ImageWidth="1300"
+            ImageSource="{x:Bind Path=ViewModel.PrimaryImageURI}"
             HorizontalAlignment="Right"
-            VerticalAlignment="Center">
+            VerticalAlignment="Center"/>
 
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.PrimaryImageURI}" DecodePixelWidth="1500" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
-        
         <ctrl:TextBlockEx x:Name="Headline" Grid.Row="1" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Headline}"
             TextStyle="PageHeadline"

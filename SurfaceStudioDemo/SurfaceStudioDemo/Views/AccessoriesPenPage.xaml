@@ -59,7 +59,7 @@
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"/>
         
-        <ctrl:ColoringBook Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+        <ctrl:ColoringBook Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
             x:Name="ColoringBook"
             ImageColumnSpan="2" />
 
@@ -70,7 +70,7 @@
             Background="White">
         </Canvas>-->
         
-        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
             x:Name="GridCanvas">
             
             <ctrl:SurfaceDial

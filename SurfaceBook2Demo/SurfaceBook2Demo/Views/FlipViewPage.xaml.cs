@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Controls.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
+using MetroLog;
+
 using SurfaceBook2Demo.Services;
 using SurfaceBook2Demo.ViewModels;
 
@@ -35,6 +37,8 @@ namespace SurfaceBook2Demo.Views
 
 
         #region Private Members
+
+        //private ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<FlipViewPage>();
 
         private FlipViewViewModel ViewModel
         {
@@ -59,6 +63,8 @@ namespace SurfaceBook2Demo.Views
 
         public FlipViewPage()
         {
+            //Log.Trace("Entering constructor for FlipViewPage");
+
             // save a pointer to ourself
             FlipViewPage.Current = this;
 
@@ -83,11 +89,15 @@ namespace SurfaceBook2Demo.Views
             this.FocusVisualSecondaryBrush = new SolidColorBrush(Colors.Transparent);
             this.FocusVisualSecondaryThickness = new Thickness(0);
 
+            //Log.Trace("Initializing Navigation Bar from viewModel.");
+
             // initialize the navigation bar
             foreach (NavigationSection section in ViewModel.Sections)
             {
                 this.BottomNavBar.NavigationSections.Add(section);
             }
+
+            //Log.Trace("Exiting constructor.");
         }
 
         #endregion
@@ -97,8 +107,10 @@ namespace SurfaceBook2Demo.Views
 
         private void FlipViewEx_Loaded(object sender, RoutedEventArgs e)
         {
+            //Log.Trace("Entering FlipViewEx.Loaded.");
+
             // set the current page
-            this.ContentFlipView.SelectedIndex = 0;
+            //this.ContentFlipView.SelectedIndex = 0;   // not necessary and will interfere with page timer
 
             // save the current page so we can navigate from it
             _previousPage = (INavigate)((FlipViewItemEx)this.ContentFlipView.SelectedItem).GetChildViewAsObject();

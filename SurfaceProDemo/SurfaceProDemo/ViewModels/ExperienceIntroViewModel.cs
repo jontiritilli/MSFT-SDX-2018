@@ -14,14 +14,14 @@ namespace SurfaceProDemo.ViewModels
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
-        private const string URI_BLACKBACKGROUND = "ms-appx:///Assets/Backgrounds/brand-bg.png";
-        private const string URI_IMAGEHERO_FRONT = "ms-appx:///Assets/Experience/platinum_hero_front.png";
-        private const string URI_IMAGEHERO_BACK = "ms-appx:///Assets/Experience/platinum_hero_back.png";
-        private const string URI_IMAGEBLACKHERO_FRONT = "ms-appx:///Assets/Experience/black_hero_front.png";
-        private const string URI_IMAGEBLACKHERO_BACK = "ms-appx:///Assets/Experience/black_hero_back.png";
-        private const double IMAGEHERO_FRONT_WIDTH = 1194;
-        private const double IMAGEHERO_BACK_WIDTH = 610;
-        private const TextStyles PAGEHEADER_HEADLINE_STYLE = TextStyles.PageHeadline;
+        private const string URI_BACKGROUND_BLACK = "ms-appx:///Assets/Backgrounds/brand-bg.png";
+        private const string URI_IMAGE_HERO_FRONT = "ms-appx:///Assets/Experience/platinum_hero_front.png";
+        private const string URI_IMAGE_HERO_BACK = "ms-appx:///Assets/Experience/platinum_hero_back.png";
+        private const string URI_IMAGE_HERO_FRONT_BLACK = "ms-appx:///Assets/Experience/black_hero_front.png";
+        private const string URI_IMAGE_HERO_BACK_BLACK = "ms-appx:///Assets/Experience/black_hero_back.png";
+        private const double WIDTH_HERO_FRONT = 1194;
+        private const double WIDTH_HERO_BACK = 610;
+
         #endregion
 
 
@@ -40,14 +40,17 @@ namespace SurfaceProDemo.ViewModels
         public string PopTopLede;
         public string PopTopLegal;
 
-        public string HeroFrontURI = URI_IMAGEHERO_FRONT;
-        public string HeroBackURI = URI_IMAGEHERO_BACK;        
+        public string HeroFrontURI = URI_IMAGE_HERO_FRONT;
+        public string HeroBackURI = URI_IMAGE_HERO_BACK;        
 
-        public double HeroFrontWidth = IMAGEHERO_FRONT_WIDTH;
-        public double HeroBackWidth = IMAGEHERO_BACK_WIDTH;
+        public double HeroFrontWidth = WIDTH_HERO_FRONT;
+        public double HeroBackWidth = WIDTH_HERO_BACK;
 
-        public TextStyles HeadlineStyle = PAGEHEADER_HEADLINE_STYLE;
+        public TextStyles HeadlineStyle = TextStyles.PageHeadline;
+        public TextStyles LedeStyle = TextStyles.PageLede;
+
         #endregion
+
 
         #region Construction
 
@@ -56,9 +59,10 @@ namespace SurfaceProDemo.ViewModels
             if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
                 HeadlineStyle = TextStyles.PageHeadlineDark;
-                BackgroundUri = URI_BLACKBACKGROUND;
-                HeroFrontURI = URI_IMAGEBLACKHERO_FRONT;
-                HeroBackURI = URI_IMAGEBLACKHERO_BACK;
+                LedeStyle = TextStyles.PageLedeDark;
+                BackgroundUri = URI_BACKGROUND_BLACK;
+                HeroFrontURI = URI_IMAGE_HERO_FRONT_BLACK;
+                HeroBackURI = URI_IMAGE_HERO_BACK_BLACK;
             }
 
             // get the localization service         

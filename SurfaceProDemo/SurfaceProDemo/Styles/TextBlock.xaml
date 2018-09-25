@@ -117,10 +117,6 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="ListLedeBold" TargetType="TextBlock" BasedOn="{StaticResource ListLede}">
-        <Setter Property="FontWeight" Value="SemiBold" />
-    </Style>
-
     <Style x:Key="PageLedeDark" TargetType="TextBlock" BasedOn="{StaticResource PageLede}">
         <Setter Property="Foreground" Value="White"/>
     </Style>
@@ -153,6 +149,10 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ListLedeBold" TargetType="TextBlock" BasedOn="{StaticResource ListLede}">
+        <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
     <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">

@@ -11,6 +11,9 @@ using Windows.UI.Xaml;
 
 using GalaSoft.MvvmLight.Ioc;
 
+using MetroLog;
+using MetroLog.Targets;
+
 using SurfaceBook2Demo.Services;
 using SDX.Toolkit.Helpers;
 using SDX.Telemetry.Models;
@@ -22,6 +25,8 @@ namespace SurfaceBook2Demo
     public sealed partial class App : Application
     {
         #region Private Members
+
+        //private ILogger Log;
 
         private int _keyUpCount = 0;
         private int _mouseUpCount = 0;
@@ -49,6 +54,14 @@ namespace SurfaceBook2Demo
 
         public App()
         {
+            //// set up logging
+            //LogManagerFactory.DefaultConfiguration.AddTarget(LogLevel.Trace, LogLevel.Fatal, new StreamingFileTarget());
+            //Log = LogManagerFactory.DefaultLogManager.GetLogger<App>();
+            //Log.Trace("=============================================================");
+            //Log.Trace("Beginning new execution run.");
+            //Log.Trace("=============================================================");
+            //Log.Trace("Entering constructor for App.");
+
             // save a pointer to ourself
             App.Current = this;
 
@@ -78,27 +91,33 @@ namespace SurfaceBook2Demo
             DisplayInformation.AutoRotationPreferences = orientations;
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
+            //Log.Trace("Creating Activation Service.");
             _activationService = new Lazy<ActivationService>(CreateActivationService);
 
             // register our configuration service and initialize it
+            //Log.Trace("Retrieving Configuration Service.");
             SimpleIoc.Default.Register<ConfigurationService>();
             ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
             if (null != configurationService)
             {
+                //Log.Trace("Initializing Configuration Service.");
                 // run this synchronously 
                 AsyncHelper.RunSync(() => configurationService.Initialize());
             }
 
+            //Log.Trace("Retrieving Localization Service");
             // register our localization service and initialize it
             SimpleIoc.Default.Register<LocalizationService>();
             LocalizationService localizationService = (LocalizationService)SimpleIoc.Default.GetInstance<LocalizationService>();
             if (null != localizationService)
             {
+                //Log.Trace("Initializing Localization Service");
                 // async here might lead to a race condition, but no signs so far
                 //localizationService.Initialize();
                 AsyncHelper.RunSync(() => localizationService.Initialize());
             }
 
+            //Log.Trace("Retrieving Telemetry Service");
             // register the telemetry service and initialize it
             SimpleIoc.Default.Register<TelemetryService>();
             TelemetryService telemetryService = (TelemetryService)SimpleIoc.Default.GetInstance<TelemetryService>();
@@ -106,6 +125,7 @@ namespace SurfaceBook2Demo
             {
                 if (null != configurationService)
                 {
+                    //Log.Trace("Initializing Telemetry Service");
                     // get telemetry config values
                     string telemetryBaseUrl = configurationService.Configuration?.TelemetryBaseUrl;
                     string telemetryId = ConfigurationService.Current.GetTelemetryId();
@@ -114,6 +134,8 @@ namespace SurfaceBook2Demo
                     AsyncHelper.RunSync(() => telemetryService.Initialize(telemetryBaseUrl, telemetryId, new UWPTelemetryDependent()));
                 }
             }
+
+            //Log.Trace("Exiting constructor for App.");
         }
 
         #endregion

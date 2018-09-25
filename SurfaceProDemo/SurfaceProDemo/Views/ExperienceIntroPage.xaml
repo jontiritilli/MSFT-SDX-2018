@@ -38,20 +38,21 @@
         </Grid.ColumnDefinitions>
         
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                HeadlineStyle="{x:Bind Path=ViewModel.HeadlineStyle}"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                Lede="{x:Bind Path=ViewModel.Lede}"                
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top" />
+                     Headline="{x:Bind Path=ViewModel.Headline}"
+                     HeadlineStyle="{x:Bind Path=ViewModel.HeadlineStyle}"
+                     LedeStyle="{x:Bind Path=ViewModel.LedeStyle}"
+                     HeaderAlignment="Right"
+                     Width="{StaticResource HeaderWidth}"
+                     Lede="{x:Bind Path=ViewModel.Lede}"                
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top" />
 
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       TextStyle="Legal"
-                       Visibility="Collapsed" />
+                          Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          TextStyle="Legal"
+                          Visibility="Collapsed" />
 
         <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopTopLegal}"
@@ -60,10 +61,10 @@
                        TextStyle="Legal"
                        Visibility="Collapsed" />
 
-        <ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
+        <!--<ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
                     SwipeText="{x:Bind Path=ViewModel.SwipeText}"                    
                     HorizontalAlignment="Right"                              
-                    VerticalAlignment="Bottom"/>
+                    VerticalAlignment="Bottom"/>-->
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"

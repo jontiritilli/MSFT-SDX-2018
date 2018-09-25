@@ -31,6 +31,20 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void PopDial_Opened(object sender, object e)
+        {
+            this.PopDialLegal.SetOpacity(1);
+        }
+        
+        private void PopDial_Closed(object sender, object e)
+        {
+            this.PopDialLegal.SetOpacity(0);
+        }
+
+        #endregion
+
         #region INavigate Interface
 
         public void NavigateToPage()

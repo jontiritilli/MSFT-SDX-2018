@@ -54,6 +54,26 @@ namespace SurfaceStudioDemo.Views
             FlipViewPage.Current.ShowAppClose();
         }
 
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.PopLeftLegal.SetOpacity(1);
+        }
+
+        private void PopBottom_Opened(object sender, object e)
+        {
+            this.PopBottomLegal.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.PopLeftLegal.SetOpacity(0);
+        }
+
+        private void PopBottom_Closed(object sender, object e)
+        {
+            this.PopBottomLegal.SetOpacity(0);
+        }
+
         #endregion
 
         #region INavigate Interface

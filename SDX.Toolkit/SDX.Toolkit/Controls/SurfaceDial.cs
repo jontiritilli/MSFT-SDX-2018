@@ -52,12 +52,22 @@ namespace SDX.Toolkit.Controls
 
         // color id
         public static readonly DependencyProperty ColorIDProperty =
-            DependencyProperty.Register("ColorID", typeof(int), typeof(AppSelector), new PropertyMetadata(0, OnColorIDChanged));
+            DependencyProperty.Register("ColorID", typeof(int), typeof(SurfaceDial), new PropertyMetadata(0, OnColorIDChanged));
 
         public int ColorID
         {
             get { return (int)GetValue(ColorIDProperty); }
             set { SetValue(ColorIDProperty, value); }
+        }
+
+        // dial contact occurred
+        public static readonly DependencyProperty DialScreenContactStartedProperty =
+            DependencyProperty.Register("DialScreenContactStarted", typeof(bool), typeof(SurfaceDial), new PropertyMetadata(false));
+
+        public bool DialScreenContactStarted
+        {
+            get { return (bool)GetValue(DialScreenContactStartedProperty); }
+            set { SetValue(DialScreenContactStartedProperty, value); }
         }
 
         public static readonly DependencyProperty IsActiveProperty =
@@ -184,10 +194,13 @@ namespace SDX.Toolkit.Controls
         // Dial Screen contact initial
         private void Controller_ScreenContactStarted(RadialController sender, RadialControllerScreenContactStartedEventArgs args)
         {
+            RaiseOnDialScreenContactEvent(this);
+
             Canvas.SetLeft(_dialGrid, args.Contact.Position.X - DIAL_RADIUS);
             Canvas.SetTop(_dialGrid, args.Contact.Position.Y - DIAL_RADIUS);
 
             _dialGrid.Opacity = 1.0d;
+
         }
 
         // Dial lifted and placed again
@@ -223,16 +236,15 @@ namespace SDX.Toolkit.Controls
 
         private void Rotate(double angle)
         {
-            double RotationInterval = angle * 2;
+            double RotationInterval = angle;
 
             _currentAngle = (double)Utilities.ClampAngle(_currentAngle + RotationInterval);
-
-            prevColorId = ColorID;
-            UpdateColorId();
 
             if (isRotating)
             {
                 CompleteRotation();
+                prevColorId = ColorID;
+                UpdateColorId();
             }
 
             DoubleAnimation colorSelectorAnimation = new DoubleAnimation();
@@ -276,6 +288,20 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Custom Events
+
+        public delegate void OnDialScreenContactedEvent(object sender, EventArgs e);
+
+        public event OnDialScreenContactedEvent OnDialScreenContactStarted;
+
+        private void RaiseOnDialScreenContactEvent(SurfaceDial Dial, EventArgs e)
+        {
+            OnDialScreenContactStarted?.Invoke(Dial, e);
+        }
+
+        private void RaiseOnDialScreenContactEvent(SurfaceDial Dial)
+        {
+            this.RaiseOnDialScreenContactEvent(Dial, new EventArgs());
+        }
 
         public delegate void OnColorIDChangedEvent(object sender, EventArgs e);
 

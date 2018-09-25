@@ -14,6 +14,8 @@ using GalaSoft.MvvmLight;
 
 using Newtonsoft.Json;
 
+using MetroLog;
+
 using SurfaceBook2Demo.Models;
 using SDX.Toolkit.Helpers;
 
@@ -29,6 +31,7 @@ namespace SurfaceBook2Demo.Services
         private const string VIDEO_EXTENSION_1 = ".mp4";
         private const string VIDEO_EXTENSION_2 = ".m4v";
 
+        //private ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<ConfigurationService>();
 
         public bool IsLoading { get; private set; }
 
@@ -116,6 +119,8 @@ namespace SurfaceBook2Demo.Services
 
         public async Task Initialize()
         {
+            //Log.Trace("Entered ConfigurationService.Initialize");
+
             if (this.IsLoading || this.IsLoaded) { return; }
 
             this.IsLoading = true;
@@ -154,6 +159,9 @@ namespace SurfaceBook2Demo.Services
 
             this.IsLoaded = true;
             this.IsLoading = false;
+
+            //Log.Trace("Exiting ConfigurationService.Initialize");
+
         }
 
         private async Task<ConfigurationFile> GetConfigurationFile(StorageFolder storageFolder)

@@ -34,10 +34,7 @@ namespace SurfaceProDemo.ViewModels
             Register<AccessoriesMouseViewModel, AccessoriesMousePage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
             Register<CompareViewModel, ComparePage>();
-            Register<UriSchemeExampleViewModel, UriSchemeExamplePage>();
         }
-
-        public UriSchemeExampleViewModel UriSchemeExampleViewModel => ServiceLocator.Current.GetInstance<UriSchemeExampleViewModel>();
 
         public CompareViewModel CompareViewModel => ServiceLocator.Current.GetInstance<CompareViewModel>();
 

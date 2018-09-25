@@ -23,6 +23,7 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
         private const string URI_LEFT = "ms-appx:///Assets/Experience/appsDesktop.png";
         private const string URI_RIGHT = "ms-appx:///Assets/Experience/appsStudio.png";
+        private const string URI_POPBOTTOM_VIDEO = "ms-appx:///Assets/Experience/pixelSensePopupVideo.mp4";
 
         #endregion
 
@@ -32,8 +33,8 @@ namespace SurfaceStudioDemo.ViewModels
         public string Left_URI = URI_LEFT;
         public string Right_URI = URI_RIGHT;
 
-        public double Left_Width = 950;
-        public double Right_Width = 950;
+        public double Left_Width = 1000;
+        public double Right_Width = 1000;
 
         public string Headline;
         public string Lede;        
@@ -45,6 +46,7 @@ namespace SurfaceStudioDemo.ViewModels
         public string PopBottomHeadline;
         public string PopBottomLede;
         public string PopBottomLegal;
+        public string PopupDialVideo = URI_POPBOTTOM_VIDEO;
 
         #endregion
 
