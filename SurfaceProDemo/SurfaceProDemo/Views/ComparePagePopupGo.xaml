@@ -33,7 +33,7 @@
 
         <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
             x:Name="Hero"
-            ImageWidth="1300"
+            ImageWidth="{x:Bind Path=ViewModel.PrimaryImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.PrimaryImageURI}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"/>

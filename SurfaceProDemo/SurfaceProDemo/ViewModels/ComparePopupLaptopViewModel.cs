@@ -30,6 +30,7 @@ namespace SurfaceProDemo.ViewModels
         #region Public Properties
 
         public string PrimaryImageURI = URI_PRIMARYIMAGE;
+        public double PrimaryImageWidth = PRIMARY_IMAGEHEIGHT;
         public string Headline;
 
         public string SubHead;
