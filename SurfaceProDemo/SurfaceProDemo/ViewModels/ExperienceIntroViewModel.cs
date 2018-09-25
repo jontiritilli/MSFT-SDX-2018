@@ -40,6 +40,9 @@ namespace SurfaceProDemo.ViewModels
         public string PopTopLede;
         public string PopTopLegal;
 
+        public string PopRightHeadline;
+        public string PopRightLede;
+
         public string HeroFrontURI = URI_IMAGE_HERO_FRONT;
         public string HeroBackURI = URI_IMAGE_HERO_BACK;        
 

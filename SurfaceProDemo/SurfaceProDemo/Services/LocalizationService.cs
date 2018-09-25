@@ -203,6 +203,8 @@ namespace SurfaceProDemo.Services
             viewModel.PopTopHeadline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPTOP_TITLE, "EXPERIENCE_OVERVIEW_POPTOP_TITLE");
             viewModel.PopTopLede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPTOP_COPY, "EXPERIENCE_OVERVIEW_POPTOP_COPY");
             viewModel.PopTopLegal = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPTOP_LEGAL, "EXPERIENCE_OVERVIEW_POPTOP_LEGAL");
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_TITLE, "EXPERIENCE_OVERVIEW_POPTOP_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.EXPERIENCE_OVERVIEW_POPRIGHT_COPY, "EXPERIENCE_OVERVIEW_POPTOP_COPY");
         }
 
         public void LoadExperienceFlipViewViewModel(ExperienceFlipViewViewModel viewModel)
@@ -255,6 +257,7 @@ namespace SurfaceProDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_HEADLINE, "EXPERIENCE_LAPTOP_POPCENTER_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_COPY, "EXPERIENCE_LAPTOP_POPCENTER_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_LEGAL, "EXPERIENCE_LAPTOP_POPCENTER_LEGAL");
 
             viewModel.appSelectorData[0].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_ONE, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_ONE");
             viewModel.appSelectorData[1].Message = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_BULLET_TWO, "EXPERIENCE_LAPTOP_POPCENTER_BULLET_TWO");
@@ -268,7 +271,7 @@ namespace SurfaceProDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
-
+            viewModel.Legal = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_LEGAL, "ACCESSORIES_INTERACTIVE_LEGAL");
             viewModel.TryIt = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_TRYIT_TITLE");
             viewModel.TryItCaption = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_TRYIT_COPY");            
             // TODO: add code to load list
