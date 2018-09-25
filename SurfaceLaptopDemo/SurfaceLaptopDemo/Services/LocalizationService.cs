@@ -277,7 +277,7 @@ namespace SurfaceLaptopDemo.Services
             viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
 
             // bullet one
-            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+            viewModel.ItemList.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Start, // icon enum name
                 viewModel.ICON_WIDTH, // width
@@ -288,9 +288,9 @@ namespace SurfaceLaptopDemo.Services
             ));
 
             // bullet two
-            viewModel.LeftItemList.Add(ListItem.CreateListItem(
+            viewModel.ItemList.Add(ListItem.CreateListItem(
                 1,
-                ListItemIcon.Hello,
+                ListItemIcon.Sync,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_TITLE, "BEST_BULLET_TWO_TITLE"),
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_COPY, "BEST_BULLET_TWO_COPY"),
@@ -298,21 +298,10 @@ namespace SurfaceLaptopDemo.Services
                 GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA")
             ));
 
-            // bullet three OPTIONAL CHINA BULLET
-            viewModel.LeftItemList.Add(ListItem.CreateListItem(
-                2,
-                ListItemIcon.Custom,
-                viewModel.ICON_WIDTH,
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "BEST_BULLET_FIVE_TITLE"),
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "BEST_BULLET_FIVE_COPY"),
-                null,
-                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
-            ));
-
             // bullet four
-            viewModel.RightItemList.Add(ListItem.CreateListItem(
-                0,
-                ListItemIcon.Sync,
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                2,
+                ListItemIcon.Hello,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.BEST_BULLET_THREE_TITLE, "BEST_BULLET_THREE_TITLE"),
                 GetStringValue(_languageCurrent.BEST_BULLET_THREE_COPY, "BEST_BULLET_THREE_COPY"),
@@ -321,8 +310,8 @@ namespace SurfaceLaptopDemo.Services
             ));
 
             // bullet five
-            viewModel.RightItemList.Add(ListItem.CreateListItem(
-                1,
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                3,
                 ListItemIcon.Office,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.BEST_BULLET_FOUR_TITLE, "BEST_BULLET_FOUR_TITLE"),
@@ -330,6 +319,22 @@ namespace SurfaceLaptopDemo.Services
                 null,
                 GetStringValue(_languageCurrent.BEST_BULLET_FOUR_CTA, "BEST_BULLET_FOUR_CTA")
             ));
+
+            // bullet three OPTIONAL BULLET
+            if (!String.IsNullOrWhiteSpace(_languageCurrent.BEST_BULLET_FIVE_TITLE)
+                && !String.IsNullOrWhiteSpace(_languageCurrent.BEST_BULLET_FIVE_COPY))   // use AND here because BOM has headline AND lede and either one missing means we don't show the bullet
+            {
+                viewModel.ItemList.Add(ListItem.CreateListItem(
+                4,
+                ListItemIcon.Custom,
+                viewModel.ICON_WIDTH,
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_TITLE, "BEST_BULLET_FIVE_TITLE"),
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_COPY, "BEST_BULLET_FIVE_COPY"),
+                null,
+                GetStringValue(_languageCurrent.BEST_BULLET_FIVE_CTA, "BEST_BULLET_FIVE_CTA")
+            ));
+            }
+
         }
 
         public void LoadCompareViewModel(CompareViewModel viewModel)

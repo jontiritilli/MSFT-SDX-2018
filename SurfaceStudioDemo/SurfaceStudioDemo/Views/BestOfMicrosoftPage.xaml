@@ -24,8 +24,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
@@ -35,14 +34,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center" />
 
-        <ctrl:List x:Name="BOM_LEFT" Grid.Row="3" Grid.Column="1"
-            ListItems="{x:Bind Path=ViewModel.LeftItemList}"
-            ListStyle="BestOf"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
-
-        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="3" Grid.Column="2"
-            ListItems="{x:Bind Path=ViewModel.RightItemList}"
+        <ctrl:List x:Name="BOM" Grid.Row="3" Grid.Column="1"
+            ListItems="{x:Bind Path=ViewModel.ItemList}"
             ListStyle="BestOf"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"/>

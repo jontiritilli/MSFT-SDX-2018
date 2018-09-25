@@ -26,20 +26,16 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string Headline;
         public string Legal;
-        public List<ListItem> LeftItemList = new List<ListItem>();
-        public List<ListItem> RightItemList = new List<ListItem>();
+        public List<ListItem> ItemList = new List<ListItem>();
 
         public double ICON_WIDTH = StyleHelper.GetApplicationDouble("BestOfMicrosoftListIconWidth");
         public double ListSpacerWidth = StyleHelper.GetApplicationDouble("BestOfMicrosoftColumnSpacerWidth");
         public double ListTextWidth = StyleHelper.GetApplicationDouble("BestOfMicrosoftListTextWidth");
 
-        public double ListWidth;
-
         #endregion
 
         public BestOfMicrosoftViewModel()
-        {
-            ListWidth = ICON_WIDTH + ListSpacerWidth + ListTextWidth;
+        {            
 
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
