@@ -50,6 +50,24 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
+
+        #region Public Static Methods
+
+        public static NavigationBar GetNavigationBar()
+        {
+            NavigationBar bar = null;
+
+            if (null != FlipViewPage.Current)
+            {
+                bar = FlipViewPage.Current.BottomNavBar;
+            }
+
+            return bar;
+        }
+
+        #endregion
+
+
         #region Construction
 
         public FlipViewPage()
