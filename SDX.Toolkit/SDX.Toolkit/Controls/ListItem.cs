@@ -117,7 +117,7 @@ namespace SDX.Toolkit.Controls
             item.IconWidth = width;
             item.Headline = headline;
             item.Lede = lede;
-            item.CTAUri = _ctaURI;
+            item.CTAUri = GetCTA_URI(icon, _ctaURI);
             item.CTAText = _ctaText;
             // set calculated properties
             item.IconPath = GetIconPath(icon, _iconPath);
@@ -125,6 +125,36 @@ namespace SDX.Toolkit.Controls
             //item.TelemetryId = GetTelemetryId(icon, _ctaTelemetryId); 
 
             return item;
+        }
+
+        private static string GetCTA_URI(ListItemIcon icon, string ctaURI)
+        {
+            if (String.IsNullOrWhiteSpace(ctaURI))
+            {
+                switch (icon)
+                {
+                    case ListItemIcon.Start:
+                        ctaURI = URI_CTA_START;
+                        break;
+
+                    case ListItemIcon.Sync:
+                        ctaURI = URI_CTA_SYNC;
+                        break;
+
+                    case ListItemIcon.Hello:
+                        ctaURI = URI_CTA_HELLO;
+                        break;
+
+                    case ListItemIcon.Office:
+                        ctaURI = URI_CTA_OFFICE;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            return ctaURI;
         }
 
         public static string GetIconPath(ListItemIcon icon, string iconPath)
