@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding FlipViewViewModel, Source={StaticResource Locator}}"
-    Style="{StaticResource PageStyle}"
     xmlns:model="using:SurfaceLaptopDemo.Models"
     xmlns:views="using:SurfaceLaptopDemo.Views"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
@@ -74,11 +73,11 @@
                     <views:AccessoriesMousePage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AccessoriesPenPage">
                 <Frame>
                     <views:AccessoriesPenPage/>
                 </Frame>
-            </ctrl:FlipViewItemEx>-->
+            </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_BestOfMicrosoftPage">
                 <Frame>
                     <views:BestOfMicrosoftPage/>

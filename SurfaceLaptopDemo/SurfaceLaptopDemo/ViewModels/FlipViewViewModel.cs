@@ -187,15 +187,14 @@ namespace SurfaceLaptopDemo.ViewModels
             }
             );
 
-            // Pen page removed as of version 6 of design
             // AccessoriesPenPage
-            //this.Root.Items.Add(new NavigationPage()
-            //{
-            //    Name = "AccessoriesPenPage",
-            //    Order = 8,
-            //    Section = sectionAccessories,
-            //}
-            //);
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "AccessoriesPenPage",
+                Order = 8,
+                Section = sectionAccessories,
+            }
+            );
 
             // =================================================
             // Create Best of Microsoft Pages
@@ -206,7 +205,7 @@ namespace SurfaceLaptopDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "BestOfMicrosoftPage",
-                Order = 8,
+                Order = 9,
                 Section = sectionBestOfMicrosoft,
             }
             );
@@ -219,7 +218,7 @@ namespace SurfaceLaptopDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "ComparePage",
-                Order = 9,
+                Order = 10,
                 Section = sectionCompare,
             });
 

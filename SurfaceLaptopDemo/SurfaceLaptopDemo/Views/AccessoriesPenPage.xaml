@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
-    Style="{StaticResource PageStyle}"
     xmlns:conv="using:SDX.Toolkit.Converters"         
     DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
@@ -38,10 +37,12 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
-            x:Name="AppSelectorImageAccRight"
-            URIs="{x:Bind Path=ViewModel.accRightSelectorImageURIs}"
-            ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
-            ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"/>
+                               x:Name="AppSelectorImageAccRight"
+                               URIs="{x:Bind Path=ViewModel.accRightSelectorImageURIs}"
+                               ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
+                               ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
             x:Name="AppSelectorAccRight"

@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
-    Style="{StaticResource PageStyle}"
     DataContext="{Binding BestOfMicrosoftViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 

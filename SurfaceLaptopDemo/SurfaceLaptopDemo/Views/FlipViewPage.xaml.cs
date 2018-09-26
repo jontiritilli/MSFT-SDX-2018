@@ -84,6 +84,9 @@ namespace SurfaceLaptopDemo.Views
                 this.BottomNavBar.NavigationSections.Add(section);
             }
 
+            // initialize the navigation bar root
+            this.BottomNavBar.Root = ViewModel.Root;
+
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
             {
@@ -118,7 +121,7 @@ namespace SurfaceLaptopDemo.Views
             _previousPage = (INavigate)((FlipViewItemEx)this.ContentFlipView.SelectedItem).GetChildViewAsObject();
 
             // navigate to it
-            _previousPage.NavigateToPage();
+            _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
         }
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
