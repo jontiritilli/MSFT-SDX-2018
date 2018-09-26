@@ -28,7 +28,7 @@ namespace SurfaceLaptopDemo.Views
     {
         #region Private Constants
 
-        private const double PAGE_TIMER_DURATION = 5000d;
+        private const double PAGE_TIMER_DURATION = 8000d;
 
         #endregion
 
@@ -88,13 +88,6 @@ namespace SurfaceLaptopDemo.Views
             // initialize the navigation bar root
             this.BottomNavBar.Root = ViewModel.Root;
 
-            // configure our page move timer
-            _pageMoveTimer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromMilliseconds(PAGE_TIMER_DURATION)
-            };
-            _pageMoveTimer.Tick += PageMoveTimer_Tick;
-            _pageMoveTimer.Start();
         }
 
         private void PageMoveTimer_Tick(object sender, object e)
@@ -123,6 +116,14 @@ namespace SurfaceLaptopDemo.Views
 
             // navigate to it
             _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
+
+            // configure our page move timer
+            _pageMoveTimer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(PAGE_TIMER_DURATION)
+            };
+            _pageMoveTimer.Tick += PageMoveTimer_Tick;
+            _pageMoveTimer.Start();
         }
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)

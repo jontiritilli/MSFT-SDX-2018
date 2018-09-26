@@ -247,6 +247,7 @@ namespace SurfaceProDemo.Services
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_COPY, "EXPERIENCE_TABLET_COPY");
             viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPLEFT_TITLE, "EXPERIENCE_TABLET_POPLEFT_TITLE");
             viewModel.PopLeftLede = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPLEFT_COPY, "EXPERIENCE_TABLET_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPLEFT_LEGAL, "EXPERIENCE_TABLET_POPLEFT_COPY");
             viewModel.PopTopHeadline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPTOP_TITLE, "EXPERIENCE_TABLET_POPTOP_TITLE");
             viewModel.PopTopLede = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPTOP_COPY, "EXPERIENCE_TABLET_POPTOP_COPY");
             viewModel.PopRightHeadline = GetStringValue(_languageCurrent.EXPERIENCE_TABLET_POPRIGHT_TITLE, "EXPERIENCE_TABLET_POPRIGHT_TITLE");
