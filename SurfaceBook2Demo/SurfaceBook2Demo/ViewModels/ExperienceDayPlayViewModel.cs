@@ -16,7 +16,8 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_BACKGROUND13 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_play.png";
         private const string URI_BACKGROUND15 = "ms-appx:///Assets/Backgrounds/sb2_15_experience_play.png";
 
-        private const string URI_HERO = "ms-appx:///Assets/Experience/sb2_play_sb15.png";
+        private const string URI_HERO_13 = "ms-appx:///Assets/Experience/sb2_play_sb13.png";
+        private const string URI_HERO_15 = "ms-appx:///Assets/Experience/sb2_play_sb15.png";
 
         #endregion
 
@@ -43,13 +44,13 @@ namespace SurfaceBook2Demo.ViewModels
             {
                 case DeviceType.Book15:
                     this.BackgroundUri = URI_BACKGROUND15;
-                    this.HeroUri = URI_HERO;
+                    this.HeroUri = URI_HERO_13;
                     break;
 
                 case DeviceType.Book13:
                 default:
                     this.BackgroundUri = URI_BACKGROUND13;
-                    this.HeroUri = URI_HERO;
+                    this.HeroUri = URI_HERO_15;
                     break;
             }
 
