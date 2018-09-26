@@ -246,39 +246,38 @@ namespace SurfaceStudioDemo.Services
             // bullet one
             viewModel.ListItems.Add(ListItem.CreateListItem(
                 0, // order
-                ListItemIcon.Write,
-                viewModel.ICON_WIDTH, // width
-                "", // header
-                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_ONE, "ACCESSORIES_INTERACTIVE_BULLET_ONE") // order
-            ));
-
-            // bullet two
-            viewModel.ListItems.Add(ListItem.CreateListItem(
-                1, // order
-                ListItemIcon.Pressure, // icon enum name
-                viewModel.ICON_WIDTH, // width
-                "",//header
-                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO, "ACCESSORIES_INTERACTIVE_BULLET_TWO") // order
-            ));
-
-            // bullet three
-            viewModel.ListItems.Add(ListItem.CreateListItem(
-                2, // order
-                ListItemIcon.Palm, // icon enum name
-                viewModel.ICON_WIDTH, // width
-                "",//header
-                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_THREE, "ACCESSORIES_INTERACTIVE_BULLET_THREE") // order
-            ));
-
-            // bullet four
-            viewModel.ListItems.Add(ListItem.CreateListItem(
-                3, // order
                 ListItemIcon.Jot, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",// header
                 GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_FOUR, "ACCESSORIES_INTERACTIVE_BULLET_FOUR") // order
             ));
 
+            // bullet two
+            viewModel.ListItems.Add(ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Write,
+                viewModel.ICON_WIDTH, // width
+                "", // header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_ONE, "ACCESSORIES_INTERACTIVE_BULLET_ONE") // order
+            ));
+
+            // bullet three
+            viewModel.ListItems.Add(ListItem.CreateListItem(
+                2, // order
+                ListItemIcon.Pressure, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",//header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_TWO, "ACCESSORIES_INTERACTIVE_BULLET_TWO") // order
+            ));
+
+            // bullet four
+            viewModel.ListItems.Add(ListItem.CreateListItem(
+                3, // order
+                ListItemIcon.Palm, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",//header
+                GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_BULLET_THREE, "ACCESSORIES_INTERACTIVE_BULLET_THREE") // order
+            ));
         }
 
         public void LoadAccessoriesPenPopupViewModel(AccessoriesPenPopupViewModel viewModel)

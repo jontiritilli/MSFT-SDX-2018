@@ -290,7 +290,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // set our Padding
-            if (this.PopupType == PopupTypes.Image && !this.MediaHasMargin)
+            if ((this.PopupType == PopupTypes.Image || this.PopupType == PopupTypes.Video) && !this.MediaHasMargin)
             {
                 // set our width
                 this.Width = this.MediaWidth;
@@ -328,7 +328,7 @@ namespace SDX.Toolkit.Controls
                 VerticalAlignment = VerticalAlignment.Top,
                 Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
             };
-            if (this.PopupType == PopupTypes.Image && !this.MediaHasMargin)
+            if ((this.PopupType == PopupTypes.Image || this.PopupType == PopupTypes.Video) && !this.MediaHasMargin)
             {
                 Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
                 _header.Width = this.Width - Padding.Left - Padding.Right;

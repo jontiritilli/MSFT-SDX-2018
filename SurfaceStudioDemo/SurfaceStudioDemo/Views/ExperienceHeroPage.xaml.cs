@@ -30,7 +30,7 @@ namespace SurfaceStudioDemo.Views
 
         #region INavigate Interface
 
-        public void NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             AnimationHelper.PerformPageEntranceAnimation(this);
         }

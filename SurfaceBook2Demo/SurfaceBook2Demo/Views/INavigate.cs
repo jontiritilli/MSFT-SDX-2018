@@ -14,7 +14,7 @@ namespace SurfaceBook2Demo.Views
         Forward
     }
 
-    interface INavigate
+    public interface INavigate
     {
         void NavigateToPage(INavigateMoveDirection moveDirection);
 

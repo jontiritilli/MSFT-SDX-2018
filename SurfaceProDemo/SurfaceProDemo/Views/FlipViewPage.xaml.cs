@@ -89,6 +89,9 @@ namespace SurfaceProDemo.Views
                 this.BottomNavBar.NavigationSections.Add(section);
             }
 
+            // initialize the root
+            this.BottomNavBar.Root = ViewModel.Root;
+
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
             {
@@ -183,7 +186,7 @@ namespace SurfaceProDemo.Views
                         _previousPage.NavigateToPage(moveDirection);
 
                         // tell the navbar to move to it
-                        this.BottomNavBar.MoveToPageIndex(nextPageIndex);
+                        this.BottomNavBar.MoveToPageIndex(nextPageIndex, (INavigateMoveDirection.Forward == moveDirection));
                     }
                 }
             }
@@ -200,11 +203,29 @@ namespace SurfaceProDemo.Views
                 // get the sender
                 if (sender is NavigationBar navBar)
                 {
-                    // convert the section/page from the event args to a page index
-                    int pageIndex = navBar.GetPageIndexFromPage(e.NavSection, e.NavPage);
+                    // get the page index
+                    int pageIndex = navBar.Root.SelectedIndex;
 
                     // move the flipview to that index
-                    this.ContentFlipView.SelectedIndex = pageIndex;
+                    if (pageIndex != this.ContentFlipView.SelectedIndex)
+                    {
+                        this.ContentFlipView.SelectedIndex = pageIndex;
+                    }
+
+                    // get the slider flipview page index
+                    INavigationItem sliderItem = navBar.Root.Items.Find(item => item.Name == "ExperienceFlipViewPage");
+                    if ((null != sliderItem) && (sliderItem is NavigationFlipView sliderNavigationFlipView))
+                    {
+                        FlipViewEx deviceModeFlipView = ExperienceFlipViewPage.GetDeviceModeFlipView();
+
+                        if ((null != ExperienceFlipViewPage.Current) && (null != deviceModeFlipView))
+                        {
+                            if (deviceModeFlipView.SelectedIndex != sliderNavigationFlipView.SelectedIndex)
+                            {
+                                deviceModeFlipView.SelectedIndex = sliderNavigationFlipView.SelectedIndex;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -253,6 +274,32 @@ namespace SurfaceProDemo.Views
         public Popup GetExperiencePagePopup()
         {
             return this.ExperiencePopup;
+        }
+
+        // load COMPARE PAGE full page popups
+        public Popup GetComparePagePopupPro()
+        {
+            return this.CompareProPopup;
+        }
+
+        public Popup GetComparePagePopupBook()
+        {
+            return this.CompareBookPopup;
+        }
+
+        public Popup GetComparePagePopupStudio()
+        {
+            return this.CompareStudioPopup;
+        }
+
+        public Popup GetComparePagePopupLaptop()
+        {
+            return this.CompareLaptopPopup;
+        }
+
+        public Popup GetComparePagePopupGo()
+        {
+            return this.CompareGoPopup;
         }
 
         #endregion

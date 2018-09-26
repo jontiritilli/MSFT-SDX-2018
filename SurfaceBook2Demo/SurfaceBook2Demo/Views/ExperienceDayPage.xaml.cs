@@ -10,6 +10,25 @@ namespace SurfaceBook2Demo.Views
 {
     public sealed partial class ExperienceDayPage : Page, INavigate
     {
+        #region Static
+
+        public static ExperienceDayPage Current = null;
+
+        public static FlipViewEx GetDayFlipView()
+        {
+            FlipViewEx dayFlipView = null;
+
+            if (null != Current)
+            {
+                dayFlipView = Current.DayFlipView;
+            }
+
+            return dayFlipView;
+        }
+
+        #endregion
+
+
         #region Private Members
 
         private ExperienceDayViewModel ViewModel
@@ -26,6 +45,8 @@ namespace SurfaceBook2Demo.Views
 
         public ExperienceDayPage()
         {
+            ExperienceDayPage.Current = this;
+
             InitializeComponent();
 
             this.Loaded += this.ExperienceDayPage_Loaded;

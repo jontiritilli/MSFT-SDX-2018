@@ -84,6 +84,9 @@ namespace SurfaceStudioDemo.Views
                 this.BottomNavBar.NavigationSections.Add(section);
             }
 
+            // initialize the navigation bar root
+            this.BottomNavBar.Root = ViewModel.Root;
+
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
             {
@@ -118,7 +121,7 @@ namespace SurfaceStudioDemo.Views
             _previousPage = (INavigate)((FlipViewItemEx)this.ContentFlipView.SelectedItem).GetChildViewAsObject();
 
             // navigate to it
-            _previousPage.NavigateToPage();
+            _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
 
         }
 
@@ -139,20 +142,39 @@ namespace SurfaceStudioDemo.Views
                         _previousPage.NavigateFromPage();
                     }
 
-                    // get the pageIndex of the new page
-                    int pageIndex = flipView.SelectedIndex;
-
-                    // tell the navbar to move to it
-                    this.BottomNavBar.MoveToPageIndex(pageIndex);
-
-                    // navigate to the current page
+                    // navigate to the new page
                     if (null != flipView.SelectedItem)
                     {
-                        // save the current page so we can navigate from it
+                        INavigateMoveDirection moveDirection = INavigateMoveDirection.Unknown;
+
+                        // get the pageIndex of the new page
+                        int nextPageIndex = flipView.SelectedIndex;
+
+                        // find the index of the previous page
+                        int previousPageIndex = flipView.GetIndexOfChildView(_previousPage);
+
+                        // if we got it
+                        if (-1 != previousPageIndex)
+                        {
+                            // are we moving forward or backward to get to the new page?
+                            if (previousPageIndex < nextPageIndex)
+                            {
+                                moveDirection = INavigateMoveDirection.Forward;
+                            }
+                            else if (nextPageIndex < previousPageIndex)
+                            {
+                                moveDirection = INavigateMoveDirection.Backward;
+                            }
+                        }
+
+                        // save the current page so we can navigate away from it later
                         _previousPage = (INavigate)((FlipViewItemEx)flipView.SelectedItem).GetChildViewAsObject();
 
                         // navigate to it
-                        _previousPage.NavigateToPage();
+                        _previousPage.NavigateToPage(moveDirection);
+
+                        // tell the navbar to move to it
+                        this.BottomNavBar.MoveToPageIndex(nextPageIndex, (INavigateMoveDirection.Forward == moveDirection));
                     }
                 }
             }
@@ -169,11 +191,14 @@ namespace SurfaceStudioDemo.Views
                 // get the sender
                 if (sender is NavigationBar navBar)
                 {
-                    // convert the section/page from the event args to a page index
-                    int pageIndex = navBar.GetPageIndexFromPage(e.NavSection, e.NavPage);
+                    // get the page index
+                    int pageIndex = navBar.Root.SelectedIndex;
 
                     // move the flipview to that index
-                    this.ContentFlipView.SelectedIndex = pageIndex;
+                    if (pageIndex != this.ContentFlipView.SelectedIndex)
+                    {
+                        this.ContentFlipView.SelectedIndex = pageIndex;
+                    }
                 }
             }
         }
@@ -253,6 +278,7 @@ namespace SurfaceStudioDemo.Views
         {
             return this.CompareGoPopup;
         }
+
         #endregion
     }
 }

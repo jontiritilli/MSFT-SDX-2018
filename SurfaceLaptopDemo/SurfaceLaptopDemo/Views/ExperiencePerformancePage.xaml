@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     xmlns:conv="using:SDX.Toolkit.Converters"
-    Style="{StaticResource PageStyle}"
     DataContext="{Binding ExperiencePerformanceViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 

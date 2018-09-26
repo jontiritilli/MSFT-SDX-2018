@@ -36,9 +36,7 @@
 
         <ctrl:List x:Name="BOM" Grid.Row="3" Grid.Column="1"
             ListItems="{x:Bind Path=ViewModel.ItemList}"
-            ListStyle="BestOf"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+            ListStyle="BestOf"/>
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.BulletTwoLegal}"

@@ -42,7 +42,7 @@ namespace SDX.Toolkit.Controls
 
         private NavigationActions _navAction;
         private NavigationSection _navSection;
-        private NavigationPage _navPage;
+        private INavigationItem _navItem;
 
         #endregion
 
@@ -52,11 +52,11 @@ namespace SDX.Toolkit.Controls
         {
         }
 
-        public NavigateEventArgs(NavigationActions navAction, NavigationSection navSection, NavigationPage navPage)
+        public NavigateEventArgs(NavigationActions navAction, NavigationSection navSection, INavigationItem navItem)
         {
             NavAction = navAction;
             NavSection = navSection;
-            NavPage = navPage;
+            NavItem = navItem;
         }
 
         #endregion
@@ -75,10 +75,10 @@ namespace SDX.Toolkit.Controls
             set { _navSection = value; }
         }
 
-        public NavigationPage NavPage
+        public INavigationItem NavItem
         {
-            get { return _navPage; }
-            set { _navPage = value; }
+            get { return _navItem; }
+            set { _navItem = value; }
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace SDX.Toolkit.Controls
 
             // set default properties
             this.SelectedSection = null;
-            this.SelectedPage = null;
+            this.SelectedItem = null;
             this.CanGoBack = false;
             this.CanGoForward = true;
 
@@ -206,7 +206,7 @@ namespace SDX.Toolkit.Controls
 
         public NavigationSection SelectedSection { get; private set; }
 
-        public NavigationPage SelectedPage { get; private set; }
+        public INavigationItem SelectedItem { get; private set; }
 
         public bool CanGoBack { get; private set; }
 
@@ -215,6 +215,16 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Dependency Properties
+
+        // Root
+        public static readonly DependencyProperty RootProperty =
+            DependencyProperty.Register("Root", typeof(NavigationFlipView), typeof(NavigationBar), new PropertyMetadata(new NavigationFlipView(), OnRootChanged));
+
+        public NavigationFlipView Root
+        {
+            get { return (NavigationFlipView)GetValue(RootProperty); }
+            set { SetValue(RootProperty, value); }
+        }
 
         // NavigationSections
         public static readonly DependencyProperty NavigationSectionsProperty =
@@ -259,9 +269,9 @@ namespace SDX.Toolkit.Controls
             Navigate?.Invoke(navigationBar, e);
         }
 
-        private void RaiseNavigateEvent(NavigationBar navigationBar, NavigationActions navAction, NavigationSection navSection, NavigationPage navPage)
+        private void RaiseNavigateEvent(NavigationBar navigationBar, NavigationActions navAction, NavigationSection navSection, INavigationItem navItem)
         {
-            NavigateEventArgs args = new NavigateEventArgs(navAction, navSection, navPage);
+            NavigateEventArgs args = new NavigateEventArgs(navAction, navSection, navItem);
 
             RaiseNavigateEvent(navigationBar, args);
         }
@@ -285,6 +295,14 @@ namespace SDX.Toolkit.Controls
             if (d is NavigationBar navbar)
             {
                 navbar.UpdateUI();
+            }
+        }
+
+        private static void OnRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NavigationBar navbar)
+            {
+                navbar.MoveToPageIndex(0, true);
             }
         }
 
@@ -327,7 +345,7 @@ namespace SDX.Toolkit.Controls
 
                 case "GoHome":
                     // move to the first page
-                    MoveToPageIndex(0);
+                    MoveToPageIndex(0, true);
                     break;
 
                 default:
@@ -754,306 +772,166 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region UI Helpers
+        #region Navigation Control
 
-        public int GetPageIndexFromPage(NavigationSection section, NavigationPage page)
+        public void MoveToPageIndex(int pageIndex, bool isForward)
         {
-            int index = -1;     // -1 is an error
+            // this function can only move the main flipview
 
-            // if the section and page are valid
-            if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0)
-                && (null != section) && (null != section.Pages) && (section.Pages.Count > 0)
-                && (null != page))
+            // take the pageIndex as the selected index of root
+            if ((pageIndex >= 0) && (pageIndex < this.Root.Items.Count()))
             {
-                // get the index of the section in the list of sections
-                int sectionIndex = this.NavigationSections.IndexOf(section);
+                // get the item at that index in root
+                INavigationItem item = this.Root.Items.ElementAt(pageIndex);
 
-                // get the index of the page in the current section
-                int pageIndex = section.Pages.IndexOf(page);
-
-                // if both are valid
-                if ((0 <= sectionIndex) && (0 <= pageIndex))
+                // if we got it
+                if (null != item)
                 {
-                    // if this is the first section
-                    if (0 == sectionIndex)
+                    // if it's a page
+                    if (item is NavigationPage page)
                     {
-                        // then the page index is our value
-                        index = pageIndex;
+                        // move to it
+                        MoveToPage(page, NavigationActions.Unknown);
                     }
-                    else
+                    else if (item is NavigationFlipView flipView)
                     {
-                        // if the section isn't the first, we have to add the pages from the previous sections
-                        int previousPageCount = 0;
+                        // if it's a flipview
 
-                        // loop through the previous sections and add their page counts
-                        for (int i = 0; i < sectionIndex; i++)
+                        NavigationPage moveToPage = null;
+
+                        if (isForward)
                         {
-                            // make sure there's a section here and it has pages
-                            if ((null != this.NavigationSections[i]) && (null != this.NavigationSections[i].Pages))
-                            {
-                                // it does, so add those pages to our count
-                                previousPageCount += this.NavigationSections[i].Pages.Count;
-                            }
-                        }
-
-                        // take the count of previous pages and add the page index to it 
-                        index = previousPageCount + pageIndex;
-                    }
-                }
-            }
-
-            return index;
-        }
-
-        public void GetPageFromPageIndex(int pageIndex, out NavigationSection section, out NavigationPage page)
-        {
-            // default values
-            section = null;
-            page = null;
-
-            // if there are sections
-            if ((null != this.NavigationSections) && (this.NavigationSections.Count > 0))
-            {
-                // loop through the sections
-                foreach (NavigationSection navigationSection in this.NavigationSections)
-                {
-                    // does the section have pages?
-                    if ((null != navigationSection) && (null != navigationSection.Pages))
-                    {
-                        // how many pages are in this section?
-                        int pageCount = navigationSection.Pages.Count;
-
-                        // if there are more pages in this section than remain in the index
-                        if (pageCount > pageIndex)
-                        {
-                            // this is the section where our page will be
-                            section = navigationSection;
-                            page = section.Pages[pageIndex];
-
-                            return;
+                            moveToPage = (NavigationPage)flipView.GetFirstPageChild();
                         }
                         else
                         {
-                            // if we're here, this section can't exhaust pageIndex, 
-                            // so subtract the section's page count from the index
-                            pageIndex -= pageCount;
+                            moveToPage = (NavigationPage)flipView.GetLastPageChild();
                         }
-                    }
-                }
-            }
-        }
 
-        public void MoveToPageIndex(int pageIndex, bool doNotRaiseEvent = false)
-        {
-            NavigationActions navigationAction = NavigationActions.Unknown;
-
-            // we need a section and page
-            NavigationSection section = null;
-            NavigationPage page = null;
-
-            // convert the index to section and page
-            this.GetPageFromPageIndex(pageIndex, out section, out page);
-
-            // if we got them
-            if ((null != section) && (null != page))
-            {
-                // what action?
-                if (0 == pageIndex)
-                {
-                    // go home
-                    navigationAction = NavigationActions.Home;
-                }
-
-                // move to it
-                MoveToPage(section, page, navigationAction, doNotRaiseEvent);
-            }
-        }
-
-        public void MoveToPreviousPage(bool doNotRaiseEvent = false)
-        {
-            // get the selected section and page
-            NavigationSection section = this.SelectedSection;
-            NavigationPage page = this.SelectedPage;
-
-            // if we can go back and we have a selected section and page
-            if ((this.CanGoBack) && (null != this.SelectedSection) && (null != this.SelectedPage))
-            {
-                // get the indices of the selected section and page
-                int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Pages.IndexOf(page);
-
-                // is the current page the first in the current section?
-                if (0 == pageIndex)
-                {
-                    // is the current section the first?
-                    if (0 == sectionIndex)
-                    {
-                        // we can't go back from the first page of the first section
-                        return;
-                    }
-                    else
-                    {
-                        // get the previous section
-                        section = this.NavigationSections[sectionIndex - 1];
-
-                        // if it's valid and has pages
-                        if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+                        if (null != moveToPage)
                         {
-                            // get its last page
-                            page = section.Pages[section.Pages.Count - 1];
+                            MoveToPage(moveToPage, NavigationActions.Unknown);
                         }
                     }
-                }
-                else
-                {
-                    // get the previous page
-                    page = section.Pages[pageIndex - 1];
-                }
-
-                // if we made it through the gauntlet with non-null section and page
-                if ((null != section) && (null != page))
-                {
-                    MoveToPage(section, page, NavigationActions.GoBack, doNotRaiseEvent);
                 }
             }
         }
 
-        public void MoveToNextPage(bool doNotRaiseEvent = false)
+        public bool MoveToPreviousPage()
         {
-            // get the selected section and page
-            NavigationSection section = this.SelectedSection;
-            NavigationPage page = this.SelectedPage;
+            bool moved = false;
 
-            // if we can go forward and we have a selected section and page
-            if ((this.CanGoForward) && (null != this.SelectedSection) && (null != this.SelectedPage))
+            // if we have a valid root and can move forward
+            if ((this.CanGoBack) && (null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count() > 0))
             {
-                // get the indices of the selected section and page
-                int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Pages.IndexOf(page);
-
-                // is the current page the last in the current section?
-                if ((section.Pages.Count - 1) == pageIndex)
-                {
-                    // is the current section the last?
-                    if ((this.NavigationSections.Count - 1) == sectionIndex)
-                    {
-                        // we can't go forward from the last page of the last section
-                        return;
-                    }
-                    else
-                    {
-                        // get the next section
-                        section = this.NavigationSections[sectionIndex + 1];
-
-                        // if it's valid and has pages
-                        if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
-                        {
-                            // get its first page
-                            page = section.Pages[0];
-                        }
-                    }
-                }
-                else
-                {
-                    // get the next page
-                    page = section.Pages[pageIndex + 1];
-                }
-
-                // if we made it through the gauntlet with non-null section and page
-                if ((null != section) && (null != page))
-                {
-                    MoveToPage(section, page, NavigationActions.GoForward, doNotRaiseEvent);
-                }
-            }
-        }
-
-        public void MoveToSection(NavigationSection section, bool doNotRaiseEvent = false)
-        {
-            // if the section is valid and it has pages
-            if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
-            {
-                // get the first page of the section
-                NavigationPage page = section.Pages.First<NavigationPage>();
+                // find the next page
+                NavigationPage page = this.Root.FindPreviousPage();
 
                 // if we got it
                 if (null != page)
                 {
-                    // move to the section and page; assume we're triggered by a button click
-                    MoveToPage(section, page, NavigationActions.Section, doNotRaiseEvent);
+                    // move to it
+                    moved = MoveToPage(page, NavigationActions.GoForward);
                 }
             }
+
+            return moved;
         }
 
-        public void MoveToPage(NavigationSection section, NavigationPage page, 
-            NavigationActions navigationAction = NavigationActions.Unknown, bool doNotRaiseEvent = false)
+        public bool MoveToNextPage()
         {
-            // if the section is valid and it has pages
-            if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+            bool moved = false;
+
+            // if we have a valid root and can move forward
+            if ((this.CanGoForward) && (null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count() > 0))
             {
-                // does the section contain the page we've been passed?
-                if (section.Pages.Contains<NavigationPage>(page))
+                // find the next page
+                NavigationPage page = this.Root.FindNextPage();
+
+                // if we got it
+                if (null != page)
                 {
-                    // it does, so save this section and page as selected
-                    this.SelectedSection = section;
-                    this.SelectedPage = page;
+                    // move to it
+                    moved = MoveToPage(page, NavigationActions.GoForward);
+                }
+            }
 
-                    // set our go back/forward flags
+            return moved;
+        }
 
-                    // what's the index of this section and page
-                    int sectionIndex = this.NavigationSections.IndexOf(section);
-                    int pageIndex = section.Pages.IndexOf(page);
+        public bool MoveToSection(NavigationSection section)
+        {
+            bool moved = false;
 
-                    // if this is the first section
-                    if (0 == sectionIndex)
+            // if the section is valid and  and it has pages
+            if ((null != section) && (null != this.Root) && (this.Root.Items.Count > 0))
+            {
+                // get the first item that has this section
+                INavigationItem item = this.Root.FindFirstChildWithSection(section);
+
+                // if we got it
+                if (null != item)
+                {
+                    // if the item is a flipview
+                    if (item is NavigationFlipView flipView)
                     {
-                        if (0 == pageIndex)
-                        {
-                            // we can't go back from the first page of the first section
-                            this.CanGoBack = false;
-                        }
-                        else
-                        {
-                            // this is not the first page, so we can go back
-                            this.CanGoBack = true;
-                        }
-                    }
-                    else
-                    {
-                        // we aren't the first section, so can go back
-                        this.CanGoBack = true;
-                    }
+                        // get the first page in the flipview children
+                        NavigationPage page = (NavigationPage)flipView.Items.OrderBy(child => child.Order).First();
 
-                    // if this is the last section
-                    if ((this.NavigationSections.Count - 1) == sectionIndex)
-                    {
-                        // is this the last page?
-                        if ((section.Pages.Count - 1) == pageIndex)
+                        // if we got it
+                        if (null != page)
                         {
-                            // this is the last page, so can't go forward
-                            this.CanGoForward = false;
-                        }
-                        else
-                        {
-                            // not the last page, so can go forward
-                            this.CanGoForward = true;
+                            // move to it
+                            moved = MoveToPage(page, NavigationActions.Section);
                         }
                     }
-                    else
+                    else if (item is NavigationPage page)
                     {
-                        // this isn't the last section, so we can go forward
-                        this.CanGoForward = true;
-                    }
-
-                    // we've made changes, so need to update the UI
-                    this.UpdateUI();
-
-                    // raise our navigate event
-                    if (!doNotRaiseEvent)
-                    {
-                        RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedPage);
+                        // it's a page, so just go to it
+                        moved = MoveToPage(page, NavigationActions.Section);
                     }
                 }
             }
+
+            return moved;
+        }
+
+        public bool MoveToPage(NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown)
+        {
+            bool moved = false;
+
+            // if our root is valid and it has pages
+            if ((null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count > 0))
+            {
+                // is the page part of the root visual tree, does it have a section, and is that section valid?
+                if ((this.Root.HasChild(page)) && (null != page.Section) && (this.NavigationSections.Contains<NavigationSection>(page.Section)))
+                {
+                    // try to set this page as selected
+                    if (this.Root.SelectPage(page))
+                    {
+                        // save this section as selected
+                        this.SelectedSection = page.Section;
+
+                        // set the selected item
+                        this.SelectedItem = page;
+
+                        // set our go back/forward flags
+                        this.CanGoBack = this.Root.CanGoBack();
+                        this.CanGoForward = this.Root.CanGoForward();
+
+                        // we've made changes, so need to update the UI
+                        this.UpdateUI();
+
+                        // raise our navigate event
+                        RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
+
+                        // flag success
+                        moved = true;
+                    }
+                }
+            }
+
+            return moved;
         }
 
         #endregion

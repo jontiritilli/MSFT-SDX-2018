@@ -13,7 +13,7 @@ namespace SurfaceProDemo.Views
         Forward
     }
 
-    interface INavigate
+    public interface INavigate
     {
         void NavigateToPage(INavigateMoveDirection moveDirection);
 

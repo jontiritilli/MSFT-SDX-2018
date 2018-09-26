@@ -125,7 +125,7 @@ namespace SDX.Toolkit.Controls
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {                    
-                    _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+                    //_mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(500);
                     _mediaPlayerElement.MediaPlayer.Play();
                 });
             }
@@ -137,8 +137,8 @@ namespace SDX.Toolkit.Controls
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    _mediaPlayerElement.MediaPlayer.Pause();
-                    _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+                    _mediaPlayerElement.MediaPlayer.Pause();                    
+                    //_mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(500);
                     _mediaPlayerElement.IsFullWindow = false;
                 });
             }
@@ -206,15 +206,15 @@ namespace SDX.Toolkit.Controls
         }
 
         private void MediaPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
-        {
+        {                        
         }
 
         private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
         {
             if (null != sender)
             {
-                sender.Pause();
-                sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+                sender.Pause();                
+               // sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
                 sender.Play();
             }
         }
@@ -262,6 +262,10 @@ namespace SDX.Toolkit.Controls
                 Width = VideoWidth,
                 Height = VideoHeight
             };
+            _mediaPlayerElement.MediaPlayer.IsMuted = true;
+            
+            _mediaPlayerElement.MediaPlayer.IsLoopingEnabled = true;            
+            _mediaPlayerElement.MediaPlayer.PlaybackSession.PlaybackRate = .5;
 
 
             // set media player event handlers

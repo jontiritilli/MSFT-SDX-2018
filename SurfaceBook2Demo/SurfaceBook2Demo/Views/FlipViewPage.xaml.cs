@@ -91,11 +91,14 @@ namespace SurfaceBook2Demo.Views
 
             //Log.Trace("Initializing Navigation Bar from viewModel.");
 
-            // initialize the navigation bar
+            // initialize the navigation bar sections
             foreach (NavigationSection section in ViewModel.Sections)
             {
                 this.BottomNavBar.NavigationSections.Add(section);
             }
+
+            // initialize the navigation bar root
+            this.BottomNavBar.Root = ViewModel.Root;
 
             //Log.Trace("Exiting constructor.");
         }
@@ -176,7 +179,7 @@ namespace SurfaceBook2Demo.Views
                         _previousPage.NavigateToPage(moveDirection);
 
                         // tell the navbar to move to it
-                        this.BottomNavBar.MoveToPageIndex(nextPageIndex);
+                        this.BottomNavBar.MoveToPageIndex(nextPageIndex, (INavigateMoveDirection.Forward == moveDirection));
                     }
                 }
             }
@@ -193,11 +196,29 @@ namespace SurfaceBook2Demo.Views
                 // get the sender
                 if (sender is NavigationBar navBar)
                 {
-                    // convert the section/page from the event args to a page index
-                    int pageIndex = navBar.GetPageIndexFromPage(e.NavSection, e.NavPage);
+                    // get the page index
+                    int pageIndex = navBar.Root.SelectedIndex;
 
                     // move the flipview to that index
-                    this.ContentFlipView.SelectedIndex = pageIndex;
+                    if (pageIndex != this.ContentFlipView.SelectedIndex)
+                    {
+                        this.ContentFlipView.SelectedIndex = pageIndex;
+                    }
+
+                    // get the slider flipview page index
+                    INavigationItem sliderItem = navBar.Root.Items.Find(item => item.Name == "ExperienceDayPage");
+                    if ((null != sliderItem) && (sliderItem is NavigationFlipView sliderNavigationFlipView))
+                    {
+                        FlipViewEx dayFlipView = ExperienceDayPage.GetDayFlipView();
+
+                        if ((null != ExperienceDayPage.Current) && (null != dayFlipView))
+                        {
+                            if (dayFlipView.SelectedIndex != sliderNavigationFlipView.SelectedIndex)
+                            {
+                                dayFlipView.SelectedIndex = sliderNavigationFlipView.SelectedIndex;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -258,6 +279,32 @@ namespace SurfaceBook2Demo.Views
         public Popup GetExperienceDayWorkPagePopup()
         {
             return this.ExperienceDayWorkPopup;
+        }
+
+        // load COMPARE PAGE full page popups
+        public Popup GetComparePagePopupPro()
+        {
+            return this.CompareProPopup;
+        }
+
+        public Popup GetComparePagePopupBook()
+        {
+            return this.CompareBookPopup;
+        }
+
+        public Popup GetComparePagePopupStudio()
+        {
+            return this.CompareStudioPopup;
+        }
+
+        public Popup GetComparePagePopupLaptop()
+        {
+            return this.CompareLaptopPopup;
+        }
+
+        public Popup GetComparePagePopupGo()
+        {
+            return this.CompareGoPopup;
         }
 
         #endregion

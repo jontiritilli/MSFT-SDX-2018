@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     xmlns:conv="using:SDX.Toolkit.Converters" 
-    Style="{StaticResource PageStyle}"
     DataContext="{Binding AccessoriesMouseViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -27,6 +26,7 @@
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -36,21 +36,23 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="1" Grid.RowSpan="7" Grid.ColumnSpan="2"
-            x:Name="AppSelectorImageAccLeft"
-            URIs="{x:Bind Path=ViewModel.accLeftSelectorImageURIs}"
-            ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
-            ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"/>
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="2"
+                               x:Name="AppSelectorImageAccLeft"
+                               URIs="{x:Bind Path=ViewModel.accLeftSelectorImageURIs}"
+                               ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
+                               ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"/>
 
-        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
-            x:Name="AppSelectorAccLeft"
-            URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
-            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
+        <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
+                            x:Name="AppSelectorAccLeft"
+                            URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
+                            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
 
-        <ctrl:Header Grid.Row="1" Grid.Column="1"
+        <ctrl:Header Grid.Row="3" Grid.Column="1"
                     x:Name="AccLeftHeader" 
                     Headline="{x:Bind Path=ViewModel.Headline}"
                     Lede="{x:Bind Path=ViewModel.Lede}"
@@ -64,20 +66,35 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightMouse"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                PopupPosition="Left"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftMouse"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.12}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.62}"
+                PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnCenterMouse"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.42}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.72}"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.44}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <Popup
@@ -111,6 +128,7 @@
                         />
                 </Popup.Child>
             </Popup>
+
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
@@ -126,6 +144,7 @@
                         />
                 </Popup.Child>
             </Popup>
+
         </Canvas>
     </Grid>
 </Page>

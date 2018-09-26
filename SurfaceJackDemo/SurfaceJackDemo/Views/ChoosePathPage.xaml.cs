@@ -94,7 +94,7 @@ namespace SurfaceJackDemo.Views
 
         #region INavigate
 
-        void INavigate.NavigateToPage()
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             AnimationHelper.PerformPageEntranceAnimation(this);
         }
