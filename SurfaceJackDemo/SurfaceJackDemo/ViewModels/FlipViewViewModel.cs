@@ -39,6 +39,9 @@ namespace SurfaceJackDemo.ViewModels
         // close button
         public string CloseButtonUri;
 
+        // root of the page tree
+        public NavigationFlipView Root = null;
+
         // our navigation sections for the navigation bar
         public List<NavigationSection> Sections = new List<NavigationSection>();
 
@@ -144,153 +147,146 @@ namespace SurfaceJackDemo.ViewModels
 
         public void RenderNavigation()
         {
-            // This method creates the sections and the pages in each section.
-            // This object structure is used by the NavigationBar control to
-            // render its section headers. This structure represents a hierachy
-            // that maps to the linear page structure of the flipview.
+            // This method creates the sections and the page tree
 
             // =================================================
-            // Audio Section
+            // Create the sections
             // =================================================
-            NavigationSection section = new NavigationSection()
+            NavigationSection sectionExperience = new NavigationSection()
             {
                 Name = "Audio",
                 Text = this.NavBarAudio,  // from language file
                 Order = 0
             };
+            this.Sections.Add(sectionExperience);
 
-            // AudioTryItPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AudioTryItPage",
-                Order = 0
-            }
-            );
-
-            // AudioListenPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "AudioListenPage",
-                Order = 1
-            }
-            );
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-
-            // =================================================
-            // Design Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionDesign = new NavigationSection()
             {
                 Name = "Design",
                 Text = this.NavBarDesign,  // from language file
                 Order = 1
             };
+            this.Sections.Add(sectionDesign);
 
-            // DesignPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "DesignPage",
-                Order = 0
-            }
-            );
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-
-            // =================================================
-            // Tech Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionTech = new NavigationSection()
             {
                 Name = "Tech",
                 Text = this.NavBarTech,  // from language file
                 Order = 2
             };
+            this.Sections.Add(sectionTech);
 
-            // TechPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "TechPage",
-                Order = 0
-            }
-            );
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-            // =================================================
-            // Productivity Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionProductivity = new NavigationSection()
             {
                 Name = "Productivity",
                 Text = this.NavBarProductivity,  // from language file
                 Order = 3
             };
+            this.Sections.Add(sectionProductivity);
 
-            // ProductivityPage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "ProductivityPage",
-                Order = 0
-            }
-            );
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-            // =================================================
-            // Specs Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionSpecs = new NavigationSection()
             {
                 Name = "Specs",
                 Text = this.NavBarSpecs,  // from language file
                 Order = 4
             };
+            this.Sections.Add(sectionSpecs);
 
-            // ComparePage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "SpecsPage",
-                Order = 0
-            });
-
-
-            // add the section to the list
-            this.Sections.Add(section);
-            // =================================================
-
-            // =================================================
-            // Partner Section
-            // =================================================
-            section = new NavigationSection()
+            NavigationSection sectionPartner = new NavigationSection()
             {
                 Name = "Partner",
                 Text = this.NavBarPartner,  // from language file
                 Order = 5
             };
-
-            // ComparePage
-            section.Pages.Add(new NavigationPage()
-            {
-                Name = "PartnerPage",
-                Order = 0
-            });
+            this.Sections.Add(sectionPartner);
 
 
-            // add the section to the list
-            this.Sections.Add(section);
+            // =================================================
+            // Create Experience pages
             // =================================================
 
+            // AudioTryItPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "AudioTryItPage",
+                Order = 0,
+                Section = sectionExperience,
+            }
+            );
+
+            // AudioListenPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "AudioListenPage",
+                Order = 1,
+                Section = sectionExperience,
+            }
+            );
+
+
+            // =================================================
+            // Create Design pages
+            // =================================================
+
+            // DesignPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "DesignPage",
+                Order = 2,
+                Section = sectionDesign,
+            }
+            );
+
+            // =================================================
+            // Create Tech pages
+            // =================================================
+
+            // TechPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "TechPage",
+                Order = 3,
+                Section = sectionTech,
+            }
+            );
+
+            // =================================================
+            // Create Productivity pages
+            // =================================================
+
+
+            // ProductivityPage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "ProductivityPage",
+                Order = 4,
+                Section = sectionProductivity,
+            }
+            );
+
+            // =================================================
+            // Create Specs pages
+            // =================================================
+
+            // ComparePage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "SpecsPage",
+                Order = 5,
+                Section = sectionSpecs,
+            });
+
+            // =================================================
+            // Create Partner pages
+            // =================================================
+
+            // ComparePage
+            this.Root.Items.Add(new NavigationPage()
+            {
+                Name = "PartnerPage",
+                Order = 6,
+                Section = sectionPartner,
+            });
         }
     }
 
