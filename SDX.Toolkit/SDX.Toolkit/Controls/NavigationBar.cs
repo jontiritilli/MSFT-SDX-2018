@@ -422,9 +422,7 @@ namespace SDX.Toolkit.Controls
             //// i hate this, but App is not getting these keys
             //App.Current.HandleKeyUp(key);
 
-            //return handled;
-
-            return false;
+            return handled;
         }
 
         #endregion
