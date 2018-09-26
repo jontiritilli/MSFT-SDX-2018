@@ -52,6 +52,13 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"/>
 
+        <ctrl:TextBlockEx Grid.Row="7" Grid.Column="1"
+            x:Name="Legal"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"/>
+
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"
@@ -61,10 +68,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.60}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                                 

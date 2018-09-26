@@ -190,6 +190,7 @@ namespace SurfaceLaptopDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_HEADLINE, "EXPERIENCE_STYLE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_COPY, "EXPERIENCE_STYLE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_LEGAL, "EXPERIENCE_STYLE_LEGAL");
             viewModel.PopupHeadline = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_POP_TITLE, "EXPERIENCE_STYLE_POP_TITLE");
             viewModel.PopupLede = GetStringValue(_languageCurrent.EXPERIENCE_STYLE_POP_COPY, "EXPERIENCE_STYLE_POP_COPY");
         }

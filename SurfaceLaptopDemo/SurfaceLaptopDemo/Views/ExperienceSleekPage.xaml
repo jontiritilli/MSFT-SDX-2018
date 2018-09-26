@@ -52,6 +52,14 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"/>
 
+        <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
+            x:Name="PopBottomLegal"
+            Text="{x:Bind Path=ViewModel.PopBottom_Legal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Opacity="0"/>
+
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4" Canvas.ZIndex="100">
 
             <ctrl:RadiatingButton
@@ -78,8 +86,8 @@
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                    
+                HorizontalOffset="160"
+                VerticalOffset="400"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -95,8 +103,8 @@
             <Popup
                 x:Name="PopTop"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                    
+                HorizontalOffset="880"
+                VerticalOffset="215"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -111,9 +119,11 @@
             <Popup
                 x:Name="PopBottom"
                 IsOpen = "False"
-                HorizontalOffset="200"
-                VerticalOffset="500"                  
-                IsLightDismissEnabled="False">
+                HorizontalOffset="510"
+                VerticalOffset="405"                  
+                IsLightDismissEnabled="False"
+                Opened="PopBottom_Opened"
+                Closed="PopBottom_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Battery"

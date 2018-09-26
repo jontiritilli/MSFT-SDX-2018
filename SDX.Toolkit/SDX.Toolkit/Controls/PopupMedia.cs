@@ -277,7 +277,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.BorderThickness = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupBorder);
 
             // add rows to the popup; only need to do this if we have an image or video
-            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType) || (PopupTypes.Battery == this.PopupType))
+            if ((PopupTypes.Image == this.PopupType) || (PopupTypes.Video == this.PopupType))
             {
                 // header
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
@@ -287,6 +287,18 @@ namespace SDX.Toolkit.Controls
 
                 // image/video/battery
                 _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            }
+            // add rows to the popup; only need to do this if we have an image or video
+            if (PopupTypes.Battery == this.PopupType)
+            {
+                // header
+                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                // spacer
+                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PopupSpacer)) });
+
+                // battery
+                _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(150) });
             }
 
             // set our Padding
@@ -381,12 +393,12 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "BatteryLife",
                     Hour = this.Hour,
-                    HorizontalAlignment = HorizontalAlignment.Left,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Top,
                     Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
-                    DurationInMilliseconds = 400d,
+                    DurationInMilliseconds = 800d,
                     StaggerDelayInMilliseconds = 800d,
-                    AutoStart = false
+                    AutoStart = true
                 };
 
                 // add to the grid

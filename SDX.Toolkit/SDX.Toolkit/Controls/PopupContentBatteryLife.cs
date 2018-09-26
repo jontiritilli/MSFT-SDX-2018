@@ -29,28 +29,26 @@ namespace SDX.Toolkit.Controls
         private readonly string URI_IMAGE_BATTERY = @"ms-appx:///Assets/BatteryLifePopup/battery-outline.png";
         private readonly string URI_IMAGE_CHARGE = @"ms-appx:///Assets/BatteryLifePopup/blue-charge.png";
 
-        private static readonly double LEFT_HEADER = 20d;
-        private static readonly double TOP_HEADER = 20d;
-
-        private static readonly double TOP_BATTERY = TOP_HEADER;
-        private static readonly double LEFT_BATTERY = LEFT_HEADER;
+        private static readonly double TOP_BATTERY = 0d;
+        private static readonly double LEFT_BATTERY = 0d;
         private static readonly double WIDTH_BATTERY = 350d;
         private static readonly double HEIGHT_BATTERY = 134d;
 
-        private static readonly double MARGIN_CHARGE_LEFT = 30d;
-        private static readonly double MARGIN_CHARGE_TOP = 25d;
+        private static readonly double MARGIN_CHARGE_LEFT = 20d;
+        private static readonly double MARGIN_CHARGE_TOP = 20d;
+        private static readonly double CHARGE_START_WIDTH = 10d;
+        private static readonly double CHARGE_END_WIDTH = WIDTH_BATTERY - ((2 * MARGIN_CHARGE_LEFT) + CHARGE_START_WIDTH + 5);
+
         private static readonly double TOP_CHARGE = TOP_BATTERY + MARGIN_CHARGE_TOP;
         private static readonly double LEFT_CHARGE = LEFT_BATTERY + MARGIN_CHARGE_LEFT;
-        private static readonly double WIDTH_CHARGE_START = 5d;
 
-        private static readonly double WIDTH_CHARGE_END = WIDTH_BATTERY - 55d;
         private static readonly double HEIGHT_CHARGE = HEIGHT_BATTERY - (2 * MARGIN_CHARGE_TOP);
 
-        private static readonly double LEFT_HOURS = LEFT_CHARGE + 50d;
-        private static readonly double TOP_HOURS = TOP_CHARGE + 0d;
+        private static readonly double LEFT_HOURS = LEFT_CHARGE + (2 * MARGIN_CHARGE_TOP);
+        private static readonly double TOP_HOURS = TOP_CHARGE;
 
-        private static readonly double LEFT_HOURS_TEXT = LEFT_HOURS + 75d;
-        private static readonly double TOP_HOURS_TEXT = TOP_HOURS;
+        private static readonly double LEFT_HOURS_TEXT = LEFT_HOURS + MARGIN_CHARGE_LEFT + LEFT_BATTERY + CHARGE_START_WIDTH;
+        private static readonly double TOP_HOURS_TEXT = TOP_CHARGE;
 
         private readonly int Z_ORDER_CONTROLS = 100;
         private readonly int Z_ORDER_BATTERY = 10;
@@ -67,7 +65,6 @@ namespace SDX.Toolkit.Controls
         private Image _imageCharge = null;
 
         private Storyboard _chargeStoryboard = null;
-        private Storyboard _positionStoryboard = null;
 
         #endregion
 
@@ -176,19 +173,9 @@ namespace SDX.Toolkit.Controls
 
         public void StartAnimation()
         {
-            //if (null != _header)
-            //{
-            //    _header.StartFadeIn();
-            //}
-
             if (null != _chargeStoryboard)
             {
                 _chargeStoryboard.Begin();
-            }
-
-            if (null != _positionStoryboard)
-            {
-                _positionStoryboard.Begin();
             }
 
             if (null != _hours)
@@ -209,21 +196,11 @@ namespace SDX.Toolkit.Controls
                 _chargeStoryboard.Stop();
             }
 
-            if (null != _positionStoryboard)
-            {
-                _positionStoryboard.Stop();
-            }
-
             if (null != _hours)
             {
                 _hours.ResetAnimation();
             }
         }
-
-        #endregion
-
-        #region Custom Events
-
 
         #endregion
 
@@ -284,7 +261,7 @@ namespace SDX.Toolkit.Controls
                 ImageWidth = WIDTH_BATTERY
             };
 
-            Canvas.SetLeft(_imageBattery, LEFT_HEADER);
+            Canvas.SetLeft(_imageBattery, LEFT_BATTERY);
             Canvas.SetTop(_imageBattery, TOP_BATTERY);
             Canvas.SetZIndex(_imageBattery, Z_ORDER_BATTERY);
             _layoutRoot.Children.Add(_imageBattery);
@@ -294,7 +271,8 @@ namespace SDX.Toolkit.Controls
             {
                 Name = "ChargeBar",
                 Source = new BitmapImage(new Uri(URI_IMAGE_CHARGE)),
-                Width = WIDTH_CHARGE_START,
+                Stretch = Stretch.Fill,
+                Width = CHARGE_START_WIDTH,
                 Height = HEIGHT_CHARGE
             };
 
@@ -328,7 +306,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Add(_hrs);
 
             // create the charge animation
-            _chargeStoryboard = SetupChargeAnimation(_imageCharge, WIDTH_CHARGE_START, WIDTH_CHARGE_END, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
+            _chargeStoryboard = SetupChargeAnimation(_imageCharge, CHARGE_START_WIDTH, CHARGE_END_WIDTH, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
         }
 
         private Storyboard SetupChargeAnimation(Image image, double startingWidth, double finalWidth, double duration, double staggerDelay)
