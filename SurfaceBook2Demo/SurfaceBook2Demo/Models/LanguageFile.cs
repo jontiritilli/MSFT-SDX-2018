@@ -11,7 +11,7 @@ namespace SurfaceBook2Demo.Models
         #region Public Properties
 
         public string INTRO_TITLE = "Powerhouse performance";
-        public string INTRO_ROWCOUNT = "1";
+        public string INTRO_ROWCOUNT = "2";
         public string INTRO_SWIPE = "Swipe to continue";
         public string EXPERIENCE = "EXPERIENCE";
         public string ACCESSORIES = "ACCESSORIES";
@@ -232,7 +232,7 @@ namespace SurfaceBook2Demo.Models
             LanguageFile languageFile = new LanguageFile();
 
             languageFile.INTRO_TITLE = "Powerhouse performance";
-            languageFile.INTRO_ROWCOUNT = "1";
+            languageFile.INTRO_ROWCOUNT = "2";
             languageFile.INTRO_SWIPE = "Swipe to continue";
             languageFile.EXPERIENCE = "EXPERIENCE";
             languageFile.ACCESSORIES = "ACCESSORIES";
