@@ -10,8 +10,8 @@ namespace SurfaceProDemo.Models
     {
         #region Public Properties
 
-        public string INTRO_TITLE_DEVICE_ONE = "SURFACE CRUZ";
-        public string INTRO_TITLE_DEVICE_TWO = "Ultra-light and versatile";
+        public string INTRO_TITLE_DEVICE_ONE = "Surface Pro";
+        public string INTRO_TITLE_DEVICE_TWO = "Other";
         public string INTRO_TITLE = "Ultra-light and versatile";
         public string INTRO_ROWCOUNT = "2";
         public string INTRO_SWIPE = "Swipe to continue";
@@ -21,10 +21,10 @@ namespace SurfaceProDemo.Models
         public string COMPARISON = "COMPARISON";
         public string SWIPE_CONTINUE = "Swipe to continue";
         public string EXPERIENCE_OVERVIEW_HEADLINE = "A more powerful Pro";
-        public string EXPERIENCE_OVERVIEW_COPY = "Unplug. Pack light. And get productive your way, all day with the new Surface Cruz.";
+        public string EXPERIENCE_OVERVIEW_COPY = "Unplug. Pack light. And get productive your way, all day with the new Surface Pro.";
         public string EXPERIENCE_OVERVIEW_POPLEFT_TITLE = "Battery life";
         public string EXPERIENCE_OVERVIEW_POPLEFT_COPY = "Up to 13.5 hours of video playback.*";
-        public string EXPERIENCE_OVERVIEW_POPLEFT_LEGAL = "*Battery life varies significantly with usage and settings.";
+        public string EXPERIENCE_OVERVIEW_POPLEFT_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string EXPERIENCE_OVERVIEW_POPTOP_TITLE = "Connectivity";
         public string EXPERIENCE_OVERVIEW_POPTOP_COPY = "Stay online wherever you are with LTE Advanced.*";
         public string EXPERIENCE_OVERVIEW_POPTOP_LEGAL = "*Available on select models.";
@@ -39,12 +39,12 @@ namespace SurfaceProDemo.Models
         public string EXPERIENCE_STUDIO_TRYIT_POP_TITLE = "Try it";
         public string EXPERIENCE_STUDIO_TRYIT_POP_COPY = "Pick up the device and transform from laptop to studio mode.";
         public string EXPERIENCE_LAPTOP_HEADLINE = "More power for your ideas";
-        public string EXPERIENCE_LAPTOP_COPY = "Professional. Student. Creator. Whatever you do, Surface Cruz features the latest Intel® Core™ processors for powerful performance and faster multitasking.";
+        public string EXPERIENCE_LAPTOP_COPY = "Professional. Student. Creator. Whatever you do, Surface Pro features the latest Intel® Core™ processors for powerful performance and faster multitasking.";
         public string EXPERIENCE_LAPTOP_TRYIT = "TRY IT";
         public string EXPERIENCE_LAPTOP_TRYIT_POP_TITLE = "Try it";
         public string EXPERIENCE_LAPTOP_TRYIT_POP_COPY = "Pick up the device and try detaching the keyboard.";
         public string EXPERIENCE_LAPTOP_POPCENTER_HEADLINE = "Do more in more places";
-        public string EXPERIENCE_LAPTOP_POPCENTER_COPY = "Surface Cruz is the ultimate laptop for running powerful, professional apps* you rely on every day, all while on the go.";
+        public string EXPERIENCE_LAPTOP_POPCENTER_COPY = "Surface Pro is the ultimate laptop for running powerful, professional apps* you rely on every day, all while on the go.";
         public string EXPERIENCE_LAPTOP_POPCENTER_LEGAL = "*Apps and software sold separately.";
         public string EXPERIENCE_LAPTOP_POPCENTER_BULLET_ONE = "Adobe® Premiere Pro®";
         public string EXPERIENCE_LAPTOP_POPCENTER_BULLET_TWO = "Autodesk® Maya®";
@@ -54,7 +54,7 @@ namespace SurfaceProDemo.Models
         public string EXPERIENCE_LAPTOP_POPRIGHT_TITLE = "Connections";
         public string EXPERIENCE_LAPTOP_POPRIGHT_COPY = "Full-size USB 3.0, Mini Display Port and microSDXC card reader for essential productivity connections.";
         public string EXPERIENCE_TABLET_HEADLINE = "Brilliant, light, whisper-quiet";
-        public string EXPERIENCE_TABLET_COPY = "From inside to out, Surface Cruz is designed for performance you can take just about anywhere.";
+        public string EXPERIENCE_TABLET_COPY = "From inside to out, Surface Pro is designed for performance you can take just about anywhere.";
         public string EXPERIENCE_TABLET_POPLEFT_TITLE = "Whisper-quiet";
         public string EXPERIENCE_TABLET_POPLEFT_COPY = "Fanless cooling system so you can stream your favorite show in peace.*";
         public string EXPERIENCE_TABLET_POPLEFT_LEGAL = "*Available on the i5 model.";
@@ -72,7 +72,7 @@ namespace SurfaceProDemo.Models
         public string ACCESSORIES_INTERACTIVE_TRYIT_TITLE = "TRY IT";
         public string ACCESSORIES_INTERACTIVE_TRYIT_COPY = "Pick up Surface Pen and start coloring.";
         public string ACCESSORIES_LEFT_HEADLINE = "Full keyboard, compact design";
-        public string ACCESSORIES_LEFT_COPY = "Surface Cruz Type Cover* is ultra-slim, yet performs like a traditional keyboard, including a complete mechanical keyset, backlit keys, and extra-large trackpad.";
+        public string ACCESSORIES_LEFT_COPY = "Surface Pro Type Cover* is ultra-slim, yet performs like a traditional keyboard, including a complete mechanical keyset, backlit keys, and extra-large trackpad.";
         public string ACCESSORIES_LEFT_LEGAL = "*Sold separately.";
         public string ACCESSORIES_LEFT_POPLEFT_TITLE = "Signature Type Cover*";
         public string ACCESSORIES_LEFT_POPLEFT_COPY = "Soft, smooth Alcantara® material for an added touch of luxury.";
@@ -113,40 +113,40 @@ namespace SurfaceProDemo.Models
         public string BEST_BULLET_FIVE_LEGAL = "";
         public string COMPARE_HEADLINE = "Find your perfect Surface";
         public string COMPARE_COPY = "Compare features and specs to see how each Surface device stacks up.";
-        public string COMPARE_DEVICE_ONE_TITLE = "Surface Cruz";
+        public string COMPARE_DEVICE_ONE_TITLE = "Surface Pro";
         public string COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
-        public string COMPARE_DEVICE_THREE_TITLE = "Surface Caprock";
-        public string COMPARE_DEVICE_FOUR_TITLE = "Surface Foxburg";
-        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
-        public string COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Cruz";
+        public string COMPARE_DEVICE_THREE_TITLE = "Surface Studio";
+        public string COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop";
+        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+        public string COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro";
         public string COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
         public string COMPARE_DEVICE_ONE_POP_COPY = "Incredibly powerful and portable with all-day battery life*, now available with LTE Advanced.**";
-        public string COMPARE_DEVICE_ONE_POP_COPY_LEGAL = "**LTE functionality only available on Surface Cruz i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
+        public string COMPARE_DEVICE_ONE_POP_COPY_LEGAL = "**LTE functionality only available on Surface Pro i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_ONE_TITLE = "Exceptional speed and performance";
-        public string COMPARE_DEVICE_ONE_POP_BULLET_ONE_COPY = "2.5x more power, with the fastest startup and resume of any Surface Cruz yet.";
+        public string COMPARE_DEVICE_ONE_POP_BULLET_ONE_COPY = "2.5x more power, with the fastest startup and resume of any Surface Pro yet.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_ONE_LEGAL = "";
         public string COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE = "Uncompromising mobility";
         public string COMPARE_DEVICE_ONE_POP_BULLET_TWO_COPY = "Soft, ultra-portable design and available LTE Advanced** for easy connectivity.";
-        public string COMPARE_DEVICE_ONE_POP_BULLET_TWO_LEGAL = "**LTE functionality only available on Surface Cruz i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
+        public string COMPARE_DEVICE_ONE_POP_BULLET_TWO_LEGAL = "**LTE functionality only available on Surface Pro i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_TITLE = "All-day battery life";
-        public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY = "50% more battery life for up to 13.5 hours of video playback.*";
-        public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with usage and settings.";
+        public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY = "Up to 13.5 hours of video playback* and the power to do what you want on the go.";
+        public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_TITLE = "12.3” PixelSense™ Display";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY = "Vibrant color and resolution. Perfect for Surface Pen*** and touch.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_LEGAL = "***Some accessories sold separately.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FIVE_TITLE = "Whisper-quiet";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FIVE_COPY = "Fanless cooling system**** lets you work, play, and stream in peace.";
-        public string COMPARE_DEVICE_ONE_POP_BULLET_FIVE_LEGAL = "****Fanless cooling system included with Surface Cruz m3 and i5 models only.";
+        public string COMPARE_DEVICE_ONE_POP_BULLET_FIVE_LEGAL = "****Fanless cooling system included with Surface Pro m3 and i5 models only.";
         public string COMPARE_DEVICE_TWO_POP_HEADLINE = "Surface Book 2";
         public string COMPARE_DEVICE_TWO_POP_SUBHEAD = "The most powerful Surface ever";
         public string COMPARE_DEVICE_TWO_POP_COPY = "Nearly 4x more power and up to 17 hours* of battery life, with blazing graphics in a 15” or 13.5” PixelSense™ Display.";
-        public string COMPARE_DEVICE_TWO_POP_COPY_LEGAL = "*Battery life varies significantly with usage and settings.";
+        public string COMPARE_DEVICE_TWO_POP_COPY_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_ONE_TITLE = "Designed with innovation in every detail";
         public string COMPARE_DEVICE_TWO_POP_BULLET_ONE_COPY = "Lightweight and powerful with unprecedented performance in a laptop this size.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_ONE_LEGAL = "";
         public string COMPARE_DEVICE_TWO_POP_BULLET_TWO_TITLE = "All-day productivity";
         public string COMPARE_DEVICE_TWO_POP_BULLET_TWO_COPY = "Up to 17 hours of battery life* and 70% more than MacBook Pro 13”.*";
-        public string COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with usage and settings.";
+        public string COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_TITLE = "Two sizes, infinitely breathtaking";
         public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY = "Stunning color and graphics in 15” or 13.5” touchscreen displays.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_LEGAL = "";
@@ -156,12 +156,12 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
-        public string COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Caprock";
+        public string COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio";
         public string COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
         public string COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
         public string COMPARE_DEVICE_THREE_POP_COPY_LEGAL = "";
         public string COMPARE_DEVICE_THREE_POP_BULLET_ONE_TITLE = "Designed for the way you work";
-        public string COMPARE_DEVICE_THREE_POP_BULLET_ONE_COPY = "Use Surface Caprock upright, or draw on it like a drafting table.";
+        public string COMPARE_DEVICE_THREE_POP_BULLET_ONE_COPY = "Use Surface Studio upright, or draw on it like a drafting table.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_ONE_LEGAL = "";
         public string COMPARE_DEVICE_THREE_POP_BULLET_TWO_TITLE = "Create in new ways";
         public string COMPARE_DEVICE_THREE_POP_BULLET_TWO_COPY = "Unlock your creativity with Surface Pen*, Surface Dial*, and touch.";
@@ -175,7 +175,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_TITLE = "Complete connectivity";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_COPY = "4x USB 3.0, USB-C, full-size SD™ card reader (SDXC compatible), 3.5mm headset jack, and 1 Gb Ethernet port.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
-        public string COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Foxburg";
+        public string COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop";
         public string COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
         public string COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
         public string COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
@@ -184,7 +184,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL = "**Colors available on selected models only; available colors may vary by store.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE = "Performance made portability";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY = "Fast processors and up to 14.5 hours of battery life* in a 0.57” thin design.";
-        public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with usage and settings.";
+        public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_TITLE = "Lightweight durability";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY = "Aluminum shell and durable Alcantara® keyboard–all at just 2.76 pounds.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_LEGAL = "";
@@ -194,7 +194,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
+        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
         public string COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
         public string COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
         public string COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
@@ -206,14 +206,13 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FIVE_POP_BULLET_TWO_LEGAL = "";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_THREE_TITLE = "Plenty of unplugged power";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_THREE_COPY = "Up to 9 hours of battery life* with fast charging.";
-        public string COMPARE_DEVICE_FIVE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with usage and settings.";
+        public string COMPARE_DEVICE_FIVE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_TITLE = "10” PixelSense™ Display";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_COPY = "Browse, work, and stream on the beautiful hi-res touchscreen.";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_LEGAL = "";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE = "Everyday versatility";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY = "Instantly adapt and adjust to home, travel, and everyday tasks.";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL = "";
-
 
         #endregion
 
@@ -234,8 +233,8 @@ namespace SurfaceProDemo.Models
         {
             LanguageFile languageFile = new LanguageFile();
 
-            languageFile.INTRO_TITLE_DEVICE_ONE = "SURFACE CRUZ";
-            languageFile.INTRO_TITLE_DEVICE_TWO = "Ultra-light and versatile";
+            languageFile.INTRO_TITLE_DEVICE_ONE = "Surface Pro";
+            languageFile.INTRO_TITLE_DEVICE_TWO = "Other";
             languageFile.INTRO_TITLE = "Ultra-light and versatile";
             languageFile.INTRO_ROWCOUNT = "2";
             languageFile.INTRO_SWIPE = "Swipe to continue";
@@ -245,10 +244,10 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARISON = "COMPARISON";
             languageFile.SWIPE_CONTINUE = "Swipe to continue";
             languageFile.EXPERIENCE_OVERVIEW_HEADLINE = "A more powerful Pro";
-            languageFile.EXPERIENCE_OVERVIEW_COPY = "Unplug. Pack light. And get productive your way, all day with the new Surface Cruz.";
+            languageFile.EXPERIENCE_OVERVIEW_COPY = "Unplug. Pack light. And get productive your way, all day with the new Surface Pro.";
             languageFile.EXPERIENCE_OVERVIEW_POPLEFT_TITLE = "Battery life";
             languageFile.EXPERIENCE_OVERVIEW_POPLEFT_COPY = "Up to 13.5 hours of video playback.*";
-            languageFile.EXPERIENCE_OVERVIEW_POPLEFT_LEGAL = "*Battery life varies significantly with usage and settings.";
+            languageFile.EXPERIENCE_OVERVIEW_POPLEFT_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.EXPERIENCE_OVERVIEW_POPTOP_TITLE = "Connectivity";
             languageFile.EXPERIENCE_OVERVIEW_POPTOP_COPY = "Stay online wherever you are with LTE Advanced.*";
             languageFile.EXPERIENCE_OVERVIEW_POPTOP_LEGAL = "*Available on select models.";
@@ -263,12 +262,12 @@ namespace SurfaceProDemo.Models
             languageFile.EXPERIENCE_STUDIO_TRYIT_POP_TITLE = "Try it";
             languageFile.EXPERIENCE_STUDIO_TRYIT_POP_COPY = "Pick up the device and transform from laptop to studio mode.";
             languageFile.EXPERIENCE_LAPTOP_HEADLINE = "More power for your ideas";
-            languageFile.EXPERIENCE_LAPTOP_COPY = "Professional. Student. Creator. Whatever you do, Surface Cruz features the latest Intel® Core™ processors for powerful performance and faster multitasking.";
+            languageFile.EXPERIENCE_LAPTOP_COPY = "Professional. Student. Creator. Whatever you do, Surface Pro features the latest Intel® Core™ processors for powerful performance and faster multitasking.";
             languageFile.EXPERIENCE_LAPTOP_TRYIT = "TRY IT";
             languageFile.EXPERIENCE_LAPTOP_TRYIT_POP_TITLE = "Try it";
             languageFile.EXPERIENCE_LAPTOP_TRYIT_POP_COPY = "Pick up the device and try detaching the keyboard.";
             languageFile.EXPERIENCE_LAPTOP_POPCENTER_HEADLINE = "Do more in more places";
-            languageFile.EXPERIENCE_LAPTOP_POPCENTER_COPY = "Surface Cruz is the ultimate laptop for running powerful, professional apps* you rely on every day, all while on the go.";
+            languageFile.EXPERIENCE_LAPTOP_POPCENTER_COPY = "Surface Pro is the ultimate laptop for running powerful, professional apps* you rely on every day, all while on the go.";
             languageFile.EXPERIENCE_LAPTOP_POPCENTER_LEGAL = "*Apps and software sold separately.";
             languageFile.EXPERIENCE_LAPTOP_POPCENTER_BULLET_ONE = "Adobe® Premiere Pro®";
             languageFile.EXPERIENCE_LAPTOP_POPCENTER_BULLET_TWO = "Autodesk® Maya®";
@@ -278,7 +277,7 @@ namespace SurfaceProDemo.Models
             languageFile.EXPERIENCE_LAPTOP_POPRIGHT_TITLE = "Connections";
             languageFile.EXPERIENCE_LAPTOP_POPRIGHT_COPY = "Full-size USB 3.0, Mini Display Port and microSDXC card reader for essential productivity connections.";
             languageFile.EXPERIENCE_TABLET_HEADLINE = "Brilliant, light, whisper-quiet";
-            languageFile.EXPERIENCE_TABLET_COPY = "From inside to out, Surface Cruz is designed for performance you can take just about anywhere.";
+            languageFile.EXPERIENCE_TABLET_COPY = "From inside to out, Surface Pro is designed for performance you can take just about anywhere.";
             languageFile.EXPERIENCE_TABLET_POPLEFT_TITLE = "Whisper-quiet";
             languageFile.EXPERIENCE_TABLET_POPLEFT_COPY = "Fanless cooling system so you can stream your favorite show in peace.*";
             languageFile.EXPERIENCE_TABLET_POPLEFT_LEGAL = "*Available on the i5 model.";
@@ -296,7 +295,7 @@ namespace SurfaceProDemo.Models
             languageFile.ACCESSORIES_INTERACTIVE_TRYIT_TITLE = "TRY IT";
             languageFile.ACCESSORIES_INTERACTIVE_TRYIT_COPY = "Pick up Surface Pen and start coloring.";
             languageFile.ACCESSORIES_LEFT_HEADLINE = "Full keyboard, compact design";
-            languageFile.ACCESSORIES_LEFT_COPY = "Surface Cruz Type Cover* is ultra-slim, yet performs like a traditional keyboard, including a complete mechanical keyset, backlit keys, and extra-large trackpad.";
+            languageFile.ACCESSORIES_LEFT_COPY = "Surface Pro Type Cover* is ultra-slim, yet performs like a traditional keyboard, including a complete mechanical keyset, backlit keys, and extra-large trackpad.";
             languageFile.ACCESSORIES_LEFT_LEGAL = "*Sold separately.";
             languageFile.ACCESSORIES_LEFT_POPLEFT_TITLE = "Signature Type Cover*";
             languageFile.ACCESSORIES_LEFT_POPLEFT_COPY = "Soft, smooth Alcantara® material for an added touch of luxury.";
@@ -337,40 +336,40 @@ namespace SurfaceProDemo.Models
             languageFile.BEST_BULLET_FIVE_LEGAL = "";
             languageFile.COMPARE_HEADLINE = "Find your perfect Surface";
             languageFile.COMPARE_COPY = "Compare features and specs to see how each Surface device stacks up.";
-            languageFile.COMPARE_DEVICE_ONE_TITLE = "Surface Cruz";
+            languageFile.COMPARE_DEVICE_ONE_TITLE = "Surface Pro";
             languageFile.COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
-            languageFile.COMPARE_DEVICE_THREE_TITLE = "Surface Caprock";
-            languageFile.COMPARE_DEVICE_FOUR_TITLE = "Surface Foxburg";
-            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
-            languageFile.COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Cruz";
+            languageFile.COMPARE_DEVICE_THREE_TITLE = "Surface Studio";
+            languageFile.COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop";
+            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+            languageFile.COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro";
             languageFile.COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
             languageFile.COMPARE_DEVICE_ONE_POP_COPY = "Incredibly powerful and portable with all-day battery life*, now available with LTE Advanced.**";
-            languageFile.COMPARE_DEVICE_ONE_POP_COPY_LEGAL = "**LTE functionality only available on Surface Cruz i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
+            languageFile.COMPARE_DEVICE_ONE_POP_COPY_LEGAL = "**LTE functionality only available on Surface Pro i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_ONE_TITLE = "Exceptional speed and performance";
-            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_ONE_COPY = "2.5x more power, with the fastest startup and resume of any Surface Cruz yet.";
+            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_ONE_COPY = "2.5x more power, with the fastest startup and resume of any Surface Pro yet.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_ONE_LEGAL = "";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE = "Uncompromising mobility";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_TWO_COPY = "Soft, ultra-portable design and available LTE Advanced** for easy connectivity.";
-            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_TWO_LEGAL = "**LTE functionality only available on Surface Cruz i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
+            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_TWO_LEGAL = "**LTE functionality only available on Surface Pro i5/256GB SSD/8GB with LTE Advanced. Contact your service provider for availability, details, compatibility, pricing, SIM card, and activation.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_TITLE = "All-day battery life";
-            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY = "50% more battery life for up to 13.5 hours of video playback.*";
-            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with usage and settings.";
+            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY = "Up to 13.5 hours of video playback* and the power to do what you want on the go.";
+            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_TITLE = "12.3” PixelSense™ Display";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY = "Vibrant color and resolution. Perfect for Surface Pen*** and touch.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_LEGAL = "***Some accessories sold separately.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_TITLE = "Whisper-quiet";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_COPY = "Fanless cooling system**** lets you work, play, and stream in peace.";
-            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_LEGAL = "****Fanless cooling system included with Surface Cruz m3 and i5 models only.";
+            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_LEGAL = "****Fanless cooling system included with Surface Pro m3 and i5 models only.";
             languageFile.COMPARE_DEVICE_TWO_POP_HEADLINE = "Surface Book 2";
             languageFile.COMPARE_DEVICE_TWO_POP_SUBHEAD = "The most powerful Surface ever";
             languageFile.COMPARE_DEVICE_TWO_POP_COPY = "Nearly 4x more power and up to 17 hours* of battery life, with blazing graphics in a 15” or 13.5” PixelSense™ Display.";
-            languageFile.COMPARE_DEVICE_TWO_POP_COPY_LEGAL = "*Battery life varies significantly with usage and settings.";
+            languageFile.COMPARE_DEVICE_TWO_POP_COPY_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_ONE_TITLE = "Designed with innovation in every detail";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_ONE_COPY = "Lightweight and powerful with unprecedented performance in a laptop this size.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_ONE_LEGAL = "";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_TWO_TITLE = "All-day productivity";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_TWO_COPY = "Up to 17 hours of battery life* and 70% more than MacBook Pro 13”.*";
-            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with usage and settings.";
+            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_TITLE = "Two sizes, infinitely breathtaking";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY = "Stunning color and graphics in 15” or 13.5” touchscreen displays.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_LEGAL = "";
@@ -380,12 +379,12 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
-            languageFile.COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Caprock";
+            languageFile.COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio";
             languageFile.COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
             languageFile.COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
             languageFile.COMPARE_DEVICE_THREE_POP_COPY_LEGAL = "";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_ONE_TITLE = "Designed for the way you work";
-            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_ONE_COPY = "Use Surface Caprock upright, or draw on it like a drafting table.";
+            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_ONE_COPY = "Use Surface Studio upright, or draw on it like a drafting table.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_ONE_LEGAL = "";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_TWO_TITLE = "Create in new ways";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_TWO_COPY = "Unlock your creativity with Surface Pen*, Surface Dial*, and touch.";
@@ -399,7 +398,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_TITLE = "Complete connectivity";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_COPY = "4x USB 3.0, USB-C, full-size SD™ card reader (SDXC compatible), 3.5mm headset jack, and 1 Gb Ethernet port.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
-            languageFile.COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Foxburg";
+            languageFile.COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop";
             languageFile.COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
             languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
             languageFile.COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
@@ -408,7 +407,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL = "**Colors available on selected models only; available colors may vary by store.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE = "Performance made portability";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY = "Fast processors and up to 14.5 hours of battery life* in a 0.57” thin design.";
-            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with usage and settings.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_TITLE = "Lightweight durability";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY = "Aluminum shell and durable Alcantara® keyboard–all at just 2.76 pounds.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_LEGAL = "";
@@ -418,7 +417,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
+            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
             languageFile.COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
@@ -430,14 +429,13 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_TWO_LEGAL = "";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_TITLE = "Plenty of unplugged power";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_COPY = "Up to 9 hours of battery life* with fast charging.";
-            languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with usage and settings.";
+            languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_TITLE = "10” PixelSense™ Display";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_COPY = "Browse, work, and stream on the beautiful hi-res touchscreen.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FOUR_LEGAL = "";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE = "Everyday versatility";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY = "Instantly adapt and adjust to home, travel, and everyday tasks.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL = "";
-
 
             return languageFile;
         }
