@@ -78,6 +78,11 @@ namespace SDX.Toolkit.Controls
         private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bom_smile.png";
         private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bom_sync.png";
         private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bom_office.png";
+        // URI links
+        private const string URI_CTA_START = @"rdx-hub:hub\windows"; //"rdx-hub:";
+        private const string URI_CTA_SYNC = "";
+        private const string URI_CTA_HELLO = @"rdx-hub:hub\windows#Windows_Hello"; //"ms-retaildemo-launchbioenrollment:about";
+        private const string URI_CTA_OFFICE = @"rdx-hub:hub\office"; //"rdx-hub:";
 
         #endregion
 
