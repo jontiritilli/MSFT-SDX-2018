@@ -29,7 +29,7 @@ namespace SDX.Toolkit.Controls
         private Grid _dialGrid;
         private Ellipse _dial;
         private Path _colorSelector;
-        private RadialControllerMenuItem _screenColorMenuItem;
+        private RadialControllerMenuItem _brushColorMenuItem;
 
         #endregion
 
@@ -150,6 +150,7 @@ namespace SDX.Toolkit.Controls
             {
                 Controller = RadialController.CreateForCurrentView();
             }
+
             RadialControllerConfiguration _dialConfiguration = RadialControllerConfiguration.GetForCurrentView();
 
             // Remove standard menu items
@@ -160,16 +161,16 @@ namespace SDX.Toolkit.Controls
                 RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/List/specs_creative.png"));
 
             // Create a menu item for the custom tool.
-            _screenColorMenuItem = RadialControllerMenuItem.CreateFromIcon("Screen Color", icon);
+            _brushColorMenuItem = RadialControllerMenuItem.CreateFromIcon("Brush Color", icon);
 
             // Add the custom tool to the RadialController menu.
-            Controller.Menu.Items.Add(_screenColorMenuItem);
+            Controller.Menu.Items.Add(_brushColorMenuItem);
 
             // Set rotation degrees
             Controller.RotationResolutionInDegrees = ROTATION_DEGREES;
 
             // Bind dial controls to local methods
-            _screenColorMenuItem.Invoked += ColorMenuItem_Invoked;
+            _brushColorMenuItem.Invoked += ColorMenuItem_Invoked;
             Controller.RotationChanged += Controller_RotationChanged;
             Controller.ButtonClicked += Controller_ButtonClicked;
             Controller.ScreenContactStarted += Controller_ScreenContactStarted;
@@ -179,7 +180,10 @@ namespace SDX.Toolkit.Controls
 
         private void ColorMenuItem_Invoked(RadialControllerMenuItem sender, object args)
         {
-            IsActive = true;
+            if (!IsActive)
+            {
+                IsActive = true;
+            }
         }
 
         // Dial rotation handler
@@ -196,11 +200,11 @@ namespace SDX.Toolkit.Controls
         {
             RaiseOnDialScreenContactEvent(this);
 
+            Controller.Menu.Items.Remove(_brushColorMenuItem);
             Canvas.SetLeft(_dialGrid, args.Contact.Position.X - DIAL_RADIUS);
             Canvas.SetTop(_dialGrid, args.Contact.Position.Y - DIAL_RADIUS);
 
             _dialGrid.Opacity = 1.0d;
-
         }
 
         // Dial lifted and placed again
@@ -225,8 +229,8 @@ namespace SDX.Toolkit.Controls
         // Dial button pressed
         private void Controller_ButtonClicked(RadialController sender, RadialControllerButtonClickedEventArgs args)
         {
+            Controller.Menu.Items.Remove(_brushColorMenuItem);
         }
-
 
         private void Storyboard_Completed(object sender, object e)
         {

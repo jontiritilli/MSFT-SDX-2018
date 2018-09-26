@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="SurfaceProDemo.Views.ComparePagePopupLaptop"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SurfaceProDemo.Views"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ComparePopupLaptopViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid
+        x:Name="ContentArea"
+        Height="{StaticResource ScreenHeight}"
+        Width="{StaticResource ScreenWidth}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource CompareSpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource CompareSpaceBelowSubHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
+            x:Name="Hero"
+            ImageWidth="{x:Bind Path=ViewModel.PrimaryImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.PrimaryImageURI}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"/>
+
+        <ctrl:TextBlockEx x:Name="Headline" Grid.Row="1" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Headline}"
+            TextStyle="PageHeadline"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" />
+
+        <ctrl:Header x:Name="SubHead" Grid.Row="3" Grid.Column="1"
+            Headline="{x:Bind Path=ViewModel.SubHead}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PopupHeadline"
+            LedeStyle="PopupLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" />
+
+        <ctrl:List Grid.Row="5" Grid.Column="1"
+            x:Name="CompareList"
+            ListStyle="Compare"
+            ListItems="{x:Bind Path=ViewModel.CompareListItems}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+
+        <ctrl:TextBlockEx x:Name="Legal" Grid.Row="7" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center" />
+
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3">
+            <Grid x:Name="grdCloseButton"
+                Canvas.Left="{x:Bind Path=ViewModel.EllipseGridCanvasSetLeft}"  
+                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseMargin}"           
+                PointerPressed="PopClose_Click">
+
+                <Ellipse
+                    Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                    Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                    Fill="White"
+                    StrokeThickness="2"
+                    Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0"/>
+
+                <ctrl:ImageEx
+                    x:Name="CloseButtonImage"
+                    ImageSource="{x:Bind Path=ViewModel.x_ImageURI}"
+                    ImageWidth="{StaticResource RadiatingButtonCloseIconWidth}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"                
+                    Margin="0"/>
+            </Grid>
+        </Canvas>
+    </Grid>
+</Page>

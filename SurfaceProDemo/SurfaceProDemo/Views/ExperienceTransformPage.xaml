@@ -52,30 +52,28 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 TryItText="{x:Bind ViewModel.PopTryItCaption}"                
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                                                                                             
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"                                                                                             
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.30}"        
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Image"
-                        MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
+                        PopupType="Video"
+                        MediaHasMargin="False"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopVideo}"
                         Headline="{x:Bind Path=ViewModel.PopHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLede}"
-                        MediaWidth="450"
+                        MediaWidth="426.667"
+                        MediaHeight="240"
                         />
                 </Popup.Child>
             </Popup>

@@ -37,16 +37,16 @@ namespace SDX.Toolkit.Controls
         Battery,
         Detail,
         Creative,
-        Size,
         Connection,
+        Wifi,
         Versatile,
         Pen,
-        Custom,
         // for best of page
         Start,
         Hello,
         Sync,
         Office,
+        Custom
     }
     
     public class ListItem
@@ -71,6 +71,7 @@ namespace SDX.Toolkit.Controls
         private const string ICON_SIZE_URI = @"ms-appx:///Assets/List/specs_size.png";
         private const string ICON_VERSATILE_URI = @"ms-appx:///Assets/List/specs_versatile.png";
         private const string ICON_CONNECTION_URI = @"ms-appx:///Assets/List/specs_connections.png";
+        private const string ICON_WIFI_URI = @"ms-appx:///Assets/List/specs_wifi.png";
         private const string ICON_PEN_URI = @"ms-appx:///Assets/List/specs_pen.png";
         // BOM icons
         private const string ICON_START_URI = @"ms-appx:///Assets/List/bom_windows.png";
@@ -178,10 +179,6 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_CREATIVE_URI;
                         break;
 
-                    case ListItemIcon.Size:
-                        iconPath = ICON_SIZE_URI;
-                        break;
-
                     case ListItemIcon.Connection:
                         iconPath = ICON_CONNECTION_URI;
                         break;
@@ -190,6 +187,10 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_VERSATILE_URI;
                         break;
 
+                    case ListItemIcon.Wifi:
+                        iconPath = ICON_WIFI_URI
+;
+                        break;
                     case ListItemIcon.Pen:
                         iconPath = ICON_PEN_URI;
                         break;

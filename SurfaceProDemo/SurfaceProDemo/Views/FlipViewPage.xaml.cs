@@ -276,6 +276,32 @@ namespace SurfaceProDemo.Views
             return this.ExperiencePopup;
         }
 
+        // load COMPARE PAGE full page popups
+        public Popup GetComparePagePopupPro()
+        {
+            return this.CompareProPopup;
+        }
+
+        public Popup GetComparePagePopupBook()
+        {
+            return this.CompareBookPopup;
+        }
+
+        public Popup GetComparePagePopupStudio()
+        {
+            return this.CompareStudioPopup;
+        }
+
+        public Popup GetComparePagePopupLaptop()
+        {
+            return this.CompareLaptopPopup;
+        }
+
+        public Popup GetComparePagePopupGo()
+        {
+            return this.CompareGoPopup;
+        }
+
         #endregion
     }
 }

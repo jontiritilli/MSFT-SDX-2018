@@ -45,8 +45,8 @@ namespace SurfaceProDemo.ViewModels
 
         private readonly double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
         private readonly double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;
-        private readonly double _maxImageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
-        private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");
+        private readonly double _maxImageWidth = StyleHelper.GetApplicationDouble("CanvasWidth");
+        private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("CanvasHeight");
         private readonly double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
         private readonly double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
         #endregion

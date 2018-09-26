@@ -26,6 +26,7 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string Headline;
         public string Lede;
+        public string Legal;
 
         public string TryItTitle;
         public string TryItLede;
@@ -36,7 +37,7 @@ namespace SurfaceBook2Demo.ViewModels
         public int ColoringBookButtonHeight;
 
         public string ColoringBookClearButtonURI;
-        public double ICON_WIDTH = 96d;
+        public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.AccessoriesPenListIconWidth);
 
         // TODO: need a list of items here for the List control.        
         #endregion

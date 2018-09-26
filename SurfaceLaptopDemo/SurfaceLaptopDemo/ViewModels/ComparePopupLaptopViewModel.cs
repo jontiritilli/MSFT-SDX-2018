@@ -9,22 +9,22 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Media;
-using SurfaceBook2Demo.Services;
+using SurfaceLaptopDemo.Services;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 
-namespace SurfaceBook2Demo.ViewModels
+namespace SurfaceLaptopDemo.ViewModels
 {
-    public class ComparePopupSurfaceBook2ViewModel
+    public class ComparePopupLaptopViewModel
     {
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
-        private const string URI_PRIMARYIMAGE = "ms-appx:///Assets/Comparison/comparisonStudio.png";
+        private const string URI_PRIMARYIMAGE = "ms-appx:///Assets/Comparison/comparisonLaptop.png";
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
-        private const double PRIMARY_IMAGEHEIGHT = 1200;
+        private const double PRIMARY_IMAGEHEIGHT = 784;
         private const double PRIMARY_IMAGEWIDTH = 1134.5;
 
         #endregion
@@ -47,28 +47,24 @@ namespace SurfaceBook2Demo.ViewModels
 
         public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.CompareListIconWidth);
 
-        public double radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
-        public double closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
-
-        public double MaxImageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
-        public double MaxImageHeight = StyleHelper.GetApplicationDouble("ScreenHeight");
-
         public string x_ImageURI = URI_X_IMAGE;
+        public double radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
+        public SolidColorBrush ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
+        public double closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
         public double EllipseGridCanvasSetLeft;
-        public double CloseEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
-        public double CloseEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
+        public double CloseEllipseMargin = StyleHelper.GetApplicationDouble("CompareCloseMargin");
+
+        public double PageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
 
         public List<ListItem> CompareListItems = new List<ListItem>();
-
-        public SolidColorBrush ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
 
         #endregion
 
         #region Construction
 
-        public ComparePopupSurfaceBook2ViewModel()
+        public ComparePopupLaptopViewModel()
         {
-            EllipseGridCanvasSetLeft = MaxImageWidth - CloseEllipseRightMargin - radiatingButtonRadius;
+            EllipseGridCanvasSetLeft = PageWidth - CloseEllipseMargin - radiatingButtonRadius;
 
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
@@ -77,7 +73,7 @@ namespace SurfaceBook2Demo.ViewModels
             if (null != localizationService)
             {
                 // load ourself with values from the language file
-                localizationService.LoadComparePopupSurfaceBook2ViewModel(this);
+                localizationService.LoadComparePopupLaptopViewModel(this);
             }
         }
 

@@ -30,8 +30,7 @@ namespace SurfaceStudioDemo.ViewModels
         public string BulletThreeLegal;
         public string BulletFourLegal;
 
-        public List<ListItem> LeftItemList = new List<ListItem>();
-        public List<ListItem> RightItemList = new List<ListItem>();
+        public List<ListItem> ItemList = new List<ListItem>();        
 
         public double ICON_WIDTH = StyleHelper.GetApplicationDouble("BestOfMicrosoftListIconWidth");
 

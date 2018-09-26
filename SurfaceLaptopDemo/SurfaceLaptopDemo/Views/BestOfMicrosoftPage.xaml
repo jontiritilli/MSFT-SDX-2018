@@ -25,8 +25,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
@@ -39,19 +37,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
 
-        <ctrl:List x:Name="BOM_LEFT" Grid.Row="3" Grid.Column="1"
-            ListItems="{x:Bind Path=ViewModel.LeftItemList}"
-            ListStyle="BestOf"
-            Width="{x:Bind Path=ViewModel.ListWidth}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
-
-        <ctrl:List x:Name="BOM_RIGHT" Grid.Row="3" Grid.Column="3"
-            ListItems="{x:Bind Path=ViewModel.RightItemList}"
-            ListStyle="BestOf"
-            Width="{x:Bind Path=ViewModel.ListWidth}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+        <ctrl:List x:Name="BOM" Grid.Row="3" Grid.Column="1"
+            ListItems="{x:Bind Path=ViewModel.ItemList}"
+            ListStyle="BestOf" />
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
