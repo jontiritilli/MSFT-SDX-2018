@@ -31,7 +31,7 @@ namespace SurfaceBook2Demo.Views
     {
         #region Private Constants
 
-        private const double PAGE_TIMER_DURATION = 5000d;
+        private const double PAGE_TIMER_DURATION = 8000d;
 
         #endregion
 
