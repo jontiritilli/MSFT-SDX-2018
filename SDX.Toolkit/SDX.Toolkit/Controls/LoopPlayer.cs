@@ -138,7 +138,7 @@ namespace SDX.Toolkit.Controls
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     _mediaPlayerElement.MediaPlayer.Pause();                    
-                    _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(500);
+                    //_mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(500);
                     _mediaPlayerElement.IsFullWindow = false;
                 });
             }
@@ -214,7 +214,7 @@ namespace SDX.Toolkit.Controls
             if (null != sender)
             {
                 sender.Pause();                
-                sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+               // sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
                 sender.Play();
             }
         }
