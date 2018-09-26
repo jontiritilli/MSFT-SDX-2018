@@ -49,14 +49,14 @@
                             TextStyle="Legal"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Visibility="Collapsed" />
+                            Opacity="0"/>
 
         <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
                             Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
                             TextStyle="Legal"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Visibility="Collapsed" />
+                            Opacity="0" />
 
         <Canvas x:Name="PageCanvas"
                 Grid.Row="0" Grid.RowSpan="7"
@@ -93,7 +93,9 @@
                 IsOpen = "False"
                 Canvas.ZIndex="102"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                   
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                Opened="PopLeft_Opened"
+                Closed="PopLeft_Closed"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -110,7 +112,9 @@
                 IsOpen = "False"
                 Canvas.ZIndex="102"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"             
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                Opened="PopRight_Opened"
+                Closed="PopRight_Closed"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
