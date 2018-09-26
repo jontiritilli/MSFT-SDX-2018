@@ -52,14 +52,14 @@
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
                           TextStyle="Legal"
-                          Visibility="Collapsed" />
+                          Opacity="0"/>
 
         <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopTopLegal}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        TextStyle="Legal"
-                       Visibility="Collapsed" />
+                       Opacity="0" />
 
         <!--<ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
                     SwipeText="{x:Bind Path=ViewModel.SwipeText}"                    
@@ -77,6 +77,8 @@
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"
+                Closed="PopLeft_Closed"
+                Opened="PopLeft_Opened"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -91,7 +93,9 @@
                 x:Name="PopTop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                
+                VerticalOffset="-1"
+                Opened="PopTop_Opened"
+                Closed="PopTop_Closed"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

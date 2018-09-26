@@ -64,5 +64,15 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LeftLegal.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LeftLegal.SetOpacity(0);
+        }
     }
 }

@@ -76,7 +76,9 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                 
+                VerticalOffset="-1"
+                Opened="PopLeft_Opened"
+                Closed="PopLeft_Closed"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -132,5 +134,11 @@
             Canvas.ZIndex="100"
             Opacity="0"
             />
+        <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
+                          Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          TextStyle="Legal"
+                          Opacity="0"/>
     </Grid>
 </Page>

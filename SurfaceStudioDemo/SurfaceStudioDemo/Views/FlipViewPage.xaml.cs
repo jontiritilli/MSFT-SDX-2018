@@ -86,14 +86,6 @@ namespace SurfaceStudioDemo.Views
 
             // initialize the navigation bar root
             this.BottomNavBar.Root = ViewModel.Root;
-
-            // configure our page move timer
-            _pageMoveTimer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromMilliseconds(PAGE_TIMER_DURATION)
-            };
-            _pageMoveTimer.Tick += PageMoveTimer_Tick;
-            _pageMoveTimer.Start();
         }
 
         private void PageMoveTimer_Tick(object sender, object e)
@@ -122,6 +114,14 @@ namespace SurfaceStudioDemo.Views
 
             // navigate to it
             _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
+
+            // configure our page move timer
+            _pageMoveTimer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(PAGE_TIMER_DURATION)
+            };
+            _pageMoveTimer.Tick += PageMoveTimer_Tick;
+            _pageMoveTimer.Start();
 
         }
 
