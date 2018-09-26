@@ -248,7 +248,7 @@ namespace SDX.Toolkit.Controls
 
         // IsNavigationEnabled
         public static readonly DependencyProperty IsNavigationEnabledProperty =
-            DependencyProperty.Register("IsNavigationEnabled", typeof(bool), typeof(NavigationBar), new PropertyMetadata(false, OnIsNavigationEnabledChanged));
+            DependencyProperty.Register("IsNavigationEnabled", typeof(bool), typeof(NavigationBar), new PropertyMetadata(false));
 
         public bool IsNavigationEnabled
         {
