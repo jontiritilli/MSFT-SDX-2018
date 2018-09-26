@@ -55,7 +55,7 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.31}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.77}"                                                 
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"                                                 
                 PopupPosition="Right"  
                 AutoStart = "false"/>
             
@@ -66,7 +66,7 @@
                 RadiateDurationInMilliseconds = "1800"
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.22}"                     
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.25}"                     
                 PopupPosition="Left"  
                 AutoStart = "false"/>
 
