@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceBook2Demo.Services;
 using SurfaceBook2Demo.Views;
 
+
 namespace SurfaceBook2Demo.ViewModels
 {
     [Windows.UI.Xaml.Data.Bindable]
@@ -17,12 +18,14 @@ namespace SurfaceBook2Demo.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            Register<PivotViewModel, PivotPage>();
+
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<AttractorLoopViewModel, AttractorLoopPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
             Register<ExperienceIntroViewModel, ExperienceIntroPage>();
             Register<ExperienceDayViewModel, ExperienceDayPage>();
             Register<ExperienceDayWorkViewModel, ExperienceDayWorkPage>();
+            Register<ExperienceDayWorkPopupViewModel, ExperienceDayWorkPopupPage>();
             Register<ExperienceDayCreateViewModel, ExperienceDayCreatePage>();
             Register<ExperienceDayRelaxViewModel, ExperienceDayRelaxPage>();
             Register<ExperienceDayPlayViewModel, ExperienceDayPlayPage>();
@@ -31,9 +34,24 @@ namespace SurfaceBook2Demo.ViewModels
             Register<AccessoriesMouseViewModel, AccessoriesMousePage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
             Register<CompareViewModel, ComparePage>();
+            Register<ComparePopupProViewModel, ComparePagePopupPro>();
+            Register<ComparePopupBookViewModel, ComparePagePopupBook>();
+            Register<ComparePopupStudioViewModel, ComparePagePopupStudio>();
+            Register<ComparePopupLaptopViewModel, ComparePagePopupLaptop>();
+            Register<ComparePopupGoViewModel, ComparePagePopupGo>();
         }
 
         public CompareViewModel CompareViewModel => ServiceLocator.Current.GetInstance<CompareViewModel>();
+
+        public ComparePopupProViewModel ComparePopupProViewModel => ServiceLocator.Current.GetInstance<ComparePopupProViewModel>();
+
+        public ComparePopupBookViewModel ComparePopupBookViewModel => ServiceLocator.Current.GetInstance<ComparePopupBookViewModel>();
+
+        public ComparePopupStudioViewModel ComparePopupStudioViewModel => ServiceLocator.Current.GetInstance<ComparePopupStudioViewModel>();
+
+        public ComparePopupLaptopViewModel ComparePopupLaptopViewModel => ServiceLocator.Current.GetInstance<ComparePopupLaptopViewModel>();
+
+        public ComparePopupGoViewModel ComparePopupGoViewModel => ServiceLocator.Current.GetInstance<ComparePopupGoViewModel>();
 
         public BestOfMicrosoftViewModel BestOfMicrosoftViewModel => ServiceLocator.Current.GetInstance<BestOfMicrosoftViewModel>();
 
@@ -51,6 +69,8 @@ namespace SurfaceBook2Demo.ViewModels
 
         public ExperienceDayWorkViewModel ExperienceDayWorkViewModel => ServiceLocator.Current.GetInstance<ExperienceDayWorkViewModel>();
 
+        public ExperienceDayWorkPopupViewModel ExperienceDayWorkPopupViewModel => ServiceLocator.Current.GetInstance<ExperienceDayWorkPopupViewModel>();
+
         public ExperienceDayViewModel ExperienceDayViewModel => ServiceLocator.Current.GetInstance<ExperienceDayViewModel>();
 
         public ExperienceIntroViewModel ExperienceIntroViewModel => ServiceLocator.Current.GetInstance<ExperienceIntroViewModel>();
@@ -59,7 +79,7 @@ namespace SurfaceBook2Demo.ViewModels
 
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
-        public PivotViewModel PivotViewModel => ServiceLocator.Current.GetInstance<PivotViewModel>();
+        public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

@@ -1,10 +1,10 @@
 ﻿using SDX.Toolkit.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -12,14 +12,22 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace SDX.Toolkit.Controls
 {
+    #region classes
+    public class AppSelectorImageURI
+    {
+        public string URI = "";
+        public double Width = 0;
+    }
+    #endregion
+
     public sealed class AppSelectorImage : Control
     {
         #region Private Constants
 
-        //private static readonly Size BOUNDS = PageHelper.GetScreenResolutionInfo();
+        private static readonly Size BOUNDS = WindowHelper.GetViewSizeInfo();
 
-        private static readonly double WIDTH_ORIGINAL = 1800;
-        private static readonly double HEIGHT_ORIGINAL = 1200;
+        private static readonly double WIDTH_ORIGINAL = BOUNDS.Width;
+        private static readonly double HEIGHT_ORIGINAL = BOUNDS.Height;
 
 
         #endregion
@@ -28,10 +36,6 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         public Grid _layoutRoot = null;
-        private Image _imageBurgundy = null;
-        private Image _imageCobalt = null;
-        private Image _imageBlack = null;
-        private Image _imageSilver = null;
         private List<Image> Images;
 
         private AppSelector _previousAppSelector = null;
@@ -50,11 +54,11 @@ namespace SDX.Toolkit.Controls
 
             this.Loaded += OnLoaded;
             this.Images = new List<Image>();
-
+            this.Opacity = 0;
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
         }
 
         protected override void OnApplyTemplate()
@@ -66,20 +70,13 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region Classes
-        public class AppSelectorImageURI
-            {
-                public string URI = "";
-                public int Width = 0;            
-            }
-        #endregion
 
         #region Public Members
         // pass me in on init pls
-        public List<AppSelectorImageURI> URIs;
-        public HorizontalAlignment imageHorizontalAlignment = HorizontalAlignment.Left;
-        public double Width_Image = 200;// BOUNDS.Width;
-        public double Height_Image = 200;// BOUNDS.Height;
+        //public List<AppSelectorImageURI> URIs;
+        //public HorizontalAlignment imageHorizontalAlignment = HorizontalAlignment.Left;
+        //public double Width_Image = 200;// BOUNDS.Width;
+        //public double Height_Image = 200;// BOUNDS.Height;
         #endregion
 
         #region Public Methods
@@ -121,15 +118,15 @@ namespace SDX.Toolkit.Controls
         //    }
         //}
 
-        public void SetOpacity(double opacity)
-        {
-            if ((opacity < 0.0) || (opacity > 1.0)) { return; }
+        //public void SetOpacity(double opacity)
+        //{
+        //    if ((opacity < 0.0) || (opacity > 1.0)) { return; }
 
-            if (null != _layoutRoot)
-            {
-                _layoutRoot.Opacity = opacity;
-            }
-        }
+        //    if (null != _layoutRoot)
+        //    {
+        //        _layoutRoot.Opacity = opacity;
+        //    }
+        //}
 
         public void ForceID(int SelectedID)
         {
@@ -161,63 +158,58 @@ namespace SDX.Toolkit.Controls
             get { return ( (int)GetValue(SelectedIDProperty) ); }
             set { SetValue(SelectedIDProperty, value); }
         }
-        //public ImageStyles ImageStyle
-        //public ImageStyles ImageStyle
-        //{
-        //    get { return (ImageStyles)GetValue(ImageStyleProperty); }
-        //    set { SetValue(ImageStyleProperty, value); }
-        //}
 
-        //// DurationInMilliseconds
-        //public static readonly DependencyProperty DurationInMillisecondsProperty =
-        //    DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(200d, OnDurationInMillisecondsChanged));
+        public static readonly DependencyProperty URIsProperty =
+        DependencyProperty.Register("URIs", typeof(List<AppSelectorImageURI>), typeof(AppSelectorImage), new PropertyMetadata(new List<AppSelectorImageURI>(), OnSelectedIDChanged));
 
-        //public double DurationInMilliseconds
-        //{
-        //    get { return (double)GetValue(DurationInMillisecondsProperty); }
-        //    set { SetValue(DurationInMillisecondsProperty, value); }
-        //}
 
-        //// FadeInCompletedHandler
-        //public static readonly DependencyProperty FadeInCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeInCompletedHandler", typeof(EventHandler<object>), typeof(AppSelectorImage), new PropertyMetadata(null));
+        public List<AppSelectorImageURI> URIs
+        {
+            get { return ((List<AppSelectorImageURI>)GetValue(URIsProperty)); }
+            set { SetValue(URIsProperty, value); }
+        }
 
-        //public EventHandler<object> FadeInCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeInCompletedHandlerProperty); }
-        //    set { SetValue(FadeInCompletedHandlerProperty, value); }
-        //}
 
-        //// FadeOutCompletedHandler
-        //public static readonly DependencyProperty FadeOutCompletedHandlerProperty =
-        //    DependencyProperty.Register("FadeOutCompletedHandler", typeof(EventHandler<object>), typeof(AppSelectorImage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ImageWidthProperty =
+        DependencyProperty.Register("ImageWidth", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(0d, OnSelectedIDChanged));
 
-        //public EventHandler<object> FadeOutCompletedHandler
-        //{
-        //    get { return (EventHandler<object>)GetValue(FadeOutCompletedHandlerProperty); }
-        //    set { SetValue(FadeOutCompletedHandlerProperty, value); }
-        //}
 
-        //// StaggerDelayInMilliseconds
-        //public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-        //    DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
+        public double ImageWidth
+        {
+            get { return ((double)GetValue(ImageWidthProperty)); }
+            set { SetValue(ImageWidthProperty, value); }
+        }
 
-        //public double StaggerDelayInMilliseconds
-        //{
-        //    get { return (double)GetValue(StaggerDelayInMillisecondsProperty); }
-        //    set { SetValue(StaggerDelayInMillisecondsProperty, value); }
-        //}
+        public static readonly DependencyProperty ImageHeightProperty =
+        DependencyProperty.Register("ImageHeight", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(0d, OnSelectedIDChanged));
 
-        //// AutoStart
-        //public static readonly DependencyProperty AutoStartProperty =
-        //DependencyProperty.Register("AutoStart", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(true, OnAutoStartChanged));
 
-        //public bool AutoStart
-        //{
-        //    get { return (bool)GetValue(AutoStartProperty); }
-        //    set { SetValue(AutoStartProperty, value); }
-        //}
+        public double ImageHeight
+        {
+            get { return ((double)GetValue(ImageHeightProperty)); }
+            set { SetValue(ImageHeightProperty, value); }
+        }
 
+        public static readonly DependencyProperty imageHorizontalAlignmentProperty =
+        DependencyProperty.Register("imageHorizontalAlignment", typeof(HorizontalAlignment), typeof(AppSelectorImage), new PropertyMetadata(HorizontalAlignment.Center, OnSelectedIDChanged));
+
+
+        public HorizontalAlignment imageHorizontalAlignment
+        {
+            get { return ((HorizontalAlignment)GetValue(imageHorizontalAlignmentProperty)); }
+            set { SetValue(imageHorizontalAlignmentProperty, value); }
+        }
+
+        public static readonly DependencyProperty BitmapImagesProperty =
+        DependencyProperty.Register("BitmapImages", typeof(List<BitmapImage>), typeof(AppSelectorImage), new PropertyMetadata(new List<BitmapImage>()));
+
+
+        public List<BitmapImage> BitmapImages
+        {
+            get { return ((List<BitmapImage>)GetValue(BitmapImagesProperty)); }
+            set { SetValue(BitmapImagesProperty, value); }
+        }
+       
         #endregion
 
         #region Event Handlers
@@ -251,35 +243,21 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void OnOpacityChanged(object sender, double e)
-        {
-            double opacity = e;
-
-            if (null != _layoutRoot)
-            {
-                // correct opacity range
-                opacity = Math.Max(0.0, opacity);
-                opacity = Math.Min(1.0, opacity);
-
-                // set opacity
-                _layoutRoot.Opacity = opacity;
-            }
-        }
-
-        //private static void OnDurationInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //private void OnOpacityChanged(object sender, double e)
         //{
+        //    double opacity = e;
 
+        //    if (null != _layoutRoot)
+        //    {
+        //        // correct opacity range
+        //        opacity = Math.Max(0.0, opacity);
+        //        opacity = Math.Min(1.0, opacity);
+
+        //        // set opacity
+        //        _layoutRoot.Opacity = opacity;
+        //    }
         //}
 
-        //private static void OnStaggerDelayInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
 
         private void AppSelector_OnSelectionChanged(object sender, EventArgs e)
         {
@@ -310,29 +288,53 @@ namespace SDX.Toolkit.Controls
 
             // configure grid
             _layoutRoot.Margin = new Thickness(0);
-            _layoutRoot.Padding = new Thickness(0);
-            _layoutRoot.Opacity = 1.0;// again?! why is this 0 and not 1?
+            _layoutRoot.Padding = new Thickness(0);            
             // generate images
             // create the burgundy image
 
             Image image = new Image();
-            for (int i = 0; i < this.URIs.Count; i++)
+            if (this.URIs.Count > 0)
             {
-
-                image = new Image()
+                for (int i = 0; i < this.URIs.Count; i++)
                 {
-                    Source = new BitmapImage() { UriSource = new Uri(this.URIs[i].URI), DecodePixelWidth = (int)Width_Image, DecodePixelHeight = (int)Height_Image },
-                    Width = Width_Image,
-                    Height = Height_Image,
-                    HorizontalAlignment = imageHorizontalAlignment,
-                    VerticalAlignment = VerticalAlignment.Top,
-                    Opacity = 0.0
-                };
-                Grid.SetRow(image, 0);
-                Grid.SetColumn(image, 0);
-                _layoutRoot.Children.Add(image);
-                this.Images.Add(image);
+
+                    image = new Image()
+                    {
+                        Source = new BitmapImage() { UriSource = new Uri(this.URIs[i].URI), DecodePixelWidth = (int)ImageWidth, DecodePixelHeight = (int)ImageHeight },
+                        Width = ImageWidth,
+                        Height = ImageHeight,
+                        HorizontalAlignment = imageHorizontalAlignment,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Opacity = 0.0
+                    };
+                    Grid.SetRow(image, 0);
+                    Grid.SetColumn(image, 0);
+                    _layoutRoot.Children.Add(image);
+                    this.Images.Add(image);
+                }
             }
+            else if (this.BitmapImages.Count > 0)
+            {
+                for (int i = 0; i < this.BitmapImages.Count; i++)
+                {
+
+                    image = new Image()
+                    {
+                        Source = BitmapImages[i],
+                        Width = BitmapImages[i].DecodePixelWidth,
+                        Height = BitmapImages[i].DecodePixelHeight,
+                        HorizontalAlignment = imageHorizontalAlignment,
+                        VerticalAlignment = VerticalAlignment.Top,
+                        Opacity = 0.0
+                    };
+                    Grid.SetRow(image, 0);
+                    Grid.SetColumn(image, 0);
+                    _layoutRoot.Children.Add(image);
+                    this.Images.Add(image);
+                }
+            }
+            
+            
             UpdateUI();
         }
 
@@ -355,22 +357,6 @@ namespace SDX.Toolkit.Controls
                         this.Images[i].Opacity = 0;
                     }
                 }
-                
-                //ColorSelectorColors newColor = (ColorSelectorColors.None == forcedColor) ? this.ColorSelector.SelectedColor : forcedColor;
-
-                //// change images in two steps to avoid flashing
-
-                //// make the new color visible
-                //_imageBurgundy.Opacity = (ColorSelectorColors.Burgundy == newColor) ? 1.0 : _imageBurgundy.Opacity;
-                //_imageCobalt.Opacity = (ColorSelectorColors.Cobalt == newColor) ? 1.0 : _imageCobalt.Opacity;
-                //_imageBlack.Opacity = (ColorSelectorColors.Black == newColor) ? 1.0 : _imageBlack.Opacity;
-                //_imageSilver.Opacity = (ColorSelectorColors.Silver == newColor) ? 1.0 : _imageSilver.Opacity;
-
-                //// hide the old color
-                //_imageBurgundy.Opacity = (ColorSelectorColors.Burgundy != newColor) ? 0.0 : _imageBurgundy.Opacity;
-                //_imageCobalt.Opacity = (ColorSelectorColors.Cobalt != newColor) ? 0.0 : _imageCobalt.Opacity;
-                //_imageBlack.Opacity = (ColorSelectorColors.Black != newColor) ? 0.0 : _imageBlack.Opacity;
-                //_imageSilver.Opacity = (ColorSelectorColors.Silver != newColor) ? 0.0 : _imageSilver.Opacity;
             }
         }
 

@@ -17,12 +17,19 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SurfaceBook2Demo_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SurfaceBook2Demo_StoreKey.pfx</PackageCertificateKeyFile>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>59CED258EFE66E34A3024721019038309FF4470C</PackageCertificateThumbprint>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;DEVICE_SB2</DefineConstants>
     <NoWarn>NU1603;2008;</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -32,7 +39,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;DEVICE_SB2</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>NU1603;2008;</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -45,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;DEVICE_SB2</DefineConstants>
     <NoWarn>NU1603;2008;</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>ARM</PlatformTarget>
@@ -55,7 +62,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;DEVICE_SB2</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>NU1603;2008;</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -68,7 +75,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;DEVICE_SB2</DefineConstants>
     <NoWarn>NU1603;2008;</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -78,7 +85,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;DEVICE_SB2</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>NU1603;2008;</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -92,8 +99,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MetroLog">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.5</Version>
+      <Version>6.1.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
@@ -103,7 +113,7 @@
       <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
-      <Version>5.4.1</Version>
+      <Version>5.4.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -111,12 +121,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\SchemeActivationConfig.cs" />
+    <Compile Include="Activation\SchemeActivationData.cs" />
+    <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
@@ -126,15 +143,21 @@
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupBookViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupGoViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupLaptopViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupProViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayCreateViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayPlayViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayRelaxViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayViewModel.cs" />
+    <Compile Include="ViewModels\ExperienceDayWorkPopupViewModel.cs" />
     <Compile Include="ViewModels\ExperienceDayWorkViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
     <Compile Include="ViewModels\ExperienceIntroViewModel.cs" />
-    <Compile Include="ViewModels\PivotViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AccessoriesDialPage.xaml.cs">
       <DependentUpon>AccessoriesDialPage.xaml</DependentUpon>
@@ -154,6 +177,21 @@
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ComparePagePopupBook.xaml.cs">
+      <DependentUpon>ComparePagePopupBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupGo.xaml.cs">
+      <DependentUpon>ComparePagePopupGo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupLaptop.xaml.cs">
+      <DependentUpon>ComparePagePopupLaptop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupPro.xaml.cs">
+      <DependentUpon>ComparePagePopupPro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
+      <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExperienceDayCreatePage.xaml.cs">
       <DependentUpon>ExperienceDayCreatePage.xaml</DependentUpon>
     </Compile>
@@ -169,15 +207,19 @@
     <Compile Include="Views\ExperienceDayWorkPage.xaml.cs">
       <DependentUpon>ExperienceDayWorkPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ExperienceDayWorkPopupPage.xaml.cs">
+      <DependentUpon>ExperienceDayWorkPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExperienceHeroPage.xaml.cs">
       <DependentUpon>ExperienceHeroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceIntroPage.xaml.cs">
       <DependentUpon>ExperienceIntroPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="Views\FlipViewPage.xaml.cs">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\INavigate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -186,7 +228,39 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\13\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\13\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\13\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\13\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\15\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\15\Sizes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -198,11 +272,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\_Thickness.xaml">
+    <Page Include="Styles\15\_Thickness.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\TextBlock.xaml">
+    <Page Include="Styles\15\TextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +304,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ComparePagePopupBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupGo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupLaptop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupPro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupStudio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ExperienceDayCreatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,6 +344,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ExperienceDayWorkPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExperienceHeroPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -258,7 +356,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PivotPage.xaml">
+    <Page Include="Views\FlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -273,20 +371,214 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Assets\BestOfMicrosoft\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Accessories\sb2_13_accessories_car.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_car.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_left.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_right.png" />
+    <Content Include="Assets\Accessories\sb2_15_accessories_right_insetScrollWheel.png" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_left.png" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_right.png" />
+    <Content Include="Assets\Accessories\sb2_13_accessories_right_insetScrollWheel.png" />
+    <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\sb2_15_background_dark.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_15_background_light.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_work.png" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_create.png" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_relax.png" />
+    <Content Include="Assets\Backgrounds\sb2_15_experience_play.png" />
+    <Content Include="Assets\Backgrounds\sb2_13_background_dark.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_13_background_light.jpg" />
+    <Content Include="Assets\Comparison\comparisonFamily_13.png" />
+    <Content Include="Assets\Comparison\comparisonFamily_15.png" />
+    <Content Include="Assets\Comparison\comparisonGo_13.png" />
+    <Content Include="Assets\Comparison\comparisonGo_15.png" />
+    <Content Include="Assets\Comparison\comparisonLaptop_13.png" />
+    <Content Include="Assets\Comparison\comparisonLaptop_15.png" />
+    <Content Include="Assets\Comparison\comparisonPro_13.png" />
+    <Content Include="Assets\Comparison\comparisonPro_15.png" />
+    <Content Include="Assets\Comparison\comparisonSb2_13.png" />
+    <Content Include="Assets\Comparison\comparisonSb2_15.png" />
+    <Content Include="Assets\Comparison\comparisonStudio_13.png" />
+    <Content Include="Assets\Comparison\comparisonStudio_15.png" />
+    <Content Include="Assets\DaySlider\sb2_13_battery_1.png" />
+    <Content Include="Assets\DaySlider\sb2_13_battery_2.png" />
+    <Content Include="Assets\DaySlider\sb2_13_battery_3.png" />
+    <Content Include="Assets\DaySlider\sb2_13_battery_4.png" />
+    <Content Include="Assets\DaySlider\sb2_13_moon.png" />
+    <Content Include="Assets\DaySlider\sb2_13_sun.png" />
+    <Content Include="Assets\DaySlider\sb2_15_battery_1.png" />
+    <Content Include="Assets\DaySlider\sb2_15_battery_2.png" />
+    <Content Include="Assets\DaySlider\sb2_15_battery_3.png" />
+    <Content Include="Assets\DaySlider\sb2_15_battery_4.png" />
+    <Content Include="Assets\DaySlider\sb2_15_moon.png" />
+    <Content Include="Assets\DaySlider\sb2_15_sun.png" />
+    <Content Include="Assets\Experience\sb2_13_bluebeam.png" />
+    <Content Include="Assets\Experience\sb2_13_maya.png" />
+    <Content Include="Assets\Experience\sb2_13_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_13_premiere.png" />
+    <Content Include="Assets\Experience\sb2_13_sketchbook.png" />
+    <Content Include="Assets\Experience\sb2_15_bluebeam.png" />
+    <Content Include="Assets\Experience\sb2_15_maya.png" />
+    <Content Include="Assets\Experience\sb2_15_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_15_premiere.png" />
+    <Content Include="Assets\Experience\sb2_15_sketchbook.png" />
+    <Content Include="Assets\Experience\sb2_create_sb15.png" />
+    <Content Include="Assets\Experience\sb2_hero_dial.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetCompare_sb13.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetCompare_sb15.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetPixelsense_sb13.png" />
+    <Content Include="Assets\Experience\sb2_hero_insetPixelsense_sb15.png" />
+    <Content Include="Assets\Experience\sb2_hero_pen.png" />
+    <Content Include="Assets\Experience\sb2_hero_sb13.png" />
+    <Content Include="Assets\Experience\sb2_hero_sb15.png" />
+    <Content Include="Assets\Experience\sb2_play_sb13.png" />
+    <Content Include="Assets\Experience\sb2_play_sb15.png" />
+    <Content Include="Assets\Experience\sb2_relax_insetHinge_sb13.png" />
+    <Content Include="Assets\Experience\sb2_relax_insetHinge_sb15.png" />
+    <Content Include="Assets\Experience\sb2_relax_sb15.png" />
+    <Content Include="Assets\Experience\sb2_transform_13.png" />
+    <Content Include="Assets\Experience\sb2_transform_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_bluebeam_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_bluebeam_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_maya_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_maya_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_photoshop.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_photoshop_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_photoshop_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_premiere_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_premiere_15.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_sketchbook_13.png" />
+    <Content Include="Assets\Experience\sb2_work_appScreen_sketchbook_15.png" />
+    <Content Include="Assets\Experience\sb2_work_insetConnections_sb13.png" />
+    <Content Include="Assets\Experience\sb2_work_insetConnections_sb15.png" />
+    <Content Include="Assets\Experience\sb2_work_sb15.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_purple.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_13_teal_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_purple.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\sb2_15_teal_active.png" />
+    <Content Include="Assets\List\bom_office.png" />
+    <Content Include="Assets\List\bom_smile.png" />
+    <Content Include="Assets\List\bom_sync.png" />
+    <Content Include="Assets\List\bom_windows.png" />
+    <Content Include="Assets\List\inkingDraw.png" />
+    <Content Include="Assets\List\inkingPalm.png" />
+    <Content Include="Assets\List\inkingPressure.png" />
+    <Content Include="Assets\List\inkingWrite.png" />
+    <Content Include="Assets\List\specs_audio.png" />
+    <Content Include="Assets\List\specs_battery.png" />
+    <Content Include="Assets\List\specs_connections.png" />
+    <Content Include="Assets\List\specs_creative.png" />
+    <Content Include="Assets\List\specs_design.png" />
+    <Content Include="Assets\List\specs_eye.png" />
+    <Content Include="Assets\List\specs_feather.png" />
+    <Content Include="Assets\List\specs_laptop.png" />
+    <Content Include="Assets\List\specs_pen.png" />
+    <Content Include="Assets\List\specs_performance.png" />
+    <Content Include="Assets\List\specs_screenSize.png" />
+    <Content Include="Assets\List\specs_versatile.png" />
+    <Content Include="Assets\List\specs_wifi.png" />
+    <Content Include="Assets\NavigationBar\cap_nav_chevronLeft.png" />
+    <Content Include="Assets\NavigationBar\cap_nav_chevronRight.png" />
+    <Content Include="Assets\NavigationBar\cruz_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\cruz_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\cruz_home.png" />
+    <Content Include="Assets\NavigationBar\fox_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\fox_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\joplin_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\joplin_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\joplin_home.png" />
+    <Content Include="Assets\NavigationBar\sb2_13_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\sb2_13_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\sb2_15_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\sb2_15_chevron_right.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-100.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-125.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-150.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-200.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-400.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-200.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-16.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-20.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-24.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-256.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-30.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-32.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-36.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-40.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-48.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-60.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-64.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-72.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-80.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-96.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-UriScheme.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
+    <Content Include="Assets\RadiatingButton\tryit_dot.png" />
+    <Content Include="Assets\RadiatingButton\tryit.png" />
+    <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="SurfaceBook2Demo_StoreKey.pfx" />
     <None Include="SurfaceBook2Demo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

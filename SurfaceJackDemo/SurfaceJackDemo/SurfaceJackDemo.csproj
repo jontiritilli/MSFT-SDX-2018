@@ -17,7 +17,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SurfaceJackDemo_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SurfaceJackDemo_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>5BB99130E5E2D35DACE0AE14124FBAE8CBD995AA</PackageCertificateThumbprint>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -93,7 +100,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.5</Version>
+      <Version>6.1.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
@@ -103,7 +110,7 @@
       <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
-      <Version>5.4.1</Version>
+      <Version>5.4.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -111,15 +118,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\SchemeActivationConfig.cs" />
+    <Compile Include="Activation\SchemeActivationData.cs" />
     <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
+    <Compile Include="Services\PlaylistService.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
@@ -128,11 +142,10 @@
     <Compile Include="ViewModels\ChoosePathViewModel.cs" />
     <Compile Include="ViewModels\DesignViewModel.cs" />
     <Compile Include="ViewModels\PartnerViewModel.cs" />
-    <Compile Include="ViewModels\PivotViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ProductivityViewModel.cs" />
     <Compile Include="ViewModels\SpecsViewModel.cs" />
     <Compile Include="ViewModels\TechViewModel.cs" />
-    <Compile Include="ViewModels\UriSchemeExampleViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AttractorLoopPage.xaml.cs">
       <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
@@ -149,11 +162,12 @@
     <Compile Include="Views\DesignPage.xaml.cs">
       <DependentUpon>DesignPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\INavigate.cs" />
     <Compile Include="Views\PartnerPage.xaml.cs">
       <DependentUpon>PartnerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="Views\FlipViewPage.xaml.cs">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductivityPage.xaml.cs">
       <DependentUpon>ProductivityPage.xaml</DependentUpon>
@@ -164,9 +178,6 @@
     <Compile Include="Views\TechPage.xaml.cs">
       <DependentUpon>TechPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UriSchemeExamplePage.xaml.cs">
-      <DependentUpon>UriSchemeExamplePage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -175,7 +186,71 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\caprock\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\caprock\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\caprock\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\cruz\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\cruz\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\cruz\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\13\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\13\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\13\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\13\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\15\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\15\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\15\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\sb2\15\_Thickness.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -187,13 +262,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\_Thickness.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Styles\cruz\_Images.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\TextBlock.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AttractorLoopPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -219,7 +290,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PivotPage.xaml">
+    <Page Include="Views\FlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -235,10 +306,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UriSchemeExamplePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -250,21 +317,165 @@
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Styles\foxburg\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\caprock_generic_bg.jpg" />
+    <Content Include="Assets\Backgrounds\cruz_generic_bg.png" />
+    <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_15_Generic_BG.jpg" />
+    <Content Include="Assets\Backgrounds\sb2_Generic_BG.jpg" />
+    <Content Include="Assets\Controls\contols_imageFPO1.png" />
+    <Content Include="Assets\Controls\contols_imageFPO2.png" />
+    <Content Include="Assets\Controls\contols_imageFPO3.png" />
+    <Content Include="Assets\Controls\contols_imageFPO4.png" />
+    <Content Include="Assets\Controls\contols_imageFPO5.png" />
+    <Content Include="Assets\Controls\joplin_controls_anatomy.png" />
+    <Content Include="Assets\Controls\joplin_controls_cortana.png" />
+    <Content Include="Assets\Controls\joplin_controls_cortana_act.png" />
+    <Content Include="Assets\Controls\joplin_controls_mic.png" />
+    <Content Include="Assets\Controls\joplin_controls_mic_act.png" />
+    <Content Include="Assets\Controls\joplin_controls_noiseCancellation.png" />
+    <Content Include="Assets\Controls\joplin_controls_noiseCancellation_act.png" />
+    <Content Include="Assets\Controls\joplin_controls_overview.png" />
+    <Content Include="Assets\Controls\joplin_controls_overview_act.png" />
+    <Content Include="Assets\Controls\joplin_controls_playback.png" />
+    <Content Include="Assets\Controls\joplin_controls_playback_act.png" />
+    <Content Include="Assets\Controls\joplin_controls_volume.png" />
+    <Content Include="Assets\Controls\joplin_controls_volume_act.png" />
+    <Content Include="Assets\Experience\audio_artistProfile01_FPO.png" />
+    <Content Include="Assets\Experience\audio_artistProfile02_FPO.png" />
+    <Content Include="Assets\Experience\audio_artistProfile03_FPO.png" />
+    <Content Include="Assets\Experience\audio_artistProfile04_FPO.png" />
+    <Content Include="Assets\Experience\audio_headphones.png" />
+    <Content Include="Assets\Experience\audio_spotify.png" />
+    <Content Include="Assets\Experience\joplin_design.png" />
+    <Content Include="Assets\Experience\joplin_gateway.png" />
+    <Content Include="Assets\Experience\joplin_intelligentFPO.jpg" />
+    <Content Include="Assets\Experience\joplin_tech.jpg" />
+    <Content Include="Assets\Experience\path_cruz.png" />
+    <Content Include="Assets\Experience\path_joplin.png" />
+    <Content Include="Assets\InTheBox\inthebox_carrycaseFPO.png" />
+    <Content Include="Assets\InTheBox\inthebox_headphones.png" />
+    <Content Include="Assets\InTheBox\inthebox_stereoFPO.png" />
+    <Content Include="Assets\InTheBox\inthebox_usbFPO.png" />
+    <Content Include="Assets\InTheBox\joplin_inthebox_carrycase.png" />
+    <Content Include="Assets\InTheBox\joplin_inthebox_documentation.png" />
+    <Content Include="Assets\InTheBox\joplin_inthebox_headphones.png" />
+    <Content Include="Assets\InTheBox\joplin_inthebox_stereo.png" />
+    <Content Include="Assets\InTheBox\joplin_inthebox_usb.png" />
+    <Content Include="Assets\MusicBar\joplin_player_eq0.png" />
+    <Content Include="Assets\MusicBar\joplin_player_eq1.png" />
+    <Content Include="Assets\MusicBar\joplin_player_eq2.png" />
+    <Content Include="Assets\MusicBar\joplin_player_eq3.png" />
+    <Content Include="Assets\MusicBar\joplin_player_eq4.png" />
+    <Content Include="Assets\MusicBar\joplin_player_eq5.png" />
+    <Content Include="Assets\MusicBar\joplin_player_next.png" />
+    <Content Include="Assets\MusicBar\joplin_player_pause.png" />
+    <Content Include="Assets\MusicBar\joplin_player_play.png" />
+    <Content Include="Assets\MusicBar\joplin_player_prev.png" />
+    <Content Include="Assets\NavigationBar\cap_nav_chevronLeft.png" />
+    <Content Include="Assets\NavigationBar\cap_nav_chevronRight.png" />
+    <Content Include="Assets\NavigationBar\cruz_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\cruz_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\cruz_home.png" />
+    <Content Include="Assets\NavigationBar\fox_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\fox_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\joplin_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\joplin_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\joplin_home.png" />
+    <Content Include="Assets\NavigationBar\sb2_13_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\sb2_13_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\sb2_15_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\sb2_15_chevron_right.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-100.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-125.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-150.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-200.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-400.png" />
+    <Content Include="Assets\Playlist\a-ha - Take On Me - 01 - Take On Me.mp3" />
+    <Content Include="Assets\Playlist\aha.png" />
+    <Content Include="Assets\Playlist\alabamashakes.png" />
+    <Content Include="Assets\Playlist\Amy Winehouse - Frank - 10 - %28There Is%29 No Greater Love.mp3" />
+    <Content Include="Assets\Playlist\amywinehouse.png" />
+    <Content Include="Assets\Playlist\Billie Holiday - Last Recording - 02 - Sometimes I’m Happy.mp3" />
+    <Content Include="Assets\Playlist\billieholiday.png" />
+    <Content Include="Assets\Playlist\Empire Of The Sun - Walking On A Dream - 04 - We Are The People %28Deluxe%29.mp3" />
+    <Content Include="Assets\Playlist\empireofthesun.png" />
+    <Content Include="Assets\Playlist\Erykah Badu - Mama%27s Gun - 02 - Didn%27t Cha Know.mp3" />
+    <Content Include="Assets\Playlist\erykahbadu.png" />
+    <Content Include="Assets\Playlist\Joni Mitchell - Dreamland - 09 - California.mp3" />
+    <Content Include="Assets\Playlist\jonimitchell.png" />
+    <Content Include="Assets\Playlist\Justin Nozuka-Holly-05-Supposed To Grow Old.mp3" />
+    <Content Include="Assets\Playlist\justinnozuka.png" />
+    <Content Include="Assets\Playlist\Shoegaze.mp3" />
+    <Content Include="Assets\Specs\specs_joplinGround.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-200.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-16.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-20.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-24.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-256.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-30.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-32.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-36.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-40.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-48.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-60.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-64.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-72.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-80.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-96.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-UriScheme.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\Universal\caprock_close_app_button.png" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Universal\cruz_close_app_button.png" />
+    <Content Include="Assets\Universal\fox_close.png" />
+    <Content Include="Assets\Universal\sb2_13_close.png" />
+    <Content Include="Assets\Universal\sb2_15_close.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="playlist.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="SurfaceJackDemo_StoreKey.pfx" />
     <None Include="SurfaceJackDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

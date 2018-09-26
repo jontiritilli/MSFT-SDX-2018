@@ -17,7 +17,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SurfaceStudioDemo_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SurfaceStudioDemo_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>036A97E0B9CCCA636A0142B6ABE3CC87020F9B82</PackageCertificateThumbprint>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -93,7 +100,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.5</Version>
+      <Version>6.1.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
@@ -103,7 +110,7 @@
       <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmLight">
-      <Version>5.4.1</Version>
+      <Version>5.4.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -111,40 +118,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Activation\SchemeActivationConfig.cs" />
+    <Compile Include="Activation\SchemeActivationData.cs" />
+    <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Behaviors\PivotBehavior.cs" />
     <Compile Include="Helpers\IPivotPage.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
-    <Compile Include="ViewModels\AccessoriesDialViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesMouseViewModel.cs" />
+    <Compile Include="ViewModels\AccessoriesPenPopupViewModel.cs" />
     <Compile Include="ViewModels\AccessoriesPenViewModel.cs" />
-    <Compile Include="ViewModels\AccessoriesTryItViewModel.cs" />
+    <Compile Include="ViewModels\AccessoriesDialViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupGoViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupLaptopViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupBookViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupProViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceCraftedViewModel.cs" />
     <Compile Include="ViewModels\ExperienceCreativityViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
+    <Compile Include="ViewModels\ExperiencePixelSensePopupViewModel.cs" />
     <Compile Include="ViewModels\ExperiencePixelSenseViewModel.cs" />
-    <Compile Include="ViewModels\PivotViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\AccessoriesDialPage.xaml.cs">
-      <DependentUpon>AccessoriesDialPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AccessoriesMousePage.xaml.cs">
       <DependentUpon>AccessoriesMousePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AccessoriesPenPage.xaml.cs">
       <DependentUpon>AccessoriesPenPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccessoriesTryItPage.xaml.cs">
-      <DependentUpon>AccessoriesTryItPage.xaml</DependentUpon>
+    <Compile Include="Views\AccessoriesPenPopupPage.xaml.cs">
+      <DependentUpon>AccessoriesPenPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccessoriesDialPage.xaml.cs">
+      <DependentUpon>AccessoriesDialPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AttractorLoopPage.xaml.cs">
       <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
@@ -154,6 +174,21 @@
     </Compile>
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupBook.xaml.cs">
+      <DependentUpon>ComparePagePopupBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupLaptop.xaml.cs">
+      <DependentUpon>ComparePagePopupLaptop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupGo.xaml.cs">
+      <DependentUpon>ComparePagePopupGo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupPro.xaml.cs">
+      <DependentUpon>ComparePagePopupPro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
+      <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceCraftedPage.xaml.cs">
       <DependentUpon>ExperienceCraftedPage.xaml</DependentUpon>
@@ -167,8 +202,12 @@
     <Compile Include="Views\ExperiencePixelSensePage.xaml.cs">
       <DependentUpon>ExperiencePixelSensePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PivotPage.xaml.cs">
-      <DependentUpon>PivotPage.xaml</DependentUpon>
+    <Compile Include="Views\ExperiencePixelSensePopupPage.xaml.cs">
+      <DependentUpon>ExperiencePixelSensePopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\INavigate.cs" />
+    <Compile Include="Views\FlipViewPage.xaml.cs">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +217,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Sizes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
@@ -190,6 +241,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\_Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Thickness.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,7 +253,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AccessoriesDialPage.xaml">
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -210,7 +265,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AccessoriesTryItPage.xaml">
+    <Page Include="Views\AccessoriesPenPopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccessoriesDialPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -225,6 +284,26 @@
     <Page Include="Views\ComparePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupLaptop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupGo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupPro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupStudio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ExperienceCraftedPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -242,7 +321,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PivotPage.xaml">
+    <Page Include="Views\ExperiencePixelSensePopupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -256,21 +339,148 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\Accessories\accessoriesLeft.png" />
+    <Content Include="Assets\Accessories\accessoriesRight.png" />
+    <Content Include="Assets\Accessories\accLeftDialPopupVideo.mp4" />
+    <Content Include="Assets\Accessories\inkingFish.png" />
+    <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\Backgrounds\caprock_background_light.jpg" />
+    <Content Include="Assets\Backgrounds\generic_bg.jpg" />
+    <Content Include="Assets\Backgrounds\hero_bg.jpg" />
+    <Content Include="Assets\Comparison\comparisonFamily.png" />
+    <Content Include="Assets\Comparison\comparisonGo.png" />
+    <Content Include="Assets\Comparison\comparisonLaptop.png" />
+    <Content Include="Assets\Comparison\comparisonPro.png" />
+    <Content Include="Assets\Comparison\comparisonSb2.png" />
+    <Content Include="Assets\Comparison\comparisonStudio.png" />
+    <Content Include="Assets\Experience\appsDesktop.png" />
+    <Content Include="Assets\Experience\appsStudio.png" />
+    <Content Include="Assets\Experience\caprock_adobecc.png" />
+    <Content Include="Assets\Experience\caprock_bluebeam.png" />
+    <Content Include="Assets\Experience\caprock_sketchbook.png" />
+    <Content Include="Assets\Experience\pixelSensePopupVideo.mp4" />
+    <Content Include="Assets\Experience\inkingGateway.png" />
+    <Content Include="Assets\Experience\craftmanship.png" />
+    <Content Include="Assets\Experience\hero01.jpg" />
+    <Content Include="Assets\Experience\hero02.jpg" />
+    <Content Include="Assets\Icons\AppIcons\adobecc.png" />
+    <Content Include="Assets\Icons\AppIcons\autodesk.png" />
+    <Content Include="Assets\Icons\AppIcons\bluebeam.png" />
+    <Content Include="Assets\Icons\ArtworkColors\blue.png" />
+    <Content Include="Assets\Icons\ArtworkColors\blue_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\orange.png" />
+    <Content Include="Assets\Icons\ArtworkColors\orange_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\purple.png" />
+    <Content Include="Assets\Icons\ArtworkColors\purple_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\red.png" />
+    <Content Include="Assets\Icons\ArtworkColors\red_active.png" />
+    <Content Include="Assets\Icons\ArtworkColors\reset.png" />
+    <Content Include="Assets\Icons\ArtworkColors\teal.png" />
+    <Content Include="Assets\Icons\ArtworkColors\teal_active.png" />
+    <Content Include="Assets\List\bom_office.png" />
+    <Content Include="Assets\List\bom_smile.png" />
+    <Content Include="Assets\List\bom_sync.png" />
+    <Content Include="Assets\List\bom_windows.png" />
+    <Content Include="Assets\List\specs_audio.png" />
+    <Content Include="Assets\List\specs_battery.png" />
+    <Content Include="Assets\List\specs_connections.png" />
+    <Content Include="Assets\List\specs_creative.png" />
+    <Content Include="Assets\List\specs_design.png" />
+    <Content Include="Assets\List\specs_eye.png" />
+    <Content Include="Assets\List\specs_feather.png" />
+    <Content Include="Assets\List\specs_laptop.png" />
+    <Content Include="Assets\List\specs_pen.png" />
+    <Content Include="Assets\List\specs_performance.png" />
+    <Content Include="Assets\List\specs_screenSize.png" />
+    <Content Include="Assets\List\specs_versatile.png" />
+    <Content Include="Assets\List\specs_wifi.png" />
+    <Content Include="Assets\List\inkingDraw.png" />
+    <Content Include="Assets\List\inkingPalm.png" />
+    <Content Include="Assets\List\inkingPressure.png" />
+    <Content Include="Assets\List\inkingWrite.png" />
+    <Content Include="Assets\NavigationBar\cap_nav_chevronLeft.png" />
+    <Content Include="Assets\NavigationBar\cap_nav_chevronRight.png" />
+    <Content Include="Assets\NavigationBar\cruz_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\cruz_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\cruz_home.png" />
+    <Content Include="Assets\NavigationBar\fox_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\fox_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\joplin_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\joplin_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\joplin_home.png" />
+    <Content Include="Assets\NavigationBar\sb2_13_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\sb2_13_chevron_right.png" />
+    <Content Include="Assets\NavigationBar\sb2_15_chevron_left.png" />
+    <Content Include="Assets\NavigationBar\sb2_15_chevron_right.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-100.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-125.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-150.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-200.png" />
+    <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-400.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\RadiatingButton\tryit_dial.png" />
+    <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-UriScheme.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-200.png" />
+    <Content Include="Assets\StoreIcons\SplashScreen.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-16.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-20.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-24.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-256.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-30.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-32.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-36.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-40.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-48.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-60.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-64.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-72.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-80.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo-targetsize-96.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\StoreIcons\Wide310x150Logo.scale-400.png" />
+    <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="SurfaceStudioDemo_StoreKey.pfx" />
     <None Include="SurfaceStudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

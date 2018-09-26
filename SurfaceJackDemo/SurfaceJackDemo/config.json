@@ -1,0 +1,10 @@
+﻿{
+  "IsAttractorLoopEnabled": true,
+  "IsChoosePathPageEnabled": true,
+  "Language": "",
+  "IsTelemetryEnabled": false,
+  "TelemetryBaseUrl": "https://rdx-api.azurewebsites.net/api/ReceiveTelemetryV2",
+  "TelemetryKey": "Test",
+  "TelemetryProdId": "",
+  "TelemetryTestId": ""
+}

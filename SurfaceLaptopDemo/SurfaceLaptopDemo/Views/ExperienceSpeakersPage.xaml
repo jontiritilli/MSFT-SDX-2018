@@ -4,16 +4,75 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"
     DataContext="{Binding ExperienceSpeakersViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
+                    x:Name="PageHeader" 
+                    Headline="{x:Bind Path=ViewModel.Headline}"
+                    Lede="{x:Bind Path=ViewModel.Lede}"
+                    HeadlineStyle="PageHeadline"
+                    LedeStyle="PageLede"
+                    HeaderAlignment="Right"
+                    Width="{StaticResource HeaderWidth}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"/>
+
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
+            <ctrl:AppSelectorImage 
+                x:Name="AppSelectorImageMinorSpeakers"
+                URIs="{x:Bind Path=ViewModel.speakersSelectorMinorImageURIs}"
+                ImageHeight="{x:Bind ViewModel.ImageSelectorMinorImageHeight}"
+                ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
+                Opacity="1"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.53}" />
+        </Canvas>
+
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
+            x:Name="AppSelectorImageSpeakers"
+            URIs="{x:Bind Path=ViewModel.speakersSelectorImageURIs}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            Margin="50,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+
+        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
+            x:Name="AppSelectorSpeakers"
+            URIs="{x:Bind Path=ViewModel.speakersSelectorData}"
+            ShowSelectedLine="true"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonSize}"
+            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonSize}"/>
     </Grid>
 </Page>

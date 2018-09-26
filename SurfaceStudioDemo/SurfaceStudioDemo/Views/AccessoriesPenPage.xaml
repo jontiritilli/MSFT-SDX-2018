@@ -4,16 +4,104 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"  
     Style="{StaticResource PageStyle}"
     DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+    
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"                     
+            Width="Auto"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+
+        <ctrl:TextBlockEx x:Name="ListHeadline" Grid.Row="3" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.ListHeadline}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="ListItemHeadlinePenTouch"/>
+
+        <ctrl:List Grid.Row="5" Grid.Column="1"
+            x:Name="AccessoriesList"
+            ListItems="{x:Bind Path=ViewModel.ListItems}"
+            ListStyle="LedeOnly"/>
+        
+        <ctrl:ColoringBook Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
+            x:Name="ColoringBook"
+            ImageColumnSpan="2" />
+
+        <!-- this will provide the cover effect for the interactive page until the user interacts-->
+        <!--<Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" Grid.ColumnSpan="2"
+            x:Name="ColoringBookCover"
+            Opacity=".4"
+            Background="White">
+        </Canvas>-->
+        
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
+            x:Name="GridCanvas">
+            
+            <ctrl:SurfaceDial
+                x:Name="SurfaceDial"/>
+        </Canvas>
+
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4">
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnPen"
+                TryItEnabled="True"
+                TryItText="{x:Bind Path=ViewModel.PenTryItTitle}"
+                TryItCaption="{x:Bind Path=ViewModel.PenTryItLede}"
+                IsRemovedOnInteraction="True"
+                RadiatingButtonIcon="pen"
+                PopupPosition="Left"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnDial"
+                TryItEnabled="True"
+                TryItText="{x:Bind Path=ViewModel.DialTryItTitle}"
+                TryItCaption="{x:Bind Path=ViewModel.DialTryItLede}"
+                IsRemovedOnInteraction="True"
+                RadiatingButtonIcon="dial"
+                PopupPosition="Left"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                AutoStart = "false"/>
+        </Canvas>
     </Grid>
 </Page>

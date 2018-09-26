@@ -6,10 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     Style="{StaticResource PageStyle}"
+    Background="Red"
     DataContext="{Binding Page3ViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0" Background="Red">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
@@ -28,23 +29,27 @@
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
                      Headline="{x:Bind Path=ViewModel.Headline}"
                      Lede="{x:Bind Path=ViewModel.Lede}"
-                     HeaderStyle="HeaderAndLede"
                      HeaderAlignment="Left"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     Width="500"
-                     DurationInMilliseconds="200"
-                     StaggerDelayInMilliseconds="0"
-                     AutoStart="True"/>
+                     Width="500"/>
 
-        <ctrl:TextLine x:Name="LegalNotice" Grid.Row="3" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="LegalNotice" Grid.Row="4" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.WelcomeText}"
                        ControlStyle="Hero"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       DurationInMilliseconds="200"
-                       StaggerDelayInMilliseconds="0"
-                       AutoStart="True"/>
+                       VerticalAlignment="Top"/>
 
+        <ctrl:List x:Name="List" Grid.Row="3" Grid.Column="1"
+                       ListItems = "{x:Bind Path=items}"
+                       ListStyle="HeadlineAndLede"
+                       ListWidth="300"/>
+
+        <ctrl:RadiatingButton x:Name="RadiatingButton" Grid.Row="3" Grid.Column="1"
+                       EntranceDurationInMilliseconds = "200"
+                       EntranceStaggerDelayInMilliseconds = "800"
+                       RadiateDurationInMilliseconds = "1800"
+                       RadiateStaggerDelayInMilliseconds = "1000"
+                       AutoStart = "true"/>
     </Grid>
 </Page>

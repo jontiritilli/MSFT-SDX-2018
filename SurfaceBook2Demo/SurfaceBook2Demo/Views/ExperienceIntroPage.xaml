@@ -4,16 +4,154 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"
     DataContext="{Binding ExperienceIntroViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MultiplyDoublesConverter x:Key="MultiplyDoublesConverter"/>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width=".325*"/>
+            <ColumnDefinition Width=".675*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                        Headline="{x:Bind Path=ViewModel.Headline}"
+                        Lede="{x:Bind Path=ViewModel.Lede}"                        
+                        HeadlineStyle="PageHeadlineDark"
+                        LedeStyle="PageLedeDark"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top" />
+
+        <ctrl:TextBlockEx x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
+                            Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
+                            TextStyle="Legal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Opacity="0"/>
+
+        <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
+                            Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
+                            TextStyle="Legal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Opacity="0" />
+
+        <Canvas x:Name="PageCanvas"
+                Grid.Row="0" Grid.RowSpan="7"
+                Grid.Column="0" Grid.ColumnSpan="4"
+                Margin="0"
+                Width="{StaticResource CanvasWidth}"
+                Height="{StaticResource CanvasHeight}">
+            <ctrl:RadiatingButton
+                x:Name="rBtnLeft"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.ZIndex="101"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"
+                PopupPosition="Right"  
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnRight"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                Canvas.ZIndex="101"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.85}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"                
+                PopupPosition="Left"  
+                AutoStart = "false"/>
+
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                Canvas.ZIndex="102"
+                HorizontalOffset="-1"
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                Opened="PopLeft_Opened"
+                Closed="PopLeft_Closed"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupPixelSenseInsetImage}"
+                        Headline="{x:Bind Path=ViewModel.PopupPixelSenseHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopupPixelSenseLede}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupPixelSenseImageWidth}"
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopRight"
+                IsOpen = "False"
+                Canvas.ZIndex="102"
+                HorizontalOffset="-1"
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                Opened="PopRight_Opened"
+                Closed="PopRight_Closed"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Image"
+                        MediaSourceUri="{x:Bind Path=ViewModel.PopupCompareInsetImage}"
+                        Headline="{x:Bind Path=ViewModel.PopupCompareHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopupCompareLede}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupCompareImageWidth}"
+                        />
+                </Popup.Child>
+            </Popup>
+
+            <ctrl:ImageEx x:Name="SurfaceBook15"
+                          ImageSource="{x:Bind Path=ViewModel.Book15Uri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"/>
+
+            <ctrl:ImageEx x:Name="SurfaceBook13"
+                          ImageSource="{x:Bind Path=ViewModel.Book13Uri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.6}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"/>
+
+            <ctrl:ImageEx x:Name="Dial"
+                          ImageSource="{x:Bind Path=ViewModel.DialUri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.15}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.7}"/>
+
+            <ctrl:ImageEx x:Name="Pen"
+                          ImageSource="{x:Bind Path=ViewModel.PenUri}"
+                          ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
+                          Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.7}"
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.8}"/>
+
+        </Canvas>
     </Grid>
+
 </Page>

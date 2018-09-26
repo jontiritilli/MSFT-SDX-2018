@@ -1,0 +1,97 @@
+﻿<Page
+    x:Class="SurfaceStudioDemo.Views.ExperiencePixelSensePopupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:SurfaceStudioDemo.Views"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    DataContext="{Binding ExperiencePixelSensePopupViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Height="{StaticResource ScreenHeight}"
+        Width="{StaticResource ScreenWidth}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="3" Grid.Column="1"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom" />
+
+        <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
+            x:Name="AppSelectorPixel"                        
+            URIs="{x:Bind Path=ViewModel.IconURIS}"
+            ButtonWidth="{StaticResource AppSelectorButtonWidth}"
+            ButtonHeight="{StaticResource AppSelectorButtonWidth}"
+            AppSelectorMode="App"
+            ShowMessages="True"
+            MainOrientation="Vertical"
+            ShowSelectedLine="True"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Opacity="1"/>
+
+        <ctrl:AppSelectorImage Grid.Row="2" Grid.Column="0" Grid.RowSpan="4"
+            x:Name="AppSelectorImagePixel"
+            URIs="{x:Bind ViewModel.ImageURIS}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            Opacity="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"/>
+
+        <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Opacity="1"
+            TextStyle="Legal"/>
+
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3">
+            <Grid x:Name="grdCloseButton"
+                Canvas.Left="{x:Bind Path=ViewModel.EllipseGridCanvasSetLeft}"  
+                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseTopMargin}"            
+                PointerPressed="PopClose_Click">
+
+                <Ellipse
+                    Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                    Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                    Fill="White"
+                    StrokeThickness="2"
+                    Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0"/>
+
+                <ctrl:ImageEx
+                    x:Name="CloseButtonImage"
+                    ImageSource="{x:Bind Path=ViewModel.x_ImageURI}"
+                    ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"                
+                    Margin="0"/>
+            </Grid>
+        </Canvas>
+    </Grid>
+</Page>

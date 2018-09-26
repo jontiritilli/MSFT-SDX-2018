@@ -4,16 +4,79 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
-    DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"    
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width=".4*"/>
+            <ColumnDefinition Width=".6*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+            <ctrl:RadiatingButton
+                x:Name="rBtnCenter"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                IsRemovedOnInteraction="True"
+                TryItEnabled="True"
+                RadiatingButtonIcon="pen"
+                TryItText="{x:Bind Path=ViewModel.TryItTitle}"
+                TryItCaption="{x:Bind Path=ViewModel.TryItLede}"                
+                AutoStart = "false"/>
+        </Canvas>
+        <ctrl:List x:Name="AccessoriesList"
+            ListItems="{x:Bind Path=ViewModel.ListItems}"
+            ListStyle="LedeOnly"            
+            Grid.Column="1"            
+            Grid.Row="3"/>
+
+        <ctrl:ColoringBook
+            x:Name="ColoringBook"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="8"
+            Grid.ColumnSpan="4"
+            ImageColumnSpan="1"            
+            />
+        <ctrl:TextBlockEx x:Name="LegalConnections"
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"/>
+
     </Grid>
 </Page>

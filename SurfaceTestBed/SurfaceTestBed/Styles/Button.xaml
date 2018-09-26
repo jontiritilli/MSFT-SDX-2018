@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SurfaceTestBed.Styles">
 
-    <Style x:Key="ColorSelectorButton" TargetType="Button">
+    <Style x:Key="AppSelectorButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />

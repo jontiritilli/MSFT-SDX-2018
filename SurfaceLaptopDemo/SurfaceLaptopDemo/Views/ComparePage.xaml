@@ -4,16 +4,191 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"     
     DataContext="{Binding CompareViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"/>
+        <Canvas x:Name="ButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnPro"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.02}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                                                    
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnBook"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.18}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.56}"                                                    
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnStudio"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.45}"                                                    
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnLaptop"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.76}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.61}"                                                    
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnGo"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.86}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                                                    
+                AutoStart = "false"/>
+
+            <Popup
+                x:Name="PopPro"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="Surface Pro"
+                        Lede="Work In Progress"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopBook"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="Surface Book"
+                        Lede="Work In Progress"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopStudio"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="Surface Studio"
+                        Lede="Work In Progress"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopLaptop"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="Surface Laptop"
+                        Lede="Work In Progress"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopGo"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="Surface Go"
+                        Lede="Work In Progress"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+
+            <ctrl:TextBlockEx
+                Text="{x:Bind Path=ViewModel.ProTitle}"
+                TextStyle="ListLede"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.08}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.84}"   
+            />
+            <ctrl:TextBlockEx
+                Text="{x:Bind Path=ViewModel.BookTitle}"
+                TextStyle="ListLede"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.26}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"   
+            />
+            <ctrl:TextBlockEx
+                Text="{x:Bind Path=ViewModel.StudioTitle}"
+                TextStyle="ListLede"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.46}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.77}"    
+            />
+            <ctrl:TextBlockEx
+                Text="{x:Bind Path=ViewModel.LaptopTitle}"
+                TextStyle="ListLede"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.64}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.82}"   
+            />
+            <ctrl:TextBlockEx
+                Text="{x:Bind Path=ViewModel.GoTitle}"
+                TextStyle="ListLede"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.83}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.87}"   
+            />
+        </Canvas>
+        <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
+            x:Name="img_Family"
+            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
+            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
+            TranslateDirection="Left"
+            Canvas.ZIndex="100"
+            Opacity="0"
+            />
     </Grid>
 </Page>

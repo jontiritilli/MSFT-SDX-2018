@@ -141,54 +141,6 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="PivotItem_Main.Header" xml:space="preserve">
-    <value>Main</value>
-    <comment>Pivot item header for Main</comment>
-  </data>
-  <data name="PivotItem_ExperienceHero.Header" xml:space="preserve">
-    <value>ExperienceHero</value>
-    <comment>Pivot item header for ExperienceHero</comment>
-  </data>
-  <data name="PivotItem_ExperienceColors.Header" xml:space="preserve">
-    <value>ExperienceColors</value>
-    <comment>Pivot item header for ExperienceColors</comment>
-  </data>
-  <data name="PivotItem_ExperienceInnovation.Header" xml:space="preserve">
-    <value>ExperienceInnovation</value>
-    <comment>Pivot item header for ExperienceInnovation</comment>
-  </data>
-  <data name="PivotItem_ExperiencePerformance.Header" xml:space="preserve">
-    <value>ExperiencePerformance</value>
-    <comment>Pivot item header for ExperiencePerformance</comment>
-  </data>
-  <data name="PivotItem_ExperienceSpeakers.Header" xml:space="preserve">
-    <value>ExperienceSpeakers</value>
-    <comment>Pivot item header for ExperienceSpeakers</comment>
-  </data>
-  <data name="PivotItem_ExperienceSleek.Header" xml:space="preserve">
-    <value>ExperienceSleek</value>
-    <comment>Pivot item header for ExperienceSleek</comment>
-  </data>
-  <data name="PivotItem_AccessoriesTouch.Header" xml:space="preserve">
-    <value>AccessoriesTouch</value>
-    <comment>Pivot item header for AccessoriesTouch</comment>
-  </data>
-  <data name="PivotItem_AccessoriesMouse.Header" xml:space="preserve">
-    <value>AccessoriesMouse</value>
-    <comment>Pivot item header for AccessoriesMouse</comment>
-  </data>
-  <data name="PivotItem_AccessoriesPen.Header" xml:space="preserve">
-    <value>AccessoriesPen</value>
-    <comment>Pivot item header for AccessoriesPen</comment>
-  </data>
-  <data name="PivotItem_BestOfMicrosoft.Header" xml:space="preserve">
-    <value>BestOfMicrosoft</value>
-    <comment>Pivot item header for BestOfMicrosoft</comment>
-  </data>
-  <data name="PivotItem_Compare.Header" xml:space="preserve">
-    <value>Compare</value>
-    <comment>Pivot item header for Compare</comment>
-  </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>

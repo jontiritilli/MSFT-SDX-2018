@@ -5,15 +5,140 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"      
     DataContext="{Binding ExperienceQuietViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width=".325*"/>
+            <ColumnDefinition Width=".675*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader"
+                Grid.Row="1"                  
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+            <ctrl:RadiatingButton
+                x:Name="rBtnLeft"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.32}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                    
+                PopupPosition="Right"                
+                AutoStart = "false"/>
+            <ctrl:RadiatingButton
+                x:Name="rBtnRight"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                  
+                PopupPosition="Left"                
+                AutoStart = "false"/>
+            <ctrl:RadiatingButton
+                x:Name="rBtnTop"                              
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.84}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                    
+                PopupPosition="Left"                
+                AutoStart = "false"/>
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"
+                Opened="PopLeft_Opened"
+                Closed="PopLeft_Closed"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopLeftLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"  
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopTop"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1" 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"  
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopRight"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1" 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopRightLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                            
+                        />
+                </Popup.Child>
+            </Popup>
+
+        </Canvas>
+        <ctrl:ImageEx
+            Grid.Row="0"
+            Grid.RowSpan="8"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            VerticalAlignment="Center"
+            x:Name="img_Tablet"
+            ImageWidth="{x:Bind Path=ViewModel.TabletWidth}"            
+            ImageSource="{x:Bind Path=ViewModel.TabletUri}"
+            TranslateDirection="Left"
+            Canvas.ZIndex="100"
+            Opacity="0"
+            />
+        <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
+                          Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          TextStyle="Legal"
+                          Opacity="0"/>
     </Grid>
 </Page>

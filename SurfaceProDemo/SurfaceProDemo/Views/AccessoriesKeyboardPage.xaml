@@ -5,15 +5,123 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"       
     DataContext="{Binding AccessoriesKeyboardViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
+    
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width=".4*"/>
+            <ColumnDefinition Width=".6*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                Headline="{x:Bind Path=ViewModel.Headline}"
+                Lede="{x:Bind Path=ViewModel.Lede}"
+                HeadlineStyle="PageHeadline"
+                LedeStyle="PageLede"                
+                Width="{StaticResource HeaderWidth}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" />
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnBottom"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"                                                    
+                PopupPosition="Left"                 
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnTop"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.48}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.23}"                                                    
+                PopupPosition="Right"                 
+                AutoStart = "false"/>
+
+            <Popup
+                x:Name="PopBottom"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopBottomLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+            <Popup
+                x:Name="PopTop"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="-1"                 
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                                                   
+                        />
+                </Popup.Child>
+            </Popup>
+        </Canvas>
+        <ctrl:AppSelector
+            x:Name="AppSelectorKB"
+            URIs="{x:Bind Path=ViewModel.appSelectorData}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Canvas.ZIndex="101"
+            Grid.Row="3"
+            Grid.Column="1"
+            ButtonWidth="{StaticResource AppSelectorButtonWidth}"
+            ButtonHeight="{StaticResource AppSelectorButtonWidth}"
+            />
+        <ctrl:AppSelectorImage
+            x:Name="AppSelectorImageKB"
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            HorizontalAlignment="Right"
+            URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
+        <ctrl:TextBlockEx
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.PopBottomLegal}"
+            TextStyle="Legal"
+            />
     </Grid>
 </Page>

@@ -9,60 +9,774 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 
 namespace SDX.Toolkit.Helpers
 {
-    public enum ControlStyles
+    public enum TextStyles
     {
-        Hero,               // Segoe UI Light, 480px, white
-        Headline,           // Segoe UI Light, 200px, white
-        Lede,               // Segoe UI Regular, 86px, white
-        ListHeadline,       // Segoe UI Regular, 110px, White
-        ListLede,           // Segoe UI Regular, 86px, White
-        CTAText,            // Segoe UI Bold, 60px, #454545
-        PopupText,          // Segoe UI Regular, 86px, Black
-        NavBarActive,       // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-        NavBarInactive,     // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-        SwipeLeft,          // Segoe UI Bold, 60px, White
-        SwipeToContinue,    // Segoe UI Semibold, 70px, White
-        ButtonText,         // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-        SliderText,         // Segoe UI Bold, 60px, White
-        TouchHere,          // Segoe UI Bold, 60px, White
-        FastChargeHeader,   // Segoe UI Regular, 100px, Black
-        FastChargeLede,     // Segoe UI Regular, 86px, Black
-        FastChargePercent,  // Segoe UI Light, 300px, White
-        FastChargeTimeline, // Segoe UI Bold, 60px, Black
-        GaugePoint,         // Segoe UI Bold, 60px, White
-        GaugePointBullet,   // Segoe UI Bold, 60px, White
-        Footnote,           // Segoe UI Regular, 60px, #5C5C5C
-        LearnMore,          // Segoe UI Bold, 60px, #454545
-        CompareHeader,      // Segoe UI Light, 200px, Black
-        CompareTitle,       // Segoe UI Bold, 80px, Black
-        CompareText,        // Segoe UI Regular, 80px, Black
-        CompareLegal        // Segoe UI Regular, 70px, #5C5C5C
+        Hero,
+        Swipe,
+        PageHeadline,
+        PageHeadlineDark,
+        PageHeadlineLarge,
+        PageLede,
+        PageLedeDark,
+        ReadyPageHeadline,
+        ListHeadline,
+        ListLede,
+        ListLedeBold,
+        ListItemHeadlinePenTouch,
+        ListItemLedePenTouch,
+        ListItemHeadlineBestOf,
+        ListItemLedeBestOf,
+        ListItemHeadlineCompare,
+        ListItemLedeCompare,
+        ListItemCTAText,
+        PopupHeadline,
+        PopupLede,
+        PopupBatteryLife,
+        SliderBatteryLife,
+        SliderCaption,
+        Legal,
+        TryIt,
+        ButtonCaption,
+        ButtonCaptionDark,
+        ReadyButtonCaption,
+        NavigationSection,
+        NavigationSectionActive,
+        PlayerArtistName,
+        PlayerTrackName,
+    }
+
+    public enum LayoutSizes
+    {
+        LeftMargin,
+        TopMargin,
+        RightMargin,
+        BottomMargin,
+        SpaceBelowHeader,
+        AppCloseWidth,
+        AppCloseHeight,
+        HeaderWidth,
+        HeaderSpacerRowHeightPageHeader,
+        HeaderSpacerRowHeightListHeader,
+        HeaderSpacerRowHeightListItemHeaderPenTouch,
+        HeaderSpacerRowHeightListItemHeaderBestOf,
+        HeaderSpacerRowHeightListItemHeaderCompare,
+        HeaderSpacerRowHeightPopupHeader,
+        AccessoriesPenListIconWidth,
+        BestOfMicrosoftListIconWidth,
+        BestOfMicrosoftRowSpacerHeight,
+        BestOfMicrosoftColumnSpacerWidth,
+        CompareListIconWidth,
+        AccessoryColorSelectorIconWidth,
+        AccessoryPrimaryImageWidth,
+        AccessoryPrimaryImageHeight,
+        SwipeLeftEllipseRadius,
+        SwipeLeftSpacer,
+        SwipeToContinueArrowWidth,
+        SwipeToContinueSpacer,
+        PopupDefaultWidth,
+        PopupSpacer,
+        CanvasWidth,
+        CanvasHeight,
+        ListColumnSpacerWidth,
+        ListRowSpacerHeight,
+        NavigationBarHeight,
+        NavigationBarLineHeight,
+        NavigationBarMargin,
+        NavigationBarSpacer,
+        NavigationBarWidthArrow,
+        NavigationBarWidthHome,
+        TryItBoxHeight,
+        TryItBoxWidth,
+        TryItPathHeight,
+        TryItPathWidth,
+        TryItPathCoverBottomMargin,
+        TryItIconHeight,
+        RadiatingButtonIconHeight,
+        RadiatingButtonEllipseRadius,
+        RadiatingButtonGridWidth,
+        RadiatingButtonEllipseTopSpacer,
+        RadiatingButtonEllipseBottomSpacer,
+        RadiatingButtonCaptionHeight,
+        RadiatingButtonCloseIconWidth,
+        ColoringBookButtonWidth,
+        ColoringBookButtonHeight,
+        ColoringBookImageWidth,
+        AppSelectorButtonWidth,
+        AppSelectorButtonHeight,
+        PlayerHeight,
+        PlayerLeftMargin,
+        PlayerRightMargin,
+        PlayerTrackSpacer,
+        PlayerButtonWidth,
+        PlayerButtonSpacer,
+        PlayerScrubHeight,
+        PlayerScrubWidth,
+    }
+
+    public enum LayoutThicknesses
+    {
+        HeroMargin,
+        PopupBorder,
+        PopupPadding
+    }
+
+    public enum ColoringBookColors
+    {
+        Red,
+        Blue,
+        Teal,
+        Orange,
+        Purple
+    }
+
+    public enum BitmapImages
+    {
+        ColoringBookImage,
+        ColoringBookColorRed,
+        ColoringBookColorRedActive,
+        ColoringBookColorBlue,
+        ColoringBookColorBlueActive,
+        ColoringBookColorTeal,
+        ColoringBookColorTealActive,
+        ColoringBookColorOrange,
+        ColoringBookColorOrangeActive,
+        ColoringBookColorPurple,
+        ColoringBookColorPurpleActive,
+        ColoringBookReset,
+        PagePopupImage_1,
+        PagePopupImage_2,
+        PagePopupImage_3,
+        PagePopupImage_4,
+        PagePopupImage_5,
+        PagePopupAppIcon_1,
+        PagePopupAppIcon_2,
+        PagePopupAppIcon_3,
+        PagePopupAppIcon_4,
+        PagePopupAppIcon_5,
+        PagePopupAppIcon_Selected_1,
+        PagePopupAppIcon_Selected_2,
+        PagePopupAppIcon_Selected_3,
+        PagePopupAppIcon_Selected_4,
+        PagePopupAppIcon_Selected_5
     }
 
     public static class StyleHelper
     {
-        // these are "pixel" to "point" conversions based on pixels/SCALE_FACTOR = point
-        private static readonly double SCALE_FACTOR = 4.2;
+        #region Style Constants
 
-        public static readonly double FONTSIZE_60px = Math.Truncate(60d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_70px = Math.Truncate(70d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_80px = Math.Truncate(80d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_86px = Math.Truncate(86d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_100px = Math.Truncate(100d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_110px = Math.Truncate(110d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_200px = Math.Truncate(200d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_300px = Math.Truncate(300d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_400px = Math.Truncate(400d / SCALE_FACTOR);
-        public static readonly double FONTSIZE_480px = Math.Truncate(480d / SCALE_FACTOR);
+        public const string STYLE_HERO = "Hero";
+        public const string STYLE_SWIPE = "Swipe";
+        public const string STYLE_PAGE_HEADLINE = "PageHeadline";
+        public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark"; 
+        public const string STYLE_PAGE_HEADLINE_LARGE = "PageHeadlineLarge";
+        public const string STYLE_PAGE_LEDE = "PageLede";
+        public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
+        public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
+        public const string STYLE_LIST_HEADLINE = "ListHeadline";
+        public const string STYLE_LIST_LEDE = "ListLede";
+        public const string STYLE_LIST_LEDE_BOLD = "ListLedeBold";
+        public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
+        public const string STYLE_LISTITEM_LEDE_PENTOUCH = "ListItemLedePenTouch";
+        public const string STYLE_LISTITEM_HEADLINE_BESTOF = "ListItemHeadlineBestOf";
+        public const string STYLE_LISTITEM_LEDE_BESTOF = "ListItemLedeBestOf";
+        public const string STYLE_LISTITEM_HEADLINE_COMPARE = "ListItemHeadlineCompare";
+        public const string STYLE_LISTITEM_LEDE_COMPARE = "ListItemLedeCompare";
+        public const string STYLE_LISTITEM_CTATEXT = "ListItemCTAText";
+        public const string STYLE_POPUP_HEADLINE = "PopupHeadline";
+        public const string STYLE_POPUP_LEDE = "PopupLede";
+        public const string STYLE_POPUP_BATTERYLIFE = "PopupBatteryLife";
+        public const string STYLE_SLIDER_BATTERYLIFE = "SliderBatteryLife";
+        public const string STYLE_SLIDER_CAPTION = "SliderCaption";
+        public const string STYLE_LEGAL = "Legal";
+        public const string STYLE_TRYIT = "TryIt"; 
+        public const string STYLE_BUTTONCAPTION = "ButtonCaption"; 
+        public const string STYLE_BUTTONCAPTION_DARK = "ButtonCaptionDark";
+        public const string STYLE_READYBUTTONCAPTION = "ReadyButtonCaption";
+        public const string STYLE_NAVIGATION_SECTION = "NavigationSection";
+        public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
+        public const string STYLE_PLAYER_ARTISTNAME = "PlayerArtistName";
+        public const string STYLE_PLAYER_TRACKNAME = "PlayerTrackName";
 
-        public static readonly double ELEMENT_HEIGHT_204PX = Math.Truncate(204d / SCALE_FACTOR);
+        #endregion
 
 
-        public static double PopupBackgroundOpacity { get => 0.95d; }
+        #region Size Constants
+
+        public const string SIZE_LEFT_MARGIN = "LeftMargin";
+        public const string SIZE_TOP_MARGIN = "TopMargin";
+        public const string SIZE_RIGHT_MARGIN = "RightMargin";
+        public const string SIZE_BOTTOM_MARGIN = "BottomMargin";
+
+        public const string SIZE_SPACE_BELOW_HEADER = "SpaceBelowHeader";
+
+        public const string SIZE_APPCLOSE_WIDTH = "AppCloseWidth";
+        public const string SIZE_APPCLOSE_HEIGHT = "AppCloseHeight";
+
+        public const string SIZE_HEADER_WIDTH = "HeaderWidth";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_PAGEHEADER = "HeaderSpacerRowHeightPageHeader";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTHEADER = "HeaderSpacerRowHeightListHeader";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_PENTOUCH = "HeaderSpacerRowHeightListHeaderPenTouch";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_BESTOF = "HeaderSpacerRowHeightListHeaderBestOf";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_COMPARE = "HeaderSpacerRowHeightListHeaderCompare";
+        public const string SIZE_HEADER_SPACER_ROW_HEIGHT_POPUPHEADER = "HeaderSpacerRowHeightPopupHeader";
+
+        public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
+        public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
+        public const string SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT = "BestOfMicrosoftRowSpacerHeight";
+        public const string SIZE_BESTOFMICROSOFT_COLSPACERWIDTH = "BestOfMicrosoftColumnSpacerWidth"; 
+        public const string SIZE_COMPARE_LISTICONWIDTH = "CompareListIconWidth";
+
+        public const string SIZE_ACCESSORIES_COLORICONWIDTH = "AccessoryColorSelectorIconWidth";
+
+        public const string SIZE_ACCESSORIES_PRIMARYIMAGEWIDTH = "AccessoryPrimaryImageWidth";
+        public const string SIZE_ACCESSORIES_PRIMARYIMAGEHEIGHT = "AccessoryPrimaryImageHeight";
+
+        public const string SIZE_SWIPELEFT_ELLIPSE_RADIUS = "SwipeLeftEllipseRadius";
+        public const string SIZE_SWIPELEFT_SPACER = "SwipeLeftSpacer";
+
+        public const string SIZE_SWIPETOCONTINUE_ARROW_WIDTH = "SwipeToContinueArrowWidth";
+        public const string SIZE_SWIPETOCONTINUE_SPACER = "SwipeToContinueSpacer";
+
+        public const string SIZE_POPUP_DEFAULT_WIDTH = "PopupDefaultWidth";
+        public const string SIZE_POPUP_SPACER = "PopupSpacer";
+
+        public const string SIZE_CANVAS_WIDTH = "CanvasWidth";
+        public const string SIZE_CANVAS_HEIGHT = "CanvasHeight";
+
+        public const string SIZE_LIST_COLUMN_SPACER_WIDTH = "ListColumnSpacerWidth";
+        public const string SIZE_LIST_ROW_SPACER_HEIGHT = "ListRowSpacerHeight";
+
+        public const string SIZE_NAVIGATIONBAR_HEIGHT = "NavigationBarHeight";
+        public const string SIZE_NAVIGATIONBAR_LINEHEIGHT = "NavigationBarLineHeight";
+        public const string SIZE_NAVIGATIONBAR_MARGIN = "NavigationBarMargin";
+        public const string SIZE_NAVIGATIONBAR_SPACER = "NavigationBarSpacer";
+        public const string SIZE_NAVIGATIONBAR_WIDTH_ARROW = "NavigationBarArrowWidth";
+        public const string SIZE_NAVIGATIONBAR_WIDTH_HOME = "NavigationBarHomeWidth";
+
+        public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight"; 
+        public const string SIZE_TRYIT_BOX_WIDTH = "TryItBoxWidth";
+        public const string SIZE_TRYIT_PATH_HEIGHT = "TryItPathHeight"; 
+        public const string SIZE_TRYIT_PATH_COVER_MARGIN = "TryItPathCoverBottomMargin";
+        public const string SIZE_TRYIT_PATH_WIDTH = "TryItPathWidth";
+        public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
+
+        public const string SIZE_RADIATING_BUTTON_ICON_HEIGHT = "RadiatingButtonIconHeight";
+        public const string SIZE_RADIATING_BUTTON_ELLIPSE_RADIUS = "RadiatingButtonEllipseRadius";
+        public const string SIZE_RADIATING_BUTTON_GRID_WIDTH = "RadiatingButtonGridWidth";
+        public const string SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT = "RadiatingButtonEllipseTopSpacer";
+        public const string SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT = "RadiatingButtonEllipseBottomSpacer";
+        public const string SIZE_RADIATING_BUTTON_CAPTION_HEIGHT = "RadiatingButtonCaptionHeight"; 
+        public const string SIZE_RADIATING_BUTTON_CLOSEICON_WIDTH = "RadiatingButtonCloseIconWidth";
+
+        public const string SIZE_COLORINGBOOKBUTTONWIDTH = "ColoringBookButtonWidth";
+        public const string SIZE_COLORINGBOOKBUTTONHEIGHT= "ColoringBookButtonHeight";
+        public const string SIZE_COLORINGBOOKIMAGEWIDTH = "ColoringBookBitmapImageWidth";
+
+        public const string SIZE_APPSELECTORBUTTONWIDTH = "AppSelectorButtonWidth";
+        public const string SIZE_APPSELECTORBUTTONHEIGHT = "AppSelectorButtonHeight";
+        public const string SIZE_PLAYER_HEIGHT = "PlayerHeight";
+        public const string SIZE_PLAYER_LEFTMARGIN = "PlayerLeftMargin";
+        public const string SIZE_PLAYER_RIGHTMARGIN = "PlayerRightMargin";
+        public const string SIZE_PLAYER_TRACKSPACER = "PlayerTrackSpacer";
+        public const string SIZE_PLAYER_BUTTONWIDTH = "PlayerButtonWidth";
+        public const string SIZE_PLAYER_BUTTONSPACER = "PlayerButtonSpacer";
+        public const string SIZE_PLAYER_SCRUBHEIGHT = "PlayerScrubHeight";
+        public const string SIZE_PLAYER_SCRUBWIDTH = "PlayerScrubWidth";
+
+        #endregion
+
+
+        #region Color Constants
+        public const string RED = "ColoringBookColorRed";
+        public const string BLUE = "ColoringBookColorBlue";
+        public const string TEAL = "ColoringBookColorTeal";
+        public const string ORANGE = "ColoringBookColorOrange";
+        public const string PURPLE = "ColoringBookColorPurple";
+        #endregion
+
+
+        #region Image Constants
+        public const string BITMAPIMAGE_COLORINGBOOK = "ColoringBookBitmapImage";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RESET = "BitmapImageColoringBookReset";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RED = "BitmapImageColoringBookRed";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE = "BitmapImageColoringBookBlue";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL = "BitmapImageColoringBookTeal";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE = "BitmapImageColoringBookOrange";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE = "BitmapImageColoringBookPurple";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RED_ACTIVE = "BitmapImageColoringBookRedActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE_ACTIVE = "BitmapImageColoringBookBlueActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL_ACTIVE = "BitmapImageColoringBookTealActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE_ACTIVE = "BitmapImageColoringBookOrangeActive";
+        public const string BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE_ACTIVE = "BitmapImageColoringBookPurpleActive";
+
+        public const string BITMAPIMAGE_PAGEPOPUP_1 = "BitmapImagePagePopUp_1";
+        public const string BITMAPIMAGE_PAGEPOPUP_2 = "BitmapImagePagePopUp_2";
+        public const string BITMAPIMAGE_PAGEPOPUP_3 = "BitmapImagePagePopUp_3";
+        public const string BITMAPIMAGE_PAGEPOPUP_4 = "BitmapImagePagePopUp_4";
+        public const string BITMAPIMAGE_PAGEPOPUP_5 = "BitmapImagePagePopUp_5";
+
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_1 = "BitmapImagePagePopup_AppIcon_1";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_2 = "BitmapImagePagePopup_AppIcon_2";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_3 = "BitmapImagePagePopup_AppIcon_3";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_4 = "BitmapImagePagePopup_AppIcon_4";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_5 = "BitmapImagePagePopup_AppIcon_5";
+
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_1 = "BitmapImagePagePopup_AppIcon_Selected_1";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_2 = "BitmapImagePagePopup_AppIcon_Selected_2";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_3 = "BitmapImagePagePopup_AppIcon_Selected_3";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_4 = "BitmapImagePagePopup_AppIcon_Selected_4";
+        public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_5 = "BitmapImagePagePopup_AppIcon_Selected_5";
+
+
+        #endregion
+
+
+        #region Thickness Constants
+
+        public const string THICKNESS_HERO_MARGIN = "HeroMargin";
+        public const string THICKNESS_POPUP_BORDER = "PopupBorder";
+        public const string THICKNESS_POPUP_PADDING = "PopupPadding";
+
+        #endregion
+
+
+        #region Size Methods
+
+        public static double GetApplicationDouble(LayoutSizes size)
+        {
+            double value = -1;
+
+            switch (size)
+            {
+                case LayoutSizes.LeftMargin:
+                    value = GetApplicationDouble(SIZE_LEFT_MARGIN);
+                    break;
+
+                case LayoutSizes.TopMargin:
+                    value = GetApplicationDouble(SIZE_TOP_MARGIN);
+                    break;
+
+                case LayoutSizes.RightMargin:
+                    value = GetApplicationDouble(SIZE_RIGHT_MARGIN);
+                    break;
+
+                case LayoutSizes.BottomMargin:
+                    value = GetApplicationDouble(SIZE_BOTTOM_MARGIN);
+                    break;
+
+                case LayoutSizes.SpaceBelowHeader:
+                    value = GetApplicationDouble(SIZE_SPACE_BELOW_HEADER);
+                    break;
+
+                case LayoutSizes.HeaderWidth:
+                    value = GetApplicationDouble(SIZE_HEADER_WIDTH);
+                    break;
+
+                case LayoutSizes.AppCloseWidth:
+                    value = GetApplicationDouble(SIZE_APPCLOSE_WIDTH);
+                    break;
+
+                case LayoutSizes.AppCloseHeight:
+                    value = GetApplicationDouble(SIZE_APPCLOSE_HEIGHT);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightPageHeader:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_PAGEHEADER);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListHeader:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTHEADER);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListItemHeaderPenTouch:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_PENTOUCH);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListItemHeaderBestOf:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_BESTOF);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightListItemHeaderCompare:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_LISTITEMHEADER_COMPARE);
+                    break;
+
+                case LayoutSizes.HeaderSpacerRowHeightPopupHeader:
+                    value = GetApplicationDouble(SIZE_HEADER_SPACER_ROW_HEIGHT_POPUPHEADER);
+                    break;
+
+                case LayoutSizes.AccessoriesPenListIconWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIESPEN_LISTICONWIDTH);
+                    break;
+
+                case LayoutSizes.BestOfMicrosoftListIconWidth:
+                    value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_LISTICONWIDTH);
+                    break;
+
+                case LayoutSizes.BestOfMicrosoftRowSpacerHeight:
+                    value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT);
+                    break;
+
+                case LayoutSizes.BestOfMicrosoftColumnSpacerWidth:
+                    value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_COLSPACERWIDTH);
+                    break;
+                    
+                case LayoutSizes.CompareListIconWidth:
+                    value = GetApplicationDouble(SIZE_COMPARE_LISTICONWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryColorSelectorIconWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_COLORICONWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryPrimaryImageWidth:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_PRIMARYIMAGEWIDTH);
+                    break;
+
+                case LayoutSizes.AccessoryPrimaryImageHeight:
+                    value = GetApplicationDouble(SIZE_ACCESSORIES_PRIMARYIMAGEHEIGHT);
+                    break;
+
+                case LayoutSizes.SwipeLeftEllipseRadius:
+                    value = GetApplicationDouble(SIZE_SWIPELEFT_ELLIPSE_RADIUS);
+                    break;
+
+                case LayoutSizes.SwipeLeftSpacer:
+                    value = GetApplicationDouble(SIZE_SWIPELEFT_SPACER);
+                    break;
+
+                case LayoutSizes.SwipeToContinueArrowWidth:
+                    value = GetApplicationDouble(SIZE_SWIPETOCONTINUE_ARROW_WIDTH);
+                    break;
+
+                case LayoutSizes.SwipeToContinueSpacer:
+                    value = GetApplicationDouble(SIZE_SWIPETOCONTINUE_SPACER);
+                    break;
+
+                case LayoutSizes.PopupDefaultWidth:
+                    value = GetApplicationDouble(SIZE_POPUP_DEFAULT_WIDTH);
+                    break;
+
+                case LayoutSizes.PopupSpacer:
+                    value = GetApplicationDouble(SIZE_POPUP_SPACER);
+                    break;
+
+                case LayoutSizes.CanvasWidth:
+                    value = GetApplicationDouble(SIZE_CANVAS_WIDTH);
+                    break;
+
+                case LayoutSizes.CanvasHeight:
+                    value = GetApplicationDouble(SIZE_CANVAS_HEIGHT);
+                    break;
+
+                case LayoutSizes.ListColumnSpacerWidth:
+                    value = GetApplicationDouble(SIZE_LIST_COLUMN_SPACER_WIDTH);
+                    break;
+
+                case LayoutSizes.ListRowSpacerHeight:
+                    value = GetApplicationDouble(SIZE_LIST_ROW_SPACER_HEIGHT);
+                    break;
+                    
+                case LayoutSizes.NavigationBarHeight:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_HEIGHT);
+                    break;
+
+                case LayoutSizes.NavigationBarLineHeight:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_LINEHEIGHT);
+                    break;
+
+                case LayoutSizes.NavigationBarMargin:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_MARGIN);
+                    break;
+
+                case LayoutSizes.NavigationBarSpacer:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_SPACER);
+                    break;
+
+                case LayoutSizes.NavigationBarWidthArrow:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_WIDTH_ARROW);
+                    break;
+
+                case LayoutSizes.NavigationBarWidthHome:
+                    value = GetApplicationDouble(SIZE_NAVIGATIONBAR_WIDTH_HOME);
+                    break;
+
+                case LayoutSizes.TryItBoxHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOX_HEIGHT);
+                    break;
+                    
+                case LayoutSizes.TryItBoxWidth:
+                    value = GetApplicationDouble(SIZE_TRYIT_BOX_WIDTH);
+                    break; 
+
+                case LayoutSizes.TryItPathHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
+                    break;
+
+                case LayoutSizes.TryItPathWidth:
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_WIDTH);
+                    break;
+
+                case LayoutSizes.TryItPathCoverBottomMargin:
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_COVER_MARGIN);
+                    break;
+
+                case LayoutSizes.TryItIconHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_ICON_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonIconHeight:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_ICON_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseRadius:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_ELLIPSE_RADIUS);
+                    break;
+
+                case LayoutSizes.RadiatingButtonGridWidth:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_GRID_WIDTH);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseTopSpacer:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_TOP_SPACER_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonEllipseBottomSpacer:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_BOTTOM_SPACER_HEIGHT);
+                    break;
+
+                case LayoutSizes.RadiatingButtonCaptionHeight:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CAPTION_HEIGHT);
+                    break; 
+
+                case LayoutSizes.RadiatingButtonCloseIconWidth:
+                    value = GetApplicationDouble(SIZE_RADIATING_BUTTON_CLOSEICON_WIDTH);
+                    break;
+
+                case LayoutSizes.ColoringBookButtonWidth:
+                    value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.ColoringBookImageWidth:
+                    value = GetApplicationDouble(SIZE_COLORINGBOOKIMAGEWIDTH);
+                    break;
+
+                case LayoutSizes.ColoringBookButtonHeight:
+                    value = GetApplicationDouble(SIZE_COLORINGBOOKBUTTONHEIGHT);
+                    break;
+
+                case LayoutSizes.AppSelectorButtonWidth:
+                    value = GetApplicationDouble(SIZE_APPSELECTORBUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.AppSelectorButtonHeight:
+                    value = GetApplicationDouble(SIZE_APPSELECTORBUTTONHEIGHT);
+                    break;
+
+                case LayoutSizes.PlayerHeight:
+                    value = GetApplicationDouble(SIZE_PLAYER_HEIGHT);
+                    break;
+
+                case LayoutSizes.PlayerLeftMargin:
+                    value = GetApplicationDouble(SIZE_PLAYER_LEFTMARGIN);
+                    break;
+
+                case LayoutSizes.PlayerRightMargin:
+                    value = GetApplicationDouble(SIZE_PLAYER_RIGHTMARGIN);
+                    break;
+
+                case LayoutSizes.PlayerTrackSpacer:
+                    value = GetApplicationDouble(SIZE_PLAYER_TRACKSPACER);
+                    break;
+
+                case LayoutSizes.PlayerButtonSpacer:
+                    value = GetApplicationDouble(SIZE_PLAYER_BUTTONSPACER);
+                    break;
+
+                case LayoutSizes.PlayerButtonWidth:
+                    value = GetApplicationDouble(SIZE_PLAYER_BUTTONWIDTH);
+                    break;
+
+                case LayoutSizes.PlayerScrubHeight:
+                    value = GetApplicationDouble(SIZE_PLAYER_SCRUBHEIGHT);
+                    break;
+
+                case LayoutSizes.PlayerScrubWidth:
+                    value = GetApplicationDouble(SIZE_PLAYER_SCRUBWIDTH);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return value;
+        }
+
+        public static double GetApplicationDouble(string name)
+        {
+            double value = -1;
+
+            try
+            {
+                value = (double)Application.Current.Resources[name];
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return value;
+        }
+
+        #endregion
+
+
+        #region Style Methods
+
+        public static Style GetApplicationStyle(TextStyles textStyle)
+        {
+            Style style = null;
+
+            switch (textStyle)
+            {
+                case TextStyles.Hero:
+                    style = GetApplicationStyle(STYLE_HERO);
+                    break;
+
+                case TextStyles.Swipe:
+                    style = GetApplicationStyle(STYLE_SWIPE);
+                    break;
+
+                case TextStyles.PageHeadline:
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE);
+                    break;
+
+                case TextStyles.PageHeadlineDark:
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE_DARK); 
+                    break;
+
+                case TextStyles.PageHeadlineLarge:
+                    style = GetApplicationStyle(STYLE_PAGE_HEADLINE_LARGE); 
+                    break;
+
+                case TextStyles.PageLede:
+                    style = GetApplicationStyle(STYLE_PAGE_LEDE);
+                    break;
+
+                case TextStyles.PageLedeDark:
+                    style = GetApplicationStyle(STYLE_PAGE_LEDE_DARK);
+                    break;
+
+                case TextStyles.ReadyPageHeadline:
+                    style = GetApplicationStyle(STYLE_PAGE_READYHEADLINE);
+                    break;
+
+                case TextStyles.ListHeadline:
+                    style = GetApplicationStyle(STYLE_LIST_HEADLINE);
+                    break;
+
+                case TextStyles.ListLede:
+                    style = GetApplicationStyle(STYLE_LIST_LEDE);
+                    break;
+
+                case TextStyles.ListLedeBold:
+                    style = GetApplicationStyle(STYLE_LIST_LEDE_BOLD);
+                    break;
+
+                case TextStyles.ListItemHeadlinePenTouch:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_PENTOUCH);
+                    break;
+
+                case TextStyles.ListItemLedePenTouch:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE_PENTOUCH);
+                    break;
+
+                case TextStyles.ListItemHeadlineBestOf:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_BESTOF);
+                    break;
+
+                case TextStyles.ListItemLedeBestOf:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE_BESTOF);
+                    break;
+
+                case TextStyles.ListItemHeadlineCompare:
+                    style = GetApplicationStyle(STYLE_LISTITEM_HEADLINE_COMPARE);
+                    break;
+
+                case TextStyles.ListItemLedeCompare:
+                    style = GetApplicationStyle(STYLE_LISTITEM_LEDE_COMPARE);
+                    break;
+
+                case TextStyles.ListItemCTAText:
+                    style = GetApplicationStyle(STYLE_LISTITEM_CTATEXT);
+                    break;
+
+                case TextStyles.PopupHeadline:
+                    style = GetApplicationStyle(STYLE_POPUP_HEADLINE);
+                    break;
+
+                case TextStyles.PopupLede:
+                    style = GetApplicationStyle(STYLE_POPUP_LEDE);
+                    break;
+
+                case TextStyles.PopupBatteryLife:
+                    style = GetApplicationStyle(STYLE_POPUP_BATTERYLIFE);
+                    break;
+
+                case TextStyles.SliderBatteryLife:
+                    style = GetApplicationStyle(STYLE_SLIDER_BATTERYLIFE);
+                    break;
+
+                case TextStyles.SliderCaption:
+                    style = GetApplicationStyle(STYLE_SLIDER_CAPTION);
+                    break;
+
+                case TextStyles.Legal:
+                    style = GetApplicationStyle(STYLE_LEGAL);
+                    break;
+
+                case TextStyles.TryIt:
+                    style = GetApplicationStyle(STYLE_TRYIT);
+                    break; 
+
+                case TextStyles.ButtonCaption:
+                    style = GetApplicationStyle(STYLE_BUTTONCAPTION);
+                    break;
+
+                case TextStyles.ButtonCaptionDark:
+                    style = GetApplicationStyle(STYLE_BUTTONCAPTION_DARK);
+                    break;
+
+                case TextStyles.ReadyButtonCaption:
+                    style = GetApplicationStyle(STYLE_READYBUTTONCAPTION);
+                    break;
+
+                case TextStyles.NavigationSection:
+                    style = GetApplicationStyle(STYLE_NAVIGATION_SECTION);
+                    break;
+
+                case TextStyles.NavigationSectionActive:
+                    style = GetApplicationStyle(STYLE_NAVIGATION_SECTION_ACTIVE);
+                    break;
+
+                case TextStyles.PlayerArtistName:
+                    style = GetApplicationStyle(STYLE_PLAYER_ARTISTNAME);
+                    break;
+
+                case TextStyles.PlayerTrackName:
+                    style = GetApplicationStyle(STYLE_PLAYER_TRACKNAME);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return style;
+        }
 
         public static Style GetApplicationStyle(string name)
         {
@@ -80,710 +794,292 @@ namespace SDX.Toolkit.Helpers
             return style;
         }
 
-        public static string GetFontFamily()
+        #endregion
+
+
+        #region Color Methods
+
+        public static Color GetApplicationColor(ColoringBookColors Color)
         {
-            // default font family
-            string fontFamily = "SegoeUI";
-
-            //if (null != LocalizationService.Current)
-            //{
-            //    if (LocalizationService.Current.IsLanguageJapanese())
-            //    {
-            //        fontFamily = "UE Gothic";
-            //    }
-            //}
-
-            return fontFamily;
-        }
-
-        public static void SetFontCharacteristics(Control element, ControlStyles fontStyle)
-        {
-            // get font family
-            string fontFamily = GetFontFamily();
-
-            switch (fontStyle)
+            Color color = new Windows.UI.Color();
+            switch (Color)
             {
-                case ControlStyles.Hero:            // Segoe UI Light, 480px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_480px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case ColoringBookColors.Red:
+                    color = GetApplicationColor(RED);
                     break;
 
-                case ControlStyles.Headline:        // Segoe UI Light, 200px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case ColoringBookColors.Blue:
+                    color = GetApplicationColor(BLUE);
                     break;
 
-                case ControlStyles.Lede:            // Segoe UI Regular, 86px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case ColoringBookColors.Teal:
+                    color = GetApplicationColor(TEAL);
                     break;
 
-                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_110px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case ColoringBookColors.Orange:
+                    color = GetApplicationColor(ORANGE);
                     break;
 
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                case ControlStyles.PopupText:           // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.NavBarActive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.NavBarInactive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 112, 112, 112));
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.SwipeLeft:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.SwipeToContinue: // Segoe UI Semibold, 70px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ButtonText:      // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    element.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-                    element.Height = ELEMENT_HEIGHT_204PX;
-                    break;
-
-                case ControlStyles.SliderText:    // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.TouchHere:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.FastChargeHeader:// Segoe UI Regular, 100px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_100px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.FastChargeLede:  // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.FastChargePercent: // Segoe UI Light, 300px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_300px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.FastChargeTimeline:// Segoe UI Bold, 60px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.GaugePoint:      // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.GaugePointBullet:      // Segoe UI Bold, 60px, Black, 30% Opacity
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush() { Color = Colors.Black, Opacity = 0.3 };
-                    break;
-
-                case ControlStyles.CompareHeader:       // Segoe UI Light, 200px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareTitle:        // Segoe UI Bold, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareText:         // Segoe UI Regular, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareLegal:        // Segoe UI Regular, 70px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.Footnote:      // Segoe UI Regular, 60px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.LearnMore:      // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
+                case ColoringBookColors.Purple:
+                    color = GetApplicationColor(PURPLE);
                     break;
 
                 default:
                     break;
             }
+            return color;
         }
 
-        public static void SetFontCharacteristics(TextElement element, ControlStyles fontStyle)
+        public static Color GetApplicationColor(String name)
         {
-            // get font family
-            string fontFamily = GetFontFamily();
-
-            switch (fontStyle)
+            Color color = new Color();
+            try
             {
-                case ControlStyles.Hero:            // Segoe UI Light, 480px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_480px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                color = (Color)Application.Current.Resources[name];
+            }
+            catch
+            {
+            }
+
+            return color;
+        }
+        #endregion
+
+
+        #region Bitmap Methods
+
+        public static BitmapImage GetApplicationBitmapImage(BitmapImages image)
+        {
+            BitmapImage bmImage = new BitmapImage();
+            switch (image)
+            {
+                case BitmapImages.ColoringBookImage:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK);
+                    break;
+                    
+                case BitmapImages.ColoringBookColorRed:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RED);
                     break;
 
-                case ControlStyles.Headline:        // Segoe UI Light, 200px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.ColoringBookColorBlue:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE);
                     break;
 
-                case ControlStyles.Lede:            // Segoe UI Regular, 86px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.ColoringBookColorTeal:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL);
                     break;
 
-                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_110px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.ColoringBookColorOrange:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE);
                     break;
 
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.ColoringBookColorPurple:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE);
                     break;
 
-                case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
+                case BitmapImages.ColoringBookColorRedActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RED_ACTIVE);
                     break;
 
-                case ControlStyles.PopupText:           // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.ColoringBookColorBlueActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_BLUE_ACTIVE);
                     break;
 
-                case ControlStyles.NavBarActive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    //element.HorizontalAlignment = HorizontalAlignment.Left;
-                    //element.VerticalAlignment = VerticalAlignment.Center;
-                    //element.Margin = new Thickness(5d, 5d, 5d, 5d);
+                case BitmapImages.ColoringBookColorTealActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_TEAL_ACTIVE);
                     break;
 
-                case ControlStyles.NavBarInactive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 112, 112, 112));
-                    //element.HorizontalAlignment = HorizontalAlignment.Left;
-                    //element.VerticalAlignment = VerticalAlignment.Center;
-                    //element.Margin = new Thickness(5d, 5d, 5d, 5d);
+                case BitmapImages.ColoringBookColorOrangeActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_ORANGE_ACTIVE);
                     break;
 
-                case ControlStyles.SwipeLeft:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.ColoringBookColorPurpleActive:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_PURPLE_ACTIVE);
                     break;
 
-                case ControlStyles.SwipeToContinue: // Segoe UI Semibold, 70px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.ColoringBookReset:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_COLORINGBOOK_COLOR_RESET);
                     break;
 
-                case ControlStyles.ButtonText:      // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    //element.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-                    //element.Height = ELEMENT_HEIGHT_204PX;
+                case BitmapImages.PagePopupImage_1:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_1);
                     break;
 
-                case ControlStyles.SliderText:    // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.PagePopupImage_2:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_2);
                     break;
 
-                case ControlStyles.TouchHere:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.PagePopupImage_3:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_3);
                     break;
 
-                case ControlStyles.FastChargeHeader:// Segoe UI Regular, 100px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_100px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.PagePopupImage_4:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_4);
                     break;
 
-                case ControlStyles.FastChargeLede:  // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.PagePopupImage_5:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_5);
                     break;
 
-                case ControlStyles.FastChargePercent: // Segoe UI Light, 300px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_300px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.PagePopupAppIcon_1:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_1);
                     break;
 
-                case ControlStyles.FastChargeTimeline:// Segoe UI Bold, 60px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.PagePopupAppIcon_2:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_2);
                     break;
 
-                case ControlStyles.GaugePoint:      // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
+                case BitmapImages.PagePopupAppIcon_3:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_3);
                     break;
 
-                case ControlStyles.GaugePointBullet:      // Segoe UI Bold, 60px, Black, 30% Opacity
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush() { Color = Colors.Black, Opacity = 0.3 };
+                case BitmapImages.PagePopupAppIcon_4:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_4);
                     break;
 
-                case ControlStyles.CompareHeader:       // Segoe UI Light, 200px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.PagePopupAppIcon_5:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_5);
                     break;
 
-                case ControlStyles.CompareTitle:        // Segoe UI Bold, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.PagePopupAppIcon_Selected_1:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_1);
                     break;
 
-                case ControlStyles.CompareText:         // Segoe UI Regular, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
+                case BitmapImages.PagePopupAppIcon_Selected_2:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_2);
                     break;
 
-                case ControlStyles.CompareLegal:        // Segoe UI Regular, 70px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
+                case BitmapImages.PagePopupAppIcon_Selected_3:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_3);
                     break;
 
-                case ControlStyles.Footnote:      // Segoe UI Regular, 60px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
+                case BitmapImages.PagePopupAppIcon_Selected_4:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_4);
                     break;
 
-                case ControlStyles.LearnMore:      // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
+                case BitmapImages.PagePopupAppIcon_Selected_5:
+                    bmImage = GetApplicationBitmapImage(BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_5);
+                    break;
+                default:
+                    break;
+            }
+            return bmImage;
+        }
+
+        public static BitmapImage GetApplicationBitmapImage(String name)
+        {
+            BitmapImage bmImage = new BitmapImage();
+            try
+            {
+                bmImage = (BitmapImage)Application.Current.Resources[name];
+            }
+            catch
+            {
+            }
+
+            return bmImage;
+        }
+        #endregion
+
+
+        #region Thickness Methods
+
+        public static Thickness GetApplicationThickness(LayoutThicknesses layoutThickness)
+        {
+            Thickness thickness;
+
+            switch (layoutThickness)
+            {
+                case LayoutThicknesses.HeroMargin:
+                    thickness = GetApplicationThickness(THICKNESS_HERO_MARGIN);
+                    break;
+
+                case LayoutThicknesses.PopupBorder:
+                    thickness = GetApplicationThickness(THICKNESS_POPUP_BORDER);
+                    break;
+
+                case LayoutThicknesses.PopupPadding:
+                    thickness = GetApplicationThickness(THICKNESS_POPUP_PADDING);
                     break;
 
                 default:
                     break;
             }
+
+            return thickness;
         }
 
-        public static void SetFontCharacteristics(TextBlock element, ControlStyles fontStyle)
+        public static Thickness GetApplicationThickness(string name)
         {
-            // get font family
-            string fontFamily = GetFontFamily();
+            Thickness thickness;
 
-            switch (fontStyle)
+            try
             {
-                case ControlStyles.Hero:            // Segoe UI Light, 480px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_480px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+                thickness = (Thickness)Application.Current.Resources[name];
+            }
+            catch (Exception)
+            {
 
-                case ControlStyles.Headline:        // Segoe UI Light, 200px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+            }
 
-                case ControlStyles.Lede:            // Segoe UI Regular, 86px, white
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+            return thickness;
+        }
 
-                case ControlStyles.ListHeadline:    // Segoe UI Regular, 110px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_110px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
+        #endregion
 
-                case ControlStyles.ListLede:        // Segoe UI Regular, 86px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
 
-                case ControlStyles.CTAText:         // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
+        #region Helpers
 
-                case ControlStyles.PopupText:           // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
+        public static void SetRunStyleFromStyle(Run run, Style style)
+        {
+            if ((null != run) && (null != style))
+            {
+                // to easily get style values, must apply it to something
+                TextBlock textBlock = new TextBlock()
+                {
+                    Style = style
+                };
 
-                case ControlStyles.NavBarActive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.NavBarInactive:          // Segoe UI Semibold, 70px, White (active) / #707070 (inactive)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    //element.Background = new SolidColorBrush(Colors.Black);
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 112, 112, 112));
-                    element.HorizontalAlignment = HorizontalAlignment.Left;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.Margin = new Thickness(5d, 5d, 5d, 5d);
-                    break;
-
-                case ControlStyles.SwipeLeft:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.SwipeToContinue: // Segoe UI Semibold, 70px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.SemiBold;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.ButtonText:      // Segoe UI Bold, 60px, White  (Button.Height=204px, Color: Black on 20% opacity)
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    //element.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-                    element.Height = ELEMENT_HEIGHT_204PX;
-                    break;
-
-                case ControlStyles.SliderText:    // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.TouchHere:       // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.FastChargeHeader:// Segoe UI Regular, 100px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_100px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.FastChargeLede:  // Segoe UI Regular, 86px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_86px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.FastChargePercent: // Segoe UI Light, 300px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_300px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.FastChargeTimeline:// Segoe UI Bold, 60px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    element.FontSize = FONTSIZE_60px;
-                    break;
-
-                case ControlStyles.GaugePoint:      // Segoe UI Bold, 60px, White
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Colors.White);
-                    break;
-
-                case ControlStyles.GaugePointBullet:      // Segoe UI Bold, 60px, Black, 30% Opacity
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush() { Color = Colors.Black, Opacity = 0.3 };
-                    break;
-
-                case ControlStyles.CompareHeader:       // Segoe UI Light, 200px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Light;
-                    element.FontSize = FONTSIZE_200px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareTitle:        // Segoe UI Bold, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareText:         // Segoe UI Regular, 80px, Black
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_80px;
-                    element.Foreground = new SolidColorBrush(Colors.Black);
-                    break;
-
-                case ControlStyles.CompareLegal:        // Segoe UI Regular, 70px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_70px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.Footnote:      // Segoe UI Regular, 60px, #5C5C5C
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Normal;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 92, 92, 92));
-                    break;
-
-                case ControlStyles.LearnMore:      // Segoe UI Bold, 60px, #454545
-                    element.FontFamily = new FontFamily(fontFamily);
-                    element.FontStyle = FontStyle.Normal;
-                    element.FontWeight = FontWeights.Bold;
-                    element.FontSize = FONTSIZE_60px;
-                    element.Foreground = new SolidColorBrush(Color.FromArgb(255, 69, 69, 69));
-                    break;
-
-                default:
-                    break;
+                // now copy relevant properties to the run
+                run.FontFamily = textBlock.FontFamily;
+                run.FontStyle = textBlock.FontStyle;
+                run.FontWeight = textBlock.FontWeight;
+                run.FontSize = textBlock.FontSize;
+                run.Foreground = textBlock.Foreground;
             }
         }
+
+        public static AcrylicBrush GetAcrylicBrush(string Color = "Light")
+        {
+            AcrylicBrush brush;
+
+            if (Color == "Light")
+            {
+                brush = new AcrylicBrush()
+                {
+                    BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                    Opacity = 0.993,
+                    TintColor = Colors.White,
+                    TintOpacity = 0.8,
+                    FallbackColor = Colors.LightGray,
+                };
+            }
+            else // color must be set to dark
+            {
+                brush = new AcrylicBrush()
+                {
+                    BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                    Opacity = 0.997,
+                    TintColor = Colors.Black,
+                    TintOpacity = 0.45,
+                    FallbackColor = Colors.LightGray,
+                };
+
+            }
+
+            return brush;
+        }
+
+        #endregion
     }
 }

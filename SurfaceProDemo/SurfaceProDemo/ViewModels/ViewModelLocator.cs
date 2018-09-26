@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceProDemo.Services;
 using SurfaceProDemo.Views;
 
+
 namespace SurfaceProDemo.ViewModels
 {
     [Windows.UI.Xaml.Data.Bindable]
@@ -17,25 +18,40 @@ namespace SurfaceProDemo.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            SimpleIoc.Default.Register<FlipViewViewModel>();
+
             Register<AttractorLoopViewModel, AttractorLoopPage>();
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<ExperienceHeroViewModel, ExperienceHeroPage>();
             Register<ExperienceIntroViewModel, ExperienceIntroPage>();
+            Register<ExperienceFlipViewViewModel, ExperienceFlipViewPage>();
             Register<ExperienceTransformViewModel, ExperienceTransformPage>();
             Register<ExperiencePerformanceViewModel, ExperiencePerformancePage>();
+            Register<ExperiencePopupViewModel, ExperiencePopupPage>();
             Register<ExperienceQuietViewModel, ExperienceQuietPage>();
             Register<AccessoriesPenViewModel, AccessoriesPenPage>();
             Register<AccessoriesKeyboardViewModel, AccessoriesKeyboardPage>();
             Register<AccessoriesMouseViewModel, AccessoriesMousePage>();
             Register<BestOfMicrosoftViewModel, BestOfMicrosoftPage>();
             Register<CompareViewModel, ComparePage>();
-            Register<UriSchemeExampleViewModel, UriSchemeExamplePage>();
+            Register<ComparePopupProViewModel, ComparePagePopupPro>();
+            Register<ComparePopupBookViewModel, ComparePagePopupBook>();
+            Register<ComparePopupStudioViewModel, ComparePagePopupStudio>();
+            Register<ComparePopupLaptopViewModel, ComparePagePopupLaptop>();
+            Register<ComparePopupGoViewModel, ComparePagePopupGo>();
         }
 
-        public UriSchemeExampleViewModel UriSchemeExampleViewModel => ServiceLocator.Current.GetInstance<UriSchemeExampleViewModel>();
-
         public CompareViewModel CompareViewModel => ServiceLocator.Current.GetInstance<CompareViewModel>();
+
+        public ComparePopupProViewModel ComparePopupProViewModel => ServiceLocator.Current.GetInstance<ComparePopupProViewModel>();
+
+        public ComparePopupBookViewModel ComparePopupBookViewModel => ServiceLocator.Current.GetInstance<ComparePopupBookViewModel>();
+
+        public ComparePopupStudioViewModel ComparePopupStudioViewModel => ServiceLocator.Current.GetInstance<ComparePopupStudioViewModel>();
+
+        public ComparePopupLaptopViewModel ComparePopupLaptopViewModel => ServiceLocator.Current.GetInstance<ComparePopupLaptopViewModel>();
+
+        public ComparePopupGoViewModel ComparePopupGoViewModel => ServiceLocator.Current.GetInstance<ComparePopupGoViewModel>();
 
         public BestOfMicrosoftViewModel BestOfMicrosoftViewModel => ServiceLocator.Current.GetInstance<BestOfMicrosoftViewModel>();
 
@@ -49,7 +65,11 @@ namespace SurfaceProDemo.ViewModels
 
         public ExperiencePerformanceViewModel ExperiencePerformanceViewModel => ServiceLocator.Current.GetInstance<ExperiencePerformanceViewModel>();
 
+        public ExperiencePopupViewModel ExperiencePopupViewModel => ServiceLocator.Current.GetInstance<ExperiencePopupViewModel>();
+
         public ExperienceTransformViewModel ExperienceTransformViewModel => ServiceLocator.Current.GetInstance<ExperienceTransformViewModel>();
+
+        public ExperienceFlipViewViewModel ExperienceFlipViewViewModel => ServiceLocator.Current.GetInstance<ExperienceFlipViewViewModel>();
 
         public ExperienceIntroViewModel ExperienceIntroViewModel => ServiceLocator.Current.GetInstance<ExperienceIntroViewModel>();
 
@@ -59,7 +79,7 @@ namespace SurfaceProDemo.ViewModels
 
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
-        public FlipViewViewModel ShellViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
+        public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

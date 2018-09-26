@@ -42,7 +42,7 @@ namespace SDX.Toolkit.Controls
 
         private NavigationActions _navAction;
         private NavigationSection _navSection;
-        private NavigationPage _navPage;
+        private INavigationItem _navItem;
 
         #endregion
 
@@ -52,11 +52,11 @@ namespace SDX.Toolkit.Controls
         {
         }
 
-        public NavigateEventArgs(NavigationActions navAction, NavigationSection navSection, NavigationPage navPage)
+        public NavigateEventArgs(NavigationActions navAction, NavigationSection navSection, INavigationItem navItem)
         {
             NavAction = navAction;
             NavSection = navSection;
-            NavPage = navPage;
+            NavItem = navItem;
         }
 
         #endregion
@@ -75,10 +75,10 @@ namespace SDX.Toolkit.Controls
             set { _navSection = value; }
         }
 
-        public NavigationPage NavPage
+        public INavigationItem NavItem
         {
-            get { return _navPage; }
-            set { _navPage = value; }
+            get { return _navItem; }
+            set { _navItem = value; }
         }
 
         #endregion
@@ -88,31 +88,44 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        private const string URI_GOBACK_ACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow-hover.png";
-        private const string URI_GOBACK_INACTIVE = "ms-appx:///Assets/NavigationBar/back-nav-arrow.png";
-        private const string URI_GOFORWARD_ACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow-hover.png";
-        private const string URI_GOFORWARD_INACTIVE = "ms-appx:///Assets/NavigationBar/forward-nav-arrow.png";
+        private const string URI_HOME_CRUZ = "ms-appx:///Assets/NavigationBar/cruz_home.png";
+        private const string URI_HOME_JACK = "ms-appx:///Assets/NavigationBar/joplin_home.png";
 
-        private const string URI_HOME = "ms-appx:///Assets/NavigationBar/home.png";
+        private const string URI_CHEVRON_BACK_STUDIO = "ms-appx:///Assets/NavigationBar/cap_nav_chevronLeft.png";
+        private const string URI_CHEVRON_FORWARD_STUDIO = "ms-appx:///Assets/NavigationBar/cap_nav_chevronRight.png";
 
-        private const double BUTTON_SPACING = 30d;
-        private const double WIDTH_ARROW = 15d;
-        private const double WIDTH_HOME = 30d;
+        private const string URI_CHEVRON_BACK_PRO = "ms-appx:///Assets/NavigationBar/cruz_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_PRO = "ms-appx:///Assets/NavigationBar/cruz_chevron_right.png";
+
+        private const string URI_CHEVRON_BACK_LAPTOP = "ms-appx:///Assets/NavigationBar/fox_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_LAPTOP = "ms-appx:///Assets/NavigationBar/fox_chevron_right.png";
+
+        private const string URI_CHEVRON_BACK_SB2_13 = "ms-appx:///Assets/NavigationBar/sb2_13_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_SB2_13 = "ms-appx:///Assets/NavigationBar/sb2_13_chevron_right.png";
+
+        private const string URI_CHEVRON_BACK_SB2_15 = "ms-appx:///Assets/NavigationBar/sb2_15_chevron_left.png";
+        private const string URI_CHEVRON_FORWARD_SB2_15 = "ms-appx:///Assets/NavigationBar/sb2_15_chevron_right.png";
+
 
         #endregion
 
         #region Private Members
 
+        // device-dependent images
+        private string ChevronLeftUri;
+        private string ChevronRightUri;
+        private string HomeUri;
+
         // UI members we need to keep track of
-        Grid _layoutRoot;
-        Canvas _lineCanvas;
-        Line _navLine;
-        Button _navGoBack;
-        Button _navGoForward;
-        Button _navHome = null;
-        Image _imgGoBack;
-        Image _imgGoForward;
-        Image _imgHome;
+        private Grid _layoutRoot;
+        private Canvas _lineCanvas;
+        private Line _navLine;
+        private Button _navGoBack;
+        private Button _navGoForward;
+        private Button _navHome = null;
+        private Image _imgGoBack;
+        private Image _imgGoForward;
+        private Image _imgHome;
 
         #endregion
 
@@ -132,13 +145,49 @@ namespace SDX.Toolkit.Controls
 
             // set default properties
             this.SelectedSection = null;
-            this.SelectedPage = null;
+            this.SelectedItem = null;
             this.CanGoBack = false;
             this.CanGoForward = true;
 
             if (null == this.NavigationSections)
             {
                 this.NavigationSections = new List<NavigationSection>();
+            }
+
+            // populate our images based on size of device
+            switch (WindowHelper.GetDeviceTypeFromResolution())
+            {
+                case DeviceType.Studio:
+                    ChevronLeftUri = URI_CHEVRON_BACK_STUDIO;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_STUDIO;
+                    HomeUri = URI_HOME_JACK;
+                    break;
+
+                case DeviceType.Pro:
+                default:
+                    ChevronLeftUri = URI_CHEVRON_BACK_PRO;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_PRO;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
+                case DeviceType.Laptop:
+                    ChevronLeftUri = URI_CHEVRON_BACK_LAPTOP;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_LAPTOP;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
+                case DeviceType.Book15:
+                    ChevronLeftUri = URI_CHEVRON_BACK_SB2_15;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_SB2_15;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
+                case DeviceType.Book13:
+                    ChevronLeftUri = URI_CHEVRON_BACK_SB2_13;
+                    ChevronRightUri = URI_CHEVRON_FORWARD_SB2_13;
+                    HomeUri = URI_HOME_CRUZ;
+                    break;
+
             }
         }
 
@@ -157,7 +206,7 @@ namespace SDX.Toolkit.Controls
 
         public NavigationSection SelectedSection { get; private set; }
 
-        public NavigationPage SelectedPage { get; private set; }
+        public INavigationItem SelectedItem { get; private set; }
 
         public bool CanGoBack { get; private set; }
 
@@ -166,6 +215,16 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Dependency Properties
+
+        // Root
+        public static readonly DependencyProperty RootProperty =
+            DependencyProperty.Register("Root", typeof(NavigationFlipView), typeof(NavigationBar), new PropertyMetadata(new NavigationFlipView(), OnRootChanged));
+
+        public NavigationFlipView Root
+        {
+            get { return (NavigationFlipView)GetValue(RootProperty); }
+            set { SetValue(RootProperty, value); }
+        }
 
         // NavigationSections
         public static readonly DependencyProperty NavigationSectionsProperty =
@@ -187,6 +246,16 @@ namespace SDX.Toolkit.Controls
             set => SetValue(IsHomeEnabledProperty, value);
         }
 
+        // AreGridLinesEnabled
+        public static readonly DependencyProperty AreGridLinesEnabledProperty =
+            DependencyProperty.Register("AreGridLinesEnabled", typeof(bool), typeof(NavigationBar), new PropertyMetadata(false, AreGridLinesEnabledChanged));
+
+        public bool AreGridLinesEnabled
+        {
+            get => (bool)GetValue(AreGridLinesEnabledProperty);
+            set => SetValue(AreGridLinesEnabledProperty, value);
+        }
+
         #endregion
 
         #region Custom Events
@@ -200,9 +269,9 @@ namespace SDX.Toolkit.Controls
             Navigate?.Invoke(navigationBar, e);
         }
 
-        private void RaiseNavigateEvent(NavigationBar navigationBar, NavigationActions navAction, NavigationSection navSection, NavigationPage navPage)
+        private void RaiseNavigateEvent(NavigationBar navigationBar, NavigationActions navAction, NavigationSection navSection, INavigationItem navItem)
         {
-            NavigateEventArgs args = new NavigateEventArgs(navAction, navSection, navPage);
+            NavigateEventArgs args = new NavigateEventArgs(navAction, navSection, navItem);
 
             RaiseNavigateEvent(navigationBar, args);
         }
@@ -223,12 +292,35 @@ namespace SDX.Toolkit.Controls
 
         private static void OnNavigationSectionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if (d is NavigationBar navbar)
+            {
+                navbar.UpdateUI();
+            }
+        }
 
+        private static void OnRootChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NavigationBar navbar)
+            {
+                navbar.MoveToPageIndex(0, true, false);
+            }
         }
 
         private static void OnIsHomeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if (d is NavigationBar navbar)
+            {
+                navbar.UpdateUI();
+            }
+        }
 
+        private static void AreGridLinesEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NavigationBar navbar)
+            {
+                navbar.RenderUI();
+                navbar.UpdateUI();
+            }
         }
 
         private void NavItem_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -241,7 +333,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoBack)
                     {
                         MoveToPreviousPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoBack, this.SelectedSection, this.SelectedPage);
                     }
                     break;
 
@@ -249,14 +340,12 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoForward)
                     {
                         MoveToNextPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoForward, this.SelectedSection, this.SelectedPage);
                     }
                     break;
 
                 case "GoHome":
-                    // TODO
-                    // - must perform go home action, including setting the selected section/page
-                    RaiseNavigateEvent(this, NavigationActions.Home, this.SelectedSection, this.SelectedPage);
+                    // move to the first page
+                    MoveToPageIndex(0, true);
                     break;
 
                 default:
@@ -269,9 +358,6 @@ namespace SDX.Toolkit.Controls
                             // move to this section
                             MoveToSection(section);
 
-                            // raise our event
-                            RaiseNavigateEvent(this, NavigationActions.Section, this.SelectedSection, this.SelectedPage);
-
                             // telemetry
                             //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_NAVEXPERIENCE, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                         }
@@ -280,7 +366,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // update the UI to reflect the change
-            this.UpdateUI();
+            //this.UpdateUI();  // this is done in MoveToPage() which is called by all MoveXXX() functions.
         }
 
         //protected override void OnPreviewKeyUp(KeyRoutedEventArgs e)
@@ -305,7 +391,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoForward)
                     {
                         MoveToNextPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoForward, this.SelectedSection, this.SelectedPage);
                         handled = true;
                     }
                     break;
@@ -314,7 +399,6 @@ namespace SDX.Toolkit.Controls
                     if (this.CanGoBack)
                     {
                         MoveToPreviousPage();
-                        RaiseNavigateEvent(this, NavigationActions.GoBack, this.SelectedSection, this.SelectedPage);
                         handled = true;
                     }
                     break;
@@ -338,9 +422,7 @@ namespace SDX.Toolkit.Controls
             //// i hate this, but App is not getting these keys
             //App.Current.HandleKeyUp(key);
 
-            //return handled;
-
-            return false;
+            return handled;
         }
 
         #endregion
@@ -349,73 +431,95 @@ namespace SDX.Toolkit.Controls
 
         private void RenderUI()
         {
+            // get our sizing values
+            double _height = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarHeight);
+            double _lineHeight = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarLineHeight);
+            double _margin = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarMargin);
+            double _spacer = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarSpacer);
+            double _arrowWidth = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarWidthArrow);
+            double _homeWidth = StyleHelper.GetApplicationDouble(LayoutSizes.NavigationBarWidthHome);
+
             // get the nav grid
             if (null == _layoutRoot) { _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot"); }
 
             // if we couldn't get the grid we can't do anything, so exit
             if (null == _layoutRoot) { return; }
 
+            // clear the grid
+            _layoutRoot.Children.Clear();
+
             // set up the grid
 
+            // set the grid height
+            _layoutRoot.Height = _height;
+            _layoutRoot.MaxHeight = _height;
+
             // rows - this is static
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(6) });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0.5, GridUnitType.Star) });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(_lineHeight) });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(_height - _lineHeight) });
 
             // columns - this is dynamic based on sections
-            // go back and spacer
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+            // margin, go back, and greedy-eater
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth + 16) }); // includes style margins
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
 
             // column for each section
             for (int i = 0; i < this.NavigationSections.Count; i++)
             {
                 _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                // if this isn't the last column, add the between spacer
+                if (i < (this.NavigationSections.Count - 1))
+                {
+                    _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_spacer) });
+                }
             }
 
-            // spacer and go forward
+            // greedy-eater, go forward, and margin
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_arrowWidth + 16) }); // includes style margins
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(_margin) });
+
+            // AreGridLinesEnabled
+            if (this.AreGridLinesEnabled)
+            {
+                TestHelper.AddGridCellBorders(_layoutRoot, 4, 13, Colors.DarkRed);
+            }
 
             // create the progress line and the canvas that contains it
-
+            // ===========================================================
             // canvas
             _lineCanvas = new Canvas()
             {
-                Height = 6,
+                Height = _lineHeight,
                 Margin = new Thickness(0)
             };
             _layoutRoot.Children.Add(_lineCanvas);
             Grid.SetRow(_lineCanvas, 0);
             Grid.SetColumn(_lineCanvas, 0);
-            Grid.SetColumnSpan(_lineCanvas, 2 + this.NavigationSections.Count);
+            Grid.SetColumnSpan(_lineCanvas, 3 + this.NavigationSections.Count);
 
             // line
             _navLine = new Line()
             {
                 Name = "ProgressLine",
                 Stroke = new SolidColorBrush(Colors.White),
-                StrokeThickness = 6d,
+                StrokeThickness = _lineHeight,
                 X1 = 0,
-                Y1 = 3,
+                Y1 = (_lineHeight / 2),
                 X2 = 0,
-                Y2 = 3,
+                Y2 = (_lineHeight / 2),
                 Margin = new Thickness(0)
             };
             _lineCanvas.Children.Add(_navLine);
-
-            // test
-            //TestHelper.AddGridCellBorders(_layoutRoot, 6, 8, Colors.DarkRed);
+            // ===========================================================
 
             // create the button style
             Style buttonStyle = StyleHelper.GetApplicationStyle("NoInteractionButton");
 
-            // set column spacing for the grid
-            _layoutRoot.ColumnSpacing = BUTTON_SPACING;
-
             // grid row for menu items
-            int MenuItemRow = 2;
+            int MenuItemRow = 1;
 
             // create the Go Back button
             if (null == _navGoBack)
@@ -425,8 +529,8 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoBack = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri((this.CanGoBack) ? URI_GOBACK_ACTIVE : URI_GOBACK_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW },
-                        Width = WIDTH_ARROW
+                        Source = new BitmapImage() { UriSource = new Uri(ChevronLeftUri), DecodePixelWidth = (int)_arrowWidth, DecodePixelType = DecodePixelType.Logical },
+                        Width = _arrowWidth
                     };
                 }
 
@@ -434,13 +538,16 @@ namespace SDX.Toolkit.Controls
                 _navGoBack = new Button()
                 {
                     Name = "GoBack",
-                    Content = _imgGoBack
+                    Content = _imgGoBack,
+                    Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
                 if (null != buttonStyle) { _navGoBack.Style = buttonStyle; }
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoBack, MenuItemRow);
-                Grid.SetColumn(_navGoBack, 0);
+                Grid.SetColumn(_navGoBack, 1);
 
                 // add the Click event handler
                 _navGoBack.Click += this.NavItem_Click;
@@ -457,8 +564,8 @@ namespace SDX.Toolkit.Controls
                 {
                     _imgGoForward = new Image()
                     {
-                        Source = new BitmapImage() { UriSource = new Uri((this.CanGoForward) ? URI_GOFORWARD_ACTIVE : URI_GOFORWARD_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW },
-                        Width = WIDTH_ARROW
+                        Source = new BitmapImage() { UriSource = new Uri(ChevronRightUri), DecodePixelWidth = (int)_arrowWidth, DecodePixelType = DecodePixelType.Logical },
+                        Width = _arrowWidth
                     };
                 }
 
@@ -466,13 +573,16 @@ namespace SDX.Toolkit.Controls
                 _navGoForward = new Button()
                 {
                     Name = "GoForward",
-                    Content = _imgGoForward
+                    Content = _imgGoForward,
+                    Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
                 if (null != buttonStyle) { _navGoForward.Style = buttonStyle; }
 
                 // set inherited Grid properties
                 Grid.SetRow(_navGoForward, MenuItemRow);
-                Grid.SetColumn(_navGoForward, this.NavigationSections.Count + 3);
+                Grid.SetColumn(_navGoForward, 3 + ((this.NavigationSections.Count * 2) - 1) + 1);
 
                 // add the Click event handler
                 _navGoForward.Click += this.NavItem_Click;
@@ -492,8 +602,9 @@ namespace SDX.Toolkit.Controls
                     {
                         _imgHome = new Image()
                         {
-                            Source = new BitmapImage() { UriSource = new Uri(URI_HOME), DecodePixelWidth = (int)WIDTH_HOME },
-                            Width = WIDTH_HOME
+                            Source = new BitmapImage() { UriSource = new Uri(HomeUri), DecodePixelWidth = (int)_homeWidth, DecodePixelType = DecodePixelType.Logical },
+                            Width = _homeWidth,
+                            Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed),
                         };
                     }
 
@@ -502,13 +613,15 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "Home",
                         Content = _imgHome,
-                        Visibility = Visibility.Collapsed
+                        Visibility = Visibility.Collapsed,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
                     };
                     if (null != buttonStyle) { _navHome.Style = buttonStyle; }
 
                     // set inherited Grid properties
                     Grid.SetRow(_navHome, MenuItemRow);
-                    Grid.SetColumn(_navHome, this.NavigationSections.Count + 3);
+                    Grid.SetColumn(_navHome, 3 + ((this.NavigationSections.Count * 2) - 1) + 1);
 
                     // add the Click event handler
                     _navHome.Click += this.NavItem_Click;
@@ -525,26 +638,38 @@ namespace SDX.Toolkit.Controls
             foreach (NavigationSection section in this.NavigationSections)
             {
 
+                TextBlockEx sectionText = new TextBlockEx()
+                {
+                    Text = section.Text,
+                    TextAlignment = TextAlignment.Center,
+                    TextStyle = TextStyles.NavigationSection,
+                };
+
                 Button sectionButton = new Button()
                 {
                     Name = section.Name,
-                    Content = section.Text
+                    Content = sectionText,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
-                StyleHelper.SetFontCharacteristics(sectionButton, ControlStyles.NavBarActive);
                 if (null != buttonStyle) { sectionButton.Style = buttonStyle; }
                 sectionButton.Click += this.NavItem_Click;
 
                 // add to the grid
                 Grid.SetRow(sectionButton, MenuItemRow);
-                Grid.SetColumn(sectionButton, 2 + j);
+                Grid.SetColumn(sectionButton, 3 + (j * 2));
                 _layoutRoot.Children.Add(sectionButton);
 
-                // save the button with the section
+                // save the button and text with the section
                 section.UIButton = sectionButton;
+                section.UIText = sectionText;
 
                 // bump our counter
                 j++;
             }
+
+            // move to the first page
+            MoveToPageIndex(0, true, false);
         }
 
         private void UpdateUI()
@@ -558,13 +683,31 @@ namespace SDX.Toolkit.Controls
             // can go back
             if (null != _navGoBack)
             {
-                _imgGoBack.Source = new BitmapImage() { UriSource = new Uri(this.CanGoBack ? URI_GOBACK_ACTIVE : URI_GOBACK_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW };
+                _navGoBack.Visibility = (this.CanGoBack ? Visibility.Visible : Visibility.Collapsed);
             }
 
             // can go forward
             if (null != _navGoForward)
             {
-                _imgGoForward.Source = new BitmapImage() { UriSource = new Uri(this.CanGoForward ? URI_GOFORWARD_ACTIVE : URI_GOFORWARD_INACTIVE), DecodePixelWidth = (int)WIDTH_ARROW };
+                _navGoForward.Visibility = (this.CanGoForward ? Visibility.Visible : Visibility.Collapsed);
+            }
+
+            // if Home is enabled
+            if ((this.IsHomeEnabled) && (null != _navHome) && (null != _navGoForward))
+            {
+                // if we can go forward
+                if (this.CanGoForward)
+                {
+                    // we can go forward, so show go forward and hide home
+                    _navGoForward.Visibility = Visibility.Visible;
+                    _navHome.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    // can't go forward, so hide go forward and show home
+                    _navGoForward.Visibility = Visibility.Collapsed;
+                    _navHome.Visibility = Visibility.Visible;
+                }
             }
 
             // update nav section buttons
@@ -572,16 +715,17 @@ namespace SDX.Toolkit.Controls
             // loop through the sections
             foreach (NavigationSection section in this.NavigationSections)
             {
-                // get a reference to the button for this section
+                // get a reference to the button and text for this section
                 Button button = section.UIButton;
+                TextBlockEx text = section.UIText;
 
-                if (null != button)
+                if ((null != button) && (null != text))
                 {
                     // if this section is the new selected section
                     if (section == this.SelectedSection)
                     {
                         // highlight it
-                        StyleHelper.SetFontCharacteristics(button, ControlStyles.NavBarActive);
+                        text.TextStyle = TextStyles.NavigationSectionActive;
 
                         // set progress line length (if we have the line)
                         if (null != _navLine)
@@ -601,26 +745,8 @@ namespace SDX.Toolkit.Controls
                     else
                     {
                         // lowlight it
-                        StyleHelper.SetFontCharacteristics(button, ControlStyles.NavBarInactive);
+                        text.TextStyle = TextStyles.NavigationSection;
                     }
-                }
-            }
-
-            // if Home is enabled
-            if ((this.IsHomeEnabled) && (null != _navHome) && (null != _navGoForward))
-            {
-                // if we can go forward
-                if (this.CanGoForward)
-                {
-                    // we can go forward, so show go forward and hide home
-                    _navGoForward.Visibility = Visibility.Visible;
-                    _navHome.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    // can't go forward, so hide go forward and show home
-                    _navGoForward.Visibility = Visibility.Collapsed;
-                    _navHome.Visibility = Visibility.Visible;
                 }
             }
 
@@ -644,186 +770,173 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-        #region UI Helpers
+        #region Navigation Control
 
-        public void MoveToPreviousPage()
+        public bool MoveToPageIndex(int pageIndex, bool isForward, bool raiseEvent = true)
         {
-            // get the selected section and page
-            NavigationSection section = this.SelectedSection;
-            NavigationPage page = this.SelectedPage;
-            
-            // if we can go back and we have a selected section and page
-            if ((this.CanGoBack) && (null != this.SelectedSection) && (null != this.SelectedPage))
+            bool moved = false;
+
+            // this function can only move the main flipview
+
+            // take the pageIndex as the selected index of root
+            if ((pageIndex >= 0) && (pageIndex < this.Root.Items.Count()))
             {
-                // get the indices of the selected section and page
-                int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Pages.IndexOf(page);
+                // get the item at that index in root
+                INavigationItem item = this.Root.Items.ElementAt(pageIndex);
 
-                // is the current page the first in the current section?
-                if (0 == pageIndex)
+                // if we got it
+                if (null != item)
                 {
-                    // is the current section the first?
-                    if (0 == sectionIndex)
+                    // if it's a page
+                    if (item is NavigationPage page)
                     {
-                        // we can't go back from the first page of the first section
-                        return;
+                        // move to it
+                        moved = MoveToPage(page, NavigationActions.Unknown, raiseEvent);
                     }
-                    else
+                    else if (item is NavigationFlipView flipView)
                     {
-                        // get the previous section
-                        section = this.NavigationSections[sectionIndex - 1];
+                        // if it's a flipview
 
-                        // if it's valid and has pages
-                        if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+                        NavigationPage moveToPage = null;
+
+                        if (isForward)
                         {
-                            // get its last page
-                            page = section.Pages[section.Pages.Count - 1];
+                            moveToPage = (NavigationPage)flipView.GetFirstPageChild();
+                        }
+                        else
+                        {
+                            moveToPage = (NavigationPage)flipView.GetLastPageChild();
+                        }
+
+                        if (null != moveToPage)
+                        {
+                            moved = MoveToPage(moveToPage, NavigationActions.Unknown, raiseEvent);
                         }
                     }
                 }
-                else
-                {
-                    // get the previous page
-                    page = section.Pages[pageIndex - 1];
-                }
-
-                // if we made it through the gauntlet with non-null section and page
-                if ((null != section) && (null != page))
-                {
-                    MoveToPage(section, page);
-                }
             }
+
+            return moved;
         }
 
-        public void MoveToNextPage()
+        public bool MoveToPreviousPage(bool raiseEvent = true)
         {
-            // get the selected section and page
-            NavigationSection section = this.SelectedSection;
-            NavigationPage page = this.SelectedPage;
+            bool moved = false;
 
-            // if we can go forward and we have a selected section and page
-            if ((this.CanGoForward) && (null != this.SelectedSection) && (null != this.SelectedPage))
+            // if we have a valid root and can move forward
+            if ((this.CanGoBack) && (null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count() > 0))
             {
-                // get the indices of the selected section and page
-                int sectionIndex = this.NavigationSections.IndexOf(section);
-                int pageIndex = this.SelectedSection.Pages.IndexOf(page);
-
-                // is the current page the last in the current section?
-                if ((section.Pages.Count - 1) == pageIndex)
-                {
-                    // is the current section the last?
-                    if ((this.NavigationSections.Count - 1) == sectionIndex)
-                    {
-                        // we can't go forward from the last page of the last section
-                        return;
-                    }
-                    else
-                    {
-                        // get the next section
-                        section = this.NavigationSections[sectionIndex + 1];
-
-                        // if it's valid and has pages
-                        if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
-                        {
-                            // get its first page
-                            page = section.Pages[0];
-                        }
-                    }
-                }
-                else
-                {
-                    // get the next page
-                    page = section.Pages[pageIndex + 1];
-                }
-
-                // if we made it through the gauntlet with non-null section and page
-                if ((null != section) && (null != page))
-                {
-                    MoveToPage(section, page);
-                }
-            }
-        }
-
-        public void MoveToSection(NavigationSection section)
-        {
-            // if the section is valid and it has pages
-            if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
-            {
-                // get the first page of the section
-                NavigationPage page = section.Pages.First<NavigationPage>();
+                // find the next page
+                NavigationPage page = this.Root.FindPreviousPage();
 
                 // if we got it
                 if (null != page)
                 {
-                    // move to the section and page
-                    MoveToPage(section, page);
+                    // move to it
+                    moved = MoveToPage(page, NavigationActions.GoForward, raiseEvent);
                 }
             }
+
+            return moved;
         }
 
-        public void MoveToPage(NavigationSection section, NavigationPage page)
+        public bool MoveToNextPage(bool raiseEvent = true)
         {
-            // if the section is valid and it has pages
-            if ((null != section) && (null != section.Pages) && (section.Pages.Count > 0))
+            bool moved = false;
+
+            // if we have a valid root and can move forward
+            if ((this.CanGoForward) && (null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count() > 0))
             {
-                // does the section contain the page we've been passed?
-                if (section.Pages.Contains<NavigationPage>(page))
+                // find the next page
+                NavigationPage page = this.Root.FindNextPage();
+
+                // if we got it
+                if (null != page)
                 {
-                    // it does, so save this section and page as selected
-                    this.SelectedSection = section;
-                    this.SelectedPage = page;
-
-                    // set our go back/forward flags
-
-                    // what's the index of this section and page
-                    int sectionIndex = this.NavigationSections.IndexOf(section);
-                    int pageIndex = section.Pages.IndexOf(page);
-
-                    // if this is the first section
-                    if (0 == sectionIndex)
-                    {
-                        if (0 == pageIndex)
-                        {
-                            // we can't go back from the first page of the first section
-                            this.CanGoBack = false;
-                        }
-                        else
-                        {
-                            // this is not the first page, so we can go back
-                            this.CanGoBack = true;
-                        }
-                    }
-                    else
-                    {
-                        // we aren't the first section, so can go back
-                        this.CanGoBack = true;
-                    }
-
-                    // if this is the last section
-                    if ((this.NavigationSections.Count - 1) == sectionIndex)
-                    {
-                        // is this the last page?
-                        if ((section.Pages.Count - 1) == pageIndex)
-                        {
-                            // this is the last page, so can't go forward
-                            this.CanGoForward = false;
-                        }
-                        else
-                        {
-                            // not the last page, so can go forward
-                            this.CanGoForward = true;
-                        }
-                    }
-                    else
-                    {
-                        // this isn't the last section, so we can go forward
-                        this.CanGoForward = true;
-                    }
-
-                    // we've made changes, so need to update the UI
-                    this.UpdateUI();
+                    // move to it
+                    moved = MoveToPage(page, NavigationActions.GoForward, raiseEvent);
                 }
             }
+
+            return moved;
+        }
+
+        public bool MoveToSection(NavigationSection section, bool raiseEvent = true)
+        {
+            bool moved = false;
+
+            // if the section is valid and  and it has pages
+            if ((null != section) && (null != this.Root) && (this.Root.Items.Count > 0))
+            {
+                // get the first item that has this section
+                INavigationItem item = this.Root.FindFirstChildWithSection(section);
+
+                // if we got it
+                if (null != item)
+                {
+                    // if the item is a flipview
+                    if (item is NavigationFlipView flipView)
+                    {
+                        // get the first page in the flipview children
+                        NavigationPage page = (NavigationPage)flipView.Items.OrderBy(child => child.Order).First();
+
+                        // if we got it
+                        if (null != page)
+                        {
+                            // move to it
+                            moved = MoveToPage(page, NavigationActions.Section, raiseEvent);
+                        }
+                    }
+                    else if (item is NavigationPage page)
+                    {
+                        // it's a page, so just go to it
+                        moved = MoveToPage(page, NavigationActions.Section, raiseEvent);
+                    }
+                }
+            }
+
+            return moved;
+        }
+
+        public bool MoveToPage(NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown, bool raiseEvent = true)
+        {
+            bool moved = false;
+
+            // if our root is valid and it has pages
+            if ((null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count > 0))
+            {
+                // is the page part of the root visual tree, does it have a section, and is that section valid?
+                if ((this.Root.HasChild(page)) && (null != page.Section) && (this.NavigationSections.Contains<NavigationSection>(page.Section)))
+                {
+                    // try to set this page as selected
+                    if (this.Root.SelectPage(page))
+                    {
+                        // save this section as selected
+                        this.SelectedSection = page.Section;
+
+                        // set the selected item
+                        this.SelectedItem = page;
+
+                        // set our go back/forward flags
+                        this.CanGoBack = this.Root.CanGoBack();
+                        this.CanGoForward = this.Root.CanGoForward();
+
+                        // we've made changes, so need to update the UI
+                        this.UpdateUI();
+
+                        // raise our navigate event
+                        if (raiseEvent)
+                        {
+                            RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
+                        }
+
+                        // flag success
+                        moved = true;
+                    }
+                }
+            }
+
+            return moved;
         }
 
         #endregion

@@ -5,15 +5,78 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"        
     DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        x:Name="ContentArea">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+        
+        <ctrl:Header x:Name="PageHeader"
+            Grid.Row="1"
+            Grid.Column="1"            
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"                     
+            Width="500"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
+            <ctrl:RadiatingButton
+                x:Name="rBtnCenter"
+                EntranceDurationInMilliseconds = "400"
+                EntranceStaggerDelayInMilliseconds = "0"
+                RadiateDurationInMilliseconds = "1800"
+                RadiateStaggerDelayInMilliseconds = "5000"
+                IsRemovedOnInteraction="True"
+                TryItEnabled="True"
+                RadiatingButtonIcon="pen"
+                TryItText="{x:Bind Path=ViewModel.TryIt}"
+                TryItCaption="{x:Bind Path=ViewModel.TryItCaption}"                
+                AutoStart = "false"/>
+
+        </Canvas>
+        <ctrl:List x:Name="AccessoriesList"
+            ListItems="{x:Bind Path=ViewModel.ListItems}"
+            ListStyle="LedeOnly"
+            Grid.Column="1"
+            Grid.Row="3"
+                />
+        <ctrl:ColoringBook
+            x:Name="ColoringBook"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="8"
+            Grid.ColumnSpan="4"
+            ImageColumnSpan="2" />
+        <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
+                       Text="{x:Bind Path=ViewModel.Legal}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       TextStyle="Legal"/>
+
     </Grid>
 </Page>

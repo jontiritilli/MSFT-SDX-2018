@@ -29,8 +29,6 @@ namespace SDX.Toolkit.Controls
         private static readonly Size WINDOW_BOUNDS = WindowHelper.GetViewSizeInfo();
 
         private readonly double WIDTH_CONTROL = WINDOW_BOUNDS.Width / 2;
-        private const double HEIGHT_ROWSPACING = 30d;
-        private const double SIZE_ELLIPSE = 60d;
 
         private const double ANIM_DURATION_ELLIPSE_FADE = 200d;
         private const double ANIM_DURATION_ELLIPSE_MOVE = 1400d;
@@ -47,7 +45,7 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         private Grid _layoutRoot = null;
-        private TextBlock _textSwipe = null;
+        private TextBlockEx _textSwipe = null;
         private Ellipse _ellipseSwipe = null;
         private TranslateTransform _translateEllipse = null;
 
@@ -293,10 +291,13 @@ namespace SDX.Toolkit.Controls
             // clear any children
             _layoutRoot.Children.Clear();
 
+            // get ellipse size
+            double ellipseSize = StyleHelper.GetApplicationDouble(LayoutSizes.SwipeLeftEllipseRadius);
+
             // set up grid
             _layoutRoot.Width = WIDTH_CONTROL;
-            _layoutRoot.RowSpacing = HEIGHT_ROWSPACING;
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(SIZE_ELLIPSE) });
+            _layoutRoot.RowSpacing = StyleHelper.GetApplicationDouble(LayoutSizes.SwipeLeftSpacer);
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ellipseSize)});
             _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1.0, GridUnitType.Auto) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1.0, GridUnitType.Star) });
 
@@ -304,15 +305,15 @@ namespace SDX.Toolkit.Controls
             //TestHelper.AddGridCellBorders(_layoutRoot, 2, 1, Colors.DeepSkyBlue);
 
             // create textblock
-            _textSwipe = new TextBlock()
+            _textSwipe = new TextBlockEx()
             {
                 Name = "SwipeText",
+                TextStyle = TextStyles.Swipe,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
-            _textSwipe.SetBinding(TextBlock.TextProperty,
+            _textSwipe.SetBinding(TextBlockEx.TextProperty,
                     new Binding() { Source = this, Path = new PropertyPath("SwipeText"), Mode = BindingMode.OneWay });
-            StyleHelper.SetFontCharacteristics(_textSwipe, ControlStyles.SwipeToContinue);
             Grid.SetRow(_textSwipe, 1);
             Grid.SetColumn(_textSwipe, 0);
             _layoutRoot.Children.Add(_textSwipe);
@@ -320,8 +321,8 @@ namespace SDX.Toolkit.Controls
             // create the ellipse
             _ellipseSwipe = new Ellipse()
             {
-                Width = SIZE_ELLIPSE,
-                Height = SIZE_ELLIPSE,
+                Width = ellipseSize,
+                Height = ellipseSize,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
                 Stroke = new SolidColorBrush(Colors.White),
@@ -354,7 +355,7 @@ namespace SDX.Toolkit.Controls
             };
 
             // set up ellipse move
-            _storyboardEllipseMove = AnimationHelper.CreateEasingAnimationWithNotify(_ellipseSwipe, this.Move_Complete, "(Ellipse.RenderTransform).(TranslateTransform.X)", 0.0, 0.0, -1 * WIDTH_CONTROL + SIZE_ELLIPSE, quinticEase, quinticEase, ANIM_DURATION_ELLIPSE_MOVE, 0d, false, false, new RepeatBehavior(1));
+            _storyboardEllipseMove = AnimationHelper.CreateEasingAnimationWithNotify(_ellipseSwipe, this.Move_Complete, "(Ellipse.RenderTransform).(TranslateTransform.X)", 0.0, 0.0, -1 * WIDTH_CONTROL + ellipseSize, quinticEase, quinticEase, ANIM_DURATION_ELLIPSE_MOVE, 0d, false, false, new RepeatBehavior(1));
             // move original stagger: this.StaggerDelayInMilliseconds + ANIM_STAGGER_ELLIPSE_MOVE
         }
 

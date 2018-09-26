@@ -4,16 +4,63 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
+    xmlns:views="using:SurfaceBook2Demo.Views"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
     DataContext="{Binding ExperienceDayViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:FlipViewEx x:Name="DayFlipView"
+               Grid.Row="0"
+               Grid.RowSpan="2"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Margin="0"
+               Padding="0"
+               Background="Transparent"
+               AllowFocusOnInteraction="False"
+               SelectionChanged="DayFlipView_SelectionChanged">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayWorkPage">
+                <Frame>
+                    <views:ExperienceDayWorkPage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayCreatePage">
+                <Frame>
+                    <views:ExperienceDayCreatePage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayRelaxPage">
+                <Frame>
+                    <views:ExperienceDayRelaxPage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayPlayPage">
+                <Frame>
+                    <views:ExperienceDayPlayPage/>
+                </Frame>
+            </ctrl:FlipViewItemEx>
+        </ctrl:FlipViewEx>
+        
+        <ctrl:DaySlider x:Name="DaySlider"
+                        BatteryLifeText="{x:Bind Path=ViewModel.SliderBatteryCopy}"
+                        VerticalAlignment="Bottom"
+                        Grid.Row="0" Grid.Column="1"
+                        Snapped="DaySlider_Snapped"/>
+
     </Grid>
 </Page>

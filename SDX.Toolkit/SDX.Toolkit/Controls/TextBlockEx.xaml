@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="SDX.Toolkit.Controls.TextBlockEx"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <conv:TextStylesToStyleConverter x:Key="TextStylesToStyleConverterKey"/>
+    </UserControl.Resources>
+    
+    <Grid
+        x:Name="LayoutRoot"
+        Background="{x:Bind Path=Background}"
+        BorderBrush="{x:Bind Path=BorderBrush}"
+        BorderThickness="{x:Bind Path=BorderThickness}">
+        <TextBlock x:Name="TheText"
+                    TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"
+                    TextWrapping="{x:Bind Path=TextWrapping, Mode=OneWay}"
+                    LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
+                    LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"
+                    VerticalAlignment="{x:Bind Path=VerticalAlignment, Mode=OneWay}"
+                    HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
+                    Style="{x:Bind Path=TextStyle, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"/>
+        <!--Text="{x:Bind Path=Text, Mode=OneWay}"--><!-- Don't data-bind this. -->
+    </Grid>
+</UserControl>

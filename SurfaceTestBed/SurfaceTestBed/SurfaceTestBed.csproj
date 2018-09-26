@@ -231,6 +231,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
+    <Content Include="Assets\ColoringBook\GeishaTattoo.png" />
+    <Content Include="Assets\ColorPanel\black-selected.png" />
+    <Content Include="Assets\ColorPanel\black.png" />
+    <Content Include="Assets\ColorPanel\burgundy-selected.png" />
+    <Content Include="Assets\ColorPanel\burgundy.png" />
+    <Content Include="Assets\ColorPanel\cobalt-selected.png" />
+    <Content Include="Assets\ColorPanel\cobalt.png" />
+    <Content Include="Assets\ColorPanel\silver-selected.png" />
+    <Content Include="Assets\ColorPanel\silver.png" />
+    <Content Include="Assets\List\icon-1.png" />
+    <Content Include="Assets\List\icon-2.png" />
+    <Content Include="Assets\List\icon-3.png" />
+    <Content Include="Assets\List\icon-4.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow-hover.png" />
     <Content Include="Assets\NavigationBar\back-nav-arrow.png" />
     <Content Include="Assets\NavigationBar\forward-nav-arrow-hover.png" />

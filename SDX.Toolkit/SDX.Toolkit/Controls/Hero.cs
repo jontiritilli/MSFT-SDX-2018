@@ -25,9 +25,9 @@ namespace SDX.Toolkit.Controls
 
         private StackPanel _rowMaster = null;
         private List<StackPanel> _rows = new List<StackPanel>();
-        private List<TextBlock> _wordTextBlocks = new List<TextBlock>();
+        private List<TextBlockEx> _wordTextBlocks = new List<TextBlockEx>();
 
-        private Storyboard _storyboard;
+        private List<Storyboard> _storyboards = new List<Storyboard>();
 
         #endregion
 
@@ -53,19 +53,25 @@ namespace SDX.Toolkit.Controls
 
         public void StartAnimation()
         {
-            if (null != _storyboard)
+            if (null != _storyboards)
             {
-                _storyboard.Begin();
+                foreach (Storyboard storyboard in _storyboards)
+                {
+                    storyboard.Begin();
+                }
             }
         }
 
         public void ResetAnimation()
         {
-            if (null != _storyboard)
+            if ((null != _storyboards) && (null != _wordTextBlocks))
             {
-                _storyboard.Stop();
+                foreach (Storyboard storyboard in _storyboards)
+                {
+                    storyboard.Stop();
+                }
 
-                foreach (TextBlock word in _wordTextBlocks)
+                foreach (TextBlockEx word in _wordTextBlocks)
                 {
                     word.Opacity = 0d;
                 }
@@ -148,27 +154,42 @@ namespace SDX.Toolkit.Controls
 
         private static void OnWordsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is Hero hero)
+            {
+                hero.RenderUI();
+            }
         }
 
         private static void OnWordRowsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is Hero hero)
+            {
+                hero.RenderUI();
+            }
         }
 
         private static void OnStaggerDelayMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is Hero hero)
+            {
+                hero.RenderUI();
+            }
         }
 
         private static void OnDurationPerWordInMillisecondsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is Hero hero)
+            {
+                hero.RenderUI();
+            }
         }
 
         private static void OnAutoStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            if (d is Hero hero)
+            {
+                hero.RenderUI();
+            }
         }
 
         #endregion
@@ -222,7 +243,7 @@ namespace SDX.Toolkit.Controls
                     string name = String.Format("Word_{0}", wordIndex);
 
                     // create the textblock
-                    TextBlock textBlockWord = CreateWord(name, word);
+                    TextBlockEx textBlockWord = CreateWord(name, word);
 
                     // save it to reset opacity for animation
                     _wordTextBlocks.Add(textBlockWord);
@@ -235,112 +256,36 @@ namespace SDX.Toolkit.Controls
                 }
             }
 
-            _storyboard = SetupAnimation();
-        }
+            // animation index
+            int animationIndex = 0;
 
-        private Storyboard SetupAnimation()
-        {
-            // get this value once; reuse
-            double startDelay = this.StaggerDelayMilliseconds;
-            double durationPerWord = this.DurationPerWordInMilliseconds;
-            double totalDuration = startDelay + (durationPerWord * _wordTextBlocks.Count);
-
-            // create the storyboard
-            Storyboard _wordStoryboard = new Storyboard
+            // loop through the words to animate them
+            foreach (TextBlockEx textBlockEx in _wordTextBlocks)
             {
-                Duration = TimeSpan.FromMilliseconds(totalDuration),
-                AutoReverse = false,
-                RepeatBehavior = new RepeatBehavior(1d)
-            };
+                double staggerDelay = this.StaggerDelayMilliseconds + (animationIndex * this.DurationPerWordInMilliseconds);
 
-            // set start and end
-            double start = 0;
-            double end = start + durationPerWord - 1;
+                _storyboards.Add(
+                    AnimationHelper.CreateStandardAnimation(textBlockEx, "(TextBlockEx.Opacity)", 0.0, 0.0, 1.0,
+                                    this.DurationPerWordInMilliseconds, staggerDelay, false, false, new RepeatBehavior(1d)));
 
-            // loop through the words
-            foreach (TextBlock word in _wordTextBlocks)
-            {
-                // create animation for each and add to storyboard
-                _wordStoryboard.Children.Add(CreateFadeIn(word, start, end, startDelay, durationPerWord));
-
-                // recalculate start and end
-                start = end + 1;
-                end = start + durationPerWord - 1;
+                animationIndex++;
             }
-
-            return _wordStoryboard;
         }
 
         #endregion
 
         #region UI Helpers
 
-        private DoubleAnimationUsingKeyFrames CreateFadeIn(TextBlock target, double startTime, double endTime, double startDelay, double duration)
+        private TextBlockEx CreateWord(string name, string text)
         {
-            double totalDuration = startDelay + startTime + duration;
-
-            DoubleAnimationUsingKeyFrames _frames = new DoubleAnimationUsingKeyFrames()
+            TextBlockEx _textBlock = new TextBlockEx()
             {
-                Duration = TimeSpan.FromMilliseconds(totalDuration),
-                EnableDependentAnimation = true,
-                AutoReverse = false,
-                RepeatBehavior = new RepeatBehavior(1)
+                Name = name,
+                Text = text,
+                TextStyle = TextStyles.Hero,
+                Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.HeroMargin),
+                Opacity = 0d,
             };
-
-            // create frame 0; only used if the start time > zero
-            DiscreteDoubleKeyFrame _frame0 = new DiscreteDoubleKeyFrame()
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0)),
-                Value = 0d
-            };
-
-            // create frame 1 (start point)
-            DiscreteDoubleKeyFrame _frame1 = new DiscreteDoubleKeyFrame()
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(startTime + startDelay)),
-                Value = 0d
-            };
-
-            // create frame 2 (end point)
-            LinearDoubleKeyFrame _frame2 = new LinearDoubleKeyFrame()
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(endTime + startDelay)),
-                Value = 1d
-                //EasingFunction = new CubicEase()
-            };
-
-            // create frame 3 (continue to animation end point)
-            DiscreteDoubleKeyFrame _frame3 = new DiscreteDoubleKeyFrame
-            {
-                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration)),
-                Value = 1d
-            };
-
-            // add child frames
-            if (startTime > 0)
-            {
-                _frames.KeyFrames.Add(_frame0);
-            }
-            _frames.KeyFrames.Add(_frame1);
-            _frames.KeyFrames.Add(_frame2);
-            _frames.KeyFrames.Add(_frame3);
-
-            // target the control
-            Storyboard.SetTarget(_frames, target);
-            Storyboard.SetTargetProperty(_frames, "(TextBlock.Opacity)");
-
-            return _frames;
-        }
-
-        private TextBlock CreateWord(string name, string text)
-        {
-            TextBlock _textBlock = new TextBlock();
-
-            _textBlock.Name = name;
-            _textBlock.Text = text;
-            StyleHelper.SetFontCharacteristics(_textBlock, ControlStyles.Hero);
-            _textBlock.Margin = new Thickness(5d, 5d, 25d, 5d);
-            _textBlock.Opacity = 0d;
 
             return _textBlock;
         }

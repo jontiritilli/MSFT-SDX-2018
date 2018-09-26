@@ -4,16 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:model="using:SurfaceStudioDemo.Models"
+    xmlns:views="using:SurfaceStudioDemo.Views"
     Style="{StaticResource PageStyle}"
     DataContext="{Binding AttractorLoopViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <ctrl:AttractorLoopPlayer Name="AttractorLoopPlayer"
+                                  MediaSourceStorageFile="{x:Bind Path=ViewModel.MediaSourceStorageFile}" 
+                                  AutoPlay="True"
+                                  Interacted="AttractorLoopPlayer_Interacted"/>
+        <TextBlock Text="AttractorLoop"/>
     </Grid>
 </Page>

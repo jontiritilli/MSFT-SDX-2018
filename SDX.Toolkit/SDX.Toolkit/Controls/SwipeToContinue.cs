@@ -27,13 +27,7 @@ namespace SDX.Toolkit.Controls
     {
         #region Private Constants
 
-        private const double CONTROL_WIDTH = 300d;
-        private const double CONTROL_HEIGHT = 60d;
-        private const double CONTROL_COLUMNSPACING = 5d;
-        private const double CONTROL_RIGHTMARGIN = 30d;
-
         private const string ARROW_URI = @"ms-appx:///Assets/SwipeLeft/swipe-arrow.png";
-        private const int ARROW_WIDTH = 10;
 
         private const double ANIM_STAGGER_TEXT = 1000d;
         private const double ANIM_STAGGER_FIRSTARROW = 200;
@@ -54,7 +48,7 @@ namespace SDX.Toolkit.Controls
         private Image _arrowMiddle = null;
         private Image _arrowRight = null;
         private Image _arrowRightmost = null;
-        private TextBlock _textSwipe = null;
+        private TextBlockEx _textSwipe = null;
 
         private BitmapImage _arrowBitmapImage = null;
 
@@ -349,16 +343,19 @@ namespace SDX.Toolkit.Controls
             // clear any children
             _layoutRoot.Children.Clear();
 
+            // get our sizes
+            double arrowWidth = StyleHelper.GetApplicationDouble(LayoutSizes.SwipeToContinueArrowWidth);
+            double spacer = StyleHelper.GetApplicationDouble(LayoutSizes.SwipeToContinueSpacer);
+
             // set up grid
-            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(CONTROL_HEIGHT) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ARROW_WIDTH) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ARROW_WIDTH) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ARROW_WIDTH) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ARROW_WIDTH) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(ARROW_WIDTH) });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(CONTROL_COLUMNSPACING) });
+            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(arrowWidth) });
+            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(spacer) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(CONTROL_RIGHTMARGIN) });
 
             // add a translate transform to the layout root
             _translateGrid = new TranslateTransform()
@@ -379,13 +376,13 @@ namespace SDX.Toolkit.Controls
             _arrowBitmapImage = new BitmapImage()
             {
                 UriSource = new Uri(ARROW_URI),
-                DecodePixelWidth = ARROW_WIDTH
+                DecodePixelWidth = (int)arrowWidth,
             };
 
             // create arrows
             _arrowLeftmost = new Image()
             {
-                Width = ARROW_WIDTH,
+                Width = arrowWidth,
                 Opacity = 0.0,
                 Source = _arrowBitmapImage
             };
@@ -395,7 +392,7 @@ namespace SDX.Toolkit.Controls
 
             _arrowLeft = new Image()
             {
-                Width = ARROW_WIDTH,
+                Width = arrowWidth,
                 Opacity = 0.0,
                 Source = _arrowBitmapImage
             };
@@ -405,7 +402,7 @@ namespace SDX.Toolkit.Controls
 
             _arrowMiddle = new Image()
             {
-                Width = ARROW_WIDTH,
+                Width = arrowWidth,
                 Opacity = 0.0,
                 Source = _arrowBitmapImage
             };
@@ -415,7 +412,7 @@ namespace SDX.Toolkit.Controls
 
             _arrowRight = new Image()
             {
-                Width = ARROW_WIDTH,
+                Width = arrowWidth,
                 Opacity = 0.0,
                 Source = _arrowBitmapImage
             };
@@ -425,7 +422,7 @@ namespace SDX.Toolkit.Controls
 
             _arrowRightmost = new Image()
             {
-                Width = ARROW_WIDTH,
+                Width = arrowWidth,
                 Opacity = 0.0,
                 Source = _arrowBitmapImage
             };
@@ -434,15 +431,15 @@ namespace SDX.Toolkit.Controls
             _layoutRoot.Children.Add(_arrowRightmost);
 
             // create textblock
-            _textSwipe = new TextBlock()
+            _textSwipe = new TextBlockEx()
             {
-                Opacity = 0.0,
+                TextStyle = TextStyles.Swipe,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Opacity = 0.0,
             };
-            _textSwipe.SetBinding(TextBlock.TextProperty,
+            _textSwipe.SetBinding(TextBlockEx.TextProperty,
                     new Binding() { Source = this, Path = new PropertyPath("SwipeText"), Mode = BindingMode.OneWay });
-            StyleHelper.SetFontCharacteristics(_textSwipe, ControlStyles.SwipeLeft);
             Grid.SetRow(_textSwipe, 0);
             Grid.SetColumn(_textSwipe, 6);
             _layoutRoot.Children.Add(_textSwipe);

@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrl="using:SDX.Toolkit.Controls">
@@ -7,49 +7,43 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ctrl:NavigationBar">
-                    <Grid x:Name="LayoutRoot" Background="Black" Margin="0,0,0,0"/>
-                    <!--Needs to fill 80epx high --><!--
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="6"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-                    <Canvas Height="6" Grid.Row="0" Grid.ColumnSpan="5" Margin="0,0,0,0">
-                        <Line Name="ProgressLine" Stroke="White" StrokeThickness="6" X1="0" Y1="3" X2="0" Y2="3" Margin="0,0,0,0"></Line>
-                    </Canvas>-->
+                    <Grid x:Name="LayoutRoot" Background="Black" Margin="0,0,0,0" Padding="0,0,0,0" ColumnSpacing="0" RowSpacing="0"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:AttractorLoopPlayer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:AttractorLoopPlayer">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style TargetType="ctrl:Hero">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="ctrl:Hero">
-          <Border
-              x:Name="LayoutRoot"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}">
-            <StackPanel x:Name="RowMaster" Orientation="Vertical">
-            </StackPanel>
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-  
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:Hero">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel x:Name="RowMaster" Orientation="Vertical"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="ctrl:Header">
         <Setter Property="Template">
             <Setter.Value>
@@ -65,35 +59,43 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ctrl:TextLine">
+    <!--<Style TargetType="ctrl:TextBlockEx">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ctrl:TextLine">
+                <ControlTemplate TargetType="ctrl:TextBlockEx">
                     <Grid
                         x:Name="LayoutRoot"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock x:Name="TheText"
+                                   Text="{TemplateBinding Text}"
+                                   TextAlignment="{TemplateBinding TextAlignment}"
+                                   TextWrapping="{TemplateBinding TextWrapping}"
+                                   LineStackingStrategy="{TemplateBinding LineStackingStrategy}"
+                                   LineHeight="{TemplateBinding LineHeight}"
+                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Style TargetType="ctrl:SwipeLeft">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:SwipeLeft">
+                    <Grid
+              x:Name="LayoutRoot"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}">
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-  <Style TargetType="ctrl:SwipeLeft">
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="ctrl:SwipeLeft">
-          <Grid
-              x:Name="LayoutRoot"
-              Background="{TemplateBinding Background}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}">
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
 
     <Style TargetType="ctrl:SwipeToContinue">
         <Setter Property="Template">
@@ -134,10 +136,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ctrl:FlipViewEx">
-                    <Grid Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                    <Grid Background="{TemplateBinding Background}" BorderThickness="0" BorderBrush="Transparent">
                         <Grid.Resources>
                             <ControlTemplate x:Key="HorizontalNextTemplate" TargetType="Button">
-                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="{ThemeResource FlipViewButtonBorderThemeThickness}" BorderBrush="{ThemeResource FlipViewNextPreviousButtonBorderBrush}">
+                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="0" BorderBrush="Transparent">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal"/>
@@ -149,7 +151,7 @@
                                 </Border>
                             </ControlTemplate>
                             <ControlTemplate x:Key="HorizontalPreviousTemplate" TargetType="Button">
-                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="{ThemeResource FlipViewButtonBorderThemeThickness}" BorderBrush="{ThemeResource FlipViewNextPreviousButtonBorderBrush}">
+                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="0">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal"/>
@@ -161,7 +163,7 @@
                                 </Border>
                             </ControlTemplate>
                             <ControlTemplate x:Key="VerticalNextTemplate" TargetType="Button">
-                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="{ThemeResource FlipViewButtonBorderThemeThickness}" BorderBrush="{ThemeResource FlipViewNextPreviousButtonBorderBrush}">
+                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="0" BorderBrush="Transparent">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal"/>
@@ -173,7 +175,7 @@
                                 </Border>
                             </ControlTemplate>
                             <ControlTemplate x:Key="VerticalPreviousTemplate" TargetType="Button">
-                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="{ThemeResource FlipViewButtonBorderThemeThickness}" BorderBrush="{ThemeResource FlipViewNextPreviousButtonBorderBrush}">
+                                <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="0" BorderBrush="Transparent">
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal"/>
@@ -203,11 +205,11 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="TabNavigation" Value="Local"/>
-        <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+        <Setter Property="UseSystemFocusVisuals" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ctrl:FlipViewItemEx">
-                    <ContentPresenter Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <ContentPresenter Background="{TemplateBinding Background}" BorderThickness="0" BorderBrush="Transparent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -242,5 +244,138 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="ctrl:SurfaceDial" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:SurfaceDial">
+                    <Canvas x:Name="LayoutRoot">
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:ColoringBook">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:ColoringBook">
+                    <Grid
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:ImageEx">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:ImageEx">
+                    <Border
+                        x:Name="LayoutRoot" 
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:PopupMedia">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:PopupMedia">
+                    <Grid
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:RadiatingButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:RadiatingButton">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:LoopPlayer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:LoopPlayer">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:List">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:List">
+                    <Grid
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ctrl:AnimatableInteger">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:AnimatableInteger">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="ctrl:PinchZoom" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:PinchZoom">
+                    <Canvas x:Name="LayoutRoot"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
+    <Style TargetType="ctrl:PopupContentBatteryLife">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:PopupContentBatteryLife">
+                    <Canvas x:Name="LayoutRoot"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
