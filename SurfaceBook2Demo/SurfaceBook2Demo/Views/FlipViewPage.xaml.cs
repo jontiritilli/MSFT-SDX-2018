@@ -132,8 +132,14 @@ namespace SurfaceBook2Demo.Views
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // stop the page timer
-            if (null != _pageMoveTimer) { _pageMoveTimer.Stop(); }
+            // if the count of e.AddedItems == 1, then the SelectedIndex has actually
+            // changed. if it's equal to 3 (the number of panels loaded in a VirtualizingStackPanel),
+            // then this isn't a real change in the SelectedIndex, and we'll ignore it.
+            if (3 != e.AddedItems.Count)
+            {
+                // stop the page timer
+                if (null != _pageMoveTimer) { _pageMoveTimer.Stop(); }
+            }
 
             // if we have a bottom nav bar
             if (null != this.BottomNavBar)
