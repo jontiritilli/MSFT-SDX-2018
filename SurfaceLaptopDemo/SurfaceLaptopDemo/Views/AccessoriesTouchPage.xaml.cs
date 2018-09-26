@@ -58,6 +58,8 @@ namespace SurfaceLaptopDemo.Views
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
             PinchZoomElement.ResetControl();
+            rButtonOne.ResetEntranceAnimation();
+            rButtonOne.ResetRadiateAnimation();
         }
 
         #endregion

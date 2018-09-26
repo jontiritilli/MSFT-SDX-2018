@@ -61,7 +61,7 @@
                 ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
                 Opacity="1"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.16}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.34}" />
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.39}" />
         </Canvas>
 
         <ctrl:AppSelectorImage Grid.Row="1" Grid.Column="1" Grid.RowSpan="7" 

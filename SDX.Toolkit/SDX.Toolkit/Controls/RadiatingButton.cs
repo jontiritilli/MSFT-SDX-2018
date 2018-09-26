@@ -633,10 +633,26 @@ namespace SDX.Toolkit.Controls
 
         public void HandleClick()
         {
+            // for try it, to hide the grid if interaction has occurred
             if (IsRemovedOnInteraction)
             {
                 _grid.Opacity = 0.0;
             }
+
+            // stop the storyboard if user clicks, so they don't get a try it after clicking
+            if (null != _tryItBoxStoryboard)
+            {
+                _tryItBoxStoryboard.Stop();
+            }
+            if (null != _tryItCaptionStoryboard)
+            {
+                _tryItCaptionStoryboard.Stop();
+            }
+            if (null != _tryItIconStoryboard)
+            {
+                _tryItIconStoryboard.Stop();
+            }
+
             if (TryItEnabled && null != this.PopupChild)
             {
                 if (this.PopupChild.IsOpen)
@@ -648,15 +664,6 @@ namespace SDX.Toolkit.Controls
                     _imageX.Opacity = 0.0;
 
                     _tryItImage.Opacity = 1.0;
-
-                    if (null != _tryItBox)
-                    {
-                        _tryItBox.Opacity = 1.0;
-                    }
-                    if (null != _tryItButtonCaption)
-                    {
-                        _tryItButtonCaption.Opacity = 1.0;
-                    }
                 }
                 else
                 {
@@ -749,8 +756,13 @@ namespace SDX.Toolkit.Controls
             {
                 // hide the X
                 _imageX.Opacity = 0.0;
-
             }
+            if (null != _tryItImage)
+            {
+                // Show the tryit icon
+                _tryItImage.Opacity = 1.0;
+            }
+
         }
 
         #endregion
@@ -795,7 +807,7 @@ namespace SDX.Toolkit.Controls
                 };
 
                 // set the grid width
-                _grid.Width = GridWidth;
+                _grid.MinWidth = GridWidth;
 
                 // add pointer pressed event
                 _grid.PointerPressed += Grid_PointerPressed;
@@ -816,6 +828,8 @@ namespace SDX.Toolkit.Controls
                     double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
                     // width of the triangle
                     double TryItPathWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathWidth);
+                    // bottom margin of the cover triangle
+                    double TryItPathCoverBottomMargin = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathCoverBottomMargin);
                     // space between message box and ellipse
                     double RadiatingButtonTopSpacerHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseTopSpacer);
                     // space between ellipse and caption
@@ -833,7 +847,10 @@ namespace SDX.Toolkit.Controls
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ButtonCaptionHeight) });
 
                     // create the TryIt box content
-                    _tryItBox = new Grid();
+                    _tryItBox = new Grid()
+                    {
+                        Opacity = 0.0
+                    };
 
                     // create main blue message box
                     Border Background = new Border
@@ -845,7 +862,7 @@ namespace SDX.Toolkit.Controls
                         BorderThickness = new Thickness(2),
                         Padding = new Thickness(5,0,5,0),
                         VerticalAlignment = VerticalAlignment.Top,
-                        HorizontalAlignment = HorizontalAlignment.Center
+                        HorizontalAlignment = HorizontalAlignment.Center,
                     };
 
                     // create text box for "Try It" text
@@ -856,7 +873,7 @@ namespace SDX.Toolkit.Controls
                         TextStyle = TextStyles.TryIt,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center
+                        VerticalAlignment = VerticalAlignment.Center,
                     };
 
                     // create the blue triangle with white border
@@ -868,7 +885,7 @@ namespace SDX.Toolkit.Controls
                         StrokeThickness = 2,
                         Margin = new Thickness(0),
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Bottom
+                        VerticalAlignment = VerticalAlignment.Bottom,
                     };
                     Indicator.Points.Add(new Point(TryItPathWidth,0));
                     Indicator.Points.Add(new Point(TryItPathHeight, TryItPathHeight));
@@ -879,9 +896,9 @@ namespace SDX.Toolkit.Controls
                     {
                         Name = "TryItTriangleCover",
                         Fill = TryItColor,
-                        Margin = new Thickness(0,0,1,3),
+                        Margin = new Thickness(0,0,1, TryItPathCoverBottomMargin),
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Bottom
+                        VerticalAlignment = VerticalAlignment.Bottom,
                     };
                     IndicatorStrokeCover.Points.Add(new Point(TryItPathWidth, 0));
                     IndicatorStrokeCover.Points.Add(new Point(TryItPathHeight, TryItPathHeight));
@@ -921,8 +938,10 @@ namespace SDX.Toolkit.Controls
                         TextStyle = TryItCaption,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Opacity = 1.0d // QUICK FIX while animation helper isn't working properly
                     };
+
                     Grid.SetRow(_tryItButtonCaption, 4);
                     Grid.SetColumn(_tryItButtonCaption, 0);
 

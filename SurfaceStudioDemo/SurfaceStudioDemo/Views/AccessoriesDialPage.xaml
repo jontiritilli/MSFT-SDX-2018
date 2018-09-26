@@ -73,7 +73,7 @@
                 x:Name="PopRight"
                 IsOpen = "False"
                 HorizontalOffset="1000"
-                VerticalOffset="600"                    
+                VerticalOffset="600"          
                 IsLightDismissEnabled="True"
                 Opened="PopDial_Opened"
                 Closed="PopDial_Closed">
@@ -83,6 +83,7 @@
                         Headline="{x:Bind Path=ViewModel.PopDialHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopDialLede}"
                         MediaSourceUri = "{x:Bind Path=ViewModel.PopDialVideo}"
+                        MediaHasMargin="False"
                         MediaWidth = "600"
                         MediaHeight = "337.5"                           
                         />

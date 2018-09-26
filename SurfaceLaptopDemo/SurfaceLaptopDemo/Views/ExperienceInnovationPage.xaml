@@ -57,17 +57,17 @@
             
             <ctrl:RadiatingButton
                 x:Name="rBtnTryItInnovation"
-                TryItEnabled="true"
+                TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.24}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.64}"                                 
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.66}"                                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightInnovation"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                 
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.49}"                                 
                 PopupPosition="Left" 
                 AutoStart = "false"/>
         
@@ -82,7 +82,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="250"                    
+                VerticalOffset="225"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

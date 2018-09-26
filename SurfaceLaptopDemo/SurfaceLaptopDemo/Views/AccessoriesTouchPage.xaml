@@ -44,13 +44,13 @@
         <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"
                     x:Name="rButtonOne"
                     TryItEnabled="true"
-                    IsRemovedOnInteraction="True"
-                    RadiatingButtonIcon="pinch"
-                    TryItCaptionColor="White"
                     TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
                     TryItCaption="{x:Bind Path=ViewModel.TryIt_Lede}"
-                    AutoStart = "false"
+                    TryItCaptionColor="White"
+                    IsRemovedOnInteraction="True"
+                    RadiatingButtonIcon="pinch"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center"
+                    AutoStart = "false"/>
     </Grid>
 </Page>
