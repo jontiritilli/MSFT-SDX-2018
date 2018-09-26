@@ -64,7 +64,7 @@
                 AutoStart = "false"/>
 
 
-            <Popup
+            <!--<Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
@@ -76,6 +76,22 @@
                         Headline="{x:Bind Path=ViewModel.PopupMouseHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupMouseLede}"
                         MediaSourceUri="{x:Bind Path=ViewModel.PopupMouseInsetImage}"
+                        MediaWidth="{x:Bind Path=ViewModel.PopupMouseImageWidth}"
+                        />
+                </Popup.Child>
+            </Popup>-->
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                Width="{StaticResource PopupDefaultWidth}"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="{x:Bind Path=ViewModel.PopupMouseTryItTitle}"
+                        Lede="{x:Bind Path=ViewModel.PopupMouseTryItCaption}"
                         MediaWidth="{x:Bind Path=ViewModel.PopupMouseImageWidth}"
                         />
                 </Popup.Child>
