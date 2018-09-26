@@ -302,7 +302,7 @@ namespace SDX.Toolkit.Controls
         {
             if (d is NavigationBar navbar)
             {
-                navbar.MoveToPageIndex(0, true);
+                navbar.MoveToPageIndex(0, true, false);
             }
         }
 
@@ -669,7 +669,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // move to the first page
-            MoveToPageIndex(0, true);
+            MoveToPageIndex(0, true, false);
         }
 
         private void UpdateUI()
@@ -772,8 +772,10 @@ namespace SDX.Toolkit.Controls
 
         #region Navigation Control
 
-        public void MoveToPageIndex(int pageIndex, bool isForward)
+        public bool MoveToPageIndex(int pageIndex, bool isForward, bool raiseEvent = true)
         {
+            bool moved = false;
+
             // this function can only move the main flipview
 
             // take the pageIndex as the selected index of root
@@ -789,7 +791,7 @@ namespace SDX.Toolkit.Controls
                     if (item is NavigationPage page)
                     {
                         // move to it
-                        MoveToPage(page, NavigationActions.Unknown);
+                        moved = MoveToPage(page, NavigationActions.Unknown, raiseEvent);
                     }
                     else if (item is NavigationFlipView flipView)
                     {
@@ -808,14 +810,16 @@ namespace SDX.Toolkit.Controls
 
                         if (null != moveToPage)
                         {
-                            MoveToPage(moveToPage, NavigationActions.Unknown);
+                            moved = MoveToPage(moveToPage, NavigationActions.Unknown, raiseEvent);
                         }
                     }
                 }
             }
+
+            return moved;
         }
 
-        public bool MoveToPreviousPage()
+        public bool MoveToPreviousPage(bool raiseEvent = true)
         {
             bool moved = false;
 
@@ -829,14 +833,14 @@ namespace SDX.Toolkit.Controls
                 if (null != page)
                 {
                     // move to it
-                    moved = MoveToPage(page, NavigationActions.GoForward);
+                    moved = MoveToPage(page, NavigationActions.GoForward, raiseEvent);
                 }
             }
 
             return moved;
         }
 
-        public bool MoveToNextPage()
+        public bool MoveToNextPage(bool raiseEvent = true)
         {
             bool moved = false;
 
@@ -850,14 +854,14 @@ namespace SDX.Toolkit.Controls
                 if (null != page)
                 {
                     // move to it
-                    moved = MoveToPage(page, NavigationActions.GoForward);
+                    moved = MoveToPage(page, NavigationActions.GoForward, raiseEvent);
                 }
             }
 
             return moved;
         }
 
-        public bool MoveToSection(NavigationSection section)
+        public bool MoveToSection(NavigationSection section, bool raiseEvent = true)
         {
             bool moved = false;
 
@@ -880,13 +884,13 @@ namespace SDX.Toolkit.Controls
                         if (null != page)
                         {
                             // move to it
-                            moved = MoveToPage(page, NavigationActions.Section);
+                            moved = MoveToPage(page, NavigationActions.Section, raiseEvent);
                         }
                     }
                     else if (item is NavigationPage page)
                     {
                         // it's a page, so just go to it
-                        moved = MoveToPage(page, NavigationActions.Section);
+                        moved = MoveToPage(page, NavigationActions.Section, raiseEvent);
                     }
                 }
             }
@@ -894,7 +898,7 @@ namespace SDX.Toolkit.Controls
             return moved;
         }
 
-        public bool MoveToPage(NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown)
+        public bool MoveToPage(NavigationPage page, NavigationActions navigationAction = NavigationActions.Unknown, bool raiseEvent = true)
         {
             bool moved = false;
 
@@ -921,7 +925,10 @@ namespace SDX.Toolkit.Controls
                         this.UpdateUI();
 
                         // raise our navigate event
-                        RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
+                        if (raiseEvent)
+                        {
+                            RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
+                        }
 
                         // flag success
                         moved = true;
