@@ -32,8 +32,8 @@
                 WordRows="{x:Bind Path=ViewModel.RowCount}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
-                DurationPerWordInMilliseconds="400"
-                StaggerDelayMilliseconds="400"
+                DurationPerWordInMilliseconds="250"
+                StaggerDelayMilliseconds="500"
                 AutoStart="True" />
 
         <ctrl:SwipeLeft x:Name="SwipeLeft" Grid.Row="5" Grid.Column="1"
