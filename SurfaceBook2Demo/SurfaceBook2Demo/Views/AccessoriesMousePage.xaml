@@ -84,7 +84,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
+                VerticalOffset="-1"
                 Width="{StaticResource PopupDefaultWidth}"
                 IsLightDismissEnabled="True">
                 <Popup.Child>

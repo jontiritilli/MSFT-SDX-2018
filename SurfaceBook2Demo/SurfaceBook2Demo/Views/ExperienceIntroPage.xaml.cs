@@ -53,5 +53,25 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LegalPixelSense.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LegalPixelSense.SetOpacity(0);
+        }
+
+        private void PopRight_Opened(object sender, object e)
+        {
+         
+        }
+
+        private void PopRight_Closed(object sender, object e)
+        {
+         
+        }
     }
 }
