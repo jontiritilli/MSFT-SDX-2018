@@ -142,6 +142,11 @@
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\BestOfMicrosoftViewModel.cs" />
     <Compile Include="ViewModels\ChoosePathViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupBookViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupGoViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupLaptopViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupProViewModel.cs" />
+    <Compile Include="ViewModels\ComparePopupStudioViewModel.cs" />
     <Compile Include="ViewModels\CompareViewModel.cs" />
     <Compile Include="ViewModels\ExperienceFlipViewViewModel.cs" />
     <Compile Include="ViewModels\ExperienceHeroViewModel.cs" />
@@ -172,6 +177,21 @@
     </Compile>
     <Compile Include="Views\ComparePage.xaml.cs">
       <DependentUpon>ComparePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupBook.xaml.cs">
+      <DependentUpon>ComparePagePopupBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupGo.xaml.cs">
+      <DependentUpon>ComparePagePopupGo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupLaptop.xaml.cs">
+      <DependentUpon>ComparePagePopupLaptop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupPro.xaml.cs">
+      <DependentUpon>ComparePagePopupPro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ComparePagePopupStudio.xaml.cs">
+      <DependentUpon>ComparePagePopupStudio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExperienceFlipViewPage.xaml.cs">
       <DependentUpon>ExperienceFlipViewPage.xaml</DependentUpon>
@@ -270,6 +290,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ComparePagePopupBook.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupGo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupLaptop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupPro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ComparePagePopupStudio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ExperienceFlipViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -350,10 +390,10 @@
     <Content Include="Assets\Backgrounds\brand-bg.png" />
     <Content Include="Assets\Backgrounds\generic-bg.png" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
-    <Content Include="Assets\Comparison\comparisonCaprock.png" />
-    <Content Include="Assets\Comparison\comparisonCruz.png" />
+    <Content Include="Assets\Comparison\comparisonStudio.png" />
+    <Content Include="Assets\Comparison\comparisonPro.png" />
     <Content Include="Assets\Comparison\comparisonFamily.png" />
-    <Content Include="Assets\Comparison\comparisonFoxburg.png" />
+    <Content Include="Assets\Comparison\comparisonLaptop.png" />
     <Content Include="Assets\Comparison\comparisonGo.png" />
     <Content Include="Assets\Comparison\comparisonSb2.png" />
     <Content Include="Assets\Experience\black_hero_back.png" />
@@ -377,6 +417,19 @@
     <Content Include="Assets\List\InkingPalm.png" />
     <Content Include="Assets\List\inkingPressure.png" />
     <Content Include="Assets\List\inkingWrite.png" />
+    <Content Include="Assets\List\specs_audio.png" />
+    <Content Include="Assets\List\specs_battery.png" />
+    <Content Include="Assets\List\specs_connections.png" />
+    <Content Include="Assets\List\specs_creative.png" />
+    <Content Include="Assets\List\specs_design.png" />
+    <Content Include="Assets\List\specs_eye.png" />
+    <Content Include="Assets\List\specs_feather.png" />
+    <Content Include="Assets\List\specs_laptop.png" />
+    <Content Include="Assets\List\specs_pen.png" />
+    <Content Include="Assets\List\specs_performance.png" />
+    <Content Include="Assets\List\specs_screenSize.png" />
+    <Content Include="Assets\List\specs_versatile.png" />
+    <Content Include="Assets\List\specs_wifi.png" />
     <Content Include="Assets\NavigationBar\cap_nav_chevronLeft.png" />
     <Content Include="Assets\NavigationBar\cap_nav_chevronRight.png" />
     <Content Include="Assets\NavigationBar\cruz_chevron_left.png" />

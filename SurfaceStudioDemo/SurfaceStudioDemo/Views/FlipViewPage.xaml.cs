@@ -253,6 +253,7 @@ namespace SurfaceStudioDemo.Views
         {
             return this.CompareGoPopup;
         }
+
         #endregion
     }
 }

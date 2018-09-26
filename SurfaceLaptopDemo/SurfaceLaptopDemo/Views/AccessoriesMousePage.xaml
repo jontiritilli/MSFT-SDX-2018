@@ -66,6 +66,7 @@
                 x:Name="rBtnRightMouse"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                PopupPosition="Left"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton

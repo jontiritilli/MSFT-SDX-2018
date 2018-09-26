@@ -85,8 +85,11 @@
     <x:Double x:Key="CompareListTextWidth">656</x:Double>
     <x:Double x:Key="CompareRowSpacerHeight">50</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">38.515</x:Double>
-    
+    <x:Double x:Key="CompareCloseMargin">50</x:Double>
 
+    <GridLength x:Key="CompareSpaceBelowHeader">15</GridLength>
+    <GridLength x:Key="CompareSpaceBelowSubHeader">45</GridLength>
+    
     <x:Double x:Key="SwipeLeftEllipseRadius">54</x:Double>
     <x:Double x:Key="SwipeLeftSpacer">26.315</x:Double>
 
