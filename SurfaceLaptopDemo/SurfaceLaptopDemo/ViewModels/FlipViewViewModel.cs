@@ -187,14 +187,14 @@ namespace SurfaceLaptopDemo.ViewModels
             }
             );
 
-            // AccessoriesPenPage
-            this.Root.Items.Add(new NavigationPage()
-            {
-                Name = "AccessoriesPenPage",
-                Order = 8,
-                Section = sectionAccessories,
-            }
-            );
+            //// AccessoriesPenPage
+            //this.Root.Items.Add(new NavigationPage()
+            //{
+            //    Name = "AccessoriesPenPage",
+            //    Order = 8,
+            //    Section = sectionAccessories,
+            //}
+            //);
 
             // =================================================
             // Create Best of Microsoft Pages
@@ -205,7 +205,7 @@ namespace SurfaceLaptopDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "BestOfMicrosoftPage",
-                Order = 9,
+                Order = 8,
                 Section = sectionBestOfMicrosoft,
             }
             );
@@ -218,7 +218,7 @@ namespace SurfaceLaptopDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "ComparePage",
-                Order = 10,
+                Order = 9,
                 Section = sectionCompare,
             });
 
