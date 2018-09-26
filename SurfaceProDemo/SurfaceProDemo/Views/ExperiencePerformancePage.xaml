@@ -81,6 +81,7 @@
                         Headline="{x:Bind Path=ViewModel.PopTryItHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopTryItLede}"
                         MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
+                        MediaHasMargin="False"
                         MediaWidth="450"
                         />
                 </Popup.Child>
