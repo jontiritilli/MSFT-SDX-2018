@@ -94,6 +94,7 @@ namespace SDX.Toolkit.Helpers
         TryItBoxWidth,
         TryItPathHeight,
         TryItPathWidth,
+        TryItPathCoverBottomMargin,
         TryItIconHeight,
         RadiatingButtonIconHeight,
         RadiatingButtonEllipseRadius,
@@ -259,7 +260,8 @@ namespace SDX.Toolkit.Helpers
 
         public const string SIZE_TRYIT_BOX_HEIGHT = "TryItBoxHeight"; 
         public const string SIZE_TRYIT_BOX_WIDTH = "TryItBoxWidth";
-        public const string SIZE_TRYIT_PATH_HEIGHT = "TryItPathHeight";
+        public const string SIZE_TRYIT_PATH_HEIGHT = "TryItPathHeight"; 
+        public const string SIZE_TRYIT_PATH_COVER_MARGIN = "TryItPathCoverBottomMargin";
         public const string SIZE_TRYIT_PATH_WIDTH = "TryItPathWidth";
         public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
 
@@ -509,13 +511,18 @@ namespace SDX.Toolkit.Helpers
                     
                 case LayoutSizes.TryItBoxWidth:
                     value = GetApplicationDouble(SIZE_TRYIT_BOX_WIDTH);
-                    break;
+                    break; 
 
                 case LayoutSizes.TryItPathHeight:
                     value = GetApplicationDouble(SIZE_TRYIT_PATH_HEIGHT);
                     break;
+
                 case LayoutSizes.TryItPathWidth:
                     value = GetApplicationDouble(SIZE_TRYIT_PATH_WIDTH);
+                    break;
+
+                case LayoutSizes.TryItPathCoverBottomMargin:
+                    value = GetApplicationDouble(SIZE_TRYIT_PATH_COVER_MARGIN);
                     break;
 
                 case LayoutSizes.TryItIconHeight:

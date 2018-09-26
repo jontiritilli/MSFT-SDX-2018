@@ -127,7 +127,7 @@
                 IsOpen = "False"
                 HorizontalOffset="830"
                 VerticalOffset="545"                    
-                IsLightDismissEnabled="False"
+                IsLightDismissEnabled="True"
                 Opened="PopBottom_Opened"
                 Closed="PopBottom_Closed">
                 <Popup.Child>
@@ -136,9 +136,9 @@
                         Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopBottomLede}"
                         MediaSourceUri = "{x:Bind Path=ViewModel.PopupDialVideo}"
+                        MediaHasMargin="False"
                         MediaWidth = "600"
-                        MediaHeight = "337.5"                    
-                        />
+                        MediaHeight = "337.5" />
                 </Popup.Child>
             </Popup>
         </Canvas>
