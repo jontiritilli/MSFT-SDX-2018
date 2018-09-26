@@ -1162,6 +1162,10 @@ namespace SDX.Toolkit.Controls
                         case PopupTypes.Text:
                             //Thickness Padding = StyleHelper.GetApplicationThickness(LayoutThicknesses.PopupPadding);
                             popupWidth = popup.Width;// - Padding.Left - Padding.Right;
+                            if (Double.IsNaN(popupWidth))
+                            {
+                                popupWidth = defaultPopupWidth;
+                            }
                             break;
                         case PopupTypes.Image:
                             // media width doesnt take into account padding inside thepop up so this shores up the popup width for offset
