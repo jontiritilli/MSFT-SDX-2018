@@ -664,15 +664,6 @@ namespace SDX.Toolkit.Controls
                     _imageX.Opacity = 0.0;
 
                     _tryItImage.Opacity = 1.0;
-
-                    if (null != _tryItBox)
-                    {
-                        _tryItBox.Opacity = 1.0;
-                    }
-                    if (null != _tryItButtonCaption)
-                    {
-                        _tryItButtonCaption.Opacity = 1.0;
-                    }
                 }
                 else
                 {
@@ -765,8 +756,13 @@ namespace SDX.Toolkit.Controls
             {
                 // hide the X
                 _imageX.Opacity = 0.0;
-
             }
+            if (null != _tryItImage)
+            {
+                // Show the tryit icon
+                _tryItImage.Opacity = 1.0;
+            }
+
         }
 
         #endregion
