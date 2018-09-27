@@ -90,7 +90,7 @@ namespace SDX.Toolkit.Controls
         {
             if (null != this.TheText)
             {
-                this.TheText.Opacity = (showBold ? 0 : 1);
+                this.TheText.Opacity = (showBold ? 0 : 1);                
             }
             if (null != this.TheTextBold)
             {
