@@ -44,11 +44,13 @@ namespace SDX.Toolkit.Controls
 
         private static readonly double HEIGHT_CHARGE = HEIGHT_BATTERY - (2 * MARGIN_CHARGE_TOP);
 
-        private static readonly double LEFT_HOURS = LEFT_CHARGE + (2 * MARGIN_CHARGE_TOP);
-        private static readonly double TOP_HOURS = TOP_CHARGE;
+        private static readonly double LEFT_HOURS = CHARGE_START_WIDTH + LEFT_CHARGE + (2 * MARGIN_CHARGE_LEFT);
+        private static readonly double TOP_HOURS = 30d;
+        private static readonly double HOURS_WIDTH = 100d;
 
-        private static readonly double LEFT_HOURS_TEXT = LEFT_HOURS + MARGIN_CHARGE_LEFT + LEFT_BATTERY + CHARGE_START_WIDTH;
-        private static readonly double TOP_HOURS_TEXT = TOP_CHARGE;
+        private static readonly double LEFT_HOURS_TEXT = LEFT_HOURS + HOURS_WIDTH + MARGIN_CHARGE_LEFT;
+        private static readonly double TOP_HOURS_TEXT = TOP_HOURS;
+        private static readonly double HOURS_TEXT_WIDTH = 100d;
 
         private readonly int Z_ORDER_CONTROLS = 100;
         private readonly int Z_ORDER_BATTERY = 10;
@@ -60,7 +62,7 @@ namespace SDX.Toolkit.Controls
 
         private Canvas _layoutRoot = null;
         private AnimatableInteger _hours = null;
-        private TextBlockEx _hrs = null;
+        private TextBlockEx _hoursText = null;
         private ImageEx _imageBattery = null;
         private Image _imageCharge = null;
 
@@ -93,14 +95,24 @@ namespace SDX.Toolkit.Controls
 
         #region Dependency Properties
 
-        // Hour
-        public static readonly DependencyProperty HourProperty =
+        // HourIntegerMax
+        public static readonly DependencyProperty HourIntegerMaxProperty =
+            DependencyProperty.Register("HourIntegerMax", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(17d, OnPropertyChanged));
+
+        public double HourIntegerMax
+        {
+            get { return (double)GetValue(HourIntegerMaxProperty); }
+            set { SetValue(HourIntegerMaxProperty, value); }
+        }
+
+        // HourText
+        public static readonly DependencyProperty HourTextProperty =
             DependencyProperty.Register("Hour", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata("hrs", OnPropertyChanged));
 
-        public string Hour
+        public string HourText
         {
-            get { return (string)GetValue(HourProperty); }
-            set { SetValue(HourProperty, value); }
+            get { return (string)GetValue(HourTextProperty); }
+            set { SetValue(HourTextProperty, value); }
         }
 
         // TimeStart
@@ -125,7 +137,7 @@ namespace SDX.Toolkit.Controls
 
         // DurationInMilliseconds
         public static readonly DependencyProperty DurationInMillisecondsProperty =
-            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
+            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(2500d, OnDurationInMillisecondsChanged));
 
         public double DurationInMilliseconds
         {
@@ -208,10 +220,7 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (this.AutoStart)
-            {
-                this.StartAnimation();
-            }
+            this.StartAnimation();
         }
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -284,7 +293,9 @@ namespace SDX.Toolkit.Controls
             // create the percent overlay
             _hours = new AnimatableInteger()
             {
-                HourValue = 0.0
+                HourIntegerMax = this.HourIntegerMax,
+                Width = HOURS_WIDTH,
+                DurationInMilliseconds = this.DurationInMilliseconds
             };
 
             Canvas.SetLeft(_hours, LEFT_HOURS);
@@ -292,21 +303,23 @@ namespace SDX.Toolkit.Controls
             Canvas.SetZIndex(_hours, Z_ORDER_CONTROLS);
             _layoutRoot.Children.Add(_hours);
 
-            // create hours overlay
-            _hrs = new TextBlockEx()
-            {
-                Text = this.Hour,
-                TextAlignment = TextAlignment.Left,
-                TextStyle = TextStyles.PopupBatteryLife,
-            };
-
-            Canvas.SetLeft(_hrs, LEFT_HOURS);
-            Canvas.SetTop(_hrs, TOP_HOURS);
-            Canvas.SetZIndex(_hrs, Z_ORDER_CONTROLS);
-            _layoutRoot.Children.Add(_hrs);
-
             // create the charge animation
             _chargeStoryboard = SetupChargeAnimation(_imageCharge, CHARGE_START_WIDTH, CHARGE_END_WIDTH, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
+
+            // create hour text overlay
+            _hoursText = new TextBlockEx()
+            {
+                Text = this.HourText,
+                TextAlignment = TextAlignment.Left,
+                TextStyle = TextStyles.PopupBatteryLife,
+                Width = HOURS_TEXT_WIDTH
+            };
+
+            Canvas.SetLeft(_hoursText, LEFT_HOURS_TEXT);
+            Canvas.SetTop(_hoursText, TOP_HOURS_TEXT);
+            Canvas.SetZIndex(_hoursText, Z_ORDER_CONTROLS);
+            _layoutRoot.Children.Add(_hoursText);
+
         }
 
         private Storyboard SetupChargeAnimation(Image image, double startingWidth, double finalWidth, double duration, double staggerDelay)

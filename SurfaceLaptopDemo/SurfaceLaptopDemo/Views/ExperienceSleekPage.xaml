@@ -130,6 +130,8 @@
                         Headline="{x:Bind Path=ViewModel.PopBottom_Headline}"
                         Lede="{x:Bind Path=ViewModel.PopBottom_Lede}"
                         Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        HourText="hrs"
+                        HourIntegerMax="14.5"
                         />
                 </Popup.Child>
             </Popup>

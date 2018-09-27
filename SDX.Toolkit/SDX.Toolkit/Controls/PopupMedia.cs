@@ -89,14 +89,24 @@ namespace SDX.Toolkit.Controls
             set => SetValue(LedeProperty, value);
         }
 
-        // Hour
-        public static readonly DependencyProperty HourProperty =
-            DependencyProperty.Register("Lede", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnHourChanged));
+        // HourText
+        public static readonly DependencyProperty HourTextProperty =
+            DependencyProperty.Register("HourText", typeof(string), typeof(RadiatingButton), new PropertyMetadata("hrs"));
 
-        public string Hour
+        public string HourText
         {
-            get => (string)GetValue(HourProperty);
-            set => SetValue(HourProperty, value);
+            get => (string)GetValue(HourTextProperty);
+            set => SetValue(HourTextProperty, value);
+        }
+
+        // HourIntegerMax
+        public static readonly DependencyProperty HourIntegerMaxProperty =
+            DependencyProperty.Register("HourIntegerMax", typeof(double), typeof(RadiatingButton), new PropertyMetadata(17d));
+
+        public double HourIntegerMax
+        {
+            get => (double)GetValue(HourIntegerMaxProperty);
+            set => SetValue(HourIntegerMaxProperty, value);
         }
 
         // PopupType
@@ -392,13 +402,13 @@ namespace SDX.Toolkit.Controls
                 _batteryLife = new PopupContentBatteryLife()
                 {
                     Name = "BatteryLife",
-                    Hour = this.Hour,
+                    HourText = this.HourText,
+                    HourIntegerMax = this.HourIntegerMax,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Top,
                     Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
-                    DurationInMilliseconds = 800d,
+                    DurationInMilliseconds = 1000d,
                     StaggerDelayInMilliseconds = 800d,
-                    AutoStart = true
                 };
 
                 // add to the grid
