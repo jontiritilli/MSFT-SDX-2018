@@ -78,7 +78,7 @@
             ShowSelectedLine="true"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonSize}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonSize}"/>
+            ButtonWidth="{StaticResource ExperienceAppIconWidth}"
+            ButtonHeight="{StaticResource ExperienceAppIconWidth}"/>
     </Grid>
 </Page>
