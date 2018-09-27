@@ -52,7 +52,7 @@
     <GridLength x:Key="LeftMargin">100.267</GridLength>
     <GridLength x:Key="TopMargin">81.067</GridLength>
     <GridLength x:Key="RightMargin">100.267</GridLength>    <!-- Not spec'ed in design; Assumed to mirror left margin -->
-    <GridLength x:Key="BottomMargin">68</GridLength>
+    <GridLength x:Key="BottomMargin">50</GridLength>
 
     <GridLength x:Key="SpaceBelowHeader">67.733</GridLength>
     <GridLength x:Key="BestOfMicrosoftSpaceBelowHeader">125</GridLength>
@@ -88,12 +88,14 @@
 
     <x:Double x:Key="CompareListIconWidth">40</x:Double>
     <x:Double x:Key="CompareListTextWidth">589.333</x:Double>
-    <x:Double x:Key="CompareRowSpacerHeight">30</x:Double>
+    <x:Double x:Key="CompareRowSpacerHeight">25</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">28</x:Double>
     <x:Double x:Key="CompareCloseMargin">50</x:Double>
+    <x:Double x:Key="CompareImageWidth">784</x:Double>
+    <GridLength x:Key="CompareBottomMargin">20</GridLength>
 
     <GridLength x:Key="CompareSpaceBelowHeader">15</GridLength>
-    <GridLength x:Key="CompareSpaceBelowSubHeader">45</GridLength>
+    <GridLength x:Key="CompareSpaceBelowSubHeader">35</GridLength>
     
     <x:Double x:Key="ExperienceAppIconWidth">64</x:Double>
 
