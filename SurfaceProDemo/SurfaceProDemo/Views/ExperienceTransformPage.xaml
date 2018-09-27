@@ -74,6 +74,7 @@
                         Lede="{x:Bind Path=ViewModel.PopLede}"
                         MediaWidth="426.667"
                         MediaHeight="240"
+                        PlaybackRate="0.5"
                         />
                 </Popup.Child>
             </Popup>

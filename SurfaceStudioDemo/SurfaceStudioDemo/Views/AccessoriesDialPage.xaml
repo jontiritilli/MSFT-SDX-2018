@@ -85,7 +85,7 @@
                         MediaSourceUri = "{x:Bind Path=ViewModel.PopDialVideo}"
                         MediaHasMargin="False"
                         MediaWidth = "600"
-                        MediaHeight = "337.5"                           
+                        MediaHeight = "337.5"                        
                         />
                 </Popup.Child>
             </Popup>
