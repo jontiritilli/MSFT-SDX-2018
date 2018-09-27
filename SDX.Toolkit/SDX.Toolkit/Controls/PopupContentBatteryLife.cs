@@ -137,7 +137,7 @@ namespace SDX.Toolkit.Controls
 
         // DurationInMilliseconds
         public static readonly DependencyProperty DurationInMillisecondsProperty =
-            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(2500d, OnDurationInMillisecondsChanged));
+            DependencyProperty.Register("DurationInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(2000d, OnDurationInMillisecondsChanged));
 
         public double DurationInMilliseconds
         {
@@ -154,7 +154,7 @@ namespace SDX.Toolkit.Controls
 
         // StaggerDelayInMilliseconds
         public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(200d, OnStaggerDelayInMillisecondsChanged));
 
         public double StaggerDelayInMilliseconds
         {
@@ -295,7 +295,8 @@ namespace SDX.Toolkit.Controls
             {
                 HourIntegerMax = this.HourIntegerMax,
                 Width = HOURS_WIDTH,
-                DurationInMilliseconds = this.DurationInMilliseconds
+                DurationInMilliseconds = this.DurationInMilliseconds,
+                StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds
             };
 
             Canvas.SetLeft(_hours, LEFT_HOURS);

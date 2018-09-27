@@ -71,7 +71,7 @@ namespace SDX.Toolkit.Controls
 
         // Headline
         public static readonly DependencyProperty HeadlineProperty =
-            DependencyProperty.Register("Headline", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnHeadlineChanged));
+            DependencyProperty.Register("Headline", typeof(string), typeof(PopupMedia), new PropertyMetadata(String.Empty, OnHeadlineChanged));
 
         public string Headline
         {
@@ -81,7 +81,7 @@ namespace SDX.Toolkit.Controls
 
         // Lede
         public static readonly DependencyProperty LedeProperty =
-            DependencyProperty.Register("Lede", typeof(string), typeof(RadiatingButton), new PropertyMetadata(String.Empty, OnLedeChanged));
+            DependencyProperty.Register("Lede", typeof(string), typeof(PopupMedia), new PropertyMetadata(String.Empty, OnLedeChanged));
 
         public string Lede
         {
@@ -91,7 +91,7 @@ namespace SDX.Toolkit.Controls
 
         // HourText
         public static readonly DependencyProperty HourTextProperty =
-            DependencyProperty.Register("HourText", typeof(string), typeof(RadiatingButton), new PropertyMetadata("hrs"));
+            DependencyProperty.Register("HourText", typeof(string), typeof(PopupMedia), new PropertyMetadata("hrs"));
 
         public string HourText
         {
@@ -101,7 +101,7 @@ namespace SDX.Toolkit.Controls
 
         // HourIntegerMax
         public static readonly DependencyProperty HourIntegerMaxProperty =
-            DependencyProperty.Register("HourIntegerMax", typeof(double), typeof(RadiatingButton), new PropertyMetadata(17d));
+            DependencyProperty.Register("HourIntegerMax", typeof(double), typeof(PopupMedia), new PropertyMetadata(0d));
 
         public double HourIntegerMax
         {
@@ -111,7 +111,7 @@ namespace SDX.Toolkit.Controls
 
         // PopupType
         public static readonly DependencyProperty PopupTypeProperty =
-            DependencyProperty.Register("PopupType", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(true, OnPopupTypeChanged));
+            DependencyProperty.Register("PopupType", typeof(bool), typeof(PopupMedia), new PropertyMetadata(true, OnPopupTypeChanged));
 
         public PopupTypes PopupType
         {
@@ -132,7 +132,7 @@ namespace SDX.Toolkit.Controls
 
         //// MediaSourceUri
         public static readonly DependencyProperty MediaSourceUriProperty =
-            DependencyProperty.Register("MediaSourceUri", typeof(Uri), typeof(RadiatingButton), new PropertyMetadata(null, OnMediaSourceUriChanged));
+            DependencyProperty.Register("MediaSourceUri", typeof(Uri), typeof(PopupMedia), new PropertyMetadata(null, OnMediaSourceUriChanged));
 
         public Uri MediaSourceUri
         {
@@ -141,7 +141,7 @@ namespace SDX.Toolkit.Controls
         }
 
         public static readonly DependencyProperty MediaHeightProperty =
-    DependencyProperty.Register("MediaHeight", typeof(double), typeof(RadiatingButton), new PropertyMetadata(0d));
+    DependencyProperty.Register("MediaHeight", typeof(double), typeof(PopupMedia), new PropertyMetadata(0d));
 
         public double MediaHeight
         {
@@ -151,7 +151,7 @@ namespace SDX.Toolkit.Controls
 
 
         public static readonly DependencyProperty MediaWidthProperty =
-    DependencyProperty.Register("MediaWidth", typeof(double), typeof(RadiatingButton), new PropertyMetadata(0d));
+    DependencyProperty.Register("MediaWidth", typeof(double), typeof(PopupMedia), new PropertyMetadata(0d));
 
         public double MediaWidth
         {
@@ -407,8 +407,8 @@ namespace SDX.Toolkit.Controls
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Top,
                     Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
-                    DurationInMilliseconds = 1000d,
-                    StaggerDelayInMilliseconds = 800d,
+                    DurationInMilliseconds = 2000d,
+                    StaggerDelayInMilliseconds = 200d,
                 };
 
                 // add to the grid
