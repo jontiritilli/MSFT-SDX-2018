@@ -3,7 +3,8 @@
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
-
+using SurfaceProDemo.Services;
+using Windows.UI.Xaml;
 
 namespace SurfaceProDemo.Views
 {
@@ -24,6 +25,9 @@ namespace SurfaceProDemo.Views
         public ExperienceHeroPage()
         {
             InitializeComponent();
+            if (ConfigurationService.Current.GetIsBlackSchemeEnabled()) {
+                this.PageHero.Style = (Style)Application.Current.Resources["HeroDark"];
+            }
         }
 
         #endregion

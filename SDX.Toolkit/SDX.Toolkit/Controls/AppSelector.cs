@@ -674,6 +674,11 @@ namespace SDX.Toolkit.Controls
                     TextStyleBold = TextStyles.AppSelectorTextBold
                 };
 
+                if (index == 0)
+                {
+                    tbMessage.ShowBoldText(true);
+                }
+
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 btnGrid.Children.Add(tbMessage);
@@ -778,6 +783,11 @@ namespace SDX.Toolkit.Controls
                     VerticalAlignment = VerticalAlignment.Center,
                     TextStyleBold = TextStyles.AppSelectorTextBold
                 };
+
+                if (i == 0)
+                {
+                    tbMessage.ShowBoldText(true);
+                }
 
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 

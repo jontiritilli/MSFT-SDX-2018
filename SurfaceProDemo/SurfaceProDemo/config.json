@@ -6,6 +6,6 @@
   "TelemetryKey": "Test",
   "TelemetryProdId": "",
   "TelemetryTestId": "",
-  "IsBlackSchemeEnabled": false,
+  "IsBlackSchemeEnabled": true,
   "IsChoosePathPageEnabled":  false
 }
