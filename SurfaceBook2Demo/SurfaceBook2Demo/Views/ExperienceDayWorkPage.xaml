@@ -122,6 +122,15 @@
                         />
                 </Popup.Child>
             </Popup>
+
+            <ctrl:TextBlockEx x:Name="LegalBatteryLife"
+                       Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.93}"
+                       Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.03}" 
+                       TextStyle="Legal"
+                       Opacity="0" />
         </Canvas>
 
 
@@ -133,12 +142,7 @@
             </Image.Source>
         </Image>
 
-        <ctrl:TextBlockEx x:Name="LegalBatteryLife" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       TextStyle="Legal"
-                       Opacity="0" />
+
 
         <ctrl:TextBlockEx x:Name="LegalConnections" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupConnectionsLegal}"

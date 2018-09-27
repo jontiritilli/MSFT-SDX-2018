@@ -48,6 +48,8 @@ namespace SDX.Toolkit.Helpers
         NavigationSectionActive,
         PlayerArtistName,
         PlayerTrackName,
+        AppSelectorText,
+        AppSelectorTextBold
     }
 
     public enum LayoutSizes
@@ -201,6 +203,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
         public const string STYLE_PLAYER_ARTISTNAME = "PlayerArtistName";
         public const string STYLE_PLAYER_TRACKNAME = "PlayerTrackName";
+        public const string STYLE_APPSELECTOR_TEXT= "AppSelectorText";
+        public const string STYLE_APPSELECTOR_TEXT_BOLD = "AppSelectorTextBold";
 
         #endregion
 
@@ -770,7 +774,12 @@ namespace SDX.Toolkit.Helpers
                 case TextStyles.PlayerTrackName:
                     style = GetApplicationStyle(STYLE_PLAYER_TRACKNAME);
                     break;
-
+                case TextStyles.AppSelectorText:
+                    style = GetApplicationStyle(STYLE_APPSELECTOR_TEXT);
+                    break;
+                case TextStyles.AppSelectorTextBold:
+                    style = GetApplicationStyle(STYLE_APPSELECTOR_TEXT_BOLD);
+                    break;
                 default:
                     break;
             }
