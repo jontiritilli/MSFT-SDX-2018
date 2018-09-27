@@ -32,6 +32,21 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void PopBottom_Opened(object sender, object e)
+        {
+            this.PopBottomLegal.SetOpacity(1);
+        }
+
+        private void PopBottom_Closed(object sender, object e)
+        {
+            this.PopBottomLegal.SetOpacity(0);
+
+        }
+
+        #endregion
+
         #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)

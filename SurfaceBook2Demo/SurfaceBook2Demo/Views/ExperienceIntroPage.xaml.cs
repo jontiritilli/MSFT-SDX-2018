@@ -25,6 +25,12 @@ namespace SurfaceBook2Demo.Views
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
 
+            this.Loaded += this.ExperienceIntroPage_Loaded;
+        }
+
+        private void ExperienceIntroPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            
         }
 
         #endregion
@@ -40,6 +46,12 @@ namespace SurfaceBook2Demo.Views
 
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
+
+            // TEST - To prove that .IsNavigationEnabled works.
+            //if (null != FlipViewPage.GetNavigationBar())
+            //{
+            //    FlipViewPage.GetNavigationBar().IsNavigationEnabled = false;
+            //}
         }
 
         public void NavigateFromPage()
@@ -53,6 +65,9 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
+
+
+        #region Event Handlers
 
         private void PopLeft_Opened(object sender, object e)
         {
@@ -73,5 +88,7 @@ namespace SurfaceBook2Demo.Views
         {
          
         }
+
+        #endregion
     }
 }

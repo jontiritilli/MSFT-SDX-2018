@@ -37,39 +37,43 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:AppSelectorImage Grid.Row="0" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="2"
-                               x:Name="AppSelectorImageAccLeft"
-                               URIs="{x:Bind Path=ViewModel.accLeftSelectorImageURIs}"
-                               ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
-                               ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Top"/>
+            x:Name="AppSelectorImageAccLeft"
+            URIs="{x:Bind Path=ViewModel.accLeftSelectorImageURIs}"
+            ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
+            ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
-                            x:Name="AppSelectorAccLeft"
-                            URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
-                            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
+            x:Name="AppSelectorAccLeft"
+            URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
 
         <ctrl:Header Grid.Row="3" Grid.Column="1"
-                    x:Name="AccLeftHeader" 
-                    Headline="{x:Bind Path=ViewModel.Headline}"
-                    Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="PageHeadline"
-                    LedeStyle="PageLede"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"/>
+            x:Name="AccLeftHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
 
+        <ctrl:TextBlockEx Grid.Row="7" Grid.Column="1"
+            x:Name="PopLeftLegal"
+            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Opacity="0"/>
+        
         <Canvas x:Name="ButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightMouse"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
                 PopupPosition="Left"                 
@@ -77,10 +81,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftMouse"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.12}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.62}"
                 PopupPosition="Right"                 
@@ -88,10 +88,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnCenterMouse"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.44}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
                 PopupPosition="Right"                 
@@ -100,8 +96,8 @@
             <Popup
                 x:Name="PopCenter"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                    
+                HorizontalOffset="500"
+                VerticalOffset="470"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -116,9 +112,11 @@
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                    
-                IsLightDismissEnabled="True">
+                HorizontalOffset="220"
+                VerticalOffset="400"                    
+                IsLightDismissEnabled="True"
+                Opened="PopLeft_Opened"
+                Closed="PopLeft_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Text"
@@ -132,8 +130,8 @@
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                  
+                HorizontalOffset="870"
+                VerticalOffset="480"                  
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

@@ -18,7 +18,7 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_DESIGN = "ms-appx:///Assets/Experience/Design/foxburg_design.png";
         private const string URI_POPLEFT_MEDIA = "ms-appx:///Assets/Experience/Design/foxburg_alcantara.png";
         private const double WIDTH_MEDIA = 1136d;
-        private const double WIDTH_POPUP_MEDIA = 325d;
+        private const double WIDTH_POPUP_MEDIA = 380d;
         #endregion
 
         #region Public Members

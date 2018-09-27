@@ -2,6 +2,7 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
@@ -60,6 +61,21 @@ namespace SurfaceLaptopDemo.Views
             {
                 this.AppSelectorAccLeft.SelectedID = ID;
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.PopLeftLegal.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.PopLeftLegal.SetOpacity(0);
+
         }
 
         #endregion

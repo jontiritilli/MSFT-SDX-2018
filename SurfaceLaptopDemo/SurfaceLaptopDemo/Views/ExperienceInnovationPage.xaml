@@ -59,14 +59,14 @@
                 x:Name="rBtnTryItInnovation"
                 TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.24}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.66}"                                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightInnovation"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.49}"                                 
                 PopupPosition="Left" 
                 AutoStart = "false"/>
@@ -74,7 +74,7 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnTopInnovation"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.40}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.14}"                                 
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.16}"                                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
@@ -82,7 +82,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="225"                    
+                VerticalOffset="180"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -99,7 +99,7 @@
                 x:Name="PopTop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                    
+                VerticalOffset="70"                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -113,8 +113,8 @@
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"                  
+                HorizontalOffset="855"
+                VerticalOffset="560"                  
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

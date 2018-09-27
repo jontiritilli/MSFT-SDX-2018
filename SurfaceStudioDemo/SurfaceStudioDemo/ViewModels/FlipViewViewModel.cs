@@ -174,7 +174,7 @@ namespace SurfaceStudioDemo.ViewModels
             {
                 Name = "AccessoriesPenPage",
                 Order = 4,
-                Section = sectionAccessories,
+                Section = sectionExperience,
             }
             );
 
