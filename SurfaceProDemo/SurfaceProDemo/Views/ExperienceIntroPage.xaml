@@ -75,18 +75,19 @@
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="-1"
+                HorizontalOffset="450"
+                VerticalOffset="490"
                 Closed="PopLeft_Closed"
                 Opened="PopLeft_Opened"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Text"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                        
+                        PopupType="Battery"
                         Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLeftLede}"
-                        />
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                        
+                        HourText="hrs"
+                        HourIntegerMax="13.5" />
                 </Popup.Child>
             </Popup>
             <Popup
@@ -124,10 +125,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.68}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"                                                               
                 PopupPosition="Left"
@@ -136,10 +133,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                
                 PopupPosition="Right"                
@@ -147,10 +140,6 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.33}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.27}"                                                                 
                 PopupPosition="Left"                

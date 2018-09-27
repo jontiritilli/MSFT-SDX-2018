@@ -201,6 +201,7 @@ namespace SDX.Toolkit.Controls
             {
                 TextStyle = TextStyles.PopupBatteryLife,
                 HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Center,
                 Width = this.Width
             };
 

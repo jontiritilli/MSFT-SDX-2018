@@ -405,7 +405,7 @@ namespace SDX.Toolkit.Controls
                     HourText = this.HourText,
                     HourIntegerMax = this.HourIntegerMax,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Top,
+                    VerticalAlignment = VerticalAlignment.Center,
                     Width = this.Width - _layoutRoot.Padding.Left - _layoutRoot.Padding.Right,
                     DurationInMilliseconds = 2000d,
                     StaggerDelayInMilliseconds = 200d,
