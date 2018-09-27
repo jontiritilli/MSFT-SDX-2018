@@ -19,8 +19,7 @@ namespace SurfaceLaptopDemo.ViewModels
     public class ComparePopupProViewModel
     {
         #region Constants
-
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
+        
         private const string URI_PRIMARYIMAGE = "ms-appx:///Assets/Comparison/comparisonPro.png";
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
@@ -29,9 +28,9 @@ namespace SurfaceLaptopDemo.ViewModels
         #endregion
 
         #region Public Properties
-
-        public string BackgroundUri = URI_BACKGROUND;
+        
         public string PrimaryImageURI = URI_PRIMARYIMAGE;
+        public double PrimaryImageWidth = PRIMARY_IMAGEHEIGHT;
         public string Headline;
 
         public string SubHead;
