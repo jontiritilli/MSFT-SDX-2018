@@ -392,7 +392,7 @@
                             </VisualStateGroup>
 
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle RadiusX="62" RadiusY="62" Fill="Transparent" Margin="0,0,0,0"/>
+                        <Rectangle RadiusX="62" RadiusY="62" Fill="Transparent" Margin="0,0,10,0"/>
                         <ContentPresenter x:Name="ContentPresenter"
                             BorderBrush="Transparent"
                             BorderThickness="0"
