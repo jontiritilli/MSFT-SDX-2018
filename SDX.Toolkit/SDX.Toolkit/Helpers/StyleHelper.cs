@@ -17,6 +17,7 @@ namespace SDX.Toolkit.Helpers
     public enum TextStyles
     {
         Hero,
+        HeroDark,
         Swipe,
         PageHeadline,
         PageHeadlineDark,
@@ -172,6 +173,7 @@ namespace SDX.Toolkit.Helpers
         #region Style Constants
 
         public const string STYLE_HERO = "Hero";
+        public const string STYLE_HERO_DARK = "HeroDark";
         public const string STYLE_SWIPE = "Swipe";
         public const string STYLE_PAGE_HEADLINE = "PageHeadline";
         public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark"; 
@@ -649,6 +651,10 @@ namespace SDX.Toolkit.Helpers
             {
                 case TextStyles.Hero:
                     style = GetApplicationStyle(STYLE_HERO);
+                    break;
+                    
+                case TextStyles.HeroDark:
+                    style = GetApplicationStyle(STYLE_HERO_DARK);
                     break;
 
                 case TextStyles.Swipe:

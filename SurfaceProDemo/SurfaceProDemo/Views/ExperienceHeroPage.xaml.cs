@@ -25,9 +25,6 @@ namespace SurfaceProDemo.Views
         public ExperienceHeroPage()
         {
             InitializeComponent();
-            if (ConfigurationService.Current.GetIsBlackSchemeEnabled()) {
-                this.PageHero.Style = (Style)Application.Current.Resources["HeroDark"];
-            }
         }
 
         #endregion
