@@ -57,7 +57,8 @@
                 RadiatingButtonIcon="touch"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"                                                                                             
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopRight"
@@ -85,7 +86,7 @@
             x:Name="img_Studio"
             ImageWidth="{x:Bind Path=ViewModel.StudioWidth}"            
             ImageSource="{x:Bind Path=ViewModel.StudioUri}"
-            TranslateDirection="Left"
+            PageEntranceDirection="Right"
             Canvas.ZIndex="100"
             Opacity="0"
             />

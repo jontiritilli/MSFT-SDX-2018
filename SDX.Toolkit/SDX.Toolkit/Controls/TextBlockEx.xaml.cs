@@ -19,7 +19,9 @@ using SDX.Toolkit.Helpers;
 
 namespace SDX.Toolkit.Controls
 {
-    public sealed partial class TextBlockEx : UserControl
+
+
+    public sealed partial class TextBlockEx : UserControl,IAnimate
     {
         #region Constructor
 
@@ -42,6 +44,9 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+        #region Public Properties
+        public AnimationDirection TranslateDirection;        
+        #endregion
 
         #region Overrides
 
@@ -174,6 +179,15 @@ namespace SDX.Toolkit.Controls
             set { SetValue(LineHeightProperty, value); }
         }
 
+        // HasPageEntranceAnimationEnabled
+        public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
+            DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(false)); //, OnLineHeightChanged));
+
+        public bool HasPageEntranceAnimationEnabled
+        {
+            get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
+            set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
         #endregion
 
 
@@ -206,6 +220,26 @@ namespace SDX.Toolkit.Controls
                 // set opacity
                 this.LayoutRoot.Opacity = opacity;
             }
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return TranslateDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
         }
 
         #endregion

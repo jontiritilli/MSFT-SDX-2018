@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDX.Toolkit.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -100,41 +101,92 @@ namespace SDX.Toolkit.Helpers
             // general idea from EntranceThemeTransition and rebuilt as a behavior here
             // https://jeremiahmorrill.wordpress.com/2014/04/02/entrancethemetransitionbehavior-behavior-for-wpf/
             List<Storyboard> StoryBoardCollection = new List<Storyboard>();
+            List<UIElement> AnimatableChildren = new List<UIElement>();
             double StaggerDelay = 0.0;
             double TotalStagger = (((Windows.UI.Xaml.Controls.Panel)page.Content).Children.Count * 100d) + 500d;
+            IAnimate animateChild;
+            double distanceToTranslate;
             // Traverses the first content area on the page in linear order to show everything
             foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
             {
-                Storyboard storyboard = null;
-
-                if (null != child && child != page && !(child is Grid))// dont do the page either
+                             
+                if (null != child && child != page && !(child is Grid) && child is IAnimate)// dont do the page either
                 {
-                    storyboard = CreateEasingAnimation(child, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                    animateChild = (IAnimate)child;
+                    ParseAnimatableChildren(child, ref AnimatableChildren);
+                }
+            }
+            TotalStagger = AnimatableChildren.Count * 100d + 500d;
+                foreach (UIElement OrderedChild in AnimatableChildren)
+                {
+                    Storyboard storyboard = null;
+                    IAnimate AnimatedOrderedChild = (IAnimate)OrderedChild;
+                    distanceToTranslate = 100 * (AnimatedOrderedChild.Direction() != AnimationDirection.Left ? 1 : -1);
+                    storyboard = CreateEasingAnimation(OrderedChild, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
                     StoryBoardCollection.Add(storyboard);
-                    storyboard = CreateTranslateAnimation(child, "X", 100, 100, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                    storyboard = CreateTranslateAnimation(OrderedChild, "X", distanceToTranslate, distanceToTranslate, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
                     StoryBoardCollection.Add(storyboard);
                     StaggerDelay += 100;
                 }
-            }
+                //if (null != child && child != page && !(child is Grid) && child is IAnimate)// dont do the page either
+                //{
+
+                //    animateChild = (IAnimate)child;                    
+                //    if (animateChild.HasPageEntranceAnimation()) {
+                //        distanceToTranslate = 100 * (animateChild.Direction() != AnimationDirection.Left ? 1 : -1);
+                //        storyboard = CreateEasingAnimation(child, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                //        StoryBoardCollection.Add(storyboard);
+                //        storyboard = CreateTranslateAnimation(child, "X", distanceToTranslate, distanceToTranslate, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                //        StoryBoardCollection.Add(storyboard);
+                //        StaggerDelay += 100;
+                //    }
+
+                //}
+            
 
             foreach (Storyboard SB in StoryBoardCollection)
             {
                 SB.Begin();
             }
         }
+        public static void ParseAnimatableChildren(UIElement child,ref List<UIElement> AnimatableChildren)
+        {
+            IAnimate AnimateChild = (IAnimate)child;
+            if (AnimateChild.HasPageEntranceAnimation())// dont do the page either
+            {
+                if (AnimateChild.HasAnimateChildren())
+                {
+                    List<UIElement> AnimatableGrandChildren = AnimateChild.AnimatableChildren();
+                    foreach (UIElement grandChild in AnimatableGrandChildren)
+                    {
+                        ParseAnimatableChildren(grandChild, ref AnimatableChildren);
+                    }                    
+                }
+                else
+                {
+                    AnimatableChildren.Add(child);
+                }
+            }
+        }
 
         public static void PerformPageExitAnimation(Page page)
         {
-
+            IAnimate animateChild;
+            List<UIElement> AnimatableChildren = new List<UIElement>();
+            FrameworkElement FE;
             foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
             {
-
-                FrameworkElement FE;
-                if (null != child && child != page && !(child is Grid) && !(child is Controls.ImageEx))// dont do the page either
+                if (null != child && child != page && !(child is Grid) && child is IAnimate)
                 {
-                    FE = (FrameworkElement)child;
-                    FE.Opacity = 0;
+                    animateChild = (IAnimate)child;
+                    ParseAnimatableChildren(child, ref AnimatableChildren);
                 }
+            }
+
+            foreach (UIElement HidableChild in AnimatableChildren)
+            {
+                FE = (FrameworkElement)HidableChild;
+                FE.Opacity = 0;
             }
 
         }

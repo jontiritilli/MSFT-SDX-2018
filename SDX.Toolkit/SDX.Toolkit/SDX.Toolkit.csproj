@@ -124,6 +124,7 @@
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
+    <Compile Include="Controls\IAnimate.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\List.cs" />
     <Compile Include="Controls\ListItem.cs" />

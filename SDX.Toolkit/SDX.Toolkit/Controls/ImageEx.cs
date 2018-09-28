@@ -27,7 +27,7 @@ using SDX.Toolkit.Helpers;
 namespace SDX.Toolkit.Controls
 {
 
-    public sealed class ImageEx : Control
+    public sealed class ImageEx : Control, IAnimate
     {
         #region Constants
 
@@ -42,7 +42,6 @@ namespace SDX.Toolkit.Controls
         private Image _image;
 
         #endregion
-
 
         #region Construction
 
@@ -108,6 +107,15 @@ namespace SDX.Toolkit.Controls
         {
             get { return (TranslateDirection)GetValue(TranslateDirectionProperty); }
             set { SetValue(TranslateDirectionProperty, value); }
+        }
+        // TranslateDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(ImageEx), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
         }
 
         #endregion
@@ -240,6 +248,26 @@ namespace SDX.Toolkit.Controls
         {
             // TEST ONLY
             //throw new BadImageFormatException(e.ErrorMessage);
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return this.PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
         }
 
         #endregion

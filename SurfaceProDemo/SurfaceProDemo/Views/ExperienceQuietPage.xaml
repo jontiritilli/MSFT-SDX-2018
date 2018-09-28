@@ -132,6 +132,7 @@
             ImageSource="{x:Bind Path=ViewModel.TabletUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            PageEntranceDirection="Right"
             Opacity="0"
             />
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"

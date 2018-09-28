@@ -37,8 +37,7 @@ namespace SurfaceProDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Studio, this.img_Studio.TranslateDirection, 100, 500, 0);
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);            
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
         }

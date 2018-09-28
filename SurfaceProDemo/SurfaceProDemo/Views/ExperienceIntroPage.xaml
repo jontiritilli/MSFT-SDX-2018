@@ -45,6 +45,7 @@
                      Width="450"
                      Lede="{x:Bind Path=ViewModel.Lede}"                
                      HorizontalAlignment="Right"
+                     PageEntranceDirection="Right"                     
                      VerticalAlignment="Top" />
 
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
@@ -52,6 +53,7 @@
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
                           TextStyle="Legal"
+                          HasPageEntranceAnimationEnabled="False"
                           Opacity="0"/>
 
         <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
@@ -59,6 +61,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        TextStyle="Legal"
+                       HasPageEntranceAnimationEnabled="False"
                        Opacity="0" />
 
         <!--<ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
@@ -128,7 +131,8 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.68}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"                                                               
                 PopupPosition="Left"
-                Visibility="Collapsed"
+                Visibility="Collapsed"                
+                EntranceStaggerDelayInMilliseconds="1500"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -136,6 +140,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                
                 PopupPosition="Right"                
+                EntranceStaggerDelayInMilliseconds="1600"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -143,6 +148,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.33}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.27}"                                                                 
                 PopupPosition="Left"                
+                EntranceStaggerDelayInMilliseconds="1400"
                 AutoStart = "false"/>
         </Canvas>
         
@@ -153,8 +159,8 @@
             x:Name="img_HeroFront"
             ImageWidth="{x:Bind Path=ViewModel.HeroFrontWidth}"
             ImageSource="{x:Bind Path=ViewModel.HeroFrontURI}"
-            TranslateDirection="Right"
             Canvas.ZIndex="100"
+            PageEntranceDirection="Left"
             Opacity="0"
             />
         <ctrl:ImageEx
@@ -164,9 +170,9 @@
             x:Name="img_HeroBack"
             ImageWidth="{x:Bind Path=ViewModel.HeroBackWidth}"
             ImageSource="{x:Bind Path=ViewModel.HeroBackURI}"
-            TranslateDirection="Left"
             HorizontalAlignment="Right"
             Margin="0,0,140,50"
+            PageEntranceDirection="Right"
             Opacity="0"
             Canvas.ZIndex="99"/>
 
