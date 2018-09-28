@@ -124,24 +124,14 @@ namespace SDX.Toolkit.Helpers
                     distanceToTranslate = 100 * (AnimatedOrderedChild.Direction() != AnimationDirection.Left ? 1 : -1);
                     storyboard = CreateEasingAnimation(OrderedChild, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
                     StoryBoardCollection.Add(storyboard);
-                    storyboard = CreateTranslateAnimation(OrderedChild, "X", distanceToTranslate, distanceToTranslate, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
-                    StoryBoardCollection.Add(storyboard);
+                    if (AnimatedOrderedChild.HasPageEntranceTranslation())
+                    {
+                        storyboard = CreateTranslateAnimation(OrderedChild, "X", distanceToTranslate, distanceToTranslate, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
+                        StoryBoardCollection.Add(storyboard);
+                    }
+
                     StaggerDelay += 100;
                 }
-                //if (null != child && child != page && !(child is Grid) && child is IAnimate)// dont do the page either
-                //{
-
-                //    animateChild = (IAnimate)child;                    
-                //    if (animateChild.HasPageEntranceAnimation()) {
-                //        distanceToTranslate = 100 * (animateChild.Direction() != AnimationDirection.Left ? 1 : -1);
-                //        storyboard = CreateEasingAnimation(child, "Opacity", 0.0, 0.0, 1.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
-                //        StoryBoardCollection.Add(storyboard);
-                //        storyboard = CreateTranslateAnimation(child, "X", distanceToTranslate, distanceToTranslate, 0.0, TotalStagger, StaggerDelay, false, false, new RepeatBehavior(1d));
-                //        StoryBoardCollection.Add(storyboard);
-                //        StaggerDelay += 100;
-                //    }
-
-                //}
             
 
             foreach (Storyboard SB in StoryBoardCollection)
@@ -159,7 +149,10 @@ namespace SDX.Toolkit.Helpers
                     List<UIElement> AnimatableGrandChildren = AnimateChild.AnimatableChildren();
                     foreach (UIElement grandChild in AnimatableGrandChildren)
                     {
-                        ParseAnimatableChildren(grandChild, ref AnimatableChildren);
+                        if (null != grandChild)// headers can have null ledes so check pls
+                        {
+                            ParseAnimatableChildren(grandChild, ref AnimatableChildren);
+                        }                        
                     }                    
                 }
                 else

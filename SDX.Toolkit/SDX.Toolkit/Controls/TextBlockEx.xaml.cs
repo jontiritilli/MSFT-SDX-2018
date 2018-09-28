@@ -21,7 +21,7 @@ namespace SDX.Toolkit.Controls
 {
 
 
-    public sealed partial class TextBlockEx : UserControl,IAnimate
+    public sealed partial class TextBlockEx : UserControl, IAnimate
     {
         #region Constructor
 
@@ -32,9 +32,9 @@ namespace SDX.Toolkit.Controls
             this.Loaded += OnLoaded;
 
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
         }
 
         protected override void OnApplyTemplate()
@@ -240,6 +240,11 @@ namespace SDX.Toolkit.Controls
         public List<UIElement> AnimatableChildren()
         {
             return new List<UIElement>();
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return true;
         }
 
         #endregion

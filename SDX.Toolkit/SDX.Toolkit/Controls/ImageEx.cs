@@ -108,6 +108,7 @@ namespace SDX.Toolkit.Controls
             get { return (TranslateDirection)GetValue(TranslateDirectionProperty); }
             set { SetValue(TranslateDirectionProperty, value); }
         }
+
         // TranslateDirection
         public static readonly DependencyProperty PageEntranceDirectionProperty =
         DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(ImageEx), new PropertyMetadata(AnimationDirection.Left));
@@ -116,6 +117,16 @@ namespace SDX.Toolkit.Controls
         {
             get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
             set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
+        // HasPageEntranceTranslation
+        public static readonly DependencyProperty HasEntranceTranslationProperty =
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+
+        public bool HasEntranceTranslation
+        {
+            get { return (bool)GetValue(HasEntranceTranslationProperty); }
+            set { SetValue(HasEntranceTranslationProperty, value); }
         }
 
         #endregion
@@ -270,6 +281,10 @@ namespace SDX.Toolkit.Controls
             return new List<UIElement>();
         }
 
+        public bool HasPageEntranceTranslation()
+        {
+            return this.HasEntranceTranslation;
+        }
         #endregion
 
 

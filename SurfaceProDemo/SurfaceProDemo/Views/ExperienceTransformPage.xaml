@@ -42,6 +42,8 @@
                 LedeStyle="PageLede"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
+                HeadlineOpacity="0"
+                LedeOpacity="0"                     
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"

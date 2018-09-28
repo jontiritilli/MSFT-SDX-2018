@@ -23,8 +23,7 @@ namespace SurfaceProDemo.Views
 
         public ExperienceIntroPage()
         {
-            InitializeComponent();      
-
+            InitializeComponent();            
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;

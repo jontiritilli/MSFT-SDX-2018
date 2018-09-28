@@ -45,7 +45,9 @@
                      Width="450"
                      Lede="{x:Bind Path=ViewModel.Lede}"                
                      HorizontalAlignment="Right"
-                     PageEntranceDirection="Right"                     
+                     PageEntranceDirection="Right"
+                     HeadlineOpacity="0"
+                     LedeOpacity="0"
                      VerticalAlignment="Top" />
 
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
@@ -63,11 +65,6 @@
                        TextStyle="Legal"
                        HasPageEntranceAnimationEnabled="False"
                        Opacity="0" />
-
-        <!--<ctrl:SwipeToContinue x:Name="SwipeToContinue" Grid.Row="5" Grid.Column="2"
-                    SwipeText="{x:Bind Path=ViewModel.SwipeText}"                    
-                    HorizontalAlignment="Right"                              
-                    VerticalAlignment="Bottom"/>-->
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"

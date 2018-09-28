@@ -51,7 +51,7 @@ namespace SDX.Toolkit.Controls
     }
     #endregion
 
-    public sealed class AppSelector : Control
+    public sealed class AppSelector : Control, IAnimate
     {
         #region Private Constants
 
@@ -371,6 +371,16 @@ namespace SDX.Toolkit.Controls
         {
             get { return (ImagePair)GetValue(ClearButtonImagePairProperty); }
             set { SetValue(ClearButtonImagePairProperty, value); }
+        }
+
+        // AnimationDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(Header), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
         }
         #endregion
 
@@ -966,6 +976,31 @@ namespace SDX.Toolkit.Controls
                 //on button 
 
             }
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return false;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
         }
 
         #endregion

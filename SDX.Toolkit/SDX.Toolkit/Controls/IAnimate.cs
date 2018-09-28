@@ -19,6 +19,8 @@ namespace SDX.Toolkit.Controls
 
         bool HasPageEntranceAnimation();
 
+        bool HasPageEntranceTranslation();
+
         AnimationDirection Direction();
         List<UIElement> AnimatableChildren();
     }

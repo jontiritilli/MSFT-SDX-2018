@@ -199,6 +199,26 @@ namespace SDX.Toolkit.Controls
             set { SetValue(PageEntranceDirectionProperty, value); }
         }
 
+        // HeadlineOpacity
+        public static readonly DependencyProperty HeadlineOpacityProperty =
+        DependencyProperty.Register("HeadlineOpacity", typeof(double), typeof(Header), new PropertyMetadata(1d));
+
+        public double HeadlineOpacity
+        {
+            get { return (double)GetValue(HeadlineOpacityProperty); }
+            set { SetValue(HeadlineOpacityProperty, value); }
+        }
+
+        // LedeOpacity
+        public static readonly DependencyProperty LedeOpacityProperty =
+        DependencyProperty.Register("LedeOpacity", typeof(double), typeof(Header), new PropertyMetadata(1d));
+
+        public double LedeOpacity
+        {
+            get { return (double)GetValue(LedeOpacityProperty); }
+            set { SetValue(LedeOpacityProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -351,7 +371,8 @@ namespace SDX.Toolkit.Controls
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
                     TextStyle = this.HeadlineStyle,
-                    TranslateDirection = this.Direction()
+                    TranslateDirection = this.Direction(),                    
+                    Opacity = this.HeadlineOpacity
                 };
                 Grid.SetRow(_headline, 0);
                 Grid.SetColumn(_headline, 0);
@@ -379,7 +400,8 @@ namespace SDX.Toolkit.Controls
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
                     TextStyle = this.LedeStyle,
-                    TranslateDirection = this.Direction()
+                    TranslateDirection = this.Direction(),
+                    Opacity = this.LedeOpacity
                 };
                 Grid.SetRow(_lede, 1);
                 Grid.SetColumn(_lede, 0);
@@ -451,6 +473,11 @@ namespace SDX.Toolkit.Controls
             animates.Add(_headline);
             animates.Add(_lede);
             return animates;
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return true;
         }
 
         #endregion
