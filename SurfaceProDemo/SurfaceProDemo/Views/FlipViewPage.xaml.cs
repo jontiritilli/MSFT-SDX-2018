@@ -290,6 +290,16 @@ namespace SurfaceProDemo.Views
             }
         }
 
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
+        }
+
         public Popup GetExperiencePagePopup()
         {
             return this.ExperiencePopup;

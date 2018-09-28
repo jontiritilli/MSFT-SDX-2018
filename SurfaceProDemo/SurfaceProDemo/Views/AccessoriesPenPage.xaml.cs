@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
@@ -18,6 +19,7 @@ namespace SurfaceProDemo.Views
 
         double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
         double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #endregion
 
 
@@ -28,10 +30,25 @@ namespace SurfaceProDemo.Views
             InitializeComponent();
             Canvas.SetTop(rBtnCenter, _canvasHeight * .50);
             Canvas.SetLeft(rBtnCenter, _canvasWidth * .50);
+            rBtnCenter.Clicked += OnPenTryItClicked;
+            this.ColoringBook.OnPenScreenContacted += OnPenScreenContacted;
         }
 
         #endregion
 
+        #region Private Methods
+
+        private void OnPenTryItClicked(object sender, EventArgs e)
+        {
+            this.ColoringBook.FadeInColoringImage();
+        }
+
+        private void OnPenScreenContacted(object sender, EventArgs e)
+        {
+            this.rBtnCenter.Visibility = Visibility.Collapsed;
+        }
+
+        #endregion
 
         #region INavigate Interface
 

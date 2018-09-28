@@ -121,7 +121,7 @@ namespace SDX.Toolkit.Controls
 
         // PlaybackRate
         public static readonly DependencyProperty PlaybackRateProperty =
-        DependencyProperty.Register("PlaybackRate", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1, OnPlaybackRateChanged));
+        DependencyProperty.Register("PlaybackRate", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1d, OnPlaybackRateChanged));
 
         public double PlaybackRate
         {
