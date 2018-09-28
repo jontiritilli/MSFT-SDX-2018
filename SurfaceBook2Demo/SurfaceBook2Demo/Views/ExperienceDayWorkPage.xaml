@@ -94,12 +94,12 @@
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Text"
+                        PopupType="Battery"
                         Headline="{x:Bind Path=ViewModel.PopupBatteryLifeHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupBatteryLifeLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
+                        HourText="hrs"
+                        HourIntegerMax="17"                        
                         />
                 </Popup.Child>
             </Popup>

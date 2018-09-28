@@ -24,9 +24,9 @@ namespace SDX.Toolkit.Controls
         #region Private Members
 
         private Border _layoutRoot = null;
-        private TextBlockEx _hours = null;
+        private TextBlockEx _integer = null;
 
-        private Storyboard _storyboardPercent = null;
+        private Storyboard _storyboardInteger = null;
 
         #endregion
 
@@ -52,18 +52,18 @@ namespace SDX.Toolkit.Controls
         public void StartAnimation()
         {
             // start the percent
-            if (null != _storyboardPercent)
+            if (null != _storyboardInteger)
             {
-                _storyboardPercent.Begin();
+                _storyboardInteger.Begin();
             }
         }
 
         public void ResetAnimation()
         {
             // reset the headline
-            if (null != _storyboardPercent)
+            if (null != _storyboardInteger)
             {
-                _storyboardPercent.Stop();
+                _storyboardInteger.Stop();
             }
         }
 
@@ -73,12 +73,22 @@ namespace SDX.Toolkit.Controls
 
         // HourValue
         public static readonly DependencyProperty HourValueProperty =
-            DependencyProperty.Register("HourValue", typeof(double), typeof(AnimatableInteger), new PropertyMetadata(0.0, OnHourTextChanged));
+            DependencyProperty.Register("HourValue", typeof(double), typeof(AnimatableInteger), new PropertyMetadata(0.0, OnHourValueChanged));
 
         public double HourValue
         {
             get => (double)GetValue(HourValueProperty);
             set => SetValue(HourValueProperty, value);
+        }
+
+        // HourIntegerMax
+        public static readonly DependencyProperty HourIntegerMaxProperty =
+            DependencyProperty.Register("HourIntegerMax", typeof(double), typeof(AnimatableInteger), new PropertyMetadata(0.0));
+
+        public double HourIntegerMax
+        {
+            get => (double)GetValue(HourIntegerMaxProperty);
+            set => SetValue(HourIntegerMaxProperty, value);
         }
 
         // hourText
@@ -134,19 +144,19 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (this.AutoStart)
-            {
-                this.StartAnimation();
-            }
+            this.StartAnimation();
         }
 
         private static void OnHourValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             AnimatableInteger hours = (AnimatableInteger)d;
+            double hour;
 
             if (null != hours)
             {
-                hours.HourText = String.Format("{0:0}", hours.HourValue);
+                hour = Math.Ceiling(hours.HourValue * 2) / 2;
+                hours.HourText = String.Format("{0:0.#}", hours.HourValue);
+                //hours.HourText = String.Format("{0:0}", hours.HourValue);
             }
         }
 
@@ -187,20 +197,25 @@ namespace SDX.Toolkit.Controls
             }
 
             // create the text block
-            _hours = new TextBlockEx()
+            _integer = new TextBlockEx()
             {
-                HorizontalAlignment = HorizontalAlignment.Right,
                 TextStyle = TextStyles.PopupBatteryLife,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Center,
+                Width = this.Width
             };
 
+            _integer.SetBinding(TextBlockEx.TextProperty,
+                new Binding() { Source = this, Path = new PropertyPath("HourText"), Mode = BindingMode.OneWay });
+
             // add it to the root
-            _layoutRoot.Child = _hours;
+            _layoutRoot.Child = _integer;
 
             // set up animation
-            _storyboardPercent = SetupAnimation(this, 0.0, 0.8, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
+            _storyboardInteger = SetupAnimation(this, 0.0, this.HourIntegerMax, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
         }
 
-        private Storyboard SetupAnimation(AnimatableInteger percent, double start, double finish, double duration, double staggerDelay)
+        private Storyboard SetupAnimation(AnimatableInteger integer, double start, double finish, double duration, double staggerDelay)
         {
             double totalDuration = duration + staggerDelay;
 
@@ -263,7 +278,7 @@ namespace SDX.Toolkit.Controls
             storyboard.Children.Add(_frames);
 
             // set the target of the storyboard
-            Storyboard.SetTarget(storyboard, percent);
+            Storyboard.SetTarget(storyboard, integer);
             Storyboard.SetTargetProperty(storyboard, "HourValue");
             //storyboard.SetValue(Storyboard.TargetPropertyProperty, "HourValue");
 

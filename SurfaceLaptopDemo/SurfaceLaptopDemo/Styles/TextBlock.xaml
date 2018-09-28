@@ -296,9 +296,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Light" />
-        <Setter Property="FontSize" Value="30" />    <!-- 2/3 -->
+        <Setter Property="FontSize" Value="50" />    <!-- 2/3 -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="30" />    <!-- 2/3 -->
+        <Setter Property="LineHeight" Value="60" />    <!-- 2/3 -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />

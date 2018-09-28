@@ -391,6 +391,9 @@
     <Content Include="Assets\Backgrounds\sb2_15_experience_play.png" />
     <Content Include="Assets\Backgrounds\sb2_13_background_dark.jpg" />
     <Content Include="Assets\Backgrounds\sb2_13_background_light.jpg" />
+    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Comparison\comparisonFamily_13.png" />
     <Content Include="Assets\Comparison\comparisonFamily_15.png" />
     <Content Include="Assets\Comparison\comparisonGo_13.png" />

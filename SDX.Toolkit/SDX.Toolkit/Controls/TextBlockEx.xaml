@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <conv:TextStylesToStyleConverter x:Key="TextStylesToStyleConverterKey"/>
     </UserControl.Resources>
-    
+
     <Grid
         x:Name="LayoutRoot"
         Background="{x:Bind Path=Background}"
@@ -25,6 +25,13 @@
                     VerticalAlignment="{x:Bind Path=VerticalAlignment, Mode=OneWay}"
                     HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
                     Style="{x:Bind Path=TextStyle, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"/>
+        <TextBlock x:Name="TheTextBold"
+                    TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"                    
+                    LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
+                    LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"
+                    HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
+                    Style="{x:Bind Path=TextStyleBold, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"
+                   Opacity="0"/>
         <!--Text="{x:Bind Path=Text, Mode=OneWay}"--><!-- Don't data-bind this. -->
     </Grid>
 </UserControl>

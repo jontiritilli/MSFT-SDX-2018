@@ -646,14 +646,14 @@ namespace SurfaceLaptopDemo.Services
 
         private string GetStringValue(string value, string name)
         {
-            if (String.IsNullOrWhiteSpace(value))
-            {
-                return String.Format("Missing translation for {0}", name);
-            }
-            else
-            {
+            //if (String.IsNullOrWhiteSpace(value))
+            //{
+            //    return String.Format("Missing translation for {0}", name);
+            //}
+            //else
+            //{
                 return value;
-            }
+            //}
         }
 
         private string GetStringValueToUpper(string value, string name)
