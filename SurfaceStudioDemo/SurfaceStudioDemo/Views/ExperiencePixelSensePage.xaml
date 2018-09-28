@@ -107,7 +107,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="275"
-                VerticalOffset="375"                    
+                VerticalOffset="390"                    
                 IsLightDismissEnabled="True"
                 Opened="PopLeft_Opened"
                 Closed="PopLeft_Closed">
@@ -125,8 +125,8 @@
             <Popup
                 x:Name="PopBottom"
                 IsOpen = "False"
-                HorizontalOffset="830"
-                VerticalOffset="545"                    
+                HorizontalOffset="930"
+                VerticalOffset="610"                    
                 IsLightDismissEnabled="True"
                 Opened="PopBottom_Opened"
                 Closed="PopBottom_Closed">

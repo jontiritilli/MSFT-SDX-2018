@@ -81,6 +81,7 @@ namespace SDX.Toolkit.Controls
         private InkCanvas _inkCanvas = null;
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
+        private Image ColoringImage = null;
         private Image _touchHereImage = null;
         private bool _touchHereWasHidden = false;        
         private List<AppSelectorData> _URIs;
@@ -148,6 +149,14 @@ namespace SDX.Toolkit.Controls
         public void ChangeColorId(int Id)
         {
             ColorID = Id;
+        }
+
+        public void FadeInColoringImage()
+        {
+            if (null != this.ColoringImage && this.ColoringImage.Opacity != 1)
+            {
+                AnimationHelper.PerformFadeIn(this.ColoringImage, 500d);
+            }
         }
 
         #endregion
@@ -384,6 +393,7 @@ namespace SDX.Toolkit.Controls
         private void OnPenScreenContactStarted(InkStrokeInput input, PointerEventArgs e)
         {
             RaisePenScreenContactStartedEvent(this);
+            FadeInColoringImage();
         }
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -490,13 +500,14 @@ namespace SDX.Toolkit.Controls
 
             // add a nohitvisible png onto this page
             // please dont not have a URI or an SVGURI or the image below will error
-            Image ColoringImage = new Image()
+            ColoringImage = new Image()
             {                
+                Name = "ColoringImage",
                 Source = BMIMAGE_COLORING_BOOK,
                 Width = DOUBLE_COLORING_BOOK_IMAGE_WIDTH,                
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Opacity = 1.0,
+                Opacity = .1,
                 IsHitTestVisible = false
             };            
 
