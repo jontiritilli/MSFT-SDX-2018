@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceStudioDemo.Views
@@ -80,6 +81,11 @@ namespace SurfaceStudioDemo.Views
         {
             rBtnGo.HandleClick();
             FlipViewPage.Current.ShowAppClose();
+        }
+
+        private void RadiatingButton_Clicked(object sender, EventArgs e)
+        {
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
         }
 
         #endregion
