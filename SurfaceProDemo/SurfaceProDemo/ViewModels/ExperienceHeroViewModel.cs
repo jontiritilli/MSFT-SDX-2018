@@ -2,7 +2,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-
+using SDX.Toolkit.Helpers;
 using SurfaceProDemo.Services;
 
 
@@ -25,6 +25,7 @@ namespace SurfaceProDemo.ViewModels
         public string HeroText;
         public int RowCount;
         public string SwipeText;
+        public TextStyles TextStyle = TextStyles.Hero;
         #endregion
 
 
@@ -36,6 +37,7 @@ namespace SurfaceProDemo.ViewModels
             if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
                 BackgroundUri = URI_BLACKBACKGROUND;
+                TextStyle = TextStyles.HeroDark;
             }
 
             // get the localization service

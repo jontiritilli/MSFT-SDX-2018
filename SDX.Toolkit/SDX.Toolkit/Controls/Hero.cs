@@ -140,6 +140,17 @@ namespace SDX.Toolkit.Controls
             set { SetValue(AutoStartProperty, value); }
         }
 
+        // TextStyle
+
+        public static readonly DependencyProperty TextStyleProperty =
+        DependencyProperty.Register("TextStyle", typeof(TextStyles), typeof(Hero), new PropertyMetadata(TextStyles.Hero));
+
+        public TextStyles TextStyle
+        {
+            get { return (TextStyles)GetValue(TextStyleProperty); }
+            set { SetValue(TextStyleProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -282,7 +293,7 @@ namespace SDX.Toolkit.Controls
             {
                 Name = name,
                 Text = text,
-                TextStyle = TextStyles.Hero,
+                TextStyle = this.TextStyle,
                 Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.HeroMargin),
                 Opacity = 0d,
             };
