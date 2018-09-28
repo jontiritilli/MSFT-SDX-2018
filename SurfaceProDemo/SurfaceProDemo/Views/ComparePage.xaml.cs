@@ -83,6 +83,7 @@ namespace SurfaceProDemo.Views
             rBtnGo.HandleClick();
             FlipViewPage.Current.ShowAppClose();
         }
+
         private void RadiatingButton_Clicked(object sender, EventArgs e)
         {
             TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);

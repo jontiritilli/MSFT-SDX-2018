@@ -50,31 +50,36 @@
                 x:Name="rBtnPro"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.01}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBook"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.185}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.59}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnStudio"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.585}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLaptop"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.76}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.64}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnGo"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.865}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <Popup
                 x:Name="PopPro"

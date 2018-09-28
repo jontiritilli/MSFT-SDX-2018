@@ -5,6 +5,9 @@ using SurfaceBook2Demo.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using SDX.Telemetry.Services;
+
+
 namespace SurfaceBook2Demo.Views
 {
     public sealed partial class ComparePage : Page, INavigate
@@ -48,6 +51,7 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+
         #region Private Methods
 
         private void Close_Pro_Clicked(object sender, RoutedEventArgs e)
@@ -80,7 +84,13 @@ namespace SurfaceBook2Demo.Views
             FlipViewPage.Current.ShowAppClose();
         }
 
+        private void RadiatingButton_Clicked(object sender, EventArgs e)
+        {
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
+        }
+
         #endregion
+
 
         #region INavigate Interface
 

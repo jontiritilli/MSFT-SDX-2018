@@ -180,7 +180,12 @@
       <Version>5.4.1.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\SDX.Telemetry\SDX.Telemetry\SDX.Telemetry.csproj">
+      <Project>{62d68448-6359-4834-8dcc-f263d4a78562}</Project>
+      <Name>SDX.Telemetry</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\AnimatedIcon.xaml">
       <SubType>Designer</SubType>

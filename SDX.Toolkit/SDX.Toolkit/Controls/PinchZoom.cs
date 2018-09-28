@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Text;
@@ -14,7 +15,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
+
 using SDX.Toolkit.Helpers;
+using SDX.Telemetry.Services;
 
 
 namespace SDX.Toolkit.Controls
@@ -89,12 +92,18 @@ namespace SDX.Toolkit.Controls
                 _closeEllipse.Opacity = 1.0;
                 x_image.Opacity = 1.0;
                 ZoomEvent(sender, new RoutedEventArgs());
+
+                // telemetry
+                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPinch);
             }
             else
             {
                 // hide the ellipse
                 _closeEllipse.Opacity = 0.0;
                 x_image.Opacity = 0.0;
+
+                // telemetry
+                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPinch);
             }
         }
 

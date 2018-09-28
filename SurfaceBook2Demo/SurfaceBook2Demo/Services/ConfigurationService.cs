@@ -14,10 +14,9 @@ using GalaSoft.MvvmLight;
 
 using Newtonsoft.Json;
 
-using MetroLog;
-
 using SurfaceBook2Demo.Models;
 using SDX.Toolkit.Helpers;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceBook2Demo.Services
@@ -94,27 +93,6 @@ namespace SurfaceBook2Demo.Services
             }
 
             return file;
-        }
-
-        public string GetTelemetryId()
-        {
-            string id = String.Empty;
-
-            if (this.IsLoaded)
-            {
-                switch (this.Configuration.TelemetryKey)
-                {
-                    case TelemetryKeys.Test:
-                        id = this.Configuration.TelemetryTestId;
-                        break;
-
-                    case TelemetryKeys.Prod:
-                        id = this.Configuration.TelemetryProdId;
-                        break;
-                }
-            }
-
-            return id;
         }
 
         public async Task Initialize()

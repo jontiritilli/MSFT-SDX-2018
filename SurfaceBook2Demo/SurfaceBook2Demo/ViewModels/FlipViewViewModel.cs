@@ -6,8 +6,6 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-using MetroLog;
-
 using SurfaceBook2Demo.Services;
 
 using SDX.Toolkit.Helpers;

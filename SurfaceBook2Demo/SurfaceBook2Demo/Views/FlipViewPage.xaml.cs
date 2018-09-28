@@ -15,11 +15,10 @@ using Windows.UI.Xaml.Controls.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
-using MetroLog;
-
 using SurfaceBook2Demo.Services;
 using SurfaceBook2Demo.ViewModels;
 
+using SDX.Telemetry.Services;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
@@ -36,8 +35,6 @@ namespace SurfaceBook2Demo.Views
         #endregion
 
         #region Private Members
-
-        //private ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<FlipViewPage>();
 
         private FlipViewViewModel ViewModel
         {
@@ -89,18 +86,12 @@ namespace SurfaceBook2Demo.Views
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
-            //this.GettingFocus += FlipView_GettingFocus;
-            this.KeyUp += FlipView_KeyUp;
-            this.PointerReleased += FlipView_PointerReleased;
-
             // configure focus
             this.FocusVisualMargin = new Thickness(0);
             this.FocusVisualPrimaryBrush = new SolidColorBrush(Colors.Transparent);
             this.FocusVisualPrimaryThickness = new Thickness(0);
             this.FocusVisualSecondaryBrush = new SolidColorBrush(Colors.Transparent);
             this.FocusVisualSecondaryThickness = new Thickness(0);
-
-            //Log.Trace("Initializing Navigation Bar from viewModel.");
 
             // initialize the navigation bar sections
             foreach (NavigationSection section in ViewModel.Sections)
@@ -110,8 +101,6 @@ namespace SurfaceBook2Demo.Views
 
             // initialize the navigation bar root
             this.BottomNavBar.Root = ViewModel.Root;
-
-            //Log.Trace("Exiting constructor.");
         }
 
         #endregion
@@ -120,8 +109,6 @@ namespace SurfaceBook2Demo.Views
 
         private void FlipViewEx_Loaded(object sender, RoutedEventArgs e)
         {
-            //Log.Trace("Entering FlipViewEx.Loaded.");
-
             // set the current page
             //this.ContentFlipView.SelectedIndex = 0;   // not necessary and will interfere with page timer
 
@@ -237,6 +224,50 @@ namespace SurfaceBook2Demo.Views
                     }
                 }
             }
+
+            // telemetry - log nav sections
+            if (NavigationActions.Section == e.NavAction)
+            {
+                // we've gone to a section, so log it
+                switch (e.NavSection.Name)
+                {
+                    case "Experience":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavExperience);
+                        break;
+
+                    case "Accessories":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavAccessories);
+                        break;
+
+                    case "BestOfMicrosoft":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavBestOf);
+                        break;
+
+                    case "Compare":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavComparison);
+                        break;
+                }
+            }
+
+            // telemetry - log page view
+            switch (e.NavItem.Section.Name)
+            {
+                case "Experience":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewExperience);
+                    break;
+
+                case "Accessories":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewAccessories);
+                    break;
+
+                case "BestOfMicrosoft":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewBestOf);
+                    break;
+
+                case "Compare":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewComparison);
+                    break;
+            }
         }
 
         private void PageMoveTimer_Tick(object sender, object e)
@@ -251,22 +282,11 @@ namespace SurfaceBook2Demo.Views
             }
         }
 
-        private void FlipView_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            if (null != this.BottomNavBar)
-            {
-                e.Handled = this.BottomNavBar.HandleKey(e.Key);
-            }
-        }
-
-        private void FlipView_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            // i hate this, but App is not getting pointer hits
-            App.Current?.HandlePointerReleased(e.Pointer.PointerDeviceType);
-        }
-
         private void AppClose_Click(object sender, RoutedEventArgs e)
         {
+            // log app close
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndApplication);
+
             // this is not kosher by guidelines, but no other way to do this
             Application.Current.Exit();
         }

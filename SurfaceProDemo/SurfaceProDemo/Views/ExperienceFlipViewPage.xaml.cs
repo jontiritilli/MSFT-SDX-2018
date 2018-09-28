@@ -2,8 +2,10 @@
 
 using Windows.UI.Xaml.Controls;
 
-using SurfaceProDemo.ViewModels;
+using SDX.Telemetry.Services;
 using SDX.Toolkit.Controls;
+
+using SurfaceProDemo.ViewModels;
 
 
 namespace SurfaceProDemo.Views
@@ -108,6 +110,9 @@ namespace SurfaceProDemo.Views
 
                     // navigate to it
                     _previousPage.NavigateToPage(moveDirection);
+
+                    // telemetry
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewExperience);
                 }
 
                 // update slider
