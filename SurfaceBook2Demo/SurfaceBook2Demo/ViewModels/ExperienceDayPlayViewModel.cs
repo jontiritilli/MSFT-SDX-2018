@@ -19,6 +19,8 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_HERO_13 = "ms-appx:///Assets/Experience/sb2_play_sb13.png";
         private const string URI_HERO_15 = "ms-appx:///Assets/Experience/sb2_play_sb15.png";
 
+        private const string URI_GAME_DEMO = "ms-appx:///Assets/Experience/forza_demo.mp4";
+
         #endregion
 
 
@@ -27,6 +29,8 @@ namespace SurfaceBook2Demo.ViewModels
         public string BackgroundUri;
 
         public string HeroUri;
+
+        public string DemoUri;
 
         public string Headline;
         public string Lede;
@@ -53,7 +57,7 @@ namespace SurfaceBook2Demo.ViewModels
                     this.HeroUri = URI_HERO_15;
                     break;
             }
-
+            DemoUri = URI_GAME_DEMO;
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

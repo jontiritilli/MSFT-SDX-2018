@@ -31,6 +31,7 @@
         <ctrl:Hero x:Name="PageHero" Grid.Row="3" Grid.Column="1"
                 Words="{x:Bind Path=ViewModel.HeroText}"
                 WordRows="{x:Bind Path=ViewModel.RowCount}"
+                TextStyle="{x:Bind Path=ViewModel.TextStyle}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
                 DurationPerWordInMilliseconds="400"
