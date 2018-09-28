@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceProDemo.Views
@@ -50,6 +51,7 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
+
         #region Private Methods
 
         private void Close_Pro_Clicked(object sender, RoutedEventArgs e)
@@ -81,8 +83,13 @@ namespace SurfaceProDemo.Views
             rBtnGo.HandleClick();
             FlipViewPage.Current.ShowAppClose();
         }
+        private void RadiatingButton_Clicked(object sender, EventArgs e)
+        {
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
+        }
 
         #endregion
+
 
         #region INavigate Interface
 
@@ -131,5 +138,7 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
+
+
     }
 }

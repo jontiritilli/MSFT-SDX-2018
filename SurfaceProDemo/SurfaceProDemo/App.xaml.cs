@@ -13,7 +13,6 @@ using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceProDemo.Services;
 using SDX.Toolkit.Helpers;
-using SDX.Telemetry.Models;
 using SDX.Telemetry.Services;
 
 
@@ -99,19 +98,18 @@ namespace SurfaceProDemo
                 AsyncHelper.RunSync(() => localizationService.Initialize());
             }
 
-            // register the telemetry service and initialize it
+            // initialize the telemetry service
             SimpleIoc.Default.Register<TelemetryService>();
             TelemetryService telemetryService = (TelemetryService)SimpleIoc.Default.GetInstance<TelemetryService>();
             if (null != telemetryService)
             {
                 if (null != configurationService)
                 {
-                    // get telemetry config values
-                    string telemetryBaseUrl = configurationService.Configuration?.TelemetryBaseUrl;
-                    string telemetryId = ConfigurationService.Current.GetTelemetryId();
-
                     // run this synchronously 
-                    AsyncHelper.RunSync(() => telemetryService.Initialize(telemetryBaseUrl, telemetryId, new UWPTelemetryDependent()));
+                    AsyncHelper.RunSync(() => telemetryService.Initialize(configurationService.Configuration.TelemetryKey));
+
+                    // log app start
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
                 }
             }
         }
@@ -167,17 +165,8 @@ namespace SurfaceProDemo
             // get a deferral (not guaranteed)
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            // save/send the ImplementDown telemetry data
-            TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_IMPLEMENTDOWN, (_penUpCount + _mouseUpCount + _touchUpCount + _keyUpCount).ToString(), false);
-
-            // reset ImplementDown counters
-            _penUpCount = _mouseUpCount = _keyUpCount = _touchUpCount = 0;
-
-            // close telemetry
-            if (null != TelemetryService.Current)
-            {
-                await TelemetryService.Current.CloseTelemetry();
-            }
+            // telemetry - app close event
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndApplication);
 
             // complete deferral
             deferral.Complete();
