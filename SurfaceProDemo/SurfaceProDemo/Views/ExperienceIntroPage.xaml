@@ -75,8 +75,8 @@
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
-                HorizontalOffset="450"
-                VerticalOffset="490"
+                HorizontalOffset="430"
+                VerticalOffset="400"
                 Closed="PopLeft_Closed"
                 Opened="PopLeft_Opened"
                 IsLightDismissEnabled="True">
