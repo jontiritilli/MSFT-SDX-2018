@@ -96,8 +96,8 @@
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
-            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
+            ButtonWidth="{StaticResource ExperienceColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource ExperienceColorSelectorIconWidth}"/>
 
     </Grid>
 </Page>

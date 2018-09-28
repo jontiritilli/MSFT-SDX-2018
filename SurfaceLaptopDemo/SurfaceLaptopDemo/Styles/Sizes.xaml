@@ -59,7 +59,7 @@
 
     <x:Double x:Key="PinchSideMargin">100.267</x:Double>
     <x:Double x:Key="PinchTopMargin">83.067</x:Double>
-    <x:Double x:Key="PinchZoomImageWidth">1404</x:Double>
+    <x:Double x:Key="PinchZoomImageWidth">1403.733</x:Double> <!-- canvas width - left and right margin -->
     <x:Double x:Key="PinchZoomImageHeight">810.667</x:Double>
     <x:Double x:Key="PinchImageMargin">50</x:Double>
     
@@ -98,8 +98,6 @@
     <GridLength x:Key="CompareSpaceBelowSubHeader">35</GridLength>
     
     <x:Double x:Key="ExperienceAppIconWidth">64</x:Double>
-
-    <x:Double x:Key="AccessoryColorSelectorIconWidth">64</x:Double>
     <x:Double x:Key="ExperienceColorSelectorIconWidth">56</x:Double>
     
     <x:Double x:Key="AccessoryPrimaryImageWidth">1403.733</x:Double> <!-- canvas width - left and right margin -->

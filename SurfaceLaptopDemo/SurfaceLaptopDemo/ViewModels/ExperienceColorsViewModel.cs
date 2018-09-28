@@ -57,7 +57,6 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperienceColorsViewModel()
         {
-
             // list of color swatches
             this.lifeStyleColorSelectorData.Add(new AppSelectorData()
             {

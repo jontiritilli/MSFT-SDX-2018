@@ -49,8 +49,8 @@
             URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
-            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
+            ButtonWidth="{StaticResource ExperienceColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource ExperienceColorSelectorIconWidth}"/>
 
         <ctrl:Header Grid.Row="3" Grid.Column="1"
             x:Name="AccLeftHeader" 
