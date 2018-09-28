@@ -85,6 +85,19 @@ namespace SDX.Toolkit.Controls
                 this.LayoutRoot.Opacity = opacity;
             }
         }
+
+        public void ShowBoldText(bool showBold)
+        {
+            if (null != this.TheText)
+            {
+                this.TheText.Opacity = (showBold ? 0 : 1);                
+            }
+            if (null != this.TheTextBold)
+            {
+                this.TheTextBold.Opacity = (showBold ? 1 : 0);
+            }
+                
+        }
         #endregion
 
 
@@ -109,6 +122,17 @@ namespace SDX.Toolkit.Controls
             get { return (TextStyles)GetValue(TextStyleProperty); }
             set { SetValue(TextStyleProperty, value); }
         }
+
+        // TextStyleBold
+        public static readonly DependencyProperty TextStyleBoldProperty =
+            DependencyProperty.Register("TextStyleBold", typeof(TextStyles), typeof(TextBlockEx), new PropertyMetadata(TextStyles.ListLedeBold)); //, OnTextStyleChanged));
+
+        public TextStyles TextStyleBold
+        {
+            get { return (TextStyles)GetValue(TextStyleBoldProperty); }
+            set { SetValue(TextStyleBoldProperty, value); }
+        }
+
 
         // TextAlignment
         public static readonly DependencyProperty TextAlignmentProperty =
@@ -165,6 +189,7 @@ namespace SDX.Toolkit.Controls
             if (d is TextBlockEx textBlockEx)
             {
                 textBlockEx.TheText.Text = (string)e.NewValue;
+                textBlockEx.TheTextBold.Text = (string)e.NewValue;
             }
         }
 
