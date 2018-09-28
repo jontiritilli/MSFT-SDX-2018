@@ -148,7 +148,7 @@ namespace SDX.Toolkit.Controls
                 Width = _canvasWidth,
                 Height = _canvasHeight,
                 MinZoomFactor = 1,
-                MaxZoomFactor = 2,
+                MaxZoomFactor = 4,
                 HorizontalScrollMode = ScrollMode.Enabled,
                 VerticalScrollMode = ScrollMode.Enabled,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
