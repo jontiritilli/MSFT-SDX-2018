@@ -114,6 +114,25 @@ namespace SDX.Toolkit.Controls
             set { SetValue(VideoHeightProperty, value); }
         }
 
+        // PlaybackRate
+        public static readonly DependencyProperty PlaybackRateProperty =
+        DependencyProperty.Register("PlaybackRate", typeof(double), typeof(LoopPlayer), new PropertyMetadata(1d, OnPlaybackRateChanged));
+
+        public double PlaybackRate
+        {
+            get { return (double)GetValue(PlaybackRateProperty); }
+            set { SetValue(PlaybackRateProperty, value); }
+        }
+
+        // PlaybackPosition
+        public static readonly DependencyProperty PlaybackPositionProperty =
+        DependencyProperty.Register("PlaybackPosition", typeof(double), typeof(LoopPlayer), new PropertyMetadata(0d, OnPlaybackPositionChanged));
+
+        public double PlaybackPosition
+        {
+            get { return (double)GetValue(PlaybackPositionProperty); }
+            set { SetValue(PlaybackPositionProperty, value); }
+        }
         #endregion
 
 
@@ -124,8 +143,7 @@ namespace SDX.Toolkit.Controls
             if (null != _mediaPlayerElement)
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {                    
-                    //_mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(500);
+                {                                        
                     _mediaPlayerElement.MediaPlayer.Play();
                 });
             }
@@ -137,8 +155,7 @@ namespace SDX.Toolkit.Controls
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    _mediaPlayerElement.MediaPlayer.Pause();                    
-                    //_mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(500);
+                    _mediaPlayerElement.MediaPlayer.Pause();                                        
                     _mediaPlayerElement.IsFullWindow = false;
                 });
             }
@@ -213,12 +230,32 @@ namespace SDX.Toolkit.Controls
         {
             if (null != sender)
             {
-                sender.Pause();                
-               // sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+                sender.Pause();                               
                 sender.Play();
             }
         }
 
+        private static void OnPlaybackRateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is LoopPlayer loopplayer) && (null != loopplayer._mediaPlayerElement))
+            {
+                if (e.NewValue is double newValue)
+                {
+                    loopplayer. _mediaPlayerElement.MediaPlayer.PlaybackSession.PlaybackRate = newValue;
+                }
+            }
+        }
+
+        private static void OnPlaybackPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is LoopPlayer loopplayer) && (null != loopplayer._mediaPlayerElement))
+            {
+                if (e.NewValue is double newValue)
+                {
+                    loopplayer._mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(newValue); ;
+                }
+            }
+        }
         #endregion
 
 
@@ -264,8 +301,12 @@ namespace SDX.Toolkit.Controls
             };
             _mediaPlayerElement.MediaPlayer.IsMuted = true;
             
-            _mediaPlayerElement.MediaPlayer.IsLoopingEnabled = true;            
-            _mediaPlayerElement.MediaPlayer.PlaybackSession.PlaybackRate = .5;
+            _mediaPlayerElement.MediaPlayer.IsLoopingEnabled = true;
+            if (this.PlaybackPosition > 0)
+            {
+                _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(this.PlaybackPosition);
+            }            
+            _mediaPlayerElement.MediaPlayer.PlaybackSession.PlaybackRate = this.PlaybackRate;
 
 
             // set media player event handlers

@@ -35,7 +35,6 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
-
         #region Private Members
 
         //private ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<FlipViewPage>();
@@ -51,13 +50,11 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
-
         #region Public Static Properties
 
         public static FlipViewPage Current { get; private set; }
 
         #endregion
-
 
         #region Public Static Methods
 
@@ -74,7 +71,6 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
-
 
         #region Construction
 
@@ -119,7 +115,6 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
-
 
         #region Event Handlers
 
@@ -278,7 +273,6 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
-
         #region Public Methods
 
         public void ShowAppClose()
@@ -295,6 +289,16 @@ namespace SurfaceBook2Demo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
         }
 
         public Popup GetExperienceDayWorkPagePopup()

@@ -51,7 +51,6 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Public Static Methods
 
         public static NavigationBar GetNavigationBar()
@@ -67,7 +66,6 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
-
 
         #region Construction
 
@@ -266,6 +264,16 @@ namespace SurfaceLaptopDemo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
         }
 
         // load COMPARE PAGE full page popups

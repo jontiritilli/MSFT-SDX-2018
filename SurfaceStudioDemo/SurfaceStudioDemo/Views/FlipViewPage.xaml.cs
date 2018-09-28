@@ -50,7 +50,6 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
-
         #region Public Static Methods
 
         public static NavigationBar GetNavigationBar()
@@ -66,7 +65,6 @@ namespace SurfaceStudioDemo.Views
         }
 
         #endregion
-
 
         #region Construction
 
@@ -265,6 +263,16 @@ namespace SurfaceStudioDemo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
         }
 
         public Popup GetExperiencePixelSensePopup()

@@ -17,6 +17,7 @@ namespace SDX.Toolkit.Helpers
     public enum TextStyles
     {
         Hero,
+        HeroDark,
         Swipe,
         PageHeadline,
         PageHeadlineDark,
@@ -48,6 +49,8 @@ namespace SDX.Toolkit.Helpers
         NavigationSectionActive,
         PlayerArtistName,
         PlayerTrackName,
+        AppSelectorText,
+        AppSelectorTextBold
     }
 
     public enum LayoutSizes
@@ -170,6 +173,7 @@ namespace SDX.Toolkit.Helpers
         #region Style Constants
 
         public const string STYLE_HERO = "Hero";
+        public const string STYLE_HERO_DARK = "HeroDark";
         public const string STYLE_SWIPE = "Swipe";
         public const string STYLE_PAGE_HEADLINE = "PageHeadline";
         public const string STYLE_PAGE_HEADLINE_DARK = "PageHeadlineDark"; 
@@ -201,6 +205,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_NAVIGATION_SECTION_ACTIVE = "NavigationSectionActive";
         public const string STYLE_PLAYER_ARTISTNAME = "PlayerArtistName";
         public const string STYLE_PLAYER_TRACKNAME = "PlayerTrackName";
+        public const string STYLE_APPSELECTOR_TEXT= "AppSelectorText";
+        public const string STYLE_APPSELECTOR_TEXT_BOLD = "AppSelectorTextBold";
 
         #endregion
 
@@ -646,6 +652,10 @@ namespace SDX.Toolkit.Helpers
                 case TextStyles.Hero:
                     style = GetApplicationStyle(STYLE_HERO);
                     break;
+                    
+                case TextStyles.HeroDark:
+                    style = GetApplicationStyle(STYLE_HERO_DARK);
+                    break;
 
                 case TextStyles.Swipe:
                     style = GetApplicationStyle(STYLE_SWIPE);
@@ -770,7 +780,12 @@ namespace SDX.Toolkit.Helpers
                 case TextStyles.PlayerTrackName:
                     style = GetApplicationStyle(STYLE_PLAYER_TRACKNAME);
                     break;
-
+                case TextStyles.AppSelectorText:
+                    style = GetApplicationStyle(STYLE_APPSELECTOR_TEXT);
+                    break;
+                case TextStyles.AppSelectorTextBold:
+                    style = GetApplicationStyle(STYLE_APPSELECTOR_TEXT_BOLD);
+                    break;
                 default:
                     break;
             }

@@ -5,8 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters" 
     DataContext="{Binding ExperienceDayPlayViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -34,9 +41,28 @@
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" />
+        <Canvas x:Name="ButtonCanvas"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4">
 
+            <ctrl:LoopPlayer
+                MediaSourceUri ="{x:Bind Path=ViewModel.DemoUri}"
+                VideoWidth = "473.28"
+                VideoHeight = "366.869"
+                Canvas.ZIndex="1"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.348}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.334}"
+                PlaybackPosition="1000"
+                />
+        </Canvas>
 
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
+        <Image x:Name="Hero"
+               Width="1000"
+               Grid.Row="3"
+               Grid.Column="1"
+               Canvas.ZIndex="100">
             <Image.Source>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
             </Image.Source>

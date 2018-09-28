@@ -45,7 +45,8 @@ namespace SDX.Toolkit.Controls
 
         private Canvas _layoutRoot = null;
         private ScrollViewer _viewer = null;
-        private Image _pinch_image = null;
+        //private Image _pinch_image = null;
+        private ImageEx _pinch_image = null;
         private Grid _closeGrid = null;
         private Ellipse _closeEllipse = null;
         private ImageEx x_image = null;
@@ -127,28 +128,27 @@ namespace SDX.Toolkit.Controls
             if (null == _layoutRoot) { return; }
 
             // get sizes for everything
-            double _maxImageWidth = StyleHelper.GetApplicationDouble("CanvasWidth");
-            double _maxImageHeight = StyleHelper.GetApplicationDouble("CanvasHeight");
+            double _canvasWidth = StyleHelper.GetApplicationDouble("CanvasWidth");
+            double _canvasHeight = StyleHelper.GetApplicationDouble("CanvasHeight");
 
             double _startImageWidth = StyleHelper.GetApplicationDouble("PinchZoomImageWidth");
             double _startImageHeight = StyleHelper.GetApplicationDouble("PinchZoomImageHeight");
-            double _imageMargin = StyleHelper.GetApplicationDouble("PinchImageMargin");
 
             double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
             double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight)/2;
             double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("PinchTopMargin");
             double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("PinchSideMargin");
 
-            double _ellipseGridCanvasSetLeft = _maxImageWidth - _closeEllipseRightMargin - _radiatingButtonRadius;
+            double _ellipseGridCanvasSetLeft = _canvasWidth - _closeEllipseRightMargin - _radiatingButtonRadius;
 
             // create the scroll viewer
             _viewer = new ScrollViewer
             {
                 ZoomMode = ZoomMode.Enabled,
-                Width = _maxImageWidth,
-                Height = _maxImageHeight,
+                Width = _canvasWidth,
+                Height = _canvasHeight,
                 MinZoomFactor = 1,
-                MaxZoomFactor = 5,
+                MaxZoomFactor = 4,
                 HorizontalScrollMode = ScrollMode.Enabled,
                 VerticalScrollMode = ScrollMode.Enabled,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden,
@@ -156,17 +156,13 @@ namespace SDX.Toolkit.Controls
             };
 
             // create the image for zooming
-            _pinch_image = new Image
+            _pinch_image = new ImageEx
             {
                 Name = this.Name + "ZoomImage",
-                Source = new BitmapImage(new Uri(ImageUri)),
-                Width = _startImageWidth, //account for left and right margins
-                Height = _startImageHeight, //account for left and right margins
-                MaxWidth = _maxImageWidth,
-                MaxHeight = _maxImageHeight,
-                Margin = new Thickness(0, _imageMargin, 0, 0),
+                ImageSource = ImageUri,
+                ImageWidth = _startImageWidth, //account for left and right margins
                 HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Top
+                VerticalAlignment = VerticalAlignment.Center
             };
 
             // add the image to the scroll viewer

@@ -361,6 +361,9 @@
     <Content Include="Assets\Accessories\Images\cobalt-right.png" />
     <Content Include="Assets\Accessories\Images\platinum-left.png" />
     <Content Include="Assets\Accessories\Images\platinum-right.png" />
+    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Experience\detached_keyboard.jpg" />
     <Content Include="Assets\Experience\kickRotate_720p30.mp4" />
     <Content Include="Assets\Experience\laptop_bluebeam.png" />

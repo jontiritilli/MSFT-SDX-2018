@@ -667,15 +667,18 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "Text",
                     Text = AppSelectorData.Message,
-                    TextStyle = TextStyles.ListLede,
+                    TextStyle = TextStyles.AppSelectorText,
                     FontSize = 20,
                     Opacity = 1,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextStyleBold = TextStyles.AppSelectorTextBold
                 };
+
                 if (index == 0)
                 {
-                    tbMessage.TextStyle = TextStyles.ListLedeBold;
+                    tbMessage.ShowBoldText(true);
                 }
+
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 btnGrid.Children.Add(tbMessage);
@@ -774,15 +777,18 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "TheText",
                     Text = imagePair.Message,
-                    TextStyle= TextStyles.ListLede,
+                    TextStyle= TextStyles.AppSelectorText,
                     FontSize = 20,
                     Opacity = 1,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextStyleBold = TextStyles.AppSelectorTextBold
                 };
+
                 if (i == 0)
                 {
-                    tbMessage.TextStyle = TextStyles.ListLedeBold;
+                    tbMessage.ShowBoldText(true);
                 }
+
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 grid.Children.Add(tbMessage);
@@ -878,12 +884,12 @@ namespace SDX.Toolkit.Controls
                     
                     if(button.ID == sbButton.ID)
                     {
-                        text.TextStyle = TextStyles.ListLedeBold;
+                        text.ShowBoldText(true);
                     }
                     else
                     {
-                        text.TextStyle = TextStyles.ListLede;
-                    }
+                        text.ShowBoldText(false);
+                    }                    
                 }
             }
         }
