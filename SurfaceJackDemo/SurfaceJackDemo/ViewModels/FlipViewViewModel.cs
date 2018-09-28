@@ -200,6 +200,17 @@ namespace SurfaceJackDemo.ViewModels
             };
             this.Sections.Add(sectionPartner);
 
+            // =================================================
+            // Create the page tree
+            // =================================================
+
+            // create the root
+            this.Root = new NavigationFlipView()
+            {
+                Name = "RootFlipView",
+                Order = 0,
+                SelectedIndex = 0,
+            };
 
             // =================================================
             // Create Experience pages
