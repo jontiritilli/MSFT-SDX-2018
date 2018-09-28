@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Services.Store.Engagement;
 
 using MetroLog;
+using MetroLog.Targets;
 
 
 namespace SDX.Telemetry.Services
@@ -61,7 +62,7 @@ namespace SDX.Telemetry.Services
 
         }
 
-        public async Task Initialize(TelemetryKeys telemetryKey)
+        public void Initialize(TelemetryKeys telemetryKey)
         {
             // save the telemetry key
             this.ActiveKey = telemetryKey;
@@ -72,6 +73,7 @@ namespace SDX.Telemetry.Services
                 // for Test, we'll just log to a file
                 case TelemetryKeys.Test:
                 default:
+                    LogManagerFactory.DefaultConfiguration.AddTarget(LogLevel.Info, LogLevel.Fatal, new StreamingFileTarget());
                     TestLog = LogManagerFactory.DefaultLogManager.GetLogger<TelemetryService>();
                     break;
 

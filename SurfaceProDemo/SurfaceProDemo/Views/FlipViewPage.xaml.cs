@@ -86,10 +86,6 @@ namespace SurfaceProDemo.Views
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
-            //this.GettingFocus += FlipView_GettingFocus;
-            this.KeyUp += FlipView_KeyUp;
-            this.PointerReleased += FlipView_PointerReleased;
-
             // configure focus
             this.FocusVisualMargin = new Thickness(0);
             this.FocusVisualPrimaryBrush = new SolidColorBrush(Colors.Transparent);
@@ -295,22 +291,11 @@ namespace SurfaceProDemo.Views
             }
         }
 
-        private void FlipView_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            if (null != this.BottomNavBar)
-            {
-                e.Handled = this.BottomNavBar.HandleKey(e.Key);
-            }
-        }
-
-        private void FlipView_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            // i hate this, but App is not getting pointer hits
-            App.Current?.HandlePointerReleased(e.Pointer.PointerDeviceType);
-        }
-
         private void AppClose_Click(object sender, RoutedEventArgs e)
         {
+            // log application exit
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndApplication);
+
             // this is not kosher by guidelines, but no other way to do this
             Application.Current.Exit();
         }

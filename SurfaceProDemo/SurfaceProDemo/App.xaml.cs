@@ -22,11 +22,6 @@ namespace SurfaceProDemo
     {
         #region Private Members
 
-        private int _keyUpCount = 0;
-        private int _mouseUpCount = 0;
-        private int _penUpCount = 0;
-        private int _touchUpCount = 0;
-
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService
@@ -58,15 +53,6 @@ namespace SurfaceProDemo
             Suspending += OnSuspending;
             Resuming += OnResuming;
             UnhandledException += OnUnhandledException;
-
-            // add our handler for keys pressed/released
-            //CoreWindow thisWindow = CoreWindow.GetForCurrentThread();
-            //if (null != thisWindow)
-            if (null != Window.Current.CoreWindow)
-            {
-                Window.Current.CoreWindow.KeyUp += OnKeyUp;
-                Window.Current.CoreWindow.PointerReleased += OnPointerReleased;
-            }
 
             // we want full screen, but leave this off during dev 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
@@ -105,8 +91,9 @@ namespace SurfaceProDemo
             {
                 if (null != configurationService)
                 {
-                    // run this synchronously 
-                    AsyncHelper.RunSync(() => telemetryService.Initialize(configurationService.Configuration.TelemetryKey));
+                    // DO NOT try to run this asynchronously; MetroLog hangs when invoked async
+                    //AsyncHelper.RunSync(() => telemetryService.Initialize(configurationService.Configuration.TelemetryKey));
+                    telemetryService.Initialize(configurationService.Configuration.TelemetryKey);
 
                     // log app start
                     TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
@@ -175,61 +162,6 @@ namespace SurfaceProDemo
         private void OnUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             // should log here, but we're not logging in this app
-        }
-
-        private void OnKeyUp(CoreWindow sender, KeyEventArgs args)
-        {
-            args.Handled = HandleKeyUp(args.VirtualKey);
-        }
-
-        public bool HandleKeyUp(VirtualKey key)
-        {
-            bool handled = false;
-
-            switch (key)
-            {
-                case VirtualKey.Right:
-                    _keyUpCount++;
-                    break;
-
-                case VirtualKey.Left:
-                    _keyUpCount++;
-                    break;
-
-                default:
-                    break;
-            }
-
-            return handled;
-        }
-
-        private void OnPointerReleased(CoreWindow sender, PointerEventArgs args)
-        {
-            args.Handled = HandlePointerReleased(args.CurrentPoint.PointerDevice.PointerDeviceType);
-        }
-
-        public bool HandlePointerReleased(PointerDeviceType pointerDeviceType)
-        {
-            bool handled = false;
-
-            switch (pointerDeviceType)
-            {
-                case PointerDeviceType.Touch:
-                    _touchUpCount++;
-                    break;
-                case PointerDeviceType.Pen:
-                    _penUpCount++;
-                    break;
-                case PointerDeviceType.Mouse:
-                    _mouseUpCount++;
-                    break;
-                default:
-                    break;
-            }
-
-            handled = true;
-
-            return handled;
         }
 
         #endregion

@@ -429,9 +429,6 @@ namespace SDX.Toolkit.Controls
                     break;
             }
 
-            //// i hate this, but App is not getting these keys
-            //App.Current.HandleKeyUp(key);
-
             return handled;
         }
 
