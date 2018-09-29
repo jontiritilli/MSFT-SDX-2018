@@ -43,6 +43,9 @@
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Right"
                 HeaderAlignment="Right"
+                PageEntranceDirection="Right"
+                HeadlineOpacity="0"
+                LedeOpacity="0"                     
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
@@ -55,14 +58,16 @@
                 x:Name="rBtnLeft"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.06}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.76}"                                    
-                PopupPosition="Right"                  
+                PopupPosition="Right"
+                EntranceStaggerDelayInMilliseconds="1400"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.58}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                   
-                PopupPosition="Left"                  
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1500"
                 AutoStart = "false"/>
 
 
@@ -126,6 +131,7 @@
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             TextStyle="Legal"
             HorizontalAlignment="Right"
+            HasPageEntranceAnimationEnabled="False"
             />
     </Grid>
 </Page>

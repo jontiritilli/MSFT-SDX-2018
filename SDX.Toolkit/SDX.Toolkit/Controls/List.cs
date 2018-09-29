@@ -28,7 +28,7 @@ namespace SDX.Toolkit.Controls
         Compare
     }
 
-    public sealed class List : Control
+    public sealed class List : Control, IAnimate
     {
         #region Private Members
 
@@ -121,6 +121,16 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        // AnimationDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(List), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -205,6 +215,7 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Center,       // center items when it's just a lede
                                 VerticalContentAlignment = VerticalAlignment.Center,
+                                PageEntranceDirection = this.PageEntranceDirection
                             };
                             Grid.SetColumn(icon, 0);
                             Grid.SetRow(icon, RowToAdd);
@@ -218,7 +229,10 @@ namespace SDX.Toolkit.Controls
                                 Width = StyleHelper.GetApplicationDouble("AccessoriesPenListTextWidth"),
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Center
+                                VerticalAlignment = VerticalAlignment.Center,
+                                HeadlineOpacity = 0,
+                                LedeOpacity = 0,
+                                PageEntranceDirection = this.PageEntranceDirection
                             };
                             Grid.SetColumn(lede, 2);
                             Grid.SetRow(lede, RowToAdd);
@@ -266,6 +280,7 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
+                                PageEntranceDirection = this.PageEntranceDirection
                             };
 
                             Grid.SetColumn(icon, 0);
@@ -285,7 +300,11 @@ namespace SDX.Toolkit.Controls
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top
+                                VerticalAlignment = VerticalAlignment.Top,
+                                HeadlineOpacity = 0,
+                                LedeOpacity = 0,
+                                PageEntranceDirection = this.PageEntranceDirection
+                                
                             };
                             Grid.SetColumn(headline, 2);
                             Grid.SetRow(headline, RowToAdd);
@@ -339,6 +358,8 @@ namespace SDX.Toolkit.Controls
                                 ImageWidth = item.IconWidth,
                                 VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                 VerticalContentAlignment = VerticalAlignment.Top,
+                                PageEntranceDirection = this.PageEntranceDirection,
+                                Opacity = 0.0
                             };
 
                             Grid.SetColumn(icon, 0);
@@ -357,7 +378,10 @@ namespace SDX.Toolkit.Controls
                                 Width = ListTextWidth,
                                 HeaderAlignment = TextAlignment.Left,
                                 HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top
+                                VerticalAlignment = VerticalAlignment.Top,
+                                PageEntranceDirection = this.PageEntranceDirection,
+                                HeadlineOpacity = 0,
+                                LedeOpacity = 0
                             };
                             Grid.SetColumn(headline, 2);
                             Grid.SetRow(headline, RowToAdd);
@@ -447,6 +471,80 @@ namespace SDX.Toolkit.Controls
                     }
                     break;
             }
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return true;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            List<UIElement> Items = new List<UIElement>();
+            UIElement uiElement;
+            if (null != _layoutRoot)
+            {
+                switch (this.ListStyle)
+                {
+                    case ListStyles.BestOf: // used for interactive pages with header followed by list of items
+                        {
+                            foreach (UIElement item in _layoutRoot.Children)
+                            {
+                                if (item is IAnimate)
+                                {
+                                    uiElement = (UIElement)item;
+                                    Items.Add(uiElement);
+                                }
+                                else if (item is Grid)
+                                {
+                                    Grid grid = (Grid)item;
+                                    foreach (UIElement gridElement in grid.Children)
+                                    {
+                                        if (gridElement is IAnimate)
+                                        {
+                                            uiElement = (UIElement)gridElement;
+                                            Items.Add(uiElement);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case ListStyles.Compare:
+                    case ListStyles.HeadlineAndLede:
+                    case ListStyles.LedeOnly:
+                        {
+                            foreach (UIElement item in _layoutRoot.Children)
+                            {
+                                if (item is IAnimate)
+                                {
+                                    uiElement = (UIElement)item;
+                                    Items.Add(uiElement);
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+
+
+            
+            return Items;
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return true;    
         }
 
         #endregion

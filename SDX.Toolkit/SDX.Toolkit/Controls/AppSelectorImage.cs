@@ -20,7 +20,7 @@ namespace SDX.Toolkit.Controls
     }
     #endregion
 
-    public sealed class AppSelectorImage : Control
+    public sealed class AppSelectorImage : Control, IAnimate
     {
         #region Private Constants
 
@@ -53,8 +53,7 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(AppSelectorImage);
 
             this.Loaded += OnLoaded;
-            this.Images = new List<Image>();
-            this.Opacity = 0;
+            this.Images = new List<Image>();            
             // inherited dependency property
             //new PropertyChangeEventSource<double>(
             //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
@@ -360,6 +359,30 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return false;
+        }
+
+        public AnimationDirection Direction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return true;
+        }
         #endregion
 
 
