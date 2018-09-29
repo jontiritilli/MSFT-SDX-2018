@@ -141,25 +141,33 @@ namespace SDX.Toolkit.Helpers
         }
         public static void ParseAnimatableChildren(UIElement child,ref List<UIElement> AnimatableChildren)
         {
-            IAnimate AnimateChild = (IAnimate)child;
-            if (AnimateChild.HasPageEntranceAnimation())// dont do the page either
+            if (child is IAnimate)
             {
-                if (AnimateChild.HasAnimateChildren())
+                IAnimate AnimateChild = (IAnimate)child;
+                if (AnimateChild.HasPageEntranceAnimation())// dont do the page either
                 {
-                    List<UIElement> AnimatableGrandChildren = AnimateChild.AnimatableChildren();
-                    foreach (UIElement grandChild in AnimatableGrandChildren)
+                    if (AnimateChild.HasAnimateChildren())
                     {
-                        if (null != grandChild)// headers can have null ledes so check pls
+                        List<UIElement> AnimatableGrandChildren = AnimateChild.AnimatableChildren();
+                        foreach (UIElement grandChild in AnimatableGrandChildren)
                         {
-                            ParseAnimatableChildren(grandChild, ref AnimatableChildren);
-                        }                        
-                    }                    
-                }
-                else
-                {
-                    AnimatableChildren.Add(child);
+                            if (null != grandChild)// headers can have null ledes so check pls
+                            {
+                                ParseAnimatableChildren(grandChild, ref AnimatableChildren);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        AnimatableChildren.Add(child);
+                    }
                 }
             }
+            else
+            {
+                // canvas and other stuff that can contain children
+            }
+            
         }
 
         public static void PerformPageExitAnimation(Page page)
