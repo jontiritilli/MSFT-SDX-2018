@@ -23,8 +23,7 @@ namespace SurfaceProDemo.Views
 
         public ExperienceIntroPage()
         {
-            InitializeComponent();      
-
+            InitializeComponent();            
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;
@@ -43,8 +42,6 @@ namespace SurfaceProDemo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_HeroFront,this.img_HeroFront.TranslateDirection,100,500,0);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_HeroBack, this.img_HeroBack.TranslateDirection, 100, 1000, 0);
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
 

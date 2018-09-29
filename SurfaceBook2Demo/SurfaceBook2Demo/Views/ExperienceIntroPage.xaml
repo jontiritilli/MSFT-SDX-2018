@@ -42,13 +42,16 @@
                         HeadlineStyle="PageHeadlineDark"
                         LedeStyle="PageLedeDark"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top" />
 
+                        VerticalAlignment="Top" />
+        <!--HeadlineOpacity="0"
+                        LedeOpacity="0"-->
         <ctrl:TextBlockEx x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
                             Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
                             TextStyle="Legal"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HasPageEntranceAnimationEnabled="False"
                             Opacity="0"/>
 
         <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
@@ -56,6 +59,7 @@
                             TextStyle="Legal"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            HasPageEntranceAnimationEnabled="False"
                             Opacity="0" />
 
         <Canvas x:Name="PageCanvas"
@@ -65,10 +69,8 @@
                 Width="{StaticResource CanvasWidth}"
                 Height="{StaticResource CanvasHeight}">
             <ctrl:RadiatingButton
-                x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
+                x:Name="rBtnLeft"                
+                EntranceStaggerDelayInMilliseconds = "1000"                
                 RadiateStaggerDelayInMilliseconds = "5000"
                 Canvas.ZIndex="101"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
@@ -78,10 +80,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "1100"                
+                RadiateStaggerDelayInMilliseconds = "6000"
                 Canvas.ZIndex="101"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.85}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"                
@@ -131,26 +131,38 @@
                           ImageSource="{x:Bind Path=ViewModel.Book15Uri}"
                           ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"/>
-
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"
+                          
+                          PageEntranceDirection="Left"
+                          HasEntranceTranslation="True"/>
+            <!--Opacity="0"-->
             <ctrl:ImageEx x:Name="SurfaceBook13"
                           ImageSource="{x:Bind Path=ViewModel.Book13Uri}"
                           ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.6}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"/>
-
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.2}"
+                          
+                          PageEntranceDirection="Right"
+                          HasEntranceTranslation="True"/>
+            <!--Opacity="0"-->
             <ctrl:ImageEx x:Name="Dial"
                           ImageSource="{x:Bind Path=ViewModel.DialUri}"
                           ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.15}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.7}"/>
-
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.7}"
+                          
+                          PageEntranceDirection="Right"
+                          HasEntranceTranslation="True"/>
+            <!--Opacity="0"-->
             <ctrl:ImageEx x:Name="Pen"
                           ImageSource="{x:Bind Path=ViewModel.PenUri}"
                           ImageWidth="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.2}"
                           Canvas.Left="{x:Bind Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.7}"
-                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.8}"/>
-
+                          Canvas.Top="{x:Bind Converter={StaticResource CanvasTopConverter}, ConverterParameter=0.8}"
+                          
+                          PageEntranceDirection="Right"
+                          HasEntranceTranslation="True"/>
+            <!--Opacity="0"-->
         </Canvas>
     </Grid>
 

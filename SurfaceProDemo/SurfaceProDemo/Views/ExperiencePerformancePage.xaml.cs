@@ -51,7 +51,7 @@ namespace SurfaceProDemo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Laptop, this.img_Laptop.TranslateDirection, 100, 500, 0);
+            
             this.rBtnLeft.StartEntranceAnimation();
             this.rBtnLeft.StartRadiateAnimation();
 

@@ -21,7 +21,7 @@ using SDX.Toolkit.Helpers;
 
 namespace SDX.Toolkit.Controls
 {
-    public sealed class Header : Control
+    public sealed class Header : Control, IAnimate
     {
 
         #region Private Constants
@@ -189,6 +189,36 @@ namespace SDX.Toolkit.Controls
             set { SetValue(CTATextStyleProperty, value); }
         }
 
+        // AnimationDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(Header), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
+        // HeadlineOpacity
+        public static readonly DependencyProperty HeadlineOpacityProperty =
+        DependencyProperty.Register("HeadlineOpacity", typeof(double), typeof(Header), new PropertyMetadata(1d));
+
+        public double HeadlineOpacity
+        {
+            get { return (double)GetValue(HeadlineOpacityProperty); }
+            set { SetValue(HeadlineOpacityProperty, value); }
+        }
+
+        // LedeOpacity
+        public static readonly DependencyProperty LedeOpacityProperty =
+        DependencyProperty.Register("LedeOpacity", typeof(double), typeof(Header), new PropertyMetadata(1d));
+
+        public double LedeOpacity
+        {
+            get { return (double)GetValue(LedeOpacityProperty); }
+            set { SetValue(LedeOpacityProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -341,6 +371,8 @@ namespace SDX.Toolkit.Controls
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
                     TextStyle = this.HeadlineStyle,
+                    TranslateDirection = this.Direction(),                    
+                    Opacity = this.HeadlineOpacity
                 };
                 Grid.SetRow(_headline, 0);
                 Grid.SetColumn(_headline, 0);
@@ -368,6 +400,8 @@ namespace SDX.Toolkit.Controls
                     TextWrapping = TextWrapping.WrapWholeWords,
                     Width = gridWidth,
                     TextStyle = this.LedeStyle,
+                    TranslateDirection = this.Direction(),
+                    Opacity = this.LedeOpacity
                 };
                 Grid.SetRow(_lede, 1);
                 Grid.SetColumn(_lede, 0);
@@ -416,6 +450,34 @@ namespace SDX.Toolkit.Controls
                 // add to the grid
                 _layoutGrid.Children.Add(_lede);
             }
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return true;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return this.PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            List<UIElement> animates = new List<UIElement>();
+            animates.Add(_headline);
+            animates.Add(_lede);
+            return animates;
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return true;
         }
 
         #endregion
