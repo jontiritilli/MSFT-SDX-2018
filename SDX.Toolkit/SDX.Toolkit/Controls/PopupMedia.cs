@@ -119,6 +119,16 @@ namespace SDX.Toolkit.Controls
             set => SetValue(PopupTypeProperty, value);
         }
 
+        // PlaybackRate
+        public static readonly DependencyProperty PlaybackRateProperty =
+        DependencyProperty.Register("PlaybackRate", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1d, OnPlaybackRateChanged));
+
+        public double PlaybackRate
+        {
+            get { return (double)GetValue(PlaybackRateProperty); }
+            set { SetValue(PlaybackRateProperty, value); }
+        }
+
         //// MediaSourceStorageFile
         //public static readonly DependencyProperty MediaSourceStorageFileProperty =
         //    DependencyProperty.Register("MediaSourceStorageFile", typeof(StorageFile), typeof(RadiatingButton), new PropertyMetadata(new StorageFile, OnMediaSourceStorageFileChanged));
@@ -269,6 +279,17 @@ namespace SDX.Toolkit.Controls
 
         }
 
+        private static void OnPlaybackRateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((d is PopupMedia popup) && (null != popup._player))
+            {
+                if (e.NewValue is double newValue)
+                {
+                    popup._player.PlaybackRate = newValue;
+                }                
+            }
+        }
+
         #endregion
 
         #region UI Methods
@@ -388,9 +409,10 @@ namespace SDX.Toolkit.Controls
                 {
                     MediaSourceUri = this.MediaSourceUri,
                     VideoWidth = this.MediaWidth,
-                    VideoHeight = this.MediaHeight
+                    VideoHeight = this.MediaHeight,
+                    PlaybackRate = this.PlaybackRate
                 };
-
+                
                 // add to the grid
                 Grid.SetRow(_player, 2);
                 _layoutRoot.Children.Add(_player);

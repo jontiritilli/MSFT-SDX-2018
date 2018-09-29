@@ -209,18 +209,19 @@ namespace SurfaceBook2Demo.ViewModels
             }
             );
 
-            // =================================================
-            // Create Accessories pages
-            // =================================================
-
             // AccessoriesPenPage
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "AccessoriesPenPage",
                 Order = 3,
-                Section = sectionAccessories,
+                Section = sectionExperience,
             }
             );
+
+            // =================================================
+            // Create Accessories pages
+            // =================================================
+
 
             // AccessoriesDialPage
             this.Root.Items.Add(new NavigationPage()

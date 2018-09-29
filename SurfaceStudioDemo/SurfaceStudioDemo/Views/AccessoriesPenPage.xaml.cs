@@ -49,6 +49,8 @@ namespace SurfaceStudioDemo.Views
                 AccessoriesPenPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;                
             };
 
+            this.rBtnPen.Clicked += OnPenTryItClicked;
+
             this.ColoringBook.ColorIDChanged += BookColorIDChanged;
             this.ColoringBook.OnPenScreenContacted += OnPenScreenContacted;
 
@@ -59,6 +61,11 @@ namespace SurfaceStudioDemo.Views
         #endregion
 
         #region Private Methods
+
+        private void OnPenTryItClicked(object sender, EventArgs e)
+        {
+            this.ColoringBook.FadeInColoringImage();
+        }
 
         private void DialColorIDChanged(object sender, EventArgs e)
         {

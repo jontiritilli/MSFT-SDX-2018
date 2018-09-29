@@ -33,7 +33,6 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
-
         #region Private Members
 
         private FlipViewViewModel ViewModel
@@ -47,13 +46,11 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
-
         #region Public Static Properties
 
         public static FlipViewPage Current { get; private set; }
 
         #endregion
-
 
         #region Public Static Methods
 
@@ -70,7 +67,6 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
-
 
         #region Construction
 
@@ -125,7 +121,6 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
-
 
         #region Event Handlers
 
@@ -277,7 +272,6 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
-
         #region Public Methods
 
         public void ShowAppClose()
@@ -294,6 +288,16 @@ namespace SurfaceProDemo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
         }
 
         public Popup GetExperiencePagePopup()
