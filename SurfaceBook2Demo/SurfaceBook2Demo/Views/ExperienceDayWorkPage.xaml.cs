@@ -83,8 +83,10 @@ namespace SurfaceBook2Demo.Views
         {
             // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
+
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
 
@@ -96,6 +98,7 @@ namespace SurfaceBook2Demo.Views
         {
             // animations out            
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
 
