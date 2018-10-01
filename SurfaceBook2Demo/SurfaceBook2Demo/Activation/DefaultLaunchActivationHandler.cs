@@ -5,8 +5,6 @@ using Windows.ApplicationModel.Activation;
 
 using GalaSoft.MvvmLight.Ioc;
 
-using MetroLog;
-
 using SurfaceBook2Demo.Services;
 
 

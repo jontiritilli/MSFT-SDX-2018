@@ -1,11 +1,12 @@
 ﻿using System;
 
-using SurfaceLaptopDemo.ViewModels;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using SurfaceLaptopDemo.ViewModels;
+
 using SDX.Toolkit.Helpers;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceLaptopDemo.Views
@@ -20,6 +21,7 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
+
 
         #region Construction
 
@@ -50,6 +52,7 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
+
 
         #region Private Methods
 
@@ -83,7 +86,13 @@ namespace SurfaceLaptopDemo.Views
             FlipViewPage.Current.ShowAppClose();
         }
 
+        private void RadiatingButton_Clicked(object sender, EventArgs e)
+        {
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
+        }
+
         #endregion
+
 
         #region INavigate Interface
 

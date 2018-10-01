@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Windows.Foundation;
+using Windows.Devices.Input;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Input.Inking;
@@ -10,9 +12,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 
 using SDX.Toolkit.Helpers;
-using Windows.Devices.Input;
-//using SDX.Toolkit.Views;
-//using SDX.Toolkit.Services;
+using SDX.Telemetry.Services;
+
 
 namespace SDX.Toolkit.Controls
 {
@@ -705,7 +706,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // telemetry
-            //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_STARTPEN, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPen);
         }
 
         private void InkPresenter_StrokeEnded(InkStrokeInput sender, PointerEventArgs args)
@@ -730,7 +731,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // telemetry
-            //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_ENDPEN, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPen);
         }
 
         private void SetupBrush()

@@ -33,7 +33,7 @@ namespace SurfaceStudioDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             AnimationHelper.PerformPageEntranceAnimation(this);
-            AnimationHelper.PerformFadeIn(this.backgroundImage2, 1100d, 750d);
+            AnimationHelper.PerformFadeIn(this.backgroundImage2, 1100d, 3000d);
         }
 
         public void NavigateFromPage()

@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceBook2Demo.ViewModels;
 using SDX.Toolkit.Controls;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceBook2Demo.Views
@@ -109,6 +110,9 @@ namespace SurfaceBook2Demo.Views
 
                     // navigate to it
                     _previousPage.NavigateToPage(moveDirection);
+
+                    // telemetry
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewExperience);
                 }
 
                 // update the slider

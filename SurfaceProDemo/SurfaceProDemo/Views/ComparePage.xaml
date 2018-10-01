@@ -41,8 +41,6 @@
                 HeadlineStyle="PageHeadline"
                 LedeStyle="PageLede"                
                 HorizontalAlignment="Left"
-                HeadlineOpacity="0"
-                LedeOpacity="0"
                 VerticalAlignment="Top"/>
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
@@ -57,39 +55,44 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.655}"                                                    
                 PopupPosition="Right"
                 EntranceStaggerDelayInMilliseconds="1000"
-                AutoStart = "false"/>
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBook"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.205}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.595}"                                                    
-                PopupPosition="Right"
-                EntranceStaggerDelayInMilliseconds="1100"
-                AutoStart = "false"/>
+                PopupPosition="Right"                 
+                EntranceStaggerDelayInMilliseconds="1000"
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnStudio"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.61}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"                                                    
-                PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1200"
-                AutoStart = "false"/>
+                PopupPosition="Left"                 
+                EntranceStaggerDelayInMilliseconds="1000"
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLaptop"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.785}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.635}"                                                    
-                PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1300"
-                AutoStart = "false"/>
+                PopupPosition="Left"                 
+                EntranceStaggerDelayInMilliseconds="1000"
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnGo"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.897}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.79}"                                                    
-                PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1400"
-                AutoStart = "false"/>
+                PopupPosition="Left"                 
+                EntranceStaggerDelayInMilliseconds="1000"
+                AutoStart = "false"
+                Clicked="RadiatingButton_Clicked"/>
 
             <Popup
                 x:Name="PopPro"

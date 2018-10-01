@@ -12,8 +12,8 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceLaptopDemo.Services;
+
 using SDX.Toolkit.Helpers;
-using SDX.Telemetry.Models;
 using SDX.Telemetry.Services;
 
 
@@ -22,11 +22,6 @@ namespace SurfaceLaptopDemo
     public sealed partial class App : Application
     {
         #region Private Members
-
-        private int _keyUpCount = 0;
-        private int _mouseUpCount = 0;
-        private int _penUpCount = 0;
-        private int _touchUpCount = 0;
 
         private Lazy<ActivationService> _activationService;
 
@@ -60,15 +55,6 @@ namespace SurfaceLaptopDemo
             Resuming += OnResuming;
             UnhandledException += OnUnhandledException;
 
-            // add our handler for keys pressed/released
-            //CoreWindow thisWindow = CoreWindow.GetForCurrentThread();
-            //if (null != thisWindow)
-            if (null != Window.Current.CoreWindow)
-            {
-                Window.Current.CoreWindow.KeyUp += OnKeyUp;
-                Window.Current.CoreWindow.PointerReleased += OnPointerReleased;
-            }
-
             // we want full screen, but leave this off during dev 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
@@ -99,19 +85,20 @@ namespace SurfaceLaptopDemo
                 AsyncHelper.RunSync(() => localizationService.Initialize());
             }
 
-            // register the telemetry service and initialize it
+            // initialize the telemetry service
             SimpleIoc.Default.Register<TelemetryService>();
             TelemetryService telemetryService = (TelemetryService)SimpleIoc.Default.GetInstance<TelemetryService>();
             if (null != telemetryService)
             {
                 if (null != configurationService)
                 {
-                    // get telemetry config values
-                    string telemetryBaseUrl = configurationService.Configuration?.TelemetryBaseUrl;
-                    string telemetryId = ConfigurationService.Current.GetTelemetryId();
+                    // DO NOT try to run this asynchronously; MetroLog hangs when invoked async
+                    //AsyncHelper.RunSync(() => telemetryService.Initialize(configurationService.Configuration.TelemetryKey));
+                    telemetryService.Initialize(configurationService.Configuration.IsTelemetryEnabled,
+                                                configurationService.Configuration.TelemetryKey);
 
-                    // run this synchronously 
-                    AsyncHelper.RunSync(() => telemetryService.Initialize(telemetryBaseUrl, telemetryId, new UWPTelemetryDependent()));
+                    // log app start
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
                 }
             }
         }
@@ -167,17 +154,8 @@ namespace SurfaceLaptopDemo
             // get a deferral (not guaranteed)
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            // save/send the ImplementDown telemetry data
-            TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_IMPLEMENTDOWN, (_penUpCount + _mouseUpCount + _touchUpCount + _keyUpCount).ToString(), false);
-
-            // reset ImplementDown counters
-            _penUpCount = _mouseUpCount = _keyUpCount = _touchUpCount = 0;
-
-            // close telemetry
-            if (null != TelemetryService.Current)
-            {
-                await TelemetryService.Current.CloseTelemetry();
-            }
+            // telemetry - app close event
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndApplication);
 
             // complete deferral
             deferral.Complete();
@@ -186,61 +164,6 @@ namespace SurfaceLaptopDemo
         private void OnUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             // should log here, but we're not logging in this app
-        }
-
-        private void OnKeyUp(CoreWindow sender, KeyEventArgs args)
-        {
-            args.Handled = HandleKeyUp(args.VirtualKey);
-        }
-
-        public bool HandleKeyUp(VirtualKey key)
-        {
-            bool handled = false;
-
-            switch (key)
-            {
-                case VirtualKey.Right:
-                    _keyUpCount++;
-                    break;
-
-                case VirtualKey.Left:
-                    _keyUpCount++;
-                    break;
-
-                default:
-                    break;
-            }
-
-            return handled;
-        }
-
-        private void OnPointerReleased(CoreWindow sender, PointerEventArgs args)
-        {
-            args.Handled = HandlePointerReleased(args.CurrentPoint.PointerDevice.PointerDeviceType);
-        }
-
-        public bool HandlePointerReleased(PointerDeviceType pointerDeviceType)
-        {
-            bool handled = false;
-
-            switch (pointerDeviceType)
-            {
-                case PointerDeviceType.Touch:
-                    _touchUpCount++;
-                    break;
-                case PointerDeviceType.Pen:
-                    _penUpCount++;
-                    break;
-                case PointerDeviceType.Mouse:
-                    _mouseUpCount++;
-                    break;
-                default:
-                    break;
-            }
-
-            handled = true;
-
-            return handled;
         }
 
         #endregion

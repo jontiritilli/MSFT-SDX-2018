@@ -6,6 +6,7 @@ using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -20,7 +21,7 @@ using SurfaceProDemo.ViewModels;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
 
-using Windows.UI.Xaml.Controls.Primitives;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceProDemo.Views
@@ -84,10 +85,6 @@ namespace SurfaceProDemo.Views
             // disappear the title bar
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-
-            //this.GettingFocus += FlipView_GettingFocus;
-            this.KeyUp += FlipView_KeyUp;
-            this.PointerReleased += FlipView_PointerReleased;
 
             // configure focus
             this.FocusVisualMargin = new Thickness(0);
@@ -248,24 +245,57 @@ namespace SurfaceProDemo.Views
                     }
                 }
             }
-        }
 
-        private void FlipView_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            if (null != this.BottomNavBar)
+            // telemetry - log nav sections
+            if (NavigationActions.Section == e.NavAction)
             {
-                e.Handled = this.BottomNavBar.HandleKey(e.Key);
-            }
-        }
+                // we've gone to a section, so log it
+                switch (e.NavSection.Name)
+                {
+                    case "Experience":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavExperience);
+                        break;
 
-        private void FlipView_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            // i hate this, but App is not getting pointer hits
-            App.Current?.HandlePointerReleased(e.Pointer.PointerDeviceType);
+                    case "Accessories":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavAccessories);
+                        break;
+
+                    case "BestOfMicrosoft":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavBestOf);
+                        break;
+
+                    case "Compare":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavComparison);
+                        break;
+                }
+            }
+
+            // telemetry - log page view
+            switch (e.NavItem.Section.Name)
+            {
+                case "Experience":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewExperience);
+                    break;
+
+                case "Accessories":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewAccessories);
+                    break;
+
+                case "BestOfMicrosoft":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewBestOf);
+                    break;
+
+                case "Compare":
+                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewComparison);
+                    break;
+            }
         }
 
         private void AppClose_Click(object sender, RoutedEventArgs e)
         {
+            // log application exit
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndApplication);
+
             // this is not kosher by guidelines, but no other way to do this
             Application.Current.Exit();
         }
