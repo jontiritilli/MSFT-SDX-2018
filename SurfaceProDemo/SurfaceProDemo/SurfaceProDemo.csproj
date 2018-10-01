@@ -522,6 +522,7 @@
     <Content Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-ja-JP.json" />
     <None Include="SurfaceProDemo_StoreKey.pfx" />
     <None Include="SurfaceProDemo_TemporaryKey.pfx" />
   </ItemGroup>
