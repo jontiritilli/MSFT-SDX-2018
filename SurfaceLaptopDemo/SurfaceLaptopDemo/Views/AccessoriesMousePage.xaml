@@ -42,6 +42,7 @@
             ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
             ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"
             HorizontalAlignment="Right"
+            HasEntranceTranslation="False"                               
             VerticalAlignment="Top"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
@@ -49,6 +50,7 @@
             URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Opacity="0"
             ButtonWidth="{StaticResource ExperienceColorSelectorIconWidth}"
             ButtonHeight="{StaticResource ExperienceColorSelectorIconWidth}"/>
 

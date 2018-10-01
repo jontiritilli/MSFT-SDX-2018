@@ -208,7 +208,36 @@ namespace SDX.Toolkit.Controls
             get { return ((List<BitmapImage>)GetValue(BitmapImagesProperty)); }
             set { SetValue(BitmapImagesProperty, value); }
         }
-       
+
+        // TranslateDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(AppSelectorImage), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
+        //HasPageEntranceAnimation
+        public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
+        DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(true));
+
+        public bool HasPageEntranceAnimationEnabled
+        {
+            get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
+            set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
+
+        // HasPageEntranceTranslation
+        public static readonly DependencyProperty HasEntranceTranslationProperty =
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+
+        public bool HasEntranceTranslation
+        {
+            get { return (bool)GetValue(HasEntranceTranslationProperty); }
+            set { SetValue(HasEntranceTranslationProperty, value); }
+        }
         #endregion
 
         #region Event Handlers
@@ -366,22 +395,22 @@ namespace SDX.Toolkit.Controls
 
         public bool HasPageEntranceAnimation()
         {
-            return false;
+            return HasPageEntranceAnimationEnabled;
         }
 
         public AnimationDirection Direction()
         {
-            throw new NotImplementedException();
+            return PageEntranceDirection;
         }
 
         public List<UIElement> AnimatableChildren()
         {
-            throw new NotImplementedException();
+            return new List<UIElement>();
         }
 
         public bool HasPageEntranceTranslation()
         {
-            return true;
+            return HasEntranceTranslation;
         }
         #endregion
 

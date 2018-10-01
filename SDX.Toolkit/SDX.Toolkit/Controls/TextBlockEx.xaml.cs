@@ -181,12 +181,22 @@ namespace SDX.Toolkit.Controls
 
         // HasPageEntranceAnimationEnabled
         public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
-            DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(false)); //, OnLineHeightChanged));
+            DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(true)); //, OnLineHeightChanged));
 
         public bool HasPageEntranceAnimationEnabled
         {
             get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
             set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
+
+        // HasPageEntranceTranslation
+        public static readonly DependencyProperty HasEntranceTranslationProperty =
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+
+        public bool HasEntranceTranslation
+        {
+            get { return (bool)GetValue(HasEntranceTranslationProperty); }
+            set { SetValue(HasEntranceTranslationProperty, value); }
         }
         #endregion
 
@@ -229,7 +239,7 @@ namespace SDX.Toolkit.Controls
 
         public bool HasPageEntranceAnimation()
         {
-            return true;
+            return HasPageEntranceAnimationEnabled;
         }
 
         public AnimationDirection Direction()
@@ -244,7 +254,7 @@ namespace SDX.Toolkit.Controls
 
         public bool HasPageEntranceTranslation()
         {
-            return true;
+            return HasEntranceTranslation;
         }
 
         #endregion

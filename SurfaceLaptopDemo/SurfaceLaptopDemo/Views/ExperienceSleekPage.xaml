@@ -52,6 +52,8 @@
             ImageSource="{x:Bind Path=ViewModel.DesignUri}"
             ImageWidth="{x:Bind Path=ViewModel.PrimaryImageWidth}"
             HorizontalAlignment="Right"
+            HasEntranceTranslation="False"
+            Opacity="0"
             VerticalAlignment="Bottom"/>
 
         <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
@@ -69,21 +71,24 @@
                 x:Name="rBtnBottomPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.82}"
-                PopupPosition="Left"                       
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1200"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnTopPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.82}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"
-                PopupPosition="Left"                       
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1100"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"
-                PopupPosition="Left"                       
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
 
             <Popup

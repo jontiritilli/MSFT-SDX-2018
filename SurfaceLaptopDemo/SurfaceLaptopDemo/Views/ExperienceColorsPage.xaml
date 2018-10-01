@@ -40,7 +40,10 @@
             x:Name="AppSelectorImageExpColors"
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
             ImageHeight="{StaticResource CanvasHeight}"
-            ImageWidth="{StaticResource CanvasWidth}"/>
+            ImageWidth="{StaticResource CanvasWidth}"                               
+            Opacity="0"
+            HasEntranceTranslation="False"
+            HasPageEntranceAnimationEnabled="True"/>
         
         <ctrl:Header Grid.Row="3" Grid.Column="1"
                     x:Name="PageHeader" 

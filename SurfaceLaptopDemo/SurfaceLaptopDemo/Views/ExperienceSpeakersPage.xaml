@@ -55,9 +55,10 @@
                 URIs="{x:Bind Path=ViewModel.speakersSelectorMinorImageURIs}"
                 ImageHeight="{x:Bind ViewModel.ImageSelectorMinorImageHeight}"
                 ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
-                Opacity="1"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.54}" />
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.54}"
+                HasEntranceTranslation="False"/>
         </Canvas>
 
         <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
@@ -67,7 +68,9 @@
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             Margin="50,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"/>
+            VerticalAlignment="Bottom"
+            HasEntranceTranslation="False"
+            Opacity="0"/>
 
         <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
             x:Name="AppSelectorSpeakers"

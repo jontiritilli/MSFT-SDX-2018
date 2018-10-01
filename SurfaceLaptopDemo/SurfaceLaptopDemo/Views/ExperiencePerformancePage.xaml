@@ -61,9 +61,12 @@
                 URIs="{x:Bind Path=ViewModel.performanceSelectorMinorImageURIs}"
                 ImageHeight="{x:Bind ViewModel.ImageSelectorMinorImageHeight}"
                 ImageWidth="{x:Bind ViewModel.ImageSelectorMinorImageWidth}"
-                Opacity="1"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.16}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.39}" />
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.39}"
+                HasPageEntranceAnimationEnabled="True"
+                HasEntranceTranslation="False"
+                />
         </Canvas>
 
         <ctrl:AppSelectorImage Grid.Row="1" Grid.Column="1" Grid.RowSpan="7" 
@@ -72,7 +75,10 @@
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"/>
+            VerticalAlignment="Bottom"
+            HasPageEntranceAnimationEnabled="True"
+            HasEntranceTranslation="False"
+            Opacity="0"/>
 
         <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
             x:Name="AppSelectorPerf"
