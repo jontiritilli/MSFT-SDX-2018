@@ -75,7 +75,7 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnRightMouse"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.77}"
                 PopupPosition="Left"                 
                 AutoStart = "false"/>
 
@@ -88,8 +88,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnCenterMouse"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.44}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.46}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.73}"
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
