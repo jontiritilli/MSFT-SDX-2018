@@ -101,8 +101,8 @@
     
     <x:Double x:Key="RadiatingButtonEllipseRadius">50</x:Double>
     <x:Double x:Key="RadiatingButtonGridWidth">138.667</x:Double>
-    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">16.367</x:Double>
-    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">24.48</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">5</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">10</x:Double>
     <x:Double x:Key="RadiatingButtonCaptionHeight">26.667</x:Double>
     <x:Double x:Key="RadiatingButtonCloseIconWidth">15</x:Double>
 
@@ -114,7 +114,7 @@
     <x:Double x:Key="TryItPathWidth">16</x:Double>
     <!--width of the triangle at the bottom of the messagebox-->
     <x:Double x:Key="TryItIconHeight">30</x:Double>
-    <x:Double x:Key="TryItDotHeight">30</x:Double>
+    <x:Double x:Key="TryItDotHeight">25</x:Double>
 
     <x:Double x:Key="CanvasWidth">1500</x:Double>
     <x:Double x:Key="CanvasHeight">908</x:Double>  <!-- 2000 - 184 (navbar) = 1816, 1961.28 / 2 (200% scaling) = 980.64 -->
