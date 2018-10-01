@@ -115,8 +115,8 @@
 
     <x:Double x:Key="RadiatingButtonEllipseRadius">60</x:Double>
     <x:Double x:Key="RadiatingButtonGridWidth">138.667</x:Double>
-    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">16.367</x:Double>
-    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">24.48</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">10</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">10</x:Double>
     <x:Double x:Key="RadiatingButtonCaptionHeight">26.667</x:Double>
     <x:Double x:Key="RadiatingButtonCloseIconWidth">20</x:Double>
 

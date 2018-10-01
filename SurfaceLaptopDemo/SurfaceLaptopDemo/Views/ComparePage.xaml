@@ -52,7 +52,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.02}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="800"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -60,7 +60,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.18}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.56}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1100"
+                EntranceStaggerDelayInMilliseconds="1000"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -76,7 +76,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.76}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.61}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1300"
+                EntranceStaggerDelayInMilliseconds="1400"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -84,7 +84,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.86}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1400"
+                EntranceStaggerDelayInMilliseconds="1600"
                 Clicked="RadiatingButton_Clicked"/>
 
             <Popup

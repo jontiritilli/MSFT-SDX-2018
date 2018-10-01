@@ -42,11 +42,9 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorImageAccLeft.AppSelector = this.AppSelectorAccLeft;
             this.AppSelectorAccLeft.SelectedIDChanged += SelectedIDChanged;
 
-            this.PopLeftLegal.SetOpacity(0.0d);
             this.rBtnLeftMouse.PopupChild = PopLeft;
             this.rBtnCenterMouse.PopupChild = PopCenter;
             this.rBtnRightMouse.PopupChild = PopRight;
-            this.PopLeftLegal.SetOpacity(0);
 
         }
 
@@ -68,17 +66,6 @@ namespace SurfaceLaptopDemo.Views
         #endregion
 
         #region Private Methods
-
-        private void PopLeft_Opened(object sender, object e)
-        {
-            this.PopLeftLegal.SetOpacity(1);
-        }
-
-        private void PopLeft_Closed(object sender, object e)
-        {
-            this.PopLeftLegal.SetOpacity(0);
-
-        }
 
         #endregion
 
