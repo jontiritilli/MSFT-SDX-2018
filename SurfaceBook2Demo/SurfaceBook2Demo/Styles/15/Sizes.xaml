@@ -92,6 +92,7 @@
 
     <x:Double x:Key="ColoringBookButtonWidth">48</x:Double>
     <x:Double x:Key="ColoringBookButtonHeight">48</x:Double>
+    <x:Double x:Key="AppSelectorMarginRight">20</x:Double>
 
     <x:Double x:Key="SwipeToContinueArrowWidth">7.215</x:Double>
     <x:Double x:Key="SwipeToContinueSpacer">5.93</x:Double>

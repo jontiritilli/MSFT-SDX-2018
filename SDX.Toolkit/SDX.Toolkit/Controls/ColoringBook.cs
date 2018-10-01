@@ -446,7 +446,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
 
             //_layoutRoot.Opacity = 0;
-
+            double AppSelectorMarginRight = StyleHelper.GetApplicationDouble("AppSelectorMarginRight");
             if (null == _layoutRoot) { return; }
 
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.95, GridUnitType.Star) });
@@ -641,7 +641,7 @@ namespace SDX.Toolkit.Controls
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(0, 0, 40, 0),
+                Margin = new Thickness(0, 0, this.AppSelectorRightMargin, 0),
                 MainOrientation = Orientation.Vertical,
                 ButtonHeight = DOUBLE_COLORING_BOOK_BUTTON_HEIGHT,
                 ButtonWidth = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
