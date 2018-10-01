@@ -43,7 +43,19 @@
             HeadlineOpacity="0"
             LedeOpacity="0"
             VerticalAlignment="Top"/>
-        
+        <ctrl:ImageEx
+            Grid.Row="3"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            x:Name="img_Family"
+            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
+            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
+            TranslateDirection="Left"
+            Canvas.ZIndex="100"
+            Opacity="0"
+            HasEntranceTranslation="False"
+            />
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
             x:Name="ButtonCanvas"
             Canvas.ZIndex="101">
@@ -129,43 +141,37 @@
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.17}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"   
-            />
+                HasEntranceTranslation="False"
+                />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.BookTitle}"
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.33}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"   
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"
+                HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.StudioTitle}"
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"    
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.LaptopTitle}"
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"   
-            />
+                HasEntranceTranslation="False"
+                />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.GoTitle}"
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.85}"   
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.85}"
+                HasEntranceTranslation="False"
             />
         </Canvas>
-        <ctrl:ImageEx
-            Grid.Row="3"
-            Grid.RowSpan="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            x:Name="img_Family"
-            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
-            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
-            TranslateDirection="Left"
-            Canvas.ZIndex="100"
-            Opacity="0"
-            />
+       
     </Grid>
 </Page>

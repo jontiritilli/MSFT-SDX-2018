@@ -191,7 +191,7 @@ namespace SDX.Toolkit.Controls
 
         // HasPageEntranceTranslation
         public static readonly DependencyProperty HasEntranceTranslationProperty =
-        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(true));
 
         public bool HasEntranceTranslation
         {

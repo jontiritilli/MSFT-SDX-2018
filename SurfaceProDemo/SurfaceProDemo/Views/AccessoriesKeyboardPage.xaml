@@ -119,7 +119,9 @@
             HorizontalAlignment="Right"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            HasEntranceTranslation="False"
+            HasPageEntranceAnimationEnabled="False"/>
 
         <ctrl:TextBlockEx
             Grid.Row="4"
