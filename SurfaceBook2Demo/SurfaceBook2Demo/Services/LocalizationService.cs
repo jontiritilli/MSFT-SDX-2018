@@ -340,7 +340,7 @@ namespace SurfaceBook2Demo.Services
 
             viewModel.PopupMouseHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_TITLE, "ACCESSORIES_RIGHT_POPCENTER_TITLE");
             viewModel.PopupMouseLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_COPY, "ACCESSORIES_RIGHT_POPCENTER_COPY");
-            viewModel.PopupMouseLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_LEGAL, "ACCESSORIES_RIGHT_POPCENTER_LEGAL");
+            viewModel.PopupMouseLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_COPY_LEGAL, "ACCESSORIES_RIGHT_COPY_LEGAL");
             viewModel.PopupMouseTryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_TITLE");
             viewModel.PopupMouseTryItCaption = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_COPY");
         }
@@ -348,7 +348,11 @@ namespace SurfaceBook2Demo.Services
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
-            viewModel.Legal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+            viewModel.LegalBulletOne = GetStringValue(_languageCurrent.BEST_BULLET_ONE_LEGAL, "BEST_BULLET_ONE_LEGAL");
+            viewModel.LegalBulletTwo = GetStringValue(_languageCurrent.BEST_BULLET_TWO_LEGAL, "BEST_BULLET_TWO_LEGAL");
+            viewModel.LegalBulletThree = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+            viewModel.LegalBulletFour = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_LEGAL, "BEST_BULLET_FOUR_LEGAL");
+            viewModel.LegalBulletFive = GetStringValue(_languageCurrent.BEST_BULLET_FIVE_LEGAL, "BEST_BULLET_FIVE_LEGAL");
             viewModel.BulletOneCTA = GetStringValue(_languageCurrent.BEST_BULLET_ONE_CTA, "BEST_BULLET_ONE_CTA");
             viewModel.BulletTwoCTA = GetStringValue(_languageCurrent.BEST_BULLET_TWO_CTA, "BEST_BULLET_TWO_CTA");
             viewModel.BulletThreeCTA = GetStringValue(_languageCurrent.BEST_BULLET_THREE_CTA, "BEST_BULLET_THREE_CTA");

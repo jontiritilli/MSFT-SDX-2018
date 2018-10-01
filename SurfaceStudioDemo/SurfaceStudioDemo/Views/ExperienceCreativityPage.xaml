@@ -34,7 +34,8 @@
             x:Name="backgroundImage2"
             Opacity="0"
             ImageSource="{x:Bind Path=ViewModel.BackgroundTwoUri}"
-            ImageWidth="{StaticResource CanvasWidth}"/>
+            ImageWidth="{StaticResource CanvasWidth}"
+            PageEntranceDirection="Right"/>
 
         <ctrl:Header Grid.Row="1" Grid.Column="1"
                     x:Name="PageHeader" 
@@ -44,6 +45,8 @@
                     LedeStyle="PageLedeDark"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"/>
+                    VerticalAlignment="Top"
+                    HeadlineOpacity="0"
+                     LedeOpacity="0"/>
     </Grid>
 </Page>
