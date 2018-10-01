@@ -499,6 +499,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-ja-JP.json" />
     <None Include="SurfaceLaptopDemo_StoreKey.pfx" />
     <None Include="SurfaceLaptopDemo_TemporaryKey.pfx" />
   </ItemGroup>

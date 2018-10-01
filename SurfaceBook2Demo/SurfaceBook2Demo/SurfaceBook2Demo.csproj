@@ -585,6 +585,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-ja-JP.json" />
     <None Include="SurfaceBook2Demo_StoreKey.pfx" />
     <None Include="SurfaceBook2Demo_TemporaryKey.pfx" />
   </ItemGroup>
