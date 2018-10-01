@@ -46,7 +46,9 @@
             LedeStyle="PageLede"                     
             Width="Auto"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>
 
         <ctrl:TextBlockEx x:Name="ListHeadline" Grid.Row="3" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.ListHeadline}"

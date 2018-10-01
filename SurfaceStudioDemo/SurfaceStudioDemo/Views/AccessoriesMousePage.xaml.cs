@@ -36,6 +36,7 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnLeftAccRight.StartEntranceAnimation();
             rBtnLeftAccRight.StartRadiateAnimation();
 
@@ -48,6 +49,7 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateFromPage()
         {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
             rBtnLeftAccRight.ResetEntranceAnimation();
             rBtnLeftAccRight.ResetRadiateAnimation();
 

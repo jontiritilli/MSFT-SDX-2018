@@ -571,6 +571,9 @@
     <Content Include="Assets\RadiatingButton\tryit_dot.png" />
     <Content Include="Assets\RadiatingButton\tryit.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
@@ -582,6 +585,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-ja-JP.json" />
     <None Include="SurfaceBook2Demo_StoreKey.pfx" />
     <None Include="SurfaceBook2Demo_TemporaryKey.pfx" />
   </ItemGroup>

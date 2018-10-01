@@ -25,10 +25,11 @@ namespace SurfaceStudioDemo.ViewModels
         public string BackgroundUri = URI_BACKGROUND;
 
         public string Headline;
-        public string BulletOneLegal;
-        public string BulletTwoLegal;
-        public string BulletThreeLegal;
-        public string BulletFourLegal;
+        public string LegalBulletOne;
+        public string LegalBulletTwo;
+        public string LegalBulletThree;
+        public string LegalBulletFour;
+        public string LegalBulletFive;
 
         public List<ListItem> ItemList = new List<ListItem>();        
 

@@ -36,12 +36,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
-            x:Name="AccessoriesRight"
-            ImageWidth="2100"
-            ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+
 
         <ctrl:Header Grid.Row="1" Grid.Column="1"
             x:Name="PageHeader" 
@@ -52,6 +47,17 @@
             HeaderAlignment="Right"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"            
+            LedeOpacity="0"
+            PageEntranceDirection="Right"/>
+
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
+            x:Name="AccessoriesRight"
+            ImageWidth="2100"
+            ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
+            HorizontalAlignment="Left"
+            HasPageEntranceAnimationEnabled="False"
             VerticalAlignment="Top"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">

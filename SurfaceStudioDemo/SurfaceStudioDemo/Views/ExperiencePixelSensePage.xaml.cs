@@ -83,8 +83,8 @@ namespace SurfaceStudioDemo.Views
         {
             // animations in
             AnimationHelper.PerformPageEntranceAnimation(this);
-            AnimationHelper.PerformTranslateIn(this.img_Left, this.img_Left.TranslateDirection, 100, 500, 0);
-            AnimationHelper.PerformTranslateIn(this.img_Right, this.img_Left.TranslateDirection, 100, 1000, 0);
+            //AnimationHelper.PerformTranslateIn(this.img_Left, this.img_Left.TranslateDirection, 100, 500, 0);
+            //AnimationHelper.PerformTranslateIn(this.img_Right, this.img_Left.TranslateDirection, 100, 1000, 0);
 
             rBtnRightPixelSense.StartEntranceAnimation();
             rBtnRightPixelSense.StartRadiateAnimation();

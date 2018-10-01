@@ -5,14 +5,14 @@ using SurfaceLaptopDemo.ViewModels;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 using Windows.UI.Xaml.Controls;
-
+using SurfaceLaptopDemo.Services;
 
 namespace SurfaceLaptopDemo.Views
 {
     public sealed partial class ExperienceColorsPage : Page, INavigate
     {
         #region Private Members
-
+        private bool isBlackEnabled;
         private ExperienceColorsViewModel ViewModel
         {
             get { return DataContext as ExperienceColorsViewModel; }
@@ -29,6 +29,7 @@ namespace SurfaceLaptopDemo.Views
             ViewModel.BackgroundUri = ViewModel.lifeStyleColorSelectorImageURIs[AppSelectorImageExpColors.SelectedID].URI;
             this.AppSelectorExpColors.SelectedIDChanged += SelectedIDChanged;
             this.rBtnLeft.PopupChild = this.PopLeft;
+            isBlackEnabled = ConfigurationService.Current.GetIsBlackSchemeEnabled();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)
@@ -36,12 +37,26 @@ namespace SurfaceLaptopDemo.Views
             //capture selected changed event so we can pass the id to the other page and force link            
             AppSelector appSelector = (AppSelector)sender;
 
-            // change headline and lead style if the black option is chosen
-            this.PageHeader.HeadlineStyle = (appSelector.SelectedID == 1) ? TextStyles.PageHeadline : TextStyles.PageHeadlineDark;
-            this.PageHeader.LedeStyle = (appSelector.SelectedID == 1) ? TextStyles.PageLede : TextStyles.PageLedeDark;
+            if (isBlackEnabled && appSelector.SelectedID == 1)
+            {
+                // change headline and lead style if the black option is chosen
+                this.PageHeader.HeadlineStyle = TextStyles.PageHeadline;
+                this.PageHeader.LedeStyle = TextStyles.PageLede;
+                this.PageHeader.SetOpacity(1d);
 
-            // show the radiating button if the black option is chosen
-            this.rBtnLeft.Opacity = (appSelector.SelectedID == 1) ? 1 : 0;
+                // show the radiating button if the black option is chosen
+                this.rBtnLeft.Opacity = 1d;
+            }
+            else
+            {
+                this.PageHeader.HeadlineStyle = TextStyles.PageHeadlineDark;
+                this.PageHeader.LedeStyle = TextStyles.PageLedeDark;
+                this.PageHeader.SetOpacity(1d);
+
+                // show the radiating button if the black option is chosen
+                this.rBtnLeft.Opacity = 0.0d;
+            }
+
         }
         #endregion
 

@@ -38,6 +38,19 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Lede="{x:Bind Path=ViewModel.Lede}"  
+            HeaderAlignment="Right"
+            Width="{StaticResource HeaderWidth}"              
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>
+
         <ctrl:ImageEx Grid.Row="0" Grid.Column="1" Grid.RowSpan="6"
             x:Name="img_Left"
             ImageWidth="{x:Bind Path=ViewModel.Left_Width}"
@@ -45,6 +58,7 @@
             Margin="0,0,0,75"
             TranslateDirection="Right"
             HorizontalAlignment="Left"
+            Opacity="0"            
             VerticalAlignment="Bottom"/>
 
         <ctrl:ImageEx Grid.Row="0" Grid.Column="2" Grid.RowSpan="6"
@@ -54,17 +68,10 @@
             Margin="0,0,0,100"
             TranslateDirection="Left"
             HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"/>
-        
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
-            Headline="{x:Bind Path=ViewModel.Headline}"
-            HeadlineStyle="PageHeadline"
-            LedeStyle="PageLede"
-            Lede="{x:Bind Path=ViewModel.Lede}"  
-            HeaderAlignment="Right"
-            Width="{StaticResource HeaderWidth}"              
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Bottom"
+            PageEntranceDirection="Right"
+            Opacity="0"/>
+
 
         <ctrl:TextBlockEx x:Name="PopLeftLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
