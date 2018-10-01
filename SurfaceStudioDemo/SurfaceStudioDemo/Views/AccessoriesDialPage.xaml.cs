@@ -25,7 +25,7 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesDialPage()
         {
             InitializeComponent();
-
+            this.PopDialLegal.SetOpacity(0.0d);
             this.rBtnRightAccLeft.PopupChild = this.PopRight;
         }
 

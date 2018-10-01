@@ -71,6 +71,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             TextStyle="Legal"
+            HasPageEntranceAnimationEnabled="False"
             Opacity="0" />
 
         <ctrl:TextBlockEx x:Name="PopBottomLegal" Grid.Row="5" Grid.Column="1"
@@ -78,6 +79,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             TextStyle="Legal"
+            HasPageEntranceAnimationEnabled="False"
             Opacity="0" />
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">

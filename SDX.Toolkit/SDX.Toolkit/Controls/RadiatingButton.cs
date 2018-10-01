@@ -131,6 +131,7 @@ namespace SDX.Toolkit.Controls
             get => (bool)GetValue(IsTouchOnlyProperty);
             set => SetValue(IsTouchOnlyProperty, value);
         }
+
         // IsMouseOnly
         public static readonly DependencyProperty IsMouseOnlyProperty =
             DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
@@ -139,6 +140,16 @@ namespace SDX.Toolkit.Controls
         {
             get => (bool)GetValue(IsMouseOnlyProperty);
             set => SetValue(IsMouseOnlyProperty, value);
+        }
+
+        // IsDialOnly
+        public static readonly DependencyProperty IsDialOnlyProperty =
+            DependencyProperty.Register("IsDialOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
+
+        public bool IsDialOnly
+        {
+            get => (bool)GetValue(IsDialOnlyProperty);
+            set => SetValue(IsDialOnlyProperty, value);
         }
 
         // TryItText
@@ -626,6 +637,11 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
+            if (IsDialOnly)
+            {
+                return;
+            }
+
             HandleClick();
         }
 
@@ -801,11 +817,10 @@ namespace SDX.Toolkit.Controls
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                     RowSpacing = 0d,
-                    ColumnSpacing = 0d
+                    ColumnSpacing = 0d,
+                    MinWidth = GridWidth,
+                    MaxWidth = 215d
                 };
-
-                // set the grid width
-                _grid.MinWidth = GridWidth;
 
                 // add pointer pressed event
                 _grid.PointerPressed += Grid_PointerPressed;
@@ -834,15 +849,17 @@ namespace SDX.Toolkit.Controls
                     double RadiatingButtonEllipseBottomSpacer = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseBottomSpacer);
                     // height of the caption
                     double ButtonCaptionHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCaptionHeight);
-                    // size of the icon for try it buttons, use this/2 for size of the close icon
+                    // size of the icon for try it buttons
                     double TryItIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+                    // size of the icon for try it buttons
+                    double TryItDotHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItDotHeight);
 
                     // define rows and columns
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(TryItBoxHeight+TryItPathHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonTopSpacerHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonEllipseBottomSpacer) });
-                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ButtonCaptionHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
 
                     // create the TryIt box content
                     _tryItBox = new Grid()
@@ -934,6 +951,7 @@ namespace SDX.Toolkit.Controls
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
                         TextStyle = TryItCaption,
+                        TextAlignment = TextAlignment.Center,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -1010,6 +1028,7 @@ namespace SDX.Toolkit.Controls
 
                         case RadiatingButtonIcons.Touch:
                             TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                            TryItIconHeight = TryItDotHeight;
                             break;
 
                         default:

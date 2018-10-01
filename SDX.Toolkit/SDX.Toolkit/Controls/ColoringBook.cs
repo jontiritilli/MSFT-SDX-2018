@@ -82,14 +82,13 @@ namespace SDX.Toolkit.Controls
         private InkCanvas _inkCanvas = null;
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
-        private Image ColoringImage = null;
+        private ImageEx _ColoringImage = null;
         private Image _touchHereImage = null;
         private bool _touchHereWasHidden = false;        
         private List<AppSelectorData> _URIs;
         private Dictionary<int, ImagePair> _ImagePairs;
         private Color _SelectedColor = Color.FromArgb(255, 0, 0, 0);
         private AppSelector _AppSelector = new AppSelector();
-        ImageEx _ColoringImage = null;
 
 
         #endregion
@@ -155,9 +154,9 @@ namespace SDX.Toolkit.Controls
 
         public void FadeInColoringImage()
         {
-            if (null != this.ColoringImage && this.ColoringImage.Opacity != 1)
+            if (null != this._ColoringImage && this._ColoringImage.Opacity != 1)
             {
-                AnimationHelper.PerformFadeIn(this.ColoringImage, 500d);
+                AnimationHelper.PerformFadeIn(this._ColoringImage, 500d);
             }
         }
 
@@ -520,6 +519,7 @@ namespace SDX.Toolkit.Controls
                 Width = DOUBLE_COLORING_BOOK_IMAGE_WIDTH,                
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
+                
                 Opacity = .1,
                 IsHitTestVisible = false
             };            
@@ -792,7 +792,6 @@ namespace SDX.Toolkit.Controls
         public List<UIElement> AnimatableChildren()
         {
             List<UIElement> uIElements = new List<UIElement>();
-            uIElements.Add(_ColoringImage);
             uIElements.Add(_AppSelector);
             return uIElements;
         }

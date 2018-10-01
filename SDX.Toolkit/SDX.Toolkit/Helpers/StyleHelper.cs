@@ -99,6 +99,7 @@ namespace SDX.Toolkit.Helpers
         TryItPathWidth,
         TryItPathCoverBottomMargin,
         TryItIconHeight,
+        TryItDotHeight,
         RadiatingButtonIconHeight,
         RadiatingButtonEllipseRadius,
         RadiatingButtonGridWidth,
@@ -270,6 +271,7 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_TRYIT_PATH_COVER_MARGIN = "TryItPathCoverBottomMargin";
         public const string SIZE_TRYIT_PATH_WIDTH = "TryItPathWidth";
         public const string SIZE_TRYIT_ICON_HEIGHT = "TryItIconHeight";
+        public const string SIZE_TRYIT_DOT_HEIGHT = "TryItDotHeight";
 
         public const string SIZE_RADIATING_BUTTON_ICON_HEIGHT = "RadiatingButtonIconHeight";
         public const string SIZE_RADIATING_BUTTON_ELLIPSE_RADIUS = "RadiatingButtonEllipseRadius";
@@ -535,6 +537,10 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_TRYIT_ICON_HEIGHT);
                     break;
 
+                case LayoutSizes.TryItDotHeight:
+                    value = GetApplicationDouble(SIZE_TRYIT_DOT_HEIGHT);
+                    break;
+                    
                 case LayoutSizes.RadiatingButtonIconHeight:
                     value = GetApplicationDouble(SIZE_RADIATING_BUTTON_ICON_HEIGHT);
                     break;

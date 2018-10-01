@@ -16,14 +16,18 @@ namespace SDX.Toolkit.Converters
     {
         public object Convert(object value, Type targetType, object parameter, String language)
         {
-            if (string.IsNullOrWhiteSpace(value.ToString()))
+            if(null != value)
             {
-                return Visibility.Collapsed;
+                if (string.IsNullOrWhiteSpace(value.ToString()))
+                {
+                    return Visibility.Collapsed;
+                }
+                else
+                {
+                    return Visibility.Visible;
+                }
             }
-            else
-            {
-                return Visibility.Visible;
-            }
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, String language)

@@ -72,7 +72,6 @@
         <ctrl:TextBlockEx x:Name="BulletOneLegal" Grid.Row="7" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.BulletOneLegal}"
             TextStyle="Legal"
-            Width="{StaticResource CompareLegalWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.BulletOneLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
@@ -80,7 +79,6 @@
         <ctrl:TextBlockEx x:Name="BulletTwoLegal" Grid.Row="8" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.BulletTwoLegal}"
             TextStyle="Legal"
-            Width="{StaticResource CompareLegalWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.BulletTwoLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
@@ -96,7 +94,6 @@
         <ctrl:TextBlockEx x:Name="BulletFourLegal" Grid.Row="10" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.BulletFourLegal}"
             TextStyle="Legal"
-            Width="{StaticResource CompareLegalWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.BulletFourLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
@@ -104,7 +101,6 @@
         <ctrl:TextBlockEx x:Name="BulletFiveLegal" Grid.Row="11" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.BulletFiveLegal}"
             TextStyle="Legal"
-            Width="{StaticResource CompareLegalWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.BulletFiveLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>

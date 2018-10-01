@@ -125,9 +125,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:AccessoriesPenPopupPage/>
             </Popup.Child>
