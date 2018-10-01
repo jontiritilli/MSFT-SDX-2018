@@ -128,7 +128,15 @@ namespace SDX.Toolkit.Controls
             get { return (bool)GetValue(HasEntranceTranslationProperty); }
             set { SetValue(HasEntranceTranslationProperty, value); }
         }
+        //HasPageEntranceAnimation
+        public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
+        DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
 
+        public bool HasPageEntranceAnimationEnabled
+        {
+            get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
+            set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
         #endregion
 
 
@@ -268,7 +276,7 @@ namespace SDX.Toolkit.Controls
 
         public bool HasPageEntranceAnimation()
         {
-            return true;
+            return this.HasPageEntranceAnimationEnabled;
         }
 
         public AnimationDirection Direction()

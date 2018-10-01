@@ -1,6 +1,7 @@
 ﻿using System;
 
 using SurfaceBook2Demo.ViewModels;
+using SDX.Toolkit.Helpers;
 
 using Windows.UI.Xaml.Controls;
 
@@ -33,11 +34,13 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);                        
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);            
         }
 
         #endregion

@@ -24,6 +24,7 @@ namespace SurfaceBook2Demo.Views
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
+            this.LegalPixelSense.SetOpacity(0);
 
             this.Loaded += this.ExperienceIntroPage_Loaded;
         }

@@ -14,8 +14,7 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as ExperienceDayCreateViewModel; }
         }
-        //double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        //double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
         #endregion
 
 
@@ -24,27 +23,11 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayCreatePage()
         {
             InitializeComponent();
-            //Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
-            //Canvas.SetLeft(rBtnLeft, _canvasWidth * .20);
-
-            //Canvas.SetTop(rBtnTop, _canvasHeight * .40);
-            //Canvas.SetLeft(rBtnTop, _canvasWidth * .50);
-
-            //Canvas.SetTop(rBtnRight, _canvasHeight * .55);
-            //Canvas.SetLeft(rBtnRight, _canvasWidth * .60);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
 
-            //PopLeft.VerticalOffset = _canvasHeight * .70;
-            //PopLeft.HorizontalOffset = _canvasWidth * .20;
-
-            //PopTop.VerticalOffset = _canvasHeight * .40;
-            //PopTop.HorizontalOffset = _canvasWidth * .50;
-
-            //PopRight.VerticalOffset = _canvasHeight * .55;
-            //PopRight.HorizontalOffset = _canvasWidth * .60;
         }
 
         #endregion
@@ -55,6 +38,7 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
             rBtnLeft.StartEntranceAnimation();
@@ -67,6 +51,7 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
 
