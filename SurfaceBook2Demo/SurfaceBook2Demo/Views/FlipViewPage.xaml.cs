@@ -32,6 +32,10 @@ namespace SurfaceBook2Demo.Views
 
         private const double PAGE_TIMER_DURATION = 8000d;
 
+        private const int PAGE_ACCESSORIES = 4;
+        private const int PAGE_BESTOF = 6;
+        private const int PAGE_COMPARE = 7;
+
         #endregion
 
         #region Private Members
@@ -183,6 +187,24 @@ namespace SurfaceBook2Demo.Views
 
                         // tell the navbar to move to it
                         this.BottomNavBar.MoveToPageIndex(nextPageIndex, (INavigateMoveDirection.Forward == moveDirection));
+
+                        // telemetry - log section views
+                        if (nextPageIndex < PAGE_ACCESSORIES)
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewExperience);
+                        }
+                        else if (nextPageIndex < PAGE_BESTOF)
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewAccessories);
+                        }
+                        else if (nextPageIndex < PAGE_COMPARE)
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewBestOf);
+                        }
+                        else
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewComparison);
+                        }
                     }
                 }
             }
@@ -220,6 +242,30 @@ namespace SurfaceBook2Demo.Views
                             {
                                 dayFlipView.SelectedIndex = sliderNavigationFlipView.SelectedIndex;
                             }
+                        }
+                    }
+
+                    // telemetry - log section nav
+                    if (NavigationActions.Section == e.NavAction)
+                    {
+                        // we've gone to a section, so log it
+                        switch (e.NavSection.Name)
+                        {
+                            case "Experience":
+                                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavExperience);
+                                break;
+
+                            case "Accessories":
+                                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavAccessories);
+                                break;
+
+                            case "BestOfMicrosoft":
+                                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavBestOf);
+                                break;
+
+                            case "Compare":
+                                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavComparison);
+                                break;
                         }
                     }
                 }

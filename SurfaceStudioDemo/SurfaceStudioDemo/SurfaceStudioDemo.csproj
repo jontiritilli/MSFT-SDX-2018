@@ -422,6 +422,9 @@
     <Content Include="Assets\StoreIcons\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
     <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\RadiatingButton\tryit_dial.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
