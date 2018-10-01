@@ -47,13 +47,10 @@
                 Canvas.ZIndex="101">
             <ctrl:RadiatingButton
                 x:Name="rBtnCenter"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                IsRemovedOnInteraction="True"
-                TryItEnabled="True"
                 RadiatingButtonIcon="pen"
+                IsRemovedOnInteraction="True"
+                IsPenOnly="True"
+                TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.TryIt}"
                 TryItCaption="{x:Bind Path=ViewModel.TryItCaption}"                
                 AutoStart = "false"/>

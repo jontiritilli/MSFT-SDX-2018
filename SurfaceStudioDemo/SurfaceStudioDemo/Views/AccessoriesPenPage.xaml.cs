@@ -95,7 +95,15 @@ namespace SurfaceStudioDemo.Views
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.ReadyScreen.IsOpen = false;
+            HidePopup();
+            AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnDial.StartEntranceAnimation();
+            rBtnDial.StartRadiateAnimation();
+
+            rBtnPen.StartEntranceAnimation();
+            rBtnPen.StartRadiateAnimation();
+            SurfaceDial.ActivateOnNavigate();
+            Visited = true;
         }
 
         private void ShowPopup()
@@ -117,7 +125,6 @@ namespace SurfaceStudioDemo.Views
                 {
                     ReadyScreen.IsOpen = false;
                 }
-                Visited = true;
             }
         }
 
@@ -128,21 +135,15 @@ namespace SurfaceStudioDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SurfaceDial.ActivateOnNavigate();
             ShowPopup();
 
-            rBtnDial.StartEntranceAnimation();
-            rBtnDial.StartRadiateAnimation();
-
-            rBtnPen.StartEntranceAnimation();
-            rBtnPen.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            AnimationHelper.PerformPageExitAnimation(this);
             HidePopup();
-
             rBtnDial.ResetEntranceAnimation();
             rBtnDial.ResetRadiateAnimation();
 

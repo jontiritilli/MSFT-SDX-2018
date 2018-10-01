@@ -26,6 +26,8 @@ namespace SurfaceBook2Demo.Views
         public AccessoriesDialPage()
         {
             InitializeComponent();
+            this.LegalDial.SetOpacity(0.0d);
+            this.LegalPen.SetOpacity(0.0d);
             //Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
             //Canvas.SetLeft(rBtnLeft, _canvasWidth * .20);
 

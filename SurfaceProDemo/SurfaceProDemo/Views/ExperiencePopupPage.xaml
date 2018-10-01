@@ -75,12 +75,13 @@
                 ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
 
             <ctrl:TextBlockEx
+                x:Name="PopLeftLegal"
                 Grid.Row="6"
                 Grid.Column="1"
                 Opacity="1"
                 Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-                TextStyle="Legal"
-                />
+                TextStyle="Legal"/>
+                
         <Canvas x:Name="LayoutRoot"
                 Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="4">
             <Grid x:Name="grdCloseButton"

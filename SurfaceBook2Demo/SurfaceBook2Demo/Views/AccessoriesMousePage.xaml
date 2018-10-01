@@ -53,11 +53,7 @@
                 Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"                
+                x:Name="rBtnLeft"             
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 TryItText="{x:Bind Path=ViewModel.PopupMouseTryItTitle}"

@@ -18,17 +18,16 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
-
         #region Public Members
         public static AccessoriesKeyboardPage Current { get; private set; }
         #endregion
-
 
         #region Construction
 
         public AccessoriesKeyboardPage()
         {
             InitializeComponent();
+            this.PopBottomLegal.SetOpacity(0.0d);
             AccessoriesKeyboardPage.Current = this;
             this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
             this.AppSelectorKB.SelectedIDChanged += SelectedIDChanged;
@@ -54,7 +53,6 @@ namespace SurfaceProDemo.Views
             }
         }
         #endregion
-
 
         #region INavigate Interface
 

@@ -131,6 +131,7 @@ namespace SDX.Toolkit.Controls
             get => (bool)GetValue(IsTouchOnlyProperty);
             set => SetValue(IsTouchOnlyProperty, value);
         }
+
         // IsMouseOnly
         public static readonly DependencyProperty IsMouseOnlyProperty =
             DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
@@ -139,6 +140,16 @@ namespace SDX.Toolkit.Controls
         {
             get => (bool)GetValue(IsMouseOnlyProperty);
             set => SetValue(IsMouseOnlyProperty, value);
+        }
+
+        // IsDialOnly
+        public static readonly DependencyProperty IsDialOnlyProperty =
+            DependencyProperty.Register("IsDialOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
+
+        public bool IsDialOnly
+        {
+            get => (bool)GetValue(IsDialOnlyProperty);
+            set => SetValue(IsDialOnlyProperty, value);
         }
 
         // TryItText
@@ -626,6 +637,11 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
+            if (IsDialOnly)
+            {
+                return;
+            }
+
             HandleClick();
         }
 
@@ -801,11 +817,10 @@ namespace SDX.Toolkit.Controls
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                     RowSpacing = 0d,
-                    ColumnSpacing = 0d
+                    ColumnSpacing = 0d,
+                    MinWidth = GridWidth,
+                    MaxWidth = 215d
                 };
-
-                // set the grid width
-                _grid.MinWidth = GridWidth;
 
                 // add pointer pressed event
                 _grid.PointerPressed += Grid_PointerPressed;
@@ -825,7 +840,7 @@ namespace SDX.Toolkit.Controls
                     //height of the triangle
                     double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
                     // width of the triangle
-                    double TryItPathWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathWidth);
+                    double TryItPathWidth = TryItPathHeight * 2;
                     // bottom margin of the cover triangle
                     double TryItPathCoverBottomMargin = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathCoverBottomMargin);
                     // space between message box and ellipse
@@ -834,15 +849,17 @@ namespace SDX.Toolkit.Controls
                     double RadiatingButtonEllipseBottomSpacer = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseBottomSpacer);
                     // height of the caption
                     double ButtonCaptionHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCaptionHeight);
-                    // size of the icon for try it buttons, use this/2 for size of the close icon
+                    // size of the icon for try it buttons
                     double TryItIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+                    // size of the icon for try it buttons
+                    double TryItDotHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItDotHeight);
 
                     // define rows and columns
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(TryItBoxHeight+TryItPathHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonTopSpacerHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonEllipseBottomSpacer) });
-                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ButtonCaptionHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
 
                     // create the TryIt box content
                     _tryItBox = new Grid()
@@ -915,7 +932,7 @@ namespace SDX.Toolkit.Controls
                     // add it to the main grid
                     _grid.Children.Add(_tryItBox);
 
-                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1d));
+                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                     TextStyles TryItCaption = TextStyles.ButtonCaption;
 
@@ -934,6 +951,7 @@ namespace SDX.Toolkit.Controls
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
                         TextStyle = TryItCaption,
+                        TextAlignment = TextAlignment.Center,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -1010,6 +1028,7 @@ namespace SDX.Toolkit.Controls
 
                         case RadiatingButtonIcons.Touch:
                             TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                            TryItIconHeight = TryItDotHeight;
                             break;
 
                         default:

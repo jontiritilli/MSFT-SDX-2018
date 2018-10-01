@@ -24,7 +24,6 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayRelaxPage()
         {
             InitializeComponent();
-
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
 

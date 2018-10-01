@@ -25,6 +25,7 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceSleekPage()
         {
             InitializeComponent();
+            this.PopBottomLegal.SetOpacity(0.0d);
             this.rBtnBottomPerformance.PopupChild = PopBottom;
             this.rBtnLeftPerformance.PopupChild = PopLeft;
             this.rBtnTopPerformance.PopupChild = PopTop;

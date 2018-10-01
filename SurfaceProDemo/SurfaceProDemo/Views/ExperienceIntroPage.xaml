@@ -38,39 +38,35 @@
         </Grid.ColumnDefinitions>
         
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
-                     Headline="{x:Bind Path=ViewModel.Headline}"
-                     HeadlineStyle="{x:Bind Path=ViewModel.HeadlineStyle}"
-                     LedeStyle="{x:Bind Path=ViewModel.LedeStyle}"
-                     HeaderAlignment="Right"
-                     Width="450"
-                     Lede="{x:Bind Path=ViewModel.Lede}"                
-                     HorizontalAlignment="Right"
-                     PageEntranceDirection="Right"
-                     HeadlineOpacity="0"
-                     LedeOpacity="0"
-                     VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            HeadlineStyle="{x:Bind Path=ViewModel.HeadlineStyle}"
+            LedeStyle="{x:Bind Path=ViewModel.LedeStyle}"
+            HeaderAlignment="Right"
+            Width="450"
+            Lede="{x:Bind Path=ViewModel.Lede}"                
+            HorizontalAlignment="Right"
+            PageEntranceDirection="Right"
+            HeadlineOpacity="0"
+            LedeOpacity="0"
+            VerticalAlignment="Top" />
 
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
-                          Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          TextStyle="Legal"
-                          HasPageEntranceAnimationEnabled="False"
-                          Opacity="0"/>
+            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextStyle="Legal"/>
 
         <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopTopLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       TextStyle="Legal"
-                       HasPageEntranceAnimationEnabled="False"
-                       Opacity="0" />
+            Text="{x:Bind Path=ViewModel.PopTopLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextStyle="Legal"/>
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <Popup
                 x:Name="PopLeft"
