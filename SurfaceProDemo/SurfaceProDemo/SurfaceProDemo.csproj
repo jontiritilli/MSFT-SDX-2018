@@ -519,6 +519,12 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SDA-ja-JP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="SurfaceProDemo_StoreKey.pfx" />
     <None Include="SurfaceProDemo_TemporaryKey.pfx" />
   </ItemGroup>

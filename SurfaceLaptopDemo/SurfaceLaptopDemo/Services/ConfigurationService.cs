@@ -93,6 +93,30 @@ namespace SurfaceLaptopDemo.Services
             return file;
         }
 
+        public bool GetIsBlackSchemeEnabled()
+        {
+            bool isBlackSchemeEnabled = false;
+
+            if (this.IsLoaded)
+            {
+                isBlackSchemeEnabled = this.Configuration.IsBlackSchemeEnabled;
+            }
+
+            return isBlackSchemeEnabled;
+        }
+
+        public bool GetIsCoralSchemeEnabled()
+        {
+            bool isCoralSchemeEnabled = false;
+
+            if (this.IsLoaded)
+            {
+                isCoralSchemeEnabled = this.Configuration.IsCoralSchemeEnabled;
+            }
+
+            return isCoralSchemeEnabled;
+        }
+
         public async Task Initialize()
         {
             if (this.IsLoading || this.IsLoaded) { return; }

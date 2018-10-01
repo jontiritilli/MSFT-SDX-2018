@@ -363,6 +363,7 @@
     <Content Include="Assets\Experience\Colors\foxburg_black_lifestyle.png" />
     <Content Include="Assets\Experience\Colors\foxburg_burgundy_lifestyle.png" />
     <Content Include="Assets\Experience\Colors\foxburg_cobalt_lifestyle.png" />
+    <Content Include="Assets\Experience\Colors\foxburg_coral_lifestyle.png" />
     <Content Include="Assets\Experience\Colors\foxburg_platinum_lifestyle.png" />
     <Content Include="Assets\Experience\Colors\Icons\fox_black.png" />
     <Content Include="Assets\Experience\Colors\Icons\fox_black_active.png" />
@@ -485,6 +486,9 @@
     <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Assets\RadiatingButton\tryit_dial.png" />
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
@@ -496,6 +500,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-ja-JP.json" />
     <None Include="SurfaceLaptopDemo_StoreKey.pfx" />
     <None Include="SurfaceLaptopDemo_TemporaryKey.pfx" />
   </ItemGroup>
