@@ -39,6 +39,8 @@
             LedeStyle="PageLedeDark"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                       
             VerticalAlignment="Top"/>
 
         <ctrl:RadiatingButton Grid.Row="3" Grid.Column="1"

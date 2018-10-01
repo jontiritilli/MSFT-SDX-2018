@@ -91,7 +91,7 @@
             x:Name="img_Studio"
             ImageWidth="{x:Bind Path=ViewModel.StudioWidth}"            
             ImageSource="{x:Bind Path=ViewModel.StudioUri}"
-            PageEntranceDirection="Right"
+            HasEntranceTranslation="False"
             Canvas.ZIndex="100"
             Opacity="0"/>
     </Grid>

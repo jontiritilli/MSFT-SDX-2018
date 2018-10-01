@@ -42,6 +42,7 @@
             ImageHeight="{StaticResource AccessoryPrimaryImageHeight}"
             ImageWidth="{StaticResource AccessoryPrimaryImageWidth}"
             HorizontalAlignment="Right"
+            HasEntranceTranslation="False"                               
             VerticalAlignment="Top"/>
 
         <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
@@ -49,6 +50,7 @@
             URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Opacity="0"
             ButtonWidth="{StaticResource ExperienceColorSelectorIconWidth}"
             ButtonHeight="{StaticResource ExperienceColorSelectorIconWidth}"/>
 
@@ -67,7 +69,9 @@
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Center"
+            HasPageEntranceAnimationEnabled="False"
+            Opacity="0"/>
         
         <Canvas x:Name="ButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 

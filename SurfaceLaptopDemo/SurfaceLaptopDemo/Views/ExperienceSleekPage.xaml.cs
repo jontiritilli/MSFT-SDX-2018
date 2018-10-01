@@ -29,6 +29,7 @@ namespace SurfaceLaptopDemo.Views
             this.rBtnBottomPerformance.PopupChild = PopBottom;
             this.rBtnLeftPerformance.PopupChild = PopLeft;
             this.rBtnTopPerformance.PopupChild = PopTop;
+            this.PopBottomLegal.SetOpacity(0);
         }
 
         #endregion

@@ -120,7 +120,7 @@
             ImageSource="{x:Bind Path=ViewModel.LaptopUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
-            PageEntranceDirection="Right"
+            HasEntranceTranslation="False"
             Opacity="0"
             />
     </Grid>

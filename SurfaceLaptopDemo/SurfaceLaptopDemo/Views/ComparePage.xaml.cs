@@ -48,6 +48,7 @@ namespace SurfaceLaptopDemo.Views
 
                 this.rBtnGo.PopupChild = FlipViewPage.Current.GetComparePagePopupGo();
                 ComparePagePopupGo.Current.CloseButton_Clicked += Close_Go_Clicked;
+
             };
         }
 
