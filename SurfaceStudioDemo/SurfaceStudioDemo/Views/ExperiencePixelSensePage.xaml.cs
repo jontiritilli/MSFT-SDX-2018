@@ -30,7 +30,8 @@ namespace SurfaceStudioDemo.Views
         public ExperiencePixelSensePage()
         {
             InitializeComponent();
-
+            this.PopBottomLegal.SetOpacity(0.0d);
+            this.PopLeftLegal.SetOpacity(0.0d);
             this.rBtnBottomPixelSense.PopupChild = PopBottom;
             this.rBtnLeftPixelSense.PopupChild = PopLeft;
 

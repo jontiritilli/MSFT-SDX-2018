@@ -392,25 +392,68 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
-            // set opacity
-            if (null != _radiateEllipse)
+            // if there is a delay for the radiating button, we can't start the radiate
+            if (this.EntranceStaggerDelayInMilliseconds > 0)
             {
-                _radiateEllipse.Opacity = RADIATE_OPACITY_START;
-            }
+                // create a timer
+                if (null == _timerRadiate)
+                {
+                    _timerRadiate = new DispatcherTimer()
+                    {
+                        Interval = TimeSpan.FromMilliseconds(EntranceStaggerDelayInMilliseconds)
+                    };
+                    _timerRadiate.Tick += DispatcherTimerRadiate_Tick;
+                    _timerRadiate.Tick += (sender, args) =>
+                    {// well this works? but ew
+                        _timerRadiate.Stop();
 
-            // launch the storyboards
-            if (null != _radiatingStoryboardX)
-            {
-                _radiatingStoryboardX.Begin();
-            }
+                        // set opacity
+                        if (null != _radiateEllipse)
+                        {
+                            _radiateEllipse.Opacity = RADIATE_OPACITY_END;
+                        }
 
-            if (null != _radiatingStoryboardY)
-            {
-                _radiatingStoryboardY.Begin();
+                        // launch the storyboards
+                        if (null != _radiatingStoryboardX)
+                        {
+                            _radiatingStoryboardX.Begin();
+                        }
+
+                        if (null != _radiatingStoryboardY)
+                        {
+                            _radiatingStoryboardY.Begin();
+                        }
+                        if (null != _radiatingStoryboardOpacity)
+                        {
+                            _radiatingStoryboardOpacity.Begin();
+                        }
+                    };
+                }
+                // start it
+                _timerRadiate.Start();
             }
-            if (null != _radiatingStoryboardOpacity)
+            else
             {
-                _radiatingStoryboardOpacity.Begin();
+                // set opacity
+                if (null != _radiateEllipse)
+                {
+                    _radiateEllipse.Opacity = RADIATE_OPACITY_END;
+                }
+
+                // launch the storyboards
+                if (null != _radiatingStoryboardX)
+                {
+                    _radiatingStoryboardX.Begin();
+                }
+
+                if (null != _radiatingStoryboardY)
+                {
+                    _radiatingStoryboardY.Begin();
+                }
+                if (null != _radiatingStoryboardOpacity)
+                {
+                    _radiatingStoryboardOpacity.Begin();
+                }
             }
         }
 
@@ -433,7 +476,7 @@ namespace SDX.Toolkit.Controls
             // reset opacity
             if (null != _radiateEllipse)
             {
-                _radiateEllipse.Opacity = RADIATE_OPACITY_START;
+                _radiateEllipse.Opacity = RADIATE_OPACITY_END;
             }
         }
 
@@ -973,7 +1016,7 @@ namespace SDX.Toolkit.Controls
                         Width = radiateEllipseHeight,
                         Height = radiateEllipseHeight,
                         Fill = new SolidColorBrush(Colors.White),
-                        Opacity = RADIATE_OPACITY_DEFAULT,
+                        Opacity = 0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Margin = new Thickness(0)
@@ -1086,7 +1129,7 @@ namespace SDX.Toolkit.Controls
                         Width = RadiatingButtonHeight,
                         Height = RadiatingButtonHeight,
                         Fill = new SolidColorBrush(Colors.White),
-                        Opacity = RADIATE_OPACITY_DEFAULT,
+                        Opacity = 0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Margin = new Thickness(0)

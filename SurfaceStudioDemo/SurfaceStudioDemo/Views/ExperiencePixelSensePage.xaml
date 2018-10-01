@@ -70,17 +70,13 @@
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            TextStyle="Legal"
-            HasPageEntranceAnimationEnabled="False"
-            Opacity="0" />
+            TextStyle="Legal"/>
 
         <ctrl:TextBlockEx x:Name="PopBottomLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopBottomLegal}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            TextStyle="Legal"
-            HasPageEntranceAnimationEnabled="False"
-            Opacity="0" />
+            TextStyle="Legal" />
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 
