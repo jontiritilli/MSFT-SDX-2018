@@ -840,7 +840,7 @@ namespace SDX.Toolkit.Controls
                     //height of the triangle
                     double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
                     // width of the triangle
-                    double TryItPathWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathWidth);
+                    double TryItPathWidth = TryItPathHeight * 2;
                     // bottom margin of the cover triangle
                     double TryItPathCoverBottomMargin = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathCoverBottomMargin);
                     // space between message box and ellipse

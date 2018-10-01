@@ -54,25 +54,22 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 EntranceStaggerDelayInMilliseconds = "1300"
-                RadiateStaggerDelayInMilliseconds = "8000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                                 
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.64}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.66}"                                 
                 PopupPosition="Left"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 EntranceStaggerDelayInMilliseconds = "1100"
-                RadiateStaggerDelayInMilliseconds = "6000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.13}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.52}"                 
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.15}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton 
                 x:Name="rBtnTop"                              
                 EntranceStaggerDelayInMilliseconds = "1200"
-                RadiateStaggerDelayInMilliseconds = "7000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.33}"                                 
                 PopupPosition="Right"                 
