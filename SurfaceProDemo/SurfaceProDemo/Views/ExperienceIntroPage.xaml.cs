@@ -27,6 +27,8 @@ namespace SurfaceProDemo.Views
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;
+            this.TopLegal.SetOpacity(0);
+            this.TopLegal.SetOpacity(0);
             if (Services.ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
                 rBtnRight.Visibility = Windows.UI.Xaml.Visibility.Visible;

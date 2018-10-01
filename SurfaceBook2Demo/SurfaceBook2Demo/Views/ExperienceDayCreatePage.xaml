@@ -40,6 +40,8 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
+                HeadlineOpacity="0"
+                LedeOpacity="0"
                 VerticalAlignment="Top" />
 
         <Canvas x:Name="ButtonCanvas"
@@ -51,10 +53,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "1300"
+                RadiateStaggerDelayInMilliseconds = "8000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                                 
                 PopupPosition="Left"                 
@@ -62,10 +62,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "1100"
+                RadiateStaggerDelayInMilliseconds = "6000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.13}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.52}"                 
                 PopupPosition="Right"                 
@@ -73,15 +71,13 @@
 
             <ctrl:RadiatingButton 
                     x:Name="rBtnTop"                              
-                    EntranceDurationInMilliseconds = "400"
-                    EntranceStaggerDelayInMilliseconds = "0"
-                    RadiateDurationInMilliseconds = "1800"
-                    RadiateStaggerDelayInMilliseconds = "5000"
-                    Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
-                    Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.33}"                                 
-                    PopupPosition="Right"                 
-                    AutoStart = "false"                                       
-                    />
+                EntranceStaggerDelayInMilliseconds = "1200"
+                RadiateStaggerDelayInMilliseconds = "7000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.45}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.33}"                                 
+                PopupPosition="Right"                 
+                AutoStart = "false"                                       
+                />
 
             <Popup
                 x:Name="PopLeft"
@@ -132,11 +128,14 @@
             </Popup>
         </Canvas>
 
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
-            <Image.Source>
+        <ctrl:ImageEx x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1"
+                      ImageWidth="1000"
+                      HasEntranceTranslation="False" PageEntranceDirection="Left"
+                      Opacity="0">
+            <ctrl:ImageEx.BitmapImage>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
+            </ctrl:ImageEx.BitmapImage>
+        </ctrl:ImageEx>
         <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
                             Text="{x:Bind Path=ViewModel.Legal}"
                             TextStyle="Legal"

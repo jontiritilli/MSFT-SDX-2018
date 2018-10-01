@@ -40,6 +40,8 @@
             HeadlineStyle="PageHeadline"
             LedeStyle="PageLede"                
             HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"
             VerticalAlignment="Top"/>
         
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
@@ -51,13 +53,15 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.01}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                                                    
                 AutoStart = "false"
-                Clicked="RadiatingButton_Clicked"/>
+                EntranceStaggerDelayInMilliseconds="1000"
+                Clicked="RadiatingButton_Clicked"/>                                
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBook"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.185}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.59}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1100"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -65,6 +69,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.585}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1200"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -72,6 +77,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.76}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.64}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1300"  
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -79,6 +85,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.865}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1400"
                 Clicked="RadiatingButton_Clicked"/>
 
             <Popup

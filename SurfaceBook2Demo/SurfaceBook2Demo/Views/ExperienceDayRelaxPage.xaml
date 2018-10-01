@@ -50,10 +50,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "1100"
+                RadiateStaggerDelayInMilliseconds = "6000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.31}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"                                                 
                 PopupPosition="Right"  
@@ -61,10 +59,8 @@
             
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "1200"
+                RadiateStaggerDelayInMilliseconds = "7000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.25}"                     
                 PopupPosition="Left"  
@@ -105,10 +101,12 @@
 
 
         </Canvas>
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
-            <Image.Source>
+        <ctrl:ImageEx x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1" ImageWidth="1000"
+                      PageEntranceDirection="Left"
+                      HasEntranceTranslation="False">
+            <ctrl:ImageEx.BitmapImage>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
+            </ctrl:ImageEx.BitmapImage>
+        </ctrl:ImageEx>
     </Grid>
 </Page>

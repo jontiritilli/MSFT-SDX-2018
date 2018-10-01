@@ -40,6 +40,8 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
+                HeadlineOpacity="0"
+                LedeOpacity="0"
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
@@ -48,25 +50,30 @@
                 Grid.ColumnSpan="4">
 
             <ctrl:LoopPlayer
+                x:Name="ForzaPlayer"
                 MediaSourceUri ="{x:Bind Path=ViewModel.DemoUri}"
                 VideoWidth = "473.28"
                 VideoHeight = "366.869"
                 Canvas.ZIndex="1"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.348}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.334}"
-                PlaybackPosition="1000"
+                PlaybackPosition="1000"                
                 />
         </Canvas>
 
-        <Image x:Name="Hero"
+        <ctrl:ImageEx x:Name="Hero"
                Width="1000"
                Grid.Row="3"
                Grid.Column="1"
-               Canvas.ZIndex="100">
-            <Image.Source>
+               Canvas.ZIndex="100"
+               HasEntranceTranslation="False"                      
+               PageEntranceDirection="Left"
+               ImageWidth="1000"
+               HasPageEntranceAnimationEnabled="false">
+            <ctrl:ImageEx.BitmapImage>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
+            </ctrl:ImageEx.BitmapImage>
+        </ctrl:ImageEx>
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"                           

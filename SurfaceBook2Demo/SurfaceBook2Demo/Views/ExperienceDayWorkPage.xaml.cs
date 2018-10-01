@@ -32,8 +32,8 @@ namespace SurfaceBook2Demo.Views
                 this.rBtnTop.PopupChild = FlipViewPage.Current.GetExperienceDayWorkPagePopup();
                 ExperienceDayWorkPopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
-
-
+            this.LegalBatteryLife.SetOpacity(0);
+            this.LegalConnections.SetOpacity(0);
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
 
@@ -51,7 +51,8 @@ namespace SurfaceBook2Demo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            // animations in            
+            // animations in
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
             rBtnLeft.StartEntranceAnimation();
@@ -64,6 +65,7 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out            
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
 

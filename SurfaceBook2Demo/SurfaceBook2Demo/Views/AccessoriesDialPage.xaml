@@ -40,6 +40,8 @@
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
+                HeadlineOpacity="0"
+                LedeOpacity="0"
                 VerticalAlignment="Top" />
 
         <Canvas x:Name="ButtonCanvas"
@@ -119,6 +121,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        TextStyle="Legal"
+                       HasPageEntranceAnimationEnabled="False"
                        Opacity="0" />
 
         <ctrl:TextBlockEx x:Name="LegalPen" Grid.Row="5" Grid.Column="1"
@@ -126,6 +129,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        TextStyle="Legal"
+                       HasPageEntranceAnimationEnabled="False"
                        Opacity="0" />
 
     </Grid>

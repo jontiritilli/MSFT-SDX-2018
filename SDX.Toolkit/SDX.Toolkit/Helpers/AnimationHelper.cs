@@ -103,16 +103,14 @@ namespace SDX.Toolkit.Helpers
             List<Storyboard> StoryBoardCollection = new List<Storyboard>();
             List<UIElement> AnimatableChildren = new List<UIElement>();
             double StaggerDelay = 0.0;
-            double TotalStagger = (((Windows.UI.Xaml.Controls.Panel)page.Content).Children.Count * 100d) + 500d;
-            IAnimate animateChild;
+            double TotalStagger = (((Windows.UI.Xaml.Controls.Panel)page.Content).Children.Count * 100d) + 500d;            
             double distanceToTranslate;
             // Traverses the first content area on the page in linear order to show everything
             foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
             {
                              
-                if (null != child && child != page && !(child is Grid) && child is IAnimate)// dont do the page either
-                {
-                    animateChild = (IAnimate)child;
+                if (null != child && child != page && !(child is Grid) && (child is IAnimate || child is Canvas))// handle special case for canvas// dont do the page either
+                {                    
                     ParseAnimatableChildren(child, ref AnimatableChildren);
                 }
             }
@@ -166,20 +164,28 @@ namespace SDX.Toolkit.Helpers
             else
             {
                 // canvas and other stuff that can contain children
+                if (child is Canvas) {
+                    Canvas canvasChild = (Canvas)child;
+                    foreach (UIElement uiElement in canvasChild.Children)
+                    {
+                        if (uiElement is IAnimate)
+                        {
+                            ParseAnimatableChildren(uiElement, ref AnimatableChildren);
+                        }
+                    }
+                }
             }
             
         }
 
         public static void PerformPageExitAnimation(Page page)
-        {
-            IAnimate animateChild;
+        {            
             List<UIElement> AnimatableChildren = new List<UIElement>();
             FrameworkElement FE;
             foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
             {
-                if (null != child && child != page && !(child is Grid) && child is IAnimate)
-                {
-                    animateChild = (IAnimate)child;
+                if (null != child && child != page && !(child is Grid) && (child is IAnimate || child is Canvas))// handle special case for canvas
+                {                    
                     ParseAnimatableChildren(child, ref AnimatableChildren);
                 }
             }

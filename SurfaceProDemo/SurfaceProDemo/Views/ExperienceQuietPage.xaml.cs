@@ -27,6 +27,7 @@ namespace SurfaceProDemo.Views
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
+            this.LeftLegal.SetOpacity(0);
         }
 
         #endregion

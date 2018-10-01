@@ -40,6 +40,9 @@
                 Width="600"
                 HeaderAlignment="Right"                     
                 HorizontalAlignment="Right"
+                HeadlineOpacity="0"
+                LedeOpacity="0"
+                PageEntranceDirection="Right"
                 VerticalAlignment="Top" />
 
         <Canvas x:Name="ButtonCanvas"
