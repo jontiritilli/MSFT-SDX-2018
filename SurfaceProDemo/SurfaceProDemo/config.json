@@ -1,7 +1,7 @@
 ﻿{
   "IsAttractorLoopEnabled": true,
   "Language": "",
-  "IsTelemetryEnabled": false,
+  "IsTelemetryEnabled": true,
   "TelemetryKey": "Test",
   "IsBlackSchemeEnabled": true,
   "IsChoosePathPageEnabled":  false

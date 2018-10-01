@@ -93,7 +93,8 @@ namespace SurfaceJackDemo
                 {
                     // DO NOT try to run this asynchronously; MetroLog hangs when invoked async
                     //AsyncHelper.RunSync(() => telemetryService.Initialize(configurationService.Configuration.TelemetryKey));
-                    telemetryService.Initialize(configurationService.Configuration.TelemetryKey);
+                    telemetryService.Initialize(configurationService.Configuration.IsTelemetryEnabled,
+                                                configurationService.Configuration.TelemetryKey);
 
                     // log app start
                     TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);

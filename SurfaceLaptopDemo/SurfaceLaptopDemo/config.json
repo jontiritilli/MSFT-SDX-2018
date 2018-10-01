@@ -1,6 +1,6 @@
 ﻿{
   "IsAttractorLoopEnabled": true,
   "Language": "",
-  "IsTelemetryEnabled": false,
-  "TelemetryKey": "Test",
+  "IsTelemetryEnabled": true,
+  "TelemetryKey": "Test"
 }

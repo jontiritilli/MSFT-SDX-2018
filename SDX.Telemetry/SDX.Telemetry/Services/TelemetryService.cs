@@ -48,6 +48,7 @@ namespace SDX.Telemetry.Services
 
         #region Public Properties
 
+        public bool IsTelemetryEnabled { get; private set; }
         public TelemetryKeys ActiveKey { get; private set; }
 
         #endregion
@@ -62,25 +63,32 @@ namespace SDX.Telemetry.Services
 
         }
 
-        public void Initialize(TelemetryKeys telemetryKey)
+        public void Initialize(bool isTelemetryEnabled, TelemetryKeys telemetryKey)
         {
+            // save telemetry status
+            this.IsTelemetryEnabled = isTelemetryEnabled;
+            
             // save the telemetry key
             this.ActiveKey = telemetryKey;
 
-            // configure for logging/telemetry
-            switch (telemetryKey)
+            // if telemetry is enabled, create the logger
+            if (this.IsTelemetryEnabled)
             {
-                // for Test, we'll just log to a file
-                case TelemetryKeys.Test:
-                default:
-                    LogManagerFactory.DefaultConfiguration.AddTarget(LogLevel.Info, LogLevel.Fatal, new StreamingFileTarget());
-                    TestLog = LogManagerFactory.DefaultLogManager.GetLogger<TelemetryService>();
-                    break;
+                // configure for logging/telemetry
+                switch (telemetryKey)
+                {
+                    // for Test, we'll just log to a file
+                    case TelemetryKeys.Test:
+                    default:
+                        LogManagerFactory.DefaultConfiguration.AddTarget(LogLevel.Info, LogLevel.Fatal, new StreamingFileTarget());
+                        TestLog = LogManagerFactory.DefaultLogManager.GetLogger<TelemetryService>();
+                        break;
 
-                // for Prod, we'll log to the Store
-                case TelemetryKeys.Prod:
-                    ProdLog = StoreServicesCustomEventLogger.GetDefault();
-                    break;
+                    // for Prod, we'll log to the Store
+                    case TelemetryKeys.Prod:
+                        ProdLog = StoreServicesCustomEventLogger.GetDefault();
+                        break;
+                }
             }
         }
 
