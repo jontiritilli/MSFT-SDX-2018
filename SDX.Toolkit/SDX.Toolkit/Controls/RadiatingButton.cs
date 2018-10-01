@@ -932,7 +932,7 @@ namespace SDX.Toolkit.Controls
                     // add it to the main grid
                     _grid.Children.Add(_tryItBox);
 
-                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds + TRY_IT_DELAY, false, false, new RepeatBehavior(1d));
+                    _tryItBoxStoryboard = AnimationHelper.CreateEasingAnimation(_tryItBox, "Opacity", 0.0, 0.0, 1.0, this.EntranceDurationInMilliseconds, this.EntranceStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
 
                     TextStyles TryItCaption = TextStyles.ButtonCaption;
 

@@ -37,21 +37,22 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"     
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                HeadlineOpacity="0"
-                LedeOpacity="0"                     
-                VerticalAlignment="Top" />
+            Grid.Column="1"
+            Grid.ColumnSpan="2"     
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                     
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
@@ -117,12 +118,12 @@
             </Popup>
 
             <ctrl:TextBlockEx x:Name="LegalBatteryLife"
-                       Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.93}"
-                       Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.03}" 
-                       TextStyle="Legal"/>
+                Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.93}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.03}" 
+                TextStyle="Legal"/>
         </Canvas>
 
 
@@ -139,9 +140,9 @@
         </ctrl:ImageEx>
 
         <ctrl:TextBlockEx x:Name="LegalConnections" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopupConnectionsLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       TextStyle="Legal"/>
+            Text="{x:Bind Path=ViewModel.PopupConnectionsLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"/>
     </Grid>
 </Page>

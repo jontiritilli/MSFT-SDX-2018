@@ -33,6 +33,29 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void PopRight_Opened(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(1);
+        }
+
+        private void PopRight_Closed(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(0);
+        }
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(0);
+        }
+
+        #endregion
 
         #region INavigate Interface
 

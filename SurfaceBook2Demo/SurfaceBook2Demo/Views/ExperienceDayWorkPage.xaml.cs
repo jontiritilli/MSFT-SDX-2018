@@ -41,13 +41,41 @@ namespace SurfaceBook2Demo.Views
 
         }
 
+        #endregion
+
+        #region Private Methods
+
+        private void ImageBrush_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            int x = 0;
+        }
+
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
             this.rBtnTop.HandleClick();
         }
 
-        #endregion
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LegalBatteryLife.SetOpacity(1);
+        }
 
+        private void PopRight_Opened(object sender, object e)
+        {
+            this.LegalConnections.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LegalBatteryLife.SetOpacity(0);
+        }
+
+        private void PopRight_Closed(object sender, object e)
+        {
+            this.LegalConnections.SetOpacity(0);
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -80,29 +108,5 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
-        private void ImageBrush_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            int x = 0;
-        }
-
-        private void PopLeft_Opened(object sender, object e)
-        {
-            this.LegalBatteryLife.SetOpacity(1);
-        }
-
-        private void PopRight_Opened(object sender, object e)
-        {
-            this.LegalConnections.SetOpacity(1);
-        }
-
-        private void PopLeft_Closed(object sender, object e)
-        {
-            this.LegalBatteryLife.SetOpacity(0);
-        }
-
-        private void PopRight_Closed(object sender, object e)
-        {
-            this.LegalConnections.SetOpacity(0);
-        }
     }
 }

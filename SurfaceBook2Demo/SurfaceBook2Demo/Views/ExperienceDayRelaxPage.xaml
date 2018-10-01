@@ -36,22 +36,22 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 EntranceStaggerDelayInMilliseconds = "1100"
-                RadiateStaggerDelayInMilliseconds = "6000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.31}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"                                                 
                 PopupPosition="Right"  
@@ -60,7 +60,6 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 EntranceStaggerDelayInMilliseconds = "1200"
-                RadiateStaggerDelayInMilliseconds = "7000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.25}"                     
                 PopupPosition="Left"  
@@ -98,12 +97,11 @@
                         />
                 </Popup.Child>
             </Popup>
-
-
         </Canvas>
+        
         <ctrl:ImageEx x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1" ImageWidth="1000"
-                      PageEntranceDirection="Left"
-                      HasEntranceTranslation="False">
+            PageEntranceDirection="Left"
+            HasEntranceTranslation="False">
             <ctrl:ImageEx.BitmapImage>
                 <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
             </ctrl:ImageEx.BitmapImage>
