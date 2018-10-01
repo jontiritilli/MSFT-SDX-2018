@@ -41,6 +41,7 @@
             ImageWidth="2100"
             ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
             HorizontalAlignment="Right"
+            HasPageEntranceAnimationEnabled="False"
             VerticalAlignment="Top"/>
 
         <ctrl:Header Grid.Row="1" Grid.Column="1"
@@ -51,7 +52,9 @@
             LedeStyle="PageLede"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>                     
 
         <ctrl:TextBlockEx x:Name="PopDialLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopDialLegal}"
