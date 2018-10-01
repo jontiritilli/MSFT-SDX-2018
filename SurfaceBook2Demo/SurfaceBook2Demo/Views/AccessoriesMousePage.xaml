@@ -105,7 +105,8 @@
         <ctrl:TextBlockEx x:Name="LegalMouse" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
                        HorizontalAlignment="Right"
-                       VerticalAlignment="Top"                          
+                       VerticalAlignment="Top"
+                       HasEntranceTranslation="False"
                        TextStyle="Legal"/>
     </Grid>
 </Page>
