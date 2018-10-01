@@ -43,6 +43,8 @@
                     LedeStyle="PageLede"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Left"
+                    HeadlineOpacity="0"
+                    LedeOpacity="0"                       
                     VerticalAlignment="Top"/>
 
         <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"

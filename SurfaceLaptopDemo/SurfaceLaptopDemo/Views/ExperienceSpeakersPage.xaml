@@ -44,6 +44,9 @@
                     HeaderAlignment="Right"
                     Width="{StaticResource HeaderWidth}"
                     HorizontalAlignment="Right"
+                    HeadlineOpacity="0"
+                    LedeOpacity="0"
+                    PageEntranceDirection="Right"
                     VerticalAlignment="Top"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">

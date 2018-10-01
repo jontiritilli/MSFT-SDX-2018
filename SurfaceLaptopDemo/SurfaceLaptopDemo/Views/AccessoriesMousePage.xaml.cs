@@ -45,6 +45,7 @@ namespace SurfaceLaptopDemo.Views
             this.rBtnLeftMouse.PopupChild = PopLeft;
             this.rBtnCenterMouse.PopupChild = PopCenter;
             this.rBtnRightMouse.PopupChild = PopRight;
+            this.PopLeftLegal.SetOpacity(0);
 
         }
 

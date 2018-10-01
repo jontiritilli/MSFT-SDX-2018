@@ -35,6 +35,8 @@
             LedeStyle="PageHeadline"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                       
             VerticalAlignment="Top" />
 
         <ctrl:List x:Name="BOM" Grid.Row="3" Grid.Column="1"
