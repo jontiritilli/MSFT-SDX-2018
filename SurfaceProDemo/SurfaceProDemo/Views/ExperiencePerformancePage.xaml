@@ -35,21 +35,21 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                HeadlineOpacity="0"
-                LedeOpacity="0"                                          
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                                          
+            VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 TryItText="{x:Bind ViewModel.PopTryIt}"

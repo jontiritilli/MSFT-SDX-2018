@@ -42,6 +42,7 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorImageAccLeft.AppSelector = this.AppSelectorAccLeft;
             this.AppSelectorAccLeft.SelectedIDChanged += SelectedIDChanged;
 
+            this.PopLeftLegal.SetOpacity(0.0d);
             this.rBtnLeftMouse.PopupChild = PopLeft;
             this.rBtnCenterMouse.PopupChild = PopCenter;
             this.rBtnRightMouse.PopupChild = PopRight;

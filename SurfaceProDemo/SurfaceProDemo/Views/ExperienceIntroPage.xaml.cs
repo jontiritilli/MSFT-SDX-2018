@@ -23,7 +23,9 @@ namespace SurfaceProDemo.Views
 
         public ExperienceIntroPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.LeftLegal.SetOpacity(0.0d);
+            this.TopLegal.SetOpacity(0.0d);
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;

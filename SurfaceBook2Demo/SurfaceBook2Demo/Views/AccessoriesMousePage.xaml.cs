@@ -22,6 +22,7 @@ namespace SurfaceBook2Demo.Views
         {
             InitializeComponent();
 
+            this.LegalMouse.SetOpacity(0.0d);
             rBtnLeft.PopupChild = PopLeft;
         }
 

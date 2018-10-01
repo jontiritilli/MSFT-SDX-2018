@@ -24,6 +24,8 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayWorkPage()
         {
             InitializeComponent();
+            this.LegalBatteryLife.SetOpacity(0.0d);
+            this.LegalConnections.SetOpacity(0.0d);
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             timer.Start();
             timer.Tick += (sender, args) =>

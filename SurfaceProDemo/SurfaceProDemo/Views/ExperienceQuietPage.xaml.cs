@@ -24,6 +24,8 @@ namespace SurfaceProDemo.Views
         {
             InitializeComponent();
 
+            this.LeftLegal.SetOpacity(0);
+
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
@@ -32,6 +34,19 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LeftLegal.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LeftLegal.SetOpacity(0);
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -66,14 +81,5 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
-        private void PopLeft_Opened(object sender, object e)
-        {
-            this.LeftLegal.SetOpacity(1);
-        }
-
-        private void PopLeft_Closed(object sender, object e)
-        {
-            this.LeftLegal.SetOpacity(0);
-        }
     }
 }

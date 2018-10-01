@@ -141,11 +141,9 @@
             Opacity="0"
             />
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
-                          Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          TextStyle="Legal"
-                          HasPageEntranceAnimationEnabled="False"
-                          Opacity="0"/>
+            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextStyle="Legal"/>
     </Grid>
 </Page>

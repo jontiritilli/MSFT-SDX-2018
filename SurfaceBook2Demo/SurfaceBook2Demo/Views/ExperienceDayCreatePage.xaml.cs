@@ -23,6 +23,7 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayCreatePage()
         {
             InitializeComponent();
+            this.LegalCompare.SetOpacity(0.0d);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
