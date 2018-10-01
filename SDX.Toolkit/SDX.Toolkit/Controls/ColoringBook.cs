@@ -641,7 +641,7 @@ namespace SDX.Toolkit.Controls
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(0, 0, this.AppSelectorRightMargin, 0),
+                Margin = new Thickness(0, 0, AppSelectorMarginRight, 0),
                 MainOrientation = Orientation.Vertical,
                 ButtonHeight = DOUBLE_COLORING_BOOK_BUTTON_HEIGHT,
                 ButtonWidth = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
