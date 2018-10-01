@@ -106,6 +106,7 @@
                        Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
+                       HasEntranceTranslation="False"
                        TextStyle="Legal"/>
     </Grid>
 </Page>

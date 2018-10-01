@@ -340,7 +340,7 @@ namespace SurfaceBook2Demo.Services
 
             viewModel.PopupMouseHeadline = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_TITLE, "ACCESSORIES_RIGHT_POPCENTER_TITLE");
             viewModel.PopupMouseLede = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_COPY, "ACCESSORIES_RIGHT_POPCENTER_COPY");
-            viewModel.PopupMouseLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_POPCENTER_LEGAL, "ACCESSORIES_RIGHT_POPCENTER_LEGAL");
+            viewModel.PopupMouseLegal = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_COPY_LEGAL, "ACCESSORIES_RIGHT_COPY_LEGAL");
             viewModel.PopupMouseTryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_TITLE, "ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_TITLE");
             viewModel.PopupMouseTryItCaption = GetStringValue(_languageCurrent.ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_COPY, "ACCESSORIES_RIGHT_INTERACTIVE_TRYIT_COPY");
         }
