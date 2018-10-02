@@ -26,7 +26,6 @@
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="2*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -45,7 +44,7 @@
             HasEntranceTranslation="False"                               
             VerticalAlignment="Top"/>
 
-        <ctrl:AppSelector Grid.Row="5" Grid.Column="1"
+        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
             x:Name="AppSelectorAccLeft"
             URIs="{x:Bind Path=ViewModel.accLeftSelectorData}"
             HorizontalAlignment="Left"
@@ -54,8 +53,8 @@
             ButtonWidth="{StaticResource ExperienceColorSelectorIconWidth}"
             ButtonHeight="{StaticResource ExperienceColorSelectorIconWidth}"/>
 
-        <ctrl:Header Grid.Row="3" Grid.Column="1"
-            x:Name="AccLeftHeader" 
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
+            x:Name="AccLeftHeader"
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PageHeadline"
@@ -69,15 +68,13 @@
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            HasPageEntranceAnimationEnabled="False"
-            Opacity="0"/>
+            VerticalAlignment="Center"/>
         
         <Canvas x:Name="ButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightMouse"
-                EntranceStaggerDelayInMilliseconds="1400"
+                EntranceStaggerDelayInMilliseconds="1000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.77}"
                 PopupPosition="Left"                 
@@ -85,7 +82,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftMouse"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="600"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.12}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.62}"
                 PopupPosition="Right"                 
@@ -93,7 +90,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnCenterMouse"
-                EntranceStaggerDelayInMilliseconds="1200"
+                EntranceStaggerDelayInMilliseconds="800"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.46}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.73}"
                 PopupPosition="Right"                 
@@ -120,9 +117,7 @@
                 IsOpen = "False"
                 HorizontalOffset="220"
                 VerticalOffset="400"                    
-                IsLightDismissEnabled="True"
-                Opened="PopLeft_Opened"
-                Closed="PopLeft_Closed">
+                IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Text"

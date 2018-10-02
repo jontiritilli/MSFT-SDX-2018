@@ -67,6 +67,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightAccLeft"
+                EntranceStaggerDelayInMilliseconds="600"
                 PopupPosition="Right"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.38}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"

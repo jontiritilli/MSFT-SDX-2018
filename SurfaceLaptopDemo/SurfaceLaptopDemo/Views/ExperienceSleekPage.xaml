@@ -72,7 +72,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.82}"
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1200"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -80,15 +80,15 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.82}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1100"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <Popup

@@ -64,23 +64,26 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftAccRight"
+                EntranceStaggerDelayInMilliseconds="600"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
-                x:Name="rBtnRightAccRight"
-                PopupPosition="Right"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.56}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
-                AutoStart = "false"/>
-
-            <ctrl:RadiatingButton
                 x:Name="rBtnTopAccRight"
+                EntranceStaggerDelayInMilliseconds="800"
                 PopupPosition="Right"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.47}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"
+                AutoStart = "false"/>
+            
+            <ctrl:RadiatingButton
+                x:Name="rBtnRightAccRight"
+                EntranceStaggerDelayInMilliseconds="1000"
+                PopupPosition="Right"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.56}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
                 AutoStart = "false"/>
 
             <Popup
@@ -94,11 +97,10 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopTopLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
-                        />
-
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
                 </Popup.Child>
             </Popup>
+            
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"

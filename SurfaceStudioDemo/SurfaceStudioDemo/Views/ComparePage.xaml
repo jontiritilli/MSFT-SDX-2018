@@ -64,6 +64,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="600"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -71,6 +72,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.18}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="800"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -78,6 +80,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.62}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1000"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -85,6 +88,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1200"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -92,6 +96,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.91}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"                                                    
                 AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1400"
                 Clicked="RadiatingButton_Clicked"/>
 
             <Popup

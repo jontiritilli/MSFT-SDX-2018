@@ -264,7 +264,7 @@ namespace SDX.Toolkit.Controls
 
         // EntranceDurationInMilliseconds
         public static readonly DependencyProperty EntranceDurationInMillisecondsProperty =
-            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(500d, OnEntranceDurationInMillisecondsChanged));
+            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(750d, OnEntranceDurationInMillisecondsChanged));
 
         public double EntranceDurationInMilliseconds
         {
