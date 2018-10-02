@@ -88,15 +88,9 @@
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnRightPixelSense"
-                PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
-                AutoStart = "false"/>
-            
-            <ctrl:RadiatingButton
                 x:Name="rBtnLeftPixelSense"
                 PopupPosition="Right"
+                EntranceStaggerDelayInMilliseconds="600"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.23}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.49}"
                 AutoStart = "false"/>
@@ -104,10 +98,19 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnBottomPixelSense"
                 PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.66}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"
                 AutoStart = "false"/>
 
+            <ctrl:RadiatingButton
+                x:Name="rBtnRightPixelSense"
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
+                AutoStart = "false"/>
+            
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"

@@ -82,7 +82,22 @@
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
+                x:Name="rBtnDial"
+                EntranceStaggerDelayInMilliseconds="600"
+                TryItEnabled="True"
+                TryItText="{x:Bind Path=ViewModel.DialTryItTitle}"
+                TryItCaption="{x:Bind Path=ViewModel.DialTryItLede}"
+                IsDialOnly="True"
+                IsRemovedOnInteraction="True"
+                RadiatingButtonIcon="dial"
+                PopupPosition="Left"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                AutoStart = "false"/>
+            
+            <ctrl:RadiatingButton
                 x:Name="rBtnPen"
+                EntranceStaggerDelayInMilliseconds="800"
                 TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.PenTryItTitle}"
                 TryItCaption="{x:Bind Path=ViewModel.PenTryItLede}"
@@ -94,18 +109,6 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"
                 AutoStart = "false"/>
 
-            <ctrl:RadiatingButton
-                x:Name="rBtnDial"
-                TryItEnabled="True"
-                TryItText="{x:Bind Path=ViewModel.DialTryItTitle}"
-                TryItCaption="{x:Bind Path=ViewModel.DialTryItLede}"
-                IsDialOnly="True"
-                IsRemovedOnInteraction="True"
-                RadiatingButtonIcon="dial"
-                PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
-                AutoStart = "false"/>
         </Canvas>
     </Grid>
 </Page>
