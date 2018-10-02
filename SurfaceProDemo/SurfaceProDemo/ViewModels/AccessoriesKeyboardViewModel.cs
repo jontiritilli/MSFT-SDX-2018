@@ -84,14 +84,11 @@ namespace SurfaceProDemo.ViewModels
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_1_SELECTED
             });
-            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
+            this.appSelectorData.Add(new AppSelectorData()
             {
-                this.appSelectorData.Add(new AppSelectorData()
-                {
-                    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
-                    Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
-                });
-            }
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
+            });
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
@@ -107,14 +104,11 @@ namespace SurfaceProDemo.ViewModels
                 URI= URI_IMAGESELECTOR_IMAGE_1,
                 Width= SELECTORIMAGE_IMAGEWIDTH
             });
-            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
+            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
-                this.appSelectorImageURIs.Add(new AppSelectorImageURI()
-                {
-                    URI = URI_IMAGESELECTOR_IMAGE_2,
-                    Width = SELECTORIMAGE_IMAGEWIDTH
-                });
-            }
+                URI = URI_IMAGESELECTOR_IMAGE_2,
+                Width = SELECTORIMAGE_IMAGEWIDTH
+            });
             this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,

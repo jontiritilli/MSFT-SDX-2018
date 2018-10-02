@@ -72,8 +72,6 @@ namespace SurfaceProDemo.ViewModels
 
         public AccessoriesMouseViewModel()
         {
-            // get the localization service
-            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
             this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
             this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 
@@ -82,49 +80,47 @@ namespace SurfaceProDemo.ViewModels
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_1_SELECTED
             });
-            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
-            {
-                this.appSelectorData.Add(new AppSelectorData()
-                {
-                    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
-                    Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
-                });
-            }
-            
-            this.appSelectorData.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
-                Source_SelectedImage = URI_APPSELECTOR_COLOR_3_SELECTED
-            });
-            this.appSelectorData.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_4,
-                Source_SelectedImage = URI_APPSELECTOR_COLOR_4_SELECTED
-            });
-
             this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_1,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
-            if (ConfigurationService.Current.GetIsBlackSchemeEnabled())
+
+            this.appSelectorData.Add(new AppSelectorData()
             {
-                this.appSelectorImageURIs.Add(new AppSelectorImageURI()
-                {
-                    URI = URI_IMAGESELECTOR_IMAGE_2,
-                    Width = SELECTORIMAGE_IMAGEWIDTH
-                });
-            }
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
+            });
+            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_IMAGESELECTOR_IMAGE_2,
+                Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+
+            this.appSelectorData.Add(new AppSelectorData()
+            {
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_3_SELECTED
+            });
             this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,
                 Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+
+            this.appSelectorData.Add(new AppSelectorData()
+            {
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_4,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_4_SELECTED
             });
             this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_4,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
+
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
             // if we got it
             if (null != localizationService)
             {
