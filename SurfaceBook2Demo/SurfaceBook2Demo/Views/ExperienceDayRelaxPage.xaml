@@ -51,17 +51,17 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceStaggerDelayInMilliseconds = "1100"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.31}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"                                                 
+                EntranceStaggerDelayInMilliseconds = "600"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.73}"                                                 
                 PopupPosition="Right"  
                 AutoStart = "false"/>
             
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceStaggerDelayInMilliseconds = "1200"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.55}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.25}"                     
+                EntranceStaggerDelayInMilliseconds = "800"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.53}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.24}"                     
                 PopupPosition="Left"  
                 AutoStart = "false"/>
 
@@ -69,7 +69,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.17}"                                                                    
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.18}"                                                                    
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -98,13 +98,11 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
-        
-        <ctrl:ImageEx x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1" ImageWidth="1000"
+
+        <ctrl:ImageEx x:Name="Hero" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3"
+            ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.HeroUri}"
             PageEntranceDirection="Left"
-            HasEntranceTranslation="False">
-            <ctrl:ImageEx.BitmapImage>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </ctrl:ImageEx.BitmapImage>
-        </ctrl:ImageEx>
+            HasEntranceTranslation="False"/>
     </Grid>
 </Page>

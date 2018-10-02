@@ -179,6 +179,16 @@ namespace SDX.Toolkit.Controls
             set { SetValue(LedeStyleProperty, value); }
         }
 
+        // LedeWidth
+        public static readonly DependencyProperty LedeWidthProperty =
+        DependencyProperty.Register("LedeStyle", typeof(double), typeof(Header), new PropertyMetadata(0.0d));
+
+        public double LedeWidth
+        {
+            get { return (double)GetValue(LedeWidthProperty); }
+            set { SetValue(LedeWidthProperty, value); }
+        }
+
         // CTATextStyle
         public static readonly DependencyProperty CTATextStyleProperty =
         DependencyProperty.Register("CTATextStyle", typeof(TextStyles), typeof(Header), new PropertyMetadata(TextStyles.ListItemCTAText, OnCTATextStyleChanged));
@@ -391,6 +401,7 @@ namespace SDX.Toolkit.Controls
             // if we have a lede
             if (!String.IsNullOrWhiteSpace(this.Lede))
             {
+                double _ledeWidth = this.LedeWidth > 0 ? LedeWidth : gridWidth;
                 // create lede
                 // =================
                 _lede = new TextBlockEx()
@@ -398,8 +409,9 @@ namespace SDX.Toolkit.Controls
                     Name = "Lede",
                     TextAlignment = this.HeaderAlignment,
                     TextWrapping = TextWrapping.WrapWholeWords,
-                    Width = gridWidth,
+                    Width = _ledeWidth,
                     TextStyle = this.LedeStyle,
+                    HorizontalAlignment = this.HorizontalAlignment,
                     TranslateDirection = this.Direction(),
                     Opacity = this.LedeOpacity
                 };

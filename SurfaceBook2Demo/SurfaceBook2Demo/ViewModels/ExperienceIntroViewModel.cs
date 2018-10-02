@@ -36,8 +36,8 @@ namespace SurfaceBook2Demo.ViewModels
         private const double WIDTH_PIXELSENSE_IMAGE_13 = 354;
         private const double WIDTH_COMPARE_IMAGE_13 = 354;
 
-        private const double WIDTH_PIXELSENSE_IMAGE_15 = 378;
-        private const double WIDTH_COMPARE_IMAGE_15 = 378;
+        private const double WIDTH_PIXELSENSE_IMAGE_15 = 354;
+        private const double WIDTH_COMPARE_IMAGE_15 = 354;
 
         #endregion
 
@@ -66,7 +66,6 @@ namespace SurfaceBook2Demo.ViewModels
         public double PopupCompareImageWidth;
 
         #endregion
-
 
         #region Construction
 
