@@ -86,7 +86,7 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"
                 PopupPosition="Left"
                 EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
