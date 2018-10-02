@@ -11,14 +11,14 @@
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
-        Width="{StaticResource CanvasWidth}"
+        Width="{StaticResource ScreenWidth}"
         Height="{StaticResource ScreenHeight}">
+        
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill" ImageSource="{x:Bind Path=ViewModel.BackgroundUri}" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
@@ -28,23 +28,20 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".2*"/>
-            <ColumnDefinition Width=".2*"/>
-            <ColumnDefinition Width=".6*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-            <ctrl:Header x:Name="PageHeader"
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
-                HorizontalAlignment="Left"
-                Width="{StaticResource HeaderWidth}"
-                VerticalAlignment="Top" />
-            <ctrl:AppSelector
+        
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+            Width="{StaticResource HeaderWidth}"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"                
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+        
+        <ctrl:AppSelector Grid.Row="3" Grid.Column="1"
             x:Name="AppSelectorKB"            
             URIs="{x:Bind Path=ViewModel.appSelectorData}"
             AppSelectorMode="App"
@@ -54,61 +51,48 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Opacity="1"
-            Grid.Row="4"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
             ButtonWidth="{x:Bind Path=ViewModel.AppSelectorButtonWidth}"
-            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}"
-            />
-        <ctrl:AppSelectorImage
+            ButtonHeight="{x:Bind Path=ViewModel.AppSelectorButtonHeight}" />
+        
+        <ctrl:AppSelectorImage  Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3"
             x:Name="AppSelectorImageKB"
-            Grid.Row="1"
-            Grid.RowSpan="6"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
             Opacity="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
 
-        <ctrl:TextBlockEx
-            Grid.Row="6"
-            Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
             Opacity="1"
-            TextStyle="Legal"
-            />
-        <Canvas x:Name="CloseButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="8"
-                Grid.ColumnSpan="4">
-            <Grid x:Name="grdCloseButton"
-              Canvas.Left="{x:Bind Path=ViewModel.ellipseGridCanvasSetLeft}"              
-              PointerPressed="PopClose_Click"
-              Canvas.Top="{x:Bind Path=ViewModel.closeEllipseTopMargin}">
+            TextStyle="Legal" />
+        
+        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
+            <Grid
+                x:Name="grdCloseButton"
+                PointerPressed="PopClose_Click"
+                Canvas.Left="{x:Bind Path=ViewModel.EllipseGridCanvasSetLeft}"
+                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseMargin}">
+                
                 <Ellipse
-                Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
-                Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
-                Fill="White"
-                StrokeThickness="2"
-                Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Margin="0"
-                />
+                    Width="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                    Height="{x:Bind Path=ViewModel.radiatingButtonRadius}"
+                    Fill="White"
+                    StrokeThickness="2"
+                    Stroke="{x:Bind Path=ViewModel.ellipseStroke}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0" />
+                
                 <ctrl:ImageEx
-                x:Name="CloseButtonImage"
-                ImageSource="{x:Bind Path=ViewModel.CloseButtonXURI}"
-                ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"                
-                Margin="0"/>
+                    x:Name="CloseButtonImage"
+                    ImageSource="{x:Bind Path=ViewModel.x_ImageURI}"
+                    ImageWidth="{x:Bind Path=ViewModel.closeIconHeight}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"                
+                    Margin="0"/>
             </Grid>
-
         </Canvas>
     </Grid>
-
 </Page>

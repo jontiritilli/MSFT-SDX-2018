@@ -32,35 +32,35 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".325*"/>
-            <ColumnDefinition Width=".675*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                        Headline="{x:Bind Path=ViewModel.Headline}"
-                        Lede="{x:Bind Path=ViewModel.Lede}"                        
-                        HeadlineStyle="PageHeadlineDark"
-                        LedeStyle="PageLedeDark"
-                        HorizontalAlignment="Left"
-                        HeadlineOpacity="0"
-                        LedeOpacity="0"
-                        VerticalAlignment="Top" />
 
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+            Width="{StaticResource HeaderWidth}"
+            LedeWidth="300"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"                        
+            HeadlineStyle="PageHeadlineDark"
+            LedeStyle="PageLedeDark"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"
+            VerticalAlignment="Top" />
+        
         <ctrl:TextBlockEx x:Name="LegalPixelSense" Grid.Row="5" Grid.Column="1"
-                            Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
-                            TextStyle="Legal"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            HasPageEntranceAnimationEnabled="False"
-                            Opacity="0"/>
+            Text="{x:Bind Path=ViewModel.PopupPixelSenseLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HasPageEntranceAnimationEnabled="False"/>
 
         <ctrl:TextBlockEx x:Name="LegalCompare" Grid.Row="5" Grid.Column="1"
-                            Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
-                            TextStyle="Legal"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            HasPageEntranceAnimationEnabled="False"
-                            Opacity="0" />
+            Text="{x:Bind Path=ViewModel.PopupCompareLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HasPageEntranceAnimationEnabled="False"/>
 
         <Canvas x:Name="PageCanvas"
                 Grid.Row="0" Grid.RowSpan="7"
@@ -70,8 +70,7 @@
                 Height="{StaticResource CanvasHeight}">
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"                
-                EntranceStaggerDelayInMilliseconds = "1100"                
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "600"                
                 Canvas.ZIndex="101"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"
@@ -80,8 +79,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                EntranceStaggerDelayInMilliseconds = "1200"                
-                RadiateStaggerDelayInMilliseconds = "6000"
+                EntranceStaggerDelayInMilliseconds = "800"                
                 Canvas.ZIndex="101"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.85}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"                
@@ -96,7 +94,7 @@
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
                 Opened="PopLeft_Opened"
                 Closed="PopLeft_Closed"
-                IsLightDismissEnabled="True">
+                IsLightDismissEnabled="False">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Image"
@@ -164,6 +162,6 @@
                           HasEntranceTranslation="True"/>
 
         </Canvas>
+        
     </Grid>
-
 </Page>

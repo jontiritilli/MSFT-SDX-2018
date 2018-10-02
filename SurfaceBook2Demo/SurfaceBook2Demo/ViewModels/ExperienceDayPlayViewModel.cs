@@ -21,20 +21,43 @@ namespace SurfaceBook2Demo.ViewModels
 
         private const string URI_GAME_DEMO = "ms-appx:///Assets/Experience/forza_demo.mp4";
 
+        private const double VIDEO_WIDTH_13 = 480;
+        private const double VIDEO_HEIGHT_13 = 372;
+        private const double HERO_IMAGE_WIDTH_13 = 1000;
+
+        private const double VIDEO_WIDTH_15 = 565;
+        private const double VIDEO_HEIGHT_15 = 437.875;
+        private const double HERO_IMAGE_WIDTH_15 = 1200;
+
+        private const double VIDEO_SET_TOP_15 = .25;
+        private const double VIDEO_SET_LEFT_15 = .33;
+
+        private const double VIDEO_SET_TOP_13 = .27;
+        private const double VIDEO_SET_LEFT_13 = .34;
+
         #endregion
 
 
         #region Public Properties
+
+        public double CanvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
+        public double CanvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
 
         public string BackgroundUri;
 
         public string HeroUri;
 
         public string DemoUri;
+        public double VideoSetLeft;
+        public double VideoSetTop;
 
         public string Headline;
         public string Lede;
         public string Legal;
+
+        public double VideoWidth;
+        public double VideoHeight;
+        public double HeroImageWidth;
 
         #endregion
 
@@ -48,13 +71,23 @@ namespace SurfaceBook2Demo.ViewModels
             {
                 case DeviceType.Book15:
                     this.BackgroundUri = URI_BACKGROUND15;
-                    this.HeroUri = URI_HERO_13;
+                    this.HeroUri = URI_HERO_15;
+                    this.VideoWidth = VIDEO_WIDTH_15;
+                    this.VideoHeight = VIDEO_HEIGHT_15;
+                    this.HeroImageWidth = HERO_IMAGE_WIDTH_15;
+                    this.VideoSetLeft = VIDEO_SET_LEFT_15 * CanvasWidth;
+                    this.VideoSetTop = VIDEO_SET_TOP_15 * CanvasHeight;
                     break;
 
                 case DeviceType.Book13:
                 default:
                     this.BackgroundUri = URI_BACKGROUND13;
                     this.HeroUri = URI_HERO_15;
+                    this.VideoWidth = VIDEO_WIDTH_13;
+                    this.VideoHeight = VIDEO_HEIGHT_13;
+                    this.HeroImageWidth = HERO_IMAGE_WIDTH_13;
+                    this.VideoSetLeft = VIDEO_SET_LEFT_13 * CanvasWidth;
+                    this.VideoSetTop = VIDEO_SET_TOP_13 * CanvasHeight;
                     break;
             }
             DemoUri = URI_GAME_DEMO;
