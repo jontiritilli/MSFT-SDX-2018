@@ -19,7 +19,9 @@ using SDX.Toolkit.Helpers;
 
 namespace SDX.Toolkit.Controls
 {
-    public sealed partial class TextBlockEx : UserControl
+
+
+    public sealed partial class TextBlockEx : UserControl, IAnimate
     {
         #region Constructor
 
@@ -30,9 +32,9 @@ namespace SDX.Toolkit.Controls
             this.Loaded += OnLoaded;
 
             // inherited dependency property
-            new PropertyChangeEventSource<double>(
-                this, "Opacity", BindingMode.OneWay).ValueChanged +=
-                OnOpacityChanged;
+            //new PropertyChangeEventSource<double>(
+            //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
+            //    OnOpacityChanged;
         }
 
         protected override void OnApplyTemplate()
@@ -42,6 +44,9 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
+        #region Public Properties
+        public AnimationDirection TranslateDirection;        
+        #endregion
 
         #region Overrides
 
@@ -85,6 +90,19 @@ namespace SDX.Toolkit.Controls
                 this.LayoutRoot.Opacity = opacity;
             }
         }
+
+        public void ShowBoldText(bool showBold)
+        {
+            if (null != this.TheText)
+            {
+                this.TheText.Opacity = (showBold ? 0 : 1);                
+            }
+            if (null != this.TheTextBold)
+            {
+                this.TheTextBold.Opacity = (showBold ? 1 : 0);
+            }
+                
+        }
         #endregion
 
 
@@ -109,6 +127,17 @@ namespace SDX.Toolkit.Controls
             get { return (TextStyles)GetValue(TextStyleProperty); }
             set { SetValue(TextStyleProperty, value); }
         }
+
+        // TextStyleBold
+        public static readonly DependencyProperty TextStyleBoldProperty =
+            DependencyProperty.Register("TextStyleBold", typeof(TextStyles), typeof(TextBlockEx), new PropertyMetadata(TextStyles.ListLedeBold)); //, OnTextStyleChanged));
+
+        public TextStyles TextStyleBold
+        {
+            get { return (TextStyles)GetValue(TextStyleBoldProperty); }
+            set { SetValue(TextStyleBoldProperty, value); }
+        }
+
 
         // TextAlignment
         public static readonly DependencyProperty TextAlignmentProperty =
@@ -150,6 +179,25 @@ namespace SDX.Toolkit.Controls
             set { SetValue(LineHeightProperty, value); }
         }
 
+        // HasPageEntranceAnimationEnabled
+        public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
+            DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(true)); //, OnLineHeightChanged));
+
+        public bool HasPageEntranceAnimationEnabled
+        {
+            get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
+            set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
+
+        // HasPageEntranceTranslation
+        public static readonly DependencyProperty HasEntranceTranslationProperty =
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(TextBlockEx), new PropertyMetadata(true));
+
+        public bool HasEntranceTranslation
+        {
+            get { return (bool)GetValue(HasEntranceTranslationProperty); }
+            set { SetValue(HasEntranceTranslationProperty, value); }
+        }
         #endregion
 
 
@@ -165,6 +213,7 @@ namespace SDX.Toolkit.Controls
             if (d is TextBlockEx textBlockEx)
             {
                 textBlockEx.TheText.Text = (string)e.NewValue;
+                textBlockEx.TheTextBold.Text = (string)e.NewValue;
             }
         }
 
@@ -181,6 +230,31 @@ namespace SDX.Toolkit.Controls
                 // set opacity
                 this.LayoutRoot.Opacity = opacity;
             }
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return HasPageEntranceAnimationEnabled;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return TranslateDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return HasEntranceTranslation;
         }
 
         #endregion

@@ -93,25 +93,28 @@ namespace SurfaceLaptopDemo.Services
             return file;
         }
 
-        public string GetTelemetryId()
+        public bool GetIsBlackSchemeEnabled()
         {
-            string id = String.Empty;
+            bool isBlackSchemeEnabled = false;
 
             if (this.IsLoaded)
             {
-                switch (this.Configuration.TelemetryKey)
-                {
-                    case TelemetryKeys.Test:
-                        id = this.Configuration.TelemetryTestId;
-                        break;
-
-                    case TelemetryKeys.Prod:
-                        id = this.Configuration.TelemetryProdId;
-                        break;
-                }
+                isBlackSchemeEnabled = this.Configuration.IsBlackSchemeEnabled;
             }
 
-            return id;
+            return isBlackSchemeEnabled;
+        }
+
+        public bool GetIsCoralSchemeEnabled()
+        {
+            bool isCoralSchemeEnabled = false;
+
+            if (this.IsLoaded)
+            {
+                isCoralSchemeEnabled = this.Configuration.IsCoralSchemeEnabled;
+            }
+
+            return isCoralSchemeEnabled;
         }
 
         public async Task Initialize()

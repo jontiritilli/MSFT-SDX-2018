@@ -31,24 +31,13 @@ namespace SDX.Toolkit.Controls
 
         private static readonly double TOP_BATTERY = 0d;
         private static readonly double LEFT_BATTERY = 0d;
-        private static readonly double WIDTH_BATTERY = 350d;
-        private static readonly double HEIGHT_BATTERY = 134d;
 
         private static readonly double MARGIN_CHARGE_LEFT = 20d;
         private static readonly double MARGIN_CHARGE_TOP = 20d;
         private static readonly double CHARGE_START_WIDTH = 10d;
-        private static readonly double CHARGE_END_WIDTH = WIDTH_BATTERY - ((2 * MARGIN_CHARGE_LEFT) + CHARGE_START_WIDTH + 5);
 
         private static readonly double TOP_CHARGE = TOP_BATTERY + MARGIN_CHARGE_TOP;
         private static readonly double LEFT_CHARGE = LEFT_BATTERY + MARGIN_CHARGE_LEFT;
-
-        private static readonly double HEIGHT_CHARGE = HEIGHT_BATTERY - (2 * MARGIN_CHARGE_TOP);
-
-        private static readonly double LEFT_HOURS = LEFT_CHARGE + (2 * MARGIN_CHARGE_TOP);
-        private static readonly double TOP_HOURS = TOP_CHARGE;
-
-        private static readonly double LEFT_HOURS_TEXT = LEFT_HOURS + MARGIN_CHARGE_LEFT + LEFT_BATTERY + CHARGE_START_WIDTH;
-        private static readonly double TOP_HOURS_TEXT = TOP_CHARGE;
 
         private readonly int Z_ORDER_CONTROLS = 100;
         private readonly int Z_ORDER_BATTERY = 10;
@@ -60,7 +49,7 @@ namespace SDX.Toolkit.Controls
 
         private Canvas _layoutRoot = null;
         private AnimatableInteger _hours = null;
-        private TextBlockEx _hrs = null;
+        private TextBlockEx _hoursText = null;
         private ImageEx _imageBattery = null;
         private Image _imageCharge = null;
 
@@ -93,14 +82,24 @@ namespace SDX.Toolkit.Controls
 
         #region Dependency Properties
 
-        // Hour
-        public static readonly DependencyProperty HourProperty =
+        // HourIntegerMax
+        public static readonly DependencyProperty HourIntegerMaxProperty =
+            DependencyProperty.Register("HourIntegerMax", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(17d, OnPropertyChanged));
+
+        public double HourIntegerMax
+        {
+            get { return (double)GetValue(HourIntegerMaxProperty); }
+            set { SetValue(HourIntegerMaxProperty, value); }
+        }
+
+        // HourText
+        public static readonly DependencyProperty HourTextProperty =
             DependencyProperty.Register("Hour", typeof(string), typeof(PopupContentBatteryLife), new PropertyMetadata("hrs", OnPropertyChanged));
 
-        public string Hour
+        public string HourText
         {
-            get { return (string)GetValue(HourProperty); }
-            set { SetValue(HourProperty, value); }
+            get { return (string)GetValue(HourTextProperty); }
+            set { SetValue(HourTextProperty, value); }
         }
 
         // TimeStart
@@ -142,7 +141,7 @@ namespace SDX.Toolkit.Controls
 
         // StaggerDelayInMilliseconds
         public static readonly DependencyProperty StaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(0d, OnStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("StaggerDelayInMilliseconds", typeof(double), typeof(PopupContentBatteryLife), new PropertyMetadata(200d, OnStaggerDelayInMillisecondsChanged));
 
         public double StaggerDelayInMilliseconds
         {
@@ -208,10 +207,7 @@ namespace SDX.Toolkit.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (this.AutoStart)
-            {
-                this.StartAnimation();
-            }
+            this.StartAnimation();
         }
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -249,16 +245,26 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
+            double batteryHeight = this.Width * .383;
+            double chargeHeight = batteryHeight - (2 * MARGIN_CHARGE_TOP);
+            double batteryHorizontalCenter = this.Width/2;
+            double batteryVerticalCenter = batteryHeight / 2;
+
+            double TEXT_WIDTH = 100d;
+            double LEFT_HOURS = batteryHorizontalCenter - TEXT_WIDTH - (MARGIN_CHARGE_LEFT/2);
+            double LEFT_HOURS_TEXT = batteryHorizontalCenter + (MARGIN_CHARGE_LEFT / 2);
+            double TOP_TEXT = batteryVerticalCenter - (chargeHeight/2);
+
             // set up the canvas
             _layoutRoot.Width = this.Width;
-            _layoutRoot.Height = HEIGHT_CHARGE;
+            _layoutRoot.Height = batteryHeight;
 
             // create the battery
             _imageBattery = new ImageEx()
             {
                 Name = "Battery",
                 ImageSource = URI_IMAGE_BATTERY,
-                ImageWidth = WIDTH_BATTERY
+                ImageWidth = this.Width
             };
 
             Canvas.SetLeft(_imageBattery, LEFT_BATTERY);
@@ -273,7 +279,7 @@ namespace SDX.Toolkit.Controls
                 Source = new BitmapImage(new Uri(URI_IMAGE_CHARGE)),
                 Stretch = Stretch.Fill,
                 Width = CHARGE_START_WIDTH,
-                Height = HEIGHT_CHARGE
+                Height = chargeHeight
             };
 
             Canvas.SetLeft(_imageCharge, LEFT_CHARGE);
@@ -284,29 +290,40 @@ namespace SDX.Toolkit.Controls
             // create the percent overlay
             _hours = new AnimatableInteger()
             {
-                HourValue = 0.0
+                HourIntegerMax = this.HourIntegerMax,
+                Width = TEXT_WIDTH,
+                Height = chargeHeight,
+                VerticalAlignment = VerticalAlignment.Center,
+                DurationInMilliseconds = this.DurationInMilliseconds,
+                StaggerDelayInMilliseconds = this.StaggerDelayInMilliseconds
             };
 
             Canvas.SetLeft(_hours, LEFT_HOURS);
-            Canvas.SetTop(_hours, TOP_HOURS);
+            Canvas.SetTop(_hours, TOP_TEXT);
             Canvas.SetZIndex(_hours, Z_ORDER_CONTROLS);
             _layoutRoot.Children.Add(_hours);
 
-            // create hours overlay
-            _hrs = new TextBlockEx()
-            {
-                Text = this.Hour,
-                TextAlignment = TextAlignment.Left,
-                TextStyle = TextStyles.PopupBatteryLife,
-            };
-
-            Canvas.SetLeft(_hrs, LEFT_HOURS);
-            Canvas.SetTop(_hrs, TOP_HOURS);
-            Canvas.SetZIndex(_hrs, Z_ORDER_CONTROLS);
-            _layoutRoot.Children.Add(_hrs);
+            double chargeEndWidth = this.Width - ((2 * MARGIN_CHARGE_LEFT) + CHARGE_START_WIDTH + 5);
 
             // create the charge animation
-            _chargeStoryboard = SetupChargeAnimation(_imageCharge, CHARGE_START_WIDTH, CHARGE_END_WIDTH, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
+            _chargeStoryboard = SetupChargeAnimation(_imageCharge, CHARGE_START_WIDTH, chargeEndWidth, this.DurationInMilliseconds, this.StaggerDelayInMilliseconds);
+
+            // create hour text overlay
+            _hoursText = new TextBlockEx()
+            {
+                Text = this.HourText,
+                Width = TEXT_WIDTH,
+                Height = chargeHeight,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                TextAlignment = TextAlignment.Left,
+                TextStyle = TextStyles.PopupBatteryLife
+            };
+
+            Canvas.SetLeft(_hoursText, LEFT_HOURS_TEXT);
+            Canvas.SetTop(_hoursText, TOP_TEXT);
+            Canvas.SetZIndex(_hoursText, Z_ORDER_CONTROLS);
+            _layoutRoot.Children.Add(_hoursText);
         }
 
         private Storyboard SetupChargeAnimation(Image image, double startingWidth, double finalWidth, double duration, double staggerDelay)

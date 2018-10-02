@@ -35,36 +35,42 @@
             <ColumnDefinition Width=".4*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Right"
-                HeaderAlignment="Right"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Right"
+            HeaderAlignment="Right"
+            PageEntranceDirection="Right"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                     
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.06}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.76}"                                    
-                PopupPosition="Right"                  
+                PopupPosition="Right"
+                EntranceStaggerDelayInMilliseconds="1400"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.58}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                   
-                PopupPosition="Left"                  
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1500"
                 AutoStart = "false"/>
-
 
             <Popup
                 x:Name="PopLeft"
@@ -77,10 +83,10 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLeftLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                           
-                        />
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}" />
                 </Popup.Child>
             </Popup>
+            
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
@@ -92,8 +98,7 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopRightLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                           
-                        />
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"/>
                 </Popup.Child>
             </Popup>
         </Canvas>
@@ -107,8 +112,8 @@
             Grid.Column="2"
             Canvas.ZIndex="101"
             ButtonWidth="{StaticResource AppSelectorButtonWidth}"
-            ButtonHeight="{StaticResource AppSelectorButtonWidth}"            
-            />
+            ButtonHeight="{StaticResource AppSelectorButtonWidth}" />
+        
         <ctrl:AppSelectorImage
             x:Name="AppSelectorImageMouse"
             Grid.Row="0"
@@ -118,14 +123,16 @@
             HorizontalAlignment="Left"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            HasEntranceTranslation="False"
+            HasPageEntranceAnimationEnabled="False"/>
 
         <ctrl:TextBlockEx
+            x:Name="PopLeftLegal"
             Grid.Row="4"
             Grid.Column="2"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             TextStyle="Legal"
-            HorizontalAlignment="Right"
-            />
+            HorizontalAlignment="Right"/>
     </Grid>
 </Page>

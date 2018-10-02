@@ -36,32 +36,37 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"                
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                     
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBottom"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"                                                    
-                PopupPosition="Left"                 
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1500"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.48}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.23}"                                                    
-                PopupPosition="Right"                 
+                PopupPosition="Right"
+                EntranceStaggerDelayInMilliseconds="1400"
                 AutoStart = "false"/>
 
             <Popup
@@ -79,6 +84,7 @@
                         />
                 </Popup.Child>
             </Popup>
+            
             <Popup
                 x:Name="PopTop"
                 IsOpen = "False"
@@ -95,6 +101,7 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
+        
         <ctrl:AppSelector
             x:Name="AppSelectorKB"
             URIs="{x:Bind Path=ViewModel.appSelectorData}"
@@ -115,13 +122,15 @@
             HorizontalAlignment="Right"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"
-            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
+            HasEntranceTranslation="False"
+            HasPageEntranceAnimationEnabled="False"/>
 
         <ctrl:TextBlockEx
+            x:Name="PopBottomLegal"
             Grid.Row="4"
             Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopBottomLegal}"
-            TextStyle="Legal"
-            />
+            TextStyle="Legal"/>
     </Grid>
 </Page>

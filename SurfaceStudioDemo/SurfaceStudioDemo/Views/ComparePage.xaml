@@ -43,7 +43,15 @@
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"/>
-        
+        <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
+            x:Name="img_Family"
+            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
+            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
+            TranslateDirection="Left"
+            Canvas.ZIndex="100"
+            Opacity="0"
+            />
+
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"
@@ -55,31 +63,41 @@
                 x:Name="rBtnPro"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="600"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBook"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.18}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="800"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnStudio"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.62}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1000"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLaptop"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1200"
+                Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnGo"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.91}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"                                                    
-                AutoStart = "false"/>
+                AutoStart = "false"
+                EntranceStaggerDelayInMilliseconds="1400"
+                Clicked="RadiatingButton_Clicked"/>
 
             <Popup
                 x:Name="PopPro"
@@ -160,42 +178,44 @@
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.ProTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.12}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.88}"   
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.88}"
+                HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.BookTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.30}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.84}"   
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.84}"
+                HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.StudioTitle}"
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.49}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"    
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"
+                HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.LaptopTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.66}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.86}"   
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.86}"
+                HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.GoTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.84}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.92}"   
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.92}"
+                HasEntranceTranslation="False"
             />
         </Canvas>
         
-        <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
-            x:Name="img_Family"
-            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
-            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
-            TranslateDirection="Left"
-            Canvas.ZIndex="100"
-            Opacity="0"
-            />
+
     </Grid>
 </Page>

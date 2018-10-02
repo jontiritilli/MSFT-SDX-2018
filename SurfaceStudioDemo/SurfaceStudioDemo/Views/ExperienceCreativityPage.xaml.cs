@@ -17,6 +17,12 @@ namespace SurfaceStudioDemo.Views
             get { return DataContext as ExperienceCreativityViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+        public static ExperienceCreativityPage Current { get; private set; }
         #endregion
 
         #region Construction
@@ -24,16 +30,39 @@ namespace SurfaceStudioDemo.Views
         public ExperienceCreativityPage()
         {
             InitializeComponent();
+            ExperienceCreativityPage.Current = this;
+            this.Loaded += ExperienceCreativityPage_Loaded;
         }
 
+        private void ExperienceCreativityPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperienceCreativityPage.Current.HasLoaded = true;
+            if (ExperienceCreativityPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformFadeIn(this.backgroundImage2, 1100d, 3000d);
+        }
         #endregion
 
         #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            AnimationHelper.PerformPageEntranceAnimation(this);
-            AnimationHelper.PerformFadeIn(this.backgroundImage2, 1100d, 750d);
+            if (ExperienceCreativityPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceCreativityPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

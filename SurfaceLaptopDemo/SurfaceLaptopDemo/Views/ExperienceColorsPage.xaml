@@ -40,17 +40,22 @@
             x:Name="AppSelectorImageExpColors"
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
             ImageHeight="{StaticResource CanvasHeight}"
-            ImageWidth="{StaticResource CanvasWidth}"/>
+            ImageWidth="{StaticResource CanvasWidth}"                               
+            Opacity="0"
+            HasEntranceTranslation="False"
+            HasPageEntranceAnimationEnabled="True"/>
         
         <ctrl:Header Grid.Row="3" Grid.Column="1"
-                    x:Name="PageHeader" 
-                    Headline="{x:Bind Path=ViewModel.Headline}"
-                    Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="PageHeadline"
-                    LedeStyle="PageLede"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom"/>
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadlineDark"
+            LedeStyle="PageLedeDark"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"
+            VerticalAlignment="Bottom"/>
 
         <ctrl:TextBlockEx Grid.Row="7" Grid.Column="1"
             x:Name="Legal"
@@ -69,8 +74,8 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 Opacity="0"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.60}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                                 
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"                                 
                 PopupPosition="Right"                 
                 AutoStart = "false"/>
 
@@ -96,8 +101,8 @@
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorData}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            ButtonWidth="{StaticResource AccessoryColorSelectorIconWidth}"
-            ButtonHeight="{StaticResource AccessoryColorSelectorIconWidth}"/>
+            ButtonWidth="{StaticResource ExperienceColorSelectorIconWidth}"
+            ButtonHeight="{StaticResource ExperienceColorSelectorIconWidth}"/>
 
     </Grid>
 </Page>

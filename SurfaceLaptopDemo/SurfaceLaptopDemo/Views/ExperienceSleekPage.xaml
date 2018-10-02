@@ -43,6 +43,8 @@
             LedeStyle="PageLede"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                       
             VerticalAlignment="Top"/>
 
         <ctrl:ImageEx Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"
@@ -50,6 +52,8 @@
             ImageSource="{x:Bind Path=ViewModel.DesignUri}"
             ImageWidth="{x:Bind Path=ViewModel.PrimaryImageWidth}"
             HorizontalAlignment="Right"
+            HasEntranceTranslation="False"
+            Opacity="0"
             VerticalAlignment="Bottom"/>
 
         <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
@@ -58,29 +62,33 @@
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            HasPageEntranceAnimationEnabled="False"                          
             Opacity="0"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4" Canvas.ZIndex="100">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBottomPerformance"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.79}"
-                PopupPosition="Left"                       
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.82}"
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnTopPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.82}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"
-                PopupPosition="Left"                       
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftPerformance"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"
-                PopupPosition="Left"                       
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <Popup
@@ -121,7 +129,7 @@
                 IsOpen = "False"
                 HorizontalOffset="510"
                 VerticalOffset="405"                  
-                IsLightDismissEnabled="False"
+                IsLightDismissEnabled="True"
                 Opened="PopBottom_Opened"
                 Closed="PopBottom_Closed">
                 <Popup.Child>
@@ -130,7 +138,8 @@
                         Headline="{x:Bind Path=ViewModel.PopBottom_Headline}"
                         Lede="{x:Bind Path=ViewModel.PopBottom_Lede}"
                         Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
-                        />
+                        HourText="hrs"
+                        HourIntegerMax="14.5" />
                 </Popup.Child>
             </Popup>
         </Canvas>

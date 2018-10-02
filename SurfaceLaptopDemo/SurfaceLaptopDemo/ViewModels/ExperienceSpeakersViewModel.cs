@@ -50,8 +50,6 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public string BackgroundUri = URI_BACKGROUND;
 
-        public double AppSelectorButtonSize = StyleHelper.GetApplicationDouble("ExperienceAppIconWidth");
-
         public double ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
         public double ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 

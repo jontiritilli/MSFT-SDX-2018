@@ -11,8 +11,8 @@
 
     <Grid
         x:Name="PenPagePopup"
-        Height="{StaticResource ScreenHeight}"
-        Width="{StaticResource ScreenWidth}">
+        Height="{StaticResource CanvasHeight}"
+        Width="{StaticResource CanvasWidth}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>

@@ -15,7 +15,8 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as AccessoriesMouseViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
 
@@ -30,11 +31,33 @@ namespace SurfaceProDemo.Views
         {
             InitializeComponent();
             AccessoriesMousePage.Current = this;
+            this.PopLeftLegal.SetOpacity(0.0d);
             this.AppSelectorImageMouse.AppSelector = this.AppSelectorMouse;
             this.AppSelectorMouse.SelectedIDChanged += SelectedIDChanged;
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
+            this.Loaded += AccessoriesMousePage_Loaded;
+        }
+
+        private void AccessoriesMousePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            AccessoriesMousePage.Current.HasLoaded = true;
+            if (AccessoriesMousePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)
@@ -60,12 +83,15 @@ namespace SurfaceProDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnLeft.StartEntranceAnimation();
-            rBtnLeft.StartRadiateAnimation();
+            if (AccessoriesMousePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                AccessoriesMousePage.Current.HasNavigatedTo = true;
+            }
 
-            rBtnRight.StartEntranceAnimation();
-            rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()

@@ -60,7 +60,7 @@
     <x:Double x:Key="AppCloseWidth">46</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 
-    <x:Double x:Key="HeaderWidth">740</x:Double>
+    <x:Double x:Key="HeaderWidth">745</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">42.175</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeaderPenTouch">9.5</x:Double>
@@ -86,6 +86,7 @@
     <x:Double x:Key="CompareRowSpacerHeight">50</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">38.515</x:Double>
     <x:Double x:Key="CompareCloseMargin">50</x:Double>
+    <x:Double x:Key="CompareImageWidth">1300</x:Double>
 
     <GridLength x:Key="CompareSpaceBelowHeader">15</GridLength>
     <GridLength x:Key="CompareSpaceBelowSubHeader">45</GridLength>
@@ -100,7 +101,8 @@
     <x:Double x:Key="PopupSpacer">60</x:Double>
 
     <x:Double x:Key="ColoringBookButtonWidth">42</x:Double>
-    <x:Double x:Key="ColoringBookButtonHeight">42</x:Double>
+    <x:Double x:Key="ColoringBookButtonHeight">42</x:Double> 
+    <x:Double x:Key="AppSelectorMarginRight">40</x:Double>
 
     <x:Double x:Key="RadiatingButtonEllipseRadius">50</x:Double>
     <x:Double x:Key="RadiatingButtonGridWidth">162</x:Double>

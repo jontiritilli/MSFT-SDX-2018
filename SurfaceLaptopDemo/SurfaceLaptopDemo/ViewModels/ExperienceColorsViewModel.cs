@@ -22,19 +22,27 @@ namespace SurfaceLaptopDemo.ViewModels
         private const string URI_IMAGESELECTOR_IMAGE_2 = "ms-appx:///Assets/Experience/Colors/foxburg_black_lifestyle.png";
         private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Experience/Colors/foxburg_cobalt_lifestyle.png";
         private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Experience/Colors/foxburg_burgundy_lifestyle.png";
-        //private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Experience/Colors/foxburg_coral_lifestyle.png";
+        private const string URI_IMAGESELECTOR_IMAGE_5 = "ms-appx:///Assets/Experience/Colors/foxburg_coral_lifestyle.png";
 
         private const string URI_APPSELECTOR_COLOR_1 = "ms-appx:///Assets/Experience/Colors/Icons/fox_platinum.png";
         private const string URI_APPSELECTOR_COLOR_2 = "ms-appx:///Assets/Experience/Colors/Icons/fox_black.png";
         private const string URI_APPSELECTOR_COLOR_3 = "ms-appx:///Assets/Experience/Colors/Icons/fox_cobalt.png";
         private const string URI_APPSELECTOR_COLOR_4 = "ms-appx:///Assets/Experience/Colors/Icons/fox_burgundy.png";
-        //private const string URI_APPSELECTOR_COLOR_5 = "ms-appx:///Assets/Experience/Colors/Icons/fox_coral.png";
+        private const string URI_APPSELECTOR_COLOR_5 = "ms-appx:///Assets/Experience/Colors/Icons/fox_coral.png";
 
         private const string URI_APPSELECTOR_COLOR_1_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_platinum_active.png";
         private const string URI_APPSELECTOR_COLOR_2_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_black_active.png";
         private const string URI_APPSELECTOR_COLOR_3_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_cobalt_active.png";
         private const string URI_APPSELECTOR_COLOR_4_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_burgundy_active.png";
-        //private const string URI_APPSELECTOR_COLOR_5_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_coral_active.png";        
+        private const string URI_APPSELECTOR_COLOR_5_SELECTED = "ms-appx:///Assets/Experience/Colors/Icons/fox_coral_active.png";
+
+        #endregion
+
+        #region Private Members
+
+        bool isBlackEnabled = ConfigurationService.Current.GetIsBlackSchemeEnabled();
+        bool isCoralEnabled = ConfigurationService.Current.GetIsCoralSchemeEnabled();
+
         #endregion
 
         #region Public Members
@@ -57,60 +65,75 @@ namespace SurfaceLaptopDemo.ViewModels
 
         public ExperienceColorsViewModel()
         {
-
-            // list of color swatches
+            // set up color swatches and images for app selector
+            //option 1
             this.lifeStyleColorSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_1_SELECTED
             });
-            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
-                Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
-            });
-            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
-                Source_SelectedImage = URI_APPSELECTOR_COLOR_3_SELECTED
-            });
-            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
-            {
-                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_4,
-                Source_SelectedImage = URI_APPSELECTOR_COLOR_4_SELECTED
-            });
-            //this.lifeStyleColorSelectorData.Add(new AppSelectorData()
-            //{
-            //    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_5,
-            //    Source_SelectedImage = URI_APPSELECTOR_COLOR_5_SELECTED
-            //});
-
-            // list of associated lifestyle images to display
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_1,
                 Width = ImageSelectorImageWidth
             });
-            this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
+
+            // option 2
+            //check to see if black is enabled
+            if (isBlackEnabled)
             {
-                URI = URI_IMAGESELECTOR_IMAGE_2,
-                Width = ImageSelectorImageWidth
+                this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+                {
+                    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
+                    Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
+                });
+                this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
+                {
+                    URI = URI_IMAGESELECTOR_IMAGE_2,
+                    Width = ImageSelectorImageWidth
+                });
+            }
+
+            // option 3
+            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+            {
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_3_SELECTED
             });
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_3,
                 Width = ImageSelectorImageWidth
             });
+
+            // option 4
+            this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+            {
+                Source_NotSelectedImage = URI_APPSELECTOR_COLOR_4,
+                Source_SelectedImage = URI_APPSELECTOR_COLOR_4_SELECTED
+            });
             this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_4,
                 Width = ImageSelectorImageWidth
             });
-            //this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
-            //{
-            //    URI = URI_IMAGESELECTOR_IMAGE_5,
-            //    Width = ImageSelectorImageWidth
-            //});
+
+            // option 5
+            //check to see if coral is enabled
+            if (isCoralEnabled)
+            {
+                this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+                {
+                    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_5,
+                    Source_SelectedImage = URI_APPSELECTOR_COLOR_5_SELECTED
+                });
+                this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
+                {
+                    URI = URI_IMAGESELECTOR_IMAGE_5,
+                    Width = ImageSelectorImageWidth
+                });
+            }
+
 
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();

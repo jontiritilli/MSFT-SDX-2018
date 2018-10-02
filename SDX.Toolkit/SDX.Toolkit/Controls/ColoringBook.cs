@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Windows.Foundation;
+using Windows.Devices.Input;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Input.Inking;
@@ -10,9 +12,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 
 using SDX.Toolkit.Helpers;
-using Windows.Devices.Input;
-//using SDX.Toolkit.Views;
-//using SDX.Toolkit.Services;
+using SDX.Telemetry.Services;
+
 
 namespace SDX.Toolkit.Controls
 {
@@ -23,7 +24,7 @@ namespace SDX.Toolkit.Controls
         public Color Color = Color.FromArgb(0, 0, 0, 0);
     }
 
-    public sealed class ColoringBook : Control
+    public sealed class ColoringBook : Control, IAnimate
     {
 
         #region Private Constants
@@ -81,6 +82,7 @@ namespace SDX.Toolkit.Controls
         private InkCanvas _inkCanvas = null;
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
+        private ImageEx _ColoringImage = null;
         private Image _touchHereImage = null;
         private bool _touchHereWasHidden = false;        
         private List<AppSelectorData> _URIs;
@@ -148,6 +150,14 @@ namespace SDX.Toolkit.Controls
         public void ChangeColorId(int Id)
         {
             ColorID = Id;
+        }
+
+        public void FadeInColoringImage()
+        {
+            if (null != this._ColoringImage && this._ColoringImage.Opacity != 1)
+            {
+                AnimationHelper.PerformFadeIn(this._ColoringImage, 500d);
+            }
         }
 
         #endregion
@@ -324,6 +334,16 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageColumnSpanProperty, value); }
         }
 
+        // AnimationDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(ColoringBook), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
         public void ForceColorChange(int ID)
         {
             this._AppSelector.SelectedID = ID;
@@ -384,6 +404,7 @@ namespace SDX.Toolkit.Controls
         private void OnPenScreenContactStarted(InkStrokeInput input, PointerEventArgs e)
         {
             RaisePenScreenContactStartedEvent(this);
+            FadeInColoringImage();
         }
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -425,7 +446,7 @@ namespace SDX.Toolkit.Controls
             _layoutRoot = (Grid)this.GetTemplateChild("LayoutRoot");
 
             //_layoutRoot.Opacity = 0;
-
+            double AppSelectorMarginRight = StyleHelper.GetApplicationDouble("AppSelectorMarginRight");
             if (null == _layoutRoot) { return; }
 
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.95, GridUnitType.Star) });
@@ -490,21 +511,24 @@ namespace SDX.Toolkit.Controls
 
             // add a nohitvisible png onto this page
             // please dont not have a URI or an SVGURI or the image below will error
-            Image ColoringImage = new Image()
-            {                
-                Source = BMIMAGE_COLORING_BOOK,
+            _ColoringImage = new ImageEx()
+            {
+                Name = "ColoringImage",
+                BitmapImage = BMIMAGE_COLORING_BOOK,   
+                ImageWidth = DOUBLE_COLORING_BOOK_IMAGE_WIDTH,
                 Width = DOUBLE_COLORING_BOOK_IMAGE_WIDTH,                
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Opacity = 1.0,
+                
+                Opacity = .1,
                 IsHitTestVisible = false
             };            
 
-            Canvas.SetZIndex(ColoringImage, 101);
-            Grid.SetColumnSpan(ColoringImage, this.ImageColumnSpan);
-            Grid.SetRow(ColoringImage, 0);            
-            Grid.SetColumn(ColoringImage, 0);            
-            _layoutRoot.Children.Add(ColoringImage);
+            Canvas.SetZIndex(_ColoringImage, 101);
+            Grid.SetColumnSpan(_ColoringImage, this.ImageColumnSpan);
+            Grid.SetRow(_ColoringImage, 0);            
+            Grid.SetColumn(_ColoringImage, 0);            
+            _layoutRoot.Children.Add(_ColoringImage);
 
             this.Colors.Add(COLOR_COLORING_BOOK_RED);
             this.Colors.Add(COLOR_COLORING_BOOK_BLUE);
@@ -617,6 +641,7 @@ namespace SDX.Toolkit.Controls
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 0, AppSelectorMarginRight, 0),
                 MainOrientation = Orientation.Vertical,
                 ButtonHeight = DOUBLE_COLORING_BOOK_BUTTON_HEIGHT,
                 ButtonWidth = DOUBLE_COLORING_BOOK_BUTTON_WIDTH,
@@ -682,7 +707,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // telemetry
-            //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_STARTPEN, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPen);
         }
 
         private void InkPresenter_StrokeEnded(InkStrokeInput sender, PointerEventArgs args)
@@ -707,7 +732,7 @@ namespace SDX.Toolkit.Controls
             }
 
             // telemetry
-            //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_ENDPEN, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPen);
         }
 
         private void SetupBrush()
@@ -745,63 +770,35 @@ namespace SDX.Toolkit.Controls
             return _SelectedColor;
         }
 
+        public bool HasAnimateChildren()
+        {
+            return true;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return false;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            List<UIElement> uIElements = new List<UIElement>();
+            uIElements.Add(_AppSelector);
+            return uIElements;
+        }
+
         #endregion
     }
-
-    // A StylusPlugin that renders ink with a linear gradient brush effect.
-    //class CustomDynamicRenderer : DynamicRenderer
-    //{
-    //    [ThreadStatic]
-    //    static private Brush brush = null;
-
-    //    [ThreadStatic]
-    //    static private Pen pen = null;
-
-    //    private Point prevPoint;
-
-    //    protected override void OnStylusDown(RawStylusInput rawStylusInput)
-    //    {
-    //        // Allocate memory to store the previous point to draw from.
-    //        prevPoint = new Point(double.NegativeInfinity, double.NegativeInfinity);
-    //        base.OnStylusDown(rawStylusInput);
-    //    }
-
-    //    protected override void OnDraw(DrawingContext drawingContext,
-    //                                   StylusPointCollection stylusPoints,
-    //                                   Geometry geometry, Brush fillBrush)
-    //    {
-    //        // Create a new Brush, if necessary.
-    //        if (brush == null)
-    //        {
-    //            brush = new LinearGradientBrush(Colors.Red, Colors.Blue, 20d);
-    //        }
-
-    //        // Create a new Pen, if necessary.
-    //        if (pen == null)
-    //        {
-    //            pen = new Pen(brush, 2d);
-    //        }
-
-    //        // Draw linear gradient ellipses between 
-    //        // all the StylusPoints that have come in.
-    //        for (int i = 0; i < stylusPoints.Count; i++)
-    //        {
-    //            Point pt = (Point)stylusPoints[i];
-    //            Vector v = Point.Subtract(prevPoint, pt);
-
-    //            // Only draw if we are at least 4 units away 
-    //            // from the end of the last ellipse. Otherwise, 
-    //            // we're just redrawing and wasting cycles.
-    //            if (v.Length > 4)
-    //            {
-    //                // Set the thickness of the stroke based 
-    //                // on how hard the user pressed.
-    //                double radius = stylusPoints[i].PressureFactor * 10d;
-    //                drawingContext.DrawEllipse(brush, pen, pt, radius, radius);
-    //                prevPoint = pt;
-    //            }
-    //        }
-    //    }
-    //}
+    
 
 }

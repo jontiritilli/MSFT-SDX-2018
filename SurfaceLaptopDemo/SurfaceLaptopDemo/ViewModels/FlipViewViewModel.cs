@@ -165,19 +165,19 @@ namespace SurfaceLaptopDemo.ViewModels
             }
             );
             
-            // =================================================
-            // Create Accessories Pages
-            // =================================================
-            
             // AccessoriesTouchPage
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "AccessoriesTouchPage",
                 Order = 6,
-                Section = sectionAccessories,
+                Section = sectionExperience,
             }
             );
 
+            // =================================================
+            // Create Accessories Pages
+            // =================================================
+            
             // AccessoriesMousePage
             this.Root.Items.Add(new NavigationPage()
             {

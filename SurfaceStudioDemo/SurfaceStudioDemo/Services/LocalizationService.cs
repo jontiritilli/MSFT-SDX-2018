@@ -317,11 +317,12 @@ namespace SurfaceStudioDemo.Services
         public void LoadBestOfMicrosoftViewModel(BestOfMicrosoftViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.BEST_HEADLINE, "BEST_HEADLINE");
-            viewModel.BulletOneLegal = GetStringValue(_languageCurrent.BEST_BULLET_ONE_LEGAL, "BEST_BULLET_ONE_LEGAL");
-            viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.BEST_BULLET_TWO_LEGAL, "BEST_BULLET_TWO_LEGAL");
-            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
-            viewModel.BulletFourLegal = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_LEGAL, "BEST_BULLET_FOUR_LEGAL");
-
+            viewModel.LegalBulletOne = GetStringValue(_languageCurrent.BEST_BULLET_ONE_LEGAL, "BEST_BULLET_ONE_LEGAL");
+            viewModel.LegalBulletTwo = GetStringValue(_languageCurrent.BEST_BULLET_TWO_LEGAL, "BEST_BULLET_TWO_LEGAL");
+            viewModel.LegalBulletThree = GetStringValue(_languageCurrent.BEST_BULLET_THREE_LEGAL, "BEST_BULLET_THREE_LEGAL");
+            viewModel.LegalBulletFour = GetStringValue(_languageCurrent.BEST_BULLET_FOUR_LEGAL, "BEST_BULLET_FOUR_LEGAL");
+            viewModel.LegalBulletFive = GetStringValue(_languageCurrent.BEST_BULLET_FIVE_LEGAL, "BEST_BULLET_FIVE_LEGAL");
+            
             // bullet one
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 0, // order
@@ -521,7 +522,7 @@ namespace SurfaceStudioDemo.Services
             viewModel.Legal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_COPY_LEGAL, "COMPARE_DEVICE_THREE_POP_COPY_LEGAL");
             viewModel.BulletOneLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_ONE_LEGAL, "COMPARE_DEVICE_THREE_POP_BULLET_ONE_LEGAL");
             viewModel.BulletTwoLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL, "COMPARE_DEVICE_THREE_POP_BULLET_TWO_TITLE");
-            viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL, "COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL");
+            //viewModel.BulletThreeLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL, "COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL"); 
             viewModel.BulletFourLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL, "COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL");
             viewModel.BulletFiveLegal = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL, "COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL");
 
@@ -691,14 +692,14 @@ namespace SurfaceStudioDemo.Services
 
         private string GetStringValue(string value, string name)
         {
-            if (String.IsNullOrWhiteSpace(value))
-            {
-                return String.Format("Missing translation for {0}", name);
-            }
-            else
-            {
+            //if (String.IsNullOrWhiteSpace(value))
+            //{
+            //    return String.Format("Missing translation for {0}", name);
+            //}
+            //else
+            //{
                 return value;
-            }
+            //}
         }
 
         private string GetStringValueToUpper(string value, string name)

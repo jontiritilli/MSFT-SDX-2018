@@ -93,27 +93,6 @@ namespace SurfaceJackDemo.Services
             return file;
         }
 
-        public string GetTelemetryId()
-        {
-            string id = String.Empty;
-
-            if (this.IsLoaded)
-            {
-                switch (this.Configuration.TelemetryKey)
-                {
-                    case TelemetryKeys.Test:
-                        id = this.Configuration.TelemetryTestId;
-                        break;
-
-                    case TelemetryKeys.Prod:
-                        id = this.Configuration.TelemetryProdId;
-                        break;
-                }
-            }
-
-            return id;
-        }
-
         public async Task Initialize()
         {
             if (this.IsLoading || this.IsLoaded) { return; }

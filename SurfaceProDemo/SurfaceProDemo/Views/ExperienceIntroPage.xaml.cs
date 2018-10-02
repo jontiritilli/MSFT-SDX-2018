@@ -15,36 +15,47 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperienceIntroViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
+        #region Public Members
+        public static ExperienceIntroPage Current { get; private set; }
+        #endregion
 
         #region Construction
 
         public ExperienceIntroPage()
         {
-            InitializeComponent();      
-
+            InitializeComponent();
+            ExperienceIntroPage.Current = this;
+            this.LeftLegal.SetOpacity(0.0d);
+            this.TopLegal.SetOpacity(0.0d);
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;
+            this.TopLegal.SetOpacity(0);
+            this.TopLegal.SetOpacity(0);
             if (Services.ConfigurationService.Current.GetIsBlackSchemeEnabled())
             {
                 rBtnRight.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
+            this.Loaded += ExperienceIntroPage_Loaded;
         }
 
-        #endregion
-
-
-        #region INavigate Interface
-
-        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        private void ExperienceIntroPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            // animations in
+            NavigateFromPage();
+            ExperienceIntroPage.Current.HasLoaded = true;
+            if (ExperienceIntroPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_HeroFront,this.img_HeroFront.TranslateDirection,100,500,0);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_HeroBack, this.img_HeroBack.TranslateDirection, 100, 1000, 0);
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
 
@@ -53,6 +64,23 @@ namespace SurfaceProDemo.Views
 
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
+        }
+        #endregion
+
+
+        #region INavigate Interface
+
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        {
+            // animations in            
+            if (ExperienceIntroPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceIntroPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

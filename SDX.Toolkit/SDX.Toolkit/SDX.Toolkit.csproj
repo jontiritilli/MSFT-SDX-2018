@@ -124,6 +124,7 @@
     <Compile Include="Controls\FlipViewEx.cs" />
     <Compile Include="Controls\Header.cs" />
     <Compile Include="Controls\Hero.cs" />
+    <Compile Include="Controls\IAnimate.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\List.cs" />
     <Compile Include="Controls\ListItem.cs" />
@@ -143,6 +144,7 @@
       <DependentUpon>TextBlockEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Converters\TextBlockHeightConverter.cs" />
     <Compile Include="Converters\MultiplyDoublesConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasTopConverter.cs" />
@@ -179,7 +181,12 @@
       <Version>5.4.1.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\SDX.Telemetry\SDX.Telemetry\SDX.Telemetry.csproj">
+      <Project>{62d68448-6359-4834-8dcc-f263d4a78562}</Project>
+      <Name>SDX.Telemetry</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\AnimatedIcon.xaml">
       <SubType>Designer</SubType>

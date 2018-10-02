@@ -46,7 +46,9 @@
             LedeStyle="PageLede"                     
             Width="Auto"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>
 
         <ctrl:TextBlockEx x:Name="ListHeadline" Grid.Row="3" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.ListHeadline}"
@@ -80,10 +82,26 @@
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
+                x:Name="rBtnDial"
+                EntranceStaggerDelayInMilliseconds="600"
+                TryItEnabled="True"
+                TryItText="{x:Bind Path=ViewModel.DialTryItTitle}"
+                TryItCaption="{x:Bind Path=ViewModel.DialTryItLede}"
+                IsDialOnly="True"
+                IsRemovedOnInteraction="True"
+                RadiatingButtonIcon="dial"
+                PopupPosition="Left"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
+                AutoStart = "false"/>
+            
+            <ctrl:RadiatingButton
                 x:Name="rBtnPen"
+                EntranceStaggerDelayInMilliseconds="800"
                 TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.PenTryItTitle}"
                 TryItCaption="{x:Bind Path=ViewModel.PenTryItLede}"
+                IsPenOnly="True"
                 IsRemovedOnInteraction="True"
                 RadiatingButtonIcon="pen"
                 PopupPosition="Left"
@@ -91,17 +109,6 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"
                 AutoStart = "false"/>
 
-            <ctrl:RadiatingButton
-                x:Name="rBtnDial"
-                TryItEnabled="True"
-                TryItText="{x:Bind Path=ViewModel.DialTryItTitle}"
-                TryItCaption="{x:Bind Path=ViewModel.DialTryItLede}"
-                IsRemovedOnInteraction="True"
-                RadiatingButtonIcon="dial"
-                PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
-                AutoStart = "false"/>
         </Canvas>
     </Grid>
 </Page>

@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceProDemo.Views
@@ -18,6 +19,12 @@ namespace SurfaceProDemo.Views
             get { return DataContext as CompareViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+        public static ComparePage Current { get; private set; }
         #endregion
 
 
@@ -26,6 +33,7 @@ namespace SurfaceProDemo.Views
         public ComparePage()
         {
             InitializeComponent();
+            ComparePage.Current = this;
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
             timer.Start();
             timer.Tick += (sender, args) =>
@@ -46,9 +54,41 @@ namespace SurfaceProDemo.Views
                 this.rBtnGo.PopupChild = FlipViewPage.Current.GetComparePagePopupGo();
                 ComparePagePopupGo.Current.CloseButton_Clicked += Close_Go_Clicked;
             };
+            this.Loaded += ComparePage_Loaded;
         }
 
+        private void ComparePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ComparePage.Current.HasLoaded = true;
+            if (ComparePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
+
+            rBtnPro.StartEntranceAnimation();
+            rBtnPro.StartRadiateAnimation();
+
+            rBtnBook.StartEntranceAnimation();
+            rBtnBook.StartRadiateAnimation();
+
+            rBtnStudio.StartEntranceAnimation();
+            rBtnStudio.StartRadiateAnimation();
+
+            rBtnLaptop.StartEntranceAnimation();
+            rBtnLaptop.StartRadiateAnimation();
+
+            rBtnGo.StartEntranceAnimation();
+            rBtnGo.StartRadiateAnimation();
+        }
         #endregion
+
 
         #region Private Methods
 
@@ -82,30 +122,27 @@ namespace SurfaceProDemo.Views
             FlipViewPage.Current.ShowAppClose();
         }
 
+        private void RadiatingButton_Clicked(object sender, EventArgs e)
+        {
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
+        }
+
         #endregion
+
 
         #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            AnimationHelper.PerformPageEntranceAnimation(this);
-            AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
-
-            rBtnPro.StartEntranceAnimation();
-            rBtnPro.StartRadiateAnimation();
-
-            rBtnBook.StartEntranceAnimation();
-            rBtnBook.StartRadiateAnimation();
-
-            rBtnStudio.StartEntranceAnimation();
-            rBtnStudio.StartRadiateAnimation();
-
-            rBtnLaptop.StartEntranceAnimation();
-            rBtnLaptop.StartRadiateAnimation();
-
-            rBtnGo.StartEntranceAnimation();
-            rBtnGo.StartRadiateAnimation();
+            if (ComparePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ComparePage.Current.HasNavigatedTo = true;
+            }
 
 
         }
@@ -131,5 +168,7 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
+
+
     }
 }

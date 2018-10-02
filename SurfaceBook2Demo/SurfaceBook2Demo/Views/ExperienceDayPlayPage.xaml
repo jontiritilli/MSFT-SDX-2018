@@ -5,8 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters" 
     DataContext="{Binding ExperienceDayPlayViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -29,23 +36,43 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            Width="{StaticResource HeaderWidth}"
+            LedeWidth="360"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0" />
+        
+        <Canvas x:Name="ButtonCanvas"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="3">
 
+            <ctrl:LoopPlayer
+                x:Name="ForzaPlayer"
+                MediaSourceUri ="{x:Bind Path=ViewModel.DemoUri}"
+                VideoWidth = "{x:Bind Path=ViewModel.VideoWidth}"
+                VideoHeight = "{x:Bind Path=ViewModel.VideoHeight}"
+                Canvas.ZIndex="1"
+                Canvas.Left="{x:Bind Path=ViewModel.VideoSetLeft}"
+                Canvas.Top="{x:Bind Path=ViewModel.VideoSetTop}"
+                PlaybackPosition="1000"/>
+        </Canvas>
 
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1">
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
+        <ctrl:ImageEx x:Name="Hero" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3"
+            ImageSource="{x:Bind Path=ViewModel.HeroUri}"
+            ImageWidth="{x:Bind Path=ViewModel.HeroImageWidth}"
+            HasEntranceTranslation="False"                      
+            PageEntranceDirection="Left"
+            HasPageEntranceAnimationEnabled="false"/>
 
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.Legal}"                           
-                       TextStyle="Legal"                          
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"/>
+            Text="{x:Bind Path=ViewModel.Legal}"                           
+            TextStyle="Legal"                          
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
     </Grid>
 </Page>

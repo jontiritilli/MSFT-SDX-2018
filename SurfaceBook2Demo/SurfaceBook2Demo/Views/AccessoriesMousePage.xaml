@@ -40,6 +40,9 @@
                 Width="600"
                 HeaderAlignment="Right"                     
                 HorizontalAlignment="Right"
+                HeadlineOpacity="0"
+                LedeOpacity="0"
+                PageEntranceDirection="Right"
                 VerticalAlignment="Top" />
 
         <Canvas x:Name="ButtonCanvas"
@@ -50,16 +53,12 @@
                 Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"                
+                x:Name="rBtnLeft"             
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 TryItText="{x:Bind Path=ViewModel.PopupMouseTryItTitle}"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                                                     
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.58}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                                                     
                 PopupPosition="Left"
                 AutoStart = "false"/>
 
@@ -107,6 +106,7 @@
                        Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
+                       HasEntranceTranslation="False"
                        TextStyle="Legal"/>
     </Grid>
 </Page>

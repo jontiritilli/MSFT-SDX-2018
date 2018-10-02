@@ -64,8 +64,9 @@ namespace SurfaceStudioDemo.ViewModels
 
         public string x_ImageURI = URI_X_IMAGE;
         public double EllipseGridCanvasSetLeft;
-        public double CloseEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
-        public double CloseEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
+        public double CloseEllipseMargin = StyleHelper.GetApplicationDouble("CompareCloseMargin");
+
+        public double PageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
 
         public SolidColorBrush ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
 
@@ -75,7 +76,7 @@ namespace SurfaceStudioDemo.ViewModels
 
         public ExperiencePixelSensePopupViewModel()
         {
-            EllipseGridCanvasSetLeft = MaxImageWidth - CloseEllipseRightMargin - radiatingButtonRadius;
+            EllipseGridCanvasSetLeft = PageWidth - CloseEllipseMargin - radiatingButtonRadius;
 
             IconURIS.Add(new AppSelectorData()
             {

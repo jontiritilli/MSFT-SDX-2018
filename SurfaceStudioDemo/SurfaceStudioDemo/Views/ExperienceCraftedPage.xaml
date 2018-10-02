@@ -52,21 +52,25 @@
             HeaderAlignment="Right"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnRightCrafted"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.75}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.74}"
+                x:Name="rBtnLeftCrafted"
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="600"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.48}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.73}"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
-                x:Name="rBtnLeftCrafted"
-                PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.48}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.73}"
+                x:Name="rBtnRightCrafted"
+                EntranceStaggerDelayInMilliseconds="800"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.75}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.74}"
                 AutoStart = "false"/>
 
             <Popup

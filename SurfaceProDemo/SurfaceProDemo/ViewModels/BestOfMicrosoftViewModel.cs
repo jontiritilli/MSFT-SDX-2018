@@ -27,7 +27,12 @@ namespace SurfaceProDemo.ViewModels
         public string BulletTwoCTA;
         public string BulletThreeCTA;
         public string BulletFourCTA;
-        public string Legal;
+        public string LegalBulletOne;
+        public string LegalBulletTwo;
+        public string LegalBulletThree;
+        public string LegalBulletFour;
+        public string LegalBulletFive;
+
         public List<ListItem> ItemList = new List<ListItem>();
         public double ICON_WIDTH = 60d;
         #endregion

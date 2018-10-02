@@ -36,12 +36,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
-            x:Name="AccessoriesRight"
-            ImageWidth="2100"
-            ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+
 
         <ctrl:Header Grid.Row="1" Grid.Column="1"
             x:Name="PageHeader" 
@@ -52,29 +47,43 @@
             HeaderAlignment="Right"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"            
+            LedeOpacity="0"
+            PageEntranceDirection="Right"/>
+
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"
+            x:Name="AccessoriesRight"
+            ImageWidth="2100"
+            ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
+            HorizontalAlignment="Left"
+            HasPageEntranceAnimationEnabled="False"
             VerticalAlignment="Top"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeftAccRight"
+                EntranceStaggerDelayInMilliseconds="600"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
-                x:Name="rBtnRightAccRight"
-                PopupPosition="Right"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.56}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
-                AutoStart = "false"/>
-
-            <ctrl:RadiatingButton
                 x:Name="rBtnTopAccRight"
+                EntranceStaggerDelayInMilliseconds="800"
                 PopupPosition="Right"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.47}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"
+                AutoStart = "false"/>
+            
+            <ctrl:RadiatingButton
+                x:Name="rBtnRightAccRight"
+                EntranceStaggerDelayInMilliseconds="1000"
+                PopupPosition="Right"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.56}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
                 AutoStart = "false"/>
 
             <Popup
@@ -88,11 +97,10 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopTopLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
-                        />
-
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
                 </Popup.Child>
             </Popup>
+            
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"

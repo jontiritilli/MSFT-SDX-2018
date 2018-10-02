@@ -20,6 +20,7 @@ using SurfaceLaptopDemo.ViewModels;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
+using SDX.Telemetry.Services;
 
 
 namespace SurfaceLaptopDemo.Views
@@ -30,7 +31,12 @@ namespace SurfaceLaptopDemo.Views
 
         private const double PAGE_TIMER_DURATION = 8000d;
 
+        private const int PAGE_ACCESSORIES = 7;
+        private const int PAGE_BESTOF = 8;
+        private const int PAGE_COMPARE = 9;
+
         #endregion
+
 
         #region Private Members
 
@@ -45,11 +51,30 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
+
         #region Public Static Properties
 
         public static FlipViewPage Current { get; private set; }
 
         #endregion
+
+
+        #region Public Static Methods
+
+        public static NavigationBar GetNavigationBar()
+        {
+            NavigationBar bar = null;
+
+            if (null != FlipViewPage.Current)
+            {
+                bar = FlipViewPage.Current.BottomNavBar;
+            }
+
+            return bar;
+        }
+
+        #endregion
+
 
         #region Construction
 
@@ -67,10 +92,6 @@ namespace SurfaceLaptopDemo.Views
             // disappear the title bar
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-
-            //this.GettingFocus += FlipView_GettingFocus;
-            this.KeyUp += FlipView_KeyUp;
-            this.PointerReleased += FlipView_PointerReleased;
 
             // configure focus
             this.FocusVisualMargin = new Thickness(0);
@@ -103,6 +124,7 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
+
 
         #region Event Handlers
 
@@ -182,6 +204,24 @@ namespace SurfaceLaptopDemo.Views
 
                         // tell the navbar to move to it
                         this.BottomNavBar.MoveToPageIndex(nextPageIndex, (INavigateMoveDirection.Forward == moveDirection));
+
+                        // telemetry - log section views
+                        if (nextPageIndex < PAGE_ACCESSORIES)
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewExperience);
+                        }
+                        else if (nextPageIndex < PAGE_BESTOF)
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewAccessories);
+                        }
+                        else if (nextPageIndex < PAGE_COMPARE)
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewBestOf);
+                        }
+                        else
+                        {
+                            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ViewComparison);
+                        }
                     }
                 }
             }
@@ -208,20 +248,30 @@ namespace SurfaceLaptopDemo.Views
                     }
                 }
             }
-        }
 
-        private void FlipView_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            if (null != this.BottomNavBar)
+            // telemetry - log section nav
+            if (NavigationActions.Section == e.NavAction)
             {
-                e.Handled = this.BottomNavBar.HandleKey(e.Key);
-            }
-        }
+                // we've gone to a section, so log it
+                switch (e.NavSection.Name)
+                {
+                    case "Experience":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavExperience);
+                        break;
 
-        private void FlipView_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            // i hate this, but App is not getting pointer hits
-            App.Current?.HandlePointerReleased(e.Pointer.PointerDeviceType);
+                    case "Accessories":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavAccessories);
+                        break;
+
+                    case "BestOfMicrosoft":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavBestOf);
+                        break;
+
+                    case "Compare":
+                        TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.NavComparison);
+                        break;
+                }
+            }
         }
 
         private void AppClose_Click(object sender, RoutedEventArgs e)
@@ -231,6 +281,7 @@ namespace SurfaceLaptopDemo.Views
         }
 
         #endregion
+
 
         #region Public Methods
 
@@ -248,6 +299,16 @@ namespace SurfaceLaptopDemo.Views
             {
                 this.AppClose.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
         }
 
         // load COMPARE PAGE full page popups

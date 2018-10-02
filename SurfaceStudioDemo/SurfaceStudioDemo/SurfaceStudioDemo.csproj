@@ -422,6 +422,9 @@
     <Content Include="Assets\StoreIcons\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
     <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\RadiatingButton\tryit_dial.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
@@ -480,6 +483,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-en-GB.json" />
     <None Include="SurfaceStudioDemo_StoreKey.pfx" />
     <None Include="SurfaceStudioDemo_TemporaryKey.pfx" />
   </ItemGroup>

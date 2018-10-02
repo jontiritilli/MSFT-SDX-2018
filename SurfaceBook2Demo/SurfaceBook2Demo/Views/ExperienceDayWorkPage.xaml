@@ -37,52 +37,46 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"     
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Grid.Column="1"
+            Grid.ColumnSpan="2"     
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            Width="{StaticResource HeaderWidth}"
+            LedeWidth="350"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                     
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
-
-            <ctrl:RadiatingButton
-                x:Name="rBtnRight"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                
-                PopupPosition="Left"
-                AutoStart = "false"/>
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.72}"                  
+                EntranceStaggerDelayInMilliseconds = "600"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                  
                 PopupPosition="Right"                
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton 
-                    x:Name="rBtnTop"                              
-                    EntranceDurationInMilliseconds = "400"
-                    EntranceStaggerDelayInMilliseconds = "0"
-                    RadiateDurationInMilliseconds = "1800"
-                    RadiateStaggerDelayInMilliseconds = "5000"
-                    Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.28}"
-                    Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.38}"                  
-                    AutoStart = "false"                    
-                    />
+                x:Name="rBtnTop"                           
+                EntranceStaggerDelayInMilliseconds = "800"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.27}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"                  
+                AutoStart = "false"/>
+
+            <ctrl:RadiatingButton
+                x:Name="rBtnRight"
+                EntranceStaggerDelayInMilliseconds = "1000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                
+                PopupPosition="Left"
+                AutoStart = "false"/>
 
             <Popup
                 x:Name="PopLeft"
@@ -94,12 +88,12 @@
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
-                        PopupType="Text"
+                        PopupType="Battery"
                         Headline="{x:Bind Path=ViewModel.PopupBatteryLifeHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopupBatteryLifeLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, 
-                            Converter={StaticResource MathConverterKey},
-                            Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
+                        HourText="hrs"
+                        HourIntegerMax="17"                        
                         />
                 </Popup.Child>
             </Popup>
@@ -111,7 +105,7 @@
                 Opened="PopRight_Opened"
                 Closed="PopRight_Closed"
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"                 
-                IsLightDismissEnabled="True">
+                IsLightDismissEnabled="False">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Image"
@@ -124,31 +118,27 @@
             </Popup>
 
             <ctrl:TextBlockEx x:Name="LegalBatteryLife"
-                       Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.93}"
-                       Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.03}" 
-                       TextStyle="Legal"
-                       Opacity="0" />
+                Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.93}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.03}" 
+                TextStyle="Legal"/>
         </Canvas>
 
-
-
-        <Image x:Name="Hero" Width="1000" Grid.Row="3" Grid.Column="1"
-               Grid.RowSpan="2">
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1000" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
-
-
+        <ctrl:ImageEx x:Name="Hero" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3"
+            ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.HeroUri}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            PageEntranceDirection="Left"
+            HasEntranceTranslation="False"
+            Opacity="0"/>
 
         <ctrl:TextBlockEx x:Name="LegalConnections" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopupConnectionsLegal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       TextStyle="Legal"
-                       Opacity="0" />
+            Text="{x:Bind Path=ViewModel.PopupConnectionsLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"/>
     </Grid>
 </Page>

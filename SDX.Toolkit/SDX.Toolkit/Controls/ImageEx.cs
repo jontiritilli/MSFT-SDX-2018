@@ -27,7 +27,7 @@ using SDX.Toolkit.Helpers;
 namespace SDX.Toolkit.Controls
 {
 
-    public sealed class ImageEx : Control
+    public sealed class ImageEx : Control, IAnimate
     {
         #region Constants
 
@@ -42,7 +42,6 @@ namespace SDX.Toolkit.Controls
         private Image _image;
 
         #endregion
-
 
         #region Construction
 
@@ -110,6 +109,34 @@ namespace SDX.Toolkit.Controls
             set { SetValue(TranslateDirectionProperty, value); }
         }
 
+        // TranslateDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(ImageEx), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
+        // HasPageEntranceTranslation
+        public static readonly DependencyProperty HasEntranceTranslationProperty =
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+
+        public bool HasEntranceTranslation
+        {
+            get { return (bool)GetValue(HasEntranceTranslationProperty); }
+            set { SetValue(HasEntranceTranslationProperty, value); }
+        }
+        //HasPageEntranceAnimation
+        public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
+        DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+
+        public bool HasPageEntranceAnimationEnabled
+        {
+            get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
+            set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
         #endregion
 
 
@@ -242,6 +269,30 @@ namespace SDX.Toolkit.Controls
             //throw new BadImageFormatException(e.ErrorMessage);
         }
 
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return this.HasPageEntranceAnimationEnabled;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return this.PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return this.HasEntranceTranslation;
+        }
         #endregion
 
 

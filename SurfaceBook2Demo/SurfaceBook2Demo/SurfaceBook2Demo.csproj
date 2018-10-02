@@ -391,6 +391,9 @@
     <Content Include="Assets\Backgrounds\sb2_15_experience_play.png" />
     <Content Include="Assets\Backgrounds\sb2_13_background_dark.jpg" />
     <Content Include="Assets\Backgrounds\sb2_13_background_light.jpg" />
+    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Comparison\comparisonFamily_13.png" />
     <Content Include="Assets\Comparison\comparisonFamily_15.png" />
     <Content Include="Assets\Comparison\comparisonGo_13.png" />
@@ -415,6 +418,7 @@
     <Content Include="Assets\DaySlider\sb2_15_battery_4.png" />
     <Content Include="Assets\DaySlider\sb2_15_moon.png" />
     <Content Include="Assets\DaySlider\sb2_15_sun.png" />
+    <Content Include="Assets\Experience\forza_demo.mp4" />
     <Content Include="Assets\Experience\sb2_13_bluebeam.png" />
     <Content Include="Assets\Experience\sb2_13_maya.png" />
     <Content Include="Assets\Experience\sb2_13_photoshop.png" />
@@ -567,6 +571,9 @@
     <Content Include="Assets\RadiatingButton\tryit_dot.png" />
     <Content Include="Assets\RadiatingButton\tryit.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
@@ -578,6 +585,8 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-en-GB.json" />
+    <None Include="SDA-ja-JP.json" />
     <None Include="SurfaceBook2Demo_StoreKey.pfx" />
     <None Include="SurfaceBook2Demo_TemporaryKey.pfx" />
   </ItemGroup>

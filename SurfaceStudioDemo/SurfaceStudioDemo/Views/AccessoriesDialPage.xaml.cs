@@ -18,6 +18,12 @@ namespace SurfaceStudioDemo.Views
             get { return DataContext as AccessoriesDialViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+        public static AccessoriesDialPage Current { get; private set; }
         #endregion
 
         #region Construction
@@ -25,8 +31,28 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesDialPage()
         {
             InitializeComponent();
-
+            AccessoriesDialPage.Current = this;
+            this.PopDialLegal.SetOpacity(0.0d);
             this.rBtnRightAccLeft.PopupChild = this.PopRight;
+            this.Loaded += AccessoriesDialPage_Loaded;
+        }
+
+        private void AccessoriesDialPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            AccessoriesDialPage.Current.HasLoaded = true;
+            if (AccessoriesDialPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnRightAccLeft.StartEntranceAnimation();
+            rBtnRightAccLeft.StartRadiateAnimation();
         }
 
         #endregion
@@ -49,10 +75,14 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            AnimationHelper.PerformPageEntranceAnimation(this);
-
-            rBtnRightAccLeft.StartEntranceAnimation();
-            rBtnRightAccLeft.StartRadiateAnimation();
+            if (AccessoriesDialPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                AccessoriesDialPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

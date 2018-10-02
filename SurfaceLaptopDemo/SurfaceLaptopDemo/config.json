@@ -1,9 +1,8 @@
 ﻿{
   "IsAttractorLoopEnabled": true,
   "Language": "",
-  "IsTelemetryEnabled": false,
-  "TelemetryBaseUrl": "https://rdx-api.azurewebsites.net/api/ReceiveTelemetryV2",
+  "IsTelemetryEnabled": true,
   "TelemetryKey": "Test",
-  "TelemetryProdId": "",
-  "TelemetryTestId": ""
+  "IsBlackSchemeEnabled": true,
+  "IsCoralSchemeEnabled": true
 }

@@ -1,14 +1,10 @@
 ﻿using System;
 
+using SDX.Telemetry.Services;
+
 
 namespace SurfaceProDemo.Models
 {
-    public enum TelemetryKeys
-    {
-        Test,
-        Prod
-    }
-
     public class ConfigurationFile
     {
         public bool IsAttractorLoopEnabled = true;
@@ -16,9 +12,6 @@ namespace SurfaceProDemo.Models
         public string Language = "en-US";
         public bool IsTelemetryEnabled = false;
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
-        public string TelemetryBaseUrl = String.Empty;
-        public string TelemetryProdId = String.Empty;
-        public string TelemetryTestId = String.Empty;
         public bool IsBlackSchemeEnabled = false;
         public bool IsChoosePathPageEnabled = false;
 
@@ -31,9 +24,6 @@ namespace SurfaceProDemo.Models
                 Language = String.Empty,
                 IsTelemetryEnabled = false,
                 TelemetryKey = TelemetryKeys.Test,
-                TelemetryBaseUrl = String.Empty,
-                TelemetryProdId = String.Empty,
-                TelemetryTestId = String.Empty,
                 IsBlackSchemeEnabled = false,
                 IsChoosePathPageEnabled = false
             };

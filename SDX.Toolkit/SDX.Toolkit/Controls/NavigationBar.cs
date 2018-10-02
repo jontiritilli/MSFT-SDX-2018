@@ -246,6 +246,16 @@ namespace SDX.Toolkit.Controls
             set => SetValue(IsHomeEnabledProperty, value);
         }
 
+        // IsNavigationEnabled
+        public static readonly DependencyProperty IsNavigationEnabledProperty =
+            DependencyProperty.Register("IsNavigationEnabled", typeof(bool), typeof(NavigationBar), new PropertyMetadata(true));
+
+        public bool IsNavigationEnabled
+        {
+            get => (bool)GetValue(IsNavigationEnabledProperty);
+            set => SetValue(IsNavigationEnabledProperty, value);
+        }
+
         // AreGridLinesEnabled
         public static readonly DependencyProperty AreGridLinesEnabledProperty =
             DependencyProperty.Register("AreGridLinesEnabled", typeof(bool), typeof(NavigationBar), new PropertyMetadata(false, AreGridLinesEnabledChanged));
@@ -418,9 +428,6 @@ namespace SDX.Toolkit.Controls
                     handled = true;
                     break;
             }
-
-            //// i hate this, but App is not getting these keys
-            //App.Current.HandleKeyUp(key);
 
             return handled;
         }
@@ -902,36 +909,40 @@ namespace SDX.Toolkit.Controls
         {
             bool moved = false;
 
-            // if our root is valid and it has pages
-            if ((null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count > 0))
+            // is navigation enabled?
+            if (this.IsNavigationEnabled)
             {
-                // is the page part of the root visual tree, does it have a section, and is that section valid?
-                if ((this.Root.HasChild(page)) && (null != page.Section) && (this.NavigationSections.Contains<NavigationSection>(page.Section)))
+                // if our root is valid and it has pages
+                if ((null != this.Root) && (null != this.Root.Items) && (this.Root.Items.Count > 0))
                 {
-                    // try to set this page as selected
-                    if (this.Root.SelectPage(page))
+                    // is the page part of the root visual tree, does it have a section, and is that section valid?
+                    if ((this.Root.HasChild(page)) && (null != page.Section) && (this.NavigationSections.Contains<NavigationSection>(page.Section)))
                     {
-                        // save this section as selected
-                        this.SelectedSection = page.Section;
-
-                        // set the selected item
-                        this.SelectedItem = page;
-
-                        // set our go back/forward flags
-                        this.CanGoBack = this.Root.CanGoBack();
-                        this.CanGoForward = this.Root.CanGoForward();
-
-                        // we've made changes, so need to update the UI
-                        this.UpdateUI();
-
-                        // raise our navigate event
-                        if (raiseEvent)
+                        // try to set this page as selected
+                        if (this.Root.SelectPage(page))
                         {
-                            RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
-                        }
+                            // save this section as selected
+                            this.SelectedSection = page.Section;
 
-                        // flag success
-                        moved = true;
+                            // set the selected item
+                            this.SelectedItem = page;
+
+                            // set our go back/forward flags
+                            this.CanGoBack = this.Root.CanGoBack();
+                            this.CanGoForward = this.Root.CanGoForward();
+
+                            // we've made changes, so need to update the UI
+                            this.UpdateUI();
+
+                            // raise our navigate event
+                            if (raiseEvent)
+                            {
+                                RaiseNavigateEvent(this, navigationAction, this.SelectedSection, this.SelectedItem);
+                            }
+
+                            // flag success
+                            moved = true;
+                        }
                     }
                 }
             }

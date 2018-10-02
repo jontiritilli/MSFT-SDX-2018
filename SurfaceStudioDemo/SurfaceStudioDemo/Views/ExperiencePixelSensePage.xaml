@@ -38,6 +38,19 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Lede="{x:Bind Path=ViewModel.Lede}"  
+            HeaderAlignment="Right"
+            Width="{StaticResource HeaderWidth}"              
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>
+
         <ctrl:ImageEx Grid.Row="0" Grid.Column="1" Grid.RowSpan="6"
             x:Name="img_Left"
             ImageWidth="{x:Bind Path=ViewModel.Left_Width}"
@@ -45,6 +58,7 @@
             Margin="0,0,0,75"
             TranslateDirection="Right"
             HorizontalAlignment="Left"
+            Opacity="0"            
             VerticalAlignment="Bottom"/>
 
         <ctrl:ImageEx Grid.Row="0" Grid.Column="2" Grid.RowSpan="6"
@@ -54,44 +68,29 @@
             Margin="0,0,0,100"
             TranslateDirection="Left"
             HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"/>
-        
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="2"
-            Headline="{x:Bind Path=ViewModel.Headline}"
-            HeadlineStyle="PageHeadline"
-            LedeStyle="PageLede"
-            Lede="{x:Bind Path=ViewModel.Lede}"  
-            HeaderAlignment="Right"
-            Width="{StaticResource HeaderWidth}"              
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Bottom"
+            PageEntranceDirection="Right"
+            Opacity="0"/>
+
 
         <ctrl:TextBlockEx x:Name="PopLeftLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            TextStyle="Legal"
-            Opacity="0" />
+            TextStyle="Legal"/>
 
         <ctrl:TextBlockEx x:Name="PopBottomLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopBottomLegal}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            TextStyle="Legal"
-            Opacity="0" />
+            TextStyle="Legal" />
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnRightPixelSense"
-                PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
-                AutoStart = "false"/>
-            
-            <ctrl:RadiatingButton
                 x:Name="rBtnLeftPixelSense"
                 PopupPosition="Right"
+                EntranceStaggerDelayInMilliseconds="600"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.23}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.49}"
                 AutoStart = "false"/>
@@ -99,15 +98,24 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnBottomPixelSense"
                 PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.66}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"
                 AutoStart = "false"/>
 
+            <ctrl:RadiatingButton
+                x:Name="rBtnRightPixelSense"
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
+                AutoStart = "false"/>
+            
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="275"
-                VerticalOffset="375"                    
+                VerticalOffset="390"                    
                 IsLightDismissEnabled="True"
                 Opened="PopLeft_Opened"
                 Closed="PopLeft_Closed">
@@ -125,8 +133,8 @@
             <Popup
                 x:Name="PopBottom"
                 IsOpen = "False"
-                HorizontalOffset="830"
-                VerticalOffset="545"                    
+                HorizontalOffset="930"
+                VerticalOffset="610"                    
                 IsLightDismissEnabled="True"
                 Opened="PopBottom_Opened"
                 Closed="PopBottom_Closed">

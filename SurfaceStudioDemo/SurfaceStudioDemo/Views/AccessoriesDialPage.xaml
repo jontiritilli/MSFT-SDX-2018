@@ -41,6 +41,7 @@
             ImageWidth="2100"
             ImageSource="{x:Bind Path=ViewModel.PrimaryImage}"
             HorizontalAlignment="Right"
+            HasPageEntranceAnimationEnabled="False"
             VerticalAlignment="Top"/>
 
         <ctrl:Header Grid.Row="1" Grid.Column="1"
@@ -51,19 +52,22 @@
             LedeStyle="PageLede"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>                     
 
         <ctrl:TextBlockEx x:Name="PopDialLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopDialLegal}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             TextStyle="Legal"
-            Opacity="0" />
+            HasPageEntranceAnimationEnabled="False"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRightAccLeft"
+                EntranceStaggerDelayInMilliseconds="600"
                 PopupPosition="Right"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.38}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"
@@ -85,7 +89,7 @@
                         MediaSourceUri = "{x:Bind Path=ViewModel.PopDialVideo}"
                         MediaHasMargin="False"
                         MediaWidth = "600"
-                        MediaHeight = "337.5"                           
+                        MediaHeight = "337.5"                        
                         />
                 </Popup.Child>
             </Popup>

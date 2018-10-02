@@ -361,6 +361,10 @@
     <Content Include="Assets\Accessories\Images\cobalt-right.png" />
     <Content Include="Assets\Accessories\Images\platinum-left.png" />
     <Content Include="Assets\Accessories\Images\platinum-right.png" />
+    <Content Include="Assets\Attractor\attractor.mp4" />
+    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Experience\detached_keyboard.jpg" />
     <Content Include="Assets\Experience\kickRotate_720p30.mp4" />
     <Content Include="Assets\Experience\laptop_bluebeam.png" />
@@ -387,7 +391,6 @@
     <Content Include="Assets\Icons\ArtworkColors\teal_active.png" />
     <Content Include="Assets\Icons\ArtworkColors\purple.png" />
     <Content Include="Assets\Accessories\peacock.png" />
-    <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\brand-bg.png" />
     <Content Include="Assets\Backgrounds\generic-bg.png" />
     <Content Include="Assets\Backgrounds\gradient-bg.jpg" />
@@ -516,6 +519,13 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SDA-ja-JP.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="SDA-en-GB.json" />
     <None Include="SurfaceProDemo_StoreKey.pfx" />
     <None Include="SurfaceProDemo_TemporaryKey.pfx" />
   </ItemGroup>

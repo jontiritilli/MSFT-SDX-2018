@@ -16,6 +16,13 @@ namespace SurfaceLaptopDemo.Views
         {
             get { return DataContext as ExperiencePerformanceViewModel; }
         }
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+
+        public static ExperiencePerformancePage Current { get; private set; }
 
         #endregion
 
@@ -24,8 +31,20 @@ namespace SurfaceLaptopDemo.Views
         public ExperiencePerformancePage()
         {
             InitializeComponent();
+            ExperiencePerformancePage.Current = this;
             this.AppSelectorImagePerf.AppSelector = this.AppSelectorPerf;
             this.AppSelectorImageMinorPerf.AppSelector = this.AppSelectorPerf;
+            this.Loaded += ExperiencePerformancePage_Loaded;
+        }
+
+        private void ExperiencePerformancePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperiencePerformancePage.Current.HasLoaded = true;
+            if (ExperiencePerformancePage.Current.HasNavigatedTo)
+            {
+                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            }
         }
 
         #endregion
@@ -34,7 +53,15 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            if (ExperiencePerformancePage.Current.HasLoaded)
+            {
+                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            }
+            else
+            {
+                ExperiencePerformancePage.Current.HasNavigatedTo = true;
+            }
+
         }
 
         public void NavigateFromPage()

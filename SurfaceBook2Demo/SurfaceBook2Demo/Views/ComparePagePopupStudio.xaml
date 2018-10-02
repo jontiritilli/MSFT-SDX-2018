@@ -4,11 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SurfaceBook2Demo.Views"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"  
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ComparePopupStudioViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <conv:TextBlockHeightConverter x:Key="TextBlockHeightConverterKey"/>
+    </Page.Resources>
+    
     <Grid
         x:Name="ContentArea"
         Height="{StaticResource ScreenHeight}"
@@ -17,11 +22,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource CompareSpaceBelowHeader}"/> 
+            <RowDefinition Height="{StaticResource CompareSpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource CompareSpaceBelowSubHeader}"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
@@ -33,7 +42,7 @@
 
         <ctrl:ImageEx Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2"
             x:Name="Hero"
-            ImageWidth="784"
+            ImageWidth="{x:Bind Path=ViewModel.PrimaryImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.PrimaryImageURI}"
             HorizontalAlignment="Right"
             VerticalAlignment="Center"/>
@@ -53,24 +62,52 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center" />
 
-        <ctrl:List Grid.Row="5" Grid.Column="1" Grid.RowSpan="2"
+        <ctrl:List Grid.Row="5" Grid.Column="1"
             x:Name="CompareList"
             ListStyle="Compare"
             ListItems="{x:Bind Path=ViewModel.CompareListItems}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"/>
 
-        <ctrl:TextBlockEx x:Name="Legal" Grid.Row="7" Grid.Column="1"
-            Text="{x:Bind Path=ViewModel.Legal}"
+        <ctrl:TextBlockEx x:Name="BulletOneLegal" Grid.Row="7" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.BulletOneLegal}"
             TextStyle="Legal"
-            Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.BulletOneLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletTwoLegal" Grid.Row="8" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.BulletTwoLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.BulletTwoLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletThreeLegal" Grid.Row="9" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.BulletThreeLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.BulletThreeLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletFourLegal" Grid.Row="10" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.BulletFourLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.BulletFourLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletFiveLegal" Grid.Row="11" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.BulletFiveLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.BulletFiveLegal, Converter={StaticResource TextBlockHeightConverterKey}}"/>
 
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3">
             <Grid x:Name="grdCloseButton"
                 Canvas.Left="{x:Bind Path=ViewModel.EllipseGridCanvasSetLeft}"  
-                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseMargin}"            
+                Canvas.Top="{x:Bind Path=ViewModel.CloseEllipseMargin}"             
                 PointerPressed="PopClose_Click">
 
                 <Ellipse

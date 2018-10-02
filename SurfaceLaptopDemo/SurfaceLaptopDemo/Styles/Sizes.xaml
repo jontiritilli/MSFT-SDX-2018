@@ -52,14 +52,14 @@
     <GridLength x:Key="LeftMargin">100.267</GridLength>
     <GridLength x:Key="TopMargin">81.067</GridLength>
     <GridLength x:Key="RightMargin">100.267</GridLength>    <!-- Not spec'ed in design; Assumed to mirror left margin -->
-    <GridLength x:Key="BottomMargin">68</GridLength>
+    <GridLength x:Key="BottomMargin">50</GridLength>
 
     <GridLength x:Key="SpaceBelowHeader">67.733</GridLength>
     <GridLength x:Key="BestOfMicrosoftSpaceBelowHeader">125</GridLength>
 
     <x:Double x:Key="PinchSideMargin">100.267</x:Double>
     <x:Double x:Key="PinchTopMargin">83.067</x:Double>
-    <x:Double x:Key="PinchZoomImageWidth">1404</x:Double>
+    <x:Double x:Key="PinchZoomImageWidth">1403.733</x:Double> <!-- canvas width - left and right margin -->
     <x:Double x:Key="PinchZoomImageHeight">810.667</x:Double>
     <x:Double x:Key="PinchImageMargin">50</x:Double>
     
@@ -69,7 +69,8 @@
     <x:Double x:Key="AppSelectorButtonWidth">48</x:Double>
     <x:Double x:Key="AppSelectorLineBottomMargin">20</x:Double>
     <x:Double x:Key="AppSelectorLineLeftMargin">10.5</x:Double>
-    
+    <x:Double x:Key="AppSelectorMarginRight">20</x:Double>
+
     <x:Double x:Key="HeaderWidth">474</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPageHeader">24.533</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">19.467</x:Double>
@@ -88,16 +89,16 @@
 
     <x:Double x:Key="CompareListIconWidth">40</x:Double>
     <x:Double x:Key="CompareListTextWidth">589.333</x:Double>
-    <x:Double x:Key="CompareRowSpacerHeight">30</x:Double>
+    <x:Double x:Key="CompareRowSpacerHeight">25</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">28</x:Double>
     <x:Double x:Key="CompareCloseMargin">50</x:Double>
+    <x:Double x:Key="CompareImageWidth">784</x:Double>
+    <GridLength x:Key="CompareBottomMargin">20</GridLength>
 
     <GridLength x:Key="CompareSpaceBelowHeader">15</GridLength>
-    <GridLength x:Key="CompareSpaceBelowSubHeader">45</GridLength>
+    <GridLength x:Key="CompareSpaceBelowSubHeader">35</GridLength>
     
     <x:Double x:Key="ExperienceAppIconWidth">64</x:Double>
-
-    <x:Double x:Key="AccessoryColorSelectorIconWidth">64</x:Double>
     <x:Double x:Key="ExperienceColorSelectorIconWidth">56</x:Double>
     
     <x:Double x:Key="AccessoryPrimaryImageWidth">1403.733</x:Double> <!-- canvas width - left and right margin -->
@@ -114,8 +115,8 @@
 
     <x:Double x:Key="RadiatingButtonEllipseRadius">60</x:Double>
     <x:Double x:Key="RadiatingButtonGridWidth">138.667</x:Double>
-    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">16.367</x:Double>
-    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">24.48</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseTopSpacer">10</x:Double>
+    <x:Double x:Key="RadiatingButtonEllipseBottomSpacer">10</x:Double>
     <x:Double x:Key="RadiatingButtonCaptionHeight">26.667</x:Double>
     <x:Double x:Key="RadiatingButtonCloseIconWidth">20</x:Double>
 
@@ -124,8 +125,9 @@
     <x:Double x:Key="TryItPathCoverBottomMargin">2.5</x:Double>
     <x:Double x:Key="TryItPathHeight">8</x:Double> <!--height of the triangle at the bottom of the messagebox-->
     <x:Double x:Key="TryItPathWidth">16</x:Double> <!--width of the triangle at the bottom of the messagebox-->
-    <x:Double x:Key="TryItIconHeight">40</x:Double> 
-    
+    <x:Double x:Key="TryItIconHeight">40</x:Double>
+    <x:Double x:Key="TryItDotHeight">30</x:Double>
+
     <x:Double x:Key="CanvasWidth">1504</x:Double>  <!-- 2256 * 2/3 (150% scaling) = 960 -->
     <x:Double x:Key="CanvasHeight">941.333</x:Double> <!-- (1504 - 92(navbar)) * 2/3(150% scaling) = 941.333 -->
     

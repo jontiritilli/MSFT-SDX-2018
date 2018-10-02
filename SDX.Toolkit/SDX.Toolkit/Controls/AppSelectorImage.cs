@@ -20,7 +20,7 @@ namespace SDX.Toolkit.Controls
     }
     #endregion
 
-    public sealed class AppSelectorImage : Control
+    public sealed class AppSelectorImage : Control, IAnimate
     {
         #region Private Constants
 
@@ -53,8 +53,7 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(AppSelectorImage);
 
             this.Loaded += OnLoaded;
-            this.Images = new List<Image>();
-            this.Opacity = 0;
+            this.Images = new List<Image>();            
             // inherited dependency property
             //new PropertyChangeEventSource<double>(
             //    this, "Opacity", BindingMode.OneWay).ValueChanged +=
@@ -209,7 +208,36 @@ namespace SDX.Toolkit.Controls
             get { return ((List<BitmapImage>)GetValue(BitmapImagesProperty)); }
             set { SetValue(BitmapImagesProperty, value); }
         }
-       
+
+        // TranslateDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(AppSelectorImage), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
+
+        //HasPageEntranceAnimation
+        public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
+        DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(true));
+
+        public bool HasPageEntranceAnimationEnabled
+        {
+            get { return (bool)GetValue(HasPageEntranceAnimationEnabledProperty); }
+            set { SetValue(HasPageEntranceAnimationEnabledProperty, value); }
+        }
+
+        // HasPageEntranceTranslation
+        public static readonly DependencyProperty HasEntranceTranslationProperty =
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+
+        public bool HasEntranceTranslation
+        {
+            get { return (bool)GetValue(HasEntranceTranslationProperty); }
+            set { SetValue(HasEntranceTranslationProperty, value); }
+        }
         #endregion
 
         #region Event Handlers
@@ -360,6 +388,30 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return HasPageEntranceAnimationEnabled;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return HasEntranceTranslation;
+        }
         #endregion
 
 

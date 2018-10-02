@@ -48,9 +48,9 @@ namespace SDX.Toolkit.Controls
         
         private const double RADIATE_SIZE_DEFAULT = 0d;
         private const double RADIATE_OPACITY_DEFAULT = 0.0;
-        private const double RADIATE_OPACITY_START = 0.6;
-        private const double RADIATE_OPACITY_END = 0.3;
-        private const double TRY_IT_DELAY = 4500;
+        private const double RADIATE_OPACITY_START = 0.8;
+        private const double RADIATE_OPACITY_END = 0.0;
+        private const double TRY_IT_DELAY = 2500;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/RadiatingButton/tryit_dot.png";
@@ -131,6 +131,7 @@ namespace SDX.Toolkit.Controls
             get => (bool)GetValue(IsTouchOnlyProperty);
             set => SetValue(IsTouchOnlyProperty, value);
         }
+
         // IsMouseOnly
         public static readonly DependencyProperty IsMouseOnlyProperty =
             DependencyProperty.Register("IsMouseOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
@@ -139,6 +140,16 @@ namespace SDX.Toolkit.Controls
         {
             get => (bool)GetValue(IsMouseOnlyProperty);
             set => SetValue(IsMouseOnlyProperty, value);
+        }
+
+        // IsDialOnly
+        public static readonly DependencyProperty IsDialOnlyProperty =
+            DependencyProperty.Register("IsDialOnly", typeof(bool), typeof(RadiatingButton), new PropertyMetadata(false));
+
+        public bool IsDialOnly
+        {
+            get => (bool)GetValue(IsDialOnlyProperty);
+            set => SetValue(IsDialOnlyProperty, value);
         }
 
         // TryItText
@@ -253,7 +264,7 @@ namespace SDX.Toolkit.Controls
 
         // EntranceDurationInMilliseconds
         public static readonly DependencyProperty EntranceDurationInMillisecondsProperty =
-            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(300d, OnEntranceDurationInMillisecondsChanged));
+            DependencyProperty.Register("EntranceDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(750d, OnEntranceDurationInMillisecondsChanged));
 
         public double EntranceDurationInMilliseconds
         {
@@ -273,7 +284,7 @@ namespace SDX.Toolkit.Controls
 
         // RadiateDurationInMilliseconds
         public static readonly DependencyProperty RadiateDurationInMillisecondsProperty =
-            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1500d, OnRadiateDurationInMillisecondsChanged));
+            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1250d, OnRadiateDurationInMillisecondsChanged));
 
         public double RadiateDurationInMilliseconds
         {
@@ -283,7 +294,7 @@ namespace SDX.Toolkit.Controls
 
         // RadiateStaggerDelayInMilliseconds
         public static readonly DependencyProperty RadiateStaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(3000d, OnRadiateStaggerDelayInMillisecondsChanged));
+            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1250d, OnRadiateStaggerDelayInMillisecondsChanged));
 
         public double RadiateStaggerDelayInMilliseconds
         {
@@ -381,25 +392,68 @@ namespace SDX.Toolkit.Controls
                 return;
             }
 
-            // set opacity
-            if (null != _radiateEllipse)
+            // if there is a delay for the radiating button, we can't start the radiate
+            if (this.EntranceStaggerDelayInMilliseconds > 0)
             {
-                _radiateEllipse.Opacity = RADIATE_OPACITY_START;
-            }
+                // create a timer
+                if (null == _timerRadiate)
+                {
+                    _timerRadiate = new DispatcherTimer()
+                    {
+                        Interval = TimeSpan.FromMilliseconds(EntranceStaggerDelayInMilliseconds)
+                    };
+                    _timerRadiate.Tick += DispatcherTimerRadiate_Tick;
+                    _timerRadiate.Tick += (sender, args) =>
+                    {// well this works? but ew
+                        _timerRadiate.Stop();
 
-            // launch the storyboards
-            if (null != _radiatingStoryboardX)
-            {
-                _radiatingStoryboardX.Begin();
-            }
+                        // set opacity
+                        if (null != _radiateEllipse)
+                        {
+                            _radiateEllipse.Opacity = RADIATE_OPACITY_END;
+                        }
 
-            if (null != _radiatingStoryboardY)
-            {
-                _radiatingStoryboardY.Begin();
+                        // launch the storyboards
+                        if (null != _radiatingStoryboardX)
+                        {
+                            _radiatingStoryboardX.Begin();
+                        }
+
+                        if (null != _radiatingStoryboardY)
+                        {
+                            _radiatingStoryboardY.Begin();
+                        }
+                        if (null != _radiatingStoryboardOpacity)
+                        {
+                            _radiatingStoryboardOpacity.Begin();
+                        }
+                    };
+                }
+                // start it
+                _timerRadiate.Start();
             }
-            if (null != _radiatingStoryboardOpacity)
+            else
             {
-                _radiatingStoryboardOpacity.Begin();
+                // set opacity
+                if (null != _radiateEllipse)
+                {
+                    _radiateEllipse.Opacity = RADIATE_OPACITY_END;
+                }
+
+                // launch the storyboards
+                if (null != _radiatingStoryboardX)
+                {
+                    _radiatingStoryboardX.Begin();
+                }
+
+                if (null != _radiatingStoryboardY)
+                {
+                    _radiatingStoryboardY.Begin();
+                }
+                if (null != _radiatingStoryboardOpacity)
+                {
+                    _radiatingStoryboardOpacity.Begin();
+                }
             }
         }
 
@@ -479,8 +533,6 @@ namespace SDX.Toolkit.Controls
             {
                 _entranceStoryboard.Stop();
                 _entranceEllipse.Opacity = 0d;
-                _radiateEllipse.Opacity = 0d;
-                _radiateEllipse.Opacity = 0d;
                 _grid.Opacity = 1d;
                 if (null != _tryItBox)
                 {
@@ -624,6 +676,11 @@ namespace SDX.Toolkit.Controls
             }
 
             if (IsMouseOnly && pointerType != mouse)
+            {
+                return;
+            }
+
+            if (IsDialOnly)
             {
                 return;
             }
@@ -803,11 +860,10 @@ namespace SDX.Toolkit.Controls
                     Margin = new Thickness(0),
                     Padding = new Thickness(0),
                     RowSpacing = 0d,
-                    ColumnSpacing = 0d
+                    ColumnSpacing = 0d,
+                    MinWidth = GridWidth,
+                    MaxWidth = 215d
                 };
-
-                // set the grid width
-                _grid.MinWidth = GridWidth;
 
                 // add pointer pressed event
                 _grid.PointerPressed += Grid_PointerPressed;
@@ -827,7 +883,7 @@ namespace SDX.Toolkit.Controls
                     //height of the triangle
                     double TryItPathHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathHeight);
                     // width of the triangle
-                    double TryItPathWidth = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathWidth);
+                    double TryItPathWidth = TryItPathHeight * 2;
                     // bottom margin of the cover triangle
                     double TryItPathCoverBottomMargin = StyleHelper.GetApplicationDouble(LayoutSizes.TryItPathCoverBottomMargin);
                     // space between message box and ellipse
@@ -836,15 +892,17 @@ namespace SDX.Toolkit.Controls
                     double RadiatingButtonEllipseBottomSpacer = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseBottomSpacer);
                     // height of the caption
                     double ButtonCaptionHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCaptionHeight);
-                    // size of the icon for try it buttons, use this/2 for size of the close icon
+                    // size of the icon for try it buttons
                     double TryItIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight);
+                    // size of the icon for try it buttons
+                    double TryItDotHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItDotHeight);
 
                     // define rows and columns
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(TryItBoxHeight+TryItPathHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonTopSpacerHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonRowHeight) });
                     _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(RadiatingButtonEllipseBottomSpacer) });
-                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(ButtonCaptionHeight) });
+                    _grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
 
                     // create the TryIt box content
                     _tryItBox = new Grid()
@@ -936,6 +994,7 @@ namespace SDX.Toolkit.Controls
                         Name = "TryItCaption",
                         Text = this.TryItCaption,
                         TextStyle = TryItCaption,
+                        TextAlignment = TextAlignment.Center,
                         TextWrapping = TextWrapping.WrapWholeWords,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
@@ -957,9 +1016,7 @@ namespace SDX.Toolkit.Controls
                         Width = radiateEllipseHeight,
                         Height = radiateEllipseHeight,
                         Fill = new SolidColorBrush(Colors.White),
-                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
-                        StrokeThickness = 2,
-                        Opacity = RADIATE_OPACITY_DEFAULT,
+                        Opacity = 0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Margin = new Thickness(0)
@@ -971,9 +1028,9 @@ namespace SDX.Toolkit.Controls
                     _grid.Children.Add(_radiateEllipse);
 
                     // create storyboards
-                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
-                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
-                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, false, new RepeatBehavior(1d));
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_START, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_START, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
+                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", RADIATE_OPACITY_START, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, false, true, new RepeatBehavior(1d));
 
                     // create the entrance ellipse
                     _entranceEllipse = new Ellipse()
@@ -1014,6 +1071,7 @@ namespace SDX.Toolkit.Controls
 
                         case RadiatingButtonIcons.Touch:
                             TRY_IT_IMAGE = URI_TRY_IT_IMAGE;
+                            TryItIconHeight = TryItDotHeight;
                             break;
 
                         default:
@@ -1071,9 +1129,7 @@ namespace SDX.Toolkit.Controls
                         Width = RadiatingButtonHeight,
                         Height = RadiatingButtonHeight,
                         Fill = new SolidColorBrush(Colors.White),
-                        Stroke = GetSolidColorBrush("#FFD2D2D2"),
-                        StrokeThickness = 2,
-                        Opacity = RADIATE_OPACITY_DEFAULT,
+                        Opacity = 0d,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
                         Margin = new Thickness(0)
@@ -1085,10 +1141,9 @@ namespace SDX.Toolkit.Controls
                     _grid.Children.Add(_radiateEllipse);
 
                     // create storyboards
-                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
-                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_DEFAULT, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(new TimeSpan(0, 0, 1)));
-                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", 0.0, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
-
+                    _radiatingStoryboardX = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Width", RADIATE_SIZE_START, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
+                    _radiatingStoryboardY = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Height", RADIATE_SIZE_START, RADIATE_SIZE_START, RADIATE_SIZE_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, this.RadiateStaggerDelayInMilliseconds, false, true, new RepeatBehavior(1d));
+                    _radiatingStoryboardOpacity = AnimationHelper.CreateInOutAnimation(_radiateEllipse, "Opacity", RADIATE_OPACITY_START, RADIATE_OPACITY_START, RADIATE_OPACITY_END, this.RadiateDurationInMilliseconds, this.RadiateDurationInMilliseconds, this.RadiateStaggerDelayInMilliseconds, this.RadiateStaggerDelayInMilliseconds, 0.0, false, true, new RepeatBehavior(1d));
                     // create the entrance ellipse
                     _entranceEllipse = new Ellipse()
                     {

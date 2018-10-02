@@ -51,7 +51,7 @@ namespace SDX.Toolkit.Controls
     }
     #endregion
 
-    public sealed class AppSelector : Control
+    public sealed class AppSelector : Control, IAnimate
     {
         #region Private Constants
 
@@ -372,6 +372,16 @@ namespace SDX.Toolkit.Controls
             get { return (ImagePair)GetValue(ClearButtonImagePairProperty); }
             set { SetValue(ClearButtonImagePairProperty, value); }
         }
+
+        // AnimationDirection
+        public static readonly DependencyProperty PageEntranceDirectionProperty =
+        DependencyProperty.Register("PageEntranceDirection", typeof(AnimationDirection), typeof(Header), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection PageEntranceDirection
+        {
+            get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
+            set { SetValue(PageEntranceDirectionProperty, value); }
+        }
         #endregion
 
         #region Custom Events
@@ -667,15 +677,18 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "Text",
                     Text = AppSelectorData.Message,
-                    TextStyle = TextStyles.ListLede,
+                    TextStyle = TextStyles.AppSelectorText,
                     FontSize = 20,
                     Opacity = 1,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextStyleBold = TextStyles.AppSelectorTextBold
                 };
+
                 if (index == 0)
                 {
-                    tbMessage.TextStyle = TextStyles.ListLedeBold;
+                    tbMessage.ShowBoldText(true);
                 }
+
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 btnGrid.Children.Add(tbMessage);
@@ -774,15 +787,18 @@ namespace SDX.Toolkit.Controls
                 {
                     Name = "TheText",
                     Text = imagePair.Message,
-                    TextStyle= TextStyles.ListLede,
+                    TextStyle= TextStyles.AppSelectorText,
                     FontSize = 20,
                     Opacity = 1,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    TextStyleBold = TextStyles.AppSelectorTextBold
                 };
+
                 if (i == 0)
                 {
-                    tbMessage.TextStyle = TextStyles.ListLedeBold;
+                    tbMessage.ShowBoldText(true);
                 }
+
                 Grid.SetRow(tbMessage, 0);
                 Grid.SetColumn(tbMessage, 1);// kk this isnt working just yet. 
                 grid.Children.Add(tbMessage);
@@ -878,12 +894,12 @@ namespace SDX.Toolkit.Controls
                     
                     if(button.ID == sbButton.ID)
                     {
-                        text.TextStyle = TextStyles.ListLedeBold;
+                        text.ShowBoldText(true);
                     }
                     else
                     {
-                        text.TextStyle = TextStyles.ListLede;
-                    }
+                        text.ShowBoldText(false);
+                    }                    
                 }
             }
         }
@@ -960,6 +976,31 @@ namespace SDX.Toolkit.Controls
                 //on button 
 
             }
+        }
+
+        public bool HasAnimateChildren()
+        {
+            return false;
+        }
+
+        public bool HasPageEntranceAnimation()
+        {
+            return true;
+        }
+
+        public bool HasPageEntranceTranslation()
+        {
+            return false;
+        }
+
+        public AnimationDirection Direction()
+        {
+            return PageEntranceDirection;
+        }
+
+        public List<UIElement> AnimatableChildren()
+        {
+            return new List<UIElement>();
         }
 
         #endregion

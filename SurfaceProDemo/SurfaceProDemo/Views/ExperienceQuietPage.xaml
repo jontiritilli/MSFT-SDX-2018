@@ -47,6 +47,8 @@
                 LedeStyle="PageLede"
                 Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
+                HeadlineOpacity="0"
+                LedeOpacity="0"                     
                 VerticalAlignment="Top" />
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
@@ -58,19 +60,22 @@
                 x:Name="rBtnLeft"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.32}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                    
-                PopupPosition="Right"                
+                PopupPosition="Right"
+                EntranceStaggerDelayInMilliseconds="1600"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                  
-                PopupPosition="Left"                
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1500"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"                              
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.84}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                    
-                PopupPosition="Left"                
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1400"
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopLeft"
@@ -132,13 +137,13 @@
             ImageSource="{x:Bind Path=ViewModel.TabletUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            HasEntranceTranslation="False"
             Opacity="0"
             />
         <ctrl:TextBlockEx x:Name="LeftLegal" Grid.Row="5" Grid.Column="1"
-                          Text="{x:Bind Path=ViewModel.PopLeftLegal}"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          TextStyle="Legal"
-                          Opacity="0"/>
+            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextStyle="Legal"/>
     </Grid>
 </Page>

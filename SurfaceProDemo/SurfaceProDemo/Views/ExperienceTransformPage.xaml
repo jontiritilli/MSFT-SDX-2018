@@ -35,20 +35,24 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            HeadlineOpacity="0"
+            LedeOpacity="0"                     
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
@@ -57,7 +61,8 @@
                 RadiatingButtonIcon="touch"
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"                                                                                             
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopRight"
@@ -74,6 +79,7 @@
                         Lede="{x:Bind Path=ViewModel.PopLede}"
                         MediaWidth="426.667"
                         MediaHeight="240"
+                        PlaybackRate="0.5"
                         />
                 </Popup.Child>
             </Popup>
@@ -85,9 +91,8 @@
             x:Name="img_Studio"
             ImageWidth="{x:Bind Path=ViewModel.StudioWidth}"            
             ImageSource="{x:Bind Path=ViewModel.StudioUri}"
-            TranslateDirection="Left"
+            HasEntranceTranslation="False"
             Canvas.ZIndex="100"
-            Opacity="0"
-            />
+            Opacity="0"/>
     </Grid>
 </Page>

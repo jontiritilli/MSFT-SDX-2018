@@ -21,14 +21,17 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_HINGE_13 = "ms-appx:///Assets/Experience/sb2_relax_insetHinge_sb13.png";
         private const string URI_HINGE_15 = "ms-appx:///Assets/Experience/sb2_relax_insetHinge_sb15.png";
 
-        #endregion
+        private const double IMAGE_WIDTH_13 = 850d;
+        private const double IMAGE_WIDTH_15 = 950d;
 
+        #endregion
 
         #region Public Properties
 
         public string BackgroundUri;
 
         public string HeroUri;
+        public double ImageWidth;
 
         public string Headline;
         public string Lede;
@@ -41,7 +44,6 @@ namespace SurfaceBook2Demo.ViewModels
 
         #endregion
 
-
         #region Construction
 
         public ExperienceDayRelaxViewModel()
@@ -53,7 +55,8 @@ namespace SurfaceBook2Demo.ViewModels
                     this.BackgroundUri = URI_BACKGROUND15;
                     this.HeroUri = URI_HERO;
                     this.PopupDisplayInsetImage = URI_HINGE_15;
-                    this.PopupDisplayImageWidth = 378;
+                    this.PopupDisplayImageWidth = 354;
+                    this.ImageWidth = IMAGE_WIDTH_15;
                     break;
 
                 case DeviceType.Book13:
@@ -62,6 +65,7 @@ namespace SurfaceBook2Demo.ViewModels
                     this.HeroUri = URI_HERO;
                     this.PopupDisplayInsetImage = URI_HINGE_13;
                     this.PopupDisplayImageWidth = 354;
+                    this.ImageWidth = IMAGE_WIDTH_13;
                     break;
             }
 

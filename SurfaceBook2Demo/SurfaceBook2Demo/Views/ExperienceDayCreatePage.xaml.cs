@@ -14,8 +14,15 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as ExperienceDayCreateViewModel; }
         }
-        //double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        //double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+
+        #endregion
+        #region Public Static Properties
+
+        public static ExperienceDayCreatePage Current { get; private set; }
+
         #endregion
 
 
@@ -24,37 +31,30 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayCreatePage()
         {
             InitializeComponent();
-            //Canvas.SetTop(rBtnLeft, _canvasHeight * .70);
-            //Canvas.SetLeft(rBtnLeft, _canvasWidth * .20);
-
-            //Canvas.SetTop(rBtnTop, _canvasHeight * .40);
-            //Canvas.SetLeft(rBtnTop, _canvasWidth * .50);
-
-            //Canvas.SetTop(rBtnRight, _canvasHeight * .55);
-            //Canvas.SetLeft(rBtnRight, _canvasWidth * .60);
+            ExperienceDayCreatePage.Current = this;
+            this.LegalCompare.SetOpacity(0.0d);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
 
-            //PopLeft.VerticalOffset = _canvasHeight * .70;
-            //PopLeft.HorizontalOffset = _canvasWidth * .20;
+            this.Loaded += ExperienceDayCreatePage_Loaded;
 
-            //PopTop.VerticalOffset = _canvasHeight * .40;
-            //PopTop.HorizontalOffset = _canvasWidth * .50;
-
-            //PopRight.VerticalOffset = _canvasHeight * .55;
-            //PopRight.HorizontalOffset = _canvasWidth * .60;
         }
 
-        #endregion
-
-
-        #region INavigate Interface
-
-        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        private void ExperienceDayCreatePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            // animations in
+            NavigateFromPage();
+            ExperienceDayCreatePage.Current.HasLoaded = true;
+            if (ExperienceDayCreatePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
             rBtnLeft.StartEntranceAnimation();
@@ -63,10 +63,52 @@ namespace SurfaceBook2Demo.Views
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
         }
+        #endregion
+
+        #region Private Methods
+
+        private void PopRight_Opened(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(1);
+        }
+
+        private void PopRight_Closed(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(0);
+        }
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(0);
+        }
+
+        #endregion
+
+        #region INavigate Interface
+
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        {
+            // animations in
+            if (ExperienceDayCreatePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceDayCreatePage.Current.HasNavigatedTo = true;
+            }
+
+        }
 
         public void NavigateFromPage()
         {
             // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
 

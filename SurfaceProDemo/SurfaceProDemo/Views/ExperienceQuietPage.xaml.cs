@@ -14,31 +14,42 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperienceQuietViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
-
+        #region Public Members
+        public static ExperienceQuietPage Current { get; private set; }
+        #endregion
 
         #region Construction
 
         public ExperienceQuietPage()
         {
             InitializeComponent();
+            ExperienceQuietPage.Current = this;
+            this.LeftLegal.SetOpacity(0);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
+            this.LeftLegal.SetOpacity(0);
+            this.Loaded += ExperienceQuietPage_Loaded;
         }
 
-        #endregion
-
-
-        #region INavigate Interface
-
-        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        private void ExperienceQuietPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            // animations in
+            NavigateFromPage();
+            ExperienceQuietPage.Current.HasLoaded = true;
+            if (ExperienceQuietPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Tablet, this.img_Tablet.TranslateDirection, 100, 500, 0);
+
             this.rBtnLeft.StartEntranceAnimation();
             this.rBtnLeft.StartRadiateAnimation();
 
@@ -47,6 +58,36 @@ namespace SurfaceProDemo.Views
 
             this.rBtnRight.StartEntranceAnimation();
             this.rBtnRight.StartRadiateAnimation();
+        }
+        #endregion
+
+        #region Private Methods
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LeftLegal.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LeftLegal.SetOpacity(0);
+        }
+
+        #endregion
+
+        #region INavigate Interface
+
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        {
+            // animations in
+            if (ExperienceQuietPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceQuietPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()
@@ -65,14 +106,5 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
-        private void PopLeft_Opened(object sender, object e)
-        {
-            this.LeftLegal.SetOpacity(1);
-        }
-
-        private void PopLeft_Closed(object sender, object e)
-        {
-            this.LeftLegal.SetOpacity(0);
-        }
     }
 }

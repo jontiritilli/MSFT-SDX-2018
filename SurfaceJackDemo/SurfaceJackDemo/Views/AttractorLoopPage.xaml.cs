@@ -33,10 +33,6 @@ namespace SurfaceJackDemo.Views
             // disappear the title bar
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-
-            // telemetry - EndApplication
-            TelemetryService.Current?.SendTelemetry("EndApplication", System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
-
         }
 
         #endregion
@@ -46,12 +42,6 @@ namespace SurfaceJackDemo.Views
 
         private void AttractorLoopPlayer_Interacted(object sender, InteractedEventArgs args)
         {
-            // send telemetry - StartApplication
-            TelemetryService.Current?.SendTelemetry("StartApplication", System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
-
-            // send telemetry - StartsApplicationType
-            TelemetryService.Current?.SendTelemetry("StartsApplicationType", args.InteractionType.ToString(), true, 0);
-
             // get the locator from app.xaml
             ViewModels.ViewModelLocator Locator = Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
 
