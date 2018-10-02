@@ -57,9 +57,9 @@
                 TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.TryIt_Headline}"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.66}"                                 
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"                                 
                 PopupPosition="Right"
-                EntranceStaggerDelayInMilliseconds="700"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -67,7 +67,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.49}"                                 
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1100"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
         
             <ctrl:RadiatingButton
@@ -75,7 +75,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.40}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.16}"                                 
                 PopupPosition="Right"
-                EntranceStaggerDelayInMilliseconds="900"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
             <Popup
