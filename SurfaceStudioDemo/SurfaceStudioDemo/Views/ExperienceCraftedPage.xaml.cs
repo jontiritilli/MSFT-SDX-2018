@@ -17,6 +17,12 @@ namespace SurfaceStudioDemo.Views
             get { return DataContext as ExperienceCraftedViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+        public static ExperienceCraftedPage Current { get; private set; }
         #endregion
 
 
@@ -25,6 +31,7 @@ namespace SurfaceStudioDemo.Views
         public ExperienceCraftedPage()
         {
             InitializeComponent();
+            ExperienceCraftedPage.Current = this;
             this.rBtnLeftCrafted.PopupChild = PopLeft;
             this.rBtnRightCrafted.PopupChild = PopRight;
             this.Loaded += ExperienceCraftedPage_Loaded;
@@ -33,6 +40,22 @@ namespace SurfaceStudioDemo.Views
         private void ExperienceCraftedPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NavigateFromPage();
+            ExperienceCraftedPage.Current.HasLoaded = true;
+            if (ExperienceCraftedPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnRightCrafted.StartEntranceAnimation();
+            rBtnRightCrafted.StartRadiateAnimation();
+
+            rBtnLeftCrafted.StartEntranceAnimation();
+            rBtnLeftCrafted.StartRadiateAnimation();
         }
 
         #endregion
@@ -42,13 +65,14 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            AnimationHelper.PerformPageEntranceAnimation(this);
-
-            rBtnRightCrafted.StartEntranceAnimation();
-            rBtnRightCrafted.StartRadiateAnimation();
-
-            rBtnLeftCrafted.StartEntranceAnimation();
-            rBtnLeftCrafted.StartRadiateAnimation();
+            if (ExperienceCraftedPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceCraftedPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

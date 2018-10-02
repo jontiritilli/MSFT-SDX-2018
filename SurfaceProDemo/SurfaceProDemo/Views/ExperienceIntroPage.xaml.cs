@@ -15,15 +15,20 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperienceIntroViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
+        #region Public Members
+        public static ExperienceIntroPage Current { get; private set; }
+        #endregion
 
         #region Construction
 
         public ExperienceIntroPage()
         {
             InitializeComponent();
+            ExperienceIntroPage.Current = this;
             this.LeftLegal.SetOpacity(0.0d);
             this.TopLegal.SetOpacity(0.0d);
             rBtnRight.PopupChild = PopRight;
@@ -41,16 +46,15 @@ namespace SurfaceProDemo.Views
         private void ExperienceIntroPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NavigateFromPage();
+            ExperienceIntroPage.Current.HasLoaded = true;
+            if (ExperienceIntroPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
         }
 
-        #endregion
-
-
-        #region INavigate Interface
-
-        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        private void AnimatePageEntrance()
         {
-            // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
@@ -60,6 +64,23 @@ namespace SurfaceProDemo.Views
 
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
+        }
+        #endregion
+
+
+        #region INavigate Interface
+
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        {
+            // animations in            
+            if (ExperienceIntroPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceIntroPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

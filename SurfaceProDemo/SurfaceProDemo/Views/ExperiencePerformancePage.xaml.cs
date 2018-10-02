@@ -16,14 +16,20 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperiencePerformanceViewModel; }
         }
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
+        #region Public Members
+        public static ExperiencePerformancePage Current { get; private set; }
+        #endregion
 
         #region Construction
 
         public ExperiencePerformancePage()
         {
             InitializeComponent();
+            ExperiencePerformancePage.Current = this;
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             timer.Start();
             timer.Tick += (sender, args) =>
@@ -41,23 +47,21 @@ namespace SurfaceProDemo.Views
         private void ExperiencePerformancePage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
+            ExperiencePerformancePage.Current.HasLoaded = true;
+            if (ExperiencePerformancePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
             this.rBtnTop.HandleClick();
         }
-
-        #endregion
-
-
-        #region INavigate Interface
-
-        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        private void AnimatePageEntrance()
         {
-            // animations in
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            
+
             this.rBtnLeft.StartEntranceAnimation();
             this.rBtnLeft.StartRadiateAnimation();
 
@@ -66,6 +70,23 @@ namespace SurfaceProDemo.Views
 
             this.rBtnRight.StartEntranceAnimation();
             this.rBtnRight.StartRadiateAnimation();
+        }
+        #endregion
+
+
+        #region INavigate Interface
+
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        {
+            // animations in
+            if (ExperiencePerformancePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperiencePerformancePage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

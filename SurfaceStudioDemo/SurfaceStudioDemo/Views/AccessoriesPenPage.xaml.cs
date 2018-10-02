@@ -32,6 +32,12 @@ namespace SurfaceStudioDemo.Views
             get { return DataContext as AccessoriesPenViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+        public static AccessoriesPenPage Current { get; private set; }
         #endregion
 
         #region Construction
@@ -39,7 +45,7 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesPenPage()
         {
             InitializeComponent();
-
+            AccessoriesPenPage.Current = this;
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             timer.Start();
             timer.Tick += (sender, args) =>
@@ -63,6 +69,21 @@ namespace SurfaceStudioDemo.Views
         private void AccessoriesPenPage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
+            AccessoriesPenPage.Current.HasLoaded = true;
+            if (AccessoriesPenPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            // animations in
+            if (Visited || null != ReadyScreen)// do regular entrance if theyve been here and did stuff already
+            {
+                AnimatePageOnNavigate();
+            }
+            ShowPopup();
         }
 
         #endregion
@@ -146,12 +167,16 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            // animations in
-            if (Visited || null != ReadyScreen)// do regular entrance if theyve been here and did stuff already
+
+            if (AccessoriesPenPage.Current.HasLoaded)
             {
-                AnimatePageOnNavigate();
+                AnimatePageEntrance();
             }
-            ShowPopup();
+            else
+            {
+                AccessoriesPenPage.Current.HasNavigatedTo = true;
+            }
+
             
                     
         }

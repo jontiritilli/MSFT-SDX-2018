@@ -16,6 +16,13 @@ namespace SurfaceLaptopDemo.Views
         {
             get { return DataContext as ExperienceSpeakersViewModel; }
         }
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+
+        public static ExperienceSpeakersPage Current { get; private set; }
 
         #endregion
 
@@ -24,6 +31,7 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceSpeakersPage()
         {
             InitializeComponent();
+            ExperienceSpeakersPage.Current = this;
             this.AppSelectorImageSpeakers.AppSelector = this.AppSelectorSpeakers;
             this.AppSelectorImageMinorSpeakers.AppSelector = this.AppSelectorSpeakers;
             this.Loaded += ExperienceSpeakersPage_Loaded;
@@ -32,8 +40,12 @@ namespace SurfaceLaptopDemo.Views
         private void ExperienceSpeakersPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NavigateFromPage();
+            ExperienceSpeakersPage.Current.HasLoaded = true;
+            if (ExperienceSpeakersPage.Current.HasNavigatedTo)
+            {
+                AnimationHelper.PerformPageEntranceAnimation(this);
+            }
         }
-
         #endregion
 
 
@@ -41,7 +53,15 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            AnimationHelper.PerformPageEntranceAnimation(this);
+            
+            if (ExperienceSpeakersPage.Current.HasLoaded)
+            {
+                AnimationHelper.PerformPageEntranceAnimation(this);
+            }
+            else
+            {
+                ExperienceSpeakersPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

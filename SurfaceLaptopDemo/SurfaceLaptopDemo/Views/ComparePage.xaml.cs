@@ -20,6 +20,14 @@ namespace SurfaceLaptopDemo.Views
             get { return DataContext as CompareViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+
+        public static ComparePage Current { get; private set; }
+
         #endregion
 
 
@@ -28,7 +36,7 @@ namespace SurfaceLaptopDemo.Views
         public ComparePage()
         {
             InitializeComponent();
-
+            ComparePage.Current = this;
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
             timer.Start();
             timer.Tick += (sender, args) =>
@@ -56,8 +64,33 @@ namespace SurfaceLaptopDemo.Views
         private void ComparePage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
+            ComparePage.Current.HasLoaded = true;
+            if (ComparePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
         }
 
+        private void AnimatePageEntrance()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+            //AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
+
+            rBtnPro.StartEntranceAnimation();
+            rBtnPro.StartRadiateAnimation();
+
+            rBtnBook.StartEntranceAnimation();
+            rBtnBook.StartRadiateAnimation();
+
+            rBtnStudio.StartEntranceAnimation();
+            rBtnStudio.StartRadiateAnimation();
+
+            rBtnLaptop.StartEntranceAnimation();
+            rBtnLaptop.StartRadiateAnimation();
+
+            rBtnGo.StartEntranceAnimation();
+            rBtnGo.StartRadiateAnimation();
+        }
         #endregion
 
 
@@ -106,23 +139,14 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            AnimationHelper.PerformPageEntranceAnimation(this);
-            //AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
-
-            rBtnPro.StartEntranceAnimation();
-            rBtnPro.StartRadiateAnimation();
-
-            rBtnBook.StartEntranceAnimation();
-            rBtnBook.StartRadiateAnimation();
-
-            rBtnStudio.StartEntranceAnimation();
-            rBtnStudio.StartRadiateAnimation();
-
-            rBtnLaptop.StartEntranceAnimation();
-            rBtnLaptop.StartRadiateAnimation();
-
-            rBtnGo.StartEntranceAnimation();
-            rBtnGo.StartRadiateAnimation();
+            if (ComparePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ComparePage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

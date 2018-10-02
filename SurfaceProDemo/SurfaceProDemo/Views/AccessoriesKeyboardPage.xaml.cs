@@ -15,7 +15,8 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as AccessoriesKeyboardViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
         #region Public Members
@@ -42,6 +43,21 @@ namespace SurfaceProDemo.Views
         private void AccessoriesKeyboardPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NavigateFromPage();
+            AccessoriesKeyboardPage.Current.HasLoaded = true;
+            if (AccessoriesKeyboardPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnTop.StartEntranceAnimation();
+            rBtnTop.StartRadiateAnimation();
+
+            rBtnBottom.StartEntranceAnimation();
+            rBtnBottom.StartRadiateAnimation();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e) {
@@ -64,12 +80,15 @@ namespace SurfaceProDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnTop.StartEntranceAnimation();
-            rBtnTop.StartRadiateAnimation();
+            if (AccessoriesKeyboardPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                AccessoriesKeyboardPage.Current.HasNavigatedTo = true;
+            }
 
-            rBtnBottom.StartEntranceAnimation();
-            rBtnBottom.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()

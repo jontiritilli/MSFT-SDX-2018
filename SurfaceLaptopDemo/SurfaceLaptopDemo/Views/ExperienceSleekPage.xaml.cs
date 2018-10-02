@@ -18,6 +18,14 @@ namespace SurfaceLaptopDemo.Views
             get { return DataContext as ExperienceSleekViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+
+        public static ExperienceSleekPage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -25,6 +33,7 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceSleekPage()
         {
             InitializeComponent();
+            ExperienceSleekPage.Current = this;
             this.PopBottomLegal.SetOpacity(0.0d);
             this.rBtnBottomPerformance.PopupChild = PopBottom;
             this.rBtnLeftPerformance.PopupChild = PopLeft;
@@ -36,8 +45,26 @@ namespace SurfaceLaptopDemo.Views
         private void ExperienceSleekPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NavigateFromPage();
+            ExperienceSleekPage.Current.HasLoaded = true;
+            if (ExperienceSleekPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
         }
 
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnTopPerformance.StartEntranceAnimation();
+            rBtnTopPerformance.StartRadiateAnimation();
+
+            rBtnLeftPerformance.StartEntranceAnimation();
+            rBtnLeftPerformance.StartRadiateAnimation();
+
+            rBtnBottomPerformance.StartEntranceAnimation();
+            rBtnBottomPerformance.StartRadiateAnimation();
+        }
         #endregion
 
         #region Private Methods
@@ -59,16 +86,14 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-
-            rBtnTopPerformance.StartEntranceAnimation();
-            rBtnTopPerformance.StartRadiateAnimation();
-
-            rBtnLeftPerformance.StartEntranceAnimation();
-            rBtnLeftPerformance.StartRadiateAnimation();
-
-            rBtnBottomPerformance.StartEntranceAnimation();
-            rBtnBottomPerformance.StartRadiateAnimation();
+            if (ExperienceSleekPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceSleekPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

@@ -19,7 +19,12 @@ namespace SurfaceProDemo.Views
 
         double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
         double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
 
+        #region Public Members
+        public static AccessoriesPenPage Current { get; private set; }
         #endregion
 
 
@@ -28,6 +33,7 @@ namespace SurfaceProDemo.Views
         public AccessoriesPenPage()
         {
             InitializeComponent();
+            AccessoriesPenPage.Current = this;
             Canvas.SetTop(rBtnCenter, _canvasHeight * .50);
             Canvas.SetLeft(rBtnCenter, _canvasWidth * .50);
             rBtnCenter.Clicked += OnPenTryItClicked;
@@ -38,8 +44,19 @@ namespace SurfaceProDemo.Views
         private void AccessoriesPenPage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
+            AccessoriesPenPage.Current.HasLoaded = true;
+            if (AccessoriesPenPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
         }
 
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            this.rBtnCenter.StartEntranceAnimation();
+            this.rBtnCenter.StartRadiateAnimation();
+        }
         #endregion
 
         #region Private Methods
@@ -61,9 +78,15 @@ namespace SurfaceProDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            this.rBtnCenter.StartEntranceAnimation();
-            this.rBtnCenter.StartRadiateAnimation();
+            if (AccessoriesPenPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                AccessoriesPenPage.Current.HasNavigatedTo = true;
+            }
+
         }
 
         public void NavigateFromPage()
