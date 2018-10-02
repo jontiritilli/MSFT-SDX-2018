@@ -15,14 +15,33 @@ namespace SurfaceBook2Demo.Views
             get { return DataContext as BestOfMicrosoftViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
+        #region Public Static Properties
+
+        public static BestOfMicrosoftPage Current { get; private set; }
+
+        #endregion
 
         #region Construction
 
         public BestOfMicrosoftPage()
         {
             InitializeComponent();
+            BestOfMicrosoftPage.Current = this;
+            this.Loaded += BestOfMicrosoftPage_Loaded;
+        }
+
+        private void BestOfMicrosoftPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            BestOfMicrosoftPage.Current.HasLoaded = true;
+            if (BestOfMicrosoftPage.Current.HasNavigatedTo)
+            {
+                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            }
         }
 
         #endregion
@@ -33,7 +52,15 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            if (HasLoaded)
+            {
+                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            }
+            else
+            {
+                BestOfMicrosoftPage.Current.HasNavigatedTo = true;
+            }
+
         }
 
         public void NavigateFromPage()

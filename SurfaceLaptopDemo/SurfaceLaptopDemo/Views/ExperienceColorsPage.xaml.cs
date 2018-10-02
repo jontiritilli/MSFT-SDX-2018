@@ -18,6 +18,14 @@ namespace SurfaceLaptopDemo.Views
             get { return DataContext as ExperienceColorsViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+
+        public static ExperienceColorsPage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -25,14 +33,34 @@ namespace SurfaceLaptopDemo.Views
         public ExperienceColorsPage()
         {
             InitializeComponent();
+            ExperienceColorsPage.Current = this;
             this.AppSelectorImageExpColors.AppSelector = this.AppSelectorExpColors;
             ViewModel.BackgroundUri = ViewModel.lifeStyleColorSelectorImageURIs[AppSelectorImageExpColors.SelectedID].URI;
             this.AppSelectorExpColors.SelectedIDChanged += SelectedIDChanged;
             this.rBtnLeft.PopupChild = this.PopLeft;
             isBlackEnabled = ConfigurationService.Current.GetIsBlackSchemeEnabled();
+            this.Loaded += ExperienceColorsPage_Loaded;
         }
 
-        public void SelectedIDChanged(object sender, EventArgs e)
+        private void ExperienceColorsPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperienceColorsPage.Current.HasLoaded = true;
+            if (ExperienceColorsPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            this.rBtnLeft.StartEntranceAnimation();
+            this.rBtnLeft.StartRadiateAnimation();
+        }
+
+            public void SelectedIDChanged(object sender, EventArgs e)
         {
             //capture selected changed event so we can pass the id to the other page and force link            
             AppSelector appSelector = (AppSelector)sender;
@@ -64,9 +92,16 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            this.rBtnLeft.StartEntranceAnimation();
-            this.rBtnLeft.StartRadiateAnimation();
+            if (ExperienceColorsPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceColorsPage.Current.HasNavigatedTo = true;
+            }
+
+
         }
 
         public void NavigateFromPage()

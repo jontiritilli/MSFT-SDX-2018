@@ -16,7 +16,8 @@ namespace SurfaceStudioDemo.Views
         {
             get { return DataContext as ExperiencePixelSenseViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
         #region Public Static Properties
@@ -30,6 +31,7 @@ namespace SurfaceStudioDemo.Views
         public ExperiencePixelSensePage()
         {
             InitializeComponent();
+            ExperiencePixelSensePage.Current = this;
             this.PopBottomLegal.SetOpacity(0.0d);
             this.PopLeftLegal.SetOpacity(0.0d);
             this.rBtnBottomPixelSense.PopupChild = PopBottom;
@@ -43,8 +45,33 @@ namespace SurfaceStudioDemo.Views
                 rBtnRightPixelSense.PopupChild = FlipViewPage.Current.GetExperiencePixelSensePopup();
                 ExperiencePixelSensePopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
+
+            this.Loaded += ExperiencePixelSensePage_Loaded;
         }
 
+        private void ExperiencePixelSensePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperiencePixelSensePage.Current.HasLoaded = true;
+            if (ExperiencePixelSensePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnRightPixelSense.StartEntranceAnimation();
+            rBtnRightPixelSense.StartRadiateAnimation();
+
+            rBtnLeftPixelSense.StartEntranceAnimation();
+            rBtnLeftPixelSense.StartRadiateAnimation();
+
+            rBtnBottomPixelSense.StartEntranceAnimation();
+            rBtnBottomPixelSense.StartRadiateAnimation();
+        }
         #endregion
 
         #region Private Methods
@@ -82,18 +109,14 @@ namespace SurfaceStudioDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            AnimationHelper.PerformPageEntranceAnimation(this);
-            //AnimationHelper.PerformTranslateIn(this.img_Left, this.img_Left.TranslateDirection, 100, 500, 0);
-            //AnimationHelper.PerformTranslateIn(this.img_Right, this.img_Left.TranslateDirection, 100, 1000, 0);
-
-            rBtnRightPixelSense.StartEntranceAnimation();
-            rBtnRightPixelSense.StartRadiateAnimation();
-
-            rBtnLeftPixelSense.StartEntranceAnimation();
-            rBtnLeftPixelSense.StartRadiateAnimation();
-
-            rBtnBottomPixelSense.StartEntranceAnimation();
-            rBtnBottomPixelSense.StartRadiateAnimation();
+            if (ExperiencePixelSensePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperiencePixelSensePage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

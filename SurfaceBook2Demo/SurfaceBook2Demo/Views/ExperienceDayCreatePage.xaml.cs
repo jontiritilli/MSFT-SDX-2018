@@ -15,6 +15,14 @@ namespace SurfaceBook2Demo.Views
             get { return DataContext as ExperienceDayCreateViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+
+        #endregion
+        #region Public Static Properties
+
+        public static ExperienceDayCreatePage Current { get; private set; }
+
         #endregion
 
 
@@ -23,14 +31,38 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayCreatePage()
         {
             InitializeComponent();
+            ExperienceDayCreatePage.Current = this;
             this.LegalCompare.SetOpacity(0.0d);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
 
+            this.Loaded += ExperienceDayCreatePage_Loaded;
+
         }
 
+        private void ExperienceDayCreatePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperienceDayCreatePage.Current.HasLoaded = true;
+            if (ExperienceDayCreatePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnTop.StartEntranceAnimation();
+            rBtnTop.StartRadiateAnimation();
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
+        }
         #endregion
 
         #region Private Methods
@@ -62,14 +94,15 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnTop.StartEntranceAnimation();
-            rBtnTop.StartRadiateAnimation();
-            rBtnLeft.StartEntranceAnimation();
-            rBtnLeft.StartRadiateAnimation();
+            if (ExperienceDayCreatePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceDayCreatePage.Current.HasNavigatedTo = true;
+            }
 
-            rBtnRight.StartEntranceAnimation();
-            rBtnRight.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()

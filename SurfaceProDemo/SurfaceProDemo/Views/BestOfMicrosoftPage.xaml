@@ -5,9 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    xmlns:ctrl="using:SDX.Toolkit.Controls"    
+    xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"   
     DataContext="{Binding BestOfMicrosoftViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:TextBlockHeightConverter x:Key="TextBlockHeightConverterKey"/>
+    </Page.Resources>
     <Grid
         x:Name="ContentArea">
         <Grid.Background>
@@ -38,12 +43,39 @@
                    ListItems="{x:Bind Path=ViewModel.ItemList}"
                    ListStyle="BestOf"
                    />
-        <!--ControlStyle="{StaticResource CompareLegal}"-->
-        <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.Legal}"
-                       TextStyle="Legal"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Visibility="Visible" />
+        <ctrl:TextBlockEx x:Name="BulletOneLegal" Grid.Row="7" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.LegalBulletOne}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.LegalBulletOne, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletTwoLegal" Grid.Row="8" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.LegalBulletTwo}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.LegalBulletTwo, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletThreeLegal" Grid.Row="9" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.LegalBulletThree}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.LegalBulletThree, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletFourLegal" Grid.Row="10" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.LegalBulletFour}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.LegalBulletFour, Converter={StaticResource TextBlockHeightConverterKey}}"/>
+
+        <ctrl:TextBlockEx x:Name="BulletFiveLegal" Grid.Row="11" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.LegalBulletFive}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind Path=ViewModel.LegalBulletFive, Converter={StaticResource TextBlockHeightConverterKey}}"/>
     </Grid>
 </Page>

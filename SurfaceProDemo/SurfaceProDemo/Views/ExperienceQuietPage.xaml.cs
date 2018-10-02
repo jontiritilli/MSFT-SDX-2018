@@ -14,24 +14,51 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as ExperienceQuietViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
-
+        #region Public Members
+        public static ExperienceQuietPage Current { get; private set; }
+        #endregion
 
         #region Construction
 
         public ExperienceQuietPage()
         {
             InitializeComponent();
-
+            ExperienceQuietPage.Current = this;
             this.LeftLegal.SetOpacity(0);
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
             this.LeftLegal.SetOpacity(0);
+            this.Loaded += ExperienceQuietPage_Loaded;
         }
 
+        private void ExperienceQuietPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperienceQuietPage.Current.HasLoaded = true;
+            if (ExperienceQuietPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+
+            this.rBtnLeft.StartEntranceAnimation();
+            this.rBtnLeft.StartRadiateAnimation();
+
+            this.rBtnTop.StartEntranceAnimation();
+            this.rBtnTop.StartRadiateAnimation();
+
+            this.rBtnRight.StartEntranceAnimation();
+            this.rBtnRight.StartRadiateAnimation();
+        }
         #endregion
 
         #region Private Methods
@@ -53,16 +80,14 @@ namespace SurfaceProDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            
-            this.rBtnLeft.StartEntranceAnimation();
-            this.rBtnLeft.StartRadiateAnimation();
-
-            this.rBtnTop.StartEntranceAnimation();
-            this.rBtnTop.StartRadiateAnimation();
-
-            this.rBtnRight.StartEntranceAnimation();
-            this.rBtnRight.StartRadiateAnimation();
+            if (ExperienceQuietPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceQuietPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

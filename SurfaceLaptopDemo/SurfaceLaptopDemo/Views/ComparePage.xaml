@@ -44,6 +44,15 @@
                 HeadlineOpacity="0"
                 LedeOpacity="0"                       
                 VerticalAlignment="Top"/>
+        <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
+            x:Name="img_Family"
+            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
+            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
+            TranslateDirection="Left"
+            Canvas.ZIndex="100"
+            HasEntranceTranslation="False"
+            Opacity="0"
+            />
         <Canvas x:Name="ButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
                 Canvas.ZIndex="101">
 
@@ -167,55 +176,47 @@
                 x:Name="TitlePro"
                 Text="{x:Bind Path=ViewModel.ProTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.08}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.84}"
-                HasEntranceTranslation="False"
-                HasPageEntranceAnimationEnabled="True"
+                HasEntranceTranslation="False"                
             />
             <ctrl:TextBlockEx
                 x:Name="TitleBook"
                 Text="{x:Bind Path=ViewModel.BookTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.26}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.80}"
-                HasEntranceTranslation="False"
-                HasPageEntranceAnimationEnabled="True"
+                HasEntranceTranslation="False"                
             />
             <ctrl:TextBlockEx
                 x:Name="TitleStudio"
                 Text="{x:Bind Path=ViewModel.StudioTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.46}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.77}"
-                HasEntranceTranslation="False"
-                HasPageEntranceAnimationEnabled="True"
+                HasEntranceTranslation="False"                
             />
             <ctrl:TextBlockEx
                 x:Name="TitleLaptop"
                 Text="{x:Bind Path=ViewModel.LaptopTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.64}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.82}"
-                HasEntranceTranslation="False"
-                HasPageEntranceAnimationEnabled="True"
+                HasEntranceTranslation="False"                
             />
             <ctrl:TextBlockEx
                 x:Name="TitleGo"
                 Text="{x:Bind Path=ViewModel.GoTitle}"
                 TextStyle="ListLede"
+                Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.83}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.87}"
-                HasEntranceTranslation="False"
-                HasPageEntranceAnimationEnabled="True"
+                HasEntranceTranslation="False"                
             />
         </Canvas>
-        <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
-            x:Name="img_Family"
-            ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
-            ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
-            TranslateDirection="Left"
-            Canvas.ZIndex="100"
-            Opacity="0"
-            />
     </Grid>
 </Page>

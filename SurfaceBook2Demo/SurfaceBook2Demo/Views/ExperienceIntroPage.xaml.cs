@@ -13,6 +13,14 @@ namespace SurfaceBook2Demo.Views
         {
             get { return DataContext as ExperienceIntroViewModel; }
         }
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+
+        #endregion
+        #region Public Static Properties
+
+        public static ExperienceIntroPage Current { get; private set; }
+
         #endregion
 
 
@@ -21,7 +29,7 @@ namespace SurfaceBook2Demo.Views
         public ExperienceIntroPage()
         {
             InitializeComponent();
-
+            ExperienceIntroPage.Current = this;
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
             this.LegalPixelSense.SetOpacity(0);
@@ -31,9 +39,22 @@ namespace SurfaceBook2Demo.Views
 
         private void ExperienceIntroPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            
+            NavigateFromPage();
+            ExperienceIntroPage.Current.HasLoaded = true;
+            if (ExperienceIntroPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
         }
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
 
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
+        }
         #endregion
 
 
@@ -42,18 +63,14 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnLeft.StartEntranceAnimation();
-            rBtnLeft.StartRadiateAnimation();
-
-            rBtnRight.StartEntranceAnimation();
-            rBtnRight.StartRadiateAnimation();
-
-            // TEST - To prove that .IsNavigationEnabled works.
-            //if (null != FlipViewPage.GetNavigationBar())
-            //{
-            //    FlipViewPage.GetNavigationBar().IsNavigationEnabled = false;
-            //}
+            if (ExperienceIntroPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceIntroPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

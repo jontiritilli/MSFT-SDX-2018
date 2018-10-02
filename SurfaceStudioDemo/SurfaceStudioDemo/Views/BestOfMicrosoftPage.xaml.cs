@@ -16,6 +16,12 @@ namespace SurfaceStudioDemo.Views
             get { return DataContext as BestOfMicrosoftViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+        #endregion
+
+        #region Public Members
+        public static BestOfMicrosoftPage Current { get; private set; }
         #endregion
 
 
@@ -24,6 +30,18 @@ namespace SurfaceStudioDemo.Views
         public BestOfMicrosoftPage()
         {
             InitializeComponent();
+            BestOfMicrosoftPage.Current = this;
+            this.Loaded += BestOfMicrosoftPage_Loaded;
+        }
+
+        private void BestOfMicrosoftPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            BestOfMicrosoftPage.Current.HasLoaded = true;
+            if (BestOfMicrosoftPage.Current.HasNavigatedTo)
+            {
+                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            }
         }
 
         #endregion
@@ -33,7 +51,14 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            if (BestOfMicrosoftPage.Current.HasLoaded)
+            {
+                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            }
+            else
+            {
+                BestOfMicrosoftPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

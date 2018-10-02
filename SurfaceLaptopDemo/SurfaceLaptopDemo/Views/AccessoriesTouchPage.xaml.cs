@@ -16,7 +16,8 @@ namespace SurfaceLaptopDemo.Views
         {
             get { return DataContext as AccessoriesTouchViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
         #region Public Members
@@ -30,9 +31,27 @@ namespace SurfaceLaptopDemo.Views
         public AccessoriesTouchPage()
         {
             InitializeComponent();
+            AccessoriesTouchPage.Current = this;
             PinchZoomElement.ZoomEvent += HandleZoomChanged;
+            this.Loaded += AccessoriesTouchPage_Loaded;
         }
 
+        private void AccessoriesTouchPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            AccessoriesTouchPage.Current.HasLoaded = true;
+            if (AccessoriesTouchPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            PinchZoomElement.ResetControl();
+            rButtonOne.StartEntranceAnimation();
+            rButtonOne.StartRadiateAnimation();
+        }
         #endregion
 
         #region private Methods
@@ -48,10 +67,14 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            PinchZoomElement.ResetControl();
-            rButtonOne.StartEntranceAnimation();
-            rButtonOne.StartRadiateAnimation();
+            if (AccessoriesTouchPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                AccessoriesTouchPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

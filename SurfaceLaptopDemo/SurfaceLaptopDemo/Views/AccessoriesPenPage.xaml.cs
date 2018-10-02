@@ -21,7 +21,8 @@ namespace SurfaceLaptopDemo.Views
         {
             get { return DataContext as AccessoriesPenViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
         #region Public Members
@@ -40,8 +41,26 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorAccRight.SelectedIDChanged += SelectedIDChanged;
 
             this.rBtnPen.PopupChild = PopCenter;
+            this.Loaded += AccessoriesPenPage_Loaded;
         }
 
+        private void AccessoriesPenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            AccessoriesPenPage.Current.HasLoaded = true;
+            if (AccessoriesPenPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+
+            rBtnPen.StartEntranceAnimation();
+            rBtnPen.StartRadiateAnimation();
+        }
         public void SelectedIDChanged(object sender, EventArgs e)
         {
             //capture selected changed event so we can pass the id to the other page and force link            
@@ -63,10 +82,14 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-
-            rBtnPen.StartEntranceAnimation();
-            rBtnPen.StartRadiateAnimation();
+            if (AccessoriesPenPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                AccessoriesPenPage.Current.HasNavigatedTo = true;
+            }
 
         }
 
