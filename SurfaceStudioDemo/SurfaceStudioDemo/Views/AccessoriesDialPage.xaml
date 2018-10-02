@@ -9,7 +9,6 @@
     Style="{StaticResource PageStyle}"
     DataContext="{Binding AccessoriesDialViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-
     <Page.Resources>
         <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
         <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
