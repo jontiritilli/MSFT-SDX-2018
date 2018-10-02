@@ -32,6 +32,12 @@ namespace SurfaceProDemo.Views
             Canvas.SetLeft(rBtnCenter, _canvasWidth * .50);
             rBtnCenter.Clicked += OnPenTryItClicked;
             this.ColoringBook.OnPenScreenContacted += OnPenScreenContacted;
+            this.Loaded += AccessoriesPenPage_Loaded;
+        }
+
+        private void AccessoriesPenPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

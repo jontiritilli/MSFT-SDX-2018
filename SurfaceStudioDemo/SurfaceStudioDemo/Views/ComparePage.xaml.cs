@@ -47,6 +47,13 @@ namespace SurfaceStudioDemo.Views
                 this.rBtnGo.PopupChild = FlipViewPage.Current.GetComparePagePopupGo();
                 ComparePagePopupGo.Current.CloseButton_Clicked += Close_Go_Clicked;
             };
+
+            this.Loaded += ComparePage_Loaded;
+        }
+
+        private void ComparePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

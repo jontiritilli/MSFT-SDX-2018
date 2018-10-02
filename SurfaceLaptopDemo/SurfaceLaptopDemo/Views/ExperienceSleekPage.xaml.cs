@@ -30,6 +30,12 @@ namespace SurfaceLaptopDemo.Views
             this.rBtnLeftPerformance.PopupChild = PopLeft;
             this.rBtnTopPerformance.PopupChild = PopTop;
             this.PopBottomLegal.SetOpacity(0);
+            this.Loaded += ExperienceSleekPage_Loaded;
+        }
+
+        private void ExperienceSleekPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

@@ -34,9 +34,14 @@ namespace SurfaceProDemo.Views
 
             rBtnTop.PopupChild = PopTop;
             rBtnBottom.PopupChild = PopBottom;
-            
+            this.Loaded += AccessoriesKeyboardPage_Loaded;
 
 
+        }
+
+        private void AccessoriesKeyboardPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e) {

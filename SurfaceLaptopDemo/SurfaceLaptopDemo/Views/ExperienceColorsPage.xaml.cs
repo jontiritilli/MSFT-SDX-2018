@@ -30,6 +30,12 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorExpColors.SelectedIDChanged += SelectedIDChanged;
             this.rBtnLeft.PopupChild = this.PopLeft;
             isBlackEnabled = ConfigurationService.Current.GetIsBlackSchemeEnabled();
+            this.Loaded += ExperienceColorsPage_Loaded;
+        }
+
+        private void ExperienceColorsPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)

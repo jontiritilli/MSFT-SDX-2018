@@ -27,6 +27,12 @@ namespace SurfaceStudioDemo.Views
             InitializeComponent();
             this.PopDialLegal.SetOpacity(0.0d);
             this.rBtnRightAccLeft.PopupChild = this.PopRight;
+            this.Loaded += AccessoriesDialPage_Loaded;
+        }
+
+        private void AccessoriesDialPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

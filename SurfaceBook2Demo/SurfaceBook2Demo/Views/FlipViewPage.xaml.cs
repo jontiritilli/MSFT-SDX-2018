@@ -105,7 +105,11 @@ namespace SurfaceBook2Demo.Views
 
             // initialize the navigation bar root
             this.BottomNavBar.Root = ViewModel.Root;
+
+            this.ManipulationStarted += FlipViewPage_ManipulationStarted;
         }
+
+
 
         #endregion
 
@@ -337,6 +341,10 @@ namespace SurfaceBook2Demo.Views
             Application.Current.Exit();
         }
 
+        private void FlipViewPage_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         #region Public Methods

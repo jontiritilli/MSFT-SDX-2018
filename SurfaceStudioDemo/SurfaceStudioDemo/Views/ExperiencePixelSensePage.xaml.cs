@@ -43,6 +43,13 @@ namespace SurfaceStudioDemo.Views
                 rBtnRightPixelSense.PopupChild = FlipViewPage.Current.GetExperiencePixelSensePopup();
                 ExperiencePixelSensePopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
+
+            this.Loaded += ExperiencePixelSensePage_Loaded;
+        }
+
+        private void ExperiencePixelSensePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

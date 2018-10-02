@@ -27,6 +27,12 @@ namespace SurfaceStudioDemo.Views
             InitializeComponent();
             this.rBtnLeftCrafted.PopupChild = PopLeft;
             this.rBtnRightCrafted.PopupChild = PopRight;
+            this.Loaded += ExperienceCraftedPage_Loaded;
+        }
+
+        private void ExperienceCraftedPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

@@ -16,6 +16,14 @@ namespace SurfaceBook2Demo.Views
         }
         double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
         double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+
+        #endregion
+        #region Public Static Properties
+
+        public static ExperienceDayRelaxPage Current { get; private set; }
+
         #endregion
 
 
@@ -24,11 +32,30 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayRelaxPage()
         {
             InitializeComponent();
+            ExperienceDayRelaxPage.Current = this;
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
+            this.Loaded += ExperienceDayRelaxPage_Loaded;
 
         }
 
+        private void ExperienceDayRelaxPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ExperienceDayRelaxPage.Current.HasLoaded = true;
+            if (ExperienceDayRelaxPage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnRight.StartEntranceAnimation();
+            rBtnRight.StartRadiateAnimation();
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+        }
         #endregion
 
 
@@ -37,11 +64,14 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnRight.StartEntranceAnimation();
-            rBtnRight.StartRadiateAnimation();
-            rBtnLeft.StartEntranceAnimation();
-            rBtnLeft.StartRadiateAnimation();
+            if (ExperienceDayRelaxPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceDayRelaxPage.Current.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()

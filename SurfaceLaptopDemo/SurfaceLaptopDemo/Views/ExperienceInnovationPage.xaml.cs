@@ -32,6 +32,12 @@ namespace SurfaceLaptopDemo.Views
             this.rBtnTryItInnovation.PopupChild = PopLeft;
             this.rBtnTopInnovation.PopupChild = PopTop;
             this.rBtnRightInnovation.PopupChild = PopRight;
+            this.Loaded += ExperienceInnovationPage_Loaded;
+        }
+
+        private void ExperienceInnovationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

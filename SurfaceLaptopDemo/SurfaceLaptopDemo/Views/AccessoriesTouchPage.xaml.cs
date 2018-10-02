@@ -31,6 +31,12 @@ namespace SurfaceLaptopDemo.Views
         {
             InitializeComponent();
             PinchZoomElement.ZoomEvent += HandleZoomChanged;
+            this.Loaded += AccessoriesTouchPage_Loaded;
+        }
+
+        private void AccessoriesTouchPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

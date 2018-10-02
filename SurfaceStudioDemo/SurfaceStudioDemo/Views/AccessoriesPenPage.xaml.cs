@@ -56,6 +56,13 @@ namespace SurfaceStudioDemo.Views
 
             this.SurfaceDial.ColorIDChanged += DialColorIDChanged;
             this.SurfaceDial.OnDialScreenContactStarted += OnDialScreenContacted;
+
+            this.Loaded += AccessoriesPenPage_Loaded;
+        }
+
+        private void AccessoriesPenPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

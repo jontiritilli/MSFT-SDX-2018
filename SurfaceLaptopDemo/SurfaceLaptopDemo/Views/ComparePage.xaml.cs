@@ -50,6 +50,12 @@ namespace SurfaceLaptopDemo.Views
                 ComparePagePopupGo.Current.CloseButton_Clicked += Close_Go_Clicked;
 
             };
+            this.Loaded += ComparePage_Loaded;
+        }
+
+        private void ComparePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion
@@ -101,7 +107,7 @@ namespace SurfaceLaptopDemo.Views
         {
             // animations in
             AnimationHelper.PerformPageEntranceAnimation(this);
-            AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
+            //AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
 
             rBtnPro.StartEntranceAnimation();
             rBtnPro.StartRadiateAnimation();

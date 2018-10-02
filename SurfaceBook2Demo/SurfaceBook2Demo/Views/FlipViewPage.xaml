@@ -41,7 +41,7 @@
                Padding="0"
                Background="Transparent"
                AllowFocusOnInteraction="False"
-               Loaded="FlipViewEx_Loaded"
+               Loaded="FlipViewEx_Loaded"               
                SelectionChanged="FlipViewEx_SelectionChanged">
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceHeroPage">
                 <Frame>

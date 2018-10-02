@@ -24,6 +24,13 @@ namespace SurfaceStudioDemo.Views
         public ExperienceCreativityPage()
         {
             InitializeComponent();
+
+            this.Loaded += ExperienceCreativityPage_Loaded;
+        }
+
+        private void ExperienceCreativityPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

@@ -27,6 +27,12 @@ namespace SurfaceStudioDemo.Views
             this.rBtnLeftAccRight.PopupChild = PopLeft;
             this.rBtnRightAccRight.PopupChild = PopRight;
             this.rBtnTopAccRight.PopupChild = PopTop;
+            this.Loaded += AccessoriesMousePage_Loaded;
+        }
+
+        private void AccessoriesMousePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

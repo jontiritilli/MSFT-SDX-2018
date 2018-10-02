@@ -36,6 +36,12 @@ namespace SurfaceProDemo.Views
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
+            this.Loaded += AccessoriesMousePage_Loaded;
+        }
+
+        private void AccessoriesMousePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)

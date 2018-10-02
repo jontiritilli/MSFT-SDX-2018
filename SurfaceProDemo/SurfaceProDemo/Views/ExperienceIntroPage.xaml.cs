@@ -35,6 +35,12 @@ namespace SurfaceProDemo.Views
             {
                 rBtnRight.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
+            this.Loaded += ExperienceIntroPage_Loaded;
+        }
+
+        private void ExperienceIntroPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

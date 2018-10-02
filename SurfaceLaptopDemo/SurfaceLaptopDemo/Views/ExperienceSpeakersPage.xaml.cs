@@ -26,6 +26,12 @@ namespace SurfaceLaptopDemo.Views
             InitializeComponent();
             this.AppSelectorImageSpeakers.AppSelector = this.AppSelectorSpeakers;
             this.AppSelectorImageMinorSpeakers.AppSelector = this.AppSelectorSpeakers;
+            this.Loaded += ExperienceSpeakersPage_Loaded;
+        }
+
+        private void ExperienceSpeakersPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

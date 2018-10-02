@@ -48,6 +48,13 @@ namespace SurfaceLaptopDemo.Views
             this.rBtnRightMouse.PopupChild = PopRight;
             this.PopLeftLegal.SetOpacity(0);
 
+            this.Loaded += AccessoriesMousePage_Loaded;
+
+        }
+
+        private void AccessoriesMousePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)

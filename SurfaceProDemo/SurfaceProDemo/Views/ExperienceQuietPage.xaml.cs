@@ -30,6 +30,12 @@ namespace SurfaceProDemo.Views
             rBtnTop.PopupChild = PopTop;
             rBtnRight.PopupChild = PopRight;
             this.LeftLegal.SetOpacity(0);
+            this.Loaded += ExperienceQuietPage_Loaded;
+        }
+
+        private void ExperienceQuietPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

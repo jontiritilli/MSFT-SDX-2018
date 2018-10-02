@@ -27,6 +27,12 @@ namespace SurfaceProDemo.Views
         {
             InitializeComponent();
             rBtnRight.PopupChild = PopRight;
+            this.Loaded += ExperienceTransformPage_Loaded;
+        }
+
+        private void ExperienceTransformPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

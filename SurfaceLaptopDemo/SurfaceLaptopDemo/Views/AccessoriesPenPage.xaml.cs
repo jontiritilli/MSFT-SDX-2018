@@ -40,6 +40,12 @@ namespace SurfaceLaptopDemo.Views
             this.AppSelectorAccRight.SelectedIDChanged += SelectedIDChanged;
 
             this.rBtnPen.PopupChild = PopCenter;
+            this.Loaded += AccessoriesPenPage_Loaded;
+        }
+
+        private void AccessoriesPenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         public void SelectedIDChanged(object sender, EventArgs e)

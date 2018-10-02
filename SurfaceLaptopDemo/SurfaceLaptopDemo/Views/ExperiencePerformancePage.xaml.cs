@@ -26,6 +26,12 @@ namespace SurfaceLaptopDemo.Views
             InitializeComponent();
             this.AppSelectorImagePerf.AppSelector = this.AppSelectorPerf;
             this.AppSelectorImageMinorPerf.AppSelector = this.AppSelectorPerf;
+            this.Loaded += ExperiencePerformancePage_Loaded;
+        }
+
+        private void ExperiencePerformancePage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion

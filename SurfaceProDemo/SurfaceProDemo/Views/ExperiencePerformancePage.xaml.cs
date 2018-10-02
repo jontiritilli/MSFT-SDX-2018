@@ -34,7 +34,13 @@ namespace SurfaceProDemo.Views
             };
 
             rBtnLeft.PopupChild = PopLeft;
-            rBtnRight.PopupChild = PopRight;         
+            rBtnRight.PopupChild = PopRight;
+            this.Loaded += ExperiencePerformancePage_Loaded;
+        }
+
+        private void ExperiencePerformancePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)

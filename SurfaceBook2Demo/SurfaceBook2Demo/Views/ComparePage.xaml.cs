@@ -19,6 +19,14 @@ namespace SurfaceBook2Demo.Views
             get { return DataContext as CompareViewModel; }
         }
 
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
+
+        #endregion
+        #region Public Static Properties
+
+        public static ComparePage Current { get; private set; }
+
         #endregion
 
 
@@ -27,6 +35,7 @@ namespace SurfaceBook2Demo.Views
         public ComparePage()
         {
             InitializeComponent();
+            ComparePage.Current = this;
             var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
             timer.Start();
             timer.Tick += (sender, args) =>
@@ -47,8 +56,39 @@ namespace SurfaceBook2Demo.Views
                 this.rBtnGo.PopupChild = FlipViewPage.Current.GetComparePagePopupGo();
                 ComparePagePopupGo.Current.CloseButton_Clicked += Close_Go_Clicked;
             };
+
+            this.Loaded += ComparePage_Loaded;
         }
 
+        private void ComparePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            ComparePage.Current.HasLoaded = true;
+            if (ComparePage.Current.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);            
+
+            rBtnPro.StartEntranceAnimation();
+            rBtnPro.StartRadiateAnimation();
+
+            rBtnBook.StartEntranceAnimation();
+            rBtnBook.StartRadiateAnimation();
+
+            rBtnStudio.StartEntranceAnimation();
+            rBtnStudio.StartRadiateAnimation();
+
+            rBtnLaptop.StartEntranceAnimation();
+            rBtnLaptop.StartRadiateAnimation();
+
+            rBtnGo.StartEntranceAnimation();
+            rBtnGo.StartRadiateAnimation();
+        }
         #endregion
 
 
@@ -97,23 +137,15 @@ namespace SurfaceBook2Demo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            //SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
+            if (ComparePage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ComparePage.Current.HasNavigatedTo = true;
+            }
 
-            rBtnPro.StartEntranceAnimation();
-            rBtnPro.StartRadiateAnimation();
-
-            rBtnBook.StartEntranceAnimation();
-            rBtnBook.StartRadiateAnimation();
-
-            rBtnStudio.StartEntranceAnimation();
-            rBtnStudio.StartRadiateAnimation();
-
-            rBtnLaptop.StartEntranceAnimation();
-            rBtnLaptop.StartRadiateAnimation();
-
-            rBtnGo.StartEntranceAnimation();
-            rBtnGo.StartRadiateAnimation();
         }
 
         public void NavigateFromPage()

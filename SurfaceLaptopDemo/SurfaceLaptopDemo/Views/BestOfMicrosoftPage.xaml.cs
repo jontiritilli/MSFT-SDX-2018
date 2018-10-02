@@ -24,6 +24,12 @@ namespace SurfaceLaptopDemo.Views
         public BestOfMicrosoftPage()
         {
             InitializeComponent();
+            this.Loaded += BestOfMicrosoftPage_Loaded;
+        }
+
+        private void BestOfMicrosoftPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
         }
 
         #endregion
