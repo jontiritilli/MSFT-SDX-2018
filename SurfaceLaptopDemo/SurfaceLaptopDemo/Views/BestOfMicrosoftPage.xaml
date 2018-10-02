@@ -24,6 +24,10 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
