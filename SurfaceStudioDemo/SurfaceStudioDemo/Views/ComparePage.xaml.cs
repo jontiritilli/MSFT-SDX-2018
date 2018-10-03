@@ -32,12 +32,18 @@ namespace SurfaceStudioDemo.Views
         public ComparePage()
         {
             InitializeComponent();
-            ComparePage.Current = this;
-            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
+
+
+            var timer = new DispatcherTimer {
+                Interval = TimeSpan.FromMilliseconds(1500)
+            };
+
             timer.Start();
+
             timer.Tick += (sender, args) =>
-            {// well this works? but ew
+            {
                 timer.Stop();
+
                 this.rBtnPro.PopupChild = FlipViewPage.Current.GetComparePagePopupPro(); ;
                 ComparePagePopupPro.Current.CloseButton_Clicked += Close_Pro_Clicked;
 
@@ -60,8 +66,8 @@ namespace SurfaceStudioDemo.Views
         private void ComparePage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
-            ComparePage.Current.HasLoaded = true;
-            if (ComparePage.Current.HasNavigatedTo)
+            this.HasLoaded = true;
+            if (this.HasNavigatedTo)
             {
                 AnimatePageEntrance();
             }
@@ -69,8 +75,8 @@ namespace SurfaceStudioDemo.Views
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            SDX.Toolkit.Helpers.AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
+            AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformTranslateIn(this.img_Family, this.img_Family.TranslateDirection, 100, 500, 0);
 
             rBtnPro.StartEntranceAnimation();
             rBtnPro.StartRadiateAnimation();
@@ -129,11 +135,26 @@ namespace SurfaceStudioDemo.Views
 
         private void ClosePopupsOnExit()
         {
-            rBtnPro.HandleClick();
-            rBtnBook.HandleClick();
-            rBtnStudio.HandleClick();
-            rBtnLaptop.HandleClick();
-            rBtnGo.HandleClick();
+            if(null != rBtnPro.PopupChild)
+            {
+                rBtnPro.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnBook.PopupChild)
+            {
+                rBtnBook.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnStudio.PopupChild)
+            {
+                rBtnStudio.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnPro.PopupChild)
+            {
+                rBtnLaptop.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnGo.PopupChild)
+            {
+                rBtnGo.PopupChild.IsOpen = false;
+            }
         }
 
         #endregion
@@ -143,13 +164,13 @@ namespace SurfaceStudioDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            if (ComparePage.Current.HasLoaded)
+            if (this.HasLoaded)
             {
                 AnimatePageEntrance();
             }
             else
             {
-                ComparePage.Current.HasNavigatedTo = true;
+                this.HasNavigatedTo = true;
             }
         }
 
@@ -158,7 +179,7 @@ namespace SurfaceStudioDemo.Views
             // animations out
             AnimationHelper.PerformPageExitAnimation(this);
 
-            //ClosePopupsOnExit();
+            ClosePopupsOnExit();
 
             rBtnPro.ResetEntranceAnimation();
             rBtnPro.ResetRadiateAnimation();

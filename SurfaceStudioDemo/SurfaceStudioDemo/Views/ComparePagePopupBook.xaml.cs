@@ -39,7 +39,9 @@ namespace SurfaceStudioDemo.Views
         public ComparePagePopupBook()
         {
             InitializeComponent();
+
             ComparePagePopupBook.Current = this;
+
             this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
         }
 
