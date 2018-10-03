@@ -58,7 +58,7 @@ namespace SurfaceLaptopDemo.Views
 
         private void HandleZoomChanged(object sender, RoutedEventArgs e)
         {
-            rButtonOne.CloseTryIt();
+            rButtonOne.FadeOutButton();
         }
 
         #endregion
