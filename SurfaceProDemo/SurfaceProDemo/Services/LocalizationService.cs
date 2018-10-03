@@ -229,6 +229,7 @@ namespace SurfaceProDemo.Services
             viewModel.Lede = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_COPY, "EXPERIENCE_STUDIO_COPY");
             viewModel.PopTryItHeadline = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_TRYIT_POP_TITLE, "EXPERIENCE_STUDIO_TRYIT_POP_TITLE");
             viewModel.PopTryItLede = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_TRYIT_POP_COPY, "EXPERIENCE_STUDIO_TRYIT_POP_COPY");
+            viewModel.PopTryIt = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_TRYIT, "EXPERIENCE_LAPTOP_TRYIT");
 
             viewModel.PopCenterHeadline = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_HEADLINE, "EXPERIENCE_LAPTOP_POPCENTER_HEADLINE");
             viewModel.PopCenterLede = GetStringValue(_languageCurrent.EXPERIENCE_LAPTOP_POPCENTER_COPY, "EXPERIENCE_LAPTOP_POPCENTER_COPY");
