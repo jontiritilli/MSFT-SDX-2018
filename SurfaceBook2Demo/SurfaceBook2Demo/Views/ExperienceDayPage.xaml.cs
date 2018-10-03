@@ -57,12 +57,6 @@ namespace SurfaceBook2Demo.Views
         {
             // set the current page
             this.DayFlipView.SelectedIndex = 0;
-
-            // save the current page so we can navigate from it
-            _previousPage = (INavigate)((FlipViewItemEx)this.DayFlipView.SelectedItem).GetChildViewAsObject();
-
-            // navigate to it
-            _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
         }
 
         #endregion
@@ -223,11 +217,17 @@ namespace SurfaceBook2Demo.Views
             }
 
             // animations in
+            // propagate navigation to child flipview pages on first navigate from outer FV page
+            INavigate navigatePage = (INavigate)((FlipViewItemEx)this.DayFlipView.SelectedItem).GetChildViewAsObject();            
+            navigatePage.NavigateToPage(moveDirection);
+
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            INavigate navigatePage = (INavigate)((FlipViewItemEx)this.DayFlipView.SelectedItem).GetChildViewAsObject();
+            navigatePage.NavigateFromPage();
         }
 
         #endregion
