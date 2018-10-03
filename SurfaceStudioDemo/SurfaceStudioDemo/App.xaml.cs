@@ -29,8 +29,6 @@ namespace SurfaceStudioDemo
             get { return _activationService.Value; }
         }
 
-        // d'oh!
-
         #endregion
 
 
