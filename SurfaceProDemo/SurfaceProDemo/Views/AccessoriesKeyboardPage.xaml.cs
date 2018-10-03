@@ -27,8 +27,7 @@ namespace SurfaceProDemo.Views
 
         public AccessoriesKeyboardPage()
         {
-            InitializeComponent();
-            this.PopBottomLegal.SetOpacity(0.0d);
+            InitializeComponent();            
             AccessoriesKeyboardPage.Current = this;
             this.AppSelectorImageKB.AppSelector = this.AppSelectorKB;
             this.AppSelectorKB.SelectedIDChanged += SelectedIDChanged;

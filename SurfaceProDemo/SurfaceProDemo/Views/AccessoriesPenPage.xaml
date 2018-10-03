@@ -72,8 +72,7 @@
         <ctrl:TextBlockEx x:Name="TopLegal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       HasPageEntranceAnimationEnabled="False"
+                       VerticalAlignment="Top"                       
                        TextStyle="Legal"/>
 
     </Grid>

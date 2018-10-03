@@ -45,7 +45,7 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region Public Properties
-        public AnimationDirection TranslateDirection;        
+           
         #endregion
 
         #region Overrides
@@ -198,6 +198,16 @@ namespace SDX.Toolkit.Controls
             get { return (bool)GetValue(HasEntranceTranslationProperty); }
             set { SetValue(HasEntranceTranslationProperty, value); }
         }
+        // TranslateDirection
+        public static readonly DependencyProperty TranslateDirectionProperty =
+        DependencyProperty.Register("TranslateDirection", typeof(AnimationDirection), typeof(TextBlockEx), new PropertyMetadata(AnimationDirection.Left));
+
+        public AnimationDirection TranslateDirection
+        {
+            get { return (AnimationDirection)GetValue(TranslateDirectionProperty); }
+            set { SetValue(TranslateDirectionProperty, value); }
+        }
+        
         #endregion
 
 
