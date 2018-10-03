@@ -30,8 +30,7 @@ namespace SurfaceProDemo.Views
         public AccessoriesMousePage()
         {
             InitializeComponent();
-            AccessoriesMousePage.Current = this;
-            this.PopLeftLegal.SetOpacity(0.0d);
+            AccessoriesMousePage.Current = this;            
             this.AppSelectorImageMouse.AppSelector = this.AppSelectorMouse;
             this.AppSelectorMouse.SelectedIDChanged += SelectedIDChanged;
 

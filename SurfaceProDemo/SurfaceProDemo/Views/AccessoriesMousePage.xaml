@@ -128,11 +128,12 @@
             HasPageEntranceAnimationEnabled="False"/>
 
         <ctrl:TextBlockEx
-            x:Name="PopLeftLegal"
+            x:Name="PopRightLegal"
             Grid.Row="4"
             Grid.Column="2"
-            Text="{x:Bind Path=ViewModel.PopLeftLegal}"
+            Text="{x:Bind Path=ViewModel.PopRightLegal}"
             TextStyle="Legal"
+            TranslateDirection="Right"
             HorizontalAlignment="Right"/>
     </Grid>
 </Page>
