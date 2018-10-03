@@ -63,6 +63,7 @@ namespace SurfaceBook2Demo.Views
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
         }
+
         #endregion
 
         #region Private Methods
