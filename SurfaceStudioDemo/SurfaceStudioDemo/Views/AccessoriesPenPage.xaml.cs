@@ -23,8 +23,6 @@ namespace SurfaceStudioDemo.Views
 
         public RoutedEventHandler OnDialScreenContactStarted;
 
-        public bool Visited = false;
-
         #region Private Members
 
         private AccessoriesPenViewModel ViewModel
@@ -32,12 +30,16 @@ namespace SurfaceStudioDemo.Views
             get { return DataContext as AccessoriesPenViewModel; }
         }
 
+        private bool HasInteracted = false;
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
+
         public static AccessoriesPenPage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -45,9 +47,13 @@ namespace SurfaceStudioDemo.Views
         public AccessoriesPenPage()
         {
             InitializeComponent();
-            AccessoriesPenPage.Current = this;
-            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+
+            var timer = new Windows.UI.Xaml.DispatcherTimer {
+                Interval = TimeSpan.FromMilliseconds(500)
+            };
+
             timer.Start();
+
             timer.Tick += (sender, args) =>
             {// well this works? but ew
                 timer.Stop();
@@ -66,32 +72,13 @@ namespace SurfaceStudioDemo.Views
             this.Loaded += AccessoriesPenPage_Loaded;
         }
 
-        private void AccessoriesPenPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            NavigateFromPage();
-            AccessoriesPenPage.Current.HasLoaded = true;
-            if (AccessoriesPenPage.Current.HasNavigatedTo)
-            {
-                AnimatePageEntrance();
-            }
-        }
-
-        private void AnimatePageEntrance()
-        {
-            // animations in
-            if (Visited || null != ReadyScreen)// do regular entrance if theyve been here and did stuff already
-            {
-                AnimatePageOnNavigate();
-            }
-            ShowPopup();
-        }
-
         #endregion
 
         #region Private Methods
 
         private void OnPenTryItClicked(object sender, EventArgs e)
         {
+            this.rBtnPen.FadeOutButton();
             this.ColoringBook.FadeInColoringImage();
         }
 
@@ -113,51 +100,60 @@ namespace SurfaceStudioDemo.Views
 
         private void OnDialScreenContacted(object sender, EventArgs e)
         {
-            this.rBtnDial.Visibility = Visibility.Collapsed;
+            this.rBtnDial.FadeOutButton();
         }
 
         private void OnPenScreenContacted(object sender, EventArgs e)
         {
-            this.rBtnPen.Visibility = Visibility.Collapsed;
+            this.rBtnPen.FadeOutButton();
+            this.ColoringBook.FadeInColoringImage();
         }
 
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
             HidePopup();
-            AnimatePageOnNavigate();
-            Visited = true;
+            AnimatePageEntrance();
+            HasInteracted = true;
         }
 
         private void ShowPopup()
         {
-            if (!Visited)
+            if (null != ReadyScreen && !HasInteracted)
             {
-                if(null != ReadyScreen)
-                {
-                    ReadyScreen.IsOpen = true;
-                }
+                ReadyScreen.IsOpen = true;
             }
         }
 
         private void HidePopup()
         {
-            if (null != ReadyScreen)
+            if (null != ReadyScreen && ReadyScreen.IsOpen)
             {
-                if (ReadyScreen.IsOpen)
-                {
-                    ReadyScreen.IsOpen = false;
-                }
+                ReadyScreen.IsOpen = false;
             }
         }
 
-        private void AnimatePageOnNavigate()
+        private void AccessoriesPenPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            this.HasLoaded = true;
+
+            if (this.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
         {
             AnimationHelper.PerformPageEntranceAnimation(this);
+
             rBtnDial.StartEntranceAnimation();
             rBtnDial.StartRadiateAnimation();
 
             rBtnPen.StartEntranceAnimation();
             rBtnPen.StartRadiateAnimation();
+
             SurfaceDial.ActivateOnNavigate();
         }
 
@@ -167,25 +163,24 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-
-            if (AccessoriesPenPage.Current.HasLoaded)
+            ShowPopup();
+            if (this.HasLoaded)
             {
                 AnimatePageEntrance();
             }
             else
             {
-                AccessoriesPenPage.Current.HasNavigatedTo = true;
+                this.HasNavigatedTo = true;
             }
-
-            
-                    
         }
 
         public void NavigateFromPage()
         {
             // animations out
             AnimationHelper.PerformPageExitAnimation(this);
+
             HidePopup();
+
             rBtnDial.ResetEntranceAnimation();
             rBtnDial.ResetRadiateAnimation();
 

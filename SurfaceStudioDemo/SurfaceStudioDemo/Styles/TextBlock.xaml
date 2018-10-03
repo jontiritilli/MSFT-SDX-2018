@@ -88,9 +88,9 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiLight" />
-        <Setter Property="FontSize" Value="105" />    <!-- 1/2 -->
+        <Setter Property="FontSize" Value="87.5" />    <!-- 1/2 -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="60" />    <!-- 1/2 -->
+        <Setter Property="LineHeight" Value="100" />    <!-- 1/2 -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />

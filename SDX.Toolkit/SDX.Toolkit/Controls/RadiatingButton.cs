@@ -315,6 +315,7 @@ namespace SDX.Toolkit.Controls
                 {
                     // catch the closed event for the popup
                     _popupChild.Closed += this.Popup_Closed;
+                    _popupChild.Opened += this.Popup_Opened;
                     //_popupChild.HorizontalOffset = -1;
                     //_popupChild.VerticalOffset = -1;
                     // catch the image gallery Closed event
@@ -355,11 +356,11 @@ namespace SDX.Toolkit.Controls
             return myBrush;
         }
 
-        public void ClosePopup()
+        public void FadeOutButton()
         {
-            if (null != this.PopupChild)
+            if(null != _grid)
             {
-                this.PopupChild.IsOpen = false;
+                _grid.Opacity = 0.0d;
             }
         }
 
@@ -541,11 +542,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void CloseTryIt()
-        {
-            HandleClick();
-        }
-
         #endregion
 
         #region Private Methods
@@ -655,27 +651,22 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void Grid_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            // declare potential types
-            PointerDeviceType pen = PointerDeviceType.Pen;
-            PointerDeviceType touch = PointerDeviceType.Touch;
-            PointerDeviceType mouse = PointerDeviceType.Mouse;
-
             // get current device type from event
             PointerDeviceType pointerType = e.Pointer.PointerDeviceType;
 
-            if(IsPenOnly && pointerType != pen)
+            if(IsPenOnly && pointerType != PointerDeviceType.Pen)
             {
                 return;
             }
 
-            if (IsTouchOnly && pointerType != touch)
+            if (IsTouchOnly && pointerType != PointerDeviceType.Touch)
             {
                 return;
             }
 
-            if (IsMouseOnly && pointerType != mouse)
+            if (IsMouseOnly && pointerType != PointerDeviceType.Mouse)
             {
                 return;
             }
@@ -684,19 +675,12 @@ namespace SDX.Toolkit.Controls
             {
                 return;
             }
-
+            RaiseClickedEvent(this, new EventArgs());
             HandleClick();
         }
 
-        public void HandleClick()
+        public void StopStoryBoards()
         {
-            // for try it, to hide the grid if interaction has occurred
-            if (IsRemovedOnInteraction)
-            {
-                _grid.Opacity = 0.0;
-            }
-
-            // stop the storyboard if user clicks, so they don't get a try it after clicking
             if (null != _tryItBoxStoryboard)
             {
                 _tryItBoxStoryboard.Stop();
@@ -709,40 +693,29 @@ namespace SDX.Toolkit.Controls
             {
                 _tryItIconStoryboard.Stop();
             }
+        }
+        public void HandleClick()
+        {
+            // for try it, to hide the grid if interaction has occurred
+            if (IsRemovedOnInteraction)
+            {
+                _grid.Opacity = 0.0;
+            }
+
+            // stop the storyboard if user clicks, so they don't get a try it after clicking
+            StopStoryBoards();
 
             if (TryItEnabled && null != this.PopupChild)
             {
                 if (this.PopupChild.IsOpen)
                 {
-                    // close it
+                    HandleClose();
                     this.PopupChild.IsOpen = false;
-
-                    // swap the images
-                    _imageX.Opacity = 0.0;
-
-                    _tryItImage.Opacity = 1.0;
                 }
                 else
                 {
-                    // if the horizontal offset is -1, calculate it
-                    if (-1 == this.PopupChild.HorizontalOffset)
-                    {
-                        this.PopupChild.HorizontalOffset = GetPopupHorizontalOffset();
-                    }
-
-                    // if the vertical offset is -1, calculate it
-                    if (-1 == this.PopupChild.VerticalOffset)
-                    {
-                        this.PopupChild.VerticalOffset = GetPopupVerticalOffset();
-                    }
-
-                    // open it
+                    HandleOpen();
                     this.PopupChild.IsOpen = true;
-
-                    // swap the images
-                    _imageX.Opacity = 1.0;
-
-                    _tryItImage.Opacity = 0.0;
 
                     if (null != _tryItBox)
                     {
@@ -753,7 +726,6 @@ namespace SDX.Toolkit.Controls
                         _tryItButtonCaption.Opacity = 0.0;
                     }
                     
-
                     // telemetry
                     //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                 }
@@ -762,49 +734,54 @@ namespace SDX.Toolkit.Controls
             {
                 if (this.PopupChild.IsOpen)
                 {
-                    // close it
+                    HandleClose();
                     this.PopupChild.IsOpen = false;
-                    _imageX.Opacity = 0.0;
                 }
                 else
                 {
-                    // if the horizontal offset is -1, calculate it
-                    if (-1 == this.PopupChild.HorizontalOffset)
-                    {
-                        this.PopupChild.HorizontalOffset = GetPopupHorizontalOffset();
-                    }
-
-                    // if the vertical offset is -1, calculate it
-                    if (-1 == this.PopupChild.VerticalOffset)
-                    {
-                        this.PopupChild.VerticalOffset = GetPopupVerticalOffset();
-                    }
-
-                    // open it
+                    HandleOpen();
                     this.PopupChild.IsOpen = true;
-
-                    _imageX.Opacity = 1.0;
 
                     // telemetry
                     //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
                 }
             }
-            RaiseClickedEvent(this, new EventArgs());
-        }
-
-        private void PopupChild_Closed(object sender, EventArgs e)
-        {
-            if (null != this.PopupChild)
-            {
-                this.PopupChild.IsOpen = false;
-            }
-
-            HandleClose();
         }
 
         private void Popup_Closed(object sender, object e)
         {
             HandleClose();
+        }
+
+        private void Popup_Opened(object sender, object e)
+        {
+            HandleOpen();
+        }
+
+        private void HandleOpen()
+        {
+            // if the horizontal offset is -1, calculate it
+            if (-1 == this.PopupChild.HorizontalOffset)
+            {
+                this.PopupChild.HorizontalOffset = GetPopupHorizontalOffset();
+            }
+
+            // if the vertical offset is -1, calculate it
+            if (-1 == this.PopupChild.VerticalOffset)
+            {
+                this.PopupChild.VerticalOffset = GetPopupVerticalOffset();
+            }
+
+            if (null != _imageX)
+            {
+                // hide the X
+                _imageX.Opacity = 1.0;
+            }
+            if (null != _tryItImage)
+            {
+                // Show the tryit icon
+                _tryItImage.Opacity = 0.0;
+            }
         }
 
         private void HandleClose()
@@ -819,7 +796,6 @@ namespace SDX.Toolkit.Controls
                 // Show the tryit icon
                 _tryItImage.Opacity = 1.0;
             }
-
         }
 
         #endregion
@@ -866,7 +842,13 @@ namespace SDX.Toolkit.Controls
                 };
 
                 // add pointer pressed event
-                _grid.PointerPressed += Grid_PointerPressed;
+                //_grid.PointerReleased += Grid_PointerReleased;
+
+                // this is causing all kinds of trouble. if we use "released" instead of "pressed", the state of the popup is closed by light dismiss before the event fires.
+                // therefore, the event is always reading the popup as closed, and is reopening it. this is a huge problem! If we use "pressed" instead of "released",
+                // the navigation can occur even after the popup is opened, which is an issue for full screen popups
+
+                _grid.PointerPressed += Grid_PointerReleased;
 
                 // add to the button
                 _layoutRoot.Child = _grid;
@@ -919,6 +901,7 @@ namespace SDX.Toolkit.Controls
                         BorderBrush = new SolidColorBrush(Colors.White),
                         BorderThickness = new Thickness(2),
                         Padding = new Thickness(5,0,5,0),
+                        MinWidth = 30d,
                         VerticalAlignment = VerticalAlignment.Top,
                         HorizontalAlignment = HorizontalAlignment.Center,
                     };

@@ -181,7 +181,7 @@ namespace SDX.Toolkit.Controls
 
         // LedeWidth
         public static readonly DependencyProperty LedeWidthProperty =
-        DependencyProperty.Register("LedeStyle", typeof(double), typeof(Header), new PropertyMetadata(0.0d));
+        DependencyProperty.Register("LedeWidth", typeof(double), typeof(Header), new PropertyMetadata(0.0d));
 
         public double LedeWidth
         {
