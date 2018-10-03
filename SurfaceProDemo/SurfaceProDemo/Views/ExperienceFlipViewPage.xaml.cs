@@ -58,11 +58,7 @@ namespace SurfaceProDemo.Views
             // set the current page
             this.DeviceModeFlipView.SelectedIndex = 0;
 
-            // save the current page so we can navigate from it
-            _previousPage = (INavigate)((FlipViewItemEx)this.DeviceModeFlipView.SelectedItem).GetChildViewAsObject();
 
-            // navigate to it
-            _previousPage.NavigateToPage(INavigateMoveDirection.Forward);
         }
 
         #endregion
@@ -208,11 +204,17 @@ namespace SurfaceProDemo.Views
             }
 
             // animations in
+            // propagate navigation to child flipview pages on first navigate from outer FV page
+            INavigate navigatePage = (INavigate)((FlipViewItemEx)this.DeviceModeFlipView.SelectedItem).GetChildViewAsObject();            
+            navigatePage.NavigateToPage(moveDirection);
+
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            INavigate navigatePage = (INavigate)((FlipViewItemEx)this.DeviceModeFlipView.SelectedItem).GetChildViewAsObject();
+            navigatePage.NavigateFromPage();            
         }
 
         #endregion

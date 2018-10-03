@@ -87,6 +87,7 @@ namespace SurfaceStudioDemo.Views
             rBtnGo.StartEntranceAnimation();
             rBtnGo.StartRadiateAnimation();
         }
+
         #endregion
 
         #region Private Methods
@@ -126,6 +127,15 @@ namespace SurfaceStudioDemo.Views
             TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
         }
 
+        private void ClosePopupsOnExit()
+        {
+            rBtnPro.HandleClick();
+            rBtnBook.HandleClick();
+            rBtnStudio.HandleClick();
+            rBtnLaptop.HandleClick();
+            rBtnGo.HandleClick();
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -146,7 +156,10 @@ namespace SurfaceStudioDemo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            //ClosePopupsOnExit();
+
             rBtnPro.ResetEntranceAnimation();
             rBtnPro.ResetRadiateAnimation();
 
@@ -161,6 +174,7 @@ namespace SurfaceStudioDemo.Views
 
             rBtnGo.ResetEntranceAnimation();
             rBtnGo.ResetRadiateAnimation();
+
         }
 
         #endregion

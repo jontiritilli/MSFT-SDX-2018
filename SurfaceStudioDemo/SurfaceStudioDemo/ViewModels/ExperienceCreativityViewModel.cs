@@ -13,6 +13,7 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
+        private const string URI_BACKGROUND_GRADIENT = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
         private const string URI_BACKGROUND1 = "ms-appx:///Assets/Experience/hero01.jpg";
         private const string URI_BACKGROUND2 = "ms-appx:///Assets/Experience/hero02.jpg";
 
@@ -22,6 +23,7 @@ namespace SurfaceStudioDemo.ViewModels
 
         public string Headline;
         public string Lede;
+        public string BackgroundGradientUri = URI_BACKGROUND_GRADIENT;
         public string BackgroundOneUri = URI_BACKGROUND1;
         public string BackgroundTwoUri = URI_BACKGROUND2;
 

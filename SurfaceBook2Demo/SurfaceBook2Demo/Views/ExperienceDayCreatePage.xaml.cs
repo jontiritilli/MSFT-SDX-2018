@@ -31,8 +31,7 @@ namespace SurfaceBook2Demo.Views
         public ExperienceDayCreatePage()
         {
             InitializeComponent();
-            ExperienceDayCreatePage.Current = this;
-            this.LegalCompare.SetOpacity(0.0d);
+            ExperienceDayCreatePage.Current = this;            
 
             rBtnLeft.PopupChild = PopLeft;
             rBtnTop.PopupChild = PopTop;
@@ -62,29 +61,6 @@ namespace SurfaceBook2Demo.Views
 
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
-        }
-        #endregion
-
-        #region Private Methods
-
-        private void PopRight_Opened(object sender, object e)
-        {
-            this.LegalCompare.SetOpacity(1);
-        }
-
-        private void PopRight_Closed(object sender, object e)
-        {
-            this.LegalCompare.SetOpacity(0);
-        }
-
-        private void PopLeft_Opened(object sender, object e)
-        {
-            this.LegalCompare.SetOpacity(1);
-        }
-
-        private void PopLeft_Closed(object sender, object e)
-        {
-            this.LegalCompare.SetOpacity(0);
         }
 
         #endregion

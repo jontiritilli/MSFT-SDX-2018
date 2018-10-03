@@ -36,13 +36,14 @@
         </Grid.ColumnDefinitions>
         
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"/>
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+        
         <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
             x:Name="img_Family"
             ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
@@ -61,7 +62,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnPro"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=.03}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.68}"                                                    
                 AutoStart = "false"
                 EntranceStaggerDelayInMilliseconds="600"
@@ -69,7 +70,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnBook"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.18}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.20}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                                                    
                 AutoStart = "false"
                 EntranceStaggerDelayInMilliseconds="800"
@@ -77,7 +78,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnStudio"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.62}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.61}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                                    
                 AutoStart = "false"
                 EntranceStaggerDelayInMilliseconds="1000"
@@ -85,7 +86,7 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLaptop"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.78}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                                                    
                 AutoStart = "false"
                 EntranceStaggerDelayInMilliseconds="1200"
@@ -93,8 +94,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnGo"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.91}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.83}"                                                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.88}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"                                                    
                 AutoStart = "false"
                 EntranceStaggerDelayInMilliseconds="1400"
                 Clicked="RadiatingButton_Clicked"/>
@@ -179,8 +180,8 @@
                 Text="{x:Bind Path=ViewModel.ProTitle}"
                 TextStyle="ListLede"
                 Opacity="0"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.12}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.88}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.11}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.86}"
                 HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
@@ -188,30 +189,30 @@
                 TextStyle="ListLede"
                 Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.30}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.84}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.82}"
                 HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.StudioTitle}"
                 TextStyle="ListLede"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.49}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.81}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.79}"
                 HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.LaptopTitle}"
                 TextStyle="ListLede"
                 Opacity="0"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.66}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.86}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.68}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.84}"
                 HasEntranceTranslation="False"
             />
             <ctrl:TextBlockEx
                 Text="{x:Bind Path=ViewModel.GoTitle}"
                 TextStyle="ListLede"
                 Opacity="0"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.84}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.92}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.86}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.90}"
                 HasEntranceTranslation="False"
             />
         </Canvas>

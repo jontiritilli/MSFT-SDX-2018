@@ -222,7 +222,10 @@ namespace SDX.Toolkit.Controls
             for (int row = 0; row < this.WordRows; row++)
             {
                 // create row stackpanel and add to the master
-                StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                StackPanel stackPanel = new StackPanel() {
+                    Orientation = Orientation.Horizontal,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
                 _rowMaster.Children.Add(stackPanel);
             }
 
