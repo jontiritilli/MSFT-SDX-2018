@@ -18,17 +18,21 @@ namespace SurfaceBook2Demo.ViewModels
 
         private const string URI_HERO = "ms-appx:///Assets/Experience/sb2_create_sb15.png";
         //"ms-appx:///Assets/Experience/transform.mp4";
+
         private const string URI_TRANSFORM_IMAGE_13 = "ms-appx:///Assets/Experience/sb2_transform_13.png"; 
-        private const string URI_TRANSFORM_IMAGE_15 = "ms-appx:///Assets/Experience/sb2_transform_15.png"; 
+        private const string URI_TRANSFORM_IMAGE_15 = "ms-appx:///Assets/Experience/sb2_transform_15.png";
+
+        private const double IMAGE_WIDTH_13 = 1000d;
+        private const double IMAGE_WIDTH_15 = 1100d;
 
         #endregion
-
 
         #region Public Properties
 
         public string BackgroundUri;
 
         public string HeroUri;
+        public double ImageWidth;
 
         public string Headline;
         public string Lede;
@@ -44,7 +48,6 @@ namespace SurfaceBook2Demo.ViewModels
 
         #endregion
 
-
         #region Construction
 
         public ExperienceDayCreateViewModel()
@@ -56,7 +59,8 @@ namespace SurfaceBook2Demo.ViewModels
                     this.BackgroundUri = URI_BACKGROUND15;
                     this.PopupTransformImageUri = URI_TRANSFORM_IMAGE_15;
                     this.PopupTransformImageWidth = 480;
-                    this.HeroUri = URI_HERO;                    
+                    this.HeroUri = URI_HERO;
+                    this.ImageWidth = IMAGE_WIDTH_15;
                     break;
 
                 case DeviceType.Book13:
@@ -65,16 +69,14 @@ namespace SurfaceBook2Demo.ViewModels
                     this.PopupTransformImageUri = URI_TRANSFORM_IMAGE_13;
                     this.PopupTransformImageWidth = 450;
                     this.HeroUri = URI_HERO;
+                    this.ImageWidth = IMAGE_WIDTH_13;
                     break;
             }
 
             // video uri for transform popup
             
-               
-
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
-
             // if we got it
             if (null != localizationService)
             {

@@ -14,8 +14,6 @@ using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 
 using SurfaceBook2Demo.Services;
-using SDX.Toolkit.Helpers;
-
 
 namespace SurfaceBook2Demo.ViewModels
 {
@@ -52,34 +50,24 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_APPSELECTOR_APP_5_15 = "ms-appx:///Assets/Experience/sb2_15_photoshop.png";
 
         private const int IMAGESELECTORIMAGE_WIDTH_13 = 1098;
-        private const int IMAGESELECTORIMAGE_WIDTH_15 = 1176;
+        private const int IMAGESELECTORIMAGE_HEIGHT_13 = (int)(IMAGESELECTORIMAGE_WIDTH_13 * .679);
 
-        private const int IMAGESELECTORIMAGE_HEIGHT_13 = 744;
-        private const int IMAGESELECTORIMAGE_HEIGHT_15 = 798;
+        private const int IMAGESELECTORIMAGE_WIDTH_15 = 1200;
+        private const int IMAGESELECTORIMAGE_HEIGHT_15 = (int)(IMAGESELECTORIMAGE_WIDTH_15 * .679);
 
         private const int APPSELECTORIMAGE_WIDTH_13 = 60;
         private const int APPSELECTORIMAGE_WIDTH_15 = 60;
-
-        private readonly double _radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
-        private readonly double _closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.TryItIconHeight) / 2;
-        private readonly double _maxImageWidth = StyleHelper.GetApplicationDouble("CanvasWidth");
-        private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("CanvasHeight");
-        private readonly double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
-        private readonly double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
 
         private readonly int APPSELECTOR_BUTTON_WIDTH = System.Convert.ToInt32(Math.Round((double)Application.Current.Resources["AppSelectorButtonWidth"], 0)); 
         private readonly int APPSELECTOR_BUTTON_HEIGHT = System.Convert.ToInt32(Math.Round((double)Application.Current.Resources["AppSelectorButtonWidth"], 0));
         #endregion
 
-
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
 
-
         public int ImageSelectorImageWidth;
         public int ImageSelectorImageHeight;
-
 
         public string Headline;
         public string Lede;
@@ -96,41 +84,24 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string ColoringBookClearButtonURI;        
 
-        public GridLength AppCloseWidth
-        {
-            get
-            {
-                return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.AppCloseWidth));
-            }
-        }
+        public string x_ImageURI = URI_X_IMAGE;
+        public double radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
+        public SolidColorBrush ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
+        public double closeIconHeight = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonCloseIconWidth);
+        public double EllipseGridCanvasSetLeft;
+        public double CloseEllipseMargin = StyleHelper.GetApplicationDouble("CompareCloseMargin");
+        public double PageWidth = StyleHelper.GetApplicationDouble("ScreenWidth");
 
-        public double radiatingButtonRadius;
-        public double closeIconHeight;
-
-        public string CloseButtonXURI;
-        public double ellipseGridCanvasSetLeft;
-        public double closeEllipseTopMargin;
-
-        public SolidColorBrush ellipseStroke;
         #endregion
-
 
         #region Construction
 
         public ExperienceDayWorkPopupViewModel()
         {
-            // get the localization service
-            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
             // set the header and lede and colors list for app selector
             // use the event to handle color changed
 
-
-            CloseButtonXURI = URI_X_IMAGE;
-            closeEllipseTopMargin = _closeEllipseTopMargin;
-            ellipseGridCanvasSetLeft = _maxImageWidth - _closeEllipseRightMargin - _radiatingButtonRadius;
-            radiatingButtonRadius = _radiatingButtonRadius;
-            closeIconHeight = _closeIconHeight;
-            ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
+            EllipseGridCanvasSetLeft = PageWidth - CloseEllipseMargin - radiatingButtonRadius;
 
             switch (WindowHelper.GetDeviceTypeFromResolution())
             {
@@ -257,114 +228,8 @@ namespace SurfaceBook2Demo.ViewModels
                
             }
 
-            //        this.ImagePairs = new Dictionary<int, ImagePair>();
-
-            //this.ImagePairs.Add(0, new ImagePair()
-            //{
-            //    NotSelected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_1,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_1.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    },
-            //    Selected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_1_SELECTED,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_1_SELECTED.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    }
-            //});
-
-            //this.ImagePairs.Add(1, new ImagePair()
-            //{
-            //    NotSelected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_2,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_2.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    },
-            //    Selected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_2_SELECTED,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_2_SELECTED.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    }
-            //});
-
-            //this.ImagePairs.Add(2, new ImagePair()
-            //{
-            //    NotSelected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_3,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_3.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    },
-            //    Selected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_3_SELECTED,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_3_SELECTED.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    }
-            //});
-
-            //this.ImagePairs.Add(3, new ImagePair()
-            //{
-            //    NotSelected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_4,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_4.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    },
-            //    Selected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_4_SELECTED,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_4_SELECTED.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    }
-            //});
-
-            //this.ImagePairs.Add(4, new ImagePair()
-            //{
-            //    NotSelected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_5,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_5.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    },
-            //    Selected = new Image()
-            //    {
-            //        Source = BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED,
-            //        Width = BITMAPIMAGE_APPSELECTOR_APP_5_SELECTED.DecodePixelWidth,
-            //        HorizontalAlignment = HorizontalAlignment.Center,
-            //        VerticalAlignment = VerticalAlignment.Center,
-            //        Opacity = 1.0
-            //    }
-            //});
-
-            //this.BMImages.Add(BITMAPIMAGE_IMAGESELECTOR_IMAGE_1);
-            //this.BMImages.Add(BITMAPIMAGE_IMAGESELECTOR_IMAGE_2);
-            //this.BMImages.Add(BITMAPIMAGE_IMAGESELECTOR_IMAGE_3);
-            //this.BMImages.Add(BITMAPIMAGE_IMAGESELECTOR_IMAGE_4);
-            //this.BMImages.Add(BITMAPIMAGE_IMAGESELECTOR_IMAGE_5);           
-
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
             // if we got it
             if (null != localizationService)
             {

@@ -21,14 +21,17 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_CONNECTIONS_13 = "ms-appx:///Assets/Experience/sb2_work_insetConnections_sb13.png";
         private const string URI_CONNECTIONS_15 = "ms-appx:///Assets/Experience/sb2_work_insetConnections_sb15.png";
 
-        #endregion
+        private const double IMAGE_WIDTH_13 = 1000d;
+        private const double IMAGE_WIDTH_15 = 1100d;
 
+        #endregion
 
         #region Public Properties
 
         public string BackgroundUri;
 
         public string HeroUri;
+        public double ImageWidth;
 
         public string Headline;
         public string Lede;
@@ -44,7 +47,6 @@ namespace SurfaceBook2Demo.ViewModels
 
         #endregion
 
-
         #region Construction
 
         public ExperienceDayWorkViewModel()
@@ -56,7 +58,8 @@ namespace SurfaceBook2Demo.ViewModels
                     this.BackgroundUri = URI_BACKGROUND15;
                     this.HeroUri = URI_HERO;
                     this.PopupConnectionsInsetImage = URI_CONNECTIONS_15;
-                    this.PopupConnectionsImageWidth = 378;
+                    this.PopupConnectionsImageWidth = 354;
+                    this.ImageWidth = IMAGE_WIDTH_15;
                     break;
 
                 case DeviceType.Book13:
@@ -65,6 +68,7 @@ namespace SurfaceBook2Demo.ViewModels
                     this.HeroUri = URI_HERO;
                     this.PopupConnectionsInsetImage = URI_CONNECTIONS_13;
                     this.PopupConnectionsImageWidth = 354;
+                    this.ImageWidth = IMAGE_WIDTH_13;
                     break;
             }
 

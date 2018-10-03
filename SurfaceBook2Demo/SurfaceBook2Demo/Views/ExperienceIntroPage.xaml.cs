@@ -32,6 +32,7 @@ namespace SurfaceBook2Demo.Views
             ExperienceIntroPage.Current = this;
             rBtnLeft.PopupChild = PopLeft;
             rBtnRight.PopupChild = PopRight;
+            this.LegalCompare.SetOpacity(0);
             this.LegalPixelSense.SetOpacity(0);
 
             this.Loaded += this.ExperienceIntroPage_Loaded;
@@ -57,6 +58,31 @@ namespace SurfaceBook2Demo.Views
         }
         #endregion
 
+        #region Event Handlers
+
+        private void PopLeft_Opened(object sender, object e)
+        {
+            this.LegalPixelSense.SetOpacity(1);
+        }
+
+        private void PopLeft_Closed(object sender, object e)
+        {
+            this.LegalPixelSense.SetOpacity(0);
+        }
+
+        private void PopRight_Opened(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(1);
+
+        }
+
+        private void PopRight_Closed(object sender, object e)
+        {
+            this.LegalCompare.SetOpacity(0);
+
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -86,29 +112,5 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
-
-        #region Event Handlers
-
-        private void PopLeft_Opened(object sender, object e)
-        {
-            this.LegalPixelSense.SetOpacity(1);
-        }
-
-        private void PopLeft_Closed(object sender, object e)
-        {
-            this.LegalPixelSense.SetOpacity(0);
-        }
-
-        private void PopRight_Opened(object sender, object e)
-        {
-         
-        }
-
-        private void PopRight_Closed(object sender, object e)
-        {
-         
-        }
-
-        #endregion
     }
 }
