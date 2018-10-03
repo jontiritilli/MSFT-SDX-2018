@@ -72,6 +72,16 @@ namespace SurfaceStudioDemo.Views
             rBtnBottomPixelSense.StartEntranceAnimation();
             rBtnBottomPixelSense.StartRadiateAnimation();
         }
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnRightPixelSense.PopupChild)
+            {
+                rBtnRightPixelSense.PopupChild.IsOpen = false;
+            }
+        }
+
+
         #endregion
 
         #region Private Methods
@@ -123,6 +133,8 @@ namespace SurfaceStudioDemo.Views
         {
             // animations out
             AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnRightPixelSense.ResetEntranceAnimation();
             rBtnRightPixelSense.ResetRadiateAnimation();
