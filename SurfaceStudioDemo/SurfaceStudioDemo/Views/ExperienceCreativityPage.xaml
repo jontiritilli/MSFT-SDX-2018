@@ -8,6 +8,9 @@
     DataContext="{Binding ExperienceCreativityViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundGradientUri}"/>
+        </Grid.Background>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
@@ -38,15 +41,16 @@
             PageEntranceDirection="Right"/>
 
         <ctrl:Header Grid.Row="1" Grid.Column="1"
-                    x:Name="PageHeader" 
-                    Headline="{x:Bind Path=ViewModel.Headline}"
-                    Lede="{x:Bind Path=ViewModel.Lede}"
-                    HeadlineStyle="PageHeadlineDark"
-                    LedeStyle="PageLedeDark"
-                    Width="{StaticResource HeaderWidth}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    HeadlineOpacity="0"
-                     LedeOpacity="0"/>
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadlineDark"
+            LedeStyle="PageLedeDark"
+            Width="{StaticResource HeaderWidth}"
+            LedeWidth="{StaticResource LedeWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HeadlineOpacity="0"
+            LedeOpacity="0"/>
     </Grid>
 </Page>

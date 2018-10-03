@@ -39,12 +39,13 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PageHeadline"
-            LedeStyle="PageLede"                     
-            Width="Auto"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            LedeWidth="{StaticResource LedeWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HeadlineOpacity="0"
@@ -90,7 +91,6 @@
                 IsDialOnly="True"
                 IsRemovedOnInteraction="True"
                 RadiatingButtonIcon="dial"
-                PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"
                 AutoStart = "false"/>
@@ -104,7 +104,6 @@
                 IsPenOnly="True"
                 IsRemovedOnInteraction="True"
                 RadiatingButtonIcon="pen"
-                PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"
                 AutoStart = "false"/>

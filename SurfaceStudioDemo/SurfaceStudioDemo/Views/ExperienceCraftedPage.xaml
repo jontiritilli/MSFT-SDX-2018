@@ -18,7 +18,7 @@
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
-        <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -51,6 +51,7 @@
             LedeStyle="PageLede"
             HeaderAlignment="Right"
             Width="{StaticResource HeaderWidth}"
+            LedeWidth="{StaticResource LedeWidth}"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             HeadlineOpacity="0"

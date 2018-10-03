@@ -9,6 +9,7 @@
     Style="{StaticResource PageStyle}"
     DataContext="{Binding AccessoriesDialViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+    
     <Page.Resources>
         <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
         <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
@@ -50,6 +51,7 @@
             HeadlineStyle="PageHeadline"
             LedeStyle="PageLede"
             Width="{StaticResource HeaderWidth}"
+            LedeWidth="{StaticResource LedeWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HeadlineOpacity="0"

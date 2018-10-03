@@ -25,7 +25,6 @@ namespace SurfaceStudioDemo.ViewModels
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
 
         private const double PRIMARY_IMAGEHEIGHT = 1200;
-        private const double PRIMARY_IMAGEWIDTH = 1134.5;
 
         #endregion
 
