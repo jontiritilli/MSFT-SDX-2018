@@ -22,6 +22,7 @@ namespace SurfaceLaptopDemo.Views
 
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
@@ -30,14 +31,13 @@ namespace SurfaceLaptopDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public ComparePage()
         {
             InitializeComponent();
             ComparePage.Current = this;
-            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
             timer.Start();
             timer.Tick += (sender, args) =>
             {// well this works? but ew
@@ -91,8 +91,8 @@ namespace SurfaceLaptopDemo.Views
             rBtnGo.StartEntranceAnimation();
             rBtnGo.StartRadiateAnimation();
         }
-        #endregion
 
+        #endregion
 
         #region Private Methods
 
@@ -131,8 +131,31 @@ namespace SurfaceLaptopDemo.Views
             TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
         }
 
-        #endregion
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnPro.PopupChild)
+            {
+                rBtnPro.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnBook.PopupChild)
+            {
+                rBtnBook.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnStudio.PopupChild)
+            {
+                rBtnStudio.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnPro.PopupChild)
+            {
+                rBtnLaptop.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnGo.PopupChild)
+            {
+                rBtnGo.PopupChild.IsOpen = false;
+            }
+        }
 
+        #endregion
 
         #region INavigate Interface
 
@@ -152,6 +175,10 @@ namespace SurfaceLaptopDemo.Views
         public void NavigateFromPage()
         {
             // animations out
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnPro.ResetEntranceAnimation();
             rBtnPro.ResetRadiateAnimation();
 

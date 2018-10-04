@@ -311,6 +311,16 @@ namespace SurfaceLaptopDemo.Views
             this.BottomNavBar.IsNavigationEnabled = false;
         }
 
+        public void DisableSwipeNavigation()
+        {
+            this.ContentFlipView.IsSwipeToNavigateEnabled = false;
+        }
+
+        public void EnableSwipeNavigation()
+        {
+            this.ContentFlipView.IsSwipeToNavigateEnabled = true;
+        }
+
         // load COMPARE PAGE full page popups
         public Popup GetComparePagePopupPro()
         {
