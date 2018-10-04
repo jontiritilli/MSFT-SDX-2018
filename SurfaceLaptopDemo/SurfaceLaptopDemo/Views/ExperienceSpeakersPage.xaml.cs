@@ -2,6 +2,7 @@
 
 using SurfaceLaptopDemo.ViewModels;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using SDX.Toolkit.Helpers;
 
@@ -37,7 +38,7 @@ namespace SurfaceLaptopDemo.Views
             this.Loaded += ExperienceSpeakersPage_Loaded;
         }
 
-        private void ExperienceSpeakersPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ExperienceSpeakersPage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
             ExperienceSpeakersPage.Current.HasLoaded = true;
@@ -47,7 +48,6 @@ namespace SurfaceLaptopDemo.Views
             }
         }
         #endregion
-
 
         #region INavigate Interface
 

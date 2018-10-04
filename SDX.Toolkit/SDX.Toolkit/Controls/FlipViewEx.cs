@@ -12,6 +12,56 @@ namespace SDX.Toolkit.Controls
 {
     public sealed class FlipViewEx : FlipView
     {
+        #region Dependency Properties
+
+        // IsSwipeToNavigateEnabled
+        public static readonly DependencyProperty IsSwipeToNavigateEnabledProperty =
+            DependencyProperty.Register("IsSwipeToNavigateEnabled", typeof(bool), typeof(FlipViewEx), new PropertyMetadata(true, OnSwipeNavigationPropertyChanged));
+
+        public bool IsSwipeToNavigateEnabled
+        {
+            get => (bool)GetValue(IsSwipeToNavigateEnabledProperty);
+            set => SetValue(IsSwipeToNavigateEnabledProperty, value);
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private static void OnSwipeNavigationPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if(d is FlipViewEx flipview)
+            {
+                flipview.ToggleSwipeToNavigate();
+            }
+        }
+
+        private void ToggleSwipeToNavigate()
+        {
+            if (this.IsSwipeToNavigateEnabled)
+            {
+                foreach (FlipViewItemEx item in ((ItemCollection)this.Items))
+                {
+                    if ((Panel)((UserControl)((ContentControl)item.Content).Content).Content is Panel view)
+                    {
+                        view.ManipulationMode = ManipulationModes.System;
+                    }
+                }
+            }
+            else
+            {
+                foreach (FlipViewItemEx item in ((ItemCollection)this.Items))
+                {
+                    if ((Panel)((UserControl)((ContentControl)item.Content).Content).Content is Panel view)
+                    {
+                        view.ManipulationMode = ManipulationModes.None;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
         public FlipViewEx()
         {
             this.DefaultStyleKey = typeof(FlipViewEx);

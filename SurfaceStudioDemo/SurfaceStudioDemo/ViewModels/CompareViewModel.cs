@@ -12,7 +12,7 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
 
         private const string URI_FAMILY = "ms-appx:///Assets/Comparison/comparisonFamily.png";
         private const int IMG_FAMILY_WIDTH = 2250; //4500/2

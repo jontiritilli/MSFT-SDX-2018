@@ -4,7 +4,9 @@ using SurfaceLaptopDemo.ViewModels;
 using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
+using SDX.Toolkit.Controls;
 
 namespace SurfaceLaptopDemo.Views
 {
@@ -18,6 +20,7 @@ namespace SurfaceLaptopDemo.Views
         }
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
@@ -32,7 +35,8 @@ namespace SurfaceLaptopDemo.Views
         {
             InitializeComponent();
             AccessoriesTouchPage.Current = this;
-            PinchZoomElement.ZoomEvent += HandleZoomChanged;
+            PinchZoomElement.OnZoomChanging += HandleZoomChanged;
+            PinchZoomElement.OnZoomReset += HandleZoomReset;
             this.Loaded += AccessoriesTouchPage_Loaded;
         }
 
@@ -52,13 +56,24 @@ namespace SurfaceLaptopDemo.Views
             rButtonOne.StartEntranceAnimation();
             rButtonOne.StartRadiateAnimation();
         }
+
         #endregion
 
         #region private Methods
 
-        private void HandleZoomChanged(object sender, RoutedEventArgs e)
+        private void HandleZoomReset(object sender, EventArgs e)
+        {
+            FlipViewPage.Current.EnableSwipeNavigation();
+            rButtonOne.ResetEntranceAnimation();
+            rButtonOne.ResetRadiateAnimation();
+            rButtonOne.StartEntranceAnimation();
+            rButtonOne.StartRadiateAnimation();
+        }
+
+        private void HandleZoomChanged(object sender, EventArgs e)
         {
             rButtonOne.FadeOutButton();
+            FlipViewPage.Current.DisableSwipeNavigation();
         }
 
         #endregion
