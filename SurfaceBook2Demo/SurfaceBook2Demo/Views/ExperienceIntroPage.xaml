@@ -94,7 +94,7 @@
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"
                 Opened="PopLeft_Opened"
                 Closed="PopLeft_Closed"
-                IsLightDismissEnabled="False">
+                IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Image"
