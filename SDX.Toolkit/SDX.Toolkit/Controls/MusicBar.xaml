@@ -12,13 +12,9 @@
             <Grid
                 x:Name="LayoutRoot"
                 BorderBrush="{x:Bind Path=BorderBrush}"
-                BorderThickness="{x:Bind Path=BorderThickness}">
-                <Grid.Background>
-                    <AcrylicBrush
-                                    TintColor="#FF000000" TintOpacity="0.4" 
-                                    BackgroundSource="Backdrop" 
-                                    FallbackColor="LightGray"/>
-                </Grid.Background>
+                BorderThickness="{x:Bind Path=BorderThickness}"
+                Background="{x:Bind Path=BackgroundBrush}">
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
                 </Grid.RowDefinitions>
@@ -100,8 +96,8 @@
                             <ctrl:ImageEx x:Name="PreviousTrackIcon" 
                                             ImageSource="{x:Bind Path=PreviousTrackIconUri}"
                                             ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"/>
+                                            VerticalContentAlignment="Center"
+                                            HorizontalContentAlignment="Center"/>
                         </Button.Content>
                     </Button>
 
@@ -116,8 +112,8 @@
                             <ctrl:ImageEx x:Name="PlayIcon" 
                                             ImageSource="{x:Bind Path=PlayIconUri}"
                                             ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"/>
+                                            VerticalContentAlignment="Center"
+                                            HorizontalContentAlignment="Center"/>
                         </Button.Content>
                     </Button>
 
@@ -133,8 +129,8 @@
                             <ctrl:ImageEx x:Name="PauseIcon" 
                                             ImageSource="{x:Bind Path=PauseIconUri}"
                                             ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"/>
+                                            VerticalContentAlignment="Center"
+                                            HorizontalContentAlignment="Center"/>
                         </Button.Content>
                     </Button>
                             
@@ -149,8 +145,8 @@
                             <ctrl:ImageEx x:Name="NextTrackIcon" 
                                             ImageSource="{x:Bind Path=NextTrackIconUri}"
                                             ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center"/>
+                                            VerticalContentAlignment="Center"
+                                            HorizontalContentAlignment="Center"/>
                         </Button.Content>
                     </Button>
 
@@ -159,6 +155,8 @@
                                        IconUriStrings="{x:Bind Path=EqualizerUris}"
                                        IconWidth="{StaticResource PlayerButtonWidth}"
                                        FrameDurationInMilliseconds="60"
+                                       VerticalContentAlignment="Center"
+                                       HorizontalContentAlignment="Center"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"/>
                 </Grid>
