@@ -61,6 +61,13 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+        #region Public Methods
+        public int GetFlipViewSelectedIndex()
+        {
+            return this.DayFlipView.SelectedIndex;
+        }
+
+        #endregion
 
         #region Event Handlers
 
@@ -144,6 +151,7 @@ namespace SurfaceBook2Demo.Views
                         }
                         break;
                 }
+                this.RaiseSelectionChangedEvent(this);
             }
         }
 
@@ -190,6 +198,22 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+        #region Custom Event Handlers        
+        public delegate void OnSelectionChangedEvent(object sender, EventArgs e);
+
+        public event OnSelectionChangedEvent SelectionChanged;
+
+        private void RaiseSelectionChangedEvent(ExperienceDayPage sender, EventArgs e)
+        {
+            SelectionChanged?.Invoke(sender, e);
+        }
+
+        private void RaiseSelectionChangedEvent(ExperienceDayPage sender)
+        {
+            this.RaiseSelectionChangedEvent(sender, new EventArgs());
+        }
+
+        #endregion
 
         #region INavigate Interface
 

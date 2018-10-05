@@ -840,7 +840,7 @@ namespace SDX.Toolkit.Controls
                 if (null != page)
                 {
                     // move to it
-                    moved = MoveToPage(page, NavigationActions.GoForward, raiseEvent);
+                    moved = MoveToPage(page, NavigationActions.GoBack, raiseEvent);
                 }
             }
 
