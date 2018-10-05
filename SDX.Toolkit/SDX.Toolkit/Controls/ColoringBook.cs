@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 using SDX.Toolkit.Helpers;
 using SDX.Telemetry.Services;
-
+using System.Numerics;
 
 namespace SDX.Toolkit.Controls
 {
@@ -64,14 +64,17 @@ namespace SDX.Toolkit.Controls
         private const double GRID_ROWSPACING = 30d;
         private const double GRID_COLUMNSPACING = 0;
 
-        private const double WIDTH_PENICON = 151d;
-
         private const int Z_ORDER_CONTROLS = 99;
         private const int Z_ORDER_SHAPES = 0;
 
+        private const float STROKE_SIZE_MIN = 0.01f;
+        private const float STROKE_SIZE_MAX = 0.75f;
+        private const float STROKE_OPACITY_MIN = 0.50f;
+        private const float STROKE_OPACITY_MAX = 0.90f;
+        
+
         private readonly double DOUBLE_COLORING_BOOK_BUTTON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookButtonWidth);
         private readonly double DOUBLE_COLORING_BOOK_BUTTON_HEIGHT = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookButtonHeight);
-
         private readonly double DOUBLE_COLORING_BOOK_IMAGE_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.ColoringBookImageWidth);
 
         #endregion
@@ -83,8 +86,6 @@ namespace SDX.Toolkit.Controls
         private Canvas _touchHereCanvas = null;
         private Grid _penTouchPointGrid = null;
         private ImageEx _ColoringImage = null;
-        private Image _touchHereImage = null;
-        private bool _touchHereWasHidden = false;        
         private List<AppSelectorData> _URIs;
         private Dictionary<int, ImagePair> _ImagePairs;
         private Color _SelectedColor = Color.FromArgb(255, 0, 0, 0);
@@ -401,12 +402,6 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void OnPenScreenContactStarted(InkStrokeInput input, PointerEventArgs e)
-        {
-            RaisePenScreenContactStartedEvent(this);
-            FadeInColoringImage();
-        }
-
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 
@@ -436,8 +431,112 @@ namespace SDX.Toolkit.Controls
         //        _AppSelector.Opacity = opacity;                
         //    }
         //}
+
         #endregion
-        
+
+        #region Private Methods
+
+        private void _AppSelector_SelectedIDChanged(object sender, EventArgs e)
+        {
+            // need to change the mouse page too
+            if (null != _AppSelector)
+            {
+                this._SelectedColor = this.Colors[_AppSelector.SelectedID];
+                this.ColorID = _AppSelector.SelectedID;
+                SetupBrush();
+            }
+        }
+
+        private void _AppSelector_ClearClickedChanged(object sender, EventArgs e)
+        {
+            // need to change the mouse page too
+            if (null != _AppSelector)
+            {
+                AppSelector appSelector = (AppSelector)sender;
+                _inkCanvas.InkPresenter.StrokeContainer.Clear();
+            }
+        }
+
+        private void InkPresenter_StrokeStarted(InkStrokeInput sender, PointerEventArgs args)
+        {
+            RaisePenScreenContactStartedEvent(this);
+            FadeInColoringImage();
+
+            float pressure = ((STROKE_SIZE_MAX - STROKE_SIZE_MIN) * args.CurrentPoint.Properties.Pressure) + STROKE_SIZE_MIN;
+            float opacity = ((STROKE_OPACITY_MAX - STROKE_OPACITY_MIN) * args.CurrentPoint.Properties.Pressure) + STROKE_OPACITY_MIN;
+
+            // apply inking settings
+            if (null != _inkCanvas)
+            {
+                _inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(CreateInkDrawingAttributes(pressure, opacity));
+            }
+
+            // telemetry
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPen);
+        }
+
+        private void InkPresenter_StrokeContinued(InkStrokeInput sender, PointerEventArgs args)
+        {
+            float pressure = ((STROKE_SIZE_MAX - STROKE_SIZE_MIN) * args.CurrentPoint.Properties.Pressure) + STROKE_SIZE_MIN;
+            float opacity = ((STROKE_OPACITY_MAX - STROKE_OPACITY_MIN) * args.CurrentPoint.Properties.Pressure) + STROKE_OPACITY_MIN;
+
+            // apply inking settings
+            if (null != _inkCanvas)
+            {
+                _inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(CreateInkDrawingAttributes(pressure, opacity));
+            }
+        }
+
+        private void InkPresenter_StrokeEnded(InkStrokeInput sender, PointerEventArgs args)
+        {
+            float pressure = ((STROKE_SIZE_MAX - STROKE_SIZE_MIN) * args.CurrentPoint.Properties.Pressure) + STROKE_SIZE_MIN;
+            float opacity = ((STROKE_OPACITY_MAX - STROKE_OPACITY_MIN) * args.CurrentPoint.Properties.Pressure) + STROKE_OPACITY_MIN;
+
+            // apply inking settings
+            if (null != _inkCanvas)
+            {
+                _inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(CreateInkDrawingAttributes(pressure, opacity));
+            }
+
+            // telemetry
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPen);
+        }
+
+        private void SetupBrush()
+        {
+            // apply inking settings
+            if (null != _inkCanvas)
+            {
+                _inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(CreateInkDrawingAttributes(STROKE_SIZE_MIN, STROKE_OPACITY_MIN));
+            }
+        }
+
+        private InkDrawingAttributes CreateInkDrawingAttributes(float pressure, float opacity)
+        {
+            // for pen
+            InkDrawingAttributes inkDrawingAttributes = new InkDrawingAttributes()
+            {
+                Color = GetCurrentColor(),
+                Size = new Size(WINDOW_BOUNDS.Width * pressure, WINDOW_BOUNDS.Height * pressure),
+                PenTip = PenTipShape.Circle,
+                PenTipTransform = Matrix3x2.CreateRotation((float)(50 * Math.PI / 180)),
+                DrawAsHighlighter = true,
+                FitToCurve = true,
+            };
+
+            //// for pencil
+            //InkDrawingAttributes inkDrawingAttributes = InkDrawingAttributes.CreateForPencil();
+            //inkDrawingAttributes.Color = GetCurrentColor();
+            //inkDrawingAttributes.IgnorePressure = false;
+            //inkDrawingAttributes.Size = new Size(WINDOW_BOUNDS.Width * pressure, WINDOW_BOUNDS.Width * pressure);
+            //inkDrawingAttributes.PencilProperties.Opacity = opacity;
+            //inkDrawingAttributes.FitToCurve = true;
+
+            return inkDrawingAttributes;
+        }
+
+        #endregion
+
         #region UI Methods
 
         private void RenderUI()
@@ -451,7 +550,6 @@ namespace SDX.Toolkit.Controls
 
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.95, GridUnitType.Star) });
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(.05, GridUnitType.Star) });
-            //_layoutRoot.PointerPressed += OnPenScreenContactStarted;
 
             // create touch here canvas
             _touchHereCanvas = new Canvas()
@@ -481,18 +579,6 @@ namespace SDX.Toolkit.Controls
             Canvas.SetZIndex(_penTouchPointGrid, Z_ORDER_CONTROLS);
             _touchHereCanvas.Children.Add(_penTouchPointGrid);
 
-            // create touch here image
-            _touchHereImage = new Image()
-            {
-                Source = new BitmapImage() { UriSource = new Uri(URI_PENICON), DecodePixelWidth = (int)WIDTH_PENICON },
-                Width = WIDTH_PENICON,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            Grid.SetRow(_touchHereImage, 0);            
-            Grid.SetColumn(_touchHereImage, 0);
-            _penTouchPointGrid.Children.Add(_touchHereImage);
-
             // create the ink canvas
             _inkCanvas = new InkCanvas()
             {
@@ -503,13 +589,16 @@ namespace SDX.Toolkit.Controls
 
             };
 
-            _inkCanvas.InkPresenter.StrokeInput.StrokeStarted += OnPenScreenContactStarted;
+            // add events to inkpresenter
+            _inkCanvas.InkPresenter.StrokeInput.StrokeStarted += InkPresenter_StrokeStarted;
+            _inkCanvas.InkPresenter.StrokeInput.StrokeContinued += InkPresenter_StrokeContinued; 
+            _inkCanvas.InkPresenter.StrokeInput.StrokeEnded += InkPresenter_StrokeEnded;
+
             Grid.SetRow(_inkCanvas, 0);
             Grid.SetColumnSpan(_inkCanvas, this.ImageColumnSpan);
             Grid.SetColumn(_inkCanvas, 0);
             _layoutRoot.Children.Add(_inkCanvas);
 
-            // add a nohitvisible png onto this page
             // please dont not have a URI or an SVGURI or the image below will error
             _ColoringImage = new ImageEx()
             {
@@ -636,7 +725,7 @@ namespace SDX.Toolkit.Controls
             });
 
             this._AppSelector = new AppSelector()
-            {//
+            {
                 //TelemetryId = TelemetryService.TELEMETRY_KEYBOARDVIEWCOLOR,
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
@@ -672,99 +761,11 @@ namespace SDX.Toolkit.Controls
             SetupBrush();
         }
 
-        private void _AppSelector_SelectedIDChanged(object sender, EventArgs e)
-        {
-            // need to change the mouse page too
-            if (null != _AppSelector)
-            {
-                this._SelectedColor = this.Colors[_AppSelector.SelectedID];
-                this.ColorID = _AppSelector.SelectedID;
-                SetupBrush();
-            }
-        }
-
-        private void _AppSelector_ClearClickedChanged(object sender, EventArgs e)
-        {
-            // need to change the mouse page too
-            if (null != _AppSelector)
-            {
-                AppSelector appSelector = (AppSelector)sender;
-                _inkCanvas.InkPresenter.StrokeContainer.Clear();                               
-            }
-        }
-
-        private void InkPresenter_StrokeStarted(InkStrokeInput sender, PointerEventArgs args)
-        {
-            // hide the pen icon
-            if (!_touchHereWasHidden)
-            {
-                if (null != _penTouchPointGrid)
-                {
-                    AnimationHelper.PerformFadeOut(_penTouchPointGrid, 100d, 0d);
-                }
-
-                _touchHereWasHidden = true;
-            }
-
-            // telemetry
-            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPen);
-        }
-
-        private void InkPresenter_StrokeEnded(InkStrokeInput sender, PointerEventArgs args)
-        {
-            //// show the pen icon
-            //if (null != _touchHereImage)
-            //{
-            //    AnimationHelper.PerformFadeIn(_touchHereImage, 100d, 0d);
-            //}
-
-            // change the ink color
-            if (null != _inkCanvas)
-            {
-                InkDrawingAttributes inkDrawingAttributes = new InkDrawingAttributes()
-                {
-                    Color = GetNextColor(),
-                    //FitToCurve = true,
-                    PenTip = PenTipShape.Circle,
-                    Size = new Size(WINDOW_BOUNDS.Width * 0.02, WINDOW_BOUNDS.Height * 0.02)
-                };
-                _inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(inkDrawingAttributes);
-            }
-
-            // telemetry
-            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPen);
-        }
-
-        private void SetupBrush()
-        {
-            if (null != _inkCanvas)
-            {
-                InkDrawingAttributes inkDrawingAttributes = InkDrawingAttributes.CreateForPencil();
-                inkDrawingAttributes.Color = GetNextColor();
-
-                //inkDrawingAttributes.PenTip = PenTipShape.Circle;
-                inkDrawingAttributes.Size = new Size(WINDOW_BOUNDS.Width * 0.01, WINDOW_BOUNDS.Height * 0.01);
-                //inkDrawingAttributes.PenTipTransform = System.Numerics.Matrix3x2.CreateRotation((float)(70 * Math.PI / 180));// System.Numerics.Matrix3x2.CreateRotation(.785f);//
-                //InkDrawingAttributes inkDrawingAttributes = new InkDrawingAttributes()
-                //{
-                //    Color = GetNextColor(),
-                //    //FitToCurve = true,
-                //    DrawAsHighlighter = true,
-                //    PenTip = PenTipShape.Circle,
-                //    PenTipTransform = System.Numerics.Matrix3x2.CreateRotation((float)(70 * Math.PI / 180)),
-                ////FitToCurve = true,
-                //    Size = new Size(WINDOW_BOUNDS.Width * 0.01, WINDOW_BOUNDS.Height * 0.01)
-                //};
-
-                _inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(inkDrawingAttributes);
-            }
-        }
-
         #endregion
 
         #region UI Helpers
 
-        private Color GetNextColor()
+        private Color GetCurrentColor()
         {
 
             return _SelectedColor;
