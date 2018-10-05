@@ -20,7 +20,7 @@ namespace SurfaceStudioDemo.ViewModels
     {
         #region Constants
 
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic_bg.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/caprock_background_light.jpg";
         private const string URI_LEFT = "ms-appx:///Assets/Experience/appsDesktop.png";
         private const string URI_RIGHT = "ms-appx:///Assets/Experience/appsStudio.png";
         private const string URI_POPBOTTOM_VIDEO = "ms-appx:///Assets/Experience/pixelSensePopupVideo.mp4";

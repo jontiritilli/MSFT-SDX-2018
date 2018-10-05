@@ -82,7 +82,33 @@ namespace SDX.Toolkit.Controls
 
         #region Event Handlers
 
-        public RoutedEventHandler ZoomEvent;
+        public delegate void OnZoomResetEvent(object sender, EventArgs e);
+
+        public event OnZoomResetEvent OnZoomReset;
+
+        private void RaiseOnZoomResetEvent(PinchZoom zoom, EventArgs e)
+        {
+            OnZoomReset?.Invoke(zoom, e);
+        }
+
+        private void RaiseOnZoomResetEvent(PinchZoom zoom)
+        {
+            this.RaiseOnZoomResetEvent(zoom, new EventArgs());
+        }
+
+        public delegate void OnZoomChangingEvent(object sender, EventArgs e);
+
+        public event OnZoomChangingEvent OnZoomChanging;
+
+        private void RaiseOnZoomChangingEvent(PinchZoom zoom, EventArgs e)
+        {
+            OnZoomChanging?.Invoke(zoom, e);
+        }
+
+        private void RaiseOnZoomChangingEvent(PinchZoom zoom)
+        {
+            this.RaiseOnZoomChangingEvent(zoom, new EventArgs());
+        }
 
         private void HandleZoomChanging(object sender, ScrollViewerViewChangingEventArgs e)
         {
@@ -91,7 +117,8 @@ namespace SDX.Toolkit.Controls
                 // show the ellipse
                 _closeEllipse.Opacity = 1.0;
                 x_image.Opacity = 1.0;
-                ZoomEvent(sender, new RoutedEventArgs());
+
+                this.RaiseOnZoomChangingEvent(this);
 
                 // telemetry
                 TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPinch);
@@ -101,6 +128,9 @@ namespace SDX.Toolkit.Controls
                 // hide the ellipse
                 _closeEllipse.Opacity = 0.0;
                 x_image.Opacity = 0.0;
+
+                // raise the changed event
+                this.RaiseOnZoomResetEvent(this);
 
                 // telemetry
                 TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPinch);
@@ -120,6 +150,8 @@ namespace SDX.Toolkit.Controls
                 _closeEllipse.Opacity = 0.0;
                 x_image.Opacity = 0.0;
             }
+            // raise the changed event
+            this.RaiseOnZoomResetEvent(this);
         }
 
         private void HandleClick(object sender, PointerRoutedEventArgs e)

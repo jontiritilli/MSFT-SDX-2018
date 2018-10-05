@@ -136,7 +136,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ctrl:FlipViewEx">
-                    <Grid Background="{TemplateBinding Background}" BorderThickness="0" BorderBrush="Transparent">
+                    <Grid x:Name="FlipViewGrid"  Background="{TemplateBinding Background}" BorderThickness="0" BorderBrush="Transparent">
                         <Grid.Resources>
                             <ControlTemplate x:Key="HorizontalNextTemplate" TargetType="Button">
                                 <Border x:Name="Root" Background="{ThemeResource FlipViewNextPreviousButtonBackground}" BorderThickness="0" BorderBrush="Transparent">
@@ -188,7 +188,7 @@
                             </ControlTemplate>
                         </Grid.Resources>
                         <ScrollViewer x:Name="ScrollingHost" AutomationProperties.AccessibilityView="Raw" BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalSnapPointsType="MandatorySingle" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsTabStop="False" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}" Padding="{TemplateBinding Padding}" TabNavigation="{TemplateBinding TabNavigation}" VerticalSnapPointsType="MandatorySingle" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" ZoomMode="Disabled">
-                            <ItemsPresenter/>
+                            <ItemsPresenter x:Name="FlipViewItemsPresenter"/>
                         </ScrollViewer>
                         <Button x:Name="PreviousButtonHorizontal" HorizontalAlignment="Left" Height="36" IsTabStop="False" Template="{StaticResource HorizontalPreviousTemplate}" UseSystemFocusVisuals="False" VerticalAlignment="Center" Width="20" Visibility="Collapsed" Opacity="0.0" IsHitTestVisible="False"/>
                         <Button x:Name="NextButtonHorizontal" HorizontalAlignment="Right" Height="36" IsTabStop="False" Template="{StaticResource HorizontalNextTemplate}" UseSystemFocusVisuals="False" VerticalAlignment="Center" Width="20" Visibility="Collapsed" Opacity="0.0" IsHitTestVisible="False"/>

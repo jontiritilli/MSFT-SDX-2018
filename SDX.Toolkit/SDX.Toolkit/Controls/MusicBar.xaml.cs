@@ -146,6 +146,8 @@ namespace SDX.Toolkit.Controls
         public GridLength PlayerButtonWidth { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonWidth)); } }
         public GridLength PlayerButtonSpacer { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonSpacer)); } }
 
+        public AcrylicBrush BackgroundBrush {  get { return StyleHelper.GetAcrylicBrush("Light"); } }
+
         #endregion
 
 
@@ -173,7 +175,7 @@ namespace SDX.Toolkit.Controls
 
         // AutoPlay
         public static readonly DependencyProperty AutoPlayProperty =
-            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(NavigationBar), new PropertyMetadata(true));
+            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(MusicBar), new PropertyMetadata(true));
 
         public bool AutoPlay
         {
@@ -183,7 +185,7 @@ namespace SDX.Toolkit.Controls
 
         // PreviousTrackIconUri
         public static readonly DependencyProperty PreviousTrackIconUriProperty =
-            DependencyProperty.Register("PreviousTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PREVIOUSTRACK));
+            DependencyProperty.Register("PreviousTrackIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_PREVIOUSTRACK));
 
         public string PreviousTrackIconUri
         {
@@ -193,7 +195,7 @@ namespace SDX.Toolkit.Controls
 
         // NextTrackIconUri
         public static readonly DependencyProperty NextTrackIconUriProperty =
-            DependencyProperty.Register("NextTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_NEXTTRACK));
+            DependencyProperty.Register("NextTrackIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_NEXTTRACK));
 
         public string NextTrackIconUri
         {
@@ -203,7 +205,7 @@ namespace SDX.Toolkit.Controls
 
         // PlayIconUri
         public static readonly DependencyProperty PlayIconUriProperty =
-            DependencyProperty.Register("PlayIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PLAY));
+            DependencyProperty.Register("PlayIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_PLAY));
 
         public string PlayIconUri
         {
@@ -213,7 +215,7 @@ namespace SDX.Toolkit.Controls
 
         // PauseIconUri
         public static readonly DependencyProperty PauseIconUriProperty =
-            DependencyProperty.Register("PauseIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PAUSE));
+            DependencyProperty.Register("PauseIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_PAUSE));
 
         public string PauseIconUri
         {
@@ -223,7 +225,7 @@ namespace SDX.Toolkit.Controls
 
         // EqualizerUris
         public static readonly DependencyProperty EqualizerUrisProperty =
-            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(NavigationBar), 
+            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(MusicBar), 
                 new PropertyMetadata(new List<string>() {URI_EQUALIZER_00, URI_EQUALIZER_01, URI_EQUALIZER_02, URI_EQUALIZER_03,
                                                             URI_EQUALIZER_04, URI_EQUALIZER_05}));
 
