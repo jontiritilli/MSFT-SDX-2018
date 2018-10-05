@@ -186,7 +186,7 @@ namespace SurfaceStudioDemo.Models
         public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
         public string COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
         public string COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
-        public string COMAPRE_DEVICE_FIVE_POP_COPY_LEGAL = "";
+        public string COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_TITLE = "The smallest, lightest Surface yet";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY = "Only 0.33” thin and starting at just 1.15 lbs. to fit easily in your bag.";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_LEGAL = "";
@@ -397,7 +397,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
             languageFile.COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
-            languageFile.COMAPRE_DEVICE_FIVE_POP_COPY_LEGAL = "";
+            languageFile.COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_TITLE = "The smallest, lightest Surface yet";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY = "Only 0.33” thin and starting at just 1.15 lbs. to fit easily in your bag.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_LEGAL = "";
