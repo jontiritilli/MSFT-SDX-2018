@@ -17,6 +17,9 @@ namespace SurfaceBook2Demo.ViewModels
     public class FlipViewViewModel : ViewModelBase
     {
         //private ILogger Log = LogManagerFactory.DefaultLogManager.GetLogger<FlipViewViewModel>();
+        #region private properties
+            NavigationFlipView _experienceDayFlipView;
+        #endregion
 
         #region Public Properties
 
@@ -158,21 +161,21 @@ namespace SurfaceBook2Demo.ViewModels
             );
 
             // ExperienceDayPage
-            NavigationFlipView experienceDayFlipView = new NavigationFlipView()
+            _experienceDayFlipView = new NavigationFlipView()
             {
                 Name = "ExperienceDayPage",
                 Order = 2,
                 SelectedIndex = 0,
                 Section = sectionExperience,
             };
-            this.Root.Items.Add(experienceDayFlipView);
+            this.Root.Items.Add(_experienceDayFlipView);
 
             // =================================================
             // Children of ExperienceDayPage
             // =================================================
 
             // ExperienceDayWorkPage
-            experienceDayFlipView.Items.Add(new NavigationPage()
+            _experienceDayFlipView.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceDayWorkPage",
                 Order = 0,
@@ -181,7 +184,7 @@ namespace SurfaceBook2Demo.ViewModels
             );
 
             // ExperienceDayCreatePage
-            experienceDayFlipView.Items.Add(new NavigationPage()
+            _experienceDayFlipView.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceDayCreatePage",
                 Order = 1,
@@ -190,7 +193,7 @@ namespace SurfaceBook2Demo.ViewModels
             );
 
             // ExperienceDayRelaxPage
-            experienceDayFlipView.Items.Add(new NavigationPage()
+            _experienceDayFlipView.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceDayRelaxPage",
                 Order = 2,
@@ -199,7 +202,7 @@ namespace SurfaceBook2Demo.ViewModels
             );
 
             // ExperienceDayPlayPage
-            experienceDayFlipView.Items.Add(new NavigationPage()
+            _experienceDayFlipView.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceDayPlayPage",
                 Order = 4,
@@ -269,6 +272,16 @@ namespace SurfaceBook2Demo.ViewModels
 
         }
 
+        #endregion
+        #region Public Methods
+        public void SetInnerFlipViewIndex(int selectedIndex)
+        {// if the page's flip view moves, then propagate the selected index
+            //so it stays in sync
+            if (selectedIndex != this._experienceDayFlipView.SelectedIndex)
+            {
+                this._experienceDayFlipView.SelectedIndex = selectedIndex;
+            }
+        }
         #endregion
     }
 

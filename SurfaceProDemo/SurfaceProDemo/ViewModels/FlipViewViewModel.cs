@@ -13,6 +13,10 @@ namespace SurfaceProDemo.ViewModels
 {
     public class FlipViewViewModel : ViewModelBase
     {
+        #region private properties
+            NavigationFlipView _experienceFlipViewPage;
+        #endregion
+
         #region Public Properties
 
         // root of the page tree
@@ -148,21 +152,21 @@ namespace SurfaceProDemo.ViewModels
             // -------------------------------------------------
             // ExperienceFlipViewPage
             // -------------------------------------------------
-            NavigationFlipView experienceFlipViewPage = new NavigationFlipView()
+            _experienceFlipViewPage = new NavigationFlipView()
             {
                 Name = "ExperienceFlipViewPage",
                 Order = 2,
                 SelectedIndex = 0,
                 Section = sectionExperience,
             };
-            this.Root.Items.Add(experienceFlipViewPage);
+            this.Root.Items.Add(_experienceFlipViewPage);           
 
             // =================================================
             // Children of ExperienceDayPage
             // =================================================
 
             // ExperienceTransformPage
-            experienceFlipViewPage.Items.Add(new NavigationPage()
+            _experienceFlipViewPage.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceTransformPage",
                 Order = 0,
@@ -171,7 +175,7 @@ namespace SurfaceProDemo.ViewModels
             );
 
             // ExperiencePerformancePage
-            experienceFlipViewPage.Items.Add(new NavigationPage()
+            _experienceFlipViewPage.Items.Add(new NavigationPage()
             {
                 Name = "ExperiencePerformancePage",
                 Order = 1,
@@ -180,7 +184,7 @@ namespace SurfaceProDemo.ViewModels
             );
 
             // ExperienceQuietPage
-            experienceFlipViewPage.Items.Add(new NavigationPage()
+            _experienceFlipViewPage.Items.Add(new NavigationPage()
             {
                 Name = "ExperienceQuietPage",
                 Order = 2,
@@ -248,6 +252,17 @@ namespace SurfaceProDemo.ViewModels
 
         }
 
+        #endregion
+
+        #region Public Methods
+        public void SetInnerFlipViewIndex(int selectedIndex)
+        {// if the page's flip view moves, then propagate the selected index
+            //so it stays in sync
+            if (selectedIndex != this._experienceFlipViewPage.SelectedIndex)
+            {
+                this._experienceFlipViewPage.SelectedIndex = selectedIndex;
+            }            
+        }
         #endregion
     }
 }
