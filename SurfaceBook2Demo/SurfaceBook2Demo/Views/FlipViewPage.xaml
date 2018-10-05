@@ -55,7 +55,8 @@
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayPage">
                 <Frame>
-                    <views:ExperienceDayPage/>
+                    <views:ExperienceDayPage
+                          SelectionChanged="ExperienceDayPage_SelectionChanged"/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceDayWorkPage">

@@ -53,7 +53,8 @@
             </ctrl:FlipViewItemEx>
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_ExperienceFlipViewPage">
                 <Frame>
-                    <views:ExperienceFlipViewPage/>
+                    <views:ExperienceFlipViewPage
+                        SelectionChanged="ExperienceFlipViewPage_SelectionChanged"/>
                 </Frame>
             </ctrl:FlipViewItemEx>
             <!-- These pages are now hosted in ExperienceFlipViewPage -->

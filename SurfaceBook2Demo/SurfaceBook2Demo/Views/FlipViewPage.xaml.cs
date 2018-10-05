@@ -407,5 +407,13 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
+
+        private void ExperienceDayPage_SelectionChanged(object sender, EventArgs e)
+        {
+            if (sender is ExperienceDayPage experienceDayPage)
+            {
+                this.ViewModel.SetInnerFlipViewIndex(experienceDayPage.GetFlipViewSelectedIndex());
+            }
+        }
     }
 }
