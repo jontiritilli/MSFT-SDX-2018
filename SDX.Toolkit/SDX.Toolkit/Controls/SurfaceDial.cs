@@ -35,6 +35,8 @@ namespace SDX.Toolkit.Controls
 
         #region Constants
 
+
+        private static readonly double RADIANS = Math.PI / 180;
         private static readonly double DIAL_DIAMETER = StyleHelper.GetApplicationDouble("DialDiameter");
         private static readonly double DIAL_RADIUS = DIAL_DIAMETER / 2;
         private static readonly double SELECTOR_RADIUS = StyleHelper.GetApplicationDouble("SelectorDiameter");
@@ -265,7 +267,7 @@ namespace SDX.Toolkit.Controls
 
             Color activeColor;
 
-            activeColor = Utilities.ConvertHSV2RGB((float)Utilities.ClampAngle(_currentAngle));
+            activeColor = Utilities.ConvertHSV2RGB(Utilities.ClampAngle(_currentAngle));
 
             _colorSelector.Fill = new SolidColorBrush(activeColor);
         }
@@ -358,7 +360,7 @@ namespace SDX.Toolkit.Controls
 
         public static void OnColorIDChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if(d is SurfaceDial dial)
+            if (d is SurfaceDial dial)
             {
                 // raise the changed event
                 dial.RaiseColorIDChangedEvent(dial);
@@ -387,6 +389,8 @@ namespace SDX.Toolkit.Controls
             _dialGrid = new Grid()
             {
                 Name = "DialGrid",
+                Height = DIAL_DIAMETER,
+                Width = DIAL_DIAMETER,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Opacity = 0.0d
@@ -407,7 +411,7 @@ namespace SDX.Toolkit.Controls
                 Stroke = new SolidColorBrush(Colors.Gray),
                 Fill = new SolidColorBrush(Colors.Red),
                 RenderTransformOrigin = new Point(.5, .5),
-                StrokeThickness = 2d
+                StrokeThickness = 1d
             };
 
             RotateTransform _colorSelectorTransform = new RotateTransform()
@@ -431,30 +435,30 @@ namespace SDX.Toolkit.Controls
 
             _paletteRing = new Grid()
             {
-                Name="ColorRing",
-                Height = DIAL_DIAMETER - COLOR_RING_THICKNESS,
-                Width = DIAL_DIAMETER - COLOR_RING_THICKNESS,
+                Name = "ColorRing",
+                Height = DIAL_DIAMETER,
+                Width = DIAL_DIAMETER,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
 
-            Color current = Utilities.ConvertHSV2RGB(0);
-
-            for (int sliceCount = 1; sliceCount <= 360; sliceCount++)
+            for (int sliceCount = 1; sliceCount <= 5; sliceCount++)
             {
-                RotateTransform rt = new RotateTransform() { Angle = sliceCount };
+                double _currentAngle = sliceCount * 72;
 
-                LinearGradientBrush colorBrush = new LinearGradientBrush();
+                RotateTransform rt = new RotateTransform() { Angle = Utilities.ClampAngle(_currentAngle + 72) };
 
-                colorBrush.GradientStops.Add(new GradientStop() { Color = current });
+                SolidColorBrush colorBrush = new SolidColorBrush()
+                {
+                    Color = Utilities.ConvertHSV2RGB(_currentAngle)
+                };
 
-                current = Utilities.ConvertHSV2RGB(sliceCount);
+                Path radialStrip = DrawColorLine(colorBrush, Utilities.ClampAngle(_currentAngle + 72));
 
-                colorBrush.GradientStops.Add(new GradientStop() { Color = current, Offset = 1 });
+                radialStrip.RenderTransformOrigin = new Point(0.5, 0.5);
+                radialStrip.RenderTransform = rt;
 
-                Path line = DrawColorLine(rt, colorBrush);
-
-                _paletteRing.Children.Add(line);
+                _paletteRing.Children.Add(radialStrip);
             }
 
             _dialGrid.Children.Add(_dial);
@@ -465,25 +469,41 @@ namespace SDX.Toolkit.Controls
         }
 
         // Builds color wheel
-        private static Path DrawColorLine(RotateTransform rt, LinearGradientBrush colorBrush)
+        private static Path DrawColorLine(SolidColorBrush color, double angle)
         {
-            double _colorLineStart = SELECTOR_CENTER + 7;
-            double _colorLineEnd = _colorLineStart + COLOR_RING_THICKNESS;
+            double outerRadius = (DIAL_DIAMETER - COLOR_RING_THICKNESS) / 2;
 
-            return new Path()
+            Path path = new Path();
+
+            PathGeometry pathGeometry = new PathGeometry();
+
+            var center = new Point(outerRadius, outerRadius);
+
+            ArcSegment arcSegment = new ArcSegment
             {
-                Data = new LineGeometry()
-                {
-                    StartPoint = new Point(_colorLineStart, _colorLineStart),
-                    EndPoint = new Point(_colorLineEnd, _colorLineEnd)
-                },
-                StrokeThickness = 3,
-                RenderTransformOrigin = new Point(0.5, 0.5),
-                RenderTransform = rt,
-                Stroke = colorBrush
+                Point = new Point(319, 101.3),
+                Size = new Size(outerRadius, outerRadius),
+                SweepDirection = SweepDirection.Clockwise,
             };
-        }
 
-        #endregion
+            PathFigure pathFigure = new PathFigure
+
+            {
+                StartPoint = new Point(149,15.3),
+                IsClosed = false
+            };
+
+            pathFigure.Segments.Add(arcSegment);
+
+            pathGeometry.Figures.Add(pathFigure);
+
+            path.Data = pathGeometry;
+            path.Stroke = color;
+            path.StrokeThickness = COLOR_RING_THICKNESS;
+
+            return path;
+        }
     }
+
+    #endregion
 }
