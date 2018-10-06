@@ -21,9 +21,9 @@ namespace SurfaceBook2Demo.ViewModels
 
         private const string URI_GAME_DEMO = "ms-appx:///Assets/Experience/forza_demo.mp4";
 
-        private const double VIDEO_WIDTH_13 = 480;
+        private const double VIDEO_WIDTH_13 = 490;
         private const double VIDEO_HEIGHT_13 = 372;
-        private const double HERO_IMAGE_WIDTH_13 = 1000;
+        private const double HERO_IMAGE_WIDTH_13 = 1050;
 
         private const double VIDEO_WIDTH_15 = 565;
         private const double VIDEO_HEIGHT_15 = 437.875;
