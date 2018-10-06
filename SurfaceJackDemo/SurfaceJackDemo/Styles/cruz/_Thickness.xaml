@@ -66,6 +66,6 @@
     <Thickness x:Key="HeroMargin">15, 15, 35, 15</Thickness>
     
     <!-- Popup -->
-    <Thickness x:Key="PopupBorder">0, 9.415, 0, 0</Thickness>
-    <Thickness x:Key="PopupMargin">78.445, 61.18, 78.445, 68.595</Thickness>
+    <Thickness x:Key="PopupBorder">0, 6, 0, 0</Thickness>
+    <Thickness x:Key="PopupPadding">50, 38.58, 43.575, 46.825</Thickness>
 </ResourceDictionary>

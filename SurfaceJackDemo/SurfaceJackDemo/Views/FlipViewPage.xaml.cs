@@ -282,6 +282,23 @@ namespace SurfaceJackDemo.Views
             }
         }
 
+        public void SelectTrack(int Index)
+        {
+            if (null != this.MusicBar)// check for correct index?
+            {
+                this.MusicBar.MoveToTrack(Index);
+            }
+        }
+
         #endregion
+
+        private void MusicBar_SelectionChanged(object sender, EventArgs e)
+        {
+            if (sender is MusicBar musicBar)
+            {
+                AudioListenPage.Current.ChangeSelectedTrack(musicBar.PlayerPlaylist.SelectedIndex);
+            }
+            
+        }
     }
 }

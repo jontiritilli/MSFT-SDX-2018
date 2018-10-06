@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SurfaceBook2Demo.Styles">
+    xmlns:local="using:SurfaceLaptopDemo.Styles">
 
     <!--
     If you add a Thickness to this page, you must also
@@ -53,19 +53,19 @@
     <!--Custom size margins-->
     <Thickness x:Key="PageTitleMargin">0,0,12,7</Thickness>
     <Thickness x:Key="SettingsSubheaderMargin">0, 20, 0, 48</Thickness>
-
+    
     <!--Medium size margins-->
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
     <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
-
+    
     <!--Small size margins-->
     <Thickness x:Key="SmallAllMargin">5, 5, 5, 5</Thickness>
     <Thickness x:Key="EightTopMargin">0, 8, 0, 0</Thickness>
 
     <!-- Hero -->
     <Thickness x:Key="HeroMargin">15, 15, 35, 15</Thickness>
-
+    
     <!-- Popup -->
-    <Thickness x:Key="PopupBorder">0, 6.48, 0, 0</Thickness>
-    <Thickness x:Key="PopupPadding">54, 45.9, 75, 63.945</Thickness>
+    <Thickness x:Key="PopupBorder">0, 5.433, 0, 0</Thickness>
+    <Thickness x:Key="PopupPadding">50.547, 42.367, 30.58, 56.433</Thickness>
 </ResourceDictionary>

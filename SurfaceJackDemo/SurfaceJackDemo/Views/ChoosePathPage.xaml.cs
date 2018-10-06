@@ -61,7 +61,7 @@ namespace SurfaceJackDemo.Views
 
         private void ChoosePathPage_Loaded(object sender, RoutedEventArgs e)
         {
-            TestHelper.AddGridCellBorders(this.LayoutRoot, 9, 5, Colors.CornflowerBlue);
+            //TestHelper.AddGridCellBorders(this.LayoutRoot, 9, 5, Colors.CornflowerBlue);
         }
 
 
