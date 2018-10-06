@@ -1,8 +1,9 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-
+using SDX.Toolkit.Models;
 using SurfaceJackDemo.Services;
 
 
@@ -25,6 +26,8 @@ namespace SurfaceJackDemo.ViewModels
         public string Headline;
         public string Lede;
         public string Legal;
+        public Playlist Playlist = null;
+        public ObservableCollection<PlaylistTrack> Tracks;
 
         #endregion
 
@@ -33,6 +36,13 @@ namespace SurfaceJackDemo.ViewModels
 
         public AudioListenViewModel()
         {
+
+            // load the playlist
+            if ((null != PlaylistService.Current) && (PlaylistService.Current.IsLoaded))
+            {
+                this.Playlist = PlaylistService.Current.DefaultPlaylist;
+                this.Tracks = this.Playlist.Tracks;
+            }
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

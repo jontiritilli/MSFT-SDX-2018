@@ -117,6 +117,7 @@ namespace SDX.Toolkit.Controls
             this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
             this.KeyUp += MusicBar_OnKeyUp;
+            
 
             // load the playlist
             this.LoadPlaylist();
@@ -256,6 +257,23 @@ namespace SDX.Toolkit.Controls
             this.RaiseInteractedEvent(musicBar, args);
         }
 
+
+               
+        public delegate void OnSelectionChangedEvent(object sender, EventArgs e);
+
+        public event OnSelectionChangedEvent SelectionChanged;
+
+        private void RaiseSelectionChangedEvent(MusicBar sender, EventArgs e)
+        {
+            SelectionChanged?.Invoke(sender, e);
+        }
+
+        private void RaiseSelectionChangedEvent(MusicBar sender)
+        {
+            this.RaiseSelectionChangedEvent(sender, new EventArgs());
+        }
+
+        
         #endregion
 
 
@@ -447,6 +465,7 @@ namespace SDX.Toolkit.Controls
                     this.UpdateUI();
 
                     // raise event
+                    this.RaiseSelectionChangedEvent(this);
                     PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
                     RaiseInteractedEvent(this, PlayerInteractions.NextTrack, track.ArtistName, track.TrackTitle);
                 }
@@ -471,12 +490,32 @@ namespace SDX.Toolkit.Controls
                     this.UpdateUI();
 
                     // raise event
+                    this.RaiseSelectionChangedEvent(this);
                     PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
                     RaiseInteractedEvent(this, PlayerInteractions.PreviousTrack, track.ArtistName, track.TrackTitle);
                 }
             }
         }
 
+        public void MoveToTrack(int Index)
+        {
+            // if we have a player and a playlist
+            if ((this.IsPlayerValid) && (this.IsPlaylistValid))
+            {
+                // update the media player
+                uint uIndex = (uint)Index;
+                // update our selected index
+                this.PlayerPlaylist.SelectedIndex = Index;
+                this.mediaPlaybackList.MoveTo(uIndex);
+
+                // update our UI
+                this.UpdateUI();
+
+                // raise event
+                PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
+                RaiseInteractedEvent(this, PlayerInteractions.PreviousTrack, track.ArtistName, track.TrackTitle);
+            }
+        }
         #endregion
 
 

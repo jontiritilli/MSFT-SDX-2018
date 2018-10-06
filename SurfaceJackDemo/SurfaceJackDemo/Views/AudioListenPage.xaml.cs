@@ -3,7 +3,7 @@
 using Windows.UI.Xaml.Controls;
 
 using SurfaceJackDemo.ViewModels;
-
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceJackDemo.Views
 {
@@ -16,14 +16,34 @@ namespace SurfaceJackDemo.Views
             get { return DataContext as AudioListenViewModel; }
         }
 
+        private ListView PlayerListView;
         #endregion
 
+        #region static members
+        public static AudioListenPage Current = null;
+        #endregion
 
         #region Construction
 
         public AudioListenPage()
         {
             InitializeComponent();
+            this.Loaded += AudioListenPage_Loaded;
+            AudioListenPage.Current = this;
+            this.PlayerListView = this.itemListView;
+        }
+
+        public void ChangeSelectedTrack(int Index)
+        {
+            if (null != this.PlayerListView)
+            {
+                this.PlayerListView.SelectedIndex = Index;
+            }            
+        }
+
+        private void AudioListenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.itemListView.Background = StyleHelper.GetAcrylicBrush("Dark");
         }
 
         #endregion
@@ -42,5 +62,14 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
+
+        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ListView itemListView)
+            {
+                FlipViewPage.Current.SelectTrack(itemListView.SelectedIndex);
+            }
+            
+        }
     }
 }
