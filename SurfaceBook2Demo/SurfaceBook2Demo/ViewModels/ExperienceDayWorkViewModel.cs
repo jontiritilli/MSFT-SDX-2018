@@ -21,7 +21,7 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_CONNECTIONS_13 = "ms-appx:///Assets/Experience/sb2_work_insetConnections_sb13.png";
         private const string URI_CONNECTIONS_15 = "ms-appx:///Assets/Experience/sb2_work_insetConnections_sb15.png";
 
-        private const double IMAGE_WIDTH_13 = 1000d;
+        private const double IMAGE_WIDTH_13 = 950d;
         private const double IMAGE_WIDTH_15 = 1100d;
 
         #endregion

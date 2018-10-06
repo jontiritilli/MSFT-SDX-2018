@@ -96,17 +96,18 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
-        <Image x:Name="Hero" Width="1188" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="3">
-            <Image.Source>
-                <BitmapImage UriSource="{x:Bind Path=ViewModel.HeroUri}" DecodePixelWidth="1188" DecodePixelType="Physical"/>
-            </Image.Source>
-        </Image>
+        <ctrl:ImageEx Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="3"
+            x:Name="Hero"
+            ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.HeroUri}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
 
         <ctrl:TextBlockEx x:Name="LegalMouse" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       TranslateDirection="Right"
-                       TextStyle="Legal"/>
+            Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            TranslateDirection="Right"
+            TextStyle="Legal"/>
     </Grid>
 </Page>
