@@ -48,7 +48,7 @@ namespace SurfaceProDemo.Views
         private DispatcherTimer _pageMoveTimer = null;
 
         private INavigate _previousPage = null;
-
+        
         #endregion
 
         #region Public Static Properties
@@ -143,14 +143,14 @@ namespace SurfaceProDemo.Views
             };
             _pageMoveTimer.Tick += PageMoveTimer_Tick;
             _pageMoveTimer.Start();
-
+            
         }
 
         private void FlipViewEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // if the count of e.AddedItems == 1, then the SelectedIndex has actually
             // changed. if it's equal to 3 (the number of panels loaded in a VirtualizingStackPanel),
-            // then this isn't a real change in the SelectedIndex, and we'll ignore it.
+            // then this isn't a real change in the SelectedIndex, and we'll ignore it.            
             if (3 != e.AddedItems.Count)
             {
                 // stop the page timer
@@ -367,5 +367,14 @@ namespace SurfaceProDemo.Views
         }
 
         #endregion
+
+        private void ExperienceFlipViewPage_SelectionChanged(object sender, EventArgs e)
+        {
+            if (sender is ExperienceFlipViewPage experienceFlipViewPage)
+            {
+                this.ViewModel.SetInnerFlipViewIndex(experienceFlipViewPage.GetFlipViewSelectedIndex());
+            }
+            
+        }
     }
 }

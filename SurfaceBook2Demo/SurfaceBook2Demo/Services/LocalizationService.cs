@@ -458,7 +458,7 @@ namespace SurfaceBook2Demo.Services
             // bullet two
             viewModel.CompareListItems.Add(ListItem.CreateListItem(
                 1,
-                ListItemIcon.Wifi,
+                ListItemIcon.Lightweight,
                 viewModel.ICON_WIDTH,
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE, "COMPARE_DEVICE_ONE_POP_BULLET_TWO_TITLE"),
                 GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_POP_BULLET_TWO_COPY, "COMPARE_DEVICE_ONE_POP_BULLET_TWO_COPY")

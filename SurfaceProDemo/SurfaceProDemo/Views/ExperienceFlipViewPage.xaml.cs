@@ -48,7 +48,7 @@ namespace SurfaceProDemo.Views
         {
             ExperienceFlipViewPage.Current = this;
 
-            InitializeComponent();
+            InitializeComponent();            
 
             this.Loaded += this.ExperienceFlipViewPage_Loaded;
         }
@@ -63,6 +63,12 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
+        #region Public Methods
+        public int GetFlipViewSelectedIndex()
+        {
+            return this.DeviceModeFlipView.SelectedIndex;
+        }
+        #endregion
 
         #region Event Handlers
 
@@ -83,10 +89,11 @@ namespace SurfaceProDemo.Views
 
                     // get the pageIndex of the new page
                     int nextPageIndex = this.DeviceModeFlipView.SelectedIndex;
-
+                    
+                    
                     // find the index of the previous page
                     int previousPageIndex = this.DeviceModeFlipView.Items.IndexOf(_previousPage);
-
+                    
                     // if we got it
                     if (-1 != previousPageIndex)
                     {
@@ -139,6 +146,8 @@ namespace SurfaceProDemo.Views
                         break;
 
                 }
+
+                this.RaiseSelectionChangedEvent(this);
             }
         }
 
@@ -177,6 +186,22 @@ namespace SurfaceProDemo.Views
 
         #endregion
 
+        #region Custom Event Handlers        
+        public delegate void OnSelectionChangedEvent(object sender, EventArgs e);
+
+        public event OnSelectionChangedEvent SelectionChanged;
+
+        private void RaiseSelectionChangedEvent(ExperienceFlipViewPage sender, EventArgs e)
+        {
+            SelectionChanged?.Invoke(sender, e);
+        }
+
+        private void RaiseSelectionChangedEvent(ExperienceFlipViewPage sender)
+        {
+            this.RaiseSelectionChangedEvent(sender, new EventArgs());
+        }
+
+        #endregion
 
         #region INavigate Interface
 

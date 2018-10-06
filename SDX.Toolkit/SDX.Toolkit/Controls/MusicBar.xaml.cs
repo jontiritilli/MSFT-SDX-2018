@@ -117,6 +117,7 @@ namespace SDX.Toolkit.Controls
             this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
             this.KeyUp += MusicBar_OnKeyUp;
+            
 
             // load the playlist
             this.LoadPlaylist();
@@ -146,6 +147,8 @@ namespace SDX.Toolkit.Controls
         public GridLength PlayerButtonWidth { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonWidth)); } }
         public GridLength PlayerButtonSpacer { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonSpacer)); } }
 
+        public AcrylicBrush BackgroundBrush {  get { return StyleHelper.GetAcrylicBrush("Light"); } }
+
         #endregion
 
 
@@ -173,7 +176,7 @@ namespace SDX.Toolkit.Controls
 
         // AutoPlay
         public static readonly DependencyProperty AutoPlayProperty =
-            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(NavigationBar), new PropertyMetadata(true));
+            DependencyProperty.Register("AutoPlay", typeof(bool), typeof(MusicBar), new PropertyMetadata(true));
 
         public bool AutoPlay
         {
@@ -183,7 +186,7 @@ namespace SDX.Toolkit.Controls
 
         // PreviousTrackIconUri
         public static readonly DependencyProperty PreviousTrackIconUriProperty =
-            DependencyProperty.Register("PreviousTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PREVIOUSTRACK));
+            DependencyProperty.Register("PreviousTrackIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_PREVIOUSTRACK));
 
         public string PreviousTrackIconUri
         {
@@ -193,7 +196,7 @@ namespace SDX.Toolkit.Controls
 
         // NextTrackIconUri
         public static readonly DependencyProperty NextTrackIconUriProperty =
-            DependencyProperty.Register("NextTrackIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_NEXTTRACK));
+            DependencyProperty.Register("NextTrackIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_NEXTTRACK));
 
         public string NextTrackIconUri
         {
@@ -203,7 +206,7 @@ namespace SDX.Toolkit.Controls
 
         // PlayIconUri
         public static readonly DependencyProperty PlayIconUriProperty =
-            DependencyProperty.Register("PlayIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PLAY));
+            DependencyProperty.Register("PlayIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_PLAY));
 
         public string PlayIconUri
         {
@@ -213,7 +216,7 @@ namespace SDX.Toolkit.Controls
 
         // PauseIconUri
         public static readonly DependencyProperty PauseIconUriProperty =
-            DependencyProperty.Register("PauseIconUri", typeof(string), typeof(NavigationBar), new PropertyMetadata(URI_PAUSE));
+            DependencyProperty.Register("PauseIconUri", typeof(string), typeof(MusicBar), new PropertyMetadata(URI_PAUSE));
 
         public string PauseIconUri
         {
@@ -223,7 +226,7 @@ namespace SDX.Toolkit.Controls
 
         // EqualizerUris
         public static readonly DependencyProperty EqualizerUrisProperty =
-            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(NavigationBar), 
+            DependencyProperty.Register("EqualizerUris", typeof(List<string>), typeof(MusicBar), 
                 new PropertyMetadata(new List<string>() {URI_EQUALIZER_00, URI_EQUALIZER_01, URI_EQUALIZER_02, URI_EQUALIZER_03,
                                                             URI_EQUALIZER_04, URI_EQUALIZER_05}));
 
@@ -254,6 +257,23 @@ namespace SDX.Toolkit.Controls
             this.RaiseInteractedEvent(musicBar, args);
         }
 
+
+               
+        public delegate void OnSelectionChangedEvent(object sender, EventArgs e);
+
+        public event OnSelectionChangedEvent SelectionChanged;
+
+        private void RaiseSelectionChangedEvent(MusicBar sender, EventArgs e)
+        {
+            SelectionChanged?.Invoke(sender, e);
+        }
+
+        private void RaiseSelectionChangedEvent(MusicBar sender)
+        {
+            this.RaiseSelectionChangedEvent(sender, new EventArgs());
+        }
+
+        
         #endregion
 
 
@@ -445,6 +465,7 @@ namespace SDX.Toolkit.Controls
                     this.UpdateUI();
 
                     // raise event
+                    this.RaiseSelectionChangedEvent(this);
                     PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
                     RaiseInteractedEvent(this, PlayerInteractions.NextTrack, track.ArtistName, track.TrackTitle);
                 }
@@ -469,12 +490,32 @@ namespace SDX.Toolkit.Controls
                     this.UpdateUI();
 
                     // raise event
+                    this.RaiseSelectionChangedEvent(this);
                     PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
                     RaiseInteractedEvent(this, PlayerInteractions.PreviousTrack, track.ArtistName, track.TrackTitle);
                 }
             }
         }
 
+        public void MoveToTrack(int Index)
+        {
+            // if we have a player and a playlist
+            if ((this.IsPlayerValid) && (this.IsPlaylistValid))
+            {
+                // update the media player
+                uint uIndex = (uint)Index;
+                // update our selected index
+                this.PlayerPlaylist.SelectedIndex = Index;
+                this.mediaPlaybackList.MoveTo(uIndex);
+
+                // update our UI
+                this.UpdateUI();
+
+                // raise event
+                PlaylistTrack track = this.PlayerPlaylist.Tracks[this.PlayerPlaylist.SelectedIndex];
+                RaiseInteractedEvent(this, PlayerInteractions.PreviousTrack, track.ArtistName, track.TrackTitle);
+            }
+        }
         #endregion
 
 

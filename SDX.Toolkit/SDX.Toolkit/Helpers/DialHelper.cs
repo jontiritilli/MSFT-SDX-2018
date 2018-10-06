@@ -23,12 +23,12 @@ namespace SDX.Toolkit.Helpers
 
         }
 
-        public static Color ConvertHSV2RGB(float EllipseAngle)
+        public static Color ConvertHSV2RGB(double EllipseAngle)
         {
             byte r = 0;
             byte g = 0;
             byte b = 0;
-            int angle = (int)Math.Ceiling(EllipseAngle / 72);
+            int angle = (int)Math.Ceiling(EllipseAngle/72);
             switch (angle)
             {
                 case 1:

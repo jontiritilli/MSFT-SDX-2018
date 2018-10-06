@@ -151,6 +151,31 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
+
+    <Style x:Key="AppSelectorText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="18" />
+        <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="36" />
+        <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="NoWrap" />
+    </Style>
+
+    <Style x:Key="AppSelectorTextBold" TargetType="TextBlock" BasedOn="{StaticResource AppSelectorText}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="LineHeight" Value="36" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Margin" Value="0,0,-5,0" />
+    </Style>
+
     <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -201,7 +226,7 @@
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="27" />    <!-- halved -->
+        <Setter Property="FontSize" Value="18" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="28" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
@@ -290,7 +315,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontSize" Value="50" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="56" />    <!-- halved -->
@@ -309,6 +334,21 @@
         <Setter Property="FontSize" Value="16" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="28" />    <!-- halved -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="SliderCaption" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FF737373"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="16" />    <!-- halved -->
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="21" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -348,7 +388,7 @@
     </Style>
 
     <Style x:Key="ButtonCaption" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
@@ -360,6 +400,10 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
+    </Style>
+
+    <Style x:Key="ButtonCaptionDark" TargetType="TextBlock" BasedOn="{StaticResource ButtonCaption}">
+        <Setter Property="Foreground" Value="White"/>
     </Style>
     
     <Style x:Key="NavigationSection" TargetType="TextBlock">
