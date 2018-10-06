@@ -103,6 +103,7 @@
         <ctrl:MusicBar x:Name="MusicBar"
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                        Height="{StaticResource PlayerHeight}"
+                       SelectionChanged="MusicBar_SelectionChanged"
                        VerticalAlignment="Bottom"/>
 
         <!-- Navigation Bar -->
