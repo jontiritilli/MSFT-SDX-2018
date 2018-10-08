@@ -73,11 +73,13 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                Opacity="0"
+                Visibility="Visible"
+                EntranceStaggerDelayInMilliseconds="250"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.40}"                                 
                 PopupPosition="Right"                 
-                AutoStart = "false"/>
+                AutoStart = "false"
+                AnimationEnabled="False"/>
 
             <Popup
                 x:Name="PopLeft"

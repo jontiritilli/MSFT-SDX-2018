@@ -727,6 +727,7 @@ namespace SDX.Toolkit.Controls
             this._AppSelector = new AppSelector()
             {
                 //TelemetryId = TelemetryService.TELEMETRY_KEYBOARDVIEWCOLOR,
+                IsPenOnly = true,
                 AppSelectorMode = SelectorMode.Color,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,

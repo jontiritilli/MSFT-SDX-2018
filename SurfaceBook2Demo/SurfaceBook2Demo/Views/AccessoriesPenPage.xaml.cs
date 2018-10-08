@@ -21,6 +21,7 @@ namespace SurfaceBook2Demo.Views
         private bool HasNavigatedTo = false;
 
         #endregion
+
         #region Public Static Properties
 
         public static AccessoriesPenPage Current { get; private set; }

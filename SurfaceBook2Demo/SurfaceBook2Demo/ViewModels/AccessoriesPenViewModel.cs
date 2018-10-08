@@ -19,7 +19,6 @@ namespace SurfaceBook2Demo.ViewModels
        
         #endregion
 
-
         #region Public Properties
 
         public string BackgroundUri;        
@@ -41,8 +40,7 @@ namespace SurfaceBook2Demo.ViewModels
 
         // TODO: need a list of items here for the List control.        
         #endregion
-
-
+            
         #region Construction
 
         public AccessoriesPenViewModel()

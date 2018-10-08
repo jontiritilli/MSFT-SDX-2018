@@ -28,22 +28,26 @@
             <ColumnDefinition Width=".6*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.RowSpan="7"
-                Grid.ColumnSpan="4"
-                Canvas.ZIndex="101">
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
+            
             <ctrl:RadiatingButton
                 x:Name="rBtnCenter"
+                EntranceStaggerDelayInMilliseconds="600"
                 RadiatingButtonIcon="pen"
                 IsRemovedOnInteraction="True"
                 IsPenOnly="True"
@@ -52,6 +56,7 @@
                 TryItCaption="{x:Bind Path=ViewModel.TryItLede}"                
                 AutoStart = "false"/>
         </Canvas>
+        
         <ctrl:List x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"            
@@ -64,8 +69,8 @@
             Grid.Column="0"
             Grid.RowSpan="8"
             Grid.ColumnSpan="4"
-            ImageColumnSpan="1"            
-            />
+            ImageColumnSpan="1" />
+        
         <ctrl:TextBlockEx x:Name="LegalConnections"
             Grid.Row="5"
             Grid.Column="1"

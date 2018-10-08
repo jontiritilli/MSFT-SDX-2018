@@ -19,6 +19,9 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_HERO13 = "ms-appx:///Assets/Accessories/sb2_13_accessories_left.png";
         private const string URI_HERO15 = "ms-appx:///Assets/Accessories/sb2_15_accessories_left.png";
 
+        private const double HEROIMAGE_WIDTH_13 = 1100;
+        private const double HEROIMAGE_WIDTH_15 = 1190;
+
         #endregion
 
 
@@ -27,6 +30,7 @@ namespace SurfaceBook2Demo.ViewModels
         public string BackgroundUri;
 
         public string HeroUri;
+        public double ImageWidth;
 
         public string Headline;
         public string Lede;
@@ -52,12 +56,14 @@ namespace SurfaceBook2Demo.ViewModels
                 case DeviceType.Book15:
                     this.BackgroundUri = URI_BACKGROUND15;
                     this.HeroUri = URI_HERO15;
+                    this.ImageWidth = HEROIMAGE_WIDTH_15;
                     break;
 
                 case DeviceType.Book13:
                 default:
                     this.BackgroundUri = URI_BACKGROUND13;
                     this.HeroUri = URI_HERO13;
+                    this.ImageWidth = HEROIMAGE_WIDTH_13;
                     break;
             }
 

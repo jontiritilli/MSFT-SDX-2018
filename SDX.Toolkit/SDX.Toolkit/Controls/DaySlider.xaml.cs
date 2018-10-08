@@ -57,7 +57,7 @@ namespace SDX.Toolkit.Controls
         private const string URI_ICON_BATTERY_4_13 = "ms-appx:///Assets/DaySlider/sb2_13_battery_4.png";
 
         private const string URI_ICON_DAY_15 = "ms-appx:///Assets/DaySlider/sb2_15_sun.png";
-        private const string URI_ICON_NIGHT_15 = "ms-apps:///Assets/DaySlider/sb2_15_moon.png";
+        private const string URI_ICON_NIGHT_15 = "ms-appx:///Assets/DaySlider/sb2_15_moon.png";
         private const string URI_ICON_BATTERY_1_15 = "ms-appx:///Assets/DaySlider/sb2_15_battery_1.png";
         private const string URI_ICON_BATTERY_2_15 = "ms-appx:///Assets/DaySlider/sb2_15_battery_2.png";
         private const string URI_ICON_BATTERY_3_15 = "ms-appx:///Assets/DaySlider/sb2_15_battery_3.png";

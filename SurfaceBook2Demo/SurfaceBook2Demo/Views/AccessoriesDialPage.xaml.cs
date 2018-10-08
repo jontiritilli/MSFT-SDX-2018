@@ -21,12 +21,12 @@ namespace SurfaceBook2Demo.Views
         private bool HasNavigatedTo = false;
 
         #endregion
+
         #region Public Static Properties
 
         public static AccessoriesDialPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
