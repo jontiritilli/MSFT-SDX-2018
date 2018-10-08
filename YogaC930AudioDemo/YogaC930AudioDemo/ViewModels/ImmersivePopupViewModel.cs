@@ -4,9 +4,9 @@ using GalaSoft.MvvmLight;
 
 namespace YogaC930AudioDemo.ViewModels
 {
-    public class ImmersivePopupViewModel : ViewModelBase
+    public class HingeDesignPopupViewModel : ViewModelBase
     {
-        public ImmersivePopupViewModel()
+        public HingeDesignPopupViewModel()
         {
         }
     }

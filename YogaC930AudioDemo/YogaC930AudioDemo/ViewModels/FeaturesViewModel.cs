@@ -4,9 +4,9 @@ using GalaSoft.MvvmLight;
 
 namespace YogaC930AudioDemo.ViewModels
 {
-    public class SpecsViewModel : ViewModelBase
+    public class FeaturesViewModel : ViewModelBase
     {
-        public SpecsViewModel()
+        public FeaturesViewModel()
         {
         }
     }

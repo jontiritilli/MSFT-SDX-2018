@@ -18,28 +18,28 @@ namespace YogaC930AudioDemo.ViewModels
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             Register<AttractorLoopViewModel, AttractorLoopPage>();
-            Register<SurroundSoundViewModel, SurroundSoundPage>();
-            Register<HardwarePopupViewModel, HardwarePopupPage>();
-            Register<ImmersivePopupViewModel, ImmersivePopupPage>();
+            Register<AudioViewModel, AudioPage>();
+            Register<SpeakerDesignPopupViewModel, SpeakerDesignPopupPage>();
+            Register<HingeDesignPopupViewModel, HingeDesignPopupPage>();
             Register<PlayerPopupViewModel, PlayerPopupPage>();
-            Register<AccessoriesViewModel, AccessoriesPage>();
-            Register<SpecsViewModel, SpecsPage>();
+            Register<FeaturesViewModel, FeaturesPage>();
+            Register<SpeedsAndFeedsViewModel, SpeedsAndFeedsPage>();
             Register<SchemeActivationSampleViewModel, SchemeActivationSamplePage>();
         }
 
         public SchemeActivationSampleViewModel SchemeActivationSampleViewModel => ServiceLocator.Current.GetInstance<SchemeActivationSampleViewModel>();
 
-        public SpecsViewModel SpecsViewModel => ServiceLocator.Current.GetInstance<SpecsViewModel>();
+        public SpeedsAndFeedsViewModel SpecsViewModel => ServiceLocator.Current.GetInstance<SpeedsAndFeedsViewModel>();
 
-        public AccessoriesViewModel AccessoriesViewModel => ServiceLocator.Current.GetInstance<AccessoriesViewModel>();
+        public FeaturesViewModel AccessoriesViewModel => ServiceLocator.Current.GetInstance<FeaturesViewModel>();
 
         public PlayerPopupViewModel PlayerPopupViewModel => ServiceLocator.Current.GetInstance<PlayerPopupViewModel>();
 
-        public ImmersivePopupViewModel ImmersivePopupViewModel => ServiceLocator.Current.GetInstance<ImmersivePopupViewModel>();
+        public HingeDesignPopupViewModel ImmersivePopupViewModel => ServiceLocator.Current.GetInstance<HingeDesignPopupViewModel>();
 
-        public HardwarePopupViewModel HardwareViewViewModel => ServiceLocator.Current.GetInstance<HardwarePopupViewModel>();
+        public SpeakerDesignPopupViewModel HardwareViewViewModel => ServiceLocator.Current.GetInstance<SpeakerDesignPopupViewModel>();
 
-        public SurroundSoundViewModel SurroundSoundViewModel => ServiceLocator.Current.GetInstance<SurroundSoundViewModel>();
+        public AudioViewModel SurroundSoundViewModel => ServiceLocator.Current.GetInstance<AudioViewModel>();
 
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 

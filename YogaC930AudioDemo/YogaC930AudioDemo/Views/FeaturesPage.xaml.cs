@@ -6,14 +6,14 @@ using YogaC930AudioDemo.ViewModels;
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class ImmersivePopupPage : Page
+    public sealed partial class FeaturesPage : Page
     {
-        private ImmersivePopupViewModel ViewModel
+        private FeaturesViewModel ViewModel
         {
-            get { return DataContext as ImmersivePopupViewModel; }
+            get { return DataContext as FeaturesViewModel; }
         }
 
-        public ImmersivePopupPage()
+        public FeaturesPage()
         {
             InitializeComponent();
         }
