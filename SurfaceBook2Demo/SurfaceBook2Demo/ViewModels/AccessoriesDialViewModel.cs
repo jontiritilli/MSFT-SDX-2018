@@ -20,7 +20,7 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_HERO15 = "ms-appx:///Assets/Accessories/sb2_15_accessories_left.png";
 
         private const double HEROIMAGE_WIDTH_13 = 1100;
-        private const double HEROIMAGE_WIDTH_15 = 1190
+        private const double HEROIMAGE_WIDTH_15 = 1190;
 
         #endregion
 
