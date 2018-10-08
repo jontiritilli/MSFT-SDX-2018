@@ -7,13 +7,13 @@ using SurfaceJackDemo.ViewModels;
 
 namespace SurfaceJackDemo.Views
 {
-    public sealed partial class TechPage : Page, INavigate
+    public sealed partial class InTheBoxPage : Page, INavigate
     {
         #region Private Members
 
-        private TechViewModel ViewModel
+        private InTheBoxViewModel ViewModel
         {
-            get { return DataContext as TechViewModel; }
+            get { return DataContext as InTheBoxViewModel; }
         }
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
@@ -22,16 +22,13 @@ namespace SurfaceJackDemo.Views
 
         #region Construction
 
-        public TechPage()
+        public InTheBoxPage()
         {
             InitializeComponent();
-            rBtnLeft.PopupChild = PopLeft;
-            rBtnRight.PopupChild = PopRight;
-            rBtnTop.PopupChild = PopTop;
-            this.Loaded += TechPage_Loaded;
+            this.Loaded += InTheBoxPage_Loaded;
         }
 
-        private void TechPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void InTheBoxPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NavigateFromPage();
             this.HasLoaded = true;
@@ -44,14 +41,7 @@ namespace SurfaceJackDemo.Views
         private void AnimatePageEntrance()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnLeft.StartEntranceAnimation();
-            rBtnLeft.StartRadiateAnimation();
-            rBtnRight.StartEntranceAnimation();
-            rBtnRight.StartRadiateAnimation();
-            rBtnTop.StartEntranceAnimation();
-            rBtnTop.StartRadiateAnimation();
         }
-
         #endregion
 
 
@@ -74,15 +64,6 @@ namespace SurfaceJackDemo.Views
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
-
-            rBtnTop.ResetEntranceAnimation();
-            rBtnTop.ResetRadiateAnimation();
-
-            rBtnLeft.ResetEntranceAnimation();
-            rBtnLeft.ResetRadiateAnimation();
-
-            rBtnRight.ResetEntranceAnimation();
-            rBtnRight.ResetRadiateAnimation();
         }
 
         #endregion

@@ -5,8 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"    
     DataContext="{Binding AudioListenViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
 
@@ -29,7 +35,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"
                 CTAText="TEST"
@@ -68,12 +74,52 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Canvas x:Name="ButtonCanvas"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="4"
+            Canvas.ZIndex="101">
 
+            <ctrl:RadiatingButton
+                x:Name="rBtnLeft"
+                EntranceStaggerDelayInMilliseconds = "600"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.75}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                  
+                PopupPosition="Right"                
+                AutoStart = "false"/>
+
+            <Popup
+                x:Name="PopLeft"
+                IsOpen = "False"
+                HorizontalOffset="-1"
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"
+                IsLightDismissEnabled="True">
+                <Popup.Child>
+                    <ctrl:PopupMedia
+                        PopupType="Text"
+                        Headline="FULL PAGE POP UP IN DEV"
+                        Lede="BUILDING THE REST OF THE APP FIRST"
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
+                        HourText="hrs"
+                        HourIntegerMax="17"                        
+                        />
+                </Popup.Child>
+            </Popup>
+        
+        </Canvas>
+        <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
+            ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.ImageUri}"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            PageEntranceDirection="Left"
+            HasEntranceTranslation="False"
+            Opacity="0"/>
         <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
                        Text="{x:Bind Path=ViewModel.Legal}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Visibility="Collapsed" />
-
+                       TextStyle="Legal"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top"/>
     </Grid>
 </Page>

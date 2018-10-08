@@ -8,7 +8,7 @@ using SurfaceJackDemo.Services;
 
 namespace SurfaceJackDemo.ViewModels
 {
-    public class DesignViewModel : ViewModelBase
+    public class HowToViewModel : ViewModelBase
     {
 
         #region Constants
@@ -27,22 +27,16 @@ namespace SurfaceJackDemo.ViewModels
         #region Public Properties
         public string Headline;
         public string Lede;
-        public string PopLeftHeadline;
-        public string PopLeftLede;
-        public string PopRightHeadline;
-        public string PopRightLede;
-        public string PopTopHeadline;
-        public string PopTopLede;
 
         public string BackgroundUri;
         public string ImageUri = URI_IMAGE;
-        public double ImageWidth;        
+        public double ImageWidth;
 
         #endregion
 
         #region Construction
 
-        public DesignViewModel()
+        public HowToViewModel()
         {
             DeviceType deviceType = WindowHelper.GetDeviceTypeFromResolution();
             // need sizing handling
@@ -80,7 +74,7 @@ namespace SurfaceJackDemo.ViewModels
             if (null != localizationService)
             {
                 // load ourself with values from the language file
-                localizationService.LoadDesignViewModel(this);
+                localizationService.LoadHowToViewModel(this);
             }
         }
 

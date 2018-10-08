@@ -15,7 +15,8 @@ namespace SurfaceJackDemo.Views
         {
             get { return DataContext as SpecsViewModel; }
         }
-
+        private bool HasLoaded = false;
+        private bool HasNavigatedTo = false;
         #endregion
 
 
@@ -24,8 +25,23 @@ namespace SurfaceJackDemo.Views
         public SpecsPage()
         {
             InitializeComponent();
+            this.Loaded += SpecsPage_Loaded;
         }
 
+        private void SpecsPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            NavigateFromPage();
+            this.HasLoaded = true;
+            if (this.HasNavigatedTo)
+            {
+                AnimatePageEntrance();
+            }
+        }
+
+        private void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+        }
         #endregion
 
 
@@ -34,11 +50,20 @@ namespace SurfaceJackDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
+            if (this.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                this.HasNavigatedTo = true;
+            }
         }
 
         public void NavigateFromPage()
         {
             // animations out
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion

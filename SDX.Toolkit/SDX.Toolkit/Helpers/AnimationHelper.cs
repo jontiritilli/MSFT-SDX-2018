@@ -109,7 +109,7 @@ namespace SDX.Toolkit.Helpers
             foreach (UIElement child in ((Windows.UI.Xaml.Controls.Panel)page.Content).Children)
             {
                              
-                if (null != child && child != page && !(child is Grid) && (child is IAnimate || child is Canvas))// handle special case for canvas// dont do the page either
+                if (null != child && child != page && (child is IAnimate || child is Canvas || child is Grid))// handle special case for canvas// dont do the page either
                 {                    
                     ParseAnimatableChildren(child, ref AnimatableChildren);
                 }
@@ -167,6 +167,18 @@ namespace SDX.Toolkit.Helpers
                 if (child is Canvas) {
                     Canvas canvasChild = (Canvas)child;
                     foreach (UIElement uiElement in canvasChild.Children)
+                    {
+                        if (uiElement is IAnimate)
+                        {
+                            ParseAnimatableChildren(uiElement, ref AnimatableChildren);
+                        }
+                    }
+                }
+                // canvas and other stuff that can contain children
+                if (child is Grid)
+                {
+                    Grid gridChild = (Grid)child;
+                    foreach (UIElement uiElement in gridChild.Children)
                     {
                         if (uiElement is IAnimate)
                         {

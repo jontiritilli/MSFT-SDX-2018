@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 
 using SurfaceJackDemo.Models;
 using SurfaceJackDemo.ViewModels;
-
+using SDX.Toolkit.Controls;
 
 namespace SurfaceJackDemo.Services
 {
@@ -204,26 +204,178 @@ namespace SurfaceJackDemo.Services
 
         public void LoadDesignViewModel(DesignViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.DESIGN_DESIGN_HEADLINE, "DESIGN_DESIGN_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.DESIGN_DESIGN_COPY, "DESIGN_DESIGN_COPY");
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.DESIGN_DESIGN_POPLEFT_TITLE, "DESIGN_DESIGN_POPLEFT_TITLE");            
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.DESIGN_DESIGN_POPLEFT_COPY, "DESIGN_DESIGN_POPLEFT_COPY");
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.DESIGN_DESIGN_POPRIGHT_TITLE, "DESIGN_DESIGN_POPRIGHT_TITLE"); 
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.DESIGN_DESIGN_POPRIGHT_COPY, "DESIGN_DESIGN_POPRIGHT_COPY");
+            viewModel.PopTopHeadline = GetStringValue(_languageCurrent.DESIGN_DESIGN_POPTOP_TITLE, "DESIGN_DESIGN_POPTOP_TITLE");
+            viewModel.PopTopLede = GetStringValue(_languageCurrent.DESIGN_DESIGN_POPTOP_COPY, "DESIGN_DESIGN_POPTOP_COPY");
+        }
+
+        public void LoadHowToViewModel(HowToViewModel viewModel)
+        {
 
         }
 
         public void LoadTechViewModel(TechViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.TECH_TECH_HEADLINE, "TECH_TECH_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.TECH_TECH_COPY, "TECH_TECH_COPY");
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_TITLE, "TECH_TECH_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_COPY, "TECH_TECH_POPLEFT_COPY");
+            viewModel.PopLeftHR = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_BATTERY_HR, "TECH_TECH_POPLEFT_BATTERY_HR");
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.TECH_TECH_RIGHT_TITLE, "TECH_TECH_RIGHT_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.TECH_TECH_RIGHT_COPY, "TECH_TECH_RIGHT_COPY");
+            viewModel.PopTopHeadline = GetStringValue(_languageCurrent.TECH_TECH_POPMID_TITLE, "TECH_TECH_POPMID_TITLE");
+            viewModel.PopTopLede = GetStringValue(_languageCurrent.TECH_TECH_POPMID_COPY, "TECH_TECH_POPMID_COPY");
         }
 
         public void LoadProductivityViewModel(ProductivityViewModel viewModel)
         {
-
+            viewModel.Headline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_HEADLINE, "PRODUCTIVITY_PRODUCTIVITY_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_COPY, "PRODUCTIVITY_PRODUCTIVITY_COPY");
+            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE");
+            viewModel.PopLeftLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY");
+            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL");
+            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_TITLE, "TECH_TECH_RIGHT_TITLE");
+            viewModel.PopRightLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_COPY, "TECH_TECH_RIGHT_COPY");
+            viewModel.PopBottomHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_TITLE");
+            viewModel.PopBottomLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_COPY");
+            viewModel.PopBottomLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_LEGAL");
         }
 
         public void LoadSpecsViewModel(SpecsViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.SPECS_SPECS_HEADLINE, "SPECS_SPECS_HEADLINE");
+            viewModel.LegalBulletOne = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_LEGAL, "SPECS_SPECS_BULLETONE_LEGAL");
+            viewModel.LegalBulletTwo = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_LEGAL, "SPECS_SPECS_BULLETTWO_LEGAL");
+            viewModel.LegalBulletThree = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_LEGAL, "SPECS_SPECS_BULLETTHREE_LEGAL");
+            viewModel.LegalBulletFour = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_LEGAL, "SPECS_SPECS_BULLETFOUR_LEGAL");
+            viewModel.LegalBulletFive = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_LEGAL, "SPECS_SPECS_BULLETFIVE_LEGAL");
+            viewModel.LegalBulletSix = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_LEGAL, "SPECS_SPECS_BULLETSIX_LEGAL");
+            viewModel.LegalBulletSeven = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_LEGAL, "SPECS_SPECS_BULLETSEVEN_LEGAL");         
+
+            // bullet one
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Dimensions, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_TITLE, "SPECS_SPECS_BULLETONE_TITLE"), // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_COPY, "SPECS_SPECS_BULLETONE_COPY"), // order
+                null,
+                ""
+            ));
+            // bullet two
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Weight, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_TITLE, "SPECS_SPECS_BULLETTWO_TITLE"), // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_COPY, "SPECS_SPECS_BULLETTWO_COPY"), // order
+                null,
+                ""
+            ));
+
+            // bullet three
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                2, // order
+                ListItemIcon.Speaker, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_TITLE, "SPECS_SPECS_BULLETTHREE_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_COPY, "SPECS_SPECS_BULLETTHREE_COPY"), // order
+                null,
+                ""
+                                                                                                // null // custom icon path
+            ));
+
+            // bullet four
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                3, // order
+                ListItemIcon.Frequency, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_TITLE, "SPECS_SPECS_BULLETFOUR_TITLE"), // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_COPY, "SPECS_SPECS_BULLETFOUR_COPY"), // order
+                null,
+                ""
+
+            // null // custom icon path
+            ));
+
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                4, // order
+                ListItemIcon.BatteryLife, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_TITLE, "SPECS_SPECS_BULLETFIVE_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_COPY, "SPECS_SPECS_BULLETFIVE_COPY"), // order
+                null,
+                ""
+            ));
+
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                5, // order
+                ListItemIcon.NoiseCancellation, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_TITLE, "SPECS_SPECS_BULLETSIX_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_COPY, "SPECS_SPECS_BULLETSIX_COPY"), // order
+                null,
+                ""
+            ));
+
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                6, // order
+                ListItemIcon.Inputs, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_TITLE, "SPECS_SPECS_BULLETSEVEN_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_COPY, "SPECS_SPECS_BULLETSEVEN_COPY"), // order
+                null,
+                ""
+            ));
 
         }
 
-        public void LoadPartnerViewModel(PartnerViewModel viewModel)
+        public void LoadPartnerViewModel(InTheBoxViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.SPECS_WITB_HEADLINE, "SPECS_WITB_HEADLINE");
+
+
+            // TODO: add code to load list
+            // bullet one
+            viewModel.ListItems.Add((ListItem.CreateListItem(
+                0, // order
+                ListItemIcon.Jot,
+                viewModel.ICON_WIDTH, // width
+                "", // header
+                GetStringValue(_languageCurrent.SPECS_WITB_BULLETONE_TITLE, "SPECS_WITB_BULLETONE_TITLE") // order
+            )));
+
+            // bullet two
+            viewModel.ListItems.Add((ListItem.CreateListItem(
+                1, // order
+                ListItemIcon.Write, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",//header
+                GetStringValue(_languageCurrent.SPECS_WITB_BULLETTWO_TITLE, "SPECS_WITB_BULLETTWO_TITLE") // order
+            )));
+
+            // bullet three
+            viewModel.ListItems.Add((ListItem.CreateListItem(
+                2, // order
+                ListItemIcon.Pressure, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",//header
+                GetStringValue(_languageCurrent.SPECS_WITB_BULLETTHREE_TITLE, "SPECS_WITB_BULLETTHREE_TITLE") // order
+            )));
+
+            // bullet 4
+            viewModel.ListItems.Add((ListItem.CreateListItem(
+                3, // order
+                ListItemIcon.Palm, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",// header
+                GetStringValue(_languageCurrent.SPECS_WITB_BULLETFOUR_TITLE, "SPECS_WITB_BULLETFOUR_TITLE") // order
+            )));
 
         }
 

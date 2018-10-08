@@ -46,7 +46,15 @@ namespace SDX.Toolkit.Controls
         Hello,
         Sync,
         Office,
-        Custom
+        Custom,
+        //Specs
+        Dimensions, 
+        Weight,
+        Speaker,
+        Frequency,
+        BatteryLife,
+        NoiseCancellation,
+        Inputs
     }
     
     public class ListItem
@@ -78,6 +86,14 @@ namespace SDX.Toolkit.Controls
         private const string ICON_HELLO_URI = @"ms-appx:///Assets/List/bom_smile.png";
         private const string ICON_SYNC_URI = @"ms-appx:///Assets/List/bom_sync.png";
         private const string ICON_OFFICE_URI = @"ms-appx:///Assets/List/bom_office.png";
+        //Specs Links
+        private const string ICON_DIMENSIONS_URI = @"ms-appx:///Assets/List/specs_dimensions.png";
+        private const string ICON_WEIGHT_URI = @"ms-appx:///Assets/List/specs_weight.png";
+        private const string ICON_SPEAKER_URI = @"ms-appx:///Assets/List/specs_speaker.png";
+        private const string ICON_FREQUENCY_URI = @"ms-appx:///Assets/List/specs_frequency.png";
+        private const string ICON_BATTERYLIFE_URI = @"ms-appx:///Assets/List/specs_batteryLife.png";
+        private const string ICON_NOISECANCELLATION_URI = @"ms-appx:///Assets/List/specs_noiseCancellation.png";
+        private const string ICON_INPUTS_URI = @"ms-appx:///Assets/List/specs_inputs.png";
         // URI links
         private const string URI_CTA_START = @"rdx-hub:hub\windows"; //"rdx-hub:";
         private const string URI_CTA_SYNC = "";
@@ -246,6 +262,33 @@ namespace SDX.Toolkit.Controls
                         iconPath = ICON_OFFICE_URI;
                         break;
 
+                    case ListItemIcon.Dimensions:
+                        iconPath = ICON_DIMENSIONS_URI;
+                        break;
+
+                    case ListItemIcon.Weight:
+                        iconPath = ICON_WEIGHT_URI;
+                        break;
+
+                    case ListItemIcon.Speaker:
+                        iconPath = ICON_SPEAKER_URI;
+                        break;
+
+                    case ListItemIcon.Frequency:
+                        iconPath = ICON_FREQUENCY_URI;
+                        break;
+
+                    case ListItemIcon.BatteryLife:
+                        iconPath = ICON_BATTERYLIFE_URI;
+                        break;
+
+                    case ListItemIcon.NoiseCancellation:
+                        iconPath = ICON_NOISECANCELLATION_URI;
+                        break;
+
+                    case ListItemIcon.Inputs:
+                        iconPath = ICON_INPUTS_URI;
+                        break;
                     default:
                         break;
                 }

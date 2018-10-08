@@ -144,7 +144,8 @@
     <Compile Include="ViewModels\AudioTryItViewModel.cs" />
     <Compile Include="ViewModels\ChoosePathViewModel.cs" />
     <Compile Include="ViewModels\DesignViewModel.cs" />
-    <Compile Include="ViewModels\PartnerViewModel.cs" />
+    <Compile Include="ViewModels\HowToViewModel.cs" />
+    <Compile Include="ViewModels\InTheBoxViewModel.cs" />
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ProductivityViewModel.cs" />
     <Compile Include="ViewModels\SpecsViewModel.cs" />
@@ -165,9 +166,12 @@
     <Compile Include="Views\DesignPage.xaml.cs">
       <DependentUpon>DesignPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\HowToPage.xaml.cs">
+      <DependentUpon>HowToPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\INavigate.cs" />
-    <Compile Include="Views\PartnerPage.xaml.cs">
-      <DependentUpon>PartnerPage.xaml</DependentUpon>
+    <Compile Include="Views\InTheBoxPage.xaml.cs">
+      <DependentUpon>InTheBoxPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FlipViewPage.xaml.cs">
       <DependentUpon>FlipViewPage.xaml</DependentUpon>
@@ -301,7 +305,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PartnerPage.xaml">
+    <Page Include="Views\HowToPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InTheBoxPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -378,6 +386,13 @@
     <Content Include="Assets\InTheBox\joplin_inthebox_headphones.png" />
     <Content Include="Assets\InTheBox\joplin_inthebox_stereo.png" />
     <Content Include="Assets\InTheBox\joplin_inthebox_usb.png" />
+    <Content Include="Assets\List\specs_batteryLife.png" />
+    <Content Include="Assets\List\specs_dimensions.png" />
+    <Content Include="Assets\List\specs_frequency.png" />
+    <Content Include="Assets\List\specs_inputs.png" />
+    <Content Include="Assets\List\specs_noiseCancellation.png" />
+    <Content Include="Assets\List\specs_speaker.png" />
+    <Content Include="Assets\List\specs_weight.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq0.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq1.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq2.png" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 using SurfaceJackDemo.Services;
 
@@ -16,7 +17,8 @@ namespace SurfaceJackDemo.ViewModels
 
         //private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/gradient-bg.jpg";
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/LancasterFrog.jpg";
-
+        private const string URI_IMAGE = "ms-appx:///Assets/Experience/audio_headphones.png";
+        private const double WIDTH_IMAGE = 2040;
         #endregion
 
 
@@ -26,6 +28,8 @@ namespace SurfaceJackDemo.ViewModels
         public string Headline;
         public string Lede;
         public string Legal;
+        public string ImageUri = URI_IMAGE;
+        public double ImageWidth;
         public Playlist Playlist = null;
         public ObservableCollection<PlaylistTrack> Tracks;
 
@@ -45,6 +49,21 @@ namespace SurfaceJackDemo.ViewModels
             }
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+            DeviceType deviceType = WindowHelper.GetDeviceTypeFromResolution();
+            // need sizing handling
+            switch (deviceType)
+            {
+                case DeviceType.Laptop:
+                    ImageWidth = WIDTH_IMAGE / 3 * 2;
+                    break;
+                case DeviceType.Studio:
+                case DeviceType.Book15:
+                case DeviceType.Book13:
+                case DeviceType.Pro:
+                default:
+                    ImageWidth = WIDTH_IMAGE / 2;
+                    break;
+            }
 
             // if we got it
             if (null != localizationService)

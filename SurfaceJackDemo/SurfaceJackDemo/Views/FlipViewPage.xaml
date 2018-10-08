@@ -75,9 +75,9 @@
                     <views:SpecsPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_PartnerPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_InTheBoxPage">
                 <Frame>
-                    <views:PartnerPage/>
+                    <views:InTheBoxPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
         </ctrl:FlipViewEx>
