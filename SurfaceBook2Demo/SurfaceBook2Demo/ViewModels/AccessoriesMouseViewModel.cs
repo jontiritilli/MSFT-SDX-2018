@@ -22,8 +22,8 @@ namespace SurfaceBook2Demo.ViewModels
         private const string URI_MOUSEINSETIMAGE_13 = "ms-appx:///Assets/Accessories/sb2_13_accessories_right_insetScrollWheel.png";
         private const string URI_MOUSEINSETIMAGE_15 = "ms-appx:///Assets/Accessories/sb2_15_accessories_right_insetScrollWheel.png";
 
-        private const double HEROIMAGE_WIDTH_13 = 1000;
-        private const double HEROIMAGE_WIDTH_15 = 1220;
+        private const double HEROIMAGE_WIDTH_13 = 1100;
+        private const double HEROIMAGE_WIDTH_15 = 1190;
 
         #endregion
 
