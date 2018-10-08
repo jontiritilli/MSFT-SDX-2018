@@ -217,6 +217,7 @@ namespace SDX.Toolkit.Controls
 
             // clear the children
             _rowMaster.Children.Clear();
+            int _rowCount = 0;
 
             // create rows
             for (int row = 0; row < this.WordRows; row++)
@@ -227,6 +228,7 @@ namespace SDX.Toolkit.Controls
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
                 _rowMaster.Children.Add(stackPanel);
+                _rowCount++;
             }
 
             // break the words into text blocks
@@ -238,17 +240,21 @@ namespace SDX.Toolkit.Controls
 
             int wordIndex = 0;
 
-            // loop through the rows
-            foreach (StackPanel row in _rowMaster.Children)
+            //// loop through the rows
+            for (int i = 0; i < _rowCount; i++)
             {
+                StackPanel row = (StackPanel)_rowMaster.Children[i];
+                //foreach (StackPanel row in _rowMaster.Children)
+                //{
+
                 int wordsThisLine = wordsPerLine;
-                if (wordsLeftover > 0)
+                if (i == _rowCount-1 && wordsLeftover > 0)
                 {
                     wordsThisLine++;
                     wordsLeftover--;
                 }
 
-                for (int i = 0; i < wordsThisLine; i++)
+                for (int k = 0; k < wordsThisLine; k++)
                 {
                     // get the word
                     string word = words.ElementAt(wordIndex);

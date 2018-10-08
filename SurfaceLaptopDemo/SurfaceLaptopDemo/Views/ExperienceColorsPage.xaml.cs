@@ -4,6 +4,7 @@ using SurfaceLaptopDemo.ViewModels;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using SurfaceLaptopDemo.Services;
 
@@ -56,11 +57,10 @@ namespace SurfaceLaptopDemo.Views
         private void AnimatePageEntrance()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            this.rBtnLeft.StartEntranceAnimation();
-            this.rBtnLeft.StartRadiateAnimation();
+            this.rBtnLeft.Visibility = Visibility.Collapsed;
         }
 
-            public void SelectedIDChanged(object sender, EventArgs e)
+        public void SelectedIDChanged(object sender, EventArgs e)
         {
             //capture selected changed event so we can pass the id to the other page and force link            
             AppSelector appSelector = (AppSelector)sender;
@@ -73,7 +73,9 @@ namespace SurfaceLaptopDemo.Views
                 this.PageHeader.SetOpacity(1d);
 
                 // show the radiating button if the black option is chosen
-                this.rBtnLeft.Opacity = 1d;
+                this.rBtnLeft.Visibility = Visibility.Visible;
+                this.rBtnLeft.StartEntranceAnimation();
+                this.rBtnLeft.StartRadiateAnimation();
             }
             else
             {
@@ -82,10 +84,13 @@ namespace SurfaceLaptopDemo.Views
                 this.PageHeader.SetOpacity(1d);
 
                 // show the radiating button if the black option is chosen
-                this.rBtnLeft.Opacity = 0.0d;
+                this.rBtnLeft.Visibility = Visibility.Collapsed;
+                this.rBtnLeft.ResetEntranceAnimation();
+                this.rBtnLeft.ResetRadiateAnimation();
             }
 
         }
+
         #endregion
 
         #region INavigate Interface

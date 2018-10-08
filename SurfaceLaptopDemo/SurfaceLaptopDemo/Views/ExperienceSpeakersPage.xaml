@@ -58,7 +58,10 @@
                 Opacity="0"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.54}"
-                HasEntranceTranslation="False"/>
+                HasEntranceTranslation="False"
+                HasTransitionAnimation="True"
+                TransitionAnimationStyle="TranslateRight"
+                TransitionTranslateDistance ="50"/>
         </Canvas>
 
         <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2"

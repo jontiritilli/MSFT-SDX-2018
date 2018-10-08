@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace SDX.Toolkit.Controls
@@ -29,22 +30,16 @@ namespace SDX.Toolkit.Controls
         private static readonly double WIDTH_ORIGINAL = BOUNDS.Width;
         private static readonly double HEIGHT_ORIGINAL = BOUNDS.Height;
 
-
         #endregion
-
 
         #region Private Members
 
         public Grid _layoutRoot = null;
         private List<Image> Images;
-
+        private int PreviousSelectedID = -1;
         private AppSelector _previousAppSelector = null;
 
-        //private Storyboard _storyboardFadeIn = null;
-        //private Storyboard _storyboardFadeOut = null;
-
         #endregion
-
 
         #region Construction
 
@@ -69,13 +64,22 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Public Members
+
+        //
+        public enum TransitionType
+        {
+            Fade,
+            TranslateLeft,
+            TranslateRight
+        }
+
         // pass me in on init pls
         //public List<AppSelectorImageURI> URIs;
         //public HorizontalAlignment imageHorizontalAlignment = HorizontalAlignment.Left;
         //public double Width_Image = 200;// BOUNDS.Width;
         //public double Height_Image = 200;// BOUNDS.Height;
+
         #endregion
 
         #region Public Methods
@@ -134,7 +138,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Dependency Properties
 
         // ColorSelector
@@ -147,10 +150,9 @@ namespace SDX.Toolkit.Controls
             set { SetValue(AppSelectorProperty, value); }
         }
 
-        // ImageStyle
+        // SelectedID
         public static readonly DependencyProperty SelectedIDProperty =
             DependencyProperty.Register("SelectedID", typeof(int), typeof(AppSelectorImage), new PropertyMetadata(0, OnSelectedIDChanged));
-
 
         public int SelectedID
         {
@@ -158,9 +160,9 @@ namespace SDX.Toolkit.Controls
             set { SetValue(SelectedIDProperty, value); }
         }
 
+        // URI's (for images)
         public static readonly DependencyProperty URIsProperty =
         DependencyProperty.Register("URIs", typeof(List<AppSelectorImageURI>), typeof(AppSelectorImage), new PropertyMetadata(new List<AppSelectorImageURI>(), OnSelectedIDChanged));
-
 
         public List<AppSelectorImageURI> URIs
         {
@@ -168,10 +170,9 @@ namespace SDX.Toolkit.Controls
             set { SetValue(URIsProperty, value); }
         }
 
-
+        // ImageWidth
         public static readonly DependencyProperty ImageWidthProperty =
         DependencyProperty.Register("ImageWidth", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(0d, OnSelectedIDChanged));
-
 
         public double ImageWidth
         {
@@ -179,9 +180,9 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageWidthProperty, value); }
         }
 
+        // ImageHeight
         public static readonly DependencyProperty ImageHeightProperty =
         DependencyProperty.Register("ImageHeight", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(0d, OnSelectedIDChanged));
-
 
         public double ImageHeight
         {
@@ -189,6 +190,7 @@ namespace SDX.Toolkit.Controls
             set { SetValue(ImageHeightProperty, value); }
         }
 
+        // imageHorizontalAlignment
         public static readonly DependencyProperty imageHorizontalAlignmentProperty =
         DependencyProperty.Register("imageHorizontalAlignment", typeof(HorizontalAlignment), typeof(AppSelectorImage), new PropertyMetadata(HorizontalAlignment.Center, OnSelectedIDChanged));
 
@@ -199,9 +201,9 @@ namespace SDX.Toolkit.Controls
             set { SetValue(imageHorizontalAlignmentProperty, value); }
         }
 
+        // BitmapImages
         public static readonly DependencyProperty BitmapImagesProperty =
         DependencyProperty.Register("BitmapImages", typeof(List<BitmapImage>), typeof(AppSelectorImage), new PropertyMetadata(new List<BitmapImage>()));
-
 
         public List<BitmapImage> BitmapImages
         {
@@ -219,7 +221,7 @@ namespace SDX.Toolkit.Controls
             set { SetValue(PageEntranceDirectionProperty, value); }
         }
 
-        //HasPageEntranceAnimation
+        // HasPageEntranceAnimation
         public static readonly DependencyProperty HasPageEntranceAnimationEnabledProperty =
         DependencyProperty.Register("HasPageEntranceAnimationEnabled", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(true));
 
@@ -231,13 +233,44 @@ namespace SDX.Toolkit.Controls
 
         // HasPageEntranceTranslation
         public static readonly DependencyProperty HasEntranceTranslationProperty =
-        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(ImageEx), new PropertyMetadata(true));
+        DependencyProperty.Register("HasEntranceTranslation", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(true));
 
         public bool HasEntranceTranslation
         {
             get { return (bool)GetValue(HasEntranceTranslationProperty); }
             set { SetValue(HasEntranceTranslationProperty, value); }
         }
+
+        // HasTransitionAnimation
+        public static readonly DependencyProperty HasTransitionAnimationProperty =
+        DependencyProperty.Register("HasTransitionAnimation", typeof(bool), typeof(AppSelectorImage), new PropertyMetadata(false));
+
+        public bool HasTransitionAnimation
+        {
+            get { return (bool)GetValue(HasTransitionAnimationProperty); }
+            set { SetValue(HasTransitionAnimationProperty, value); }
+        }
+
+        // TransitionAnimationStyle
+        public static readonly DependencyProperty TransitionAnimationStyleProperty =
+        DependencyProperty.Register("TransitionAnimationStyle", typeof(TransitionType), typeof(AppSelectorImage), new PropertyMetadata(TransitionType.Fade));
+
+        public TransitionType TransitionAnimationStyle
+        {
+            get { return (TransitionType)GetValue(TransitionAnimationStyleProperty); }
+            set { SetValue(TransitionAnimationStyleProperty, value); }
+        }
+
+        // TransitionTranslateDistance
+        public static readonly DependencyProperty TransitionTranslateDistanceProperty =
+        DependencyProperty.Register("TransitionTranslateDistance", typeof(double), typeof(AppSelectorImage), new PropertyMetadata(50d));
+
+        public double TransitionTranslateDistance
+        {
+            get { return ((double)GetValue(TransitionTranslateDistanceProperty)); }
+            set { SetValue(TransitionTranslateDistanceProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -303,7 +336,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Render UI
 
         private void RenderUI()
@@ -362,7 +394,6 @@ namespace SDX.Toolkit.Controls
                 }
             }
             
-            
             UpdateUI();
         }
 
@@ -374,20 +405,52 @@ namespace SDX.Toolkit.Controls
                 for (int i = 0; i < this.Images.Count; i++) {
                     if(i == selectedID)
                     {
-                        this.Images[i].Opacity = 1;
+                        if (HasTransitionAnimation)
+                        {
+                            TranslateTransition(this.Images[i]);
+                        }
+                        else
+                        {
+                            this.Images[i].Opacity = 1;
+                        }
                     }
                     
                 }
                 for (int i = 0; i < this.Images.Count; i++)
                 {
-                    if (i != selectedID)
+                    if (i == this.PreviousSelectedID)
                     {
-                        this.Images[i].Opacity = 0;
+                        if (HasTransitionAnimation)
+                        {
+                            AnimationHelper.PerformFadeOut(this.Images[i], 300d);
+                        }
+                        else
+                        {
+                            this.Images[i].Opacity = 0;
+                        }
                     }
                 }
+
+                this.PreviousSelectedID = SelectedID;
             }
         }
+        private void TranslateTransition(Image image)
+        {
 
+            TranslateDirection TD = TranslateDirection.Left;
+            switch (this.TransitionAnimationStyle)
+            {
+                case TransitionType.TranslateLeft:
+                    TD = TranslateDirection.Left;
+                    break;
+                case TransitionType.TranslateRight:
+                    TD = TranslateDirection.Right;
+                    break;
+            }
+
+            AnimationHelper.PerformFadeIn(image, 500d, 300d);
+            AnimationHelper.PerformTranslateIn(image, TD, this.TransitionTranslateDistance, 300d, 300d);
+        }
         public bool HasAnimateChildren()
         {
             return false;
@@ -414,11 +477,9 @@ namespace SDX.Toolkit.Controls
         }
         #endregion
 
-
         #region UI Helpers
 
         #endregion
-
 
         #region Code Helpers
 

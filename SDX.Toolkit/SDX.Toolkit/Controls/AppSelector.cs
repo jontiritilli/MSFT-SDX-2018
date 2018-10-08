@@ -217,10 +217,20 @@ namespace SDX.Toolkit.Controls
 
         #region Public Properties
         // pass me in at init to define me pls
-        public string TelemetryId { get; set; }        
+        public string TelemetryId { get; set; }
         #endregion
 
         #region Dependency Properties
+
+        // IsPenOnly
+        public static readonly DependencyProperty IsPenOnlyProperty =
+            DependencyProperty.Register("IsPenOnly", typeof(bool), typeof(AppSelector), new PropertyMetadata(false));
+
+        public bool IsPenOnly
+        {
+            get { return (bool)GetValue(IsPenOnlyProperty); }
+            set { SetValue(IsPenOnlyProperty, value); }
+        }
 
         // SelectedID
         public static readonly DependencyProperty SelectedIDProperty =
@@ -730,11 +740,11 @@ namespace SDX.Toolkit.Controls
 
             if (AppSelectorData.IsClearButton)
             {// these buttons get their own handler and dont change the selection of the app selector
-                sbButton.Click += Selector_ClearButtonClick;
+                sbButton.AddHandler(PointerReleasedEvent, new PointerEventHandler(Selector_ClearButtonClick), true);
             }
             else
             {
-                sbButton.Click += Selector_ButtonClick;
+                sbButton.AddHandler(PointerReleasedEvent, new PointerEventHandler(Selector_ButtonClick), true);
             }
             btnGrid.PointerEntered += pointerEntered;
 
@@ -831,11 +841,11 @@ namespace SDX.Toolkit.Controls
 
             if (imagePair.IsClearButton)
             {// these buttons get their own handler and dont change the selection of the app selector
-                sbButton.Click += Selector_ClearButtonClick;
+                sbButton.AddHandler(PointerReleasedEvent, new PointerEventHandler(Selector_ClearButtonClick), true);
             }
             else
             {
-                sbButton.Click += Selector_ButtonClick;
+                sbButton.AddHandler(PointerReleasedEvent, new PointerEventHandler(Selector_ButtonClick), true);
             }
             grid.PointerEntered += pointerEntered;
 
@@ -868,17 +878,22 @@ namespace SDX.Toolkit.Controls
             // be referred to?
         }
 
-        private void Selector_ButtonClick(object sender, RoutedEventArgs e)
+        private void Selector_ButtonClick(object sender, PointerRoutedEventArgs e)
         {
+            if (IsPenOnly && e.Pointer.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Pen)
+            {
+                return;
+            }
+
             AppSelectorButton sbButton = (AppSelectorButton)sender;
             if (this.ShowSelectedLine && this.SelectedButton.ID != sbButton.ID)
             {// transform the line so it moves to underneath the sender
                 this.Selector_SlideLine(sbButton);
                 this.Selector_ChangeBold(sbButton);
             }
-                this.SelectedID = sbButton.ID;
-                this.SelectedButton = sbButton;
-                this.Selector_ChangeBold(sbButton);
+            this.SelectedID = sbButton.ID;
+            this.SelectedButton = sbButton;
+            this.Selector_ChangeBold(sbButton);
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
@@ -904,8 +919,12 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        private void Selector_ClearButtonClick(object sender, RoutedEventArgs e)
+        private void Selector_ClearButtonClick(object sender, PointerRoutedEventArgs e)
         {
+            if(IsPenOnly && e.Pointer.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Pen)
+            {
+                return;
+            }
             AppSelectorButton sbButton = (AppSelectorButton)sender;
             // raise event clear clicked
             // raise the selected color changed event
