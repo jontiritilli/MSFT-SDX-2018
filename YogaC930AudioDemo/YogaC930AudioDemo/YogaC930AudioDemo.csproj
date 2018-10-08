@@ -119,8 +119,12 @@
     <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
@@ -128,7 +132,7 @@
     <Compile Include="ViewModels\FeaturesViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\SpeakerDesignPopupViewModel.cs" />
-    <Compile Include="ViewModels\ImmersivePopupViewModel.cs" />
+    <Compile Include="ViewModels\HingeDesignPopupViewModel.cs" />
     <Compile Include="ViewModels\PlayerPopupViewModel.cs" />
     <Compile Include="ViewModels\SchemeActivationSampleViewModel.cs" />
     <Compile Include="ViewModels\SpeedsAndFeedsViewModel.cs" />
@@ -166,9 +170,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\Page.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Styles\Sizes.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
@@ -228,10 +232,9 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\AttractorLoop\Lenovo_Yoga_C930_Attract_Loop_240718.mp4" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -247,6 +250,15 @@
     <Content Include="Assets\Fonts\Gotham-Bold.otf" />
     <Content Include="Assets\Fonts\Gotham-Light.otf" />
     <Content Include="Assets\Fonts\Gotham-Medium.otf" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="YogaC930AudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +268,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SDX.Telemetry\SDX.Telemetry\SDX.Telemetry.csproj">
+      <Project>{62d68448-6359-4834-8dcc-f263d4a78562}</Project>
+      <Name>SDX.Telemetry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SDX.Toolkit\SDX.Toolkit\SDX.Toolkit.csproj">
       <Project>{d8d62aad-a4a7-4653-a9e7-f52b1c9d26d8}</Project>
       <Name>SDX.Toolkit</Name>
