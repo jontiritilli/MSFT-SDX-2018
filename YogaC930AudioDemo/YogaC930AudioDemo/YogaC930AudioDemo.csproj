@@ -114,8 +114,11 @@
     <Compile Include="Activation\SchemeActivationConfig.cs" />
     <Compile Include="Activation\SchemeActivationData.cs" />
     <Compile Include="Activation\SchemeActivationHandler.cs" />
+    <Compile Include="Controls\AttractorLoopPlayer.cs" />
+    <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Models\ConfigurationFile.cs" />
     <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -132,7 +135,6 @@
     <Compile Include="ViewModels\SpeakerDesignPopupViewModel.cs" />
     <Compile Include="ViewModels\HingeDesignPopupViewModel.cs" />
     <Compile Include="ViewModels\PlayerPopupViewModel.cs" />
-    <Compile Include="ViewModels\SchemeActivationSampleViewModel.cs" />
     <Compile Include="ViewModels\SpeedsAndFeedsViewModel.cs" />
     <Compile Include="ViewModels\AudioViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -153,9 +155,6 @@
     </Compile>
     <Compile Include="Views\PlayerPopupPage.xaml.cs">
       <DependentUpon>PlayerPopupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SchemeActivationSamplePage.xaml.cs">
-      <DependentUpon>SchemeActivationSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SpeedsAndFeedsPage.xaml.cs">
       <DependentUpon>SpeedsAndFeedsPage.xaml</DependentUpon>
@@ -199,6 +198,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\FeaturesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -220,10 +223,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PlayerPopupPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SchemeActivationSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -266,6 +265,7 @@
     <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_heroIronALT.png" />
     <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_heroMicaALT.png" />
     <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_intelCoreMark.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="Assets\Universal\ui_btn_chevronLeft_dark.png" />
     <Content Include="Assets\Universal\ui_btn_chevronLeft_light.png" />
     <Content Include="Assets\Universal\ui_btn_chevronRight_dark.png" />

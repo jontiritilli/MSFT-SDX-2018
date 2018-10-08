@@ -1,13 +1,12 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Ioc;
-using SDX.Telemetry.Services;
-using SDX.Toolkit.Helpers;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.Services;
 
 
@@ -56,23 +55,6 @@ namespace YogaC930AudioDemo
                 // async here might lead to a race condition, but no signs so far
                 //localizationService.Initialize();
                 AsyncHelper.RunSync(() => localizationService.Initialize());
-            }
-
-            // initialize the telemetry service
-            SimpleIoc.Default.Register<TelemetryService>();
-            TelemetryService telemetryService = (TelemetryService)SimpleIoc.Default.GetInstance<TelemetryService>();
-            if (null != telemetryService)
-            {
-                if (null != configurationService)
-                {
-                    // DO NOT try to run this asynchronously; MetroLog hangs when invoked async
-                    //AsyncHelper.RunSync(() => telemetryService.Initialize(configurationService.Configuration.TelemetryKey));
-                    telemetryService.Initialize(configurationService.Configuration.IsTelemetryEnabled,
-                                                configurationService.Configuration.TelemetryKey);
-
-                    // log app start
-                    TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
-                }
             }
         }
 

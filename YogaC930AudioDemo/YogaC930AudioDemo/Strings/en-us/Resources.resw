@@ -141,42 +141,6 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="AttractorLoop_Title.Text" xml:space="preserve">
-    <value>AttractorLoop</value>
-    <comment>Page title for AttractorLoopPage</comment>
-  </data>
-  <data name="SurroundSound_Title.Text" xml:space="preserve">
-    <value>SurroundSound</value>
-    <comment>Page title for SurroundSoundPage</comment>
-  </data>
-  <data name="HardwareView_Title.Text" xml:space="preserve">
-    <value>HardwareView</value>
-    <comment>Page title for HardwareViewPage</comment>
-  </data>
-  <data name="ImmersivePopup_Title.Text" xml:space="preserve">
-    <value>ImmersivePopup</value>
-    <comment>Page title for ImmersivePopupPage</comment>
-  </data>
-  <data name="PlayerPopup_Title.Text" xml:space="preserve">
-    <value>PlayerPopup</value>
-    <comment>Page title for PlayerPopupPage</comment>
-  </data>
-  <data name="Accessories_Title.Text" xml:space="preserve">
-    <value>Accessories</value>
-    <comment>Page title for AccessoriesPage</comment>
-  </data>
-  <data name="Specs_Title.Text" xml:space="preserve">
-    <value>Specs</value>
-    <comment>Page title for SpecsPage</comment>
-  </data>
-  <data name="SchemeActivationSamplePage_Title.Text" xml:space="preserve">
-    <value>SchemeActivationSample</value>
-    <comment>Page Title for URI Scheme Example</comment>
-  </data>
-  <data name="SchemeActivationSamplePage_Description.Text" xml:space="preserve">
-    <value>This is a sample page that will show activation parameters if the app is activated from Deep Linking.</value>
-    <comment>Description text for SchemeActivationSamplePage</comment>
-  </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>

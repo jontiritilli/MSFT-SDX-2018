@@ -4,10 +4,10 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using YogaC930AudioDemo.ViewModels;
+using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.Services;
+using YogaC930AudioDemo.ViewModels;
 
-using SDX.Toolkit.Controls;
 
 namespace YogaC930AudioDemo.Views
 {

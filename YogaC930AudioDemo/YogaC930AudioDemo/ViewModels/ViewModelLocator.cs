@@ -25,10 +25,7 @@ namespace YogaC930AudioDemo.ViewModels
             Register<PlayerPopupViewModel, PlayerPopupPage>();
             Register<FeaturesViewModel, FeaturesPage>();
             Register<SpeedsAndFeedsViewModel, SpeedsAndFeedsPage>();
-            Register<SchemeActivationSampleViewModel, SchemeActivationSamplePage>();
         }
-
-        public SchemeActivationSampleViewModel SchemeActivationSampleViewModel => ServiceLocator.Current.GetInstance<SchemeActivationSampleViewModel>();
 
         public SpeedsAndFeedsViewModel SpeedsAndFeedsViewModel => ServiceLocator.Current.GetInstance<SpeedsAndFeedsViewModel>();
 

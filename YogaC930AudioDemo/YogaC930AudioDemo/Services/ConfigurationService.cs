@@ -15,7 +15,7 @@ using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
 
 using YogaC930AudioDemo.Models;
-using SDX.Toolkit.Helpers;
+using YogaC930AudioDemo.Helpers;
 
 
 namespace YogaC930AudioDemo.Services
