@@ -18,6 +18,7 @@ namespace YogaC930AudioDemo.ViewModels
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             Register<AttractorLoopViewModel, AttractorLoopPage>();
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<AudioViewModel, AudioPage>();
             Register<SpeakerDesignPopupViewModel, SpeakerDesignPopupPage>();
             Register<HingeDesignPopupViewModel, HingeDesignPopupPage>();
@@ -29,17 +30,19 @@ namespace YogaC930AudioDemo.ViewModels
 
         public SchemeActivationSampleViewModel SchemeActivationSampleViewModel => ServiceLocator.Current.GetInstance<SchemeActivationSampleViewModel>();
 
-        public SpeedsAndFeedsViewModel SpecsViewModel => ServiceLocator.Current.GetInstance<SpeedsAndFeedsViewModel>();
+        public SpeedsAndFeedsViewModel SpeedsAndFeedsViewModel => ServiceLocator.Current.GetInstance<SpeedsAndFeedsViewModel>();
 
-        public FeaturesViewModel AccessoriesViewModel => ServiceLocator.Current.GetInstance<FeaturesViewModel>();
+        public FeaturesViewModel FeaturesViewModel => ServiceLocator.Current.GetInstance<FeaturesViewModel>();
 
         public PlayerPopupViewModel PlayerPopupViewModel => ServiceLocator.Current.GetInstance<PlayerPopupViewModel>();
 
-        public HingeDesignPopupViewModel ImmersivePopupViewModel => ServiceLocator.Current.GetInstance<HingeDesignPopupViewModel>();
+        public HingeDesignPopupViewModel HingeDesignPopupViewModel => ServiceLocator.Current.GetInstance<HingeDesignPopupViewModel>();
 
-        public SpeakerDesignPopupViewModel HardwareViewViewModel => ServiceLocator.Current.GetInstance<SpeakerDesignPopupViewModel>();
+        public SpeakerDesignPopupViewModel SpeakerDesignPopupViewModel => ServiceLocator.Current.GetInstance<SpeakerDesignPopupViewModel>();
 
-        public AudioViewModel SurroundSoundViewModel => ServiceLocator.Current.GetInstance<AudioViewModel>();
+        public AudioViewModel AudioVieModel => ServiceLocator.Current.GetInstance<AudioViewModel>();
+
+        public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 

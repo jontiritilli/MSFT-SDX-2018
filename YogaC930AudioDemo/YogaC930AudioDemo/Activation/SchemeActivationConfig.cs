@@ -8,8 +8,9 @@ namespace YogaC930AudioDemo.Activation
     {
         private static readonly Dictionary<string, string> _activationViewModels = new Dictionary<string, string>()
         {
-            // TODO WTS: Add the pages that can be opened from scheme activation in your app here.
-            { "sample", typeof(ViewModels.SchemeActivationSampleViewModel).FullName }
+            { "attractor", typeof(ViewModels.AttractorLoopViewModel).FullName },
+            { "main", typeof(ViewModels.FlipViewViewModel).FullName },
+            { "", typeof(ViewModels.FlipViewViewModel).FullName }
         };
 
         public static string GetViewModelName(string viewModelKey)

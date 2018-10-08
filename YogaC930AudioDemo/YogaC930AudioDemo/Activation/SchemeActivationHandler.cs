@@ -3,8 +3,11 @@ using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Activation;
 
+using GalaSoft.MvvmLight.Ioc;
+
 using YogaC930AudioDemo.Services;
 using YogaC930AudioDemo.Views;
+
 
 namespace YogaC930AudioDemo.Activation
 {
@@ -29,8 +32,32 @@ namespace YogaC930AudioDemo.Activation
             }
             else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                // If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
-                NavigationService.Navigate(typeof(ViewModels.AttractorLoopViewModel).FullName);
+                // If the app isn't running and not navigating to a specific page
+                // based on the URI, navigate to the page determined by config.json
+
+                // get the configuration service
+                ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
+
+                // if we got it
+                if (null != configurationService)
+                {
+                    // is the attractor loop enabled?
+                    if (configurationService.Configuration.IsAttractorLoopEnabled)
+                    {
+                        // yes, go to it
+                        NavigationService.Navigate(typeof(ViewModels.AttractorLoopViewModel).FullName);
+                    }
+                    else
+                    {
+                        // no, go to the root flipview
+                        NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                    }
+                }
+                else
+                {
+                    // go to the flipview by default
+                    NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                }
             }
 
             await Task.CompletedTask;

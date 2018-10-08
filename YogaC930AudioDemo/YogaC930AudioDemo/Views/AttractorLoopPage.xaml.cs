@@ -48,7 +48,7 @@ namespace YogaC930AudioDemo.Views
             NavigationServiceEx NavigationService = Locator?.NavigationService;
 
             // go to the audio page
-            NavigationService?.Navigate(typeof(AudioViewModel).FullName);
+            NavigationService?.Navigate(typeof(FlipViewViewModel).FullName);
         }
 
         #endregion
