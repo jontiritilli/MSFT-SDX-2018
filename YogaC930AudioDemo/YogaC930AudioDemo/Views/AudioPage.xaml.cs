@@ -6,14 +6,14 @@ using YogaC930AudioDemo.ViewModels;
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class SurroundSoundPage : Page
+    public sealed partial class AudioPage : Page
     {
-        private SurroundSoundViewModel ViewModel
+        private AudioViewModel ViewModel
         {
-            get { return DataContext as SurroundSoundViewModel; }
+            get { return DataContext as AudioViewModel; }
         }
 
-        public SurroundSoundPage()
+        public AudioPage()
         {
             InitializeComponent();
         }

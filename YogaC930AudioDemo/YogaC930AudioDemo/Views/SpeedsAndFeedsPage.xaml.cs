@@ -6,14 +6,14 @@ using YogaC930AudioDemo.ViewModels;
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class SpecsPage : Page
+    public sealed partial class SpeedsAndFeedsPage : Page
     {
-        private SpecsViewModel ViewModel
+        private SpeedsAndFeedsViewModel ViewModel
         {
-            get { return DataContext as SpecsViewModel; }
+            get { return DataContext as SpeedsAndFeedsViewModel; }
         }
 
-        public SpecsPage()
+        public SpeedsAndFeedsPage()
         {
             InitializeComponent();
         }

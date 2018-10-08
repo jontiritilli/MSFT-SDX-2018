@@ -4,9 +4,9 @@ using GalaSoft.MvvmLight;
 
 namespace YogaC930AudioDemo.ViewModels
 {
-    public class SurroundSoundViewModel : ViewModelBase
+    public class AudioViewModel : ViewModelBase
     {
-        public SurroundSoundViewModel()
+        public AudioViewModel()
         {
         }
     }
