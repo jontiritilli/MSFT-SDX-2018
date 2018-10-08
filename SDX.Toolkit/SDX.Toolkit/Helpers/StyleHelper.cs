@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -309,6 +309,7 @@ namespace SDX.Toolkit.Helpers
 
 
         #region Image Constants
+
         public const string BITMAPIMAGE_COLORINGBOOK = "ColoringBookBitmapImage";
         public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RESET = "BitmapImageColoringBookReset";
         public const string BITMAPIMAGE_COLORINGBOOK_COLOR_RED = "BitmapImageColoringBookRed";
@@ -339,7 +340,6 @@ namespace SDX.Toolkit.Helpers
         public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_3 = "BitmapImagePagePopup_AppIcon_Selected_3";
         public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_4 = "BitmapImagePagePopup_AppIcon_Selected_4";
         public const string BITMAPIMAGE_PAGEPOPUP_APPICON_SELECTED_5 = "BitmapImagePagePopup_AppIcon_Selected_5";
-
 
         #endregion
 

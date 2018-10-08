@@ -51,26 +51,19 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                EntranceDurationInMilliseconds = "400"
-                EntranceStaggerDelayInMilliseconds = "0"
-                RadiateDurationInMilliseconds = "1800"
-                RadiateStaggerDelayInMilliseconds = "5000"
+                EntranceStaggerDelayInMilliseconds = "600"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                                     
                 PopupPosition="Right"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton 
-                    x:Name="rBtnTop"                              
-                    EntranceDurationInMilliseconds = "400"
-                    EntranceStaggerDelayInMilliseconds = "0"
-                    RadiateDurationInMilliseconds = "1800"
-                    RadiateStaggerDelayInMilliseconds = "5000"
-                    AutoStart = "false"
-                    Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.58}"
-                    Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                   
-                    PopupPosition="Right"
-                    />
+                x:Name="rBtnTop"                              
+                EntranceStaggerDelayInMilliseconds = "800"
+                AutoStart = "false"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.58}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.2}"                   
+                PopupPosition="Right" />
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
@@ -107,13 +100,14 @@
             </Popup>
         </Canvas>
 
-        <!-- TODO: This should be an ImageSelector -->
         <ctrl:ImageEx Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="3"
             x:Name="Hero"
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            ImageSource="{x:Bind Path=ViewModel.HeroUri}"/>
+            ImageSource="{x:Bind Path=ViewModel.HeroUri}"
+            HasPageEntranceAnimationEnabled="False"
+            Opacity="1"/>
 
         <ctrl:TextBlockEx x:Name="LegalDial" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopupDialLegal}"

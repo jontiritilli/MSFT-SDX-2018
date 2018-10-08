@@ -53,7 +53,8 @@
                 Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnLeft"             
+                x:Name="rBtnLeft"
+                EntranceStaggerDelayInMilliseconds="600"
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 TryItText="{x:Bind Path=ViewModel.PopupMouseTryItTitle}"
@@ -61,7 +62,6 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                                                     
                 PopupPosition="Left"
                 AutoStart = "false"/>
-
 
             <!--<Popup
                 x:Name="PopLeft"
@@ -96,12 +96,15 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
+        
         <ctrl:ImageEx Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="3"
             x:Name="Hero"
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.HeroUri}"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+            VerticalAlignment="Top"
+            HasPageEntranceAnimationEnabled="False"
+            Opacity="1"/>
 
         <ctrl:TextBlockEx x:Name="LegalMouse" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopupMouseLegal}"
