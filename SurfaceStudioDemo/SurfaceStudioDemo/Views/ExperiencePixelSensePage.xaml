@@ -141,6 +141,7 @@
                 Closed="PopBottom_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
+                        x:Name="PopbottomPlayer"
                         PopupType="Video"
                         Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopBottomLede}"

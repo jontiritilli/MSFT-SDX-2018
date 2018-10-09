@@ -558,6 +558,7 @@ namespace SDX.Toolkit.Controls
 
                 // add the Click event handler
                 _navGoBack.Click += this.NavItem_Click;
+                _navGoBack.KeyUp += this.NavigationBar_OnKeyUp;
 
                 // add it to the grid
                 _layoutRoot.Children.Add(_navGoBack);
@@ -593,6 +594,7 @@ namespace SDX.Toolkit.Controls
 
                 // add the Click event handler
                 _navGoForward.Click += this.NavItem_Click;
+                _navGoForward.KeyUp += this.NavigationBar_OnKeyUp;
 
                 // add it to the grid
                 _layoutRoot.Children.Add(_navGoForward);

@@ -39,8 +39,8 @@ namespace SurfaceProDemo.Views
                 ExperiencePopupPage.Current.CloseButton_Clicked += CloseButton_Clicked;
             };
 
-            rBtnLeft.PopupChild = PopLeft;
-            rBtnRight.PopupChild = PopRight;
+            this.rBtnLeft.PopupChild = this.PopLeft;
+            this.rBtnRight.PopupChild = this.PopRight;
             this.Loaded += ExperiencePerformancePage_Loaded;
         }
 
@@ -58,6 +58,7 @@ namespace SurfaceProDemo.Views
         {
             this.rBtnTop.HandleClick();
         }
+
         private void AnimatePageEntrance()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
@@ -72,7 +73,6 @@ namespace SurfaceProDemo.Views
             this.rBtnRight.StartRadiateAnimation();
         }
         #endregion
-
 
         #region INavigate Interface
 
@@ -93,6 +93,7 @@ namespace SurfaceProDemo.Views
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+
             this.rBtnTop.ResetEntranceAnimation();
             this.rBtnTop.ResetRadiateAnimation();
 
@@ -101,7 +102,6 @@ namespace SurfaceProDemo.Views
 
             this.rBtnRight.ResetEntranceAnimation();
             this.rBtnRight.ResetRadiateAnimation();
-
 
         }
 

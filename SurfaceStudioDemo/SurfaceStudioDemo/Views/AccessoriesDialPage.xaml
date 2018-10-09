@@ -84,6 +84,7 @@
                 Closed="PopDial_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
+                        x:Name="PopDialPlayer"
                         PopupType="Video"
                         Headline="{x:Bind Path=ViewModel.PopDialHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopDialLede}"

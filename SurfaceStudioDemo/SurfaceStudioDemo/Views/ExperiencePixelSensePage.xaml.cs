@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Toolkit.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace SurfaceStudioDemo.Views
 {
@@ -99,6 +101,7 @@ namespace SurfaceStudioDemo.Views
 
         private void PopBottom_Opened(object sender, object e)
         {
+            this.PopbottomPlayer.GetPopupChildPlayer().StartPlayer();
             this.PopBottomLegal.SetOpacity(1);
         }
 
@@ -110,6 +113,7 @@ namespace SurfaceStudioDemo.Views
         private void PopBottom_Closed(object sender, object e)
         {
             this.PopBottomLegal.SetOpacity(0);
+            this.PopbottomPlayer.GetPopupChildPlayer().ResetPlayer();
         }
 
         #endregion

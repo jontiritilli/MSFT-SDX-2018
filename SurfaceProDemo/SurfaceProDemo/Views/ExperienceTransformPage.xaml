@@ -72,6 +72,7 @@
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
+                        x:Name="PopRightPlayer"
                         PopupType="Video"
                         MediaHasMargin="False"
                         MediaSourceUri="{x:Bind Path=ViewModel.PopVideo}"
