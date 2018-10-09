@@ -113,6 +113,8 @@ namespace SurfaceProDemo
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            LoadAppResourceDictionaries();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -129,6 +131,24 @@ namespace SurfaceProDemo
         {
             // return the flipview by default
             return new ActivationService(this);
+        }
+
+        private void LoadAppResourceDictionaries()
+        {
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+
+            string file = localizationService.IsLanguageJapanese() ? "TextBlock-ja-JP.xaml" : "TextBlock.xaml";
+
+            // calculate uri's for styles 
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}", file);
+
+            // load textblock styles
+            ResourceDictionary resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_TEXTBLOCK, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
 
         #endregion

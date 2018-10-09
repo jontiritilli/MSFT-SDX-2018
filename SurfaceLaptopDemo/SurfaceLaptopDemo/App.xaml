@@ -15,7 +15,7 @@
                 <ResourceDictionary Source="/Styles/FlipView.xaml"/>
                 <ResourceDictionary Source="/Styles/Button.xaml"/>
                 <ResourceDictionary Source="/Styles/Sizes.xaml"/>
-                <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
+                <!--<ResourceDictionary Source="/Styles/TextBlock.xaml"/> assigned in code for japanese-->
                 <ResourceDictionary Source="/Styles/Page.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
