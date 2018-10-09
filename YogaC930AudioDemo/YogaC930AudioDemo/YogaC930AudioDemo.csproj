@@ -95,9 +95,6 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.7</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Services.Store.Engagement">
-      <Version>10.1711.28001</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
     </PackageReference>
@@ -117,20 +114,27 @@
     <Compile Include="Activation\SchemeActivationConfig.cs" />
     <Compile Include="Activation\SchemeActivationData.cs" />
     <Compile Include="Activation\SchemeActivationHandler.cs" />
+    <Compile Include="Controls\AttractorLoopPlayer.cs" />
+    <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Models\ConfigurationFile.cs" />
+    <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Services\LocalizationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="ViewModels\FeaturesViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
+    <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\SpeakerDesignPopupViewModel.cs" />
-    <Compile Include="ViewModels\ImmersivePopupViewModel.cs" />
+    <Compile Include="ViewModels\HingeDesignPopupViewModel.cs" />
     <Compile Include="ViewModels\PlayerPopupViewModel.cs" />
-    <Compile Include="ViewModels\SchemeActivationSampleViewModel.cs" />
     <Compile Include="ViewModels\SpeedsAndFeedsViewModel.cs" />
     <Compile Include="ViewModels\AudioViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -140,6 +144,9 @@
     <Compile Include="Views\AttractorLoopPage.xaml.cs">
       <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FlipViewPage.xaml.cs">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpeakerDesignPopupPage.xaml.cs">
       <DependentUpon>SpeakerDesignPopupPage.xaml</DependentUpon>
     </Compile>
@@ -148,9 +155,6 @@
     </Compile>
     <Compile Include="Views\PlayerPopupPage.xaml.cs">
       <DependentUpon>PlayerPopupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SchemeActivationSamplePage.xaml.cs">
-      <DependentUpon>SchemeActivationSamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SpeedsAndFeedsPage.xaml.cs">
       <DependentUpon>SpeedsAndFeedsPage.xaml</DependentUpon>
@@ -166,9 +170,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\Page.xaml">
+    <Page Include="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\FlipView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Sizes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
@@ -186,6 +198,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\FeaturesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -193,6 +209,10 @@
     <Page Include="Views\AttractorLoopPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FlipViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SpeakerDesignPopupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -203,10 +223,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PlayerPopupPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SchemeActivationSamplePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -228,11 +244,40 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Assets\AttractorLoop\Lenovo_Yoga_C930_Attract_Loop_240718.mp4" />
+    <Content Include="Assets\Audio\audio_blueBackground.png" />
+    <Content Include="Assets\Audio\audio_bullet_dolbyAtmos.png" />
+    <Content Include="Assets\Audio\audio_hero.png" />
+    <Content Include="Assets\Audio\audio_hotspot1.png" />
+    <Content Include="Assets\Audio\audio_hotspot2.png" />
+    <Content Include="Assets\Player\Makeba_Yoga_30s_POS_1920x1080.mp4" />
+    <Content Include="Assets\SpeakerDesign\audio_popupHero1.png" />
+    <Content Include="Assets\HingeDesign\audio_popupHero2.png" />
+    <Content Include="Assets\Features\features_blueBackground.png" />
+    <Content Include="Assets\Features\features_bullet_garagedPen.png" />
+    <Content Include="Assets\Features\features_bullet_TrublockPrivacyShutter.png" />
+    <Content Include="Assets\Features\features_bullet_windowsInk.png" />
+    <Content Include="Assets\Features\features_hero.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_hero.png" />
+    <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_heroIronALT.png" />
+    <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_heroMicaALT.png" />
+    <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_intelCoreMark.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
+    <Content Include="Assets\Universal\ui_btn_chevronLeft_dark.png" />
+    <Content Include="Assets\Universal\ui_btn_chevronLeft_light.png" />
+    <Content Include="Assets\Universal\ui_btn_chevronRight_dark.png" />
+    <Content Include="Assets\Universal\ui_btn_chevronRight_light.png" />
+    <Content Include="Assets\Universal\ui_btn_closePopup.png" />
+    <Content Include="Assets\Universal\ui_btn_demo.png" />
+    <Content Include="Assets\Universal\ui_lenovoLogo.png" />
+    <Content Include="Assets\Universal\ui_yogaLogo.png" />
+    <Content Include="Assets\Volume\ui_volumeLow.png" />
+    <Content Include="Assets\Volume\ui_volumeMax.png" />
+    <Content Include="Assets\Volume\ui_volumeMid.png" />
+    <Content Include="Assets\Volume\ui_volume_sliderHandle.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -247,6 +292,15 @@
     <Content Include="Assets\Fonts\Gotham-Bold.otf" />
     <Content Include="Assets\Fonts\Gotham-Light.otf" />
     <Content Include="Assets\Fonts\Gotham-Medium.otf" />
+    <None Include="config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="default-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SDA-en-US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="YogaC930AudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -254,12 +308,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SDX.Toolkit\SDX.Toolkit\SDX.Toolkit.csproj">
-      <Project>{d8d62aad-a4a7-4653-a9e7-f52b1c9d26d8}</Project>
-      <Name>SDX.Toolkit</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

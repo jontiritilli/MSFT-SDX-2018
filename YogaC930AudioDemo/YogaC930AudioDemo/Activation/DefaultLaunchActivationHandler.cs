@@ -3,7 +3,10 @@ using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Activation;
 
+using GalaSoft.MvvmLight.Ioc;
+
 using YogaC930AudioDemo.Services;
+
 
 namespace YogaC930AudioDemo.Activation
 {
@@ -26,9 +29,29 @@ namespace YogaC930AudioDemo.Activation
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
-            // When the navigation stack isn't restored, navigate to the first page and configure
-            // the new page by passing required information in the navigation parameter
-            NavigationService.Navigate(_navElement, args.Arguments);
+            // get the configuration service
+            ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
+
+            // if we got it
+            if (null != configurationService)
+            {
+                // is the attractor loop enabled?
+                if (configurationService.Configuration.IsAttractorLoopEnabled)
+                {
+                    // yes, go to it
+                    NavigationService.Navigate(typeof(ViewModels.AttractorLoopViewModel).FullName);
+                }
+                else
+                {
+                    // no, go to the root flipview
+                    NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                }
+            }
+            else
+            {
+                // go to the flipview by default
+                NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+            }
 
             await Task.CompletedTask;
         }
