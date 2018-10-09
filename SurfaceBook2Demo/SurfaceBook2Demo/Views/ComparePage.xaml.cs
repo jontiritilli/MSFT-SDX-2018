@@ -5,6 +5,7 @@ using SurfaceBook2Demo.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using SDX.Toolkit.Helpers;
 using SDX.Telemetry.Services;
 
 
@@ -23,12 +24,12 @@ namespace SurfaceBook2Demo.Views
         private bool HasNavigatedTo = false;
 
         #endregion
+
         #region Public Static Properties
 
         public static ComparePage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -91,7 +92,6 @@ namespace SurfaceBook2Demo.Views
         }
         #endregion
 
-
         #region Private Methods
 
         private void Close_Pro_Clicked(object sender, RoutedEventArgs e)
@@ -129,6 +129,30 @@ namespace SurfaceBook2Demo.Views
             TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
         }
 
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnPro.PopupChild && rBtnPro.PopupChild.IsOpen)
+            {
+                rBtnPro.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnBook.PopupChild && rBtnBook.PopupChild.IsOpen)
+            {
+                rBtnBook.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnStudio.PopupChild && rBtnStudio.PopupChild.IsOpen)
+            {
+                rBtnStudio.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnPro.PopupChild && rBtnLaptop.PopupChild.IsOpen)
+            {
+                rBtnLaptop.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnGo.PopupChild && rBtnGo.PopupChild.IsOpen)
+            {
+                rBtnGo.PopupChild.IsOpen = false;
+            }
+        }
+
         #endregion
 
 
@@ -151,7 +175,10 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnPro.ResetEntranceAnimation();
             rBtnPro.ResetRadiateAnimation();
 

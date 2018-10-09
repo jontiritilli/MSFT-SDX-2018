@@ -135,23 +135,23 @@ namespace SurfaceStudioDemo.Views
 
         private void ClosePopupsOnExit()
         {
-            if(null != rBtnPro.PopupChild)
+            if(null != rBtnPro.PopupChild && rBtnPro.PopupChild.IsOpen)
             {
                 rBtnPro.PopupChild.IsOpen = false;
             }
-            if (null != rBtnBook.PopupChild)
+            if (null != rBtnBook.PopupChild && rBtnBook.PopupChild.IsOpen)
             {
                 rBtnBook.PopupChild.IsOpen = false;
             }
-            if (null != rBtnStudio.PopupChild)
+            if (null != rBtnStudio.PopupChild && rBtnStudio.PopupChild.IsOpen)
             {
                 rBtnStudio.PopupChild.IsOpen = false;
             }
-            if (null != rBtnPro.PopupChild)
+            if (null != rBtnPro.PopupChild && rBtnLaptop.PopupChild.IsOpen)
             {
                 rBtnLaptop.PopupChild.IsOpen = false;
             }
-            if (null != rBtnGo.PopupChild)
+            if (null != rBtnGo.PopupChild && rBtnGo.PopupChild.IsOpen)
             {
                 rBtnGo.PopupChild.IsOpen = false;
             }

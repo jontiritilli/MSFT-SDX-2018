@@ -5,6 +5,8 @@ using SurfaceBook2Demo.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 
+using SDX.Toolkit.Helpers;
+
 namespace SurfaceBook2Demo.Views
 {
     public sealed partial class ExperienceDayWorkPage : Page, INavigate
@@ -61,6 +63,7 @@ namespace SurfaceBook2Demo.Views
                 AnimatePageEntrance();
             }
         }
+
         private void AnimatePageEntrance()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
@@ -73,6 +76,14 @@ namespace SurfaceBook2Demo.Views
 
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
+        }
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
+            {
+                rBtnTop.PopupChild.IsOpen = false;
+            }
         }
         #endregion
 
@@ -129,7 +140,9 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out            
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();

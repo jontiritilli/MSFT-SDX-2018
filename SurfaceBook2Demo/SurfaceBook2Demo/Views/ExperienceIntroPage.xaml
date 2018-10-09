@@ -72,7 +72,7 @@
                 x:Name="rBtnLeft"                
                 EntranceStaggerDelayInMilliseconds = "600"                
                 Canvas.ZIndex="101"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.4}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.36}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.3}"
                 PopupPosition="Right"  
                 AutoStart = "false"/>

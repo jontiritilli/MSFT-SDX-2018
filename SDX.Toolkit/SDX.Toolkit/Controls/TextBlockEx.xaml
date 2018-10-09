@@ -18,20 +18,21 @@
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}">
         <TextBlock x:Name="TheText"
-                    TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"
-                    TextWrapping="{x:Bind Path=TextWrapping, Mode=OneWay}"
-                    LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
-                    LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"
-                    VerticalAlignment="{x:Bind Path=VerticalAlignment, Mode=OneWay}"
-                    HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
-                    Style="{x:Bind Path=TextStyle, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"/>
+            TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"
+            TextWrapping="{x:Bind Path=TextWrapping, Mode=OneWay}"
+            VerticalAlignment="{x:Bind Path=VerticalAlignment, Mode=OneWay}"
+            HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
+            Style="{x:Bind Path=TextStyle, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"/>
+            <!--LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
+            LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"-->
+        
         <TextBlock x:Name="TheTextBold"
-                    TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"                    
-                    LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
-                    LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"
-                    HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
-                    Style="{x:Bind Path=TextStyleBold, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"
-                   Opacity="0"/>
-        <!--Text="{x:Bind Path=Text, Mode=OneWay}"--><!-- Don't data-bind this. -->
+            TextAlignment="{x:Bind Path=TextAlignment, Mode=OneWay}"  
+            HorizontalAlignment="{x:Bind Path=HorizontalAlignment, Mode=OneWay}"
+            Style="{x:Bind Path=TextStyleBold, Converter={StaticResource TextStylesToStyleConverterKey}, Mode=OneWay}"
+            Opacity="0"/>                  
+            <!--LineStackingStrategy="{x:Bind Path=LineStackingStrategy, Mode=OneWay}"
+            LineHeight="{x:Bind Path=LineHeight, Mode=OneWay}"-->
+            <!--Text="{x:Bind Path=Text, Mode=OneWay}"--><!-- Don't data-bind this. -->
     </Grid>
 </UserControl>
