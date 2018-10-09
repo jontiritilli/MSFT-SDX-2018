@@ -27,6 +27,7 @@ namespace SurfaceJackDemo.ViewModels
             Register<ProductivityViewModel, ProductivityPage>();
             Register<SpecsViewModel, SpecsPage>();
             Register<InTheBoxViewModel, InTheBoxPage>();
+            Register<HowToViewModel, HowToPage>();
         }
 
         public InTheBoxViewModel InTheBoxViewModel => ServiceLocator.Current.GetInstance<InTheBoxViewModel>();

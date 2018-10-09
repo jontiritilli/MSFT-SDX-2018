@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using Windows.UI.Xaml;
 
 namespace SurfaceJackDemo.Views
 {
@@ -32,7 +33,16 @@ namespace SurfaceJackDemo.Views
             this.Loaded += AudioListenPage_Loaded;
             AudioListenPage.Current = this;
             this.PlayerListView = this.itemListView;
-            rBtnLeft.PopupChild = PopLeft;            
+            rBtnLeft.PopupChild = PopLeft;
+
+            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            timer.Start();
+            timer.Tick += (sender, args) =>
+            {// well this works? but ew
+                timer.Stop();
+                this.rBtnLeft.PopupChild = FlipViewPage.Current.GetHowToPagePopup();
+                HowToPage.Current.CloseButton_Clicked += CloseButton_Clicked;
+            };
         }
 
         public void ChangeSelectedTrack(int Index)
@@ -60,6 +70,12 @@ namespace SurfaceJackDemo.Views
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
         }
+
+        private void CloseButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            this.rBtnLeft.HandleClick();
+        }
+
         #endregion
 
 

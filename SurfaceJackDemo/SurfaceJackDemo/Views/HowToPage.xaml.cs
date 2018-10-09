@@ -44,6 +44,17 @@ namespace SurfaceJackDemo.Views
             this.InitializeComponent();
             HowToPage.Current = this;
             this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
+            this.Loaded += HowToPage_Loaded;
+            this.AppSelectorImageKB.AppSelector = this.AppSelectorHowTo;
+        }
+
+        private void HowToPage_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void PopClose_Click(object sender, PointerRoutedEventArgs e)
+        {
+            CloseButton_Clicked(sender, new RoutedEventArgs());
         }
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
@@ -54,6 +65,14 @@ namespace SurfaceJackDemo.Views
         public void NavigateFromPage()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (sender is ListView listView)
+            //{
+            //    this.AppSelectorImageKB.SelectedID = listView.SelectedIndex;
+            //}
         }
     }
 }

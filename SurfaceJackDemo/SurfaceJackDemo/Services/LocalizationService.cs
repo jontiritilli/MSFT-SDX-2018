@@ -216,6 +216,14 @@ namespace SurfaceJackDemo.Services
 
         public void LoadHowToViewModel(HowToViewModel viewModel)
         {
+            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE");
+            viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_ONE");
+            viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TWO");
+            viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_THREE");
+            viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FOUR, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FOUR");
+            viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FIVE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FIVE");
+            viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_SIX, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_SIX");
+            viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
 
         }
 

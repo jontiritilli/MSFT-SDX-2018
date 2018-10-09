@@ -24,21 +24,34 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".25*"/>
+            <ColumnDefinition Width=".75*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <!--<ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
             Width="{StaticResource HeaderWidth}"
             Headline="{x:Bind Path=ViewModel.Headline}"
-            Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PageHeadline"
             LedeStyle="PageLede"                
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
-        
+        <ctrl:AppSelector
+            x:Name="AppSelectorHowTo"
+            URIs="{x:Bind Path=ViewModel.ListItems}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Grid.Row="3"
+            Grid.Column="1"
+            Canvas.ZIndex="101"
+            MainOrientation="Vertical"
+            ShowMessages="True"
+            ShowSelectedLine="False"
+            ButtonWidth="{StaticResource AppSelectorButtonWidth}"
+            ButtonHeight="{StaticResource AppSelectorButtonWidth}"
+            Opacity="1"/>
 
-        <ctrl:AppSelectorImage  Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3"
+        <ctrl:AppSelectorImage  Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="3"
             x:Name="AppSelectorImageKB"
             Opacity="1"
             HorizontalAlignment="Right"
@@ -47,12 +60,14 @@
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
 
-        <ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
+
+
+        <!--<ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
             Opacity="1"
-            TextStyle="Legal" />
+            TextStyle="Legal" />-->
 
-        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
+        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
             <Grid
                 x:Name="grdCloseButton"
                 PointerPressed="PopClose_Click"
@@ -77,6 +92,6 @@
                     VerticalAlignment="Center"                
                     Margin="0"/>
             </Grid>
-        </Canvas>-->
+        </Canvas>
     </Grid>
 </Page>
