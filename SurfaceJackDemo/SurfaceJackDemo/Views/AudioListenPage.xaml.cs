@@ -62,7 +62,7 @@ namespace SurfaceJackDemo.Views
         private void AudioListenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             this.itemListView.Background = StyleHelper.GetAcrylicBrush("Dark");
-            this.OverlayCanvas.Background = StyleHelper.GetAcrylicBrush("Dark");
+            this.OverlayGrid.Background = StyleHelper.GetAcrylicBrush("Dark");
             NavigateFromPage();
             this.HasLoaded = true;
             if (this.HasNavigatedTo)
@@ -143,7 +143,7 @@ namespace SurfaceJackDemo.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.OverlayCanvas.Visibility = Visibility.Collapsed;
+            this.OverlayGrid.Visibility = Visibility.Collapsed;
         }
     }
 }
