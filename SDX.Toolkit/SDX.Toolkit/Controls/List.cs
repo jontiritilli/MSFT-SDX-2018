@@ -25,7 +25,8 @@ namespace SDX.Toolkit.Controls
         LedeOnly,            // List has a header and lede-only items (i.e. interactive pages)
         HeadlineAndLede,     // List items have individual headlines (i.e. product highlights page)
         BestOf,               // best of page
-        Compare
+        Compare,
+        Specs
     }
 
     public sealed class List : Control, IAnimate
@@ -470,6 +471,99 @@ namespace SDX.Toolkit.Controls
                         }
                     }
                     break;
+                case ListStyles.Specs:
+                    {
+                        // create a grid of grids. 2 columns and 2 or 3 rows base don # of units. star space them
+                        // and each inner grid handles its icon/text/spacer
+                        double rowPercent = (_listItems.Count > 4 ? 0.333 : 0.5);
+                        double columnPercent = (_listItems.Count > 5 ? 0.333 : 0.5);
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnPercent, GridUnitType.Star) });
+                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnPercent, GridUnitType.Star) });
+                        if (_listItems.Count > 5)
+                        {//5th item handling
+                            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnPercent, GridUnitType.Star) });
+                        }
+                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
+                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
+                        if (_listItems.Count > 4)
+                        {//5th item handling
+                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
+                        }
+                        // create a counter to know when we reach the end of list
+                        int Index = 0;
+                        int ListLength = _listItems.Count() - 1;
+                        int rowPos = 0;
+                        int colPos = 0;
+                        double ListTextWidth = StyleHelper.GetApplicationDouble("SpecsListTextWidth");
+
+                        // create the list items and add to the grid
+                        foreach (ListItem item in _listItems)
+                        {
+                            // get correct row to add content, don't want to add to a spacer row
+                            Grid grid = new Grid();
+                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftColumnSpacerWidth)) });
+                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+                            int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
+
+                            // create the row for content
+                            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                            // create icon image
+                            ImageEx icon = new ImageEx()
+                            {
+                                Name = String.Format("Icon_{0}", item.Order),
+                                ImageSource = item.IconPath,
+                                ImageWidth = item.IconWidth,
+                                VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
+                                VerticalContentAlignment = VerticalAlignment.Top,
+                                PageEntranceDirection = this.PageEntranceDirection,
+                                Opacity = 0.0
+                            };
+
+                            Grid.SetColumn(icon, 0);
+                            Grid.SetRow(icon, RowToAdd);
+                            grid.Children.Add(icon);
+
+                            // create the headline (bold text) if one is provided
+                            Header headline = new Header()
+                            {
+                                HeadlineStyle = TextStyles.SpecItemHeadlineBestOf,
+                                Headline = item.Headline,
+                                LedeStyle = TextStyles.SpecItemLedeBestOf,
+                                Lede = item.Lede,
+                                CTAText = item.CTAText,
+                                CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
+                                Width = ListTextWidth,
+                                HeaderAlignment = TextAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
+                                VerticalAlignment = VerticalAlignment.Top,
+                                PageEntranceDirection = this.PageEntranceDirection,
+                                HeadlineOpacity = 0,
+                                LedeOpacity = 0
+                            };
+                            Grid.SetColumn(headline, 2);
+                            Grid.SetRow(headline, RowToAdd);
+
+                            grid.Children.Add(headline);
+                            Grid.SetRow(grid, rowPos);
+                            Grid.SetColumn(grid, colPos);
+                            _layoutRoot.Children.Add(grid);
+                            // increment index
+                            Index++;
+                            if (_listItems.Count > 5)
+                            {// handling for 3 columns
+                                rowPos = (Index < 3 ? 0 : (Index < 6 ? 1 : 2));
+                                colPos = (Index % 3 == 0 ? 0 : Index % 3 == 1 ? 1 : 2);
+                            }
+                            else
+                            {
+                                rowPos = (Index < 2 ? 0 : (Index < 4 ? 1 : 2));
+                                colPos = (colPos > 0 ? 0 : 1);
+                            }
+                        }
+                    }
+                    break;
             }
         }
 
@@ -496,6 +590,7 @@ namespace SDX.Toolkit.Controls
             {
                 switch (this.ListStyle)
                 {
+                    case ListStyles.Specs:
                     case ListStyles.BestOf: // used for interactive pages with header followed by list of items
                         {
                             foreach (UIElement item in _layoutRoot.Children)

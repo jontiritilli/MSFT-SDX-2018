@@ -50,7 +50,9 @@ namespace SDX.Toolkit.Helpers
         PlayerArtistName,
         PlayerTrackName,
         AppSelectorText,
-        AppSelectorTextBold
+        AppSelectorTextBold,
+        SpecItemHeadlineBestOf,
+        SpecItemLedeBestOf,
     }
 
     public enum LayoutSizes
@@ -208,6 +210,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PLAYER_TRACKNAME = "PlayerTrackName";
         public const string STYLE_APPSELECTOR_TEXT= "AppSelectorText";
         public const string STYLE_APPSELECTOR_TEXT_BOLD = "AppSelectorTextBold";
+        public const string STYLE_SPECITEM_HEADLINE_BESTOF = "SpecItemHeadlineBestOf";
+        public const string STYLE_SPECITEM_LEDE_BESTOF = "SpecItemLedeBestOf";
 
         #endregion
 
@@ -792,6 +796,15 @@ namespace SDX.Toolkit.Helpers
                 case TextStyles.AppSelectorTextBold:
                     style = GetApplicationStyle(STYLE_APPSELECTOR_TEXT_BOLD);
                     break;
+
+                case TextStyles.SpecItemHeadlineBestOf:
+                    style = GetApplicationStyle(STYLE_SPECITEM_HEADLINE_BESTOF);
+                    break;
+
+                case TextStyles.SpecItemLedeBestOf:
+                    style = GetApplicationStyle(STYLE_SPECITEM_LEDE_BESTOF);
+                    break;
+
                 default:
                     break;
             }

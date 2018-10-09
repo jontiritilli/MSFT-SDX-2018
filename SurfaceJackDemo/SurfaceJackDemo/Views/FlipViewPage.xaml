@@ -44,6 +44,7 @@
                Background="Transparent"
                AllowFocusOnInteraction="False"
                Loaded="FlipViewEx_Loaded"
+               Canvas.ZIndex="1000"
                SelectionChanged="FlipViewEx_SelectionChanged">
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioTryItPage">
                 <Frame>
@@ -75,9 +76,9 @@
                     <views:SpecsPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_PartnerPage">
+            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_InTheBoxPage">
                 <Frame>
-                    <views:PartnerPage/>
+                    <views:InTheBoxPage/>
                 </Frame>
             </ctrl:FlipViewItemEx>
         </ctrl:FlipViewEx>
@@ -87,6 +88,7 @@
                 Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
                 Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
                 Style="{StaticResource NoInteractionButton}"
+                                            Canvas.ZIndex="1001"
                 Click="AppClose_Click">
             <Button.Background>
                 <SolidColorBrush Color="Black" Opacity="1.0" />
@@ -104,14 +106,26 @@
                        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                        Height="{StaticResource PlayerHeight}"
                        SelectionChanged="MusicBar_SelectionChanged"
+                       Canvas.ZIndex="1001"
                        VerticalAlignment="Bottom"/>
 
         <!-- Navigation Bar -->
         <ctrl:NavigationBar x:Name="BottomNavBar"
                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                            Height="{StaticResource NavigationBarHeight}"
+                            Canvas.ZIndex="1001"
                            Navigate="BottomNavBar_OnNavigation"/>
-
+        <Popup x:Name="HowToPagePopup"
+                IsOpen = "False"
+                IsLightDismissEnabled="False"
+                HorizontalOffset="0"                
+                VerticalOffset="0"
+                Opened="DisablePageNavigation"
+                Closed="EnablePageNavigation">
+            <Popup.Child>
+                <views:HowToPage/>
+            </Popup.Child>
+        </Popup>
 
         <!-- TEST ONLY -->
         <!--<Border Grid.Row="0" Grid.Column="0" BorderBrush="White" BorderThickness="2"/>

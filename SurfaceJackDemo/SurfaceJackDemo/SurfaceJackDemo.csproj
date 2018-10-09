@@ -144,7 +144,8 @@
     <Compile Include="ViewModels\AudioTryItViewModel.cs" />
     <Compile Include="ViewModels\ChoosePathViewModel.cs" />
     <Compile Include="ViewModels\DesignViewModel.cs" />
-    <Compile Include="ViewModels\PartnerViewModel.cs" />
+    <Compile Include="ViewModels\HowToViewModel.cs" />
+    <Compile Include="ViewModels\InTheBoxViewModel.cs" />
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ProductivityViewModel.cs" />
     <Compile Include="ViewModels\SpecsViewModel.cs" />
@@ -165,9 +166,12 @@
     <Compile Include="Views\DesignPage.xaml.cs">
       <DependentUpon>DesignPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\HowToPage.xaml.cs">
+      <DependentUpon>HowToPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\INavigate.cs" />
-    <Compile Include="Views\PartnerPage.xaml.cs">
-      <DependentUpon>PartnerPage.xaml</DependentUpon>
+    <Compile Include="Views\InTheBoxPage.xaml.cs">
+      <DependentUpon>InTheBoxPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FlipViewPage.xaml.cs">
       <DependentUpon>FlipViewPage.xaml</DependentUpon>
@@ -301,7 +305,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PartnerPage.xaml">
+    <Page Include="Views\HowToPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InTheBoxPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -339,24 +347,24 @@
     <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\sb2_15_Generic_BG.jpg" />
     <Content Include="Assets\Backgrounds\sb2_Generic_BG.jpg" />
-    <Content Include="Assets\Controls\contols_imageFPO1.png" />
-    <Content Include="Assets\Controls\contols_imageFPO2.png" />
-    <Content Include="Assets\Controls\contols_imageFPO3.png" />
-    <Content Include="Assets\Controls\contols_imageFPO4.png" />
-    <Content Include="Assets\Controls\contols_imageFPO5.png" />
-    <Content Include="Assets\Controls\joplin_controls_anatomy.png" />
-    <Content Include="Assets\Controls\joplin_controls_cortana.png" />
-    <Content Include="Assets\Controls\joplin_controls_cortana_act.png" />
-    <Content Include="Assets\Controls\joplin_controls_mic.png" />
-    <Content Include="Assets\Controls\joplin_controls_mic_act.png" />
-    <Content Include="Assets\Controls\joplin_controls_noiseCancellation.png" />
-    <Content Include="Assets\Controls\joplin_controls_noiseCancellation_act.png" />
-    <Content Include="Assets\Controls\joplin_controls_overview.png" />
-    <Content Include="Assets\Controls\joplin_controls_overview_act.png" />
-    <Content Include="Assets\Controls\joplin_controls_playback.png" />
-    <Content Include="Assets\Controls\joplin_controls_playback_act.png" />
-    <Content Include="Assets\Controls\joplin_controls_volume.png" />
-    <Content Include="Assets\Controls\joplin_controls_volume_act.png" />
+    <Content Include="Assets\Controls\anatomy.png" />
+    <Content Include="Assets\Controls\controls_imageFPO1.png" />
+    <Content Include="Assets\Controls\controls_imageFPO2.png" />
+    <Content Include="Assets\Controls\controls_imageFPO3.png" />
+    <Content Include="Assets\Controls\controls_imageFPO4.png" />
+    <Content Include="Assets\Controls\controls_imageFPO5.png" />
+    <Content Include="Assets\Controls\cortana.png" />
+    <Content Include="Assets\Controls\cortana_selected.png" />
+    <Content Include="Assets\Controls\mic.png" />
+    <Content Include="Assets\Controls\mic_selected.png" />
+    <Content Include="Assets\Controls\noiseCancellation.png" />
+    <Content Include="Assets\Controls\noiseCancellation_selected.png" />
+    <Content Include="Assets\Controls\overview.png" />
+    <Content Include="Assets\Controls\overview_selected.png" />
+    <Content Include="Assets\Controls\playback.png" />
+    <Content Include="Assets\Controls\playback_selected.png" />
+    <Content Include="Assets\Controls\volume.png" />
+    <Content Include="Assets\Controls\volume_selected.png" />
     <Content Include="Assets\Experience\audio_artistProfile01_FPO.png" />
     <Content Include="Assets\Experience\audio_artistProfile02_FPO.png" />
     <Content Include="Assets\Experience\audio_artistProfile03_FPO.png" />
@@ -378,6 +386,13 @@
     <Content Include="Assets\InTheBox\joplin_inthebox_headphones.png" />
     <Content Include="Assets\InTheBox\joplin_inthebox_stereo.png" />
     <Content Include="Assets\InTheBox\joplin_inthebox_usb.png" />
+    <Content Include="Assets\List\specs_batteryLife.png" />
+    <Content Include="Assets\List\specs_dimensions.png" />
+    <Content Include="Assets\List\specs_frequency.png" />
+    <Content Include="Assets\List\specs_inputs.png" />
+    <Content Include="Assets\List\specs_noiseCancellation.png" />
+    <Content Include="Assets\List\specs_speaker.png" />
+    <Content Include="Assets\List\specs_weight.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq0.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq1.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq2.png" />

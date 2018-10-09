@@ -26,10 +26,13 @@ namespace SurfaceJackDemo.ViewModels
             Register<TechViewModel, TechPage>();
             Register<ProductivityViewModel, ProductivityPage>();
             Register<SpecsViewModel, SpecsPage>();
-            Register<PartnerViewModel, PartnerPage>();
+            Register<InTheBoxViewModel, InTheBoxPage>();
+            Register<HowToViewModel, HowToPage>();
         }
 
-        public PartnerViewModel PartnerViewModel => ServiceLocator.Current.GetInstance<PartnerViewModel>();
+        public InTheBoxViewModel InTheBoxViewModel => ServiceLocator.Current.GetInstance<InTheBoxViewModel>();
+
+        public HowToViewModel HowToViewModel => ServiceLocator.Current.GetInstance<HowToViewModel>();
 
         public SpecsViewModel SpecsViewModel => ServiceLocator.Current.GetInstance<SpecsViewModel>();
 

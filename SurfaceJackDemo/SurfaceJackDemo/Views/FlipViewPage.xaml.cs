@@ -20,7 +20,8 @@ using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
 using SDX.Telemetry.Services;
-
+using SDX.Toolkit.Helpers;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace SurfaceJackDemo.Views
 {
@@ -90,6 +91,7 @@ namespace SurfaceJackDemo.Views
 
             // initialize the music bar
             this.MusicBar.PlayerPlaylist = ViewModel.Playlist;
+            this.MusicBar.Background = StyleHelper.GetAcrylicBrush("Light");
 
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
@@ -290,6 +292,19 @@ namespace SurfaceJackDemo.Views
             }
         }
 
+        public Popup GetHowToPagePopup()
+        {
+            return this.HowToPagePopup;
+        }
+        public void EnablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = true;
+        }
+
+        public void DisablePageNavigation(object sender, object e)
+        {
+            this.BottomNavBar.IsNavigationEnabled = false;
+        }
         #endregion
 
         private void MusicBar_SelectionChanged(object sender, EventArgs e)
