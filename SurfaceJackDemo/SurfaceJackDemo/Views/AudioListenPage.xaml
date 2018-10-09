@@ -34,6 +34,45 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        <Canvas
+            x:Name="OverlayCanvas"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="7"
+            Canvas.ZIndex="1000">
+                <Grid
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.10}"  
+                    >
+                    <ctrl:ImageEx 
+                        x:Name="img_Right"
+                        ImageWidth="{x:Bind Path=ViewModel.ReadyWidth}"
+                        ImageSource="{x:Bind Path=ViewModel.ReadyUri}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"                        
+                        Orientation="Vertical">
+                        <ctrl:Header x:Name="OverlayHeader"
+                            HeadlineStyle="PageHeadlineDark"
+                            LedeStyle="PageLedeDark"                                     
+                            Headline="{x:Bind Path=ViewModel.OverlayHeadline}"
+                            Lede="{x:Bind Path=ViewModel.OverlayLede}"
+                            CTAUri="ms-settings:"
+                            CTATextStyle="ListItemCTAText"
+                            HeaderAlignment="Center"
+                            Width="{StaticResource HeaderWidth}" />
+                        <Button
+                            Click="Button_Click"
+                            Content="I'M READY"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource NoInteractionReadyButton}"/>
+                    </StackPanel>
+                </Grid>
+        </Canvas>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
                 Headline="{x:Bind Path=ViewModel.Headline}"

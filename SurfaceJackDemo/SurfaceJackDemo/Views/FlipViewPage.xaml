@@ -46,11 +46,11 @@
                Loaded="FlipViewEx_Loaded"
                Canvas.ZIndex="1000"
                SelectionChanged="FlipViewEx_SelectionChanged">
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioTryItPage">
+            <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioTryItPage">
                 <Frame>
                     <views:AudioTryItPage/>
                 </Frame>
-            </ctrl:FlipViewItemEx>
+            </ctrl:FlipViewItemEx>-->
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioListenPage">
                 <Frame>
                     <views:AudioListenPage/>
