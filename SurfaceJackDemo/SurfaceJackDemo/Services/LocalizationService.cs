@@ -185,7 +185,6 @@ namespace SurfaceJackDemo.Services
             viewModel.NavBarTech = GetStringValueToUpper(_languageCurrent.TECH, "TECH");
             viewModel.NavBarProductivity = GetStringValueToUpper(_languageCurrent.PRODUCTIVITY, "PRODUCTIVITY");
             viewModel.NavBarSpecs = GetStringValueToUpper(_languageCurrent.SPECS, "SPECS");
-            viewModel.NavBarPartner = GetStringValueToUpper(_languageCurrent.PROMO, "PROMO");
         }
 
         public void LoadAudioTryItViewModel(AudioTryItViewModel viewModel)

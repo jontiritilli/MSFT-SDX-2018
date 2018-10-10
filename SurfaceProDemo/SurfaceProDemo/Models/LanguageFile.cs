@@ -114,11 +114,11 @@ namespace SurfaceProDemo.Models
         public string COMPARE_HEADLINE = "Find your perfect Surface";
         public string COMPARE_COPY = "Compare features and specs to see how each Surface device stacks up.";
         public string COMPARE_LEGAL = "*Surface Studio 2 coming soon.";
-        public string COMPARE_DEVICE_ONE_TITLE = "Surface Pro 6  ";
+        public string COMPARE_DEVICE_ONE_TITLE = "Surface Pro 6";
         public string COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
         public string COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";
         public string COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop 2";
-        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
         public string COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro 6";
         public string COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
         public string COMPARE_DEVICE_ONE_POP_COPY = "Work and play virtually anywhere with laptop-to-tablet versatility and all-day battery life*";
@@ -156,7 +156,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL = "";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
-        public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
+        public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately.";
         public string COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio 2";
         public string COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
         public string COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
@@ -169,7 +169,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL = "*Some accessories and software sold separately.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_TITLE = "Professional-grade power and performance";
         public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favorite software, like Adobe® CC,* Office 365,* and more.";
-        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately. ";
+        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE = "28” PixelSense™ Display";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life color and clarity.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL = "";
@@ -178,7 +178,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop 2";
         public string COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
-        public string COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
+        public string COMPARE_DEVICE_FOUR_POP_COPY = "Lingo beyond the traditional laptop with the perfect balance of power and sleek design.";
         public string COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE = "Beautifully designed and crafted";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone color combinations.**";
@@ -195,7 +195,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
+        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
         public string COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
         public string COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
         public string COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
@@ -338,11 +338,11 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_HEADLINE = "Find your perfect Surface";
             languageFile.COMPARE_COPY = "Compare features and specs to see how each Surface device stacks up.";
             languageFile.COMPARE_LEGAL = "*Surface Studio 2 coming soon.";
-            languageFile.COMPARE_DEVICE_ONE_TITLE = "Surface Pro 6  ";
+            languageFile.COMPARE_DEVICE_ONE_TITLE = "Surface Pro 6";
             languageFile.COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
             languageFile.COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";
             languageFile.COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop 2";
-            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
             languageFile.COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro 6";
             languageFile.COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
             languageFile.COMPARE_DEVICE_ONE_POP_COPY = "Work and play virtually anywhere with laptop-to-tablet versatility and all-day battery life*";
@@ -380,7 +380,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL = "";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
-            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
+            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio 2";
             languageFile.COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
             languageFile.COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
@@ -393,7 +393,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL = "*Some accessories and software sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_TITLE = "Professional-grade power and performance";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favorite software, like Adobe® CC,* Office 365,* and more.";
-            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately. ";
+            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE = "28” PixelSense™ Display";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life color and clarity.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL = "";
@@ -402,7 +402,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop 2";
             languageFile.COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
-            languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Lingo beyond the traditional laptop with the perfect balance of power and sleek design.";
             languageFile.COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE = "Beautifully designed and crafted";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone color combinations.**";
@@ -419,7 +419,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
+            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
             languageFile.COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
