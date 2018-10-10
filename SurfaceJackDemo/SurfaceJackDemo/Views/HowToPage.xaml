@@ -9,6 +9,49 @@
     xmlns:conv="using:SDX.Toolkit.Converters"
     DataContext="{Binding HowToViewModel, Source={StaticResource Locator}}"    
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="UnselectedListViewItem">
+                <Grid
+                    Height="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="48" Height="48">
+                        <Image Stretch="UniformToFill">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Path=Source_NotSelectedImage, Mode=OneTime}"
+                                        DecodePixelWidth="48"/>
+                            </Image.Source>
+                        </Image>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="#FF333333" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SelectedListViewItem">
+                <Grid
+                    Height="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="48" Height="48">
+                        <Image Stretch="UniformToFill">
+                            <Image.Source>
+                                <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}"
+                                        DecodePixelWidth="48"/>
+                            </Image.Source>
+                        </Image>
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="White" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+        </DataTemplate>
+    </Page.Resources>
     <Grid
         x:Name="ContentArea"
         Width="{StaticResource ScreenWidth}"
@@ -36,77 +79,17 @@
             LedeStyle="PageLede"                
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
-        <ListView x:Name="itemListView"
+        <ctrl:AltRowListView x:Name="itemListView"
             Grid.Row="3"
             Grid.Column="1"
+            HorizontalContentAlignment="Stretch"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Width="1200"            
             SelectionChanged="itemListView_SelectionChanged"
-            ItemsSource="{x:Bind Path=ViewModel.ListItems, Mode=OneTime}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="tbMessage">
-                                            <DiscreteObjectKeyFrame KeyTime="1" Value="#FFFFFFFF"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <!--<ColorAnimation Storyboard.TargetName="tbMessage"
-                                                        Storyboard.TargetProperty="Foreground"
-                                                        To="#FF333333" Duration="0:0:0.0"/>-->
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Selected">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="tbMessage">
-                                            <DiscreteObjectKeyFrame KeyTime="1" Value="#FFFFFFFF"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <!--<ColorAnimation Storyboard.TargetName="tbMessage"
-                                                        Storyboard.TargetProperty="Foreground"
-                                                        To="White" Duration="0:0:0.0"/>-->
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Width="40" Height="40">
-                            <Image Stretch="UniformToFill">
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding Path=Source_NotSelectedImage, Mode=OneTime}"
-                                        DecodePixelWidth="40"/>
-                                </Image.Source>
-                            </Image>
-                        </Border>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
-                            <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="#FF333333" TextWrapping="NoWrap"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <!--<ctrl:AppSelector
-            x:Name="AppSelectorHowTo"
-            URIs="{x:Bind Path=ViewModel.ListItems}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Grid.RowSpan="4"
-            Grid.Row="3"
-            Grid.Column="1"
-            Canvas.ZIndex="101"
-            MainOrientation="Vertical"
-            ShowMessages="True"
-            ShowSelectedLine="False"
-            ButtonWidth="{StaticResource AppSelectorButtonWidth}"
-            ButtonHeight="{StaticResource AppSelectorButtonWidth}"
-            IsListView="True"
-            Width="600"
-            Opacity="1"/>-->
+            ItemTemplate="{StaticResource UnselectedListViewItem}"                 
+            ItemsSource="{x:Bind Path=ViewModel.ListItems, Mode=OneTime}"/>
+    
         <ctrl:AppSelectorImage  Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="3"
             x:Name="AppSelectorImageKB"
             Opacity="1"
@@ -116,10 +99,7 @@
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
 
-        <!--<ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
-            Text="{x:Bind Path=ViewModel.Legal}"
-            Opacity="1"
-            TextStyle="Legal" />-->
+
 
         <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
             <Grid
