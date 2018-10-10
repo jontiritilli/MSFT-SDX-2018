@@ -134,10 +134,10 @@ namespace SDX.Toolkit.Controls
             // raise the reset event
             this.RaiseOnZoomResetEvent(this);
 
-            if (null != _viewer && _viewer.ZoomFactor > 1.0f)
+            if (null != _viewer && _viewer.ZoomFactor > 1.00f)
             {
                 // reset the zoom to normal
-                _viewer.ChangeView(null, null, 1.0f);
+                _viewer.ChangeView(null, null, 1.00f);
             }
         }
 
@@ -145,7 +145,7 @@ namespace SDX.Toolkit.Controls
         {
             if (null != _viewer && null != _closeGrid)
             {
-                if (_viewer.ZoomFactor > 1.0f)
+                if (_viewer.ZoomFactor > 1.00f)
                 {
                     // hide the ellipse
                     _closeGrid.Visibility = Visibility.Visible;
