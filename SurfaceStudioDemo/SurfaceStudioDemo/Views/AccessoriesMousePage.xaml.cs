@@ -2,6 +2,8 @@
 
 using Windows.UI.Xaml.Controls;
 
+using SDX.Toolkit.Helpers;
+
 using SurfaceStudioDemo.ViewModels;
 
 
@@ -23,7 +25,6 @@ namespace SurfaceStudioDemo.Views
         #region Public Members
         public static AccessoriesMousePage Current { get; private set; }
         #endregion
-
 
         #region Construction
 
@@ -49,7 +50,7 @@ namespace SurfaceStudioDemo.Views
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnLeftAccRight.StartEntranceAnimation();
             rBtnLeftAccRight.StartRadiateAnimation();
 
@@ -62,6 +63,25 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
+            if (null != this.PopTop && this.PopTop.IsOpen)
+            {
+                this.PopTop.IsOpen = false;
+            }
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -79,7 +99,10 @@ namespace SurfaceStudioDemo.Views
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnLeftAccRight.ResetEntranceAnimation();
             rBtnLeftAccRight.ResetRadiateAnimation();
 

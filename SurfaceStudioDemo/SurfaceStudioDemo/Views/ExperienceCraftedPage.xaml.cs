@@ -19,12 +19,14 @@ namespace SurfaceStudioDemo.Views
 
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
-        public static ExperienceCraftedPage Current { get; private set; }
-        #endregion
 
+        public static ExperienceCraftedPage Current { get; private set; }
+
+        #endregion
 
         #region Construction
 
@@ -60,6 +62,21 @@ namespace SurfaceStudioDemo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -78,6 +95,8 @@ namespace SurfaceStudioDemo.Views
         public void NavigateFromPage()
         {
             AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnRightCrafted.ResetEntranceAnimation();
             rBtnRightCrafted.ResetRadiateAnimation();

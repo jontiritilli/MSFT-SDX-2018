@@ -2,8 +2,9 @@
 using SDX.Toolkit.Controls;
 using Windows.UI.Xaml.Controls;
 
-using SurfaceProDemo.ViewModels;
+using SDX.Toolkit.Helpers;
 
+using SurfaceProDemo.ViewModels;
 
 namespace SurfaceProDemo.Views
 {
@@ -74,6 +75,23 @@ namespace SurfaceProDemo.Views
         }
         #endregion
 
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopTop && this.PopTop.IsOpen)
+            {
+                this.PopTop.IsOpen = false;
+            }
+
+            if (null != this.PopBottom && this.PopBottom.IsOpen)
+            {
+                this.PopBottom.IsOpen = false;
+            }
+        }
+
+        #endregion
+
         #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
@@ -93,7 +111,10 @@ namespace SurfaceProDemo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
 

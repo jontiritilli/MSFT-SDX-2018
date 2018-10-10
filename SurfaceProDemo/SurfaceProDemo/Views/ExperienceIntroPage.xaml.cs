@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 using SurfaceProDemo.ViewModels;
 
 using SDX.Toolkit.Controls;
+using SDX.Toolkit.Helpers;
+
 namespace SurfaceProDemo.Views
 {
     public sealed partial class ExperienceIntroPage : Page, INavigate
@@ -53,9 +55,13 @@ namespace SurfaceProDemo.Views
             }
         }
 
+        #endregion
+
+        #region Private Methods
+
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
 
@@ -65,39 +71,6 @@ namespace SurfaceProDemo.Views
             //rBtnTop.StartEntranceAnimation();
             //rBtnTop.StartRadiateAnimation();
         }
-        #endregion
-
-
-        #region INavigate Interface
-
-        public void NavigateToPage(INavigateMoveDirection moveDirection)
-        {
-            // animations in            
-            if (ExperienceIntroPage.Current.HasLoaded)
-            {
-                AnimatePageEntrance();
-            }
-            else
-            {
-                ExperienceIntroPage.Current.HasNavigatedTo = true;
-            }
-        }
-
-        public void NavigateFromPage()
-        {
-            // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
-            rBtnLeft.ResetEntranceAnimation();
-            rBtnLeft.ResetRadiateAnimation();
-
-            rBtnRight.ResetEntranceAnimation();
-            rBtnRight.ResetRadiateAnimation();
-
-            //rBtnTop.ResetEntranceAnimation();
-            //rBtnTop.ResetRadiateAnimation();
-        }
-
-        #endregion
 
         private void PopLeft_Closed(object sender, object e)
         {
@@ -118,5 +91,55 @@ namespace SurfaceProDemo.Views
         //{
         //    this.TopLegal.SetOpacity(0);
         //}
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
+        }
+
+        #endregion
+
+        #region INavigate Interface
+
+        public void NavigateToPage(INavigateMoveDirection moveDirection)
+        {
+            // animations in            
+            if (ExperienceIntroPage.Current.HasLoaded)
+            {
+                AnimatePageEntrance();
+            }
+            else
+            {
+                ExperienceIntroPage.Current.HasNavigatedTo = true;
+            }
+        }
+
+        public void NavigateFromPage()
+        {
+            // animations out
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
+            rBtnLeft.ResetEntranceAnimation();
+            rBtnLeft.ResetRadiateAnimation();
+
+            rBtnRight.ResetEntranceAnimation();
+            rBtnRight.ResetRadiateAnimation();
+
+            //rBtnTop.ResetEntranceAnimation();
+            //rBtnTop.ResetRadiateAnimation();
+        }
+
+        #endregion
+
     }
 }

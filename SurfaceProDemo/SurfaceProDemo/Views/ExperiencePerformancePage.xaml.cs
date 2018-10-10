@@ -1,10 +1,11 @@
 ﻿using System;
 
 using Windows.UI.Xaml.Controls;
-
-using SurfaceProDemo.ViewModels;
 using Windows.UI.Xaml;
 
+using SDX.Toolkit.Helpers;
+
+using SurfaceProDemo.ViewModels;
 
 namespace SurfaceProDemo.Views
 {
@@ -18,10 +19,13 @@ namespace SurfaceProDemo.Views
         }
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
+
         public static ExperiencePerformancePage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -65,11 +69,20 @@ namespace SurfaceProDemo.Views
             {
                 rBtnTop.PopupChild.IsOpen = false;
             }
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
         }
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
 
             this.rBtnLeft.StartEntranceAnimation();
             this.rBtnLeft.StartRadiateAnimation();
@@ -100,7 +113,7 @@ namespace SurfaceProDemo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
 
             ClosePopupsOnExit();
 

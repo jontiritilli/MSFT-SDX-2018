@@ -58,20 +58,20 @@
                 PopupPosition="Right"
                 RadiatingButtonIcon="touch"
                 TryItEnabled="True"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                                    
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="800"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"                              
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.52}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.19}"
-                EntranceStaggerDelayInMilliseconds="600"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
             <Popup

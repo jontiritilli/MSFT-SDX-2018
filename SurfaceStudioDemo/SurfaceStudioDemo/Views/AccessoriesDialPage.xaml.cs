@@ -20,10 +20,13 @@ namespace SurfaceStudioDemo.Views
 
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
+
         public static AccessoriesDialPage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -53,6 +56,18 @@ namespace SurfaceStudioDemo.Views
 
             rBtnRightAccLeft.StartEntranceAnimation();
             rBtnRightAccLeft.StartRadiateAnimation();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
         }
 
         #endregion
@@ -90,6 +105,8 @@ namespace SurfaceStudioDemo.Views
         public void NavigateFromPage()
         {
             AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnRightAccLeft.ResetEntranceAnimation();
             rBtnRightAccLeft.ResetRadiateAnimation();
