@@ -80,6 +80,24 @@ namespace SurfaceLaptopDemo.Views
 
         }
 
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+
+            if (null != this.PopTop && this.PopTop.IsOpen)
+            {
+                this.PopTop.IsOpen = false;
+            }
+
+            if (null != this.PopBottom && this.PopBottom.IsOpen)
+            {
+                this.PopBottom.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -98,7 +116,9 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnTopPerformance.ResetEntranceAnimation();
             rBtnTopPerformance.ResetRadiateAnimation();

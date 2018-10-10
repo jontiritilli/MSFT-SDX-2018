@@ -61,9 +61,11 @@ namespace SurfaceBook2Demo.Views
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
         }
+
         #endregion
 
         #region Event Handlers
+
         private void PopDial_Opened(object sender, object e)
         {
             this.LegalDial.SetOpacity(1);
@@ -83,6 +85,20 @@ namespace SurfaceBook2Demo.Views
         {
             this.LegalPen.SetOpacity(0);
         }
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+            
+            if (null != this.PopTop && this.PopTop.IsOpen)
+            {
+                this.PopTop.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -103,7 +119,10 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
 
