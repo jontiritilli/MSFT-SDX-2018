@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>SurfaceStudioDemo_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>036A97E0B9CCCA636A0142B6ABE3CC87020F9B82</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
