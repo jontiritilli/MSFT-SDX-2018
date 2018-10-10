@@ -217,12 +217,12 @@ namespace SurfaceJackDemo.Services
         public void LoadHowToViewModel(HowToViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE");
-            viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_ONE");
-            viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TWO");
-            viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_THREE");
-            viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FOUR, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FOUR");
-            viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FIVE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_FIVE");
-            viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_SIX, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_SIX");
+            viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT");
+            viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID");
+            viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT");
+            viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT");
+            viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT");
+            viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT");
             viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
 
         }
@@ -263,7 +263,14 @@ namespace SurfaceJackDemo.Services
             viewModel.LegalBulletFour = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_LEGAL, "SPECS_SPECS_BULLETFOUR_LEGAL");
             viewModel.LegalBulletFive = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_LEGAL, "SPECS_SPECS_BULLETFIVE_LEGAL");
             viewModel.LegalBulletSix = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_LEGAL, "SPECS_SPECS_BULLETSIX_LEGAL");
-            viewModel.LegalBulletSeven = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_LEGAL, "SPECS_SPECS_BULLETSEVEN_LEGAL");         
+            viewModel.LegalBulletSeven = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_LEGAL, "SPECS_SPECS_BULLETSEVEN_LEGAL");
+
+            // ---------------------------------------------------------------------------------------------------------------
+            // NOTE - PSS: The copy has changed here to include both Imperial and Metric measurements, so we must choose
+            // which to use. For now, we're going to use Imperial (BRT).
+            // ---------------------------------------------------------------------------------------------------------------
+            string bulletOneCopyBritish = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_COPY_BRT, "SPECS_SPECS_BULLETONE_COPY_BRT");
+            string bulletOneCopyMetric = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_COPY_MET, "SPECS_SPECS_BULLETONE_COPY_MET");
 
             // bullet one
             viewModel.ItemList.Add(ListItem.CreateListItem(
@@ -271,10 +278,12 @@ namespace SurfaceJackDemo.Services
                 ListItemIcon.Dimensions, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_TITLE, "SPECS_SPECS_BULLETONE_TITLE"), // order
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_COPY, "SPECS_SPECS_BULLETONE_COPY"), // order
+                bulletOneCopyBritish, // order  // NOTE - PSS - USING BRITISH FOR NOW SINCE THIS IS US-ONLY
                 null,
                 ""
             ));
+            // ---------------------------------------------------------------------------------------------------------------
+
             // bullet two
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 1, // order
