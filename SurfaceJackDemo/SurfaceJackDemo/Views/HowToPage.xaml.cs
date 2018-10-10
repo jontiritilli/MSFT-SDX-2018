@@ -77,10 +77,10 @@ namespace SurfaceJackDemo.Views
 
         private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (sender is ListView listView)
-            //{
-            //    this.AppSelectorImageKB.SelectedID = listView.SelectedIndex;
-            //}
+            if (sender is ListView listView)
+            {
+                this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
+            }
         }
 
         #endregion
@@ -96,13 +96,7 @@ namespace SurfaceJackDemo.Views
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
+        #endregion
 
-        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ListView listView)
-            {
-                this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
-            }
-        }
     }
 }

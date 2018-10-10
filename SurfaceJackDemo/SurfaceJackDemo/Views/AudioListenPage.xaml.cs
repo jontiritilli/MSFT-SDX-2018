@@ -157,14 +157,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ListView itemListView)
-            {
-                FlipViewPage.Current.SelectTrack(itemListView.SelectedIndex);
-            }
-            
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
