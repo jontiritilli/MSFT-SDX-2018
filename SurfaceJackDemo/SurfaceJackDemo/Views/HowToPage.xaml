@@ -116,8 +116,6 @@
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
 
-
-
         <!--<ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"
             Opacity="1"

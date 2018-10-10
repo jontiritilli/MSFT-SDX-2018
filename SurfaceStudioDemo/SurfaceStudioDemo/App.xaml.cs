@@ -131,6 +131,24 @@ namespace SurfaceStudioDemo
             return new ActivationService(this);
         }
 
+        private void LoadAppResourceDictionaries(string path)
+        {
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+
+            string file = localizationService.IsLanguageJapanese() ? "TextBlock.xaml" : "TextBlock-ja-JP.xaml";
+
+            // calculate uri's for styles 
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/{1}", path, file);
+
+            // load textblock styles
+            ResourceDictionary resourceDictionary = new ResourceDictionary()
+            {
+                Source = new Uri(URI_TEXTBLOCK, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+        }
+
         #endregion
 
 

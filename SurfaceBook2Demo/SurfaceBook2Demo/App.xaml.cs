@@ -157,8 +157,13 @@ namespace SurfaceBook2Demo
 
         private void LoadAppResourceDictionaries(string path)
         {
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+
+            string file = localizationService.IsLanguageJapanese() ? "TextBlock-ja-JP.xaml" : "TextBlock.xaml";
+
             // calculate uri's for styles 
-            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/TextBlock.xaml", path);
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/{1}", path, file);
             string URI_SIZES = String.Format("ms-appx:///Styles/{0}/Sizes.xaml", path);
             string URI_THICKNESS = String.Format("ms-appx:///Styles/{0}/_Thickness.xaml", path);
             string URI_IMAGE = String.Format("ms-appx:///Styles/{0}/_Images.xaml", path);

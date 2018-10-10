@@ -86,7 +86,7 @@
                         HourIntegerMax="13.5" />
                 </Popup.Child>
             </Popup>
-            <Popup
+            <!--<Popup
                 x:Name="PopTop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
@@ -102,7 +102,7 @@
                         Lede="{x:Bind Path=ViewModel.PopTopLede}"
                         />
                 </Popup.Child>
-            </Popup>
+            </Popup>-->
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
@@ -125,7 +125,7 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"                                                               
                 PopupPosition="Left"
                 Visibility="Collapsed"                
-                EntranceStaggerDelayInMilliseconds="1500"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -133,16 +133,16 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                
                 PopupPosition="Right"                
-                EntranceStaggerDelayInMilliseconds="1600"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
-            <ctrl:RadiatingButton
+            <!--<ctrl:RadiatingButton
                 x:Name="rBtnTop"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.33}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.27}"                                                                 
                 PopupPosition="Left"                
                 EntranceStaggerDelayInMilliseconds="1400"
-                AutoStart = "false"/>
+                AutoStart = "false"/>-->
         </Canvas>
         
         <ctrl:ImageEx

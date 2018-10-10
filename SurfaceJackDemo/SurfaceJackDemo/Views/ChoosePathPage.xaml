@@ -34,45 +34,50 @@
         </Grid.ColumnDefinitions>
 
         <!-- Device One -->
-        <ctrl:ImageEx x:Name="DeviceOneImage" Grid.Row="2" Grid.Column="1"
-                        ImageSource="ms-appx:///Assets/Experience/path_cruz.png"
-                        ImageWidth="600"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
+        <ctrl:ImageEx Grid.Row="2" Grid.Column="1"
+            x:Name="DeviceOneImage"
+            ImageSource="ms-appx:///Assets/Experience/path_cruz.png"
+            ImageWidth="600"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
 
-        <ctrl:TextBlockEx x:Name="DeviceOneTitle" Grid.Row="4" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.DeviceOneTitle}"
-                       TextStyle="PageHeadline"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top" />
+        <ctrl:TextBlockEx Grid.Row="4" Grid.Column="1"
+            x:Name="DeviceOneTitle"
+            Text="{x:Bind Path=ViewModel.DeviceOneTitle}"
+            TextStyle="PageHeadline"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top" />
 
-        <Button x:Name="DeviceOneButton" Grid.Row="6" Grid.Column="1"
-                  Content="{x:Bind Path=ViewModel.DeviceOneCTA}"
-                  Style="{StaticResource CallToActionButton}"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  Click="DeviceOneButton_Click"/>
-
+        <Button Grid.Row="6" Grid.Column="1"
+            x:Name="DeviceOneButton"
+            Content="{x:Bind Path=ViewModel.DeviceOneCTA}"
+            Style="{StaticResource CallToActionButton}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Click="DeviceOneButton_Click"/>
 
         <!-- Device Two -->
-        <ctrl:ImageEx x:Name="DeviceTwoImage" Grid.Row="2" Grid.Column="3"
-                        ImageSource="ms-appx:///Assets/Experience/path_joplin.png"
-                        ImageWidth="600"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
+        <ctrl:ImageEx Grid.Row="2" Grid.Column="3"
+            x:Name="DeviceTwoImage"
+            ImageSource="ms-appx:///Assets/Experience/path_joplin.png"
+            ImageWidth="600"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
 
-        <ctrl:TextBlockEx x:Name="DeviceTwoTitle" Grid.Row="4" Grid.Column="3"
-                       Text="{x:Bind Path=ViewModel.DeviceTwoTitle}"
-                       TextStyle="PageHeadline"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top" />
+        <ctrl:TextBlockEx Grid.Row="4" Grid.Column="3"
+            x:Name="DeviceTwoTitle"
+            Text="{x:Bind Path=ViewModel.DeviceTwoTitle}"
+            TextStyle="PageHeadline"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top" />
 
-        <Button x:Name="DeviceTwoButton" Grid.Row="6" Grid.Column="3"
-                  Content="{x:Bind Path=ViewModel.DeviceTwoCTA}"
-                  Style="{StaticResource CallToActionButton}"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  Click="DeviceTwoButton_Click"/>
+        <Button Grid.Row="6" Grid.Column="3"
+            x:Name="DeviceTwoButton"
+            Content="{x:Bind Path=ViewModel.DeviceTwoCTA}"
+            Style="{StaticResource CallToActionButton}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Click="DeviceTwoButton_Click"/>
 
     </Grid>
 </Page>

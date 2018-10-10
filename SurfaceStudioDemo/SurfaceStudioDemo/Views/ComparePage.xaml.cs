@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Toolkit.Controls;
 using SDX.Telemetry.Services;
 
 
@@ -18,13 +19,15 @@ namespace SurfaceStudioDemo.Views
         {
             get { return DataContext as CompareViewModel; }
         }
-
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
+
         public static ComparePage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -135,23 +138,23 @@ namespace SurfaceStudioDemo.Views
 
         private void ClosePopupsOnExit()
         {
-            if(null != rBtnPro.PopupChild)
+            if(null != rBtnPro.PopupChild && rBtnPro.PopupChild.IsOpen)
             {
                 rBtnPro.PopupChild.IsOpen = false;
             }
-            if (null != rBtnBook.PopupChild)
+            if (null != rBtnBook.PopupChild && rBtnBook.PopupChild.IsOpen)
             {
                 rBtnBook.PopupChild.IsOpen = false;
             }
-            if (null != rBtnStudio.PopupChild)
+            if (null != rBtnStudio.PopupChild && rBtnStudio.PopupChild.IsOpen)
             {
                 rBtnStudio.PopupChild.IsOpen = false;
             }
-            if (null != rBtnPro.PopupChild)
+            if (null != rBtnPro.PopupChild && rBtnLaptop.PopupChild.IsOpen)
             {
                 rBtnLaptop.PopupChild.IsOpen = false;
             }
-            if (null != rBtnGo.PopupChild)
+            if (null != rBtnGo.PopupChild && rBtnGo.PopupChild.IsOpen)
             {
                 rBtnGo.PopupChild.IsOpen = false;
             }

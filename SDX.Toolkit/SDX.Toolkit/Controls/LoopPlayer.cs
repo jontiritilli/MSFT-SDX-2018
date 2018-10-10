@@ -42,7 +42,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Construction
 
         public LoopPlayer()
@@ -60,7 +59,6 @@ namespace SDX.Toolkit.Controls
         }
 
         #endregion
-
 
         #region Dependency Properties
 
@@ -135,7 +133,6 @@ namespace SDX.Toolkit.Controls
         }
         #endregion
 
-
         #region Public Methods
 
         public void StartPlayer()
@@ -155,14 +152,13 @@ namespace SDX.Toolkit.Controls
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    _mediaPlayerElement.MediaPlayer.Pause();                                        
-                    _mediaPlayerElement.IsFullWindow = false;
+                    _mediaPlayerElement.MediaPlayer.Pause();
+                    _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
                 });
             }
         }
 
         #endregion
-
 
         #region Custom Events
 
@@ -198,7 +194,6 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region Event Handlers
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -216,9 +211,8 @@ namespace SDX.Toolkit.Controls
 
         }       
 
-        private void MediaPlayer_MediaOpened(Windows.Media.Playback.MediaPlayer sender, object args)
+        private void MediaPlayer_MediaOpened(MediaPlayer sender, object args)
         {
-            //RaiseReadyEvent(this, args);
             this.StartPlayer();
         }
 
@@ -257,7 +251,6 @@ namespace SDX.Toolkit.Controls
             }
         }
         #endregion
-
 
         #region Render UI
 
@@ -321,11 +314,9 @@ namespace SDX.Toolkit.Controls
 
         #endregion
 
-
         #region UI Helpers
 
         #endregion
-
 
         #region Code Helpers
 

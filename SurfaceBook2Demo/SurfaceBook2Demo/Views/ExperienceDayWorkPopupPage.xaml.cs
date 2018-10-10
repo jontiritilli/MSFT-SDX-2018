@@ -49,12 +49,12 @@ namespace SurfaceBook2Demo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
         }
 
         private void PopClose_Click(object sender, PointerRoutedEventArgs e)

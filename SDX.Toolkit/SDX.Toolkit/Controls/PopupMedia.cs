@@ -210,6 +210,16 @@ namespace SDX.Toolkit.Controls
             }
         }
 
+        public LoopPlayer GetPopupChildPlayer()
+        {
+            if (null != _player)
+            {
+                return _player;
+            }
+
+            return new LoopPlayer();
+        }
+
         #endregion
 
         #region Custom Events
@@ -400,7 +410,7 @@ namespace SDX.Toolkit.Controls
                 Grid.SetRow(_image, 2);
                 _layoutRoot.Children.Add(_image);
             }
-            // if this is a poup with a video
+            // if this is a popup with a video
             else if (this.PopupType == PopupTypes.Video)
             {
                 // create the loop player and add it to the grid

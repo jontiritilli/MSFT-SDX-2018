@@ -85,11 +85,11 @@
 
         <!-- App Close button -->
         <Button x:Name="AppClose" Grid.Row="0" Grid.Column="1"
-                Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
-                Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
-                Style="{StaticResource NoInteractionButton}"
-                                            Canvas.ZIndex="1001"
-                Click="AppClose_Click">
+            Width="{StaticResource AppCloseWidth}" Height="{StaticResource AppCloseHeight}"
+            Margin="0" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
+            Style="{StaticResource NoInteractionButton}"
+            Canvas.ZIndex="1001"
+            Click="AppClose_Click">
             <Button.Background>
                 <SolidColorBrush Color="Black" Opacity="1.0" />
             </Button.Background>
@@ -103,25 +103,24 @@
         <!-- This control must appear over the flipview, so it is in the
              same row and aligned to the bottom -->
         <ctrl:MusicBar x:Name="MusicBar"
-                       Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                       Height="{StaticResource PlayerHeight}"
-                       SelectionChanged="MusicBar_SelectionChanged"
-                       Canvas.ZIndex="1001"
-                       VerticalAlignment="Bottom"/>
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+            Height="{StaticResource PlayerHeight}"
+            SelectionChanged="MusicBar_SelectionChanged"
+            Canvas.ZIndex="1001"
+            VerticalAlignment="Bottom"/>
 
         <!-- Navigation Bar -->
         <ctrl:NavigationBar x:Name="BottomNavBar"
-                           Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                           Height="{StaticResource NavigationBarHeight}"
-                            Canvas.ZIndex="1001"
-                           Navigate="BottomNavBar_OnNavigation"/>
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            Height="{StaticResource NavigationBarHeight}"
+            Canvas.ZIndex="1001"
+            Navigate="BottomNavBar_OnNavigation"/>
+        
         <Popup x:Name="HowToPagePopup"
-                IsOpen = "False"
-                IsLightDismissEnabled="False"
-                HorizontalOffset="0"                
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+            IsOpen = "False"
+            IsLightDismissEnabled="False"
+            HorizontalOffset="0"                
+            VerticalOffset="0">
             <Popup.Child>
                 <views:HowToPage/>
             </Popup.Child>

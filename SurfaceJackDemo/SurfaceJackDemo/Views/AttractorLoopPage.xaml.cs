@@ -23,7 +23,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public AttractorLoopPage()
@@ -36,7 +35,6 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
-
 
         #region Event Handlers
 

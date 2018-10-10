@@ -55,7 +55,7 @@ namespace SurfaceBook2Demo.Views
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
             this.rBtnCenter.StartEntranceAnimation();
             this.rBtnCenter.StartRadiateAnimation();
         }
@@ -94,7 +94,7 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
             this.rBtnCenter.ResetEntranceAnimation();
             this.rBtnCenter.ResetRadiateAnimation();
         }

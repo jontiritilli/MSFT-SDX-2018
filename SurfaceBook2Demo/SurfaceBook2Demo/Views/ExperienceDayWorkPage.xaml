@@ -36,22 +36,19 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"     
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
+            x:Name="PageHeader" 
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
             Width="{StaticResource HeaderWidth}"
-            LedeWidth="350"
+            LedeWidth="350"      
+            VerticalAlignment="Top"
             HorizontalAlignment="Left"
             HeadlineOpacity="0"
-            LedeOpacity="0"                     
-            VerticalAlignment="Top" />
-          <Canvas x:Name="ButtonCanvas"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.RowSpan="7"
-            Grid.ColumnSpan="4"
+            LedeOpacity="0"/>
+        
+          <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
+            x:Name="ButtonCanvas"
             Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
@@ -81,10 +78,10 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.35}"
                 Opened="PopLeft_Opened"
                 Closed="PopLeft_Closed"
-                IsLightDismissEnabled="True">
+                IsLightDismissEnabled="False">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Battery"

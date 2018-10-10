@@ -5,6 +5,8 @@ using SurfaceBook2Demo.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 
+using SDX.Toolkit.Helpers;
+
 namespace SurfaceBook2Demo.Views
 {
     public sealed partial class ExperienceDayWorkPage : Page, INavigate
@@ -20,12 +22,12 @@ namespace SurfaceBook2Demo.Views
         private bool HasNavigatedTo = false;
 
         #endregion
+
         #region Public Static Properties
 
         public static ExperienceDayWorkPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -61,9 +63,10 @@ namespace SurfaceBook2Demo.Views
                 AnimatePageEntrance();
             }
         }
+
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
 
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
@@ -74,6 +77,7 @@ namespace SurfaceBook2Demo.Views
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
         }
+
         #endregion
 
         #region Private Methods
@@ -108,6 +112,14 @@ namespace SurfaceBook2Demo.Views
             this.LegalConnections.SetOpacity(0);
         }
 
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
+            {
+                rBtnTop.PopupChild.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -129,7 +141,9 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out            
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
@@ -142,6 +156,5 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
-
     }
 }

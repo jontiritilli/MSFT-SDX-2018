@@ -20,12 +20,14 @@ namespace SurfaceProDemo.Views
         double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
-        public static ExperienceTransformPage Current { get; private set; }
-        #endregion
 
+        public static ExperienceTransformPage Current { get; private set; }
+
+        #endregion
 
         #region Construction
 

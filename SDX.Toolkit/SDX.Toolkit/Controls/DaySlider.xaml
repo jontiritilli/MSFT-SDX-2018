@@ -12,8 +12,8 @@
     <Grid x:Name="LayoutRoot" Margin="8,0" Background="Transparent" Tapped="Grid_Tapped" Opacity="{Binding Opacity}">
         <Grid.Resources>
             <x:Double x:Key="RowSpacer">20</x:Double>
-            <x:Double x:Key="ThumbWidth">25</x:Double>  <!-- MUST KEEP IN SYNC WITH CODE-BEHIND -->
-            <x:Double x:Key="ShadowWidth">25</x:Double>
+            <x:Double x:Key="ThumbWidth">27.5</x:Double>  <!-- MUST KEEP IN SYNC WITH CODE-BEHIND -->
+            <x:Double x:Key="ShadowWidth">27.5</x:Double>
             <x:Double x:Key="TickWidth">10</x:Double>
             <x:Double x:Key="DayWidth">24</x:Double>
             <x:Double x:Key="NightWidth">24</x:Double>
@@ -27,13 +27,13 @@
                                 <Ellipse x:Name="ThumbShadow" Stroke="DimGray" Fill="DimGray" Opacity="0.3" 
                                          Width="{StaticResource ThumbWidth}" Height="{StaticResource ThumbWidth}">
                                     <Ellipse.RenderTransform>
-                                        <TranslateTransform X="-10.5" Y="2"/>
+                                        <TranslateTransform X="1.8" Y="1.8"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
                                 <Ellipse x:Name="Thumb" Stroke="White" Fill="White" Opacity="1.0" 
                                          Width="{StaticResource ThumbWidth}" Height="{StaticResource ThumbWidth}">
                                     <Ellipse.RenderTransform>
-                                        <TranslateTransform X="-12.5" Y="0"/>
+                                        <TranslateTransform X="0" Y="0"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
                             </Grid>

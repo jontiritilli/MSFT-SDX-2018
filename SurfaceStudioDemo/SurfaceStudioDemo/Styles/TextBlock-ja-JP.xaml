@@ -55,7 +55,7 @@
     
     <Style x:Key="Hero" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontSize" Value="187.5" />    <!-- halved -->
@@ -70,7 +70,7 @@
 
     <Style x:Key="Swipe" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="22" />    <!-- halved -->
@@ -85,7 +85,7 @@
 
     <Style x:Key="PageHeadline" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiLight" />
         <Setter Property="FontSize" Value="87.5" />    <!-- 1/2 -->
@@ -104,7 +104,7 @@
 
     <Style x:Key="PageLede" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="22.5" />   <!-- 1/2 -->
@@ -123,7 +123,7 @@
 
     <Style x:Key="ListHeadline" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="30" />    <!-- 1/2 -->
@@ -138,7 +138,7 @@
 
     <Style x:Key="ListLede" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="22.5" />
@@ -153,7 +153,7 @@
 
     <Style x:Key="AppSelectorText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="22.5" />
@@ -177,7 +177,7 @@
 
     <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="22.5" />     <!-- 1/2 --> 
@@ -192,7 +192,7 @@
 
     <Style x:Key="ListItemLedePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="20" />     <!--1/2--> 
@@ -207,7 +207,7 @@
 
     <Style x:Key="ListItemHeadlineBestOf" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="45" />    <!-- 1/2 -->
@@ -222,7 +222,7 @@
 
     <Style x:Key="ListItemLedeBestOf" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="27.5" />    <!-- 1/2 -->
@@ -237,7 +237,7 @@
 
     <Style x:Key="ListItemHeadlineCompare" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="27.5" />    <!-- 1/2 -->
@@ -252,7 +252,7 @@
 
     <Style x:Key="ListItemLedeCompare" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="27.5" />    <!-- 1/2 -->
@@ -267,7 +267,7 @@
     
     <Style x:Key="ListItemCTAText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FFAAAAAA"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="22" />    <!-- 1/2 -->
@@ -282,7 +282,7 @@
 
     <Style x:Key="PopupHeadline" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="45" />    <!-- 1/2 -->
@@ -297,7 +297,7 @@
 
     <Style x:Key="PopupLede" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="22.5" />    <!-- 1/2 -->
@@ -312,7 +312,7 @@
 
     <Style x:Key="PopupBatteryLife" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Light" />
         <Setter Property="FontSize" Value="30" />    <!-- 1/2 -->
@@ -327,7 +327,7 @@
 
     <Style x:Key="Legal" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="22" />    <!-- 1/2 -->
@@ -342,7 +342,7 @@
 
     <Style x:Key="TryIt" TargetType="TextBlock">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="13" />    <!-- 1/2 -->
@@ -358,7 +358,7 @@
     
     <Style x:Key="ButtonCaption" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="20" />    <!-- 1/2 -->
@@ -377,7 +377,7 @@
     
     <Style x:Key="ReadyButtonCaption" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF0078D4"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="30" /> <!-- 1/2 -->
@@ -393,7 +393,7 @@
 
     <Style x:Key="NavigationSection" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontFamily" Value="Yu Gothic"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="17.5" />    <!-- halved -->

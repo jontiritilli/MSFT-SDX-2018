@@ -245,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\TextBlock-ja-JP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\_Images.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

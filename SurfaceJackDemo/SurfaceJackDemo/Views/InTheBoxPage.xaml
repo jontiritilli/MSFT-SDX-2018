@@ -28,22 +28,22 @@
             <ColumnDefinition Width=".6*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"                
-                HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
-        <ctrl:List x:Name="AccessoriesList"
+        
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"                
+            HeadlineStyle="PageHeadline"
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+        
+        <ctrl:List Grid.Column="1" Grid.Row="3"
+            x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
-            ListStyle="LedeOnly"            
-            Grid.Column="1"            
-            Grid.Row="3"/>
-        <Grid
-            Grid.Row="3"
-            Grid.Column="2"
-            Grid.RowSpan="2">
+            ListStyle="LedeOnly"/>
+        
+        <Grid Grid.Row="3" Grid.Column="2" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -52,9 +52,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ctrl:ImageEx x:Name="HeroHP"
-                Grid.Row="0"
-                Grid.Column="0" 
+            
+            <ctrl:ImageEx Grid.Row="0" Grid.Column="0" 
+                x:Name="HeroHP"
                 ImageWidth="{x:Bind Path=ViewModel.ImageHeadphonesWidth}"
                 ImageSource="{x:Bind Path=ViewModel.ImageHeadphonesUri}"
                 VerticalAlignment="Center"
@@ -62,9 +62,9 @@
                 PageEntranceDirection="Left"
                 HasEntranceTranslation="False"
                 Opacity="0"/>
-            <ctrl:ImageEx x:Name="HeroBox"
-                Grid.Row="0"
-                Grid.Column="1" 
+            
+            <ctrl:ImageEx Grid.Row="0" Grid.Column="1"
+                x:Name="HeroBox" 
                 ImageWidth="{x:Bind Path=ViewModel.ImageBoxWidth}"
                 ImageSource="{x:Bind Path=ViewModel.ImageBoxUri}"
                 VerticalAlignment="Center"
@@ -72,9 +72,9 @@
                 PageEntranceDirection="Left"
                 HasEntranceTranslation="False"
                 Opacity="0"/>
-            <ctrl:ImageEx x:Name="HeroHPCord"
-                Grid.Row="1"
-                Grid.Column="0" 
+            
+            <ctrl:ImageEx Grid.Row="1" Grid.Column="0" 
+                x:Name="HeroHPCord"
                 ImageWidth="{x:Bind Path=ViewModel.ImageHPCordWidth}"
                 ImageSource="{x:Bind Path=ViewModel.ImageHPCordUri}"
                 VerticalAlignment="Center"
@@ -82,9 +82,9 @@
                 PageEntranceDirection="Left"
                 HasEntranceTranslation="False"
                 Opacity="0"/>
-            <ctrl:ImageEx x:Name="HeroUSBCord"
-                Grid.Row="1"
-                Grid.Column="1" 
+            
+            <ctrl:ImageEx Grid.Row="1" Grid.Column="1" 
+                x:Name="HeroUSBCord"
                 ImageWidth="{x:Bind Path=ViewModel.ImageUSBCordWidth}"
                 ImageSource="{x:Bind Path=ViewModel.ImageUSBCordUri}"
                 VerticalAlignment="Center"
@@ -93,8 +93,5 @@
                 HasEntranceTranslation="False"
                 Opacity="0"/>
         </Grid>
-        
-
     </Grid>
-    
 </Page>

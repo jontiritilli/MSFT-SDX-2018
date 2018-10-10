@@ -51,6 +51,10 @@ namespace SurfaceJackDemo.Views
             };
         }
 
+        #endregion
+
+        #region Public Methods
+
         public void ChangeSelectedTrack(int Index)
         {
             if (null != this.PlayerListView)
@@ -58,6 +62,17 @@ namespace SurfaceJackDemo.Views
                 this.PlayerListView.SelectedIndex = Index;
             }            
         }
+
+        public void AnimatePageEntrance()
+        {
+            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            rBtnLeft.StartEntranceAnimation();
+            rBtnLeft.StartRadiateAnimation();
+        }
+
+        #endregion
+
+        #region Private Methods
 
         private void AudioListenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
@@ -71,16 +86,25 @@ namespace SurfaceJackDemo.Views
             }
         }
 
-        public void AnimatePageEntrance()
-        {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
-            rBtnLeft.StartEntranceAnimation();
-            rBtnLeft.StartRadiateAnimation();
-        }
-
         private void CloseButton_Clicked(object sender, RoutedEventArgs e)
         {
             this.rBtnLeft.HandleClick();
+        }
+
+        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ListView itemListView)
+            {
+                FlipViewPage.Current.SelectTrack(itemListView.SelectedIndex);
+            }
+        }
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnLeft.PopupChild && rBtnLeft.PopupChild.IsOpen)
+            {
+                rBtnLeft.PopupChild.IsOpen = false;
+            }
         }
 
         private void AudioTryItClose_Button_Clicked(object sender, RoutedEventArgs e)
@@ -108,7 +132,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
@@ -127,7 +150,9 @@ namespace SurfaceJackDemo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
         }
 
         #endregion

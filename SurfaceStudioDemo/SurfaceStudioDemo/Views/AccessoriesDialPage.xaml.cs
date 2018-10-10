@@ -61,12 +61,14 @@ namespace SurfaceStudioDemo.Views
 
         private void PopDial_Opened(object sender, object e)
         {
+            this.PopDialPlayer.GetPopupChildPlayer().StartPlayer();
             this.PopDialLegal.SetOpacity(1);
         }
         
         private void PopDial_Closed(object sender, object e)
         {
             this.PopDialLegal.SetOpacity(0);
+            this.PopDialPlayer.GetPopupChildPlayer().ResetPlayer();
         }
 
         #endregion

@@ -225,7 +225,7 @@ namespace SDX.Toolkit.Controls
                 // create row stackpanel and add to the master
                 StackPanel stackPanel = new StackPanel() {
                     Orientation = Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Center
+                    HorizontalAlignment = HorizontalAlignment.Center,
                 };
                 _rowMaster.Children.Add(stackPanel);
                 _rowCount++;
@@ -304,7 +304,7 @@ namespace SDX.Toolkit.Controls
                 Text = text,
                 TextStyle = this.TextStyle,
                 Margin = StyleHelper.GetApplicationThickness(LayoutThicknesses.HeroMargin),
-                Opacity = 0d,
+                Opacity = 0d
             };
 
             return _textBlock;

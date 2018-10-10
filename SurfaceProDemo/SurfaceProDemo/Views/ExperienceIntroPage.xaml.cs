@@ -32,7 +32,7 @@ namespace SurfaceProDemo.Views
             this.LeftLegal.SetOpacity(0.0d);
             this.TopLegal.SetOpacity(0.0d);
             rBtnRight.PopupChild = PopRight;
-            rBtnTop.PopupChild = PopTop;
+            //rBtnTop.PopupChild = PopTop;
             rBtnLeft.PopupChild = PopLeft;
             this.TopLegal.SetOpacity(0);
             this.TopLegal.SetOpacity(0);
@@ -62,8 +62,8 @@ namespace SurfaceProDemo.Views
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
 
-            rBtnTop.StartEntranceAnimation();
-            rBtnTop.StartRadiateAnimation();
+            //rBtnTop.StartEntranceAnimation();
+            //rBtnTop.StartRadiateAnimation();
         }
         #endregion
 
@@ -93,8 +93,8 @@ namespace SurfaceProDemo.Views
             rBtnRight.ResetEntranceAnimation();
             rBtnRight.ResetRadiateAnimation();
 
-            rBtnTop.ResetEntranceAnimation();
-            rBtnTop.ResetRadiateAnimation();
+            //rBtnTop.ResetEntranceAnimation();
+            //rBtnTop.ResetRadiateAnimation();
         }
 
         #endregion
@@ -109,14 +109,14 @@ namespace SurfaceProDemo.Views
             this.LeftLegal.SetOpacity(1);
         }
 
-        private void PopTop_Opened(object sender, object e)
-        {
-            this.TopLegal.SetOpacity(1);
-        }
+        //private void PopTop_Opened(object sender, object e)
+        //{
+        //    this.TopLegal.SetOpacity(1);
+        //}
 
-        private void PopTop_Closed(object sender, object e)
-        {
-            this.TopLegal.SetOpacity(0);
-        }
+        //private void PopTop_Closed(object sender, object e)
+        //{
+        //    this.TopLegal.SetOpacity(0);
+        //}
     }
 }

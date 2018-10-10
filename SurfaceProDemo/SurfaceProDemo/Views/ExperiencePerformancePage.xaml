@@ -58,20 +58,20 @@
                 PopupPosition="Right"
                 RadiatingButtonIcon="touch"
                 TryItEnabled="True"
-                EntranceStaggerDelayInMilliseconds="1600"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                                    
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1500"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"                              
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.52}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.19}"
-                EntranceStaggerDelayInMilliseconds="1400"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <Popup
@@ -82,13 +82,13 @@
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
+                        x:Name="PopLeftPlayer"
                         PopupType="Image"
                         Headline="{x:Bind Path=ViewModel.PopTryItHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopTryItLede}"
                         MediaSourceUri="{x:Bind Path=ViewModel.PopImage}"
                         MediaHasMargin="False"
-                        MediaWidth="450"
-                        />
+                        MediaWidth="450" />
                 </Popup.Child>
             </Popup>
             <Popup
@@ -102,26 +102,19 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopRightLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"                         
-                        />
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey},Mode=OneWay, ConverterParameter=@VALUE*.3}"/>
                 </Popup.Child>
             </Popup>
 
         </Canvas>
 
-
-        <ctrl:ImageEx
-            Grid.Row="1"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Grid.RowSpan="3"
+        <ctrl:ImageEx Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
             x:Name="img_Laptop"
             ImageWidth="{x:Bind Path=ViewModel.LaptopWidth}"            
             ImageSource="{x:Bind Path=ViewModel.LaptopUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
             HasEntranceTranslation="False"
-            Opacity="0"
-            />
+            Opacity="0" />
     </Grid>
 </Page>
