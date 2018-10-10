@@ -27,7 +27,6 @@ namespace SurfaceProDemo.Views
         public static ComparePage Current { get; private set; }
         #endregion
 
-
         #region Construction
 
         public ComparePage()
@@ -89,7 +88,6 @@ namespace SurfaceProDemo.Views
         }
         #endregion
 
-
         #region Private Methods
 
         private void Close_Pro_Clicked(object sender, RoutedEventArgs e)
@@ -127,8 +125,31 @@ namespace SurfaceProDemo.Views
             TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.ComparisonHot);
         }
 
-        #endregion
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnPro.PopupChild && rBtnPro.PopupChild.IsOpen)
+            {
+                rBtnPro.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnBook.PopupChild && rBtnBook.PopupChild.IsOpen)
+            {
+                rBtnBook.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnStudio.PopupChild && rBtnStudio.PopupChild.IsOpen)
+            {
+                rBtnStudio.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnPro.PopupChild && rBtnLaptop.PopupChild.IsOpen)
+            {
+                rBtnLaptop.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnGo.PopupChild && rBtnGo.PopupChild.IsOpen)
+            {
+                rBtnGo.PopupChild.IsOpen = false;
+            }
+        }
 
+        #endregion
 
         #region INavigate Interface
 
@@ -151,6 +172,9 @@ namespace SurfaceProDemo.Views
         {
             // animations out
             AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnPro.ResetEntranceAnimation();
             rBtnPro.ResetRadiateAnimation();
 

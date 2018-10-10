@@ -8,9 +8,53 @@
     DataContext="{Binding AudioTryItViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <Grid.Background>
-            <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
-        </Grid.Background>
+    <Grid
+        x:Name="AudioTryItPagePopup"
+        Height="{StaticResource CanvasHeight}"
+        Width="{StaticResource CanvasWidth}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource TopMargin}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource BottomMargin}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource LeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource RightMargin}"/>
+        </Grid.ColumnDefinitions>
+
+        <ctrl:ImageEx Grid.Row="4" Grid.Column="1"
+            x:Name="img_Right"
+            ImageWidth="{x:Bind Path=ViewModel.READY_IMAGE_WIDTH}"
+            ImageSource="{x:Bind Path=ViewModel.ReadyUri}"
+            TranslateDirection="Left"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+
+        <Border Grid.Row="5" Grid.Column="1"
+            x:Name="ReadyButton"
+            Background = "White"
+            BorderThickness = "2"
+            Padding = "5,0,5,0"
+            Width="{StaticResource ReadyButtonWidth}"
+            Height="{StaticResource ReadyButtonHeight}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            PointerPressed="PopClose_Click">
+
+            <ctrl:TextBlockEx x:Name="ButtonText" Grid.Row="5" Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                TextStyle="ReadyButtonCaption"/>
+        </Border>
+
+
     </Grid>
 </Page>

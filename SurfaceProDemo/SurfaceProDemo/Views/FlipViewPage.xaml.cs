@@ -374,7 +374,6 @@ namespace SurfaceProDemo.Views
             {
                 this.ViewModel.SetInnerFlipViewIndex(experienceFlipViewPage.GetFlipViewSelectedIndex());
             }
-            
         }
     }
 }

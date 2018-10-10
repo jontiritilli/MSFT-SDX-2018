@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Toolkit.Controls;
 using SDX.Telemetry.Services;
 
 
@@ -18,13 +19,15 @@ namespace SurfaceStudioDemo.Views
         {
             get { return DataContext as CompareViewModel; }
         }
-
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
+
         #endregion
 
         #region Public Members
+
         public static ComparePage Current { get; private set; }
+
         #endregion
 
         #region Construction

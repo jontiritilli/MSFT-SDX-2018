@@ -22,12 +22,12 @@ namespace SurfaceBook2Demo.Views
         private bool HasNavigatedTo = false;
 
         #endregion
+
         #region Public Static Properties
 
         public static ExperienceDayWorkPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -66,7 +66,7 @@ namespace SurfaceBook2Demo.Views
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
 
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
@@ -78,13 +78,6 @@ namespace SurfaceBook2Demo.Views
             rBtnRight.StartRadiateAnimation();
         }
 
-        private void ClosePopupsOnExit()
-        {
-            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
-            {
-                rBtnTop.PopupChild.IsOpen = false;
-            }
-        }
         #endregion
 
         #region Private Methods
@@ -117,6 +110,14 @@ namespace SurfaceBook2Demo.Views
         private void PopRight_Closed(object sender, object e)
         {
             this.LegalConnections.SetOpacity(0);
+        }
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
+            {
+                rBtnTop.PopupChild.IsOpen = false;
+            }
         }
 
         #endregion
@@ -155,6 +156,5 @@ namespace SurfaceBook2Demo.Views
         }
 
         #endregion
-
     }
 }

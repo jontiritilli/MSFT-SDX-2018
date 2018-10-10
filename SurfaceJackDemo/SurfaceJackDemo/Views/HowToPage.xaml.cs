@@ -31,31 +31,61 @@ namespace SurfaceJackDemo.Views
             get { return DataContext as HowToViewModel; }
         }
 
-        public RoutedEventHandler CloseButton_Clicked;
+        #endregion
 
         #region Public Static Properties
+
+        public RoutedEventHandler CloseButton_Clicked;
 
         public static HowToPage Current { get; private set; }
 
         #endregion
-        #endregion
+
+        #region Construction
+
         public HowToPage()
         {
             this.InitializeComponent();
             HowToPage.Current = this;
-            this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
+            this.ContentArea.Background = new AcrylicBrush()
+            {
+                BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                Opacity = 0.995,
+                TintColor = Windows.UI.Colors.White,
+                TintOpacity = 0.4,
+                FallbackColor = Windows.UI.Colors.White,
+            };
             this.Loaded += HowToPage_Loaded;
-            this.AppSelectorImageKB.AppSelector = this.AppSelectorHowTo;
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void HowToPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (null != itemListView)
+            {
+                itemListView.SelectedIndex = 0;
+            }
         }
 
         private void PopClose_Click(object sender, PointerRoutedEventArgs e)
         {
             CloseButton_Clicked(sender, new RoutedEventArgs());
         }
+
+        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ListView listView)
+            {
+                this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
+            }
+        }
+
+        #endregion
+
+        #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
@@ -66,13 +96,7 @@ namespace SurfaceJackDemo.Views
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
+        #endregion
 
-        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //if (sender is ListView listView)
-            //{
-            //    this.AppSelectorImageKB.SelectedID = listView.SelectedIndex;
-            //}
-        }
     }
 }

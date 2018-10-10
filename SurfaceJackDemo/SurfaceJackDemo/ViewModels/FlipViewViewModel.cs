@@ -216,20 +216,20 @@ namespace SurfaceJackDemo.ViewModels
             // Create Experience pages
             // =================================================
 
-            // AudioTryItPage
-            this.Root.Items.Add(new NavigationPage()
-            {
-                Name = "AudioTryItPage",
-                Order = 0,
-                Section = sectionExperience,
-            }
-            );
+            //// AudioTryItPage
+            //this.Root.Items.Add(new NavigationPage()
+            //{
+            //    Name = "AudioTryItPage",
+            //    Order = 0,
+            //    Section = sectionExperience,
+            //}
+            //);
 
             // AudioListenPage
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "AudioListenPage",
-                Order = 1,
+                Order = 0,
                 Section = sectionExperience,
             }
             );
@@ -243,7 +243,7 @@ namespace SurfaceJackDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "DesignPage",
-                Order = 2,
+                Order = 1,
                 Section = sectionDesign,
             }
             );
@@ -256,7 +256,7 @@ namespace SurfaceJackDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "TechPage",
-                Order = 3,
+                Order = 2,
                 Section = sectionTech,
             }
             );
@@ -270,7 +270,7 @@ namespace SurfaceJackDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "ProductivityPage",
-                Order = 4,
+                Order = 3,
                 Section = sectionProductivity,
             }
             );
@@ -283,7 +283,7 @@ namespace SurfaceJackDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "SpecsPage",
-                Order = 5,
+                Order = 4,
                 Section = sectionSpecs,
             });
 
@@ -295,7 +295,7 @@ namespace SurfaceJackDemo.ViewModels
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "PartnerPage",
-                Order = 6,
+                Order = 5,
                 Section = sectionPartner,
             });
         }

@@ -128,48 +128,40 @@
         </ctrl:NavigationBar>
         
         <Popup x:Name="ExperienceDayWorkPopup"
-                IsOpen = "False"
-                IsLightDismissEnabled="False"
-                HorizontalOffset="0"                
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+            IsOpen = "False"
+            IsLightDismissEnabled="False"
+            HorizontalOffset="0"                
+            VerticalOffset="0">
             <Popup.Child>
                 <views:ExperienceDayWorkPopupPage/>
             </Popup.Child>
         </Popup>
 
         <Popup x:Name="CompareProPopup"
-                IsOpen = "False"
-                IsLightDismissEnabled="False"
-                HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+            IsOpen = "False"
+            IsLightDismissEnabled="False"
+            HorizontalOffset="0"
+            VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupPro/>
             </Popup.Child>
         </Popup>
 
         <Popup x:Name="CompareBookPopup"
-                IsOpen = "False"
-                IsLightDismissEnabled="False"
-                HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+            IsOpen = "False"
+            IsLightDismissEnabled="False"
+            HorizontalOffset="0"
+            VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupBook/>
             </Popup.Child>
         </Popup>
 
         <Popup x:Name="CompareStudioPopup"
-                IsOpen = "False"
-                IsLightDismissEnabled="False"
-                HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+            IsOpen = "False"
+            IsLightDismissEnabled="False"
+            HorizontalOffset="0"
+            VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupStudio/>
             </Popup.Child>
@@ -179,9 +171,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupLaptop/>
             </Popup.Child>
@@ -191,9 +181,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupGo/>
             </Popup.Child>

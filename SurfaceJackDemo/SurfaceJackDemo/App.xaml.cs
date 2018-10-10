@@ -32,13 +32,11 @@ namespace SurfaceJackDemo
 
         #endregion
 
-
         #region Public Static Properties
 
         public static App Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -115,7 +113,6 @@ namespace SurfaceJackDemo
 
         #endregion
 
-
         #region Base Overrides
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
@@ -174,13 +171,17 @@ namespace SurfaceJackDemo
 
         #endregion
 
-
         #region Private Methods
 
         private void LoadAppResourceDictionaries(string path)
         {
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+
+            string file = localizationService.IsLanguageJapanese() ? "TextBlock-ja-JP.xaml" : "TextBlock.xaml";
+
             // calculate uri's for styles 
-            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/TextBlock.xaml", path);
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/{1}", path, file);
             string URI_SIZES = String.Format("ms-appx:///Styles/{0}/Sizes.xaml", path);
             string URI_THICKNESS = String.Format("ms-appx:///Styles/{0}/_Thickness.xaml", path);
             string URI_IMAGES = String.Format("ms-appx:///Styles/{0}/_Images.xaml", path);
@@ -221,7 +222,6 @@ namespace SurfaceJackDemo
         }
 
         #endregion
-
 
         #region Event Handlers
 

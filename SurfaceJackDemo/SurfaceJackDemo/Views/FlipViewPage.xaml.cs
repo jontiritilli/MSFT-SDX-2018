@@ -33,7 +33,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region Private Members
 
         private FlipViewViewModel ViewModel
@@ -47,13 +46,11 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region Public Static Properties
 
         public static FlipViewPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -110,12 +107,11 @@ namespace SurfaceJackDemo.Views
             // move to the next page
             if (null != this.BottomNavBar)
             {
-                this.BottomNavBar.MoveToNextPage();
+              //  this.BottomNavBar.MoveToNextPage();
             }
         }
 
         #endregion
-
 
         #region Event Handlers
 
@@ -265,7 +261,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region Public Methods
 
         public void ShowAppClose()
@@ -296,6 +291,7 @@ namespace SurfaceJackDemo.Views
         {
             return this.HowToPagePopup;
         }
+
         public void EnablePageNavigation(object sender, object e)
         {
             this.BottomNavBar.IsNavigationEnabled = true;
@@ -305,7 +301,10 @@ namespace SurfaceJackDemo.Views
         {
             this.BottomNavBar.IsNavigationEnabled = false;
         }
+
         #endregion
+
+        #region Private Methods
 
         private void MusicBar_SelectionChanged(object sender, EventArgs e)
         {
@@ -313,7 +312,8 @@ namespace SurfaceJackDemo.Views
             {
                 AudioListenPage.Current.ChangeSelectedTrack(musicBar.PlayerPlaylist.SelectedIndex);
             }
-            
         }
+
+        #endregion
     }
 }

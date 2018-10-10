@@ -35,14 +35,15 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                CTAText="TEST"
-                CTAUri="ms-settings:"
-                CTATextStyle="ListItemCTAText"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            CTAText="TEST"
+            CTAUri="ms-settings:"
+            CTATextStyle="ListItemCTAText"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"
             Grid.Column="0"
@@ -84,9 +85,7 @@
                         PopupType="Text"
                         Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLeftLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
-                   
-                        />
+                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
                 </Popup.Child>
             </Popup>
 
@@ -97,12 +96,12 @@
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"                 
                 IsLightDismissEnabled="True">
                 <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
-                        Lede="{x:Bind Path=ViewModel.PopRightLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"                      
-                        />
+                    PopupType="Text"
+                    Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
+                    Lede="{x:Bind Path=ViewModel.PopRightLede}"
+                    Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
             </Popup>
+            
             <Popup
                 x:Name="PopTop"
                 IsOpen = "False"
@@ -110,16 +109,17 @@
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"                 
                 IsLightDismissEnabled="True">
                 <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
-                        Lede="{x:Bind Path=ViewModel.PopTopLede}"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
-                        HourText="hrs"
-                        HourIntegerMax="17"                        
-                        />
+                    PopupType="Text"
+                    Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                    Lede="{x:Bind Path=ViewModel.PopTopLede}"
+                    Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
+                    HourText="hrs"
+                    HourIntegerMax="17"/>
             </Popup>
         </Canvas>
-        <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
+        
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
+            x:Name="Hero" 
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.ImageUri}"
             VerticalAlignment="Top"
@@ -128,5 +128,4 @@
             HasEntranceTranslation="False"
             Opacity="0"/>
     </Grid>
-
 </Page>

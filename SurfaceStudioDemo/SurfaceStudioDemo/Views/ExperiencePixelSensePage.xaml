@@ -107,7 +107,7 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnRightPixelSense"
                 PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="800"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.59}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
                 AutoStart = "false"/>

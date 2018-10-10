@@ -500,6 +500,7 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-en-AU.json" />
     <None Include="SDA-en-GB.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

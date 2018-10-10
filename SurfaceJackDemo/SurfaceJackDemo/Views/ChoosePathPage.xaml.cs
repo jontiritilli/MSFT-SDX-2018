@@ -39,7 +39,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region Public Properties
 
         private ChoosePathViewModel ViewModel
@@ -48,7 +47,6 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
-
 
         #region Construction
 
@@ -64,9 +62,7 @@ namespace SurfaceJackDemo.Views
             //TestHelper.AddGridCellBorders(this.LayoutRoot, 9, 5, Colors.CornflowerBlue);
         }
 
-
         #endregion
-
 
         #region Event Handlers
 
@@ -91,7 +87,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region INavigate
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
@@ -108,7 +103,5 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
-
-
     }
 }
