@@ -112,51 +112,56 @@ namespace SDX.Toolkit.Controls
 
         private void HandleZoomChanging(object sender, ScrollViewerViewChangingEventArgs e)
         {
-            if (null != _viewer && _viewer.ZoomFactor > 1)
-            {
-                // show the ellipse
-                _closeEllipse.Opacity = 1.0;
-                x_image.Opacity = 1.0;
+            // raise the changing event
+            this.RaiseOnZoomChangingEvent(this);
 
-                this.RaiseOnZoomChangingEvent(this);
+            ToggleCloseButton();
 
-                // telemetry
-                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPinch);
-            }
-            else
-            {
-                // hide the ellipse
-                _closeEllipse.Opacity = 0.0;
-                x_image.Opacity = 0.0;
+            // telemetry
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPinch);
+        }
 
-                // raise the changed event
-                this.RaiseOnZoomResetEvent(this);
+        private void HandleZoomChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+            ToggleCloseButton();
 
-                // telemetry
-                TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPinch);
-            }
+            // telemetry
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPinch);
         }
 
         private void HandleReset()
         {
-            if (null != _viewer && _viewer.ZoomFactor > 1)
+            // raise the reset event
+            this.RaiseOnZoomResetEvent(this);
+
+            if (null != _viewer && _viewer.ZoomFactor > 1.00f)
             {
                 // reset the zoom to normal
-                _viewer.ChangeView(null, null, 1);
+                _viewer.ChangeView(null, null, 1.00f);
             }
-            if (null != _closeEllipse)
+        }
+
+        private void ToggleCloseButton()
+        {
+            if (null != _viewer && null != _closeGrid)
             {
-                // hide the ellipse
-                _closeEllipse.Opacity = 0.0;
-                x_image.Opacity = 0.0;
+                if (_viewer.ZoomFactor > 1.00f)
+                {
+                    // hide the ellipse
+                    _closeGrid.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    // show the ellipse
+                    _closeGrid.Visibility = Visibility.Collapsed;
+                } 
             }
-            // raise the changed event
-            this.RaiseOnZoomResetEvent(this);
         }
 
         private void HandleClick(object sender, PointerRoutedEventArgs e)
         {
             HandleReset();
+            ToggleCloseButton();
         }
 
         #endregion
@@ -212,13 +217,20 @@ namespace SDX.Toolkit.Controls
             // add manipulation events to viewer
             _viewer.ViewChanging += HandleZoomChanging;
 
+            // add manipulation events to viewer
+            _viewer.ViewChanged += HandleZoomChanged;
+
             // add the scrollviewer to the root
             _layoutRoot.Children.Add(_viewer);
 
             // create grid for the close element if none exists
             if (null == _closeGrid)
             {
-                _closeGrid = new Grid();
+                _closeGrid = new Grid()
+                {
+                    Name = this.Name + "closeGrid",
+                    Visibility = Visibility.Collapsed
+                };
             }
 
             // create the close button
@@ -230,7 +242,6 @@ namespace SDX.Toolkit.Controls
                 Fill = new SolidColorBrush(Colors.White),
                 Stroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2"),
                 StrokeThickness = 2,
-                Opacity = 0d,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Margin = new Thickness(0)
@@ -244,7 +255,6 @@ namespace SDX.Toolkit.Controls
                 Name = this.Name + "ImageX",
                 ImageSource = URI_X_IMAGE,
                 ImageWidth = _closeIconHeight,
-                Opacity = 0.0d,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 Margin = new Thickness(0)

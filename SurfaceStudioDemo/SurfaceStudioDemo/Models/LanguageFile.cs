@@ -25,7 +25,7 @@ namespace SurfaceStudioDemo.Models
         public string EXPERIENCE_CRAFTSMANSHIP_POPLEFT_TITLE = "Zero Gravity Hinge";
         public string EXPERIENCE_CRAFTSMANSHIP_POPLEFT_COPY = "Adjust the display weightlessly down to 20 degrees with one hand for comfortable drawing and creating.";
         public string EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_TITLE = "Complete connectivity";
-        public string EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_COPY = "•USB-C port for video out and charging\n•4 USB 3.0 ports\n•Full-size SD™ card reader(SDXC compatible)\n•3.5 mm headset jack\n•1 Gigabit Ethernet port";
+        public string EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_COPY = "•\tUSB-C port for video out and charging\n•\t4 USB 3.0 ports \n•\tFull-size SD™ card reader (SDXC compatible) \n•\t3.5 mm headset jack\n•\t1 Gigabit Ethernet port";
         public string EXPERIENCE_DISPLAY_HEADLINE = "Bring big ideas to life";
         public string EXPERIENCE_DISPLAY_COPY = "The 28” PixelSense™ Display touchscreen with 13.5 million pixels of true-to-life color perfectly captures your creativity, whether illustrating a book or designing a virtual world.";
         public string EXPERIENCE_DISPLAY_POPLEFT_TITLE = "Apps* made for touch";
@@ -34,11 +34,11 @@ namespace SurfaceStudioDemo.Models
         public string EXPERIENCE_DISPLAY_POPBOTTOM_TITLE = "Apps* for Surface Dial";
         public string EXPERIENCE_DISPLAY_POPBOTTOM_COPY = "Create in new ways with Surface Dial* seamlessly integrated into apps from Adobe®, Corel, Concepts, and more.";
         public string EXPERIENCE_DISPLAY_POPBOTTOM_COPY_LEGAL = "*Sold separately.";
-        public string EXPERIENCE_DISPLAY_POPTOP_HEADLINE = "Your ideas at light speed ";
+        public string EXPERIENCE_DISPLAY_POPTOP_HEADLINE = "Your ideas at light speed";
         public string EXPERIENCE_DISPLAY_POPTOP_COPY = "A faster, more powerful processor, blazing graphics, and lightning-fast SSD fuel the intensive software* your creativity demands.";
         public string EXPERIENCE_DISPLAY_POPTOP_COPY_LEGAL = "*Sold separately.";
         public string EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE = "Adobe® Creative Cloud®";
-        public string EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO = "Autodesk® ";
+        public string EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO = "Autodesk®";
         public string EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE = "Concepts";
         public string EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR = "Bluebeam®";
         public string EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE = "";
@@ -54,7 +54,7 @@ namespace SurfaceStudioDemo.Models
         public string ACCESSORIES_LEFT_POPRIGHT_COPY = "A completely new way to interact with technology and create in the most natural, immersive way.";
         public string ACCESSORIES_LEFT_POPRIGHT_LEGAL = "*Sold separately.";
         public string ACCESSORIES_RIGHT_HEADLINE = "Do more";
-        public string ACCESSORIES_RIGHT_COPY = "Designed for comfort and precision, Surface Studio 2 includes the tools you use most for bringing creativity and productivity together. ";
+        public string ACCESSORIES_RIGHT_COPY = "Designed for comfort and precision, Surface Studio 2 includes the tools you use most for bringing creativity and productivity together.";
         public string ACCESSORIES_RIGHT_POPLEFT_TITLE = "Surface Keyboard";
         public string ACCESSORIES_RIGHT_POPLEFT_COPY = "Pairs seamlessly with your Surface using Wireless Bluetooth at a range of up to 50 feet and with battery power to last a full year.";
         public string ACCESSORIES_RIGHT_POPLEFT_LEGAL = "";
@@ -63,7 +63,7 @@ namespace SurfaceStudioDemo.Models
         public string ACCESSORIES_RIGHT_POPTOP_LEGAL = "";
         public string ACCESSORIES_RIGHT_POPRIGHT_TITLE = "Surface Mouse";
         public string ACCESSORIES_RIGHT_POPRIGHT_COPY = "Sleek, ergonomic design meets exceptional precision and performance.";
-        public string ACCESSORIES_RIGHT_POPRIGHT_LEGAL = "";
+        public string ACCESSORIES_RIGHT_POPRIGHT_LEGAL = "[BlANK]";
         public string ACCESSORIES_GATEWAY_HEADLINE = "Try adjusting the screen to draw more comfortably";
         public string ACCESSORIES_GATEWAY_CTA = "I'M READY";
         public string ACCESSORIES_INTERACTIVE_HEADLINE = "Create in new ways";
@@ -106,7 +106,7 @@ namespace SurfaceStudioDemo.Models
         public string COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
         public string COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";
         public string COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop 2";
-        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
         public string COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro 6";
         public string COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
         public string COMPARE_DEVICE_ONE_POP_COPY = "Work and play virtually anywhere with laptop-to-tablet versatility and all-day battery life*";
@@ -144,7 +144,7 @@ namespace SurfaceStudioDemo.Models
         public string COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL = "";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
-        public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
+        public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately.";
         public string COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio 2";
         public string COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
         public string COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
@@ -157,7 +157,7 @@ namespace SurfaceStudioDemo.Models
         public string COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL = "*Some accessories and software sold separately.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_TITLE = "Professional-grade power and performance";
         public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favorite software, like Adobe® CC,* Office 365,* and more.";
-        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately. ";
+        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE = "28” PixelSense™ Display";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life color and clarity.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL = "";
@@ -166,7 +166,7 @@ namespace SurfaceStudioDemo.Models
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop 2";
         public string COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
-        public string COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
+        public string COMPARE_DEVICE_FOUR_POP_COPY = "Lingo beyond the traditional laptop with the perfect balance of power and sleek design.";
         public string COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE = "Beautifully designed and crafted";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone color combinations.**";
@@ -183,7 +183,7 @@ namespace SurfaceStudioDemo.Models
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
+        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
         public string COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
         public string COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
         public string COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
@@ -236,7 +236,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.EXPERIENCE_CRAFTSMANSHIP_POPLEFT_TITLE = "Zero Gravity Hinge";
             languageFile.EXPERIENCE_CRAFTSMANSHIP_POPLEFT_COPY = "Adjust the display weightlessly down to 20 degrees with one hand for comfortable drawing and creating.";
             languageFile.EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_TITLE = "Complete connectivity";
-            languageFile.EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_COPY = "•USB - C port for video out and charging\n•4 USB 3.0 ports\n•Full - size SD™ card reader(SDXC compatible)\n•3.5 mm headset jack\n•1 Gigabit Ethernet port";
+            languageFile.EXPERIENCE_CRAFTSMANSHIP_POPRIGHT_COPY = "•\tUSB-C port for video out and charging\n•\t4 USB 3.0 ports \n•\tFull-size SD™ card reader (SDXC compatible) \n•\t3.5 mm headset jack\n•\t1 Gigabit Ethernet port";
             languageFile.EXPERIENCE_DISPLAY_HEADLINE = "Bring big ideas to life";
             languageFile.EXPERIENCE_DISPLAY_COPY = "The 28” PixelSense™ Display touchscreen with 13.5 million pixels of true-to-life color perfectly captures your creativity, whether illustrating a book or designing a virtual world.";
             languageFile.EXPERIENCE_DISPLAY_POPLEFT_TITLE = "Apps* made for touch";
@@ -245,11 +245,11 @@ namespace SurfaceStudioDemo.Models
             languageFile.EXPERIENCE_DISPLAY_POPBOTTOM_TITLE = "Apps* for Surface Dial";
             languageFile.EXPERIENCE_DISPLAY_POPBOTTOM_COPY = "Create in new ways with Surface Dial* seamlessly integrated into apps from Adobe®, Corel, Concepts, and more.";
             languageFile.EXPERIENCE_DISPLAY_POPBOTTOM_COPY_LEGAL = "*Sold separately.";
-            languageFile.EXPERIENCE_DISPLAY_POPTOP_HEADLINE = "Your ideas at light speed ";
+            languageFile.EXPERIENCE_DISPLAY_POPTOP_HEADLINE = "Your ideas at light speed";
             languageFile.EXPERIENCE_DISPLAY_POPTOP_COPY = "A faster, more powerful processor, blazing graphics, and lightning-fast SSD fuel the intensive software* your creativity demands.";
             languageFile.EXPERIENCE_DISPLAY_POPTOP_COPY_LEGAL = "*Sold separately.";
             languageFile.EXPERIENCE_DISPLAY_POPTOP_BULLET_ONE = "Adobe® Creative Cloud®";
-            languageFile.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO = "Autodesk® ";
+            languageFile.EXPERIENCE_DISPLAY_POPTOP_BULLET_TWO = "Autodesk®";
             languageFile.EXPERIENCE_DISPLAY_POPTOP_BULLET_THREE = "Concepts";
             languageFile.EXPERIENCE_DISPLAY_POPTOP_BULLET_FOUR = "Bluebeam®";
             languageFile.EXPERIENCE_DISPLAY_POPTOP_BULLET_FIVE = "";
@@ -265,7 +265,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.ACCESSORIES_LEFT_POPRIGHT_COPY = "A completely new way to interact with technology and create in the most natural, immersive way.";
             languageFile.ACCESSORIES_LEFT_POPRIGHT_LEGAL = "*Sold separately.";
             languageFile.ACCESSORIES_RIGHT_HEADLINE = "Do more";
-            languageFile.ACCESSORIES_RIGHT_COPY = "Designed for comfort and precision, Surface Studio 2 includes the tools you use most for bringing creativity and productivity together. ";
+            languageFile.ACCESSORIES_RIGHT_COPY = "Designed for comfort and precision, Surface Studio 2 includes the tools you use most for bringing creativity and productivity together.";
             languageFile.ACCESSORIES_RIGHT_POPLEFT_TITLE = "Surface Keyboard";
             languageFile.ACCESSORIES_RIGHT_POPLEFT_COPY = "Pairs seamlessly with your Surface using Wireless Bluetooth at a range of up to 50 feet and with battery power to last a full year.";
             languageFile.ACCESSORIES_RIGHT_POPLEFT_LEGAL = "";
@@ -274,7 +274,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.ACCESSORIES_RIGHT_POPTOP_LEGAL = "";
             languageFile.ACCESSORIES_RIGHT_POPRIGHT_TITLE = "Surface Mouse";
             languageFile.ACCESSORIES_RIGHT_POPRIGHT_COPY = "Sleek, ergonomic design meets exceptional precision and performance.";
-            languageFile.ACCESSORIES_RIGHT_POPRIGHT_LEGAL = "";
+            languageFile.ACCESSORIES_RIGHT_POPRIGHT_LEGAL = "[BlANK]";
             languageFile.ACCESSORIES_GATEWAY_HEADLINE = "Try adjusting the screen to draw more comfortably";
             languageFile.ACCESSORIES_GATEWAY_CTA = "I'M READY";
             languageFile.ACCESSORIES_INTERACTIVE_HEADLINE = "Create in new ways";
@@ -317,7 +317,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
             languageFile.COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";
             languageFile.COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop 2";
-            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
             languageFile.COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro 6";
             languageFile.COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
             languageFile.COMPARE_DEVICE_ONE_POP_COPY = "Work and play virtually anywhere with laptop-to-tablet versatility and all-day battery life*";
@@ -355,7 +355,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL = "";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
-            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
+            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio 2";
             languageFile.COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
             languageFile.COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
@@ -368,7 +368,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL = "*Some accessories and software sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_TITLE = "Professional-grade power and performance";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favorite software, like Adobe® CC,* Office 365,* and more.";
-            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately. ";
+            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE = "28” PixelSense™ Display";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life color and clarity.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL = "";
@@ -377,7 +377,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop 2";
             languageFile.COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
-            languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Lingo beyond the traditional laptop with the perfect balance of power and sleek design.";
             languageFile.COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE = "Beautifully designed and crafted";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone color combinations.**";
@@ -394,7 +394,7 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
+            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
             languageFile.COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
@@ -413,8 +413,6 @@ namespace SurfaceStudioDemo.Models
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE = "Everyday versatility";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY = "Instantly adapt and adjust to home, travel, and everyday tasks.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL = "";
-
-
 
             return languageFile;
         }
