@@ -436,7 +436,7 @@
     <Content Include="Assets\StoreIcons\SplashScreen.scale-125.png" />
     <Content Include="Assets\StoreIcons\SplashScreen.scale-150.png" />
     <Content Include="SDA-en-US.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\RadiatingButton\tryit_dial.png" />
@@ -496,9 +496,14 @@
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="SDA-en-AU.json" />
+    <None Include="SDA-de-DE.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SDA-en-AU.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SDA-en-GB.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="SurfaceStudioDemo_StoreKey.pfx" />
     <None Include="SurfaceStudioDemo_TemporaryKey.pfx" />
