@@ -58,8 +58,8 @@
                 VideoHeight = "{x:Bind Path=ViewModel.VideoHeight}"
                 Canvas.ZIndex="1"
                 Canvas.Left="{x:Bind Path=ViewModel.VideoSetLeft}"
-                Canvas.Top="{x:Bind Path=ViewModel.VideoSetTop}"
-                PlaybackPosition="1000"/>
+                Canvas.Top="{x:Bind Path=ViewModel.VideoSetTop}"/>
+                <!--PlaybackPosition="1000"-->
         </Canvas>
 
         <ctrl:ImageEx x:Name="Hero" Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="3"
