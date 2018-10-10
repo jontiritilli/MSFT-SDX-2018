@@ -62,7 +62,7 @@
                 PopupPosition="Left"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
             <Popup
                 x:Name="PopRight"

@@ -118,6 +118,16 @@ namespace SurfaceBook2Demo.Views
             {
                 rBtnTop.PopupChild.IsOpen = false;
             }
+
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
         }
 
         #endregion
