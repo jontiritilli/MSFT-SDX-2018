@@ -56,10 +56,10 @@ namespace SurfaceProDemo.Models
         public string EXPERIENCE_TABLET_HEADLINE = "Brilliant, light, whisper-quiet";
         public string EXPERIENCE_TABLET_COPY = "From inside to out, Surface Pro 6 is designed for performance you can take just about anywhere.";
         public string EXPERIENCE_TABLET_POPLEFT_TITLE = "Whisper-quiet";
-        public string EXPERIENCE_TABLET_POPLEFT_COPY = "Fanless cooling system so you can stream your favourite show in peace.*";
+        public string EXPERIENCE_TABLET_POPLEFT_COPY = "Fanless cooling system so you can stream your favorite show in peace.*";
         public string EXPERIENCE_TABLET_POPLEFT_LEGAL = "*Available on the i5 model.";
         public string EXPERIENCE_TABLET_POPTOP_TITLE = "Lightweight";
-        public string EXPERIENCE_TABLET_POPTOP_COPY = "Made for mobility, starting at just 770 grams and only 0.85cm thin.";
+        public string EXPERIENCE_TABLET_POPTOP_COPY = "Made for mobility, starting at just 1.7 lbs and only 0.33” thin.";
         public string EXPERIENCE_TABLET_POPRIGHT_TITLE = "Touchscreen";
         public string EXPERIENCE_TABLET_POPRIGHT_COPY = "Razor-sharp 12.3” PixelSense™ Display, built for touch and pen.";
         public string ACCESSORIES_INTERACTIVE_HEADLINE = "Write and draw naturally";
@@ -70,7 +70,7 @@ namespace SurfaceProDemo.Models
         public string ACCESSORIES_INTERACTIVE_BULLET_THREE = "4,096 pressure points to sketch, shade, and paint with artistic precision.";
         public string ACCESSORIES_INTERACTIVE_BULLET_FOUR = "Rest your palm right on the screen as you create.";
         public string ACCESSORIES_INTERACTIVE_TRYIT_TITLE = "TRY IT";
-        public string ACCESSORIES_INTERACTIVE_TRYIT_COPY = "Pick up Surface Pen and start colouring.";
+        public string ACCESSORIES_INTERACTIVE_TRYIT_COPY = "Pick up Surface Pen and start coloring.";
         public string ACCESSORIES_LEFT_HEADLINE = "Full keyboard, compact design";
         public string ACCESSORIES_LEFT_COPY = "Surface Pro Type Cover* is ultra-slim, yet performs like a traditional keyboard, including a complete mechanical keyset, backlit keys, and extra-large trackpad.";
         public string ACCESSORIES_LEFT_LEGAL = "*Sold separately.";
@@ -118,7 +118,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
         public string COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";
         public string COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop 2";
-        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+        public string COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
         public string COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro 6";
         public string COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
         public string COMPARE_DEVICE_ONE_POP_COPY = "Work and play virtually anywhere with laptop-to-tablet versatility and all-day battery life*";
@@ -133,7 +133,7 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY = "Up to 13.5 hours of video playback* and the power to do what you want on the go.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_TITLE = "12.3” PixelSense™ Display";
-        public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY = "Vibrant colour and resolution. Perfect for Surface Pen*** and touch.";
+        public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY = "Vibrant color and resolution. Perfect for Surface Pen*** and touch.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FOUR_LEGAL = "***Some accessories sold separately.";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FIVE_TITLE = "Whisper-quiet";
         public string COMPARE_DEVICE_ONE_POP_BULLET_FIVE_COPY = "Fanless cooling system**** lets you work, play, and stream in peace.";
@@ -149,14 +149,14 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_TWO_POP_BULLET_TWO_COPY = "Up to 17 hours of battery life* and 70% more than MacBook Pro 13”.*";
         public string COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_TITLE = "Two sizes, infinitely breathtaking";
-        public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY = "Stunning colour and graphics in 15” or 13.5” touchscreen displays.";
+        public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY = "Stunning color and graphics in 15” or 13.5” touchscreen displays.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_THREE_LEGAL = "";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FOUR_TITLE = "Versatile form factor";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FOUR_COPY = "Switch seamlessly between Laptop, Tablet, Studio, and View Modes.";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL = "";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
         public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
-        public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
+        public string COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately.";
         public string COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio 2";
         public string COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
         public string COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
@@ -168,26 +168,26 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_THREE_POP_BULLET_TWO_COPY = "Unlock your creativity with Surface Pen*, Surface Dial*, and touch.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL = "*Some accessories and software sold separately.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_TITLE = "Professional-grade power and performance";
-        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favourite software, like Adobe® CC,* Office 365,* and more.";
-        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately. ";
+        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favorite software, like Adobe® CC,* Office 365,* and more.";
+        public string COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE = "28” PixelSense™ Display";
-        public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life colour and clarity.";
+        public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life color and clarity.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL = "";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_TITLE = "Complete connectivity";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_COPY = "4x USB 3.0, USB-C, full-size SD™ card reader (SDXC compatible), 3.5mm headset jack, and 1 Gb Ethernet port.";
         public string COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop 2";
         public string COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
-        public string COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
+        public string COMPARE_DEVICE_FOUR_POP_COPY = "Lingo beyond the traditional laptop with the perfect balance of power and sleek design.";
         public string COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE = "Beautifully designed and crafted";
-        public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone colour combinations.**";
-        public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL = "**colours available on selected models only; available colours may vary by store.";
+        public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone color combinations.**";
+        public string COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL = "**Colors available on selected models only; available colors may vary by store.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE = "Performance made portability";
-        public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY = "Fast processors and up to 14.5 hours of battery life* in a 1.4cm thin design.";
+        public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY = "Fast processors and up to 14.5 hours of battery life* in a 0.57” thin design.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_TITLE = "Lightweight durability";
-        public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY = "Aluminum shell and durable Alcantara® keyboard–all at just 1.25kg.";
+        public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY = "Aluminum shell and durable Alcantara® keyboard–all at just 2.76 pounds.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_THREE_LEGAL = "";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_TITLE = "13.5” PixelSense™ Display";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_COPY = "Razor-sharp resolution on an interactive screen made for touch.";
@@ -195,12 +195,12 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
         public string COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
+        public string COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
         public string COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
         public string COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
-        public string COMAPRE_DEVICE_FIVE_POP_COPY_LEGAL = "";
+        public string COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_TITLE = "The smallest, lightest Surface yet";
-        public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY = "Only 0.83cm thin and starting at just 522 grams. to fit easily in your bag.";
+        public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY = "Only 0.33” thin and starting at just 1.15 lbs. to fit easily in your bag.";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_ONE_LEGAL = "";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_TWO_TITLE = "Fast, efficient, with performance that lasts";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_TWO_COPY = "Run day-to-day software and apps, plus full Windows 10 features.";
@@ -214,7 +214,6 @@ namespace SurfaceProDemo.Models
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE = "Everyday versatility";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY = "Instantly adapt and adjust to home, travel, and everyday tasks.";
         public string COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL = "";
-
 
         #endregion
 
@@ -281,10 +280,10 @@ namespace SurfaceProDemo.Models
             languageFile.EXPERIENCE_TABLET_HEADLINE = "Brilliant, light, whisper-quiet";
             languageFile.EXPERIENCE_TABLET_COPY = "From inside to out, Surface Pro 6 is designed for performance you can take just about anywhere.";
             languageFile.EXPERIENCE_TABLET_POPLEFT_TITLE = "Whisper-quiet";
-            languageFile.EXPERIENCE_TABLET_POPLEFT_COPY = "Fanless cooling system so you can stream your favourite show in peace.*";
+            languageFile.EXPERIENCE_TABLET_POPLEFT_COPY = "Fanless cooling system so you can stream your favorite show in peace.*";
             languageFile.EXPERIENCE_TABLET_POPLEFT_LEGAL = "*Available on the i5 model.";
             languageFile.EXPERIENCE_TABLET_POPTOP_TITLE = "Lightweight";
-            languageFile.EXPERIENCE_TABLET_POPTOP_COPY = "Made for mobility, starting at just 770 grams and only 0.85cm thin.";
+            languageFile.EXPERIENCE_TABLET_POPTOP_COPY = "Made for mobility, starting at just 1.7 lbs and only 0.33” thin.";
             languageFile.EXPERIENCE_TABLET_POPRIGHT_TITLE = "Touchscreen";
             languageFile.EXPERIENCE_TABLET_POPRIGHT_COPY = "Razor-sharp 12.3” PixelSense™ Display, built for touch and pen.";
             languageFile.ACCESSORIES_INTERACTIVE_HEADLINE = "Write and draw naturally";
@@ -295,7 +294,7 @@ namespace SurfaceProDemo.Models
             languageFile.ACCESSORIES_INTERACTIVE_BULLET_THREE = "4,096 pressure points to sketch, shade, and paint with artistic precision.";
             languageFile.ACCESSORIES_INTERACTIVE_BULLET_FOUR = "Rest your palm right on the screen as you create.";
             languageFile.ACCESSORIES_INTERACTIVE_TRYIT_TITLE = "TRY IT";
-            languageFile.ACCESSORIES_INTERACTIVE_TRYIT_COPY = "Pick up Surface Pen and start colouring.";
+            languageFile.ACCESSORIES_INTERACTIVE_TRYIT_COPY = "Pick up Surface Pen and start coloring.";
             languageFile.ACCESSORIES_LEFT_HEADLINE = "Full keyboard, compact design";
             languageFile.ACCESSORIES_LEFT_COPY = "Surface Pro Type Cover* is ultra-slim, yet performs like a traditional keyboard, including a complete mechanical keyset, backlit keys, and extra-large trackpad.";
             languageFile.ACCESSORIES_LEFT_LEGAL = "*Sold separately.";
@@ -343,7 +342,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
             languageFile.COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";
             languageFile.COMPARE_DEVICE_FOUR_TITLE = "Surface Laptop 2";
-            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Go";
+            languageFile.COMPARE_DEVICE_FIVE_TITLE = "Surface Lingo";
             languageFile.COMPARE_DEVICE_ONE_POP_HEADLINE = "Surface Pro 6";
             languageFile.COMPARE_DEVICE_ONE_POP_SUBHEAD = "Ultra-light and versatile";
             languageFile.COMPARE_DEVICE_ONE_POP_COPY = "Work and play virtually anywhere with laptop-to-tablet versatility and all-day battery life*";
@@ -358,7 +357,7 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_COPY = "Up to 13.5 hours of video playback* and the power to do what you want on the go.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_THREE_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_TITLE = "12.3” PixelSense™ Display";
-            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY = "Vibrant colour and resolution. Perfect for Surface Pen*** and touch.";
+            languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_COPY = "Vibrant color and resolution. Perfect for Surface Pen*** and touch.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FOUR_LEGAL = "***Some accessories sold separately.";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_TITLE = "Whisper-quiet";
             languageFile.COMPARE_DEVICE_ONE_POP_BULLET_FIVE_COPY = "Fanless cooling system**** lets you work, play, and stream in peace.";
@@ -374,14 +373,14 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_TWO_COPY = "Up to 17 hours of battery life* and 70% more than MacBook Pro 13”.*";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_TITLE = "Two sizes, infinitely breathtaking";
-            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY = "Stunning colour and graphics in 15” or 13.5” touchscreen displays.";
+            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_COPY = "Stunning color and graphics in 15” or 13.5” touchscreen displays.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_THREE_LEGAL = "";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_TITLE = "Versatile form factor";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_COPY = "Switch seamlessly between Laptop, Tablet, Studio, and View Modes.";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FOUR_LEGAL = "";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_TITLE = "The connections you need";
             languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_COPY = "Connect, charge, transfer, and display via USB-C, USB 3.1, full-size SD card, and Surface Dock.**";
-            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately. ";
+            languageFile.COMPARE_DEVICE_TWO_POP_BULLET_FIVE_LEGAL = "**Some accessories sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_HEADLINE = "Surface Studio 2";
             languageFile.COMPARE_DEVICE_THREE_POP_SUBHEAD = "The ultimate creative studio";
             languageFile.COMPARE_DEVICE_THREE_POP_COPY = "Take your ideas from concept to reality with blazing graphics, innovative features, and a 28” PixelSense™ Display.";
@@ -393,26 +392,26 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_TWO_COPY = "Unlock your creativity with Surface Pen*, Surface Dial*, and touch.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_TWO_LEGAL = "*Some accessories and software sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_TITLE = "Professional-grade power and performance";
-            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favourite software, like Adobe® CC,* Office 365,* and more.";
-            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately. ";
+            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_COPY = "Run all your favorite software, like Adobe® CC,* Office 365,* and more.";
+            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_THREE_LEGAL = "*Some accessories and software sold separately.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_TITLE = "28” PixelSense™ Display";
-            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life colour and clarity.";
+            languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_COPY = "13.5 million pixels of pure, true-to-life color and clarity.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FOUR_LEGAL = "";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_TITLE = "Complete connectivity";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_COPY = "4x USB 3.0, USB-C, full-size SD™ card reader (SDXC compatible), 3.5mm headset jack, and 1 Gb Ethernet port.";
             languageFile.COMPARE_DEVICE_THREE_POP_BULLET_FIVE_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_HEADLINE = "Surface Laptop 2";
             languageFile.COMPARE_DEVICE_FOUR_POP_SUBHEAD = "Style and speed";
-            languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Go beyond the traditional laptop with the perfect balance of power and sleek design.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_COPY = "Lingo beyond the traditional laptop with the perfect balance of power and sleek design.";
             languageFile.COMPARE_DEVICE_FOUR_POP_COPY_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_TITLE = "Beautifully designed and crafted";
-            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone colour combinations.**";
-            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL = "**colours available on selected models only; available colours may vary by store.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_COPY = "Clean, elegant details and rich, tone-on-tone color combinations.**";
+            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_ONE_LEGAL = "**Colors available on selected models only; available colors may vary by store.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_TITLE = "Performance made portability";
-            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY = "Fast processors and up to 14.5 hours of battery life* in a 1.4cm thin design.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_COPY = "Fast processors and up to 14.5 hours of battery life* in a 0.57” thin design.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_TWO_LEGAL = "*Battery life varies significantly with settings, usage, and other factors.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_TITLE = "Lightweight durability";
-            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY = "Aluminum shell and durable Alcantara® keyboard–all at just 1.25kg.";
+            languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_COPY = "Aluminum shell and durable Alcantara® keyboard–all at just 2.76 pounds.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_THREE_LEGAL = "";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_TITLE = "13.5” PixelSense™ Display";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FOUR_COPY = "Razor-sharp resolution on an interactive screen made for touch.";
@@ -420,12 +419,12 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_TITLE = "Immersive sound experience";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_COPY = "Omnisonic Speakers deliver crisp, clear audio for music, shows, and more.";
             languageFile.COMPARE_DEVICE_FOUR_POP_BULLET_FIVE_LEGAL = "";
-            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Go";
+            languageFile.COMPARE_DEVICE_FIVE_POP_HEADLINE = "Surface Lingo";
             languageFile.COMPARE_DEVICE_FIVE_POP_SUBHEAD = "Portable power";
             languageFile.COMPARE_DEVICE_FIVE_POP_COPY = "Laptop performance meets tablet portability to deliver the flexibility you need.";
-            languageFile.COMAPRE_DEVICE_FIVE_POP_COPY_LEGAL = "";
+            languageFile.COMPARE_DEVICE_FIVE_POP_COPY_LEGAL = "";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_TITLE = "The smallest, lightest Surface yet";
-            languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY = "Only 0.83cm thin and starting at just 522 grams. to fit easily in your bag.";
+            languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_COPY = "Only 0.33” thin and starting at just 1.15 lbs. to fit easily in your bag.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_ONE_LEGAL = "";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_TWO_TITLE = "Fast, efficient, with performance that lasts";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_TWO_COPY = "Run day-to-day software and apps, plus full Windows 10 features.";
@@ -439,7 +438,6 @@ namespace SurfaceProDemo.Models
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_TITLE = "Everyday versatility";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_COPY = "Instantly adapt and adjust to home, travel, and everyday tasks.";
             languageFile.COMPARE_DEVICE_FIVE_POP_BULLET_FIVE_LEGAL = "";
-
 
             return languageFile;
         }
