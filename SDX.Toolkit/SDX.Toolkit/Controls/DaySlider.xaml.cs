@@ -133,27 +133,28 @@ namespace SDX.Toolkit.Controls
         public void SnapTo(DaySliderSnapPositions snapPosition)
         {
             double endingValue = SLIDER_MINIMUM;    // default to setting to the leftmost position
-
+            double thumbWidthFactor = ((Thumb.ActualWidth / 2) / ContainerCanvas.ActualWidth * 100); //calculate the thumb's width as a percentage of the total slider width
+            double tickWidthFactor = ((MorningTick.ActualWidth / 2) / ContainerCanvas.ActualWidth * 100);
             // calculate the eneding value and update the battery image
             switch (snapPosition)
             {
                 case DaySliderSnapPositions.Morning:
-                    endingValue = SLIDER_MINIMUM;
+                    endingValue = SLIDER_MINIMUM - (thumbWidthFactor - tickWidthFactor);
                     this.BatteryImageUri = uriBattery1;
                     break;
 
                 case DaySliderSnapPositions.Afternoon:
-                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) / 3.0);
+                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) / 3.0) - (thumbWidthFactor - tickWidthFactor);
                     this.BatteryImageUri = uriBattery2;
                     break;
 
                 case DaySliderSnapPositions.Evening:
-                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) * (2.0 / 3.0));
+                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) * (2.0 / 3.0)) - (thumbWidthFactor - tickWidthFactor);
                     this.BatteryImageUri = uriBattery3;
                     break;
 
                 case DaySliderSnapPositions.Night:
-                    endingValue = SLIDER_MAXIMUM;
+                    endingValue = SLIDER_MAXIMUM - (thumbWidthFactor + tickWidthFactor);
                     this.BatteryImageUri = uriBattery4;
                     break;
             }
