@@ -111,9 +111,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupPro/>
             </Popup.Child>
@@ -123,9 +121,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupBook/>
             </Popup.Child>
@@ -135,9 +131,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupStudio/>
             </Popup.Child>
@@ -147,9 +141,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupLaptop/>
             </Popup.Child>
@@ -159,9 +151,7 @@
                 IsOpen = "False"
                 IsLightDismissEnabled="False"
                 HorizontalOffset="0"
-                VerticalOffset="0"
-                Opened="DisablePageNavigation"
-                Closed="EnablePageNavigation">
+                VerticalOffset="0">
             <Popup.Child>
                 <views:ComparePagePopupGo/>
             </Popup.Child>

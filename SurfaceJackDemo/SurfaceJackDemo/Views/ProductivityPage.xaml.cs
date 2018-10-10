@@ -19,7 +19,6 @@ namespace SurfaceJackDemo.Views
         private bool HasNavigatedTo = false;
         #endregion
 
-
         #region Construction
 
         public ProductivityPage()
@@ -52,7 +51,6 @@ namespace SurfaceJackDemo.Views
             rBtnBottom.StartRadiateAnimation();
         }
         #endregion
-
 
         #region INavigate Interface
 

@@ -19,7 +19,6 @@ namespace SurfaceJackDemo.Views
         private bool HasNavigatedTo = false;
         #endregion
 
-
         #region Construction
 
         public TechPage()
@@ -53,7 +52,6 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
-
 
         #region INavigate Interface
 

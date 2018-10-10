@@ -77,7 +77,7 @@ namespace SurfaceStudioDemo.Views
 
         private void ClosePopupsOnExit()
         {
-            if (null != rBtnRightPixelSense.PopupChild)
+            if (null != rBtnRightPixelSense.PopupChild && rBtnRightPixelSense.PopupChild.IsOpen)
             {
                 rBtnRightPixelSense.PopupChild.IsOpen = false;
             }

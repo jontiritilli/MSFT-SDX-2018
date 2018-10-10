@@ -36,14 +36,15 @@
         </Grid.ColumnDefinitions>
 
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                Lede="{x:Bind Path=ViewModel.Lede}"
-                CTAText="TEST"
-                CTAUri="ms-settings:"
-                CTATextStyle="ListItemCTAText"
-                Width="{StaticResource HeaderWidth}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            Lede="{x:Bind Path=ViewModel.Lede}"
+            CTAText="TEST"
+            CTAUri="ms-settings:"
+            CTATextStyle="ListItemCTAText"
+            Width="{StaticResource HeaderWidth}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+        
         <ListView x:Name="itemListView"
             Grid.Row="3"
             Grid.Column="1"
@@ -74,6 +75,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"
             Grid.Column="0"
@@ -106,8 +108,8 @@
                         />
                 </Popup.Child>
             </Popup>
-        
         </Canvas>
+        
         <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.ImageUri}"
@@ -116,10 +118,12 @@
             PageEntranceDirection="Left"
             HasEntranceTranslation="False"
             Opacity="0"/>
-        <ctrl:TextBlockEx x:Name="Legal" Grid.Row="5" Grid.Column="1"
-                       Text="{x:Bind Path=ViewModel.Legal}"
-                       TextStyle="Legal"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"/>
+        
+        <ctrl:TextBlockEx Grid.Row="5" Grid.Column="1"
+            x:Name="Legal" 
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"/>
     </Grid>
 </Page>

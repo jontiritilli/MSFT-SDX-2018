@@ -59,6 +59,14 @@ namespace SurfaceProDemo.Views
             this.rBtnTop.HandleClick();
         }
 
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
+            {
+                rBtnTop.PopupChild.IsOpen = false;
+            }
+        }
+
         private void AnimatePageEntrance()
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
@@ -93,6 +101,8 @@ namespace SurfaceProDemo.Views
         {
             // animations out
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             this.rBtnTop.ResetEntranceAnimation();
             this.rBtnTop.ResetRadiateAnimation();

@@ -36,6 +36,7 @@
             LedeStyle="PageLede"                
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
+        
         <ctrl:AppSelector
             x:Name="AppSelectorHowTo"
             URIs="{x:Bind Path=ViewModel.ListItems}"
@@ -59,8 +60,6 @@
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
-
-
 
         <!--<ctrl:TextBlockEx Grid.Row="6" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.Legal}"

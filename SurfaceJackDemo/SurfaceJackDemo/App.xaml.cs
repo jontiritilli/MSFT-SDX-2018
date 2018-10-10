@@ -32,13 +32,11 @@ namespace SurfaceJackDemo
 
         #endregion
 
-
         #region Public Static Properties
 
         public static App Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -115,7 +113,6 @@ namespace SurfaceJackDemo
 
         #endregion
 
-
         #region Base Overrides
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
@@ -174,7 +171,6 @@ namespace SurfaceJackDemo
 
         #endregion
 
-
         #region Private Methods
 
         private void LoadAppResourceDictionaries(string path)
@@ -226,7 +222,6 @@ namespace SurfaceJackDemo
         }
 
         #endregion
-
 
         #region Event Handlers
 

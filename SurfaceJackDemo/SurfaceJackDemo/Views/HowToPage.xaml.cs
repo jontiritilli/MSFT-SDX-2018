@@ -31,14 +31,18 @@ namespace SurfaceJackDemo.Views
             get { return DataContext as HowToViewModel; }
         }
 
-        public RoutedEventHandler CloseButton_Clicked;
+        #endregion
 
         #region Public Static Properties
+
+        public RoutedEventHandler CloseButton_Clicked;
 
         public static HowToPage Current { get; private set; }
 
         #endregion
-        #endregion
+
+        #region Construction
+
         public HowToPage()
         {
             this.InitializeComponent();
@@ -48,6 +52,10 @@ namespace SurfaceJackDemo.Views
             this.AppSelectorImageKB.AppSelector = this.AppSelectorHowTo;
         }
 
+        #endregion
+
+        #region Private Methods
+
         private void HowToPage_Loaded(object sender, RoutedEventArgs e)
         {
         }
@@ -56,6 +64,18 @@ namespace SurfaceJackDemo.Views
         {
             CloseButton_Clicked(sender, new RoutedEventArgs());
         }
+
+        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (sender is ListView listView)
+            //{
+            //    this.AppSelectorImageKB.SelectedID = listView.SelectedIndex;
+            //}
+        }
+
+        #endregion
+
+        #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
@@ -67,12 +87,6 @@ namespace SurfaceJackDemo.Views
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
 
-        private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //if (sender is ListView listView)
-            //{
-            //    this.AppSelectorImageKB.SelectedID = listView.SelectedIndex;
-            //}
-        }
+        #endregion
     }
 }

@@ -37,52 +37,58 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-                Headline="{x:Bind Path=ViewModel.Headline}"
-                HeadlineStyle="PageHeadline"
-                Lede=""
-                Width="{StaticResource HeaderWidth}"                
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top" />
+        <ctrl:Header Grid.Row="1" Grid.Column="1"
+            x:Name="PageHeader" 
+            Headline="{x:Bind Path=ViewModel.Headline}"
+            HeadlineStyle="PageHeadline"
+            Lede=""
+            Width="{StaticResource HeaderWidth}"                
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
 
-        <ctrl:List x:Name="Specs" Grid.Row="3" Grid.Column="1"
-                   ListItems="{x:Bind Path=ViewModel.ItemList}"
-                   ListStyle="Specs"
-                   />
-        <ctrl:TextBlockEx x:Name="BulletOneLegal" Grid.Row="7" Grid.Column="1"
+        <ctrl:List Grid.Row="3" Grid.Column="1"
+            x:Name="Specs"
+            ListItems="{x:Bind Path=ViewModel.ItemList}"
+            ListStyle="Specs" />
+        
+        <ctrl:TextBlockEx Grid.Row="7" Grid.Column="1"
+            x:Name="BulletOneLegal"
             Text="{x:Bind Path=ViewModel.LegalBulletOne}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.LegalBulletOne, Converter={StaticResource TextBlockHeightConverterKey}}"/>
 
-        <ctrl:TextBlockEx x:Name="BulletTwoLegal" Grid.Row="8" Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="8" Grid.Column="1"
+            x:Name="BulletTwoLegal"
             Text="{x:Bind Path=ViewModel.LegalBulletTwo}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.LegalBulletTwo, Converter={StaticResource TextBlockHeightConverterKey}}"/>
 
-        <ctrl:TextBlockEx x:Name="BulletThreeLegal" Grid.Row="9" Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="9" Grid.Column="1"
+            x:Name="BulletThreeLegal"
             Text="{x:Bind Path=ViewModel.LegalBulletThree}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.LegalBulletThree, Converter={StaticResource TextBlockHeightConverterKey}}"/>
 
-        <ctrl:TextBlockEx x:Name="BulletFourLegal" Grid.Row="10" Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="10" Grid.Column="1"
+            x:Name="BulletFourLegal"
             Text="{x:Bind Path=ViewModel.LegalBulletFour}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.LegalBulletFour, Converter={StaticResource TextBlockHeightConverterKey}}"/>
 
-        <ctrl:TextBlockEx x:Name="BulletFiveLegal" Grid.Row="11" Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="11" Grid.Column="1"
+            x:Name="BulletFiveLegal"
             Text="{x:Bind Path=ViewModel.LegalBulletFive}"
             TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Visibility="{x:Bind Path=ViewModel.LegalBulletFive, Converter={StaticResource TextBlockHeightConverterKey}}"/>
-
     </Grid>
 </Page>

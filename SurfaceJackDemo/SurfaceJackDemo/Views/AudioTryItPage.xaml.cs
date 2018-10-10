@@ -18,7 +18,6 @@ namespace SurfaceJackDemo.Views
 
         #endregion
 
-
         #region Construction
 
         public AudioTryItPage()
@@ -27,7 +26,6 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
-
 
         #region INavigate Interface
 

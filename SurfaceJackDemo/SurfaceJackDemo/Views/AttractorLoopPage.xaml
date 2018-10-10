@@ -11,10 +11,11 @@
     DataContext="{Binding AttractorLoopViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <ctrl:AttractorLoopPlayer Name="AttractorLoopPlayer"
-                                  MediaSourceStorageFile="{x:Bind Path=ViewModel.MediaSourceStorageFile}" 
-                                  AutoPlay="True"
-                                  Interacted="AttractorLoopPlayer_Interacted"/>
+        <ctrl:AttractorLoopPlayer
+            Name="AttractorLoopPlayer"
+            MediaSourceStorageFile="{x:Bind Path=ViewModel.MediaSourceStorageFile}" 
+            AutoPlay="True"
+            Interacted="AttractorLoopPlayer_Interacted"/>
         <TextBlock Text="AttractorLoop"/>
     </Grid>
 </Page>
