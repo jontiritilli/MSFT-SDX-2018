@@ -81,8 +81,15 @@ namespace SurfaceStudioDemo.Views
             {
                 rBtnRightPixelSense.PopupChild.IsOpen = false;
             }
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+            if (null != this.PopBottom && this.PopBottom.IsOpen)
+            {
+                this.PopBottom.IsOpen = false;
+            }
         }
-
 
         #endregion
 

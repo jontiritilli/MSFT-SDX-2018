@@ -125,7 +125,7 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"                                                               
                 PopupPosition="Left"
                 Visibility="Collapsed"                
-                EntranceStaggerDelayInMilliseconds="600"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
@@ -133,7 +133,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                
                 PopupPosition="Right"                
-                EntranceStaggerDelayInMilliseconds="800"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <!--<ctrl:RadiatingButton
@@ -141,7 +141,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.33}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.27}"                                                                 
                 PopupPosition="Left"                
-                EntranceStaggerDelayInMilliseconds="1400"
+                EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>-->
         </Canvas>
         
@@ -154,8 +154,8 @@
             ImageSource="{x:Bind Path=ViewModel.HeroFrontURI}"
             Canvas.ZIndex="100"
             PageEntranceDirection="Left"
-            Opacity="0"
-            />
+            Opacity="0" />
+        
         <ctrl:ImageEx
             Grid.Row="3"
             Grid.Column="1"

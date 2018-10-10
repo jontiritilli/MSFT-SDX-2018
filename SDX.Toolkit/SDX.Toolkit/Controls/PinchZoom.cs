@@ -112,49 +112,49 @@ namespace SDX.Toolkit.Controls
 
         private void HandleZoomChanging(object sender, ScrollViewerViewChangingEventArgs e)
         {
-            // raise the changing event
-            this.RaiseOnZoomChangingEvent(this);
-
             ToggleCloseButton();
+
+            if(_viewer.ZoomFactor < 1.001f)
+            {
+                // raise the reset event
+                this.RaiseOnZoomResetEvent(this);
+            }
+            else
+            {
+                // raise the changing event
+                this.RaiseOnZoomChangingEvent(this);
+            }
 
             // telemetry
             TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartPinch);
         }
 
-        private void HandleZoomChanged(object sender, ScrollViewerViewChangedEventArgs e)
-        {
-            ToggleCloseButton();
-
-            // telemetry
-            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPinch);
-        }
-
         private void HandleReset()
         {
-            // raise the reset event
-            this.RaiseOnZoomResetEvent(this);
-
             if (null != _viewer && _viewer.ZoomFactor > 1.00f)
             {
                 // reset the zoom to normal
                 _viewer.ChangeView(null, null, 1.00f);
             }
+
+            // telemetry
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.EndPinch);
         }
 
         private void ToggleCloseButton()
         {
             if (null != _viewer && null != _closeGrid)
             {
-                if (_viewer.ZoomFactor > 1.00f)
+                if (_viewer.ZoomFactor < 1.001f)
+                {
+                    // show the ellipse
+                    _closeGrid.Visibility = Visibility.Collapsed;
+                }
+                else
                 {
                     // hide the ellipse
                     _closeGrid.Visibility = Visibility.Visible;
                 }
-                else
-                {
-                    // show the ellipse
-                    _closeGrid.Visibility = Visibility.Collapsed;
-                } 
             }
         }
 
@@ -216,9 +216,6 @@ namespace SDX.Toolkit.Controls
 
             // add manipulation events to viewer
             _viewer.ViewChanging += HandleZoomChanging;
-
-            // add manipulation events to viewer
-            _viewer.ViewChanged += HandleZoomChanged;
 
             // add the scrollviewer to the root
             _layoutRoot.Children.Add(_viewer);

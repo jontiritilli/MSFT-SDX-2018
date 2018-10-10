@@ -51,13 +51,25 @@ namespace SurfaceProDemo.Views
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
         }
 
         #endregion
 
+
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -77,7 +89,10 @@ namespace SurfaceProDemo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnRight.ResetEntranceAnimation();
             rBtnRight.ResetRadiateAnimation();
         }

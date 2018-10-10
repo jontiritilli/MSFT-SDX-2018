@@ -63,7 +63,7 @@ namespace SurfaceLaptopDemo.Views
 
         private void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
 
             rBtnLeftMouse.StartEntranceAnimation();
             rBtnLeftMouse.StartRadiateAnimation();
@@ -94,6 +94,24 @@ namespace SurfaceLaptopDemo.Views
 
         #region Private Methods
 
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+
+            if (null != this.PopCenter && this.PopCenter.IsOpen)
+            {
+                this.PopCenter.IsOpen = false;
+            }
+
+            if (null != this.PopRight && this.PopRight.IsOpen)
+            {
+                this.PopRight.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -112,7 +130,9 @@ namespace SurfaceLaptopDemo.Views
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
 
             rBtnLeftMouse.ResetEntranceAnimation();
             rBtnLeftMouse.ResetRadiateAnimation();

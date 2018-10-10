@@ -3,6 +3,8 @@ using SurfaceBook2Demo.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 
+using SDX.Toolkit.Helpers;
+
 namespace SurfaceBook2Demo.Views
 {
     public sealed partial class AccessoriesMousePage : Page, INavigate
@@ -15,7 +17,6 @@ namespace SurfaceBook2Demo.Views
         }
         #endregion
 
-
         #region Construction
 
         public AccessoriesMousePage()
@@ -27,12 +28,25 @@ namespace SurfaceBook2Demo.Views
 
         #endregion
 
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != this.PopLeft && this.PopLeft.IsOpen)
+            {
+                this.PopLeft.IsOpen = false;
+            }
+        }
+
+        #endregion
+
         #region INavigate Interface
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
+
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
         }
@@ -40,7 +54,10 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
+
+            ClosePopupsOnExit();
+
             rBtnLeft.ResetEntranceAnimation();
             rBtnLeft.ResetRadiateAnimation();
         }

@@ -146,14 +146,14 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void ResetPlayer()
+        public void ResetPlayer(double newStartFrame = 1)
         {
             if (null != _mediaPlayerElement)
             {
                 var trash = _mediaPlayerElement.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     _mediaPlayerElement.MediaPlayer.Pause();
-                    _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+                    _mediaPlayerElement.MediaPlayer.PlaybackSession.Position = TimeSpan.FromMilliseconds(newStartFrame);
                 });
             }
         }
