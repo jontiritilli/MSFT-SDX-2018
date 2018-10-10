@@ -30,14 +30,31 @@ namespace SDX.Toolkit.Controls
     public class AppSelectorButton : Button
     {
         public int ID = 0;
+        public Brush NormalBackground;
     }
-    public class AppSelectorData
+    public class AppSelectorData: DependencyObject
     {
         public string SourceSVG_SelectedImage = "";
         public string SourceSVG_NotSelectedImage = "";
         public string Source_SelectedImage = "";
-        public string Source_NotSelectedImage = "";
-        public string Message;
+        //public string Source_NotSelectedImage = "";
+        public static readonly DependencyProperty Source_NotSelectedImageProperty =
+    DependencyProperty.Register("Source_NotSelectedImage", typeof(string), typeof(AppSelectorData), new PropertyMetadata(""));
+
+        public string Source_NotSelectedImage
+        {
+            get { return (string)GetValue(Source_NotSelectedImageProperty); }
+            set { SetValue(Source_NotSelectedImageProperty, value); }
+        }
+        //public string Message;
+        public static readonly DependencyProperty MessageProperty =
+    DependencyProperty.Register("Message", typeof(string), typeof(AppSelectorData), new PropertyMetadata(""));
+
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
+        }
         public bool IsClearButton = false;
     }
     public class ImagePair
@@ -61,7 +78,22 @@ namespace SDX.Toolkit.Controls
         private const double HORIZONTAL_LINE_OFFSET = 3d;
         private const double VERTICAL_LINE_OFFSET = 2d;
         private Style _buttonStyle;
-
+        private Brush BackGroundWhiteAcrylic = new AcrylicBrush()
+        {
+            BackgroundSource = AcrylicBackgroundSource.Backdrop,
+            Opacity = 0.77,
+            TintColor = Colors.White,
+            TintOpacity = 0.75,
+            FallbackColor = Colors.White,
+        };
+        private Brush BackGroundGrayAcrylic = new AcrylicBrush()
+        {
+            BackgroundSource = AcrylicBackgroundSource.Backdrop,
+            Opacity = 0.47,
+            TintColor = Colors.White,
+            TintOpacity = 0.45,
+            FallbackColor = Colors.White,
+        };
         #endregion
 
         #region Private Members
@@ -392,6 +424,16 @@ namespace SDX.Toolkit.Controls
             get { return (AnimationDirection)GetValue(PageEntranceDirectionProperty); }
             set { SetValue(PageEntranceDirectionProperty, value); }
         }
+
+        //// IsListView
+        //public static readonly DependencyProperty IsListViewProperty =
+        //DependencyProperty.Register("IsListView", typeof(bool), typeof(AppSelector), new PropertyMetadata(false));
+
+        //public bool IsListView
+        //{
+        //    get { return (bool)GetValue(IsListViewProperty); }
+        //    set { SetValue(IsListViewProperty, value); }
+        //}
         #endregion
 
         #region Custom Events
@@ -521,6 +563,7 @@ namespace SDX.Toolkit.Controls
             }
             else
             {
+                //_layoutRoot.RowSpacing = (!IsListView ? WIDTH_GRID_ROWSPACING: 0);
                 _layoutRoot.RowSpacing = WIDTH_GRID_ROWSPACING;
                 _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition());
                 for (int i = 0; i < iButtonCount; i++)
@@ -530,7 +573,15 @@ namespace SDX.Toolkit.Controls
             }
 
             // create the button style
-            _buttonStyle = StyleHelper.GetApplicationStyle("AppSelectorButton");
+            //if (IsListView)
+            //{
+            //    _buttonStyle = StyleHelper.GetApplicationStyle("ListViewButton");
+            //}
+            //else
+            //{
+                _buttonStyle = StyleHelper.GetApplicationStyle("AppSelectorButton");
+            //}
+            
             // JN loop this area to create images and buttons based on list            
             int index = 0;
             if (this.ImagePairs.Count != 0)
@@ -692,6 +743,7 @@ namespace SDX.Toolkit.Controls
                     Opacity = 1,
                     VerticalAlignment = VerticalAlignment.Center,
                     TextStyleBold = TextStyles.AppSelectorTextBold
+                    //TextStyleBold = (IsListView ? TextStyles.AppSelectorTextDarkBold: TextStyles.AppSelectorTextBold)
                 };
 
                 if (index == 0)
@@ -722,6 +774,24 @@ namespace SDX.Toolkit.Controls
                 VerticalAlignment = VerticalAlignment.Center,
                 Content = btnGrid
             };
+
+            //if (!IsListView)
+            //{
+            //    sbButton.Background = new SolidColorBrush(Colors.Transparent);
+            //}
+            //else
+            //{
+            //    sbButton.NormalBackground = (index % 2 == 0 ? BackGroundWhiteAcrylic : BackGroundGrayAcrylic);
+            //    if (index == 0)
+            //    {
+            //        sbButton.Background = new SolidColorBrush(Colors.Blue);
+            //    }
+            //    else
+            //    {
+            //        sbButton.Background = sbButton.NormalBackground;
+            //    }
+
+            //}
 
             //only set the dimensions of the button if the control variables are passed in
             // and the orientation is correct
@@ -818,11 +888,28 @@ namespace SDX.Toolkit.Controls
             AppSelectorButton sbButton = new AppSelectorButton()
             {
                 ID = i,
-                Background = new SolidColorBrush(Colors.Transparent),
                 HorizontalAlignment = horizontalAlignment,
                 VerticalAlignment = VerticalAlignment.Center,
                 Content = grid
             };
+
+            //if (!IsListView)
+            //{
+            //    sbButton.Background = new SolidColorBrush(Colors.Transparent);
+            //}
+            //else
+            //{
+            //    sbButton.NormalBackground = (i % 2 == 0 ? BackGroundWhiteAcrylic : BackGroundGrayAcrylic);
+            //    if (i == 0)
+            //    {
+            //        sbButton.Background = new SolidColorBrush(Colors.Blue);
+            //    }
+            //    else
+            //    {
+            //        sbButton.Background = sbButton.NormalBackground;
+            //    }
+
+            //}
 
             //only set the dimensions of the button if the control variables are passed in
             // and the orientation is correct
@@ -889,17 +976,17 @@ namespace SDX.Toolkit.Controls
             if (this.ShowSelectedLine && this.SelectedButton.ID != sbButton.ID)
             {// transform the line so it moves to underneath the sender
                 this.Selector_SlideLine(sbButton);
-                this.Selector_ChangeBold(sbButton);
+                this.Selector_UpdateSelectedState(sbButton);
             }
             this.SelectedID = sbButton.ID;
             this.SelectedButton = sbButton;
-            this.Selector_ChangeBold(sbButton);
+            this.Selector_UpdateSelectedState(sbButton);
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(this.TelemetryId, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
         }
 
-        private void Selector_ChangeBold(AppSelectorButton sbButton)
+        private void Selector_UpdateSelectedState(AppSelectorButton sbButton)
         {
             foreach(AppSelectorButton button in _buttonList)
             {
@@ -910,10 +997,18 @@ namespace SDX.Toolkit.Controls
                     if(button.ID == sbButton.ID)
                     {
                         text.ShowBoldText(true);
+                        //if (IsListView)
+                        //{
+                        //    button.Background = new SolidColorBrush(Colors.Blue);
+                        //}
                     }
                     else
                     {
                         text.ShowBoldText(false);
+                        //if (IsListView)
+                        //{
+                        //    button.Background = button.NormalBackground;
+                        //}
                     }                    
                 }
             }

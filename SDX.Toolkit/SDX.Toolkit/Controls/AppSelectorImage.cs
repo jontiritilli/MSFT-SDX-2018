@@ -400,10 +400,11 @@ namespace SDX.Toolkit.Controls
         private void UpdateUI(int SelectedID = 0)
         {
             int selectedID = SelectedID;
-            if (null != this.AppSelector)
+            if (this.PreviousSelectedID != SelectedID)
             {
-                for (int i = 0; i < this.Images.Count; i++) {
-                    if(i == selectedID)
+                for (int i = 0; i < this.Images.Count; i++)
+                {
+                    if (i == selectedID)
                     {
                         if (HasTransitionAnimation)
                         {
@@ -414,7 +415,7 @@ namespace SDX.Toolkit.Controls
                             this.Images[i].Opacity = 1;
                         }
                     }
-                    
+
                 }
                 for (int i = 0; i < this.Images.Count; i++)
                 {
@@ -433,6 +434,7 @@ namespace SDX.Toolkit.Controls
 
                 this.PreviousSelectedID = SelectedID;
             }
+
         }
         private void TranslateTransition(Image image)
         {
@@ -478,7 +480,10 @@ namespace SDX.Toolkit.Controls
         #endregion
 
         #region UI Helpers
-
+        public void SetSelectedID(int SelectedID)
+        {
+            this.UpdateUI(SelectedID);
+        }
         #endregion
 
         #region Code Helpers

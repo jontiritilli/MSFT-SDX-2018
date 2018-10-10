@@ -80,7 +80,6 @@
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
-            CTAText="TEST"
             CTAUri="ms-settings:"
             CTATextStyle="ListItemCTAText"
             Width="{StaticResource HeaderWidth}"
