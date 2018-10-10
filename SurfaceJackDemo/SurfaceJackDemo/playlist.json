@@ -5,13 +5,13 @@
       "ArtistName": "Warbly Jets",
       "TrackTitle": "Alive",
       "MediaSourceUri": "ms-appx:///Assets/Playlist/Alive.mp3",
-      "CovertArtSourceUri": "ms-appx:///Assets/Playlist/WJ_ALBUM_COVER_FINAL1.jpg"
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/WJ_ALBUM_COVER_FINAL1.jpg"
     },
     {
       "ArtistName": "Ali Harter",
       "TrackTitle": "Untitled N°3",
       "MediaSourceUri": "ms-appx:///Assets/Playlist/Ali Harter - Untitled N°3.mp3",
-      "CoverArtSourceUri": "ms-appx:///Assets//Playlist//Ali Harter - Cropped Art.jpg"
+      "CoverArtSourceUri": "ms-appx:///Assets/Playlist/Ali Harter - Cropped Art.jpg"
     },
     {
       "ArtistName": "Lucius",
@@ -22,7 +22,7 @@
     {
       "ArtistName": "Anna Yvette",
       "TrackTitle": "Shooting Star",
-      "MediaSourceUri": "ms-appx:///Assets/Playlist/Assets/Playlist/Anna Yvette - Shooting Star 24 Bit MASTER.mp3",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Anna Yvette - Shooting Star 24 Bit MASTER.mp3",
       "CoverArtSourceUri": "ms-appx:///Assets/Playlist/Anna Yvette - Shooting Star Cover Art.png"
     },
     {

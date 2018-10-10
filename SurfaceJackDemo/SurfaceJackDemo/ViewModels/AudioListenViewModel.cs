@@ -20,6 +20,8 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/LancasterFrog.jpg";
         private const string URI_IMAGE = "ms-appx:///Assets/Experience/audio_headphones.png";
         private const double WIDTH_IMAGE = 2040;
+        private const string URI_SPOTIFYIMAGE = "ms-appx:///Assets/Experience/audio_spotify.png";
+        private const double WIDTH_SPOTIFYIMAGE = 432;
         private const string URI_READY = "ms-appx:///Assets/Experience/joplin_gateway.png";
         private double READY_IMAGE_WIDTH = 1392;
 
@@ -31,12 +33,15 @@ namespace SurfaceJackDemo.ViewModels
         public string BackgroundUri = URI_BACKGROUND;
         public string Headline;
         public string Lede;
+        public string BulletListTitle;
         public string OverlayHeadline;
         public string OverlayLede;
         public string Legal;
         public string OverlayCTA;
         public string ImageUri = URI_IMAGE;
         public double ImageWidth;
+        public string ImageSpotifyUri = URI_SPOTIFYIMAGE;
+        public double ImageSpotifyWidth;
         public Playlist Playlist = null;
         public ObservableCollection<PlaylistTrack> Tracks;
         public double ReadyWidth;
@@ -68,6 +73,7 @@ namespace SurfaceJackDemo.ViewModels
                 case DeviceType.Laptop:
                     ImageWidth = WIDTH_IMAGE / 3 * 2;
                     ReadyWidth = READY_IMAGE_WIDTH / 3 * 2;
+                    ImageSpotifyWidth = WIDTH_SPOTIFYIMAGE / 3 * 2;
                     break;
                 case DeviceType.Studio:
                 case DeviceType.Book15:
@@ -76,6 +82,7 @@ namespace SurfaceJackDemo.ViewModels
                 default:
                     ImageWidth = WIDTH_IMAGE / 2;
                     ReadyWidth = READY_IMAGE_WIDTH / 2;
+                    ImageSpotifyWidth = WIDTH_SPOTIFYIMAGE / 2;
                     break;
             }
 

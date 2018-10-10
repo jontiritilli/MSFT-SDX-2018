@@ -197,6 +197,7 @@ namespace SurfaceJackDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_HEADLINE, "AUDIO_TRACK_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_TRACK_COPY, "AUDIO_TRACK_COPY");
             viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_LEGAL, "AUDIO_TRACK_LEGAL");
+            viewModel.BulletListTitle = GetStringValue(_languageCurrent.AUDIO_TRACK_BULLET_LIST_TITLE, "AUDIO_TRACK_BULLET_LIST_TITLE"); 
             viewModel.OverlayHeadline = GetStringValue(_languageCurrent.AUDIO_GATEWAY_HEADLINE, "AUDIO_GATEWAY_HEADLINE");
             viewModel.OverlayLede = GetStringValue(_languageCurrent.AUDIO_GATEWAY_COPY, "AUDIO_GATEWAY_COPY");
             viewModel.OverlayCTA = GetStringValue(_languageCurrent.AUDIO_GATEWAY_CTA, "AUDIO_GATEWAY_CTA");
@@ -217,12 +218,12 @@ namespace SurfaceJackDemo.Services
         public void LoadHowToViewModel(HowToViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE");
-            viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT");
-            viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID");
-            viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT");
-            viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT");
-            viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT");
-            viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT");
+            viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE");
+            viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO");
+            viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE");
+            viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR");
+            viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE");
+            viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX");
             viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
 
         }

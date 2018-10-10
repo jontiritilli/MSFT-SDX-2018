@@ -79,6 +79,7 @@ namespace SurfaceJackDemo.Views
             this.itemListView.Background = StyleHelper.GetAcrylicBrush("Dark");
             this.OverlayGrid.Background = StyleHelper.GetAcrylicBrush("Dark");
             NavigateFromPage();
+            this.itemListView.SelectedIndex = 0;
             this.HasLoaded = true;
             if (this.HasNavigatedTo)
             {

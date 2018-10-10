@@ -31,16 +31,16 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_APPSELECTOR_ICON_1 = "ms-appx:///Assets/Controls/overview.png";
         private const string URI_APPSELECTOR_ICON_2 = "ms-appx:///Assets/Controls/playback.png";
         private const string URI_APPSELECTOR_ICON_3 = "ms-appx:///Assets/Controls/volume.png";
-        private const string URI_APPSELECTOR_ICON_4 = "ms-appx:///Assets/Controls/cortana.png";
+        private const string URI_APPSELECTOR_ICON_4 = "ms-appx:///Assets/Controls/mic.png";
         private const string URI_APPSELECTOR_ICON_5 = "ms-appx:///Assets/Controls/noiseCancellation.png";
-        private const string URI_APPSELECTOR_ICON_6 = "ms-appx:///Assets/Controls/mic.png";
+        private const string URI_APPSELECTOR_ICON_6 = "ms-appx:///Assets/Controls/cortana.png";
 
         private const string URI_APPSELECTOR_ICON_1_SELECTED = "ms-appx:///Assets/Controls/overview_selected.png";
         private const string URI_APPSELECTOR_ICON_2_SELECTED = "ms-appx:///Assets/Controls/playback_selected.png";
         private const string URI_APPSELECTOR_ICON_3_SELECTED = "ms-appx:///Assets/Controls/volume_selected.png";
-        private const string URI_APPSELECTOR_ICON_4_SELECTED = "ms-appx:///Assets/Controls/cortana_selected.png";
+        private const string URI_APPSELECTOR_ICON_4_SELECTED = "ms-appx:///Assets/Controls/mic_selected.png";
         private const string URI_APPSELECTOR_ICON_5_SELECTED = "ms-appx:///Assets/Controls/noiseCancellation_selected.png";
-        private const string URI_APPSELECTOR_ICON_6_SELECTED = "ms-appx:///Assets/Controls/mic_selected.png";
+        private const string URI_APPSELECTOR_ICON_6_SELECTED = "ms-appx:///Assets/Controls/cortana_selected.png";
 
 
         //private const string URI_IMAGE = "ms-appx:///Assets/Experience/joplin_design.png";

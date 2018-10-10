@@ -36,10 +36,18 @@ namespace SDX.Toolkit.Controls
     {
         public string SourceSVG_SelectedImage = "";
         public string SourceSVG_NotSelectedImage = "";
-        public string Source_SelectedImage = "";
         //public string Source_NotSelectedImage = "";
+
+        public static readonly DependencyProperty Source_SelectedImageProperty =
+        DependencyProperty.Register("Source_SelectedImage", typeof(string), typeof(AppSelectorData), new PropertyMetadata(""));
+
+        public string Source_SelectedImage
+        {
+            get { return (string)GetValue(Source_SelectedImageProperty); }
+            set { SetValue(Source_SelectedImageProperty, value); }
+        }
         public static readonly DependencyProperty Source_NotSelectedImageProperty =
-    DependencyProperty.Register("Source_NotSelectedImage", typeof(string), typeof(AppSelectorData), new PropertyMetadata(""));
+        DependencyProperty.Register("Source_NotSelectedImage", typeof(string), typeof(AppSelectorData), new PropertyMetadata(""));
 
         public string Source_NotSelectedImage
         {
@@ -78,22 +86,7 @@ namespace SDX.Toolkit.Controls
         private const double HORIZONTAL_LINE_OFFSET = 3d;
         private const double VERTICAL_LINE_OFFSET = 2d;
         private Style _buttonStyle;
-        private Brush BackGroundWhiteAcrylic = new AcrylicBrush()
-        {
-            BackgroundSource = AcrylicBackgroundSource.Backdrop,
-            Opacity = 0.77,
-            TintColor = Colors.White,
-            TintOpacity = 0.75,
-            FallbackColor = Colors.White,
-        };
-        private Brush BackGroundGrayAcrylic = new AcrylicBrush()
-        {
-            BackgroundSource = AcrylicBackgroundSource.Backdrop,
-            Opacity = 0.47,
-            TintColor = Colors.White,
-            TintOpacity = 0.45,
-            FallbackColor = Colors.White,
-        };
+  
         #endregion
 
         #region Private Members
