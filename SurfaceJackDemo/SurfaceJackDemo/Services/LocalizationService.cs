@@ -190,9 +190,7 @@ namespace SurfaceJackDemo.Services
 
         public void LoadAudioTryItViewModel(AudioTryItViewModel viewModel)
         {
-            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_GATEWAY_HEADLINE, "AUDIO_GATEWAY_HEADLINE");
-            viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_GATEWAY_COPY, "AUDIO_GATEWAY_COPY");
-            viewModel.CTA = GetStringValue(_languageCurrent.AUDIO_GATEWAY_CTA, "AUDIO_GATEWAY_CTA");
+
         }
 
         public void LoadAudioListenViewModel(AudioListenViewModel viewModel)
@@ -200,6 +198,9 @@ namespace SurfaceJackDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_HEADLINE, "AUDIO_TRACK_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_TRACK_COPY, "AUDIO_TRACK_COPY");
             viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_LEGAL, "AUDIO_TRACK_LEGAL");
+            viewModel.OverlayHeadline = GetStringValue(_languageCurrent.AUDIO_GATEWAY_HEADLINE, "AUDIO_GATEWAY_HEADLINE");
+            viewModel.OverlayLede = GetStringValue(_languageCurrent.AUDIO_GATEWAY_COPY, "AUDIO_GATEWAY_COPY");
+            viewModel.OverlayCTA = GetStringValue(_languageCurrent.AUDIO_GATEWAY_CTA, "AUDIO_GATEWAY_CTA");
         }
 
         public void LoadDesignViewModel(DesignViewModel viewModel)

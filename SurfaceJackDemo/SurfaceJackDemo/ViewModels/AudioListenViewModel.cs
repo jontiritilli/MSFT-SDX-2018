@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 using SurfaceJackDemo.Services;
-
+using Windows.UI.Xaml.Media;
 
 namespace SurfaceJackDemo.ViewModels
 {
@@ -19,6 +20,9 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/LancasterFrog.jpg";
         private const string URI_IMAGE = "ms-appx:///Assets/Experience/audio_headphones.png";
         private const double WIDTH_IMAGE = 2040;
+        private const string URI_READY = "ms-appx:///Assets/Experience/joplin_gateway.png";
+        private double READY_IMAGE_WIDTH = 1392;
+
         #endregion
 
 
@@ -27,11 +31,19 @@ namespace SurfaceJackDemo.ViewModels
         public string BackgroundUri = URI_BACKGROUND;
         public string Headline;
         public string Lede;
+        public string OverlayHeadline;
+        public string OverlayLede;
         public string Legal;
+        public string OverlayCTA;
         public string ImageUri = URI_IMAGE;
         public double ImageWidth;
         public Playlist Playlist = null;
         public ObservableCollection<PlaylistTrack> Tracks;
+        public double ReadyWidth;
+        public string ReadyUri = URI_READY;
+        
+        public string ButtonText;
+        public SolidColorBrush ReadyBoxBorderColor = RadiatingButton.GetSolidColorBrush("#FF0078D4");
 
         #endregion
 
@@ -55,6 +67,7 @@ namespace SurfaceJackDemo.ViewModels
             {
                 case DeviceType.Laptop:
                     ImageWidth = WIDTH_IMAGE / 3 * 2;
+                    ReadyWidth = READY_IMAGE_WIDTH / 3 * 2;
                     break;
                 case DeviceType.Studio:
                 case DeviceType.Book15:
@@ -62,6 +75,7 @@ namespace SurfaceJackDemo.ViewModels
                 case DeviceType.Pro:
                 default:
                     ImageWidth = WIDTH_IMAGE / 2;
+                    ReadyWidth = READY_IMAGE_WIDTH / 2;
                     break;
             }
 

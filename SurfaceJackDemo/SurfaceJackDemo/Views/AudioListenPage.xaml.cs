@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Helpers;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace SurfaceJackDemo.Views
 {
@@ -16,10 +17,15 @@ namespace SurfaceJackDemo.Views
         {
             get { return DataContext as AudioListenViewModel; }
         }
+        private bool HasInteracted = false;
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
         private ListView PlayerListView;
         #endregion
+        #region public members
+        public Popup ReadyScreen;
+        #endregion
+
 
         #region static members
         public static AudioListenPage Current = null;
@@ -41,7 +47,7 @@ namespace SurfaceJackDemo.Views
             {// well this works? but ew
                 timer.Stop();
                 this.rBtnLeft.PopupChild = FlipViewPage.Current.GetHowToPagePopup();
-                HowToPage.Current.CloseButton_Clicked += CloseButton_Clicked;
+                HowToPage.Current.CloseButton_Clicked += CloseButton_Clicked;                
             };
         }
 
@@ -71,6 +77,7 @@ namespace SurfaceJackDemo.Views
         private void AudioListenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             this.itemListView.Background = StyleHelper.GetAcrylicBrush("Dark");
+            this.OverlayGrid.Background = StyleHelper.GetAcrylicBrush("Dark");
             NavigateFromPage();
             this.HasLoaded = true;
             if (this.HasNavigatedTo)
@@ -100,6 +107,29 @@ namespace SurfaceJackDemo.Views
             }
         }
 
+        private void AudioTryItClose_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            HidePopup();
+            AnimatePageEntrance();
+            HasInteracted = true;
+        }
+
+        private void ShowPopup()
+        {
+            if (null != ReadyScreen && !HasInteracted)
+            {
+                ReadyScreen.IsOpen = true;
+            }
+        }
+
+        private void HidePopup()
+        {
+            if (null != ReadyScreen && ReadyScreen.IsOpen)
+            {
+                ReadyScreen.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -126,5 +156,11 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.OverlayGrid.Visibility = Visibility.Collapsed;
+        }
     }
 }

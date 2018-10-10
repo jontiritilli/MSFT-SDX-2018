@@ -190,6 +190,10 @@
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Margin" Value="0,0,-5,0" />
     </Style>
+
+    <Style x:Key="AppSelectorTextDarkBold" TargetType="TextBlock" BasedOn="{StaticResource AppSelectorTextBold}">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
     <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>

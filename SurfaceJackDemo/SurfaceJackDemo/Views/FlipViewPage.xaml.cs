@@ -107,7 +107,7 @@ namespace SurfaceJackDemo.Views
             // move to the next page
             if (null != this.BottomNavBar)
             {
-                this.BottomNavBar.MoveToNextPage();
+              //  this.BottomNavBar.MoveToNextPage();
             }
         }
 

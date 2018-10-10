@@ -58,6 +58,9 @@
     <GridLength x:Key="SpaceBelowHeader">32.34</GridLength>
 	<GridLength x:Key="BestOfMicrosoftSpaceBelowHeader">65</GridLength>
 
+    <x:Double x:Key="ReadyButtonHeight">78</x:Double>
+    <x:Double x:Key="ReadyButtonWidth">264</x:Double>
+
     <x:Double x:Key="AppCloseWidth">46</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 

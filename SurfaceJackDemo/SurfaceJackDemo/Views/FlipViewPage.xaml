@@ -36,21 +36,21 @@
 
         <!--Host FlipView-->
         <ctrl:FlipViewEx x:Name="ContentFlipView"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Margin="0"
-            Padding="0"
-            Background="Transparent"
-            AllowFocusOnInteraction="False"
-            Loaded="FlipViewEx_Loaded"
-            Canvas.ZIndex="1000"
-            SelectionChanged="FlipViewEx_SelectionChanged">
-            <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioTryItPage">
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Margin="0"
+               Padding="0"
+               Background="Transparent"
+               AllowFocusOnInteraction="False"
+               Loaded="FlipViewEx_Loaded"
+               Canvas.ZIndex="1000"
+               SelectionChanged="FlipViewEx_SelectionChanged">
+            <!--<ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioTryItPage">
                 <Frame>
                     <views:AudioTryItPage/>
                 </Frame>
-            </ctrl:FlipViewItemEx>
+            </ctrl:FlipViewItemEx>-->
             <ctrl:FlipViewItemEx x:Uid="FlipViewItemEx_AudioListenPage">
                 <Frame>
                     <views:AudioListenPage/>

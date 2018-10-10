@@ -47,9 +47,15 @@ namespace SurfaceJackDemo.Views
         {
             this.InitializeComponent();
             HowToPage.Current = this;
-            this.ContentArea.Background = StyleHelper.GetAcrylicBrush();
+            this.ContentArea.Background = new AcrylicBrush()
+            {
+                BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                Opacity = 0.995,
+                TintColor = Windows.UI.Colors.White,
+                TintOpacity = 0.4,
+                FallbackColor = Windows.UI.Colors.White,
+            };
             this.Loaded += HowToPage_Loaded;
-            this.AppSelectorImageKB.AppSelector = this.AppSelectorHowTo;
         }
 
         #endregion
@@ -58,6 +64,10 @@ namespace SurfaceJackDemo.Views
 
         private void HowToPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (null != itemListView)
+            {
+                itemListView.SelectedIndex = 0;
+            }
         }
 
         private void PopClose_Click(object sender, PointerRoutedEventArgs e)
@@ -67,10 +77,10 @@ namespace SurfaceJackDemo.Views
 
         private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (sender is ListView listView)
-            //{
-            //    this.AppSelectorImageKB.SelectedID = listView.SelectedIndex;
-            //}
+            if (sender is ListView listView)
+            {
+                this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
+            }
         }
 
         #endregion
@@ -86,7 +96,7 @@ namespace SurfaceJackDemo.Views
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
         }
-
         #endregion
+
     }
 }
