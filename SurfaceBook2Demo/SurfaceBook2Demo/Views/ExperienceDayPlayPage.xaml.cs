@@ -3,6 +3,7 @@
 using SurfaceBook2Demo.ViewModels;
 using SDX.Toolkit.Helpers;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace SurfaceBook2Demo.Views
@@ -20,12 +21,12 @@ namespace SurfaceBook2Demo.Views
         private bool HasNavigatedTo = false;
 
         #endregion
+
         #region Public Static Properties
 
         public static ExperienceDayPlayPage Current { get; private set; }
 
         #endregion
-
 
         #region Construction
 
@@ -36,18 +37,18 @@ namespace SurfaceBook2Demo.Views
             this.Loaded += ExperienceDayPlayPage_Loaded;
         }
 
-        private void ExperienceDayPlayPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ExperienceDayPlayPage_Loaded(object sender, RoutedEventArgs e)
         {
             NavigateFromPage();
             ExperienceDayPlayPage.Current.HasLoaded = true;
             if (ExperienceDayPlayPage.Current.HasNavigatedTo)
             {
-                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+                AnimationHelper.PerformPageEntranceAnimation(this);
+                this.ForzaPlayer.StartPlayer();
             }
         }
 
         #endregion
-
 
         #region INavigate Interface
 
@@ -56,7 +57,8 @@ namespace SurfaceBook2Demo.Views
             // animations in
             if (ExperienceDayPlayPage.Current.HasLoaded)
             {
-                SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+                AnimationHelper.PerformPageEntranceAnimation(this);
+                this.ForzaPlayer.StartPlayer();
             }
             else
             {
@@ -67,7 +69,8 @@ namespace SurfaceBook2Demo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);            
+            AnimationHelper.PerformPageExitAnimation(this);
+            this.ForzaPlayer.ResetPlayer(1000);
         }
 
         #endregion
