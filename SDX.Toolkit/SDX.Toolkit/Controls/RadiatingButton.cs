@@ -50,7 +50,7 @@ namespace SDX.Toolkit.Controls
         private const double RADIATE_OPACITY_DEFAULT = 0.0;
         private const double RADIATE_OPACITY_START = 0.8;
         private const double RADIATE_OPACITY_END = 0.0;
-        private const double TRY_IT_DELAY = 2500;
+        private const double TRY_IT_DELAY = 1500;
 
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_TRY_IT_IMAGE = @"ms-appx:///Assets/RadiatingButton/tryit_dot.png";
