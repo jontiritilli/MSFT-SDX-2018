@@ -32,8 +32,8 @@ namespace SurfaceProDemo.ViewModels
         private const int APPSELECTOR_BUTTON_WIDTH = 40;
         private const int APPSELECTOR_BUTTON_HEIGHT = 40;
 
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 912;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 1368;
+        private const int SELECTORIMAGE_IMAGEWIDTH = 1296;
+
         #endregion
 
 
@@ -72,8 +72,9 @@ namespace SurfaceProDemo.ViewModels
 
         public AccessoriesMouseViewModel()
         {
+            double height = SELECTORIMAGE_IMAGEWIDTH * .667;
             this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
+            this.ImageSelectorImageHeight = (int)height;
 
             this.appSelectorData.Add(new AppSelectorData()
             {

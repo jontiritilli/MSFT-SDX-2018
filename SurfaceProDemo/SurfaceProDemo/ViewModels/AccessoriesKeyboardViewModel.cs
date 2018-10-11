@@ -32,8 +32,8 @@ namespace SurfaceProDemo.ViewModels
         private const int APPSELECTOR_BUTTON_WIDTH = 40;
         private const int APPSELECTOR_BUTTON_HEIGHT = 40;
 
-        private const int SELECTORIMAGE_IMAGEHEIGHT = 912;
-        private const int SELECTORIMAGE_IMAGEWIDTH = 1368;
+        private const int SELECTORIMAGE_IMAGEWIDTH = 1296;
+
         #endregion
 
 
@@ -76,8 +76,9 @@ namespace SurfaceProDemo.ViewModels
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
             // set the header and lede and colors list for app selector
             // use the event to handle color changed
+            double height = SELECTORIMAGE_IMAGEWIDTH * .667;
             this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            this.ImageSelectorImageHeight= SELECTORIMAGE_IMAGEHEIGHT;
+            this.ImageSelectorImageHeight = (int)height;
 
             this.appSelectorData.Add(new AppSelectorData()
             {
