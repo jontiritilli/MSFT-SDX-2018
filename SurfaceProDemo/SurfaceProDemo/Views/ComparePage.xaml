@@ -39,18 +39,21 @@
                 Headline="{x:Bind Path=ViewModel.Headline}"
                 Lede="{x:Bind Path=ViewModel.Lede}"                
                 HeadlineStyle="PageHeadline"
-                LedeStyle="PageLede"                
+                LedeStyle="PageLede"
+                Width="{StaticResource HeaderWidth}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"/>
         <ctrl:ImageEx
-            Grid.Row="3"
+            Grid.Row="0"
             Grid.Column="1"
             Grid.ColumnSpan="2"
+            Grid.RowSpan="7"
             x:Name="img_Family"
             ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
             ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            Margin="0,125,0,0"
             HasEntranceTranslation="False"
             Opacity="0" />
 

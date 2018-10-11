@@ -47,7 +47,7 @@ namespace SDX.Toolkit.Controls
         private const double SLIDER_MAXIMUM = 100;
         private const double MILLISECONDS_PER_VALUE = 50;
 
-        private const double THUMB_WIDTH = 25;  // MUST KEEP IN SYNC WITH XAML VALUE
+        private const double THUMB_WIDTH = 29;  // MUST KEEP IN SYNC WITH XAML VALUE
 
         private const string URI_ICON_DAY_13 = "ms-appx:///Assets/DaySlider/sb2_13_sun.png";
         private const string URI_ICON_NIGHT_13 = "ms-appx:///Assets/DaySlider/sb2_13_moon.png";

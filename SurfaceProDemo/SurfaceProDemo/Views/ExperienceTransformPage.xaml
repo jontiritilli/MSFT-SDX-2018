@@ -60,8 +60,8 @@
                 TryItEnabled="True"
                 RadiatingButtonIcon="touch"
                 PopupPosition="Left"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.85}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.52}"
                 EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
             <Popup
@@ -85,14 +85,14 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
-        <ctrl:ImageEx
-            Grid.Row="3"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
+        <ctrl:ImageEx Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="3"
             x:Name="img_Studio"
             ImageWidth="{x:Bind Path=ViewModel.StudioWidth}"            
             ImageSource="{x:Bind Path=ViewModel.StudioUri}"
             HasEntranceTranslation="False"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="25,100,0,0"
             Canvas.ZIndex="100"
             Opacity="0"/>
     </Grid>
