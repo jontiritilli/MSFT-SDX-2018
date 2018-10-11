@@ -24,7 +24,9 @@
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
@@ -38,7 +40,7 @@
             x:Name="OverlayGrid"
             Grid.Row="0"
             Grid.Column="0"
-            Grid.RowSpan="7"
+            Grid.RowSpan="9"
             Grid.ColumnSpan="7"
             Canvas.ZIndex="1000"
             HorizontalAlignment="Stretch"
@@ -85,31 +87,44 @@
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
+        <StackPanel
+            Orientation="Vertical"
+            ></StackPanel>
+        <ctrl:TextBlockEx Grid.Row="3" Grid.Column="1"
+            x:Name="BulletListTitle" 
+            Text="{x:Bind Path=ViewModel.BulletListTitle}"
+            TextStyle="ListLedeBold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
         <ListView x:Name="itemListView"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             HorizontalAlignment="Left"
-            Width="400"            
+            Width="400"
             SelectionChanged="itemListView_SelectionChanged"
             ItemsSource="{x:Bind Path=ViewModel.Tracks, Mode=OneTime}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Padding="5,10,5,10">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Width="110" Height="110">
+                        <Border
+                            Width="90"
+                            Height="60"
+                            Grid.Column="1">
                             <Image Stretch="UniformToFill">
                                 <Image.Source>
                                     <BitmapImage UriSource="{Binding Path=CoverArtSourceUri, Mode=OneTime}"
-                                        DecodePixelWidth="40"/>
+                                        DecodePixelWidth="90"/>
                                 </Image.Source>
                             </Image>
                         </Border>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                            <TextBlock Text="{Binding Path=ArtistName, Mode=OneTime}" Foreground="White" TextWrapping="NoWrap"/>
-                            <TextBlock Text="{Binding Path=TrackTitle, Mode=OneTime}" Foreground="#FF333333" TextWrapping="NoWrap"/>
+                        <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="10,0,0,0">
+                            <TextBlock Text="{Binding Path=ArtistName, Mode=OneTime}" Foreground="White" TextWrapping="WrapWholeWords"/>
+                            <TextBlock Text="{Binding Path=TrackTitle, Mode=OneTime}" Foreground="#FF333333" TextWrapping="WrapWholeWords"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -119,7 +134,7 @@
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"
             Grid.Column="0"
-            Grid.RowSpan="7"
+            Grid.RowSpan="9"
             Grid.ColumnSpan="4"
             Canvas.ZIndex="101">
 
@@ -149,8 +164,15 @@
                 </Popup.Child>
             </Popup>
         </Canvas>
-        
-        <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
+        <ctrl:ImageEx x:Name="SpotifyLogo" Grid.Row="5" Grid.Column="1" 
+            ImageWidth="{x:Bind Path=ViewModel.ImageSpotifyWidth}"
+            ImageSource="{x:Bind Path=ViewModel.ImageSpotifyUri}"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            PageEntranceDirection="Left"
+            HasEntranceTranslation="False"
+            Opacity="0"/>
+        <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3"
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.ImageUri}"
             VerticalAlignment="Top"

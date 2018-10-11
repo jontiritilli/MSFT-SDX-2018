@@ -313,7 +313,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="12.667" />    <!-- 2/3 -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="40" />    <!-- 2/3 -->
+        <Setter Property="LineHeight" Value="26.667" />    <!-- 2/3 -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />

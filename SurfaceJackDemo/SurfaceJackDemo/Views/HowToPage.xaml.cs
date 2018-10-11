@@ -80,6 +80,19 @@ namespace SurfaceJackDemo.Views
             if (sender is ListView listView)
             {
                 this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
+               // hack to force the controltemplates to change to use the selected icon and foreground
+               // dont judge me
+                foreach (var item in e.AddedItems)
+                {
+                    ListViewItem listViewItem = (ListViewItem)listView.ContainerFromItem(item);
+
+                    listViewItem.ContentTemplate = (DataTemplate)this.Resources["SelectedListViewItem"];
+                }
+                foreach (var item in e.RemovedItems)
+                {
+                    ListViewItem listViewItem = (ListViewItem)listView.ContainerFromItem(item);
+                    listViewItem.ContentTemplate = (DataTemplate)this.Resources["UnselectedListViewItem"];
+                }
             }
         }
 
