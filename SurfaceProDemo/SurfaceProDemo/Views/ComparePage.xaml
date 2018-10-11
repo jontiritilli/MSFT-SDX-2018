@@ -52,8 +52,17 @@
             TranslateDirection="Left"
             Canvas.ZIndex="100"
             HasEntranceTranslation="False"
-            Opacity="0"
-            />
+            Opacity="0" />
+        
+        <ctrl:TextBlockEx
+            x:Name="CompareLegal"
+            Grid.Row="5"
+            Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"/>
+        
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"

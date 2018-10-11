@@ -10,7 +10,6 @@ namespace SurfaceProDemo.ViewModels
 {
     public class CompareViewModel : ViewModelBase
     {
-
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/generic-bg.png";
@@ -40,11 +39,11 @@ namespace SurfaceProDemo.ViewModels
         private const int IMG_GO_HEIGHT = 630;//1260
         #endregion
 
-
         #region Public Properties
 
         public string Headline;
-        public string Lede;    
+        public string Lede;
+        public string Legal;
 
         public string BackgroundUri = URI_BACKGROUND;
 
