@@ -4,6 +4,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 using SurfaceStudioDemo.ViewModels;
+using SurfaceStudioDemo.Services;
+
 using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Controls;
 using SDX.Telemetry.Services;
@@ -36,7 +38,6 @@ namespace SurfaceStudioDemo.Views
         {
             InitializeComponent();
 
-
             var timer = new DispatcherTimer {
                 Interval = TimeSpan.FromMilliseconds(1500)
             };
@@ -46,6 +47,8 @@ namespace SurfaceStudioDemo.Views
             timer.Tick += (sender, args) =>
             {
                 timer.Stop();
+
+                this.CompareLegal.Visibility = ConfigurationService.Current.GetIsStudioCompareLegalEnabled() ? Visibility.Visible : Visibility.Collapsed;
 
                 this.rBtnPro.PopupChild = FlipViewPage.Current.GetComparePagePopupPro(); ;
                 ComparePagePopupPro.Current.CloseButton_Clicked += Close_Pro_Clicked;
