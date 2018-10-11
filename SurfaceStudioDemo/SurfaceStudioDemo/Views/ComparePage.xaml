@@ -50,9 +50,15 @@
             ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
-            Opacity="0"
-            />
+            Opacity="0" />
 
+        <ctrl:TextBlockEx x:Name="CompareLegal" Grid.Row="5" Grid.Column="1"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"
+            HasPageEntranceAnimationEnabled="False"/>
+        
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
                 Grid.Column="0"
