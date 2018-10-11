@@ -25,6 +25,7 @@ namespace SurfaceStudioDemo.ViewModels
 
         public string Headline;
         public string Lede;
+        public string Legal;
 
         public string DialTryItTitle;
         public string DialTryItLede;

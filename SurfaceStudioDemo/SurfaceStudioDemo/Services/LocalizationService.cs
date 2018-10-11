@@ -234,6 +234,7 @@ namespace SurfaceStudioDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY_LEGAL, "ACCESSORIES_INTERACTIVE_COPY_LEGAL");
 
             viewModel.PenTryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_PEN_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_PEN_TRYIT_TITLE");
             viewModel.PenTryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_PEN_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_PEN_TRYIT_COPY");
