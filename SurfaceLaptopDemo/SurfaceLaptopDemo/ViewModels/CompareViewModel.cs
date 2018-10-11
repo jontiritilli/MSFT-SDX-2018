@@ -42,11 +42,11 @@ namespace SurfaceLaptopDemo.ViewModels
         private const int IMG_GO_HEIGHT = 630;//1260
         #endregion
 
-
         #region Public Properties
 
         public string Headline;
         public string Lede;
+        public string Legal;
 
         public string BackgroundUri = URI_BACKGROUND;
 
