@@ -12,6 +12,7 @@ namespace SurfaceJackDemo.Models
         public bool IsChoosePathPageEnabled = true;
         public string Language = "en-US";
         public bool IsTelemetryEnabled = false;
+        public double Volume = 50;
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
 
         public static ConfigurationFile CreateDefault()

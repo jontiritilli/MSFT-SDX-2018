@@ -12,6 +12,55 @@
         <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
         <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
         <conv:MathConverter x:Key="MathConverterKey"/>
+        <DataTemplate x:Key="PlayListViewItem">
+            <Grid Padding="5,10,5,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    Width="78"
+                    Height="78"
+                    Grid.Column="1">
+                    <Image Stretch="UniformToFill">
+                        <Image.Source>
+                            <BitmapImage UriSource="{Binding Path=CoverArtSourceUri, Mode=OneTime}"
+                                        DecodePixelWidth="78"/>
+                        </Image.Source>
+                    </Image>
+                </Border>
+                <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Path=ArtistName, Mode=OneTime}" Foreground="White" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{Binding Path=TrackTitle, Mode=OneTime}" Foreground="#FF737373" TextWrapping="WrapWholeWords"/>
+                </StackPanel>
+            </Grid>
+
+        </DataTemplate>
+        <DataTemplate x:Key="SelectedPlayListViewItem">
+            <Grid Padding="5,10,5,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    Width="78"
+                    Height="78"
+                    Grid.Column="1">
+                    <Image Stretch="UniformToFill">
+                        <Image.Source>
+                            <BitmapImage UriSource="{Binding Path=SelectedCoverArtSourceUri, Mode=OneTime}"
+                                        DecodePixelWidth="78"/>
+                        </Image.Source>
+                    </Image>
+                </Border>
+                <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Path=ArtistName, Mode=OneTime}" Foreground="White" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{Binding Path=TrackTitle, Mode=OneTime}" Foreground="#FF737373" TextWrapping="WrapWholeWords"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
@@ -96,40 +145,52 @@
             TextStyle="ListLedeBold"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"/>
-        <ListView x:Name="itemListView"
+        <ctrl:ListViewEx
+            x:Name="itemListView"
             Grid.Row="4"
             Grid.Column="1"
             HorizontalAlignment="Left"
-            Width="400"
+            Width="288"
+            Height="357.5"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionChanged="itemListView_SelectionChanged"
+            ItemTemplate="{StaticResource PlayListViewItem}"  
             ItemsSource="{x:Bind Path=ViewModel.Tracks, Mode=OneTime}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="5,10,5,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Border
-                            Width="90"
-                            Height="60"
-                            Grid.Column="1">
-                            <Image Stretch="UniformToFill">
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding Path=CoverArtSourceUri, Mode=OneTime}"
-                                        DecodePixelWidth="90"/>
-                                </Image.Source>
-                            </Image>
-                        </Border>
-                        <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="10,0,0,0">
-                            <TextBlock Text="{Binding Path=ArtistName, Mode=OneTime}" Foreground="White" TextWrapping="WrapWholeWords"/>
-                            <TextBlock Text="{Binding Path=TrackTitle, Mode=OneTime}" Foreground="#FF333333" TextWrapping="WrapWholeWords"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            <ctrl:ListViewEx.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <ListViewItemPresenter
+                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                  SelectionCheckMarkVisualEnabled="True"
+                                  CheckBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                  CheckBoxBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                  DragBackground="{ThemeResource ListViewItemDragBackgroundThemeBrush}"
+                                  DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
+                                  FocusBorderBrush="{ThemeResource SystemControlForegroundAltHighBrush}"
+                                  FocusSecondaryBorderBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                  PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                  PointerOverBackground="{ThemeResource SystemControlHighlightListLowBrush}"
+                                  PointerOverForeground="{ThemeResource SystemControlHighlightAltBaseHighBrush}"
+                                  SelectedBackground="#FF272727"
+                                  SelectedForeground="{ThemeResource SystemControlHighlightAltBaseHighBrush}"
+                                  SelectedPointerOverBackground="#FF272727"
+                                  PressedBackground="{ThemeResource SystemControlHighlightListMediumBrush}"
+                                  SelectedPressedBackground="#FF272727"
+                                  DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                                  DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}"
+                                  ReorderHintOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  ContentMargin="{TemplateBinding Padding}"
+                                  CheckMode="Inline"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ctrl:ListViewEx.ItemContainerStyle>
+        </ctrl:ListViewEx>
         
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"

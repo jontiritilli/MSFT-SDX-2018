@@ -66,8 +66,7 @@
     <x:Double x:Key="HeaderSpacerRowHeightListHeader">23.07</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightListItemHeader">15</x:Double>
     <x:Double x:Key="HeaderSpacerRowHeightPopupHeader">21.425</x:Double>
-
-
+    
     <x:Double x:Key="AccessoriesPenListIconWidth">72</x:Double>
     <x:Double x:Key="AccessoriesPenListTextWidth">310.93</x:Double>
     <x:Double x:Key="ListColumnSpacerWidth">21.5</x:Double>
@@ -143,4 +142,5 @@
     <x:Double x:Key="PlayerButtonSpacer">30</x:Double>
     <x:Double x:Key="PlayerScrubHeight">6</x:Double>
     <x:Double x:Key="PlayerScrubWidth">547.2</x:Double>
+    <x:Double x:Key="WITBListIconWidth">66</x:Double>
 </ResourceDictionary>

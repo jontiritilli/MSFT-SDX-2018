@@ -52,6 +52,7 @@ namespace SurfaceJackDemo.ViewModels
         public string NavBarProductivity;
         public string NavBarSpecs;
         public string NavBarPartner;
+        public double Volume;
 
         // music bar playlist
         public Playlist Playlist = null;
@@ -89,6 +90,7 @@ namespace SurfaceJackDemo.ViewModels
 
         public FlipViewViewModel()
         {
+            this.Volume = ConfigurationService.Current.GetVolume();
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

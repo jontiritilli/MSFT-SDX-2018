@@ -6,6 +6,8 @@ using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace SurfaceJackDemo.Views
 {
@@ -76,7 +78,7 @@ namespace SurfaceJackDemo.Views
 
         private void AudioListenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            this.itemListView.Background = StyleHelper.GetAcrylicBrush("Dark");
+            this.itemListView.Background = new SolidColorBrush(Colors.Black);
             this.OverlayGrid.Background = StyleHelper.GetAcrylicBrush("Dark");
             NavigateFromPage();
             this.itemListView.SelectedIndex = 0;
@@ -97,6 +99,19 @@ namespace SurfaceJackDemo.Views
             if (sender is ListView itemListView)
             {
                 FlipViewPage.Current.SelectTrack(itemListView.SelectedIndex);
+                // hack to force the controltemplates to change to use the selected icon and foreground
+                // dont judge me
+                foreach (var item in e.AddedItems)
+                {
+                    ListViewItem listViewItem = (ListViewItem)itemListView.ContainerFromItem(item);
+
+                    listViewItem.ContentTemplate = (DataTemplate)this.Resources["SelectedPlayListViewItem"];
+                }
+                foreach (var item in e.RemovedItems)
+                {
+                    ListViewItem listViewItem = (ListViewItem)itemListView.ContainerFromItem(item);
+                    listViewItem.ContentTemplate = (DataTemplate)this.Resources["PlayListViewItem"];
+                }
             }
         }
 
