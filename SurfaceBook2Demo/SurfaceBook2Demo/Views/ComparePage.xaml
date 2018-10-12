@@ -34,18 +34,21 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PageHeadline"
-            LedeStyle="PageLede"                
+            LedeStyle="PageLede"
+            Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             HeadlineOpacity="0"
-            LedeOpacity="0"
-            VerticalAlignment="Top"/>
+            LedeOpacity="0"/>
+        
         <ctrl:ImageEx
-            Grid.Row="3"
-            Grid.RowSpan="4"
+            Grid.Row="0"
+            Grid.RowSpan="7"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             x:Name="img_Family"
@@ -53,9 +56,18 @@
             ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            Margin="0,210,0,0"
             Opacity="0"
-            HasEntranceTranslation="False"
-            />
+            HasEntranceTranslation="False" />
+
+        <ctrl:TextBlockEx Grid.Row="5" Grid.Column="1"
+            x:Name="CompareLegal"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Visibility="Collapsed"/>
+
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4"
             x:Name="ButtonCanvas"
             Canvas.ZIndex="101">
@@ -65,7 +77,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.01}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.65}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="600"
                 Clicked="RadiatingButton_Clicked"/>                                
 
             <ctrl:RadiatingButton
@@ -73,7 +85,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.185}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.59}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1100"
+                EntranceStaggerDelayInMilliseconds="800"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -81,7 +93,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.585}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.48}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1200"
+                EntranceStaggerDelayInMilliseconds="1000"
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton
@@ -89,7 +101,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.76}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.64}"                                                    
                 AutoStart = "false"
-                EntranceStaggerDelayInMilliseconds="1300"  
+                EntranceStaggerDelayInMilliseconds="1200"  
                 Clicked="RadiatingButton_Clicked"/>
 
             <ctrl:RadiatingButton

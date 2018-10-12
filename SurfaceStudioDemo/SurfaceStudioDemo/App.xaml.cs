@@ -113,6 +113,8 @@ namespace SurfaceStudioDemo
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            LoadAppResourceDictionaries();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -131,15 +133,15 @@ namespace SurfaceStudioDemo
             return new ActivationService(this);
         }
 
-        private void LoadAppResourceDictionaries(string path)
+        private void LoadAppResourceDictionaries()
         {
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
-            string file = localizationService.IsLanguageJapanese() ? "TextBlock.xaml" : "TextBlock-ja-JP.xaml";
+            string file = localizationService.IsLanguageJapanese() ? "TextBlock-ja-JP.xaml" : "TextBlock.xaml";
 
             // calculate uri's for styles 
-            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}/{1}", path, file);
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}", file);
 
             // load textblock styles
             ResourceDictionary resourceDictionary = new ResourceDictionary()

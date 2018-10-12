@@ -44,6 +44,7 @@
             HeadlineOpacity="0"
             LedeOpacity="0"                                          
             VerticalAlignment="Top" />
+        
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"
             Grid.Column="0"
@@ -53,8 +54,8 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 TryItText="{x:Bind ViewModel.PopTryIt}"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.37}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.37}"                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.34}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.39}"                    
                 PopupPosition="Right"
                 RadiatingButtonIcon="touch"
                 TryItEnabled="True"
@@ -62,14 +63,14 @@
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.77}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                                    
                 PopupPosition="Left"
                 EntranceStaggerDelayInMilliseconds="1000"
                 AutoStart = "false"/>
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"                              
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.52}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.50}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.19}"
                 EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
@@ -108,12 +109,13 @@
 
         </Canvas>
 
-        <ctrl:ImageEx Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3"
+        <ctrl:ImageEx Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3"
             x:Name="img_Laptop"
             ImageWidth="{x:Bind Path=ViewModel.LaptopWidth}"            
             ImageSource="{x:Bind Path=ViewModel.LaptopUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            Margin="0,25,0,0"
             HasEntranceTranslation="False"
             Opacity="0" />
     </Grid>

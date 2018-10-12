@@ -10,8 +10,6 @@ namespace SurfaceBook2Demo.ViewModels
 {
     public class CompareViewModel : ViewModelBase
     {
-
-
         #region Constants
 
         private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/sb2_15_background_light.jpg";
@@ -50,6 +48,7 @@ namespace SurfaceBook2Demo.ViewModels
 
         public string Headline;
         public string Lede;
+        public string Legal;
 
         public string BackgroundUri = URI_BACKGROUND;
 

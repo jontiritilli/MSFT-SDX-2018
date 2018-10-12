@@ -19,8 +19,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height=".5*"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
@@ -31,7 +29,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:ImageEx Grid.Row="4" Grid.Column="1"
+        <ctrl:ImageEx Grid.Row="3" Grid.Column="1"
             x:Name="img_Right"
             ImageWidth="{x:Bind Path=ViewModel.READY_IMAGE_WIDTH}"
             ImageSource="{x:Bind Path=ViewModel.ReadyUri}"
@@ -57,7 +55,7 @@
                 TextStyle="ReadyButtonCaption"/>
         </Border>
         
-        <ctrl:TextBlockEx x:Name="PageHeadline" Grid.Row="3" Grid.Column="1"
+        <ctrl:TextBlockEx x:Name="PageHeadline" Grid.Row="1" Grid.Column="1"
                 Text="{x:Bind Path=ViewModel.Headline}"
                 TextAlignment="Center"
                 HorizontalAlignment="Center"

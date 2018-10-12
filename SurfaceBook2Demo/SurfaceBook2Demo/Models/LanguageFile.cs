@@ -109,6 +109,7 @@ namespace SurfaceBook2Demo.Models
         public string BEST_BULLET_FIVE_LEGAL = "";
         public string COMPARE_HEADLINE = "Find your perfect Surface";
         public string COMPARE_COPY = "Compare features and specs to see how each Surface device stacks up.";
+        public string COMPARE_LEGAL = "*Surface Studio 2 coming soon.";
         public string COMPARE_DEVICE_ONE_TITLE = "Surface Pro 6";
         public string COMPARE_DEVICE_TWO_TITLE = "Surface Book 2";
         public string COMPARE_DEVICE_THREE_TITLE = "Surface Studio 2";

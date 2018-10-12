@@ -12,8 +12,8 @@
     <Grid x:Name="LayoutRoot" Margin="8,0" Background="Transparent" Tapped="Grid_Tapped" Opacity="{Binding Opacity}">
         <Grid.Resources>
             <x:Double x:Key="RowSpacer">20</x:Double>
-            <x:Double x:Key="ThumbWidth">25</x:Double>  <!-- MUST KEEP IN SYNC WITH CODE-BEHIND -->
-            <x:Double x:Key="ShadowWidth">25</x:Double>
+            <x:Double x:Key="ThumbWidth">50</x:Double>  <!-- MUST KEEP IN SYNC WITH CODE-BEHIND -->
+            <x:Double x:Key="ShadowWidth">50</x:Double>
             <x:Double x:Key="TickWidth">10</x:Double>
             <Style TargetType="Thumb">
                 <Setter Property="Template">
@@ -21,15 +21,15 @@
                         <ControlTemplate TargetType="Thumb">
                             <Grid>
                                 <Ellipse x:Name="ThumbShadow" Stroke="DimGray" Fill="DimGray" Opacity="0.3" 
-                                         Width="{StaticResource ThumbWidth}" Height="{StaticResource ThumbWidth}">
+                                         Width="{StaticResource ThumbWidth}" Height="{StaticResource ThumbWidth}" VerticalAlignment="Center">
                                     <Ellipse.RenderTransform>
-                                        <TranslateTransform X="-10.5" Y="2"/>
+                                        <TranslateTransform X="1.8" Y="-9.2"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
                                 <Ellipse x:Name="Thumb" Stroke="White" Fill="White" Opacity="1.0" 
-                                         Width="{StaticResource ThumbWidth}" Height="{StaticResource ThumbWidth}">
+                                         Width="{StaticResource ThumbWidth}" Height="{StaticResource ThumbWidth}" VerticalAlignment="Center">
                                     <Ellipse.RenderTransform>
-                                        <TranslateTransform X="-12.5" Y="0"/>
+                                        <TranslateTransform X="0" Y="-11"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
                             </Grid>

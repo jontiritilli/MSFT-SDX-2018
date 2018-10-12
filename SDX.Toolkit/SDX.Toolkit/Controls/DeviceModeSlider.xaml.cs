@@ -46,7 +46,7 @@ namespace SDX.Toolkit.Controls
         private const double SLIDER_MAXIMUM = 100;
         private const double MILLISECONDS_PER_VALUE = 50;
 
-        private const double THUMB_WIDTH = 25;  // MUST KEEP IN SYNC WITH XAML VALUE
+        private const double THUMB_WIDTH = 50;  // MUST KEEP IN SYNC WITH XAML VALUE
 
         #endregion
 
@@ -100,20 +100,22 @@ namespace SDX.Toolkit.Controls
         public void SnapTo(DeviceModeSliderSnapPositions snapPosition)
         {
             double endingValue = SLIDER_MINIMUM;    // default to setting to the leftmost position
+            double thumbWidthFactor = ((Thumb.ActualWidth / 2) / ContainerCanvas.ActualWidth * 100); //calculate the thumb's width as a percentage of the total slider width
+            double tickWidthFactor = ((StudioTick.ActualWidth / 2) / ContainerCanvas.ActualWidth * 100);
 
             // calculate the eneding value
             switch (snapPosition)
             {
                 case DeviceModeSliderSnapPositions.Studio:
-                    endingValue = SLIDER_MINIMUM;
+                    endingValue = SLIDER_MINIMUM - (thumbWidthFactor);
                     break;
 
                 case DeviceModeSliderSnapPositions.Laptop:
-                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) / 2.0);
+                    endingValue = SLIDER_MINIMUM + ((SLIDER_MAXIMUM - SLIDER_MINIMUM) / 2.0) - (thumbWidthFactor);
                     break;
 
                 case DeviceModeSliderSnapPositions.Tablet:
-                    endingValue = SLIDER_MAXIMUM;
+                    endingValue = SLIDER_MAXIMUM - (thumbWidthFactor);
                     break;
             }
 

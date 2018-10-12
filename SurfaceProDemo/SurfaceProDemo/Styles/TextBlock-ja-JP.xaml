@@ -364,7 +364,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="13" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="2.5" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="15" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />

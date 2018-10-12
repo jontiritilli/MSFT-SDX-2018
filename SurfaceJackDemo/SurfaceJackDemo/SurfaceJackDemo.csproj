@@ -371,6 +371,9 @@
     <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\sb2_15_Generic_BG.jpg" />
     <Content Include="Assets\Backgrounds\sb2_Generic_BG.jpg" />
+	    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
+    <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Controls\answer-lifestyle.png" />
     <Content Include="Assets\Controls\answer-selected.png" />
     <Content Include="Assets\Controls\answer.png" />

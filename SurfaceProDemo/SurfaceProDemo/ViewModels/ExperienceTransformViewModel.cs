@@ -17,7 +17,7 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_STUDIO = "ms-appx:///Assets/Experience/studio.png";
         private const string URI_POPVIDEO = "ms-appx:///Assets/Experience/kickRotate_720p30.mp4";
 
-        private const int IMG_STUDIO_WIDTH = 1122;
+        private const int IMG_STUDIO_WIDTH = 1250;
         private const int IMG_STUDIO_HEIGHT = 402;
         #endregion
 

@@ -13,6 +13,7 @@ namespace SurfaceLaptopDemo.Models
         public bool IsTelemetryEnabled = false;
         public bool IsBlackSchemeEnabled = false;
         public bool IsCoralSchemeEnabled = false;
+        public bool IsStudioCompareLegalEnabled = false;
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
 
 
@@ -25,7 +26,8 @@ namespace SurfaceLaptopDemo.Models
                 IsTelemetryEnabled = false,
                 TelemetryKey = TelemetryKeys.Test,
                 IsBlackSchemeEnabled = false,
-                IsCoralSchemeEnabled = false
+                IsCoralSchemeEnabled = false,
+                IsStudioCompareLegalEnabled = false
             };
 
             return config;

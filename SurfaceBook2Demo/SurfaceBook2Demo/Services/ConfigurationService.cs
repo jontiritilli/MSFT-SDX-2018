@@ -95,6 +95,18 @@ namespace SurfaceBook2Demo.Services
             return file;
         }
 
+        public bool GetIsStudioCompareLegalEnabled()
+        {
+            bool isStudioCompareLegalEnabled = false;
+
+            if (this.IsLoaded)
+            {
+                isStudioCompareLegalEnabled = this.Configuration.IsStudioCompareLegalEnabled;
+            }
+
+            return isStudioCompareLegalEnabled;
+        }
+
         public async Task Initialize()
         {
             //Log.Trace("Entered ConfigurationService.Initialize");

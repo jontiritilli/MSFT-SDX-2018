@@ -73,7 +73,6 @@
             PageEntranceDirection="Right"
             Opacity="0"/>
 
-
         <ctrl:TextBlockEx x:Name="PopLeftLegal" Grid.Row="5" Grid.Column="1"
             Text="{x:Bind Path=ViewModel.PopLeftLegal}"
             HorizontalAlignment="Left"
@@ -116,7 +115,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="275"
-                VerticalOffset="390"                    
+                VerticalOffset="340"                    
                 IsLightDismissEnabled="True"
                 Opened="PopLeft_Opened"
                 Closed="PopLeft_Closed">

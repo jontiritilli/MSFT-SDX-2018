@@ -14,6 +14,7 @@ namespace SurfaceProDemo.Models
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
         public bool IsBlackSchemeEnabled = false;
         public bool IsChoosePathPageEnabled = false;
+        public bool IsStudioCompareLegalEnabled = false;
 
 
         public static ConfigurationFile CreateDefault()
@@ -25,7 +26,8 @@ namespace SurfaceProDemo.Models
                 IsTelemetryEnabled = false,
                 TelemetryKey = TelemetryKeys.Test,
                 IsBlackSchemeEnabled = false,
-                IsChoosePathPageEnabled = false
+                IsChoosePathPageEnabled = false,
+                IsStudioCompareLegalEnabled = false
             };
 
             return config;

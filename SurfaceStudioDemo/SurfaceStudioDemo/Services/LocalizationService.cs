@@ -234,6 +234,7 @@ namespace SurfaceStudioDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_HEADLINE, "ACCESSORIES_INTERACTIVE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY, "ACCESSORIES_INTERACTIVE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_COPY_LEGAL, "ACCESSORIES_INTERACTIVE_COPY_LEGAL");
 
             viewModel.PenTryItTitle = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_PEN_TRYIT_TITLE, "ACCESSORIES_INTERACTIVE_PEN_TRYIT_TITLE");
             viewModel.PenTryItLede = GetStringValue(_languageCurrent.ACCESSORIES_INTERACTIVE_PEN_TRYIT_COPY, "ACCESSORIES_INTERACTIVE_PEN_TRYIT_COPY");
@@ -388,6 +389,7 @@ namespace SurfaceStudioDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.COMPARE_HEADLINE, "COMPARE_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.COMPARE_COPY, "COMPARE_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.COMPARE_LEGAL, "COMPARE_LEGAL");
             viewModel.ProTitle = GetStringValue(_languageCurrent.COMPARE_DEVICE_ONE_TITLE, "COMPARE_DEVICE_ONE_TITLE");
             viewModel.BookTitle = GetStringValue(_languageCurrent.COMPARE_DEVICE_TWO_TITLE, "COMPARE_DEVICE_TWO_TITLE");
             viewModel.StudioTitle = GetStringValue(_languageCurrent.COMPARE_DEVICE_THREE_TITLE, "COMPARE_DEVICE_THREE_TITLE");

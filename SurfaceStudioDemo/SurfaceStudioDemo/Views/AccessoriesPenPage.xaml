@@ -66,13 +66,13 @@
             x:Name="ColoringBook"
             ImageColumnSpan="2" />
 
-        <!-- this will provide the cover effect for the interactive page until the user interacts-->
-        <!--<Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" Grid.ColumnSpan="2"
-            x:Name="ColoringBookCover"
-            Opacity=".4"
-            Background="White">
-        </Canvas>-->
-        
+        <ctrl:TextBlockEx x:Name="InteractiveLegal" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
+            Text="{x:Bind Path=ViewModel.Legal}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextStyle="Legal"
+            HasPageEntranceAnimationEnabled="False"/>
+
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="4"
             x:Name="GridCanvas">
             

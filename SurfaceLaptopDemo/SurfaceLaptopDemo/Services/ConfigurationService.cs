@@ -117,6 +117,18 @@ namespace SurfaceLaptopDemo.Services
             return isCoralSchemeEnabled;
         }
 
+        public bool GetIsStudioCompareLegalEnabled()
+        {
+            bool isStudioCompareLegalEnabled = false;
+
+            if (this.IsLoaded)
+            {
+                isStudioCompareLegalEnabled = this.Configuration.IsStudioCompareLegalEnabled;
+            }
+
+            return isStudioCompareLegalEnabled;
+        }
+
         public async Task Initialize()
         {
             if (this.IsLoading || this.IsLoaded) { return; }
