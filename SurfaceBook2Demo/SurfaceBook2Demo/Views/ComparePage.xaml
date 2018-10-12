@@ -107,7 +107,7 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnGo"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.865}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"                                                    
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"
                 AutoStart = "false"
                 EntranceStaggerDelayInMilliseconds="1400"
                 Clicked="RadiatingButton_Clicked"/>

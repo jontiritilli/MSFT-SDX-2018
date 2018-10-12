@@ -5,8 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
+    xmlns:conv="using:SDX.Toolkit.Converters"
     DataContext="{Binding AccessoriesPenViewModel, Source={StaticResource Locator}}"    
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
+    </Page.Resources>
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.Background>
@@ -55,7 +62,9 @@
                 IsPenOnly="True"
                 TryItEnabled="True"
                 TryItText="{x:Bind Path=ViewModel.TryItTitle}"
-                TryItCaption="{x:Bind Path=ViewModel.TryItLede}"                
+                TryItCaption="{x:Bind Path=ViewModel.TryItLede}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.61}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.35}"              
                 AutoStart = "false"/>
         </Canvas>
         
