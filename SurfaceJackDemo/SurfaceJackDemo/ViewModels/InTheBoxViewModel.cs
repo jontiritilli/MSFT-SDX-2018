@@ -20,14 +20,8 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_BACKGROUND_SB2_15 = "ms-appx:///Assets/Backgrounds/sb2_15_Generic_BG.jpg";
         private const string URI_BACKGROUND_SB2_13 = "ms-appx:///Assets/Backgrounds/sb2_Generic_BG.jpg";
 
-        private const string URI_IMAGEHEADPHONES = "ms-appx:///Assets/InTheBox/inthebox_headphones.png";
-        private const double WIDTH_IMAGEHEADPHONES = 744;
-        private const string URI_IMAGEBOX = "ms-appx:///Assets/InTheBox/inthebox_carrycaseFPO.png";
-        private const double WIDTH_IMAGEBOX = 720;
-        private const string URI_IMAGEHPCORD = "ms-appx:///Assets/InTheBox/inthebox_stereoFPO.png";
-        private const double WIDTH_IMAGEHPCORD = 432;
-        private const string URI_IMAGEUSBCORD = "ms-appx:///Assets/InTheBox/inthebox_usbFPO.png";
-        private const double WIDTH_IMAGEUSBCORD = 432;
+        private const string URI_IMAGE = "ms-appx:///Assets/InTheBox/whats-in-the-box.png";
+        private const double WIDTH_IMAGE = 1776;
 
 
         #endregion
@@ -39,18 +33,15 @@ namespace SurfaceJackDemo.ViewModels
         public string Headline;
         public string Lede;
 
-        public string ImageHeadphonesUri = URI_IMAGEHEADPHONES;
-        public string ImageBoxUri = URI_IMAGEBOX;
-        public string ImageHPCordUri = URI_IMAGEHPCORD;
-        public string ImageUSBCordUri = URI_IMAGEUSBCORD;
+        public string ImageUri = URI_IMAGE;
 
-        public double ImageHeadphonesWidth;
+        public double ImageWidth;
         public double ImageBoxWidth;
         public double ImageHPCordWidth;
         public double ImageUSBCordWidth;
 
         public List<ListItem> ListItems = new List<ListItem>();
-        public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.AccessoriesPenListIconWidth);
+        public double ICON_WIDTH = StyleHelper.GetApplicationDouble(LayoutSizes.WITBListIconWidth);
 
         #endregion
 
@@ -64,44 +55,26 @@ namespace SurfaceJackDemo.ViewModels
             {
                 case DeviceType.Laptop:
                     BackgroundUri = URI_BACKGROUND_FOXBURG;
-                    ImageHeadphonesWidth = WIDTH_IMAGEHEADPHONES / 3 * 2;
-                    ImageBoxWidth = WIDTH_IMAGEBOX / 3 * 2;
-                    ImageHPCordWidth = WIDTH_IMAGEHPCORD / 3 * 2;
-                    ImageUSBCordWidth = WIDTH_IMAGEUSBCORD / 3 * 2;
+                    ImageWidth = WIDTH_IMAGE / 3 * 2;
                     break;
                 case DeviceType.Studio:
                     BackgroundUri = URI_BACKGROUND_CAPROCK;
-                    ImageHeadphonesWidth = WIDTH_IMAGEHEADPHONES / 2;
-                    ImageBoxWidth = WIDTH_IMAGEBOX / 2;
-                    ImageHPCordWidth = WIDTH_IMAGEHPCORD / 2;
-                    ImageUSBCordWidth = WIDTH_IMAGEUSBCORD / 2;
+                    ImageWidth = WIDTH_IMAGE / 2;
                     break;
                 case DeviceType.Book15:
                     BackgroundUri = URI_BACKGROUND_SB2_15;
-                    ImageHeadphonesWidth = WIDTH_IMAGEHEADPHONES / 2;
-                    ImageBoxWidth = WIDTH_IMAGEBOX / 2;
-                    ImageHPCordWidth = WIDTH_IMAGEHPCORD / 2;
-                    ImageUSBCordWidth = WIDTH_IMAGEUSBCORD / 2;
+                    ImageWidth = WIDTH_IMAGE / 2;
                     break;
                 case DeviceType.Book13:
                     BackgroundUri = URI_BACKGROUND_SB2_13;
-                    ImageHeadphonesWidth = WIDTH_IMAGEHEADPHONES / 2;
-                    ImageBoxWidth = WIDTH_IMAGEBOX / 2;
-                    ImageHPCordWidth = WIDTH_IMAGEHPCORD / 2;
-                    ImageUSBCordWidth = WIDTH_IMAGEUSBCORD / 2;
+                    ImageWidth = WIDTH_IMAGE / 2;
                     break;
                 case DeviceType.Pro:
                     BackgroundUri = URI_BACKGROUND_CRUZ;
-                    ImageHeadphonesWidth = WIDTH_IMAGEHEADPHONES / 2;
-                    ImageBoxWidth = WIDTH_IMAGEBOX / 2;
-                    ImageHPCordWidth = WIDTH_IMAGEHPCORD / 2;
-                    ImageUSBCordWidth = WIDTH_IMAGEUSBCORD / 2;
+                    ImageWidth = WIDTH_IMAGE / 2;
                     break;
                 default:
-                    ImageHeadphonesWidth = WIDTH_IMAGEHEADPHONES / 2;
-                    ImageBoxWidth = WIDTH_IMAGEBOX / 2;
-                    ImageHPCordWidth = WIDTH_IMAGEHPCORD / 2;
-                    ImageUSBCordWidth = WIDTH_IMAGEUSBCORD / 2;
+                    ImageWidth = WIDTH_IMAGE / 2;
                     break;
             }
             // get the localization service

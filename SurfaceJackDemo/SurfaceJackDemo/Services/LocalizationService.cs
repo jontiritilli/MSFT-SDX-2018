@@ -362,7 +362,7 @@ namespace SurfaceJackDemo.Services
             // bullet one
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 0, // order
-                ListItemIcon.Jot,
+                ListItemIcon.HeadPhones,
                 viewModel.ICON_WIDTH, // width
                 "", // header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETONE_TITLE, "SPECS_WITB_BULLETONE_TITLE") // order
@@ -371,7 +371,7 @@ namespace SurfaceJackDemo.Services
             // bullet two
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 1, // order
-                ListItemIcon.Write, // icon enum name
+                ListItemIcon.USB, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",//header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETTWO_TITLE, "SPECS_WITB_BULLETTWO_TITLE") // order
@@ -380,7 +380,7 @@ namespace SurfaceJackDemo.Services
             // bullet three
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 2, // order
-                ListItemIcon.Pressure, // icon enum name
+                ListItemIcon.Stereo, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",//header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETTHREE_TITLE, "SPECS_WITB_BULLETTHREE_TITLE") // order
@@ -389,10 +389,19 @@ namespace SurfaceJackDemo.Services
             // bullet 4
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 3, // order
-                ListItemIcon.Palm, // icon enum name
+                ListItemIcon.Case, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",// header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETFOUR_TITLE, "SPECS_WITB_BULLETFOUR_TITLE") // order
+            )));
+
+            // bullet 4
+            viewModel.ListItems.Add((ListItem.CreateListItem(
+                4, // order
+                ListItemIcon.Docs, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",// header
+                GetStringValue(_languageCurrent.SPECS_WITB_BULLETFIVE_TITLE, "SPECS_WITB_BULLETFIVE_TITLE") // order
             )));
 
         }

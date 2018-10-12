@@ -95,7 +95,7 @@
                 x:Name="PopRight"
                 IsOpen = "False"
                 HorizontalOffset="1450"
-                VerticalOffset="675"                    
+                VerticalOffset="560"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia

@@ -93,6 +93,18 @@ namespace SurfaceJackDemo.Services
             return file;
         }
 
+        public double GetVolume()
+        {
+            double Volume = 50;
+
+            if (this.IsLoaded)
+            {
+                Volume = this.Configuration.Volume;
+            }
+
+            return Volume;
+        }
+
         public async Task Initialize()
         {
             if (this.IsLoading || this.IsLoaded) { return; }

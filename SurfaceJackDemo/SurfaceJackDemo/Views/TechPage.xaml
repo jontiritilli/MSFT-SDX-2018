@@ -15,9 +15,6 @@
         <conv:MathConverter x:Key="MathConverterKey"/>
     </Page.Resources>
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <Grid.Background>
-            <ImageBrush ImageSource="{x:Bind Path=ViewModel.ImageUri}"/>
-        </Grid.Background>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
@@ -118,5 +115,15 @@
                     HourIntegerMax="17" />
             </Popup>
         </Canvas>
+
+        <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
+            ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.ImageUri}"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            PageEntranceDirection="Left"
+            HasEntranceTranslation="False"
+            Canvas.ZIndex="-1"
+            Opacity="0"/>
     </Grid>
 </Page>

@@ -126,6 +126,7 @@
             HorizontalAlignment="Right"
             PageEntranceDirection="Left"
             HasEntranceTranslation="False"
+            Canvas.ZIndex="-1"
             Opacity="0"/>
     </Grid>
 </Page>

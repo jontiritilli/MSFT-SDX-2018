@@ -1,30 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
 
 using Windows.System;
-using Windows.UI;
-using Windows.UI.Text;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Shapes;
 
 using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Models;
 using Windows.Media.Playback;
 using Windows.Media.Core;
 using Windows.UI.Core;
-
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -236,6 +224,15 @@ namespace SDX.Toolkit.Controls
             set => SetValue(EqualizerUrisProperty, value);
         }
 
+        // Volume
+        public static readonly DependencyProperty VolumeProperty =
+            DependencyProperty.Register("Volume", typeof(double), typeof(MusicBar),new PropertyMetadata(0.0d));
+
+        public double Volume
+        {
+            get => (double)GetValue(VolumeProperty);
+            set => SetValue(VolumeProperty, value);
+        }
         #endregion
 
 
@@ -330,8 +327,9 @@ namespace SDX.Toolkit.Controls
                     IsLoopingEnabled = true,
                     AudioCategory = MediaPlayerAudioCategory.Media,
                     AudioDeviceType = MediaPlayerAudioDeviceType.Multimedia,
-                    Volume = 0.5    // TODO: Use AudioHelper to set volume instead
+                    //Volume = 0.5    // TODO: Use AudioHelper to set volume instead
                 };
+                SDX.Toolkit.Helpers.AudioHelper.SetVolumeTo(this.Volume);
 
                 // add event handlers
                 this.mediaPlayer.PlaybackSession.PositionChanged += this.PlaybackSession_PositionChanged;
