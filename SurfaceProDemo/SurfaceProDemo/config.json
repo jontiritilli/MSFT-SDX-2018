@@ -4,5 +4,6 @@
   "IsTelemetryEnabled": true,
   "TelemetryKey": "Test",
   "IsBlackSchemeEnabled": true,
-  "IsChoosePathPageEnabled":  false
+  "IsChoosePathPageEnabled": false,
+  "IsStudioCompareLegalEnabled": false
 }

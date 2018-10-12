@@ -58,16 +58,16 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.06}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.76}"                                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.08}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.73}"                                    
                 PopupPosition="Right"
                 EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.58}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"                   
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.57}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.61}"                   
                 PopupPosition="Left"
                 EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>

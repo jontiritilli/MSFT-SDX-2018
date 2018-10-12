@@ -4,6 +4,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 using SurfaceProDemo.ViewModels;
+using SurfaceProDemo.Services;
+
 using SDX.Toolkit.Helpers;
 using SDX.Telemetry.Services;
 
@@ -33,11 +35,14 @@ namespace SurfaceProDemo.Views
         {
             InitializeComponent();
             ComparePage.Current = this;
-            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(1500) };
             timer.Start();
             timer.Tick += (sender, args) =>
             {// well this works? but ew
                 timer.Stop();
+
+                this.CompareLegal.Visibility = ConfigurationService.Current.GetIsStudioCompareLegalEnabled() ? Visibility.Visible : Visibility.Collapsed;
+
                 this.rBtnPro.PopupChild = FlipViewPage.Current.GetComparePagePopupPro(); ;
                 ComparePagePopupPro.Current.CloseButton_Clicked += Close_Pro_Clicked;
 

@@ -12,6 +12,7 @@ namespace SurfaceBook2Demo.Models
         public string AttractorLoopFileName = "ms-appx:///Assets/Attractor/attractor.mp4";
         public string Language = "en-US";
         public bool IsTelemetryEnabled = false;
+        public bool IsStudioCompareLegalEnabled = false;
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
 
 
@@ -23,6 +24,7 @@ namespace SurfaceBook2Demo.Models
                 Language = String.Empty,
                 IsTelemetryEnabled = false,
                 TelemetryKey = TelemetryKeys.Test,
+                IsStudioCompareLegalEnabled = false
             };
 
             return config;

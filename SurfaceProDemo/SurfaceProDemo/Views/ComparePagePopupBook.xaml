@@ -58,7 +58,7 @@
             Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PopupHeadline"
             LedeStyle="PopupLede"
-            Width="{StaticResource HeaderWidth}"
+            Width="415"
             HorizontalAlignment="Left"
             VerticalAlignment="Center" />
 

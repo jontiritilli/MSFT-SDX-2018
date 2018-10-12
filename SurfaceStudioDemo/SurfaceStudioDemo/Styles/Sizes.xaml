@@ -83,8 +83,8 @@
     <x:Double x:Key="BestOfMicrosoftColumnSpacerWidth">37.867</x:Double>
     
     <x:Double x:Key="CompareListIconWidth">48</x:Double>
-    <x:Double x:Key="CompareListTextWidth">656</x:Double>
-    <x:Double x:Key="CompareRowSpacerHeight">50</x:Double>
+    <x:Double x:Key="CompareListTextWidth">730</x:Double>
+    <x:Double x:Key="CompareRowSpacerHeight">40</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">38.515</x:Double>
     <x:Double x:Key="CompareCloseMargin">50</x:Double>
     <x:Double x:Key="CompareImageWidth">1200</x:Double>

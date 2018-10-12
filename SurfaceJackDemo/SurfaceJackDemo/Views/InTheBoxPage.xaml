@@ -42,56 +42,15 @@
             x:Name="AccessoriesList"
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"/>
-        
-        <Grid Grid.Row="3" Grid.Column="2" Grid.RowSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <ctrl:ImageEx Grid.Row="0" Grid.Column="0" 
+
+        <ctrl:ImageEx Grid.Row="3" Grid.Column="2" 
                 x:Name="HeroHP"
-                ImageWidth="{x:Bind Path=ViewModel.ImageHeadphonesWidth}"
-                ImageSource="{x:Bind Path=ViewModel.ImageHeadphonesUri}"
+                ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+                ImageSource="{x:Bind Path=ViewModel.ImageUri}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 PageEntranceDirection="Left"
                 HasEntranceTranslation="False"
                 Opacity="0"/>
-            
-            <ctrl:ImageEx Grid.Row="0" Grid.Column="1"
-                x:Name="HeroBox" 
-                ImageWidth="{x:Bind Path=ViewModel.ImageBoxWidth}"
-                ImageSource="{x:Bind Path=ViewModel.ImageBoxUri}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                PageEntranceDirection="Left"
-                HasEntranceTranslation="False"
-                Opacity="0"/>
-            
-            <ctrl:ImageEx Grid.Row="1" Grid.Column="0" 
-                x:Name="HeroHPCord"
-                ImageWidth="{x:Bind Path=ViewModel.ImageHPCordWidth}"
-                ImageSource="{x:Bind Path=ViewModel.ImageHPCordUri}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                PageEntranceDirection="Left"
-                HasEntranceTranslation="False"
-                Opacity="0"/>
-            
-            <ctrl:ImageEx Grid.Row="1" Grid.Column="1" 
-                x:Name="HeroUSBCord"
-                ImageWidth="{x:Bind Path=ViewModel.ImageUSBCordWidth}"
-                ImageSource="{x:Bind Path=ViewModel.ImageUSBCordUri}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                PageEntranceDirection="Left"
-                HasEntranceTranslation="False"
-                Opacity="0"/>
-        </Grid>
     </Grid>
 </Page>

@@ -34,6 +34,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
@@ -41,39 +42,43 @@
             LedeStyle="PageLede"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             HeadlineOpacity="0"
-            LedeOpacity="0"                                          
-            VerticalAlignment="Top" />
+            LedeOpacity="0" />
+        
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"
             Grid.Column="0"
             Grid.RowSpan="7"
             Grid.ColumnSpan="4"
             Canvas.ZIndex="101">
+            
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 TryItText="{x:Bind ViewModel.PopTryIt}"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.37}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.37}"                    
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.35}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.38}"                    
                 PopupPosition="Right"
                 RadiatingButtonIcon="touch"
                 TryItEnabled="True"
                 EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
-            <ctrl:RadiatingButton
-                x:Name="rBtnRight"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.81}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                                    
-                PopupPosition="Left"
-                EntranceStaggerDelayInMilliseconds="1000"
-                AutoStart = "false"/>
+            
             <ctrl:RadiatingButton
                 x:Name="rBtnTop"                              
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.52}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.51}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.19}"
                 EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"/>
 
+            <ctrl:RadiatingButton
+                x:Name="rBtnRight"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.80}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.20}"                                    
+                PopupPosition="Left"
+                EntranceStaggerDelayInMilliseconds="1000"
+                AutoStart = "false"/>
+            
             <Popup
                 x:Name="PopLeft"
                 IsOpen = "False"
@@ -91,6 +96,7 @@
                         MediaWidth="450" />
                 </Popup.Child>
             </Popup>
+            
             <Popup
                 x:Name="PopRight"
                 IsOpen = "False"
@@ -112,8 +118,10 @@
             x:Name="img_Laptop"
             ImageWidth="{x:Bind Path=ViewModel.LaptopWidth}"            
             ImageSource="{x:Bind Path=ViewModel.LaptopUri}"
+                      HorizontalAlignment="Center"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            Margin="0,0,0,0"
             HasEntranceTranslation="False"
             Opacity="0" />
     </Grid>

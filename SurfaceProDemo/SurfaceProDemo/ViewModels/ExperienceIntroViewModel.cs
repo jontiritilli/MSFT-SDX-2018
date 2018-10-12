@@ -19,8 +19,8 @@ namespace SurfaceProDemo.ViewModels
         private const string URI_IMAGE_HERO_BACK = "ms-appx:///Assets/Experience/platinum_hero_back.png";
         private const string URI_IMAGE_HERO_FRONT_BLACK = "ms-appx:///Assets/Experience/black_hero_front.png";
         private const string URI_IMAGE_HERO_BACK_BLACK = "ms-appx:///Assets/Experience/black_hero_back.png";
-        private const double WIDTH_HERO_FRONT = 1194;
-        private const double WIDTH_HERO_BACK = 610;
+        private const double WIDTH_HERO_FRONT = 1200;
+        private const double WIDTH_HERO_BACK = 650;
 
         #endregion
 

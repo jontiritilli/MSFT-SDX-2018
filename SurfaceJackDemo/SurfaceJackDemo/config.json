@@ -3,5 +3,6 @@
   "IsChoosePathPageEnabled": true,
   "Language": "",
   "IsTelemetryEnabled": true,
-  "TelemetryKey": "Test"
+  "TelemetryKey": "Test",
+  "Volume": 0.50
 }

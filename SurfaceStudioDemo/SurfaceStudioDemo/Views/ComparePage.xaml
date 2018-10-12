@@ -44,20 +44,22 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"/>
         
-        <ctrl:ImageEx Grid.Row="2" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3"
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
             x:Name="img_Family"
             ImageWidth="{x:Bind Path=ViewModel.FamilyWidth}"            
             ImageSource="{x:Bind Path=ViewModel.FamilyUri}"
             TranslateDirection="Left"
             Canvas.ZIndex="100"
+            Margin="0,350,0,0"
             Opacity="0" />
 
-        <ctrl:TextBlockEx x:Name="CompareLegal" Grid.Row="5" Grid.Column="1"
+        <ctrl:TextBlockEx Grid.Row="5" Grid.Column="1"
+            x:Name="CompareLegal"
             Text="{x:Bind Path=ViewModel.Legal}"
+            TextStyle="Legal"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            TextStyle="Legal"
-            HasPageEntranceAnimationEnabled="False"/>
+            Visibility="Collapsed"/>
         
         <Canvas x:Name="ButtonCanvas"
                 Grid.Row="0"
@@ -222,7 +224,5 @@
                 HasEntranceTranslation="False"
             />
         </Canvas>
-        
-
     </Grid>
 </Page>

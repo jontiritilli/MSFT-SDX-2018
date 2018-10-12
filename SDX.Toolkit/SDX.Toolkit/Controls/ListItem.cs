@@ -54,7 +54,13 @@ namespace SDX.Toolkit.Controls
         Frequency,
         BatteryLife,
         NoiseCancellation,
-        Inputs
+        Inputs,
+        HeadPhones,
+        USB,
+        Stereo,
+        Case,
+        Docs
+
     }
     
     public class ListItem
@@ -94,6 +100,12 @@ namespace SDX.Toolkit.Controls
         private const string ICON_BATTERYLIFE_URI = @"ms-appx:///Assets/List/specs_batteryLife.png";
         private const string ICON_NOISECANCELLATION_URI = @"ms-appx:///Assets/List/specs_noiseCancellation.png";
         private const string ICON_INPUTS_URI = @"ms-appx:///Assets/List/specs_inputs.png";
+        //WITB Links
+        private const string ICON_HEADPHONES_URI = @"ms-appx:///Assets/InTheBox/headphones.png";
+        private const string ICON_USB_URI = @"ms-appx:///Assets/InTheBox/usb.png";
+        private const string ICON_STEREO_URI = @"ms-appx:///Assets/InTheBox/stereo-cord.png";
+        private const string ICON_CASE_URI = @"ms-appx:///Assets/InTheBox/case.png";
+        private const string ICON_DOCS_URI = @"ms-appx:///Assets/InTheBox/instructions.png";
         // URI links
         private const string URI_CTA_START = @"rdx-hub:hub\windows"; //"rdx-hub:";
         private const string URI_CTA_SYNC = "";
@@ -288,6 +300,23 @@ namespace SDX.Toolkit.Controls
 
                     case ListItemIcon.Inputs:
                         iconPath = ICON_INPUTS_URI;
+                        break;
+
+                    case ListItemIcon.HeadPhones:
+                        iconPath = ICON_HEADPHONES_URI;
+                        break;
+
+                    case ListItemIcon.USB:
+                        iconPath = ICON_USB_URI;
+                        break;
+                    case ListItemIcon.Stereo:
+                        iconPath = ICON_STEREO_URI;
+                        break;
+                    case ListItemIcon.Case:
+                        iconPath = ICON_CASE_URI;
+                        break;
+                    case ListItemIcon.Docs:
+                        iconPath = ICON_DOCS_URI;
                         break;
                     default:
                         break;
