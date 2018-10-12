@@ -12,44 +12,44 @@
 
     <Page.Resources>
         <DataTemplate x:Key="UnselectedListViewItem">
-                <Grid
+            <Grid
                     Height="100">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Width="48" Height="48">
-                        <Image Stretch="UniformToFill">
-                            <Image.Source>
-                                <BitmapImage UriSource="{Binding Path=Source_NotSelectedImage, Mode=OneTime}"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Width="48" Height="48">
+                    <Image Stretch="UniformToFill">
+                        <Image.Source>
+                            <BitmapImage UriSource="{Binding Path=Source_NotSelectedImage, Mode=OneTime}"
                                         DecodePixelWidth="48"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
-                        <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="#FF333333" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Grid>
+                        </Image.Source>
+                    </Image>
+                </Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="#FF333333" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SelectedListViewItem">
-                <Grid
+            <Grid
                     Height="100">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Width="48" Height="48">
-                        <Image Stretch="UniformToFill">
-                            <Image.Source>
-                                <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Width="48" Height="48">
+                    <Image Stretch="UniformToFill">
+                        <Image.Source>
+                            <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}"
                                         DecodePixelWidth="48"/>
-                            </Image.Source>
-                        </Image>
-                    </Border>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
-                        <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="White" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </Grid>
+                        </Image.Source>
+                    </Image>
+                </Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock x:Name="tbMessage"  Text="{Binding Path=Message, Mode=OneTime}" Foreground="White" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Grid>
         </DataTemplate>
     </Page.Resources>
     <Grid
@@ -79,25 +79,31 @@
             LedeStyle="PageLede"                
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
-        <ctrl:AltRowListView x:Name="itemListView"
+        <ctrl:ListViewEx x:Name="itemListView"
             Grid.Row="3"
             Grid.Column="1"
             HorizontalContentAlignment="Stretch"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
-            Width="1200"            
+            HasAltRows="True"
+            Width="1200"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionChanged="itemListView_SelectionChanged"
             ItemTemplate="{StaticResource UnselectedListViewItem}"                 
             ItemsSource="{x:Bind Path=ViewModel.ListItems, Mode=OneTime}"/>
-    
-        <ctrl:AppSelectorImage  Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="3"
+
+        <ctrl:AppSelectorImage  Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="3"
             x:Name="AppSelectorImageKB"
             Opacity="1"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}">
+            <ctrl:AppSelectorImage.Background>
+                <ImageBrush ImageSource="{x:Bind Path=ViewModel.AppSelectorImageBackgroundUri}"/>
+            </ctrl:AppSelectorImage.Background>
+        </ctrl:AppSelectorImage>
 
 
 

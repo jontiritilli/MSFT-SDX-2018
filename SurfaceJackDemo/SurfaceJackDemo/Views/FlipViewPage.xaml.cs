@@ -87,6 +87,7 @@ namespace SurfaceJackDemo.Views
             this.BottomNavBar.Root = ViewModel.Root;
 
             // initialize the music bar
+            this.MusicBar.Volume = ViewModel.Volume;
             this.MusicBar.PlayerPlaylist = ViewModel.Playlist;
             this.MusicBar.Background = StyleHelper.GetAcrylicBrush("Light");
 

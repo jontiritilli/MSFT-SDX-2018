@@ -72,6 +72,7 @@ namespace SDX.Toolkit.Helpers
         HeaderSpacerRowHeightListItemHeaderCompare,
         HeaderSpacerRowHeightPopupHeader,
         AccessoriesPenListIconWidth,
+        WITBListIconWidth,
         BestOfMicrosoftListIconWidth,
         BestOfMicrosoftRowSpacerHeight,
         BestOfMicrosoftColumnSpacerWidth,
@@ -237,6 +238,7 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_HEADER_SPACER_ROW_HEIGHT_POPUPHEADER = "HeaderSpacerRowHeightPopupHeader";
 
         public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
+        public const string SIZE_WITB_LISTICONWIDTH = "WITBListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT = "BestOfMicrosoftRowSpacerHeight";
         public const string SIZE_BESTOFMICROSOFT_COLSPACERWIDTH = "BestOfMicrosoftColumnSpacerWidth"; 
@@ -425,6 +427,10 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_ACCESSORIESPEN_LISTICONWIDTH);
                     break;
 
+                case LayoutSizes.WITBListIconWidth:
+                    value = GetApplicationDouble(SIZE_WITB_LISTICONWIDTH);
+                    break;
+                    
                 case LayoutSizes.BestOfMicrosoftListIconWidth:
                     value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_LISTICONWIDTH);
                     break;
