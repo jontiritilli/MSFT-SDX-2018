@@ -36,7 +36,7 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_APPSELECTOR_ICON_5 = "ms-appx:///Assets/Controls/noise-cancellation.png";
         private const string URI_APPSELECTOR_ICON_6 = "ms-appx:///Assets/Controls/answer.png";
 
-        private const string URI_APPSELECTOR_ICON_1_SELECTED = "ms-appx:///Assets/Controls/overview_selected.png";
+        private const string URI_APPSELECTOR_ICON_1_SELECTED = "ms-appx:///Assets/Controls/overview-selected.png";
         private const string URI_APPSELECTOR_ICON_2_SELECTED = "ms-appx:///Assets/Controls/play-pause-selected.png";
         private const string URI_APPSELECTOR_ICON_3_SELECTED = "ms-appx:///Assets/Controls/skip-selected.png";
         private const string URI_APPSELECTOR_ICON_4_SELECTED = "ms-appx:///Assets/Controls/volume-selected.png";
