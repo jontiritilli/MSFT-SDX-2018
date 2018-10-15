@@ -359,6 +359,7 @@
     <Content Include="Assets\Accessories\foxburg_cobalt_right.png" />
     <Content Include="Assets\Accessories\foxburg_platinum_left.png" />
     <Content Include="Assets\Accessories\foxburg_platinum_right.png" />
+    <Content Include="Assets\Attractor\attractor-old.mp4" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\foxburg_brand-bg.png" />
     <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />

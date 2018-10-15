@@ -141,6 +141,14 @@ namespace SDX.Toolkit.Helpers
         Purple
     }
 
+    public enum AcrylicColors
+    {
+        Lighter,
+        Light,
+        Dark,
+        MusicBar,
+        Gray
+    }
     public enum BitmapImages
     {
         ColoringBookImage,
@@ -1089,13 +1097,30 @@ namespace SDX.Toolkit.Helpers
             }
         }
 
-        public static AcrylicBrush GetAcrylicBrush(string Color = "Light")
+        public static AcrylicBrush GetAcrylicBrush(string ColorMode = "Light")
         {
-            AcrylicBrush brush;
+            AcrylicBrush BrushColor = GetAcrylicBrush(AcrylicColors.Light);
 
-            if (Color == "Light")
+            switch (ColorMode)
             {
-                brush = new AcrylicBrush()
+                case "Light":
+                    BrushColor = GetAcrylicBrush(AcrylicColors.Light);
+                    break;
+
+                case "Dark":
+                    BrushColor = GetAcrylicBrush(AcrylicColors.Dark);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return BrushColor;
+        }
+
+        public static AcrylicBrush GetAcrylicBrush(AcrylicColors ColorMode)
+        {
+            AcrylicBrush BrushColor = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
                     Opacity = 0.993,
@@ -1103,21 +1128,67 @@ namespace SDX.Toolkit.Helpers
                     TintOpacity = 0.8,
                     FallbackColor = Colors.LightGray,
                 };
-            }
-            else // color must be set to dark
+
+            switch (ColorMode)
             {
-                brush = new AcrylicBrush()
-                {
-                    BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.997,
-                    TintColor = Colors.Black,
-                    TintOpacity = 0.45,
-                    FallbackColor = Colors.LightGray,
-                };
+                case AcrylicColors.Light:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.993,
+                        TintColor = Colors.White,
+                        TintOpacity = 0.8,
+                        FallbackColor = Colors.LightGray,
+                    };
+                    break;
 
+                case AcrylicColors.Dark:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.997,
+                        TintColor = Colors.Black,
+                        TintOpacity = 0.45,
+                        FallbackColor = Colors.LightGray,
+                    };
+                    break;
+
+                case AcrylicColors.MusicBar:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.997,
+                        TintColor = Colors.Gray,
+                        TintOpacity = 0.5,
+                        FallbackColor = Colors.LightGray,
+                    };
+                    break;
+
+                case AcrylicColors.Lighter:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.9,
+                        TintColor = Colors.White,
+                        TintOpacity = 0.80,
+                        FallbackColor = Colors.White,
+                    };
+                    break;
+
+                case AcrylicColors.Gray:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.9,
+                        TintColor = Colors.White,
+                        TintOpacity = 0.64,
+                        FallbackColor = Colors.White,
+                    };
+                    break;
+                default:
+                    break;
             }
-
-            return brush;
+            return BrushColor;
         }
 
         #endregion

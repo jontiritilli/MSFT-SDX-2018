@@ -7,27 +7,15 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using SDX.Toolkit.Helpers;
 
 namespace SDX.Toolkit.Controls
 {
     public class ListViewEx : ListView
     {
-        private Brush BackGroundWhiteAcrylic = new AcrylicBrush()
-        {
-            BackgroundSource = AcrylicBackgroundSource.Backdrop,
-            Opacity = 0.77,
-            TintColor = Colors.White,
-            TintOpacity = 0.75,
-            FallbackColor = Colors.White,
-        };
-        private Brush BackGroundGrayAcrylic = new AcrylicBrush()
-        {
-            BackgroundSource = AcrylicBackgroundSource.Backdrop,
-            Opacity = 0.47,
-            TintColor = Colors.White,
-            TintOpacity = 0.45,
-            FallbackColor = Colors.White,
-        };
+        private Brush BackGroundWhiteAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Light);
+            
+        private Brush BackGroundGrayAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Gray);
 
         public static readonly DependencyProperty HasAltRowsProperty =
     DependencyProperty.Register("HasAltRows", typeof(Boolean), typeof(ListViewEx), new PropertyMetadata(false));

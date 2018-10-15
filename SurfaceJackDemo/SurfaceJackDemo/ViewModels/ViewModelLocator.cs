@@ -22,6 +22,7 @@ namespace SurfaceJackDemo.ViewModels
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<AudioTryItViewModel, AudioTryItPage>();
             Register<AudioListenViewModel, AudioListenPage>();
+            Register<AudioListenPopupViewModel, AudioListenPopupPage>();
             Register<DesignViewModel, DesignPage>();
             Register<TechViewModel, TechPage>();
             Register<ProductivityViewModel, ProductivityPage>();
@@ -43,6 +44,8 @@ namespace SurfaceJackDemo.ViewModels
         public DesignViewModel DesignViewModel => ServiceLocator.Current.GetInstance<DesignViewModel>();
 
         public AudioListenViewModel AudioListenViewModel => ServiceLocator.Current.GetInstance<AudioListenViewModel>();
+
+        public AudioListenPopupViewModel AudioListenPopupViewModel => ServiceLocator.Current.GetInstance<AudioListenPopupViewModel>();
 
         public AudioTryItViewModel AudioTryItViewModel => ServiceLocator.Current.GetInstance<AudioTryItViewModel>();
 

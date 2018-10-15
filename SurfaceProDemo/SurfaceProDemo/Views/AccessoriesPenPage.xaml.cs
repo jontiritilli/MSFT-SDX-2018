@@ -16,9 +16,6 @@ namespace SurfaceProDemo.Views
         {
             get { return DataContext as AccessoriesPenViewModel; }
         }
-
-        double _canvasWidth = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasWidth);
-        double _canvasHeight = StyleHelper.GetApplicationDouble(LayoutSizes.CanvasHeight);
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
         #endregion
@@ -34,8 +31,6 @@ namespace SurfaceProDemo.Views
         {
             InitializeComponent();
             AccessoriesPenPage.Current = this;
-            Canvas.SetTop(rBtnCenter, _canvasHeight * .50);
-            Canvas.SetLeft(rBtnCenter, _canvasWidth * .50);
             rBtnCenter.Clicked += OnPenTryItClicked;
             this.ColoringBook.OnPenScreenContacted += OnPenScreenContacted;
             this.Loaded += AccessoriesPenPage_Loaded;

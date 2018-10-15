@@ -11,9 +11,11 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <conv:PercentageToCanvasLeftConverter x:Key="CanvasLeftConverter"/>
+        <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
+        <conv:MathConverter x:Key="MathConverterKey"/>
         <DataTemplate x:Key="UnselectedListViewItem">
-            <Grid
-                    Height="100">
+            <Grid Height="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -22,7 +24,7 @@
                     <Image Stretch="UniformToFill">
                         <Image.Source>
                             <BitmapImage UriSource="{Binding Path=Source_NotSelectedImage, Mode=OneTime}"
-                                        DecodePixelWidth="48"/>
+                                    DecodePixelWidth="48"/>
                         </Image.Source>
                     </Image>
                 </Border>
@@ -32,8 +34,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SelectedListViewItem">
-            <Grid
-                    Height="100">
+            <Grid Height="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -41,8 +42,7 @@
                 <Border Width="48" Height="48">
                     <Image Stretch="UniformToFill">
                         <Image.Source>
-                            <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}"
-                                        DecodePixelWidth="48"/>
+                            <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}" DecodePixelWidth="48"/>
                         </Image.Source>
                     </Image>
                 </Border>
@@ -58,56 +58,106 @@
         Height="{StaticResource ScreenHeight}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height=".83*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".35*"/>
-            <ColumnDefinition Width=".65*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-            Width="{StaticResource HeaderWidth}"
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4"
+                x:Name="HowToExtraCoverBg">
+        </Canvas>
+        
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4"
+                x:Name="HowToBg">
+        </Canvas>
+
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+            Width="{StaticResource ControlListHeaderWidth}"
             Headline="{x:Bind Path=ViewModel.Headline}"
-            HeadlineStyle="PageHeadline"
-            LedeStyle="PageLede"                
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
-        <ctrl:ListViewEx x:Name="itemListView"
-            Grid.Row="3"
-            Grid.Column="1"
+            HeadlineStyle="ListHeadline"
+            LedeStyle="PageLede"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+        
+        <ctrl:ListViewEx Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+            x:Name="itemListView"
             HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Top"
             HasAltRows="True"
-            Width="1200"
+            Width="{StaticResource ControlListWidth}"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionChanged="itemListView_SelectionChanged"
             ItemTemplate="{StaticResource UnselectedListViewItem}"                 
             ItemsSource="{x:Bind Path=ViewModel.ListItems, Mode=OneTime}"/>
 
-        <ctrl:AppSelectorImage  Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="3"
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            ImageSource="{x:Bind Path=ViewModel.AppSelectorImageBackgroundUri}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
             x:Name="AppSelectorImageKB"
             Opacity="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}">
-            <ctrl:AppSelectorImage.Background>
-                <ImageBrush ImageSource="{x:Bind Path=ViewModel.AppSelectorImageBackgroundUri}"/>
-            </ctrl:AppSelectorImage.Background>
-        </ctrl:AppSelectorImage>
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
 
+        <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
+             x:Name="IllustrationCanvas">
 
+            <ctrl:ImageEx
+            x:Name="Illustration1"
+            Opacity="1"
+            ImageWidth="{x:Bind Path=ViewModel.Width_Overview}"
+            ImageSource="{x:Bind Path=ViewModel.OverviewIllustrationURI}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"/>
+            
+            <ctrl:ImageEx
+            x:Name="Illustration2"
+            Opacity="0"
+            ImageWidth="{x:Bind Path=ViewModel.Width_Play_Pause}"
+            ImageSource="{x:Bind Path=ViewModel.PlayIllustrationURI}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
+            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
+            
+            <ctrl:ImageEx
+            x:Name="Illustration3"
+            Opacity="0"
+            ImageWidth="{x:Bind Path=ViewModel.Width_Skip}"
+            ImageSource="{x:Bind Path=ViewModel.SkipIllustrationURI}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
 
-        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
+            <ctrl:ImageEx
+            x:Name="Illustration4"
+            Opacity="0"
+            ImageWidth="{x:Bind Path=ViewModel.Width_Volume}"
+            ImageSource="{x:Bind Path=ViewModel.VolumeIllustrationURI}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.09}"
+            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
+
+            <ctrl:ImageEx
+            x:Name="Illustration5"
+            Opacity="0"
+            ImageWidth="{x:Bind Path=ViewModel.Width_Noise}"
+            ImageSource="{x:Bind Path=ViewModel.NoiseIllustrationURI}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.39}"
+            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
+        </Canvas>
+        
+        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
             <Grid
                 x:Name="grdCloseButton"
                 PointerPressed="PopClose_Click"

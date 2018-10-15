@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace SurfaceJackDemo.Views
 {
     /// <summary>
@@ -25,6 +23,8 @@ namespace SurfaceJackDemo.Views
     public sealed partial class HowToPage : Page, INavigate
     {
         #region Private Members
+
+        private int PreviousSelected = -1;
 
         private HowToViewModel ViewModel
         {
@@ -47,14 +47,8 @@ namespace SurfaceJackDemo.Views
         {
             this.InitializeComponent();
             HowToPage.Current = this;
-            this.ContentArea.Background = new AcrylicBrush()
-            {
-                BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                Opacity = 0.995,
-                TintColor = Windows.UI.Colors.White,
-                TintOpacity = 0.4,
-                FallbackColor = Windows.UI.Colors.White,
-            };
+            this.HowToExtraCoverBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
+            this.HowToBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
             this.Loaded += HowToPage_Loaded;
         }
 
@@ -75,13 +69,76 @@ namespace SurfaceJackDemo.Views
             CloseButton_Clicked(sender, new RoutedEventArgs());
         }
 
+        private void ShowIllustration(int id)
+        {
+            HideIllustration(PreviousSelected);
+            switch (id)
+            {
+                case 0: //overview
+                    this.Illustration1.Opacity = 1.0d;
+                    break;
+
+                case 1: //play pause
+                    this.Illustration2.Opacity = 1.0d;
+                    break;
+
+                case 2: //skip
+                    this.Illustration3.Opacity = 1.0d;
+                    break;
+
+                case 3: //volume
+                    this.Illustration4.Opacity = 1.0d;
+                    break;
+
+                case 4: //noise
+                    this.Illustration5.Opacity = 1.0d;
+                    break;
+
+                default:
+                    break;
+            }
+            PreviousSelected = id;
+        }
+
+        private void HideIllustration(int id)
+        {
+            switch (id)
+            {
+                case 0: //overview
+                    this.Illustration1.Opacity = 0.0d;
+                    break;
+
+                case 1: //play pause
+                    this.Illustration2.Opacity = 0.0d;
+                    break;
+
+                case 2: //skip
+                    this.Illustration3.Opacity = 0.0d;
+                    break;
+
+                case 3: //volume
+                    this.Illustration4.Opacity = 0.0d;
+                    break;
+
+                case 4: //noise
+                    this.Illustration5.Opacity = 0.0d;
+                    break;
+
+                default:
+                    break;
+            }
+        }
         private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ListView listView)
             {
                 this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
+                this.ShowIllustration(listView.SelectedIndex);
+                //this.SetIllustrationHeightandWidth(listView.SelectedIndex);
                // hack to force the controltemplates to change to use the selected icon and foreground
                // dont judge me
+               //this.HowToString = 
+
                 foreach (var item in e.AddedItems)
                 {
                     ListViewItem listViewItem = (ListViewItem)listView.ContainerFromItem(item);
@@ -102,12 +159,12 @@ namespace SurfaceJackDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
         }
         #endregion
 

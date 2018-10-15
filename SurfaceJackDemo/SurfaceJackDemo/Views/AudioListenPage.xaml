@@ -85,49 +85,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
-        <Grid
-            x:Name="OverlayGrid"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.RowSpan="9"
-            Grid.ColumnSpan="7"
-            Canvas.ZIndex="1000"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-            <ctrl:ImageEx 
-                x:Name="img_Right"
-                ImageWidth="{x:Bind Path=ViewModel.ReadyWidth}"
-                ImageSource="{x:Bind Path=ViewModel.ReadyUri}"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"                    
-                HasPageEntranceAnimationEnabled="False"/>
-            <Grid
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <ctrl:Header x:Name="OverlayHeader"
-                    HeadlineStyle="PageHeadlineDark"
-                    LedeStyle="PageLedeDark"                                     
-                    Headline="{x:Bind Path=ViewModel.OverlayHeadline}"
-                    Lede="{x:Bind Path=ViewModel.OverlayLede}"
-                    CTAUri="ms-settings:"
-                    CTATextStyle="ListItemCTAText"
-                    HeaderAlignment="Center"
-                    Grid.Row="0"
-                    Width="{StaticResource HeaderWidth}"/>
-                <Button
-                    Click="Button_Click"
-                    Content="{x:Bind Path=ViewModel.OverlayCTA}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Grid.Row="2"
-                    Style="{StaticResource NoInteractionReadyButton}"/>
-            </Grid>
-        </Grid>
+        
         <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
@@ -136,15 +94,16 @@
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
-        <StackPanel
-            Orientation="Vertical"
-            ></StackPanel>
+        
+        <StackPanel Orientation="Vertical" ></StackPanel>
+        
         <ctrl:TextBlockEx Grid.Row="3" Grid.Column="1"
             x:Name="BulletListTitle" 
             Text="{x:Bind Path=ViewModel.BulletListTitle}"
-            TextStyle="ListLedeBold"
+            TextStyle="ListItemHeadlinePenTouch"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"/>
+        
         <ctrl:ListViewEx
             x:Name="itemListView"
             Grid.Row="4"
@@ -156,6 +115,7 @@
             SelectionChanged="itemListView_SelectionChanged"
             ItemTemplate="{StaticResource PlayListViewItem}"  
             ItemsSource="{x:Bind Path=ViewModel.Tracks, Mode=OneTime}">
+            
             <ctrl:ListViewEx.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Template">
@@ -201,30 +161,16 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
+                TryItEnabled="True"
+                TryItText="{x:Bind Path=ViewModel.TryIt}"
+                RadiatingButtonIcon="Touch"
                 EntranceStaggerDelayInMilliseconds = "600"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.75}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                  
                 PopupPosition="Right"                
                 AutoStart = "false"/>
-
-            <Popup
-                x:Name="PopLeft"
-                IsOpen = "False"
-                HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"
-                IsLightDismissEnabled="True">
-                <Popup.Child>
-                    <ctrl:PopupMedia
-                        PopupType="Text"
-                        Headline="FULL PAGE POP UP IN DEV"
-                        Lede="BUILDING THE REST OF THE APP FIRST"
-                        Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
-                        HourText="hrs"
-                        HourIntegerMax="17"                        
-                        />
-                </Popup.Child>
-            </Popup>
         </Canvas>
+        
         <ctrl:ImageEx x:Name="SpotifyLogo" Grid.Row="5" Grid.Column="1" 
             ImageWidth="{x:Bind Path=ViewModel.ImageSpotifyWidth}"
             ImageSource="{x:Bind Path=ViewModel.ImageSpotifyUri}"
@@ -233,6 +179,7 @@
             PageEntranceDirection="Left"
             HasEntranceTranslation="False"
             Opacity="0"/>
+        
         <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="3"
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.ImageUri}"
