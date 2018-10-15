@@ -15,7 +15,7 @@ namespace SDX.Toolkit.Controls
     {
         private Brush BackGroundWhiteAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Light);
             
-        private Brush BackGroundGrayAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
+        private Brush BackGroundGrayAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Gray);
 
         public static readonly DependencyProperty HasAltRowsProperty =
     DependencyProperty.Register("HasAltRows", typeof(Boolean), typeof(ListViewEx), new PropertyMetadata(false));
