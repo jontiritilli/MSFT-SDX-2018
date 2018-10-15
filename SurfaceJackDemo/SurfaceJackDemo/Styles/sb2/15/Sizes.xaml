@@ -74,6 +74,17 @@
     <x:Double x:Key="ListColumnSpacerWidth">28.78</x:Double>
     <x:Double x:Key="ListRowSpacerHeight">16</x:Double>
 
+    <GridLength x:Key="GatewaySpaceAboveImage">50</GridLength>
+    <GridLength x:Key="GatewaySpaceBelowImage">50</GridLength>
+    <GridLength x:Key="GatewaySpacerColumn">50</GridLength>
+    <GridLength x:Key="GatewaySpacerRow">30</GridLength>
+    <GridLength x:Key="ListenGatewaySpacerRow">90</GridLength>
+    <x:Double x:Key="ReadyButtonHeight">48</x:Double>
+    <x:Double x:Key="ReadyButtonWidth">162</x:Double>
+
+    <x:Double x:Key="ControlListWidth">378</x:Double>
+    <x:Double x:Key="ControlListHeaderWidth">320</x:Double>
+
     <x:Double x:Key="CompareListTextWidth">478.5</x:Double>
     <x:Double x:Key="CompareRowSpacerHeight">20</x:Double>
     <x:Double x:Key="CompareColumnSpacerWidth">22.38</x:Double>
