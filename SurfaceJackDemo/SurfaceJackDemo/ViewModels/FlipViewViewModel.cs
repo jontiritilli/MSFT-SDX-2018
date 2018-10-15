@@ -85,7 +85,6 @@ namespace SurfaceJackDemo.ViewModels
 
         #endregion
 
-
         #region Construction
 
         public FlipViewViewModel()
@@ -145,7 +144,6 @@ namespace SurfaceJackDemo.ViewModels
         }
 
         #endregion
-
 
         public void RenderNavigation()
         {
