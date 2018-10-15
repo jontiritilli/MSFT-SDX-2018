@@ -24,6 +24,8 @@ namespace SurfaceJackDemo.Views
     {
         #region Private Members
 
+        private int PreviousSelected = -1;
+
         private HowToViewModel ViewModel
         {
             get { return DataContext as HowToViewModel; }
@@ -45,6 +47,7 @@ namespace SurfaceJackDemo.Views
         {
             this.InitializeComponent();
             HowToPage.Current = this;
+            this.HowToExtraCoverBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
             this.HowToBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
             this.Loaded += HowToPage_Loaded;
         }
@@ -66,11 +69,72 @@ namespace SurfaceJackDemo.Views
             CloseButton_Clicked(sender, new RoutedEventArgs());
         }
 
+        private void ShowIllustration(int id)
+        {
+            HideIllustration(PreviousSelected);
+            switch (id)
+            {
+                case 0: //overview
+                    this.Illustration1.Opacity = 1.0d;
+                    break;
+
+                case 1: //play pause
+                    this.Illustration2.Opacity = 1.0d;
+                    break;
+
+                case 2: //skip
+                    this.Illustration3.Opacity = 1.0d;
+                    break;
+
+                case 3: //volume
+                    this.Illustration4.Opacity = 1.0d;
+                    break;
+
+                case 4: //noise
+                    this.Illustration5.Opacity = 1.0d;
+                    break;
+
+                default:
+                    break;
+            }
+            PreviousSelected = id;
+        }
+
+        private void HideIllustration(int id)
+        {
+            switch (id)
+            {
+                case 0: //overview
+                    this.Illustration1.Opacity = 0.0d;
+                    break;
+
+                case 1: //play pause
+                    this.Illustration2.Opacity = 0.0d;
+                    break;
+
+                case 2: //skip
+                    this.Illustration3.Opacity = 0.0d;
+                    break;
+
+                case 3: //volume
+                    this.Illustration4.Opacity = 0.0d;
+                    break;
+
+                case 4: //noise
+                    this.Illustration5.Opacity = 0.0d;
+                    break;
+
+                default:
+                    break;
+            }
+        }
         private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ListView listView)
             {
                 this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
+                this.ShowIllustration(listView.SelectedIndex);
+                //this.SetIllustrationHeightandWidth(listView.SelectedIndex);
                // hack to force the controltemplates to change to use the selected icon and foreground
                // dont judge me
                //this.HowToString = 
