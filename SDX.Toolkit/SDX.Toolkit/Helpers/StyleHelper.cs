@@ -146,7 +146,8 @@ namespace SDX.Toolkit.Helpers
         Lighter,
         Light,
         Dark,
-        MusicBar
+        MusicBar,
+        Gray
     }
     public enum BitmapImages
     {
@@ -1169,7 +1170,18 @@ namespace SDX.Toolkit.Helpers
                         BackgroundSource = AcrylicBackgroundSource.Backdrop,
                         Opacity = 0.9,
                         TintColor = Colors.White,
-                        TintOpacity = 0.35,
+                        TintOpacity = 0.80,
+                        FallbackColor = Colors.White,
+                    };
+                    break;
+
+                case AcrylicColors.Gray:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.9,
+                        TintColor = Colors.White,
+                        TintOpacity = 0.64,
                         FallbackColor = Colors.White,
                     };
                     break;
