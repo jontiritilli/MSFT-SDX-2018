@@ -41,7 +41,7 @@ namespace SurfaceLaptopDemo.ViewModels
         #region Private Members
 
         bool isBlackEnabled = ConfigurationService.Current.GetIsBlackSchemeEnabled();
-        bool isCoralEnabled = ConfigurationService.Current.GetIsCoralSchemeEnabled();
+        //bool isCoralEnabled = ConfigurationService.Current.GetIsCoralSchemeEnabled();
 
         #endregion
 
@@ -118,21 +118,21 @@ namespace SurfaceLaptopDemo.ViewModels
                 Width = ImageSelectorImageWidth
             });
 
-            // option 5
-            //check to see if coral is enabled
-            if (isCoralEnabled)
-            {
-                this.lifeStyleColorSelectorData.Add(new AppSelectorData()
-                {
-                    Source_NotSelectedImage = URI_APPSELECTOR_COLOR_5,
-                    Source_SelectedImage = URI_APPSELECTOR_COLOR_5_SELECTED
-                });
-                this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
-                {
-                    URI = URI_IMAGESELECTOR_IMAGE_5,
-                    Width = ImageSelectorImageWidth
-                });
-            }
+            //// option 5
+            ////check to see if coral is enabled
+            //if (isCoralEnabled)
+            //{
+            //    this.lifeStyleColorSelectorData.Add(new AppSelectorData()
+            //    {
+            //        Source_NotSelectedImage = URI_APPSELECTOR_COLOR_5,
+            //        Source_SelectedImage = URI_APPSELECTOR_COLOR_5_SELECTED
+            //    });
+            //    this.lifeStyleColorSelectorImageURIs.Add(new AppSelectorImageURI()
+            //    {
+            //        URI = URI_IMAGESELECTOR_IMAGE_5,
+            //        Width = ImageSelectorImageWidth
+            //    });
+            //}
 
 
             // get the localization service
