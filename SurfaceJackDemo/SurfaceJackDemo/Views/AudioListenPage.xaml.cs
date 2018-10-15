@@ -122,6 +122,7 @@ namespace SurfaceJackDemo.Views
                 FlipViewPage.Current.SelectTrack(itemListView.SelectedIndex);
                 // hack to force the controltemplates to change to use the selected icon and foreground
                 // dont judge me
+                this.itemListView.ScrollIntoView(this.itemListView.SelectedItem);
                 foreach (var item in e.AddedItems)
                 {
                     ListViewItem listViewItem = (ListViewItem)itemListView.ContainerFromItem(item);
