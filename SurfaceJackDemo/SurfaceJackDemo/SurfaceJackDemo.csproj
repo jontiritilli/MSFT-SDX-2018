@@ -139,6 +139,7 @@
     <Compile Include="Services\PlaylistService.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
+    <Compile Include="ViewModels\AudioListenPopupViewModel.cs" />
     <Compile Include="ViewModels\AttractorLoopViewModel.cs" />
     <Compile Include="ViewModels\AudioListenViewModel.cs" />
     <Compile Include="ViewModels\AudioTryItViewModel.cs" />
@@ -151,6 +152,9 @@
     <Compile Include="ViewModels\SpecsViewModel.cs" />
     <Compile Include="ViewModels\TechViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\AudioListenPopupPage.xaml.cs">
+      <DependentUpon>AudioListenPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AttractorLoopPage.xaml.cs">
       <DependentUpon>AttractorLoopPage.xaml</DependentUpon>
     </Compile>
@@ -309,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AudioListenPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AttractorLoopPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -371,7 +379,7 @@
     <Content Include="Assets\Backgrounds\foxburg_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\sb2_15_Generic_BG.jpg" />
     <Content Include="Assets\Backgrounds\sb2_Generic_BG.jpg" />
-	    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
+    <Content Include="Assets\BatteryLifePopup\battery-outline.png" />
     <Content Include="Assets\BatteryLifePopup\blue-charge.png" />
     <Content Include="Assets\BatteryLifePopup\blue-line.png" />
     <Content Include="Assets\Controls\answer-lifestyle.png" />
@@ -477,6 +485,9 @@
     <Content Include="Assets\Playlist\public.png" />
     <Content Include="Assets\Playlist\warbly-selected.png" />
     <Content Include="Assets\Playlist\warbly.png" />
+    <Content Include="Assets\RadiatingButton\tryit.png" />
+    <Content Include="Assets\RadiatingButton\tryit_dot.png" />
+    <Content Include="Assets\RadiatingButton\tryit_pen.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-100.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-125.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-150.png" />
@@ -524,6 +535,7 @@
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
     <Content Include="Assets\Universal\caprock_close_app_button.png" />
+    <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

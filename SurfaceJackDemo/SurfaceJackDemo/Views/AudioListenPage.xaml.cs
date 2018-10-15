@@ -23,14 +23,20 @@ namespace SurfaceJackDemo.Views
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
         private ListView PlayerListView;
+
         #endregion
+
         #region public members
+
         public Popup ReadyScreen;
+        public Popup HowToScreen;
+
         #endregion
 
+        #region Public Static Members
 
-        #region static members
-        public static AudioListenPage Current = null;
+        public static AudioListenPage Current { get; private set; }
+
         #endregion
 
         #region Construction
@@ -38,19 +44,12 @@ namespace SurfaceJackDemo.Views
         public AudioListenPage()
         {
             InitializeComponent();
-            this.Loaded += AudioListenPage_Loaded;
-            AudioListenPage.Current = this;
-            this.PlayerListView = this.itemListView;
-            rBtnLeft.PopupChild = PopLeft;
 
-            var timer = new Windows.UI.Xaml.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            timer.Start();
-            timer.Tick += (sender, args) =>
-            {// well this works? but ew
-                timer.Stop();
-                this.rBtnLeft.PopupChild = FlipViewPage.Current.GetHowToPagePopup();
-                HowToPage.Current.CloseButton_Clicked += CloseButton_Clicked;                
-            };
+            AudioListenPage.Current = this;
+
+            this.PlayerListView = this.itemListView;
+
+            this.Loaded += AudioListenPage_Loaded;
         }
 
         #endregion
@@ -67,7 +66,8 @@ namespace SurfaceJackDemo.Views
 
         public void AnimatePageEntrance()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            ShowPopup();
+            AnimationHelper.PerformPageEntranceAnimation(this);
             rBtnLeft.StartEntranceAnimation();
             rBtnLeft.StartRadiateAnimation();
         }
@@ -76,22 +76,43 @@ namespace SurfaceJackDemo.Views
 
         #region Private Methods
 
-        private void AudioListenPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void AudioListenPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.itemListView.Background = new SolidColorBrush(Colors.Black);
-            this.OverlayGrid.Background = StyleHelper.GetAcrylicBrush("Dark");
+
             NavigateFromPage();
+
             this.itemListView.SelectedIndex = 0;
+
             this.HasLoaded = true;
+
+            // get the initial screen cover popup
+            this.ReadyScreen = FlipViewPage.Current.GetAudioListenPopup();
+
+            AudioListenPopupPage.Current.CloseButton_Clicked += AudioTryItClose_Button_Clicked;
+
+            // get the howto screen popup
+            this.HowToScreen = FlipViewPage.Current.GetHowToPagePopup();
+            this.rBtnLeft.PopupChild = HowToScreen;
+
+            HowToPage.Current.CloseButton_Clicked += HowToCloseButton_Clicked;
+
             if (this.HasNavigatedTo)
             {
                 AnimatePageEntrance();
             }
         }
 
-        private void CloseButton_Clicked(object sender, RoutedEventArgs e)
+        private void HowToCloseButton_Clicked(object sender, RoutedEventArgs e)
         {
             this.rBtnLeft.HandleClick();
+        }
+
+        private void AudioTryItClose_Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            HasInteracted = true;
+            HidePopup();
+            AnimatePageEntrance();
         }
 
         private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -121,13 +142,7 @@ namespace SurfaceJackDemo.Views
             {
                 rBtnLeft.PopupChild.IsOpen = false;
             }
-        }
-
-        private void AudioTryItClose_Button_Clicked(object sender, RoutedEventArgs e)
-        {
             HidePopup();
-            AnimatePageEntrance();
-            HasInteracted = true;
         }
 
         private void ShowPopup()
@@ -152,7 +167,7 @@ namespace SurfaceJackDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            // animations in            
+            // animations in
             if (AudioListenPage.Current.HasLoaded)
             {
                 AnimatePageEntrance();
@@ -172,11 +187,5 @@ namespace SurfaceJackDemo.Views
         }
 
         #endregion
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.OverlayGrid.Visibility = Visibility.Collapsed;
-        }
     }
 }

@@ -16,19 +16,18 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource GatewaySpaceAboveImage}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="{StaticResource GatewaySpacerRow}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="{StaticResource GatewaySpacerRow}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="{StaticResource GatewaySpacerColumn}"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
@@ -44,17 +43,27 @@
         <ctrl:TextBlockEx Grid.Row="4" Grid.Column="1"
             x:Name="DeviceOneTitle"
             Text="{x:Bind Path=ViewModel.DeviceOneTitle}"
-            TextStyle="PageHeadline"
+            TextStyle="ListHeadline"
             HorizontalAlignment="Center"
             VerticalAlignment="Top" />
 
-        <Button Grid.Row="6" Grid.Column="1"
+        <Border Grid.Row="6" Grid.Column="1"
             x:Name="DeviceOneButton"
-            Content="{x:Bind Path=ViewModel.DeviceOneCTA}"
-            Style="{StaticResource CallToActionButton}"
+            Background = "White"
+            BorderThickness = "2"
+            Padding = "5,0,5,0"
+            Width="{StaticResource ReadyButtonWidth}"
+            Height="{StaticResource ReadyButtonHeight}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Click="DeviceOneButton_Click"/>
+            PointerPressed="DeviceOneButton_Click">
+
+            <ctrl:TextBlockEx x:Name="DeviceOneText"
+                Text="{x:Bind Path=ViewModel.DeviceOneCTA}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                TextStyle="ReadyButtonCaption"/>
+        </Border>
 
         <!-- Device Two -->
         <ctrl:ImageEx Grid.Row="2" Grid.Column="3"
@@ -67,17 +76,26 @@
         <ctrl:TextBlockEx Grid.Row="4" Grid.Column="3"
             x:Name="DeviceTwoTitle"
             Text="{x:Bind Path=ViewModel.DeviceTwoTitle}"
-            TextStyle="PageHeadline"
+            TextStyle="ListHeadline"
             HorizontalAlignment="Center"
             VerticalAlignment="Top" />
 
-        <Button Grid.Row="6" Grid.Column="3"
+        <Border Grid.Row="6" Grid.Column="3"
             x:Name="DeviceTwoButton"
-            Content="{x:Bind Path=ViewModel.DeviceTwoCTA}"
-            Style="{StaticResource CallToActionButton}"
+            Background = "White"
+            BorderThickness = "2"
+            Padding = "5,0,5,0"
+            Width="{StaticResource ReadyButtonWidth}"
+            Height="{StaticResource ReadyButtonHeight}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Click="DeviceTwoButton_Click"/>
+            PointerPressed="DeviceTwoButton_Click">
 
+            <ctrl:TextBlockEx x:Name="ButtonText"
+                Text="{x:Bind Path=ViewModel.DeviceTwoCTA}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                TextStyle="ReadyButtonCaption"/>
+        </Border>
     </Grid>
 </Page>

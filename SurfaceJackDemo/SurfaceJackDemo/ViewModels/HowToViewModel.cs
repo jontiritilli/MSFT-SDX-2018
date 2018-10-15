@@ -51,7 +51,6 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_AS_IMAGE_BACKGROUND = "ms-appx:///Assets/Controls/controls-background.png";
         #endregion
 
-
         #region Public Properties
         public string Headline;
         public string Legal;
@@ -83,8 +82,8 @@ namespace SurfaceJackDemo.ViewModels
             {
                 case DeviceType.Laptop:
                     BackgroundUri = URI_BACKGROUND_FOXBURG;
-                    ImageSelectorImageWidth = WIDTH_IMAGE / 3 * 2;
-                    ImageSelectorImageHeight = HEIGHT_IMAGE / 3 * 2;
+                    ImageSelectorImageWidth = (WIDTH_IMAGE / 3) * 2;
+                    ImageSelectorImageHeight = (HEIGHT_IMAGE / 3) * 2;
                     break;
                 case DeviceType.Studio:
                     BackgroundUri = URI_BACKGROUND_CAPROCK;

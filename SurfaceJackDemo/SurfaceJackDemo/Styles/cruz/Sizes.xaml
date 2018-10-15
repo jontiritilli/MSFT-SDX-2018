@@ -58,9 +58,17 @@
     <GridLength x:Key="SpaceBelowHeader">32.34</GridLength>
 	<GridLength x:Key="BestOfMicrosoftSpaceBelowHeader">65</GridLength>
 
-    <x:Double x:Key="ReadyButtonHeight">78</x:Double>
-    <x:Double x:Key="ReadyButtonWidth">264</x:Double>
+    <GridLength x:Key="GatewaySpaceAboveImage">50</GridLength>
+    <GridLength x:Key="GatewaySpaceBelowImage">50</GridLength>
+    <GridLength x:Key="GatewaySpacerColumn">50</GridLength>
+    <GridLength x:Key="GatewaySpacerRow">30</GridLength>
+    <GridLength x:Key="ListenGatewaySpacerRow">90</GridLength>
+    <x:Double x:Key="ReadyButtonHeight">48</x:Double>
+    <x:Double x:Key="ReadyButtonWidth">162</x:Double>
 
+    <x:Double x:Key="ControlListWidth">378</x:Double>
+    <x:Double x:Key="ControlListHeaderWidth">320</x:Double>
+    
     <x:Double x:Key="AppCloseWidth">46</x:Double>
     <x:Double x:Key="AppCloseHeight">32</x:Double>
 
@@ -115,11 +123,11 @@
     
     <x:Double x:Key="TryItBoxWidth">116.667</x:Double>
     <x:Double x:Key="TryItBoxHeight">46.667</x:Double>
-    <x:Double x:Key="TryItPathHeight">12</x:Double>
+    <x:Double x:Key="TryItPathHeight">8</x:Double>
     <x:Double x:Key="TryItPathCoverBottomMargin">2.5</x:Double> <!--height of the triangle at the bottom of the messagebox-->
-    <x:Double x:Key="TryItPathWidth">24</x:Double> <!--width of the triangle at the bottom of the messagebox-->
+    <x:Double x:Key="TryItPathWidth">16</x:Double> <!--width of the triangle at the bottom of the messagebox-->
     <x:Double x:Key="TryItIconHeight">30</x:Double>
-    <x:Double x:Key="TryItDotHeight">30</x:Double>
+    <x:Double x:Key="TryItDotHeight">20</x:Double>
     <x:Double x:Key="CanvasWidth">1368</x:Double>
     <x:Double x:Key="CanvasHeight">820</x:Double>  <!-- 3000 - 184 (navbar) = 2816, 2816 / 2 (200% scaling) = 1408 -->
 

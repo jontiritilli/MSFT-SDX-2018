@@ -12,8 +12,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="UnselectedListViewItem">
-            <Grid
-                    Height="100">
+            <Grid Height="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -32,8 +31,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SelectedListViewItem">
-            <Grid
-                    Height="100">
+            <Grid Height="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -41,8 +39,7 @@
                 <Border Width="48" Height="48">
                     <Image Stretch="UniformToFill">
                         <Image.Source>
-                            <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}"
-                                        DecodePixelWidth="48"/>
+                            <BitmapImage UriSource="{Binding Path=Source_SelectedImage, Mode=OneTime}" DecodePixelWidth="48"/>
                         </Image.Source>
                     </Image>
                 </Border>
@@ -58,56 +55,57 @@
         Height="{StaticResource ScreenHeight}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height=".83*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".35*"/>
-            <ColumnDefinition Width=".65*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
-            Width="{StaticResource HeaderWidth}"
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4"
+                x:Name="HowToBg">
+        </Canvas>
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+            Width="{StaticResource ControlListHeaderWidth}"
             Headline="{x:Bind Path=ViewModel.Headline}"
-            HeadlineStyle="PageHeadline"
-            LedeStyle="PageLede"                
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
-        <ctrl:ListViewEx x:Name="itemListView"
-            Grid.Row="3"
-            Grid.Column="1"
+            HeadlineStyle="ListHeadline"
+            LedeStyle="PageLede"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+        
+        <ctrl:ListViewEx Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
+            x:Name="itemListView"
             HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
             HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Top"
             HasAltRows="True"
-            Width="1200"
+            Width="{StaticResource ControlListWidth}"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectionChanged="itemListView_SelectionChanged"
             ItemTemplate="{StaticResource UnselectedListViewItem}"                 
             ItemsSource="{x:Bind Path=ViewModel.ListItems, Mode=OneTime}"/>
 
-        <ctrl:AppSelectorImage  Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="3"
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="3"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            ImageSource="{x:Bind Path=ViewModel.AppSelectorImageBackgroundUri}"
+            ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"/>
+
+        <ctrl:AppSelectorImage Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="3"
             x:Name="AppSelectorImageKB"
             Opacity="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
-            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}">
-            <ctrl:AppSelectorImage.Background>
-                <ImageBrush ImageSource="{x:Bind Path=ViewModel.AppSelectorImageBackgroundUri}"/>
-            </ctrl:AppSelectorImage.Background>
-        </ctrl:AppSelectorImage>
+            ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
 
-
-
-        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="4">
+        <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="4">
             <Grid
                 x:Name="grdCloseButton"
                 PointerPressed="PopClose_Click"

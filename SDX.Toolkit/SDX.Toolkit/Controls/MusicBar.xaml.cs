@@ -135,7 +135,7 @@ namespace SDX.Toolkit.Controls
         public GridLength PlayerButtonWidth { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonWidth)); } }
         public GridLength PlayerButtonSpacer { get { return new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.PlayerButtonSpacer)); } }
 
-        public AcrylicBrush BackgroundBrush {  get { return StyleHelper.GetAcrylicBrush("Light"); } }
+        public AcrylicBrush BackgroundBrush {  get { return StyleHelper.GetAcrylicBrush(AcrylicColors.MusicBar); } }
 
         #endregion
 
