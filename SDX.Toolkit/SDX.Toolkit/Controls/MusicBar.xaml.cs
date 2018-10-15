@@ -593,6 +593,28 @@ namespace SDX.Toolkit.Controls
                     ////}
 
                     // update the UI
+                    // code to autoplay if the song playing got to the end of the track naturally 
+                    // and the player did not change selected item by request
+                    if (args.Reason == MediaPlaybackItemChangedReason.EndOfStream)
+                    {
+                        if (this.CanGoForward)
+                        {
+                            // update the media player
+                            this.mediaPlaybackList.MoveNext();
+
+                            // update our selected index
+                            this.PlayerPlaylist.SelectedIndex++;
+
+                        }
+                        else {
+                            // update the media player
+                            this.mediaPlaybackList.MoveTo(0);
+
+                            // update our selected index
+                            this.PlayerPlaylist.SelectedIndex = 0;
+                        }
+                        this.RaiseSelectionChangedEvent(this);
+                    }
                     this.UpdateUI();
                 }
             });
