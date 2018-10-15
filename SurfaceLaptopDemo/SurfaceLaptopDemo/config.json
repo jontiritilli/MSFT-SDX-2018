@@ -4,6 +4,5 @@
   "IsTelemetryEnabled": true,
   "TelemetryKey": "Test",
   "IsBlackSchemeEnabled": true,
-  //"IsCoralSchemeEnabled": true,
   "IsStudioCompareLegalEnabled": false
 }
