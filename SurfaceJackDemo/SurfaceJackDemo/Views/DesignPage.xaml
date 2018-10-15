@@ -54,23 +54,24 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 EntranceStaggerDelayInMilliseconds = "600"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                  
-                PopupPosition="Right"                
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.51}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.43}"                  
+                PopupPosition="Left"                
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton 
                 x:Name="rBtnTop"                           
                 EntranceStaggerDelayInMilliseconds = "800"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.27}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"                  
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.18}"
+                PopupPosition="Left"       
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 EntranceStaggerDelayInMilliseconds = "1000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.64}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.63}"
                 PopupPosition="Left"
                 AutoStart = "false"/>
 
@@ -78,7 +79,7 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"
+                VerticalOffset="-1"
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
@@ -93,7 +94,7 @@
                 x:Name="PopRight"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"                 
+                VerticalOffset="-1"                 
                 IsLightDismissEnabled="True">
                 <ctrl:PopupMedia
                     PopupType="Text"
@@ -126,6 +127,7 @@
             HorizontalAlignment="Right"
             PageEntranceDirection="Left"
             HasEntranceTranslation="False"
+            Canvas.ZIndex="-1"
             Opacity="0"/>
     </Grid>
 </Page>

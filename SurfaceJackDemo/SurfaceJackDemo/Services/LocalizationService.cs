@@ -197,10 +197,15 @@ namespace SurfaceJackDemo.Services
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_HEADLINE, "AUDIO_TRACK_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_TRACK_COPY, "AUDIO_TRACK_COPY");
             viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_LEGAL, "AUDIO_TRACK_LEGAL");
+            viewModel.TryIt = GetStringValueToUpper(_languageCurrent.AUDIO_TRACK_TRYIT, "AUDIO_TRACK_TRYIT");
             viewModel.BulletListTitle = GetStringValue(_languageCurrent.AUDIO_TRACK_BULLET_LIST_TITLE, "AUDIO_TRACK_BULLET_LIST_TITLE"); 
-            viewModel.OverlayHeadline = GetStringValue(_languageCurrent.AUDIO_GATEWAY_HEADLINE, "AUDIO_GATEWAY_HEADLINE");
-            viewModel.OverlayLede = GetStringValue(_languageCurrent.AUDIO_GATEWAY_COPY, "AUDIO_GATEWAY_COPY");
-            viewModel.OverlayCTA = GetStringValue(_languageCurrent.AUDIO_GATEWAY_CTA, "AUDIO_GATEWAY_CTA");
+        }
+
+        public void LoadAudioListenPopupViewModel(AudioListenPopupViewModel viewModel)
+        {
+            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_GATEWAY_HEADLINE, "AUDIO_GATEWAY_HEADLINE");
+            viewModel.Lede = GetStringValue(_languageCurrent.AUDIO_GATEWAY_COPY, "AUDIO_GATEWAY_COPY");
+            viewModel.ButtonCTA = GetStringValueToUpper(_languageCurrent.AUDIO_GATEWAY_CTA, "AUDIO_GATEWAY_CTA");
         }
 
         public void LoadDesignViewModel(DesignViewModel viewModel)
@@ -217,7 +222,7 @@ namespace SurfaceJackDemo.Services
 
         public void LoadHowToViewModel(HowToViewModel viewModel)
         {
-            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE");
+            viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_HEADLINE, "AUDIO_TRACK_TRYIT_POPUP_HEADLINE");
             viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE");
             viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO");
             viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE");
@@ -362,7 +367,7 @@ namespace SurfaceJackDemo.Services
             // bullet one
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 0, // order
-                ListItemIcon.Jot,
+                ListItemIcon.HeadPhones,
                 viewModel.ICON_WIDTH, // width
                 "", // header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETONE_TITLE, "SPECS_WITB_BULLETONE_TITLE") // order
@@ -371,7 +376,7 @@ namespace SurfaceJackDemo.Services
             // bullet two
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 1, // order
-                ListItemIcon.Write, // icon enum name
+                ListItemIcon.USB, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",//header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETTWO_TITLE, "SPECS_WITB_BULLETTWO_TITLE") // order
@@ -380,7 +385,7 @@ namespace SurfaceJackDemo.Services
             // bullet three
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 2, // order
-                ListItemIcon.Pressure, // icon enum name
+                ListItemIcon.Stereo, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",//header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETTHREE_TITLE, "SPECS_WITB_BULLETTHREE_TITLE") // order
@@ -389,10 +394,19 @@ namespace SurfaceJackDemo.Services
             // bullet 4
             viewModel.ListItems.Add((ListItem.CreateListItem(
                 3, // order
-                ListItemIcon.Palm, // icon enum name
+                ListItemIcon.Case, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 "",// header
                 GetStringValue(_languageCurrent.SPECS_WITB_BULLETFOUR_TITLE, "SPECS_WITB_BULLETFOUR_TITLE") // order
+            )));
+
+            // bullet 4
+            viewModel.ListItems.Add((ListItem.CreateListItem(
+                4, // order
+                ListItemIcon.Docs, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                "",// header
+                GetStringValue(_languageCurrent.SPECS_WITB_BULLETFIVE_TITLE, "SPECS_WITB_BULLETFIVE_TITLE") // order
             )));
 
         }

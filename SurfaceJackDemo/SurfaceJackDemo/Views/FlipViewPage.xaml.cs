@@ -87,6 +87,7 @@ namespace SurfaceJackDemo.Views
             this.BottomNavBar.Root = ViewModel.Root;
 
             // initialize the music bar
+            this.MusicBar.Volume = ViewModel.Volume;
             this.MusicBar.PlayerPlaylist = ViewModel.Playlist;
             this.MusicBar.Background = StyleHelper.GetAcrylicBrush("Light");
 
@@ -290,6 +291,11 @@ namespace SurfaceJackDemo.Views
         public Popup GetHowToPagePopup()
         {
             return this.HowToPagePopup;
+        }
+
+        public Popup GetAudioListenPopup()
+        {
+            return this.AudioListenPopup;
         }
 
         public void EnablePageNavigation(object sender, object e)

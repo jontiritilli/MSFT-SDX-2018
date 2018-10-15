@@ -14,11 +14,8 @@
         <conv:PercentageToCanvasTopConverter x:Key="CanvasTopConverter"/>
         <conv:MathConverter x:Key="MathConverterKey"/>
     </Page.Resources>
+    
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
-        <Grid.Background>
-            <ImageBrush ImageSource="{x:Bind Path=ViewModel.ImageUri}"/>
-        </Grid.Background>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource TopMargin}"/>
             <RowDefinition Height="Auto"/>
@@ -34,13 +31,14 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind Path=ViewModel.ImageUri}"/>
+        </Grid.Background>
+        
         <ctrl:Header Grid.Row="1" Grid.Column="1"
             x:Name="PageHeader"                  
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
-            CTAText="TEST"
-            CTAUri="ms-settings:"
-            CTATextStyle="ListItemCTAText"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
@@ -52,23 +50,23 @@
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
                 EntranceStaggerDelayInMilliseconds = "600"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                  
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.16}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=.68}"                  
                 PopupPosition="Right"                
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton 
                 x:Name="rBtnTop"                           
                 EntranceStaggerDelayInMilliseconds = "800"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.27}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"                  
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.32}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"                  
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
                 EntranceStaggerDelayInMilliseconds = "1000"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.67}"                
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.66}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"                
                 PopupPosition="Left"
                 AutoStart = "false"/>
 
@@ -76,16 +74,16 @@
                 x:Name="PopLeft"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.42}"
+                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.31}" 
                 IsLightDismissEnabled="True">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Battery"
                         Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
                         Lede="{x:Bind Path=ViewModel.PopLeftLede}"
-                        HourIntegerMax="{x:Bind Path=ViewModel.PopLeftHR}"
+                        HourIntegerMax="15"
                         Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
-                        HourText="hrs" />
+                        HourText="hrs"/>
                 </Popup.Child>
             </Popup>
 
@@ -93,30 +91,27 @@
                 x:Name="PopRight"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"                 
+                VerticalOffset="-1"                 
                 IsLightDismissEnabled="True">
                 <ctrl:PopupMedia
                     PopupType="Text"
                     Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
                     Lede="{x:Bind Path=ViewModel.PopRightLede}"
-                    Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
-                    HourText="hrs"
-                    HourIntegerMax="17" />
+                    Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"/>
             </Popup>
             <Popup
                 x:Name="PopTop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.15}"                 
+                VerticalOffset="-1"                 
                 IsLightDismissEnabled="True">
                 <ctrl:PopupMedia
                     PopupType="Text"
                     Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
                     Lede="{x:Bind Path=ViewModel.PopTopLede}"
-                    Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"
-                    HourText="hrs"
-                    HourIntegerMax="17" />
+                    Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
             </Popup>
         </Canvas>
+
     </Grid>
 </Page>

@@ -52,5 +52,14 @@ namespace SDX.Toolkit.Models
             set { SetValue(CoverArtSourceUriProperty, value); }
         }
 
+        public static readonly DependencyProperty SelectedCoverArtSourceUriProperty =
+        DependencyProperty.Register("SelectedCoverArtSourceUri", typeof(string), typeof(PlaylistTrack), new PropertyMetadata(""));
+
+        public string SelectedCoverArtSourceUri
+        {
+            get { return (string)GetValue(SelectedCoverArtSourceUriProperty); }
+            set { SetValue(SelectedCoverArtSourceUriProperty, value); }
+        }
+
     }
 }

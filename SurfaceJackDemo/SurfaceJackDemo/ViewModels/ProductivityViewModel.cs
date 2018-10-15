@@ -19,8 +19,8 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_BACKGROUND_SB2_15 = "ms-appx:///Assets/Backgrounds/sb2_15_Generic_BG.jpg";
         private const string URI_BACKGROUND_SB2_13 = "ms-appx:///Assets/Backgrounds/sb2_Generic_BG.jpg";
 
-        private const string URI_IMAGE = "ms-appx:///Assets/Experience/joplin_intelligentFPO.jpg";
-        private const double WIDTH_IMAGE = 2880;
+        private const string URI_IMAGE = "ms-appx:///Assets/Experience/productivity-lifestyle.png";
+        private const double WIDTH_IMAGE = 2736;
         #endregion
 
 

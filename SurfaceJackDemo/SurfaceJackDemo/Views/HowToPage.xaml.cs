@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace SurfaceJackDemo.Views
 {
     /// <summary>
@@ -47,14 +45,7 @@ namespace SurfaceJackDemo.Views
         {
             this.InitializeComponent();
             HowToPage.Current = this;
-            this.ContentArea.Background = new AcrylicBrush()
-            {
-                BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                Opacity = 0.995,
-                TintColor = Windows.UI.Colors.White,
-                TintOpacity = 0.4,
-                FallbackColor = Windows.UI.Colors.White,
-            };
+            this.HowToBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
             this.Loaded += HowToPage_Loaded;
         }
 
@@ -82,6 +73,8 @@ namespace SurfaceJackDemo.Views
                 this.AppSelectorImageKB.SetSelectedID(listView.SelectedIndex);
                // hack to force the controltemplates to change to use the selected icon and foreground
                // dont judge me
+               //this.HowToString = 
+
                 foreach (var item in e.AddedItems)
                 {
                     ListViewItem listViewItem = (ListViewItem)listView.ContainerFromItem(item);
@@ -102,12 +95,12 @@ namespace SurfaceJackDemo.Views
 
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
+            AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
         }
         #endregion
 

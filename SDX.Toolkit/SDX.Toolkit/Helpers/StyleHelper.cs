@@ -72,6 +72,7 @@ namespace SDX.Toolkit.Helpers
         HeaderSpacerRowHeightListItemHeaderCompare,
         HeaderSpacerRowHeightPopupHeader,
         AccessoriesPenListIconWidth,
+        WITBListIconWidth,
         BestOfMicrosoftListIconWidth,
         BestOfMicrosoftRowSpacerHeight,
         BestOfMicrosoftColumnSpacerWidth,
@@ -140,6 +141,13 @@ namespace SDX.Toolkit.Helpers
         Purple
     }
 
+    public enum AcrylicColors
+    {
+        Lighter,
+        Light,
+        Dark,
+        MusicBar
+    }
     public enum BitmapImages
     {
         ColoringBookImage,
@@ -237,6 +245,7 @@ namespace SDX.Toolkit.Helpers
         public const string SIZE_HEADER_SPACER_ROW_HEIGHT_POPUPHEADER = "HeaderSpacerRowHeightPopupHeader";
 
         public const string SIZE_ACCESSORIESPEN_LISTICONWIDTH = "AccessoriesPenListIconWidth";
+        public const string SIZE_WITB_LISTICONWIDTH = "WITBListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_LISTICONWIDTH = "BestOfMicrosoftListIconWidth";
         public const string SIZE_BESTOFMICROSOFT_ROWSPACERHEIGHT = "BestOfMicrosoftRowSpacerHeight";
         public const string SIZE_BESTOFMICROSOFT_COLSPACERWIDTH = "BestOfMicrosoftColumnSpacerWidth"; 
@@ -425,6 +434,10 @@ namespace SDX.Toolkit.Helpers
                     value = GetApplicationDouble(SIZE_ACCESSORIESPEN_LISTICONWIDTH);
                     break;
 
+                case LayoutSizes.WITBListIconWidth:
+                    value = GetApplicationDouble(SIZE_WITB_LISTICONWIDTH);
+                    break;
+                    
                 case LayoutSizes.BestOfMicrosoftListIconWidth:
                     value = GetApplicationDouble(SIZE_BESTOFMICROSOFT_LISTICONWIDTH);
                     break;
@@ -1083,13 +1096,30 @@ namespace SDX.Toolkit.Helpers
             }
         }
 
-        public static AcrylicBrush GetAcrylicBrush(string Color = "Light")
+        public static AcrylicBrush GetAcrylicBrush(string ColorMode = "Light")
         {
-            AcrylicBrush brush;
+            AcrylicBrush BrushColor = GetAcrylicBrush(AcrylicColors.Light);
 
-            if (Color == "Light")
+            switch (ColorMode)
             {
-                brush = new AcrylicBrush()
+                case "Light":
+                    BrushColor = GetAcrylicBrush(AcrylicColors.Light);
+                    break;
+
+                case "Dark":
+                    BrushColor = GetAcrylicBrush(AcrylicColors.Dark);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return BrushColor;
+        }
+
+        public static AcrylicBrush GetAcrylicBrush(AcrylicColors ColorMode)
+        {
+            AcrylicBrush BrushColor = new AcrylicBrush()
                 {
                     BackgroundSource = AcrylicBackgroundSource.Backdrop,
                     Opacity = 0.993,
@@ -1097,21 +1127,56 @@ namespace SDX.Toolkit.Helpers
                     TintOpacity = 0.8,
                     FallbackColor = Colors.LightGray,
                 };
-            }
-            else // color must be set to dark
+
+            switch (ColorMode)
             {
-                brush = new AcrylicBrush()
-                {
-                    BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    Opacity = 0.997,
-                    TintColor = Colors.Black,
-                    TintOpacity = 0.45,
-                    FallbackColor = Colors.LightGray,
-                };
+                case AcrylicColors.Light:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.993,
+                        TintColor = Colors.White,
+                        TintOpacity = 0.8,
+                        FallbackColor = Colors.LightGray,
+                    };
+                    break;
 
+                case AcrylicColors.Dark:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.997,
+                        TintColor = Colors.Black,
+                        TintOpacity = 0.45,
+                        FallbackColor = Colors.LightGray,
+                    };
+                    break;
+
+                case AcrylicColors.MusicBar:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.997,
+                        TintColor = Colors.Gray,
+                        TintOpacity = 0.5,
+                        FallbackColor = Colors.LightGray,
+                    };
+                    break;
+
+                case AcrylicColors.Lighter:
+                    BrushColor = new AcrylicBrush()
+                    {
+                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
+                        Opacity = 0.9,
+                        TintColor = Colors.White,
+                        TintOpacity = 0.35,
+                        FallbackColor = Colors.White,
+                    };
+                    break;
+                default:
+                    break;
             }
-
-            return brush;
+            return BrushColor;
         }
 
         #endregion

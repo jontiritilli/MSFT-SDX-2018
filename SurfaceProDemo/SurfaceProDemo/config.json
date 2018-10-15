@@ -3,7 +3,7 @@
   "Language": "",
   "IsTelemetryEnabled": true,
   "TelemetryKey": "Test",
-  "IsBlackSchemeEnabled": true,
+  "IsBlackSchemeEnabled": false,
   "IsChoosePathPageEnabled": false,
   "IsStudioCompareLegalEnabled": false
 }

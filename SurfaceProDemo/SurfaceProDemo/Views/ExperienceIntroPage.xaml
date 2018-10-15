@@ -61,6 +61,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextStyle="Legal"/>
+        
         <Canvas x:Name="ButtonCanvas"
             Grid.Row="0"
             Grid.Column="0"
@@ -121,8 +122,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnRight"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.68}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.47}"                                                               
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.77}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"                                                               
                 PopupPosition="Left"
                 Visibility="Collapsed"                
                 EntranceStaggerDelayInMilliseconds="800"
@@ -130,8 +131,8 @@
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.22}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.70}"                                                
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.19}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.75}"                                                
                 PopupPosition="Right"                
                 EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"/>
@@ -146,25 +147,29 @@
         </Canvas>
         
         <ctrl:ImageEx
-            Grid.Row="3"
+            Grid.Row="0"
             Grid.Column="1"
             Grid.ColumnSpan="2"
+            Grid.RowSpan="7"
             x:Name="img_HeroFront"
             ImageWidth="{x:Bind Path=ViewModel.HeroFrontWidth}"
             ImageSource="{x:Bind Path=ViewModel.HeroFrontURI}"
             Canvas.ZIndex="100"
+            VerticalAlignment="Bottom"
             PageEntranceDirection="Left"
             Opacity="0" />
         
         <ctrl:ImageEx
-            Grid.Row="3"
+            Grid.Row="0"
             Grid.Column="1"
             Grid.ColumnSpan="2"
+            Grid.RowSpan="4"
             x:Name="img_HeroBack"
             ImageWidth="{x:Bind Path=ViewModel.HeroBackWidth}"
             ImageSource="{x:Bind Path=ViewModel.HeroBackURI}"
             HorizontalAlignment="Right"
-            Margin="0,0,140,50"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,100"
             PageEntranceDirection="Right"
             Opacity="0"
             Canvas.ZIndex="99"/>
