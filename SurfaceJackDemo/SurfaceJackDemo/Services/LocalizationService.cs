@@ -223,13 +223,17 @@ namespace SurfaceJackDemo.Services
         public void LoadHowToViewModel(HowToViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_HEADLINE, "AUDIO_TRACK_TRYIT_POPUP_HEADLINE");
+            viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
+            viewModel.Caption2 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO_COPY");
+            viewModel.Caption3 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY");
+            viewModel.Caption4 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY");
+            viewModel.Caption5 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE_COPY");
             viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE");
             viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO");
             viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE");
             viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR");
             viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE");
             viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX");
-            viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
 
         }
 
@@ -237,6 +241,7 @@ namespace SurfaceJackDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.TECH_TECH_HEADLINE, "TECH_TECH_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.TECH_TECH_COPY, "TECH_TECH_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_BATTERY_KEGAL, "TECH_TECH_POPLEFT_BATTERY_KEGAL");
             viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_TITLE, "TECH_TECH_POPLEFT_TITLE");
             viewModel.PopLeftLede = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_COPY, "TECH_TECH_POPLEFT_COPY");
             viewModel.PopLeftHR = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_BATTERY_HR, "TECH_TECH_POPLEFT_BATTERY_HR");
@@ -250,11 +255,11 @@ namespace SurfaceJackDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_HEADLINE, "PRODUCTIVITY_PRODUCTIVITY_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_COPY, "PRODUCTIVITY_PRODUCTIVITY_COPY");
-            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE");
-            viewModel.PopLeftLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY");
-            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL");
-            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_TITLE, "TECH_TECH_RIGHT_TITLE");
-            viewModel.PopRightLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_COPY, "TECH_TECH_RIGHT_COPY");
+            viewModel.PopTopHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE");
+            viewModel.PopTopLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY");
+            viewModel.PopTopLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL");
+            viewModel.PopCenterHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_TITLE, "TECH_TECH_RIGHT_TITLE");
+            viewModel.PopCenterLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_COPY, "TECH_TECH_RIGHT_COPY");
             viewModel.PopBottomHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_TITLE");
             viewModel.PopBottomLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_COPY");
             viewModel.PopBottomLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_LEGAL");
@@ -413,14 +418,14 @@ namespace SurfaceJackDemo.Services
 
         private string GetStringValue(string value, string name)
         {
-            if (String.IsNullOrWhiteSpace(value))
-            {
-                return String.Format("Missing translation for {0}", name);
-            }
-            else
-            {
+            //if (String.IsNullOrWhiteSpace(value))
+            //{
+            //    return String.Format("Missing translation for {0}", name);
+            //}
+            //else
+            //{
                 return value;
-            }
+            //}
         }
 
         private string GetStringValueToUpper(string value, string name)

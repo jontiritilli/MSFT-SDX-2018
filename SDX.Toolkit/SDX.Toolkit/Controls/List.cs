@@ -528,9 +528,9 @@ namespace SDX.Toolkit.Controls
                             // create the headline (bold text) if one is provided
                             Header headline = new Header()
                             {
-                                HeadlineStyle = TextStyles.SpecItemHeadlineBestOf,
+                                HeadlineStyle = TextStyles.SpecItemHeadline,
                                 Headline = item.Headline,
-                                LedeStyle = TextStyles.SpecItemLedeBestOf,
+                                LedeStyle = TextStyles.SpecItemLede,
                                 Lede = item.Lede,
                                 CTAText = item.CTAText,
                                 CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),

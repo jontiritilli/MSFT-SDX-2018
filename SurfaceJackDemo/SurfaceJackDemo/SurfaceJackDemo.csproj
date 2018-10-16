@@ -535,6 +535,7 @@
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
     <Content Include="Assets\Universal\caprock_close_app_button.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

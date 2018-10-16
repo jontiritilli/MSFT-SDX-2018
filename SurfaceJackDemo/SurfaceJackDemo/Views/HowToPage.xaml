@@ -112,7 +112,44 @@
             URIs="{x:Bind Path=ViewModel.appSelectorImageURIs}"
             ImageWidth="{x:Bind ViewModel.ImageSelectorImageWidth}"
             ImageHeight="{x:Bind ViewModel.ImageSelectorImageHeight}"/>
+        
+        <!-- blocks for captions-->
+        <ctrl:TextBlockEx Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+            x:Name="Caption2"
+            Text="{x:Bind Path=ViewModel.Caption2}"
+            TextStyle="ListHeadline"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,75"
+            Opacity="0"/>
 
+        <ctrl:TextBlockEx Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+            x:Name="Caption3"
+            Text="{x:Bind Path=ViewModel.Caption3}"
+            TextStyle="ListHeadline"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,75"
+            Opacity="0"/>
+
+        <ctrl:TextBlockEx Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+            x:Name="Caption4"
+            Text="{x:Bind Path=ViewModel.Caption4}"
+            TextStyle="ListHeadline"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,75"
+            Opacity="0"/>
+
+        <ctrl:TextBlockEx Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+            x:Name="Caption5"
+            Text="{x:Bind Path=ViewModel.Caption5}"
+            TextStyle="ListHeadline"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,75"
+            Opacity="0"/>
+        
         <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
              x:Name="IllustrationCanvas">
 
@@ -123,7 +160,7 @@
             ImageSource="{x:Bind Path=ViewModel.OverviewIllustrationURI}"
             Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
             Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"/>
-            
+                
             <ctrl:ImageEx
             x:Name="Illustration2"
             Opacity="0"
@@ -145,7 +182,7 @@
             Opacity="0"
             ImageWidth="{x:Bind Path=ViewModel.Width_Volume}"
             ImageSource="{x:Bind Path=ViewModel.VolumeIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.09}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.095}"
             Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
 
             <ctrl:ImageEx
@@ -153,7 +190,7 @@
             Opacity="0"
             ImageWidth="{x:Bind Path=ViewModel.Width_Noise}"
             ImageSource="{x:Bind Path=ViewModel.NoiseIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.39}"
+            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.388}"
             Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
         </Canvas>
         
