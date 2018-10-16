@@ -117,7 +117,7 @@
                 Text="{x:Bind Path=ViewModel.PopupBatteryLifeLegal}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.93}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.95}"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter},ConverterParameter=0.03}" 
                 TextStyle="Legal"/>
         </Canvas>
