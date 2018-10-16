@@ -6,8 +6,90 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding AudioVieModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    
-    <Grid x:Name="LayoutRoot">
 
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Vertical"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <Image x:Name="DolbyAtmos"
+                   Width="252">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
+                                 DecodePixelWidth="252" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+            <TextBlock
+            FontWeight="Bold"
+            Text="Surround sound that really sounds" />
+            <TextBlock
+            Text="A marvel..."/>
+        </StackPanel>
+        <Image x:Name="HeroBackground"
+               Grid.Row="0"
+               Grid.RowSpan="6"
+               Grid.Column="1"
+               Grid.ColumnSpan="2">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_blueBackground.png"
+                                 DecodePixelWidth="960" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+        <Canvas
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="2">
+            <Button
+                x:Name="Left"
+                Canvas.Left="650"
+                Canvas.Top="170">
+                <Image
+                    Width="66">
+                    <Image.Source>
+                        <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot1.png"
+                                 DecodePixelWidth="66" DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Button>
+            <Button
+                x:Name="Right"
+                Canvas.Left="1175"
+                Canvas.Top="150">
+                <Image
+                    Width="66">
+                    <Image.Source>
+                        <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot2.png"
+                                 DecodePixelWidth="66" DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Button>
+
+            <Image x:Name="imgHero"
+               Canvas.Left="250"
+               Canvas.Top="-350"
+                   Canvas.ZIndex="-1"
+               Width="1254">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hero.png"
+                                 DecodePixelWidth="1254" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Canvas>
     </Grid>
 </Page>
+
