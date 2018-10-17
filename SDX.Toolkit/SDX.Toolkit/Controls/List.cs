@@ -35,6 +35,8 @@ namespace SDX.Toolkit.Controls
 
         private List<ListItem> _listItems = new List<ListItem>();
 
+        private List<UIElement> _specListElements = new List<UIElement>();
+
         private Grid _layoutRoot = null;
 
         #endregion
@@ -503,7 +505,9 @@ namespace SDX.Toolkit.Controls
                             for (int row = 0; row < 3; row++)
                             {
                                 Grid RowGrid = new Grid();
+
                                 ListItem item = _listItems[Index];
+
                                 int RowToAdd = rowIndex == 0 ? 0 : row + rowIndex;
                                 // get correct row to add content, don't want to add to a spacer row
 
@@ -524,8 +528,9 @@ namespace SDX.Toolkit.Controls
                                     VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                     VerticalContentAlignment = VerticalAlignment.Top,
                                     PageEntranceDirection = this.PageEntranceDirection,
-                                    //Opacity = 0.0
+                                    Opacity = 0.0
                                 };
+                                _specListElements.Add(icon);
 
                                 Grid.SetColumn(icon, 0);
                                 Grid.SetRow(icon, 0);
@@ -545,9 +550,10 @@ namespace SDX.Toolkit.Controls
                                     HorizontalAlignment = HorizontalAlignment.Left,
                                     VerticalAlignment = VerticalAlignment.Top,
                                     PageEntranceDirection = this.PageEntranceDirection,
-                                    //HeadlineOpacity = 0,
-                                    //LedeOpacity = 0
+                                    HeadlineOpacity = 0,
+                                    LedeOpacity = 0
                                 };
+                                _specListElements.Add(headline);
 
                                 Grid.SetColumn(headline, 2);
                                 Grid.SetRow(headline, 0);
@@ -594,7 +600,6 @@ namespace SDX.Toolkit.Controls
             {
                 switch (this.ListStyle)
                 {
-                    case ListStyles.Specs:
                     case ListStyles.BestOf: // used for interactive pages with header followed by list of items
                         {
                             foreach (UIElement item in _layoutRoot.Children)
@@ -633,6 +638,8 @@ namespace SDX.Toolkit.Controls
                             }
                         }
                         break;
+                    case ListStyles.Specs:
+                        return _specListElements;
                 }
             }
 
