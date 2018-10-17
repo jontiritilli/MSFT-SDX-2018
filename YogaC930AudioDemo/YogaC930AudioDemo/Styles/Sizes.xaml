@@ -4,17 +4,27 @@
     xmlns:local="using:YogaC930AudioDemo.Styles">
     <!--resolution 1920 x 1080 - 100% scaling-->
 
-    <GridLength x:Key="TopMargin">111.54</GridLength>
-    <GridLength x:Key="LeftMargin">110</GridLength>
-    <GridLength x:Key="RightMargin">110</GridLength>
+    <x:Double x:Key="CanvasWidth">1920</x:Double>
+    <x:Double x:Key="CanvasHeight">1080</x:Double>
 
-    <x:Double x:Key="BottomMargin">145</x:Double>
+    <x:Double x:Key="LeftMargin">147</x:Double>
+    <x:Double x:Key="TopMargin">178.5</x:Double>
+    <x:Double x:Key="RightMargin">147</x:Double>
+    <x:Double x:Key="BottomMargin">145.845</x:Double>
 
-    <GridLength x:Key="PopupTopMargin">69</GridLength>
-    <GridLength x:Key="PopupLeftMargin">73</GridLength>
-    <GridLength x:Key="PopupRightMargin">73</GridLength>
-    <GridLength x:Key="PopupBottomMargin">69</GridLength>
-    <GridLength x:Key="HingePopupRowSpacerHeight">111.54</GridLength>
+    <x:Double x:Key="AppCloseWidth">54</x:Double>
+    <x:Double x:Key="AppCloseHeight">54</x:Double>
+
+    <x:Double x:Key="NavigationBarHeight">37.04</x:Double>
+    <x:Double x:Key="NavigationBarLeftMargin">54</x:Double>
+    <x:Double x:Key="NavigationBarBottomMargin">46.33</x:Double>
+    <x:Double x:Key="NavigationBarSpacer">42</x:Double>
+
+    <x:Double x:Key="PopupTopMargin">69</x:Double>
+    <x:Double x:Key="PopupLeftMargin">73</x:Double>
+    <x:Double x:Key="PopupRightMargin">73</x:Double>
+    <x:Double x:Key="PopupBottomMargin">69</x:Double>
+    <x:Double x:Key="HingePopupRowSpacerHeight">111.54</x:Double>
 
     <x:Double x:Key="PopupHeaderWidth">599</x:Double>
     <x:Double x:Key="PopupCloseBtnWidth">60</x:Double>
@@ -22,15 +32,4 @@
     <x:Double x:Key="PopupCloseBtnSetTop">20</x:Double>
     <x:Double x:Key="PopupWidth">1774</x:Double>
     <x:Double x:Key="PopupHeight">942</x:Double>
-    
-    <GridLength x:Key="AppCloseWidth">54</GridLength>
-    <GridLength x:Key="AppCloseHeight">54</GridLength>
-
-    <GridLength x:Key="NavigationBarHeight">100.33</GridLength>
-    <GridLength x:Key="NavigationBarMargin">46.32</GridLength>
-    <GridLength x:Key="NavigationBarSpacer">42.5</GridLength>
-    
-    <x:Double x:Key="CanvasWidth">1920</x:Double>
-    <x:Double x:Key="CanvasHeight">1080</x:Double>
-
 </ResourceDictionary>

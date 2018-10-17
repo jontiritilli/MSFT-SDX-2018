@@ -9,40 +9,42 @@ namespace YogaC930AudioDemo.Views
 {
     public sealed partial class FlipViewPage : Page
     {
+        #region Public Static Methods
+
+        public static FlipViewPage Current { get; private set; }
+
+        #endregion
+
+
+        #region Public Properties
+
         private FlipViewViewModel ViewModel
         {
             get { return DataContext as FlipViewViewModel; }
         }
-        #region public static
-        public static FlipViewPage Current { get; private set; }
+
         #endregion
+
+
+        #region Construction
+
         public FlipViewPage()
         {
             InitializeComponent();
+
             FlipViewPage.Current = this;
+
             this.Loaded += FlipViewPage_Loaded;
         }
+
+        #endregion
+
+
+        #region Event Handlers
 
         private void FlipViewPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             PlayerPopupPage.Current.CloseButton_Clicked += Close_Player_Clicked;
-        }
-
-        public Popup GetPlayerPopup()
-        {
-            return this.PlayerPopup;
-        }
-
-        public Popup GetSpeakerPopupPagePopup()
-        {
-            return this.SpeakerDesignPopupPagePopup;
-
-        }
-
-        public Popup GetHingDesignPopupPagePopup()
-        {
-            return this.HingeDesignPopup;
-
         }
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -60,5 +62,29 @@ namespace YogaC930AudioDemo.Views
                 this.PlayerPopup.IsOpen = false;
             }
         }
+
+        #endregion
+
+
+        #region Public Methods
+
+        public Popup GetPlayerPopup()
+        {
+            return this.PlayerPopup;
+        }
+
+        public Popup GetSpeakerPopupPagePopup()
+        {
+            return this.SpeakerDesignPopup;
+
+        }
+
+        public Popup GetHingDesignPopupPagePopup()
+        {
+            return this.HingeDesignPopup;
+
+        }
+
+        #endregion
     }
 }

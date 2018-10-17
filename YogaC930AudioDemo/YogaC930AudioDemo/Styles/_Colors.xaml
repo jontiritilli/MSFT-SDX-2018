@@ -1,5 +1,28 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">    
-    <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"></SolidColorBrush>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="HeadlineTextSolidColorBrush" Color="#FF000000"/>
+    
+    <SolidColorBrush x:Key="BodyTextSolidColorBrush" Color="#FF000000"/>
+
+    <SolidColorBrush x:Key="BodyBlueTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="LegalTextSolidColorBrush" Color="#FF999999"/>
+
+    <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="1.0" FallbackColor="#29FFFFFF"/>
+
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundTextSolidColorBrush" Color="#FFA8A8A8"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundTextSolidColorBrush" Color="#FFBFBFBF"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PopupBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#FF082454"/>
+
 </ResourceDictionary>
