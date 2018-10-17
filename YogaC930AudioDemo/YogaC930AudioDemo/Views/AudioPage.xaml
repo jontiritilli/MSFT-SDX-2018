@@ -21,36 +21,42 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
         </Grid.ColumnDefinitions>
-        <StackPanel
-            Grid.Row="1"
+        <StackPanel Grid.Row="1"
             Orientation="Vertical"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
+            
             <Image x:Name="DolbyAtmos"
                    HorizontalAlignment="Left"
                    Margin="0,0,0,40"
                    Width="252">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
-                                 DecodePixelWidth="252" DecodePixelType="Logical"/>
+                    <BitmapImage
+                        UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
+                        DecodePixelWidth="252"
+                        DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
-              <TextBlock
-            Width="600.96"
-            Style="{StaticResource PageTitleStyle}"     
-            Text="{x:Bind Path=ViewModel.Headline}" />
+            <TextBlock
+                Width="600.96"
+                Style="{StaticResource PageTitleStyle}"     
+                Text="{x:Bind Path=ViewModel.Headline}"/>
+            
             <TextBlock
                 Width="600.96"
                 Style="{StaticResource BodyTextStyle}"
-            Text="{x:Bind Path=ViewModel.BodyFirst}"/>
+                Text="{x:Bind Path=ViewModel.BodyFirst}"/>
+            
             <TextBlock
                 Width="600.96"
                 Style="{StaticResource BlueBodyTextStyle}"
-            Text="{x:Bind Path=ViewModel.BodyBold}"/>
+                Text="{x:Bind Path=ViewModel.BodyBold}"/>
+            
             <TextBlock
                 Width="600.96"
                 Style="{StaticResource BodyTextStyle}"
-            Text="{x:Bind Path=ViewModel.BodyLast}"/>
+                Text="{x:Bind Path=ViewModel.BodyLast}"/>
+            
         </StackPanel>
         <Image x:Name="HeroBackground"
                Grid.Row="0"
@@ -58,15 +64,13 @@
                Grid.Column="1"
                Grid.ColumnSpan="2">
             <Image.Source>
-                <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_blueBackground.png"
-                                 DecodePixelWidth="960" DecodePixelType="Logical"/>
+                <BitmapImage
+                    UriSource="ms-appx:///Assets/Audio/audio_blueBackground.png"
+                    DecodePixelWidth="960"
+                    DecodePixelType="Logical"/>
             </Image.Source>
         </Image>
-        <Canvas
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.RowSpan="7"
-            Grid.ColumnSpan="2">
+        <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2">
             <Button
                 x:Name="btnLeft"
                 Canvas.Left="1018"
@@ -75,8 +79,10 @@
                 <Image
                     Width="66">
                     <Image.Source>
-                        <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot1.png"
-                                 DecodePixelWidth="66" DecodePixelType="Logical"/>
+                        <BitmapImage
+                            UriSource="ms-appx:///Assets/Audio/audio_hotspot1.png"
+                            DecodePixelWidth="66"
+                            DecodePixelType="Logical"/>
                     </Image.Source>
                 </Image>
             </Button>

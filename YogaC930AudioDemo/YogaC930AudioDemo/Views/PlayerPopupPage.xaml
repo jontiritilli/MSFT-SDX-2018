@@ -12,23 +12,23 @@
     mc:Ignorable="d">
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
         </Grid.ColumnDefinitions>
-        <MediaPlayerElement Name="AttractorLoopPlayer"
-                            Width="1920"
-                            Source="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080.mp4"
-                                  AutoPlay="True"/>
+        <MediaPlayerElement Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
+            Name="AttractorLoopPlayer"
+            Width="1920"
+            Source="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080.mp4"
+            AutoPlay="True"/>
         <Button
             x:Name="btnClose"
             Grid.Column="2"
             Grid.Row="0"
             Canvas.ZIndex="100"
-            Margin="0,24.54,23.985,0"
             VerticalAlignment="Top"
             HorizontalAlignment="Right"
             Click="btnClose_Click"
