@@ -8,6 +8,147 @@
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+        </Grid.ColumnDefinitions>
+        <!--turn into a grid-->
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.RowSpan="6"
+            Width="671.26"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100.64"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imgPen"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="0,0,0,40"
+                   Width="40.845">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_garagedPen.png"
+                                 DecodePixelWidth="41" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"                
+                Style="{StaticResource PageTitleStyle}"
+                Text="{x:Bind ViewModel.PenHeadline}" />
 
+            <TextBlock Style="{StaticResource BodyTextStyle}"
+                Grid.Row="1"
+                Grid.Column="1">
+                    <Run
+                        Text="{x:Bind ViewModel.PenBodyFirst}"
+                         />
+                    <Run Text="{x:Bind ViewModel.PenBodyBold}"
+                         Foreground="#ff3E8DDD"
+                         FontWeight="SemiBold"/>
+                    <Run Text="{x:Bind ViewModel.PenBodyLast}"/>
+            </TextBlock>
+            <Image x:Name="imgInk"
+                   HorizontalAlignment="Center"
+                    Grid.Row="2"
+                    Grid.Column="0"                    
+                   Margin="0,0,0,40"
+                   Width="28">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_windowsInk.png"
+                                 DecodePixelWidth="54" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"                                  
+                Style="{StaticResource PageTitleStyle}"                
+                Text="{x:Bind ViewModel.InkHeadline}" />
+                <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"                  
+                Width="600.96">
+                    <Run Text="{x:Bind ViewModel.InkBodyFirst}"/>
+                    <Run Text="{x:Bind ViewModel.InkBodyBold}"
+                         Foreground="#ff3E8DDD"
+                         FontWeight="SemiBold"/>
+                    <Run Text="{x:Bind ViewModel.InkBodyLast}"/>
+                </TextBlock>
+                <Image x:Name="imgShutter"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                    Grid.Row="4"
+                    Grid.Column="0"                    
+                   Margin="0,0,0,40"
+                   Width="32">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_TrublockPrivacyShutter.png"
+                                 DecodePixelWidth="32" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="1"                   
+                Width="600.96"
+                Style="{StaticResource PageTitleStyle}"                  
+                Text="{x:Bind ViewModel.WebCamHeadline}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="1"                  
+                Width="600.96">
+                <Run Text="{x:Bind ViewModel.WebCamBodyFirst}"/>
+                <Run Text="{x:Bind ViewModel.WebCamBodyBold}"
+                     Foreground="#ff3E8DDD"
+                     FontWeight="SemiBold"/>
+                <Run Text="{x:Bind ViewModel.WebCamBodyLast}"/>
+            </TextBlock>
+        </Grid>
+        <Image x:Name="HeroBackground"
+               Grid.Row="0"
+               Grid.RowSpan="6"
+               Grid.Column="0"
+               Canvas.ZIndex="-1"
+               Width="960">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/Features/features_blueBackground.png"
+                                 DecodePixelWidth="960" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+        <Image x:Name="imgHero"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Grid.RowSpan="6"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"
+               Width="1116">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_hero.png"
+                                 DecodePixelWidth="1116" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
     </Grid>
 </Page>
