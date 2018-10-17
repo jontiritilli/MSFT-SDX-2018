@@ -98,6 +98,10 @@ namespace SurfaceJackDemo.Views
                     this.Caption5.Opacity = 1.0d;
                     break;
 
+                case 5: //noise
+                    this.Caption6.Opacity = 1.0d;
+                    break;
+
                 default:
                     break;
             }
@@ -130,6 +134,10 @@ namespace SurfaceJackDemo.Views
                 case 4: //noise
                     this.Illustration5.Opacity = 0.0d;
                     this.Caption5.Opacity = 0.0d;
+                    break;
+
+                case 5: //noise
+                    this.Caption6.Opacity = 0.0d;
                     break;
 
                 default:

@@ -26,6 +26,7 @@ namespace SDX.Toolkit.Helpers
         PageLedeDark,
         ReadyPageHeadline,
         ListHeadline,
+        ListHeadlineDark,
         ListLede,
         ListLedeBold,
         ListItemHeadlinePenTouch,
@@ -193,7 +194,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_LEDE = "PageLede";
         public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
         public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
-        public const string STYLE_LIST_HEADLINE = "ListHeadline";
+        public const string STYLE_LIST_HEADLINE = "ListHeadline"; 
+        public const string STYLE_LIST_HEADLINE_DARK = "ListHeadlineDark";
         public const string STYLE_LIST_LEDE = "ListLede";
         public const string STYLE_LIST_LEDE_BOLD = "ListLedeBold";
         public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
@@ -712,6 +714,10 @@ namespace SDX.Toolkit.Helpers
                 case TextStyles.ListHeadline:
                     style = GetApplicationStyle(STYLE_LIST_HEADLINE);
                     break;
+
+                case TextStyles.ListHeadlineDark:
+                    style = GetApplicationStyle(STYLE_LIST_HEADLINE_DARK);
+                    break; 
 
                 case TextStyles.ListLede:
                     style = GetApplicationStyle(STYLE_LIST_LEDE);

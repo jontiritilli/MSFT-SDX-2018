@@ -23,7 +23,7 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_BACKGROUND_SB213 = "ms-appx:///Assets/Backgrounds/sb2_generic_bg.jpg";
         private const string URI_BACKGROUND_SB215 = "ms-appx:///Assets/Backgrounds/sb2_15_generic_bg.jpg";
 
-        private const string URI_CLOSE_APP_BUTTON_CRUZ = "ms-appx:///Assets/Universal/close_app_button.png";
+        private const string URI_CLOSE_APP_BUTTON_CRUZ = "ms-appx:///Assets/Universal/close-app-button.png";
         private const string URI_CLOSE_APP_BUTTON_CAPROCK = "ms-appx:///Assets/Universal/caprock_close_app_button.png";
         private const string URI_CLOSE_APP_BUTTON_FOXBURG = "ms-appx:///Assets/Universal/fox_close.png";
         private const string URI_CLOSE_APP_BUTTON_SB2_13 = "ms-appx:///Assets/Universal/sb2_15_close.png";
@@ -113,9 +113,9 @@ namespace SurfaceJackDemo.ViewModels
             // determine background
             switch (WindowHelper.GetDeviceTypeFromResolution())
             {
-                case DeviceType.Pro:
-                case DeviceType.Unknown:
                 case DeviceType.Go:
+                case DeviceType.Unknown:
+                case DeviceType.Pro:
                 default:
                     this.BackgroundUri = URI_BACKGROUND_CRUZ;
                     this.CloseButtonUri = URI_CLOSE_APP_BUTTON_CRUZ;
@@ -192,13 +192,13 @@ namespace SurfaceJackDemo.ViewModels
             };
             this.Sections.Add(sectionSpecs);
 
-            NavigationSection sectionPartner = new NavigationSection()
-            {
-                Name = "Partner",
-                Text = this.NavBarPartner,  // from language file
-                Order = 5
-            };
-            this.Sections.Add(sectionPartner);
+            //NavigationSection sectionPartner = new NavigationSection()
+            //{
+            //    Name = "Partner",
+            //    Text = this.NavBarPartner,  // from language file
+            //    Order = 5
+            //};
+            //this.Sections.Add(sectionPartner);
 
             // =================================================
             // Create the page tree
@@ -287,16 +287,12 @@ namespace SurfaceJackDemo.ViewModels
                 Section = sectionSpecs,
             });
 
-            // =================================================
-            // Create Partner pages
-            // =================================================
-
             // ComparePage
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "PartnerPage",
                 Order = 5,
-                Section = sectionPartner,
+                Section = sectionSpecs,
             });
         }
     }

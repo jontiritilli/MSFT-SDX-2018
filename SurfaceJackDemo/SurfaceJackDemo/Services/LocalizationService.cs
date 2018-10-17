@@ -228,13 +228,13 @@ namespace SurfaceJackDemo.Services
             viewModel.Caption3 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY");
             viewModel.Caption4 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY");
             viewModel.Caption5 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE_COPY");
+            viewModel.Caption6 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX_COPY");
             viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE");
             viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO");
             viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE");
             viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR");
             viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE");
             viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX");
-
         }
 
         public void LoadTechViewModel(TechViewModel viewModel)
@@ -288,29 +288,11 @@ namespace SurfaceJackDemo.Services
                 ListItemIcon.Dimensions, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_TITLE, "SPECS_SPECS_BULLETONE_TITLE"), // order
-                bulletOneCopyBritish // order  // NOTE - PSS - USING BRITISH FOR NOW SINCE THIS IS US-ONLY
+                bulletOneCopyBritish + "\n" + bulletOneCopyMetric // order  // NOTE - PSS - USING BRITISH FOR NOW SINCE THIS IS US-ONLY
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 1, // order
-                ListItemIcon.NoiseCancellation, // icon enum name
-                viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_TITLE, "SPECS_SPECS_BULLETSIX_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_COPY, "SPECS_SPECS_BULLETSIX_COPY") // order
-            ));
-
-
-            viewModel.ItemList.Add(ListItem.CreateListItem(
-                2, // order
-                ListItemIcon.BatteryLife, // icon enum name
-                viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_TITLE, "SPECS_SPECS_BULLETFIVE_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_COPY, "SPECS_SPECS_BULLETFIVE_COPY") // order
-            ));
-
-
-            viewModel.ItemList.Add(ListItem.CreateListItem(
-                3, // order
                 ListItemIcon.Weight, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_TITLE, "SPECS_SPECS_BULLETTWO_TITLE"),
@@ -318,7 +300,15 @@ namespace SurfaceJackDemo.Services
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
-                4, // order
+                2, // order
+                ListItemIcon.Speaker, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_TITLE, "SPECS_SPECS_BULLETTHREE_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_COPY, "SPECS_SPECS_BULLETTTHREE_COPY") // order
+            ));
+
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                3, // order
                 ListItemIcon.Frequency, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_TITLE, "SPECS_SPECS_BULLETFOUR_TITLE"), // order
@@ -326,19 +316,27 @@ namespace SurfaceJackDemo.Services
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
-                5, // order
-                ListItemIcon.Inputs, // icon enum name
+                4, // order
+                ListItemIcon.BatteryLife, // icon enum name
                 viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_TITLE, "SPECS_SPECS_BULLETSEVEN_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_COPY, "SPECS_SPECS_BULLETSEVEN_COPY") // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_TITLE, "SPECS_SPECS_BULLETFIVE_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_COPY, "SPECS_SPECS_BULLETFIVE_COPY") // order
+            ));
+
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                5, // order
+                ListItemIcon.NoiseCancellation, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_TITLE, "SPECS_SPECS_BULLETSIX_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_COPY, "SPECS_SPECS_BULLETSIX_COPY") // order
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 6, // order
-                ListItemIcon.Speaker, // icon enum name
+                ListItemIcon.Inputs, // icon enum name
                 viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_TITLE, "SPECS_SPECS_BULLETTHREE_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_COPY, "SPECS_SPECS_BULLETTTHREE_COPY") // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_TITLE, "SPECS_SPECS_BULLETSEVEN_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_COPY, "SPECS_SPECS_BULLETSEVEN_COPY") // order
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
