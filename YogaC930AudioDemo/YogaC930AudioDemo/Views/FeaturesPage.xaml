@@ -118,7 +118,7 @@
                     Grid.Row="4"
                     Grid.Column="1"                   
                     Width="600.96"
-                    Style="{StaticResource PageTitleStyle}"                  
+                    Style="{StaticResource HeadlineTextStyle}"                  
                     Text="{x:Bind ViewModel.WebCamHeadline}" />
             <TextBlock
                     Grid.Row="5"

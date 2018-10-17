@@ -55,16 +55,16 @@
               VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>
-                <RowDefinition Height="{Binding Source={StaticResource NavigationBarMargin}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource NavigationBarBottomMargin}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarMargin}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarLeftMargin}}"/>
                 <ColumnDefinition Width="222"/>
                 <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}}"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}}"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarMargin}}"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Image x:Name="YogaLogo"

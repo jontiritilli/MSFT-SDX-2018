@@ -52,6 +52,18 @@
         <Setter Property="Foreground" Value="{StaticResource BodyBlueTextSolidColorBrush}"/>
     </Style>
 
+    <Style x:Key="LegalTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
+        <Setter Property="Foreground" Value="{StaticResource LegalTextSolidColorBrush}"/>
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="30" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="NoWrap" />        
+    </Style>
+    
     <!-- Specs List Styles -->
     <Style x:Key="ListItemFirstLineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource BodyTextSolidColorBrush}"/>

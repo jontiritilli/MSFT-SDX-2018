@@ -21,4 +21,8 @@
 
     <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundTextSolidColorBrush" Color="#FFFFFFFF"/>
 
+    <SolidColorBrush x:Key="PopupBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#FF082454"/>
+
 </ResourceDictionary>

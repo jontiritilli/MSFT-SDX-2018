@@ -11,24 +11,24 @@
         x:Name="LayoutRoot"
         Width="{StaticResource CanvasWidth}"
         Height="{StaticResource CanvasHeight}"
-        Background="{x:Bind Path=ViewModel.BackgroundColor}">
+        Background="{StaticResource PopupBlueBackgroundSolidColorBrush}">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource PopupTopMargin}"/>
-            <RowDefinition Height="{StaticResource HingePopupRowSpacerHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource HingePopupRowSpacerHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource PopupBottomMargin}"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource PopupLeftMargin}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="{StaticResource PopupRightMargin}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}}"/>
         </Grid.ColumnDefinitions>
 
         <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5"
-                Background="White">
+                Background="{StaticResource PopupBackgroundSolidColorBrush}">
         </Canvas>
         <StackPanel Grid.Row="2" Grid.Column="1"
             HorizontalAlignment="Center">
@@ -37,7 +37,7 @@
                 Width="{StaticResource PopupHeaderWidth}"
                 TextAlignment="Center"
                 HorizontalAlignment="Center"
-                Style="{StaticResource PageTitleStyle}"     
+                Style="{StaticResource HeadlineTextStyle}"     
                 Text="An audio system like no other" />
 
             <TextBlock Grid.Row="1" Grid.Column="1"
