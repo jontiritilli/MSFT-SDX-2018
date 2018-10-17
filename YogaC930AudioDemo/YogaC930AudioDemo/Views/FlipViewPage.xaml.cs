@@ -75,7 +75,7 @@ namespace YogaC930AudioDemo.Views
 
         public Popup GetSpeakerPopupPagePopup()
         {
-            return this.SpeakerDesignPopupPagePopup;
+            return this.SpeakerDesignPopup;
 
         }
 
