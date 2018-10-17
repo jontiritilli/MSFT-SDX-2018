@@ -71,11 +71,11 @@
             </Image.Source>
         </Image>
         <Canvas Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2">
-            <Button
+            <Grid
                 x:Name="btnLeft"
                 Canvas.Left="1018"
                 Canvas.Top="210"
-                Click="btnLeft_Click">
+                PointerReleased="btnLeft_Click">
                 <Image
                     Width="66">
                     <Image.Source>
@@ -85,12 +85,12 @@
                             DecodePixelType="Logical"/>
                     </Image.Source>
                 </Image>
-            </Button>
-            <Button
+            </Grid>
+            <Grid
                 x:Name="btnRight"
                 Canvas.Left="1580"
                 Canvas.Top="170"
-                Click="btnRight_Click">
+                PointerReleased="btnRight_Click">
                 <Image
                     Width="66">
                     <Image.Source>
@@ -98,7 +98,7 @@
                                  DecodePixelWidth="66" DecodePixelType="Logical"/>
                     </Image.Source>
                 </Image>
-            </Button>
+            </Grid>
 
             <Image x:Name="imgHero"
                Canvas.Left="650"

@@ -5,63 +5,71 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding SpeakerDesignPopupViewModel, Source={StaticResource Locator}}"
-    Height="942"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot"
-          Background="White">
+    <Grid
+        x:Name="LayoutRoot"
+        Width="{StaticResource CanvasWidth}"
+        Height="{StaticResource CanvasHeight}"
+        Background="{x:Bind Path=ViewModel.BackgroundColor}">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="111.54"/>
+            <RowDefinition Height="{StaticResource PopupTopMargin}"/>
+            <RowDefinition Height="{StaticResource HingePopupRowSpacerHeight}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{StaticResource PopupBottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+            <ColumnDefinition Width="{StaticResource PopupLeftMargin}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{StaticResource PopupRightMargin}"/>
         </Grid.ColumnDefinitions>
-        <StackPanel
-            Orientation="Vertical"
-            
-            HorizontalAlignment="Right">
-        <TextBlock
-            Width="515"
-            Style="{StaticResource PageTitleStyle}"     
-            Text="An audio system like no other" />
-        <TextBlock
-                Width="515"
-                Style="{StaticResource BodyTextStyle}"
-            Text="Dual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speaker"/>
-        </StackPanel>
-        <Image x:Name="imgHero"
-               Grid.Row="0"
-               Grid.RowSpan="6"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               Width="1764">
-            <Image.Source>
-                <BitmapImage UriSource="ms-appx:///Assets/SpeakerDesign/audio_popupHero1.png"
-                                 DecodePixelWidth="1764" DecodePixelType="Logical"/>
-            </Image.Source>
-        </Image>
-        <Button
-            x:Name="btnClose"
-            Grid.Column="2"
-            Grid.Row="0"
-            Canvas.ZIndex="100"
-            Margin="0,24.54,23.985,0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Right"
-            Click="btnClose_Click"
-            Width="60">
-            <Image>
+
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
+            Background="White">
+            <Image
+                x:Name="imgHero"
+                Width="{StaticResource PopupWidth}">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
-                                 DecodePixelWidth="60" DecodePixelType="Logical"/>
+                    <BitmapImage
+                        UriSource="ms-appx:///Assets/SpeakerDesign/audio_popupHero1.png"
+                        DecodePixelWidth="1774"
+                        DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
-        </Button>
-
+        </Canvas>
+        
+        <StackPanel Grid.Row="2" Grid.Column="1"
+            Orientation="Vertical"
+            HorizontalAlignment="Right">
+            
+            <TextBlock
+                Width="{StaticResource PopupHeaderWidth}"
+                Style="{StaticResource PageTitleStyle}"     
+                Text="An audio system like no other" />
+            <TextBlock
+                Width="{StaticResource PopupHeaderWidth}"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Dual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speaker"/>
+        </StackPanel>
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
+            <Grid
+                x:Name="btnClose"
+                Width="{StaticResource PopupCloseBtnWidth}"
+                Canvas.Left="{StaticResource PopupCloseBtnSetLeft}"
+                Canvas.Top="{StaticResource PopupCloseBtnSetTop}"
+                PointerReleased="btnClose_Click">
+                <Image>
+                    <Image.Source>
+                        <BitmapImage
+                            UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                            DecodePixelWidth="60"
+                            DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Canvas>
     </Grid>
 
 </Page>

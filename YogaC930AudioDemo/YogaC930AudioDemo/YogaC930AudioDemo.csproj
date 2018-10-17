@@ -116,6 +116,7 @@
     <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Helpers\ColorHexConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\TestHelper.cs" />

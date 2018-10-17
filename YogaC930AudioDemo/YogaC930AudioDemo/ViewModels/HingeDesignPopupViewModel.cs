@@ -7,6 +7,9 @@ using GalaSoft.MvvmLight.Ioc;
 
 using YogaC930AudioDemo.Services;
 using Windows.UI.Xaml.Media;
+using Windows.UI;
+
+using YogaC930AudioDemo.Helpers;
 
 namespace YogaC930AudioDemo.ViewModels
 {
@@ -18,7 +21,8 @@ namespace YogaC930AudioDemo.ViewModels
         public string BodyFirst;
         public string BodyBold;
         public string BodyLast;
-        public SolidColorBrush BackgroundColor = new SolidColorBrush();
+        public SolidColorBrush BackgroundColor;
+        public string PopupBgHex = "#E6082454";
 
         #endregion
 
@@ -26,6 +30,8 @@ namespace YogaC930AudioDemo.ViewModels
 
         public HingeDesignPopupViewModel()
         {
+            BackgroundColor = ColorHexConverter.GetSolidColorBrush(PopupBgHex);
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
