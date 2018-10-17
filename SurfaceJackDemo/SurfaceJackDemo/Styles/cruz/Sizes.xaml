@@ -142,8 +142,10 @@
     <x:Double x:Key="NavigationBarArrowWidth">25</x:Double>
     <x:Double x:Key="NavigationBarHomeWidth">13.3</x:Double>    <!-- Home does not appear in this app -->
 
-    <x:Double x:Key="SpecsListTextWidth">259.33</x:Double>
+    <x:Double x:Key="SpecsListTextWidth">230</x:Double>
     <x:Double x:Key="SpecsListLegalWidth">500</x:Double>
+    <x:Double x:Key="SpecsListColumnSpacerWidth">20</x:Double>
+    
     <x:Double x:Key="PlayerHeight">50</x:Double>
     <x:Double x:Key="PlayerLeftMargin">40</x:Double>
     <x:Double x:Key="PlayerRightMargin">30</x:Double>
