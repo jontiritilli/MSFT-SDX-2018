@@ -78,12 +78,12 @@
 
             <Button x:Name="ExploreWindows"
                     Grid.Row="0" Grid.Column="3">
-                <TextBlock>Explore Windows</TextBlock>
+                <TextBlock Text="{x:Bind Path=ViewModel.NavExplore}"/>
             </Button>
 
             <Button x:Name="GoToDesktop"
                     Grid.Row="0" Grid.Column="5">
-                <TextBlock>Go To Desktop</TextBlock>
+                <TextBlock Text="{x:Bind Path=ViewModel.NavDesktop}"/>
             </Button>
         </Grid>
 
@@ -102,6 +102,7 @@
 
         <!-- Start Demo Button -->
         <Button
+            x:Name="PlayDemoButton"
             Grid.Row="0" Grid.RowSpan="2"
             Grid.Column="0" Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
