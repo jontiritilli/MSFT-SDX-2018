@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 
 using YogaC930AudioDemo.Services;
-
+using Windows.UI.Xaml.Media;
 
 namespace YogaC930AudioDemo.ViewModels
 {
@@ -18,9 +18,9 @@ namespace YogaC930AudioDemo.ViewModels
         public string BodyFirst;
         public string BodyBold;
         public string BodyLast;
+        public SolidColorBrush BackgroundColor = new SolidColorBrush();
 
         #endregion
-
 
         #region Construction
 
