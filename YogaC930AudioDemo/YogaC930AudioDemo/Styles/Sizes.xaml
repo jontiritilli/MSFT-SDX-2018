@@ -4,12 +4,23 @@
     xmlns:local="using:YogaC930AudioDemo.Styles">
     <!--resolution 1920 x 1080 - 100% scaling-->
 
-    <GridLength x:Key="TopMargin">111.54</GridLength>
-    <GridLength x:Key="LeftMargin">110</GridLength>
-    <GridLength x:Key="RightMargin">110</GridLength>
-    <x:Double x:Key="BottomMargin">145</x:Double>
+    <x:Double x:Key="CanvasWidth">1920</x:Double>
+    <x:Double x:Key="CanvasHeight">1080</x:Double>
+
+    <x:Double x:Key="LeftMargin">295</x:Double>
+    <x:Double x:Key="TopMargin">357</x:Double>
+    <x:Double x:Key="RightMargin">295</x:Double>
+    <x:Double x:Key="BottomMargin">291</x:Double>
     
-    <GridLength x:Key="HingePopupSideMargin">64.69</GridLength>
+    <x:Double x:Key="AppCloseWidth">108</x:Double>
+    <x:Double x:Key="AppCloseHeight">108</x:Double>
+
+    <x:Double x:Key="NavigationBarHeight">167</x:Double>
+    <x:Double x:Key="NavigationBarLeftMargin">108</x:Double>
+    <x:Double x:Key="NavigationBarBottomMargin">92.66</x:Double>
+    <x:Double x:Key="NavigationBarSpacer">85</x:Double>
+
+    <x:Double x:Key="HingePopupSideMargin">64.69</x:Double>
     <x:Double x:Key="PopupHeaderWidth">599</x:Double>
     <x:Double x:Key="PopupLeftOffset">72.81</x:Double>
     <x:Double x:Key="PopupTopOffset">69</x:Double>
@@ -18,15 +29,4 @@
     <x:Double x:Key="PopupCloseBtnSetTop">20</x:Double>
     <x:Double x:Key="PopupWidth">1774</x:Double>
     <x:Double x:Key="PopupHeight">942</x:Double>
-    
-    <GridLength x:Key="AppCloseWidth">54</GridLength>
-    <GridLength x:Key="AppCloseHeight">54</GridLength>
-
-    <GridLength x:Key="NavigationBarHeight">100.33</GridLength>
-    <GridLength x:Key="NavigationBarMargin">46.32</GridLength>
-    <GridLength x:Key="NavigationBarSpacer">42.5</GridLength>
-    
-    <x:Double x:Key="CanvasWidth">1920</x:Double>
-    <x:Double x:Key="CanvasHeight">1080</x:Double>
-
 </ResourceDictionary>

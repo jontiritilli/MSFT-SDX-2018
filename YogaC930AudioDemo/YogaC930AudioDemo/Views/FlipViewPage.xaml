@@ -116,6 +116,8 @@
                 </Image.Source>
             </Image>
         </Button>
+
+        <!-- Player Popup -->
         <Popup x:Name="PlayerPopup"
             IsOpen = "False"
             IsLightDismissEnabled="true"
@@ -125,6 +127,8 @@
                 <views:PlayerPopupPage/>
             </Popup.Child>
         </Popup>
+
+        <!-- Hinge Design Popup -->
         <Popup x:Name="HingeDesignPopup"
             IsOpen = "False"
             IsLightDismissEnabled="False"
@@ -134,8 +138,9 @@
                 <views:HingeDesignPopupPage/>
             </Popup.Child>
         </Popup>
-        
-        <Popup x:Name="SpeakerDesignPopupPagePopup"
+
+        <!-- Speaker Design Popup -->
+        <Popup x:Name="SpeakerDesignPopup"
             IsOpen = "False"
             IsLightDismissEnabled="False"
             HorizontalOffset="{StaticResource PopupLeftOffset}"

@@ -11,6 +11,8 @@
 
     <SolidColorBrush x:Key="LegalTextSolidColorBrush" Color="#FF999999"/>
 
+    <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="1.0" FallbackColor="#29FFFFFF"/>
+
     <SolidColorBrush x:Key="NavigationBarLightBackgroundTextSolidColorBrush" Color="#FFA8A8A8"/>
 
     <SolidColorBrush x:Key="NavigationBarDarkBackgroundTextSolidColorBrush" Color="#FFBFBFBF"/>
