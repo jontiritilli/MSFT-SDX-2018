@@ -37,7 +37,7 @@ namespace YogaC930AudioDemo.ViewModels
 
         public SpeakerDesignPopupViewModel SpeakerDesignPopupViewModel => ServiceLocator.Current.GetInstance<SpeakerDesignPopupViewModel>();
 
-        public AudioViewModel AudioVieModel => ServiceLocator.Current.GetInstance<AudioViewModel>();
+        public AudioViewModel AudioViewModel => ServiceLocator.Current.GetInstance<AudioViewModel>();
 
         public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
 

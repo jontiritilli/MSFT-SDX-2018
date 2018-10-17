@@ -5,7 +5,8 @@
     <!--Common texts-->
     <Style x:Key="PageTitleStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="LineHeight" Value="38" />
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap" />
@@ -13,8 +14,23 @@
     </Style>
 
     <Style x:Key="BodyTextStyle" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="LineHeight" Value="37.5" />
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="BlueBodyTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextStyle}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="#ff3E8DDD" />
+    </Style>
+
+    <Style x:Key="BlueSemiTextStyle" TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="#ff3E8DDD"/>
+        <Setter Property="LineHeight" Value="40" />
+        <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>

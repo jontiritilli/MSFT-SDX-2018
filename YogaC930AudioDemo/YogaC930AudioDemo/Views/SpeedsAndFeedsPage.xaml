@@ -8,6 +8,206 @@
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+        </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.RowSpan="4"
+            Width="671.26"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+            Width="600.96"
+            Style="{StaticResource PageTitleStyle}"     
+            Text="Designed for powerful performance" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.ColumnSpan="2"                    
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Innovative features, Sleek, stylish design. Every element engineered for the best user experience."/>
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="0"
+                Orientation="Vertical"
+                BorderThickness="0,0,0,5"
+                BorderBrush="#ffe5e5e5">
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Featuring" />
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueSemiTextStyle}"
+            Text="Windows 10"/>
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="Home Edition"/>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="1"
+                Orientation="Vertical">
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Featuring" />
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueSemiTextStyle}"
+            Text="Intel Core i7"/>
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="Home Edition"/>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="3"
+                Grid.Column="0"
+                Orientation="Vertical">
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Featuring" />
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueSemiTextStyle}"
+            Text="Dolby Vision"/>
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="Home Edition"/>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="3"
+                Grid.Column="1"
+                Orientation="Vertical">
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Featuring" />
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueSemiTextStyle}"
+            Text="4K UHD"/>
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="Home Edition"/>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="4"
+                Grid.Column="0"
+                Orientation="Vertical">
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Featuring" />
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueSemiTextStyle}"
+            Text="14 HOURS"/>
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="Home Edition"/>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="4"
+                Grid.Column="1"
+                Orientation="Vertical">
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+                Text="Just" />
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueSemiTextStyle}"
+            Text="0.57"/>
+                <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="at its thinnest"/>
+            </StackPanel>
+        </Grid>
+        <Image x:Name="imgHero"
+               Grid.Row="1"
+               Grid.RowSpan="6"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               HorizontalAlignment="Right"
+               Width="1152">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_hero.png"
+                                 DecodePixelWidth="1152" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+        <Image x:Name="imgLeft"
+               Grid.Row="1"
+               Grid.RowSpan="6"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               HorizontalAlignment="Right"
+               Width="1152">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
+                                 DecodePixelWidth="1152" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+            <Image x:Name="imgRight"
+               Grid.Row="1"
+               Grid.RowSpan="6"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               HorizontalAlignment="Right"
+               Width="1152">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
+                                 DecodePixelWidth="1152" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        <Canvas
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="2">
+         
+            <Image x:Name="imgIntel"
+                   Canvas.Left="1700"
+                   Canvas.Top="886"
+               Width="84">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_intelCoreMark.png"
+                                 DecodePixelWidth="84" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Canvas>
 
     </Grid>
 
