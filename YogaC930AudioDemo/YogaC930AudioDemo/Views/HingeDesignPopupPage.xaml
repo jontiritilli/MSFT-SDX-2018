@@ -38,14 +38,17 @@
                 TextAlignment="Center"
                 HorizontalAlignment="Center"
                 Style="{StaticResource HeadlineTextStyle}"     
-                Text="An audio system like no other" />
+                Text="{x:Bind Path=ViewModel.Headline}" />
 
             <TextBlock Grid.Row="1" Grid.Column="1"
                 Width="{StaticResource PopupHeaderWidth}"
                 TextAlignment="Center"
                 HorizontalAlignment="Center"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Dual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speaker"/>
+                Style="{StaticResource BodyTextStyle}">
+                <Run Text="{x:Bind Path=ViewModel.BodyFirst}"/>
+                <Run Text="{x:Bind Path=ViewModel.BodyBold}" Foreground="{StaticResource BodyBlueTextSolidColorBrush}" FontWeight="SemiBold"/>
+                <Run Text="{x:Bind Path=ViewModel.BodyLast}"/>
+            </TextBlock>
         </StackPanel>
 
         <Image Grid.Row="4" Grid.Column="1"
