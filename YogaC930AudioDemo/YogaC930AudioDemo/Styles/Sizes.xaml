@@ -7,12 +7,16 @@
     <GridLength x:Key="TopMargin">111.54</GridLength>
     <GridLength x:Key="LeftMargin">110</GridLength>
     <GridLength x:Key="RightMargin">110</GridLength>
+
     <x:Double x:Key="BottomMargin">145</x:Double>
-    
-    <GridLength x:Key="HingePopupSideMargin">64.69</GridLength>
+
+    <GridLength x:Key="PopupTopMargin">69</GridLength>
+    <GridLength x:Key="PopupLeftMargin">73</GridLength>
+    <GridLength x:Key="PopupRightMargin">73</GridLength>
+    <GridLength x:Key="PopupBottomMargin">69</GridLength>
+    <GridLength x:Key="HingePopupRowSpacerHeight">111.54</GridLength>
+
     <x:Double x:Key="PopupHeaderWidth">599</x:Double>
-    <x:Double x:Key="PopupLeftOffset">72.81</x:Double>
-    <x:Double x:Key="PopupTopOffset">69</x:Double>
     <x:Double x:Key="PopupCloseBtnWidth">60</x:Double>
     <x:Double x:Key="PopupCloseBtnSetLeft">1694</x:Double>
     <x:Double x:Key="PopupCloseBtnSetTop">20</x:Double>

@@ -126,9 +126,7 @@
         </Popup>
         <Popup x:Name="HingeDesignPopup"
             IsOpen = "False"
-            IsLightDismissEnabled="False"
-            HorizontalOffset="{StaticResource PopupLeftOffset}"
-            VerticalOffset="{StaticResource PopupTopOffset}">
+            IsLightDismissEnabled="False">
             <Popup.Child>
                 <views:HingeDesignPopupPage/>
             </Popup.Child>
@@ -136,9 +134,7 @@
         
         <Popup x:Name="SpeakerDesignPopupPagePopup"
             IsOpen = "False"
-            IsLightDismissEnabled="False"
-            HorizontalOffset="{StaticResource PopupLeftOffset}"
-            VerticalOffset="{StaticResource PopupTopOffset}">
+            IsLightDismissEnabled="False">
             <Popup.Child>
                 <views:SpeakerDesignPopupPage/>
             </Popup.Child>
