@@ -42,7 +42,7 @@ namespace SurfaceJackDemo.ViewModels
         public string LegalBulletFive;
         public string LegalBulletSix;
         public string LegalBulletSeven;
-        public double ICON_WIDTH = 40d;
+        public double ICON_WIDTH = 25d;
         public List<ListItem> ItemList = new List<ListItem>();
         #endregion
 

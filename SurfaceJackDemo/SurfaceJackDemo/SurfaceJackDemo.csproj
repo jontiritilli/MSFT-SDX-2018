@@ -424,12 +424,16 @@
     <Content Include="Assets\InTheBox\stereo-cord.png" />
     <Content Include="Assets\InTheBox\usb.png" />
     <Content Include="Assets\InTheBox\whats-in-the-box.png" />
+    <Content Include="Assets\List\specs_audio.png" />
     <Content Include="Assets\List\specs_batteryLife.png" />
+    <Content Include="Assets\List\specs_compatability.png" />
+    <Content Include="Assets\List\specs_connections.png" />
     <Content Include="Assets\List\specs_dimensions.png" />
     <Content Include="Assets\List\specs_frequency.png" />
     <Content Include="Assets\List\specs_inputs.png" />
     <Content Include="Assets\List\specs_noiseCancellation.png" />
     <Content Include="Assets\List\specs_speaker.png" />
+    <Content Include="Assets\List\specs_touchControls.png" />
     <Content Include="Assets\List\specs_weight.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq0.png" />
     <Content Include="Assets\MusicBar\joplin_player_eq1.png" />
@@ -535,6 +539,7 @@
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreIcons\Square71x71Logo.scale-400.png" />
     <Content Include="Assets\Universal\caprock_close_app_button.png" />
+    <Content Include="Assets\Universal\close-app-button.png" />
     <Content Include="Assets\Universal\close-icon.png" />
     <Content Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

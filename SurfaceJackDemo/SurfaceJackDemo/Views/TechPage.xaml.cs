@@ -28,6 +28,7 @@ namespace SurfaceJackDemo.Views
             rBtnRight.PopupChild = PopRight;
             rBtnTop.PopupChild = PopTop;
             this.Loaded += TechPage_Loaded;
+            this.BatteryLegal.SetOpacity(0);
         }
 
         private void TechPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -49,6 +50,16 @@ namespace SurfaceJackDemo.Views
             rBtnRight.StartRadiateAnimation();
             rBtnTop.StartEntranceAnimation();
             rBtnTop.StartRadiateAnimation();
+        }
+
+        private void BatteryPop_Opened(object sender, object e)
+        {
+            this.BatteryLegal.SetOpacity(1);
+        }
+
+        private void BatteryPop_Closed(object sender, object e)
+        {
+            this.BatteryLegal.SetOpacity(0);
         }
 
         #endregion

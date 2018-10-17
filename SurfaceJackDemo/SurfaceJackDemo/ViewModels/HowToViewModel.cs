@@ -68,13 +68,19 @@ namespace SurfaceJackDemo.ViewModels
 
         private const double WIDTH_IMAGE = 2016;
         private const double HEIGHT_IMAGE = 1824;
-        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/cruz_close_app_button.png";
+        private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_AS_IMAGE_BACKGROUND = "ms-appx:///Assets/Controls/controls-background.png";
         #endregion
 
         #region Public Properties
         public string Headline;
         public string Legal;
+        public string Caption2;
+        public string Caption3;
+        public string Caption4;
+        public string Caption5;
+
+
         public string x_ImageURI = URI_X_IMAGE;
         public string BackgroundUri;
         public string AppSelectorImageBackgroundUri = URI_AS_IMAGE_BACKGROUND;

@@ -35,9 +35,6 @@
             x:Name="PageHeader"               
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
-            CTAText="TEST"
-            CTAUri="ms-settings:"
-            CTATextStyle="ListItemCTAText"
             Width="{StaticResource HeaderWidth}"
             HorizontalAlignment="Left"
             VerticalAlignment="Top" />
@@ -47,7 +44,7 @@
             Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
-                x:Name="rBtnLeft"
+                x:Name="rBtnTop"
                 EntranceStaggerDelayInMilliseconds = "1000"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.65}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.35}"
@@ -63,7 +60,7 @@
                 AutoStart = "false"/>
 
             <ctrl:RadiatingButton
-                x:Name="rBtnRight"
+                x:Name="rBtnCenter"
                 EntranceStaggerDelayInMilliseconds = "800"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.61}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"
@@ -71,39 +68,43 @@
                 AutoStart = "false"/>
 
             <Popup
-                x:Name="PopLeft"
+                x:Name="PopTop"
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"
-                IsLightDismissEnabled="True">
+                IsLightDismissEnabled="True"
+                Opened="PopTop_Opened"
+                Closed="PopTop_Closed">
                 <Popup.Child>
                     <ctrl:PopupMedia
                         PopupType="Text"
-                        Headline="{x:Bind Path=ViewModel.PopLeftHeadline}"
-                        Lede="{x:Bind Path=ViewModel.PopLeftLede}"                        
+                        Headline="{x:Bind Path=ViewModel.PopTopHeadline}"
+                        Lede="{x:Bind Path=ViewModel.PopTopLede}"                        
                         Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}"                        
                         />
                 </Popup.Child>
             </Popup>
 
             <Popup
-                x:Name="PopRight"
+                x:Name="PopCenter"
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="-1"                 
                 IsLightDismissEnabled="True">
                 <ctrl:PopupMedia
                     PopupType="Text"
-                    Headline="{x:Bind Path=ViewModel.PopRightHeadline}"
-                    Lede="{x:Bind Path=ViewModel.PopRightLede}"
+                    Headline="{x:Bind Path=ViewModel.PopCenterHeadline}"
+                    Lede="{x:Bind Path=ViewModel.PopCenterLede}"
                     Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
             </Popup>
             <Popup
                 x:Name="PopBottom"
                 IsOpen = "False"
                 HorizontalOffset="-1"
-                VerticalOffset="-1"                 
-                IsLightDismissEnabled="True">
+                VerticalOffset="475"                 
+                IsLightDismissEnabled="True"
+                Opened="PopBottom_Opened"
+                Closed="PopBottom_Closed">
                 <ctrl:PopupMedia
                     PopupType="Text"
                     Headline="{x:Bind Path=ViewModel.PopBottomHeadline}"
@@ -111,6 +112,7 @@
                     Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource MathConverterKey}, Mode=OneWay, ConverterParameter=@VALUE*.3}" />
             </Popup>
         </Canvas>
+        
         <ctrl:ImageEx x:Name="Hero" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3"
             ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
             ImageSource="{x:Bind Path=ViewModel.ImageUri}"
@@ -119,6 +121,22 @@
             PageEntranceDirection="Left"
             HasEntranceTranslation="False"
             Canvas.ZIndex="-1"
+            Opacity="0"/>
+        
+        <ctrl:TextBlockEx Grid.Row="3" Grid.Column="1"
+            x:Name="PopBottomLegal" 
+            Text="{x:Bind Path=ViewModel.PopBottomLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Opacity="0"/>
+        
+        <ctrl:TextBlockEx Grid.Row="3" Grid.Column="1"
+            x:Name="PopTopLegal" 
+            Text="{x:Bind Path=ViewModel.PopTopLegal}"
+            TextStyle="Legal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
             Opacity="0"/>
     </Grid>
 </Page>

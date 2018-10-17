@@ -255,16 +255,14 @@
     </Style>
 
 
-    <Style x:Key="ListSpecHeadlineBestOf" TargetType="TextBlock">
+    <Style x:Key="SpecItemHeadline" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FontSize" Value="27" />
-        <!-- halved -->
+        <Setter Property="FontSize" Value="20" /> <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="28" />
-        <!-- halved -->
+        <Setter Property="LineHeight" Value="22" /> <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -272,16 +270,14 @@
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
 
-    <Style x:Key="ListSpecLedeBestOf" TargetType="TextBlock">
+    <Style x:Key="SpecItemSpecLede" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="18" />
-        <!-- halved -->
+        <Setter Property="FontSize" Value="18" /> <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="28" />
-        <!-- halved -->
+        <Setter Property="LineHeight" Value="23" /> <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -400,7 +396,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="13" />    <!-- halved -->
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="2.5" />    <!-- halved -->
+        <Setter Property="LineHeight" Value="15" />    <!-- halved -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
