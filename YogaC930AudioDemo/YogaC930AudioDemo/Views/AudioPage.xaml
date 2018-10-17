@@ -4,10 +4,107 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding AudioVieModel, Source={StaticResource Locator}}"
+    DataContext="{Binding AudioViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    
-    <Grid x:Name="LayoutRoot">
 
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Vertical"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <Image x:Name="DolbyAtmos"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0,40"
+                   Width="252">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
+                                 DecodePixelWidth="252" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+              <TextBlock
+            Width="600.96"
+            Style="{StaticResource PageTitleStyle}"     
+            Text="{x:Bind Path=ViewModel.Headline}" />
+            <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="{x:Bind Path=ViewModel.BodyFirst}"/>
+            <TextBlock
+                Width="600.96"
+                Style="{StaticResource BlueBodyTextStyle}"
+            Text="{x:Bind Path=ViewModel.BodyBold}"/>
+            <TextBlock
+                Width="600.96"
+                Style="{StaticResource BodyTextStyle}"
+            Text="{x:Bind Path=ViewModel.BodyLast}"/>
+        </StackPanel>
+        <Image x:Name="HeroBackground"
+               Grid.Row="0"
+               Grid.RowSpan="6"
+               Grid.Column="1"
+               Grid.ColumnSpan="2">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_blueBackground.png"
+                                 DecodePixelWidth="960" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+        <Canvas
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="2">
+            <Button
+                x:Name="btnLeft"
+                Canvas.Left="1018"
+                Canvas.Top="210"
+                Click="btnLeft_Click">
+                <Image
+                    Width="66">
+                    <Image.Source>
+                        <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot1.png"
+                                 DecodePixelWidth="66" DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Button>
+            <Button
+                x:Name="btnRight"
+                Canvas.Left="1580"
+                Canvas.Top="170"
+                Click="btnRight_Click">
+                <Image
+                    Width="66">
+                    <Image.Source>
+                        <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot2.png"
+                                 DecodePixelWidth="66" DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Button>
+
+            <Image x:Name="imgHero"
+               Canvas.Left="650"
+               Canvas.Top="-325"
+                   Canvas.ZIndex="-1"
+               Width="1254">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hero.png"
+                                 DecodePixelWidth="1254" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Canvas>
     </Grid>
 </Page>
+

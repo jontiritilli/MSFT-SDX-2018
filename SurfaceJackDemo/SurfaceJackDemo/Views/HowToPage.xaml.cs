@@ -80,18 +80,22 @@ namespace SurfaceJackDemo.Views
 
                 case 1: //play pause
                     this.Illustration2.Opacity = 1.0d;
+                    this.Caption2.Opacity = 1.0d;
                     break;
 
                 case 2: //skip
                     this.Illustration3.Opacity = 1.0d;
+                    this.Caption3.Opacity = 1.0d;
                     break;
 
                 case 3: //volume
                     this.Illustration4.Opacity = 1.0d;
+                    this.Caption4.Opacity = 1.0d;
                     break;
 
                 case 4: //noise
                     this.Illustration5.Opacity = 1.0d;
+                    this.Caption5.Opacity = 1.0d;
                     break;
 
                 default:
@@ -110,18 +114,22 @@ namespace SurfaceJackDemo.Views
 
                 case 1: //play pause
                     this.Illustration2.Opacity = 0.0d;
+                    this.Caption2.Opacity = 0.0d;
                     break;
 
                 case 2: //skip
                     this.Illustration3.Opacity = 0.0d;
+                    this.Caption3.Opacity = 0.0d;
                     break;
 
                 case 3: //volume
                     this.Illustration4.Opacity = 0.0d;
+                    this.Caption4.Opacity = 0.0d;
                     break;
 
                 case 4: //noise
                     this.Illustration5.Opacity = 0.0d;
+                    this.Caption5.Opacity = 0.0d;
                     break;
 
                 default:

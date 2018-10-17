@@ -29,6 +29,8 @@ namespace SurfaceJackDemo.ViewModels
         public string BackgroundUri;
         public string Headline;
         public string Lede;
+        public string Legal;
+
         public string PopLeftHeadline;
         public string PopLeftLede;
         public string PopLeftHR;

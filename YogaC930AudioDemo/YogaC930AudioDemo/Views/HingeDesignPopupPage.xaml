@@ -5,9 +5,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding HingeDesignPopupViewModel, Source={StaticResource Locator}}"
+    Height="942"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+
+    <Grid x:Name="LayoutRoot"
+          Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="111.54"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel
+            HorizontalAlignment="Center"
+                        Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2">
+            <TextBlock
+            Width="600.96"
+            TextAlignment="Center"
+            HorizontalAlignment="Center"
+            Style="{StaticResource PageTitleStyle}"     
+            Text="An audio system like no other" />
+            <TextBlock
+            Grid.Column="1"
+            Width="600.96"
+            Grid.Row="1"
+            TextAlignment="Center"
+            HorizontalAlignment="Center"
+                Style="{StaticResource BodyTextStyle}"
+            Text="Dual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speakerDual speaker"/>
+        </StackPanel>
+        <Image x:Name="imgHero"
+               Grid.Row="1"
+               Grid.RowSpan="6"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               VerticalAlignment="Center"
+               Width="1638">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/HingeDesign/audio_popupHero2.png"
+                                 DecodePixelWidth="1638" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+        <Button
+            x:Name="btnClose"
+            Grid.Column="2"
+            Grid.Row="0"
+            Canvas.ZIndex="100"
+            Margin="0,24.54,23.985,0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            Click="btnClose_Click"
+            Width="60">
+            <Image>
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                                 DecodePixelWidth="60" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Button>
+
 
     </Grid>
 

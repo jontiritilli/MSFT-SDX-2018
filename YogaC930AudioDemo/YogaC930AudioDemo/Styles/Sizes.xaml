@@ -2,7 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:YogaC930AudioDemo.Styles">
+    <!--resolution 1920 x 1080 and I assume we're at 200% scaling?-->
 
+    
     <GridLength x:Key="TopMargin">110</GridLength>
     <GridLength x:Key="LeftMargin">110</GridLength>
     <GridLength x:Key="RightMargin">110</GridLength>
@@ -14,5 +16,8 @@
     <GridLength x:Key="NavigationBarHeight">110</GridLength>
     <GridLength x:Key="NavigationBarMargin">50</GridLength>
     <GridLength x:Key="NavigationBarSpacer">30</GridLength>
-    
+
+    <x:Double x:Key="CanvasWidth">960</x:Double> <!--1920/2-->
+    <x:Double x:Key="CanvasHeight">540</x:Double> <!--1080/2-->
+
 </ResourceDictionary>

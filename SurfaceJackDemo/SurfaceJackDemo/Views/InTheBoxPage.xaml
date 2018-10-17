@@ -18,14 +18,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="{StaticResource SpaceBelowHeader}"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="{StaticResource BottomMargin}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource LeftMargin}"/>
-            <ColumnDefinition Width=".4*"/>
-            <ColumnDefinition Width=".6*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         
@@ -43,14 +41,14 @@
             ListItems="{x:Bind Path=ViewModel.ListItems}"
             ListStyle="LedeOnly"/>
 
-        <ctrl:ImageEx Grid.Row="3" Grid.Column="2" 
-                x:Name="HeroHP"
-                ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
-                ImageSource="{x:Bind Path=ViewModel.ImageUri}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                PageEntranceDirection="Left"
-                HasEntranceTranslation="False"
-                Opacity="0"/>
+        <ctrl:ImageEx Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
+            x:Name="HeroHP"
+            ImageWidth="{x:Bind Path=ViewModel.ImageWidth}"
+            ImageSource="{x:Bind Path=ViewModel.ImageUri}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            PageEntranceDirection="Left"
+            HasEntranceTranslation="False"
+            Opacity="0"/>
     </Grid>
 </Page>

@@ -52,6 +52,8 @@ namespace SDX.Toolkit.Controls
         Weight,
         Speaker,
         Frequency,
+        TouchControls,
+        Compatibility,
         BatteryLife,
         NoiseCancellation,
         Inputs,
@@ -98,6 +100,8 @@ namespace SDX.Toolkit.Controls
         private const string ICON_SPEAKER_URI = @"ms-appx:///Assets/List/specs_speaker.png";
         private const string ICON_FREQUENCY_URI = @"ms-appx:///Assets/List/specs_frequency.png";
         private const string ICON_BATTERYLIFE_URI = @"ms-appx:///Assets/List/specs_batteryLife.png";
+        private const string ICON_COMPATIBILITY_URI = @"ms-appx:///Assets/List/specs_compatability.png";
+        private const string ICON_TOUCHCONTROLS_URI = @"ms-appx:///Assets/List/specs_touchControls.png";
         private const string ICON_NOISECANCELLATION_URI = @"ms-appx:///Assets/List/specs_noiseCancellation.png";
         private const string ICON_INPUTS_URI = @"ms-appx:///Assets/List/specs_inputs.png";
         //WITB Links
@@ -288,6 +292,14 @@ namespace SDX.Toolkit.Controls
 
                     case ListItemIcon.Frequency:
                         iconPath = ICON_FREQUENCY_URI;
+                        break;
+
+                    case ListItemIcon.Compatibility:
+                        iconPath = ICON_COMPATIBILITY_URI;
+                        break;
+
+                    case ListItemIcon.TouchControls:
+                        iconPath = ICON_TOUCHCONTROLS_URI;
                         break;
 
                     case ListItemIcon.BatteryLife:

@@ -107,7 +107,8 @@
             Height="{StaticResource PlayerHeight}"
             SelectionChanged="MusicBar_SelectionChanged"
             Canvas.ZIndex="1001"
-            VerticalAlignment="Bottom"/>
+            VerticalAlignment="Bottom"
+            AutoPlay="False"/>
 
         <!-- Navigation Bar -->
         <ctrl:NavigationBar x:Name="BottomNavBar"

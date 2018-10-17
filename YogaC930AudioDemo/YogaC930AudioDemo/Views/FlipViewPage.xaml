@@ -101,17 +101,48 @@
         </Image>
 
         <!-- Start Demo Button -->
-        <Image x:Name="StartDemoButton"
-               Grid.Row="0" Grid.RowSpan="2"
-               Grid.Column="0" Grid.ColumnSpan="2"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Top"
-               Width="330">
-            <Image.Source>
-                <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_demo.png"
-                             DecodePixelWidth="330" DecodePixelType="Logical"/>
-            </Image.Source>
-        </Image>
-
+        <Button
+            Grid.Row="0" Grid.RowSpan="2"
+            Grid.Column="0" Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Click="Button_Click">
+            <Image x:Name="StartDemoButton"           
+                   Width="330">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_demo.png"
+                                 DecodePixelWidth="330" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Button>
+        <Popup x:Name="PlayerPopup"
+            IsOpen = "False"
+            IsLightDismissEnabled="true"
+            HorizontalOffset="0"                
+            VerticalOffset="0">
+            <Popup.Child>
+                <views:PlayerPopupPage/>
+            </Popup.Child>
+        </Popup>
+        <Popup x:Name="HingeDesignPopup"
+            IsOpen = "False"
+            IsLightDismissEnabled="true"
+            HorizontalOffset="72.81"                
+            VerticalOffset="71.96"
+               Width="1774">
+            <Popup.Child>
+                <views:HingeDesignPopupPage/>
+            </Popup.Child>
+        </Popup>
+        <Popup x:Name="SpeakerDesignPopupPagePopup"
+            IsOpen = "False"
+            IsLightDismissEnabled="true"
+            HorizontalOffset="72.81"                
+            VerticalOffset="71.96"
+               Width="1765.485">
+            <Popup.Child>
+                <views:SpeakerDesignPopupPage/>
+            </Popup.Child>
+        </Popup>
     </Grid>
 </Page>

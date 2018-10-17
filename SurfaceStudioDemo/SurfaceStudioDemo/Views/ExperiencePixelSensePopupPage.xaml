@@ -35,7 +35,7 @@
             Lede="{x:Bind Path=ViewModel.Lede}"
             HeadlineStyle="PageHeadline"
             LedeStyle="PageLede"
-            Width="{StaticResource HeaderWidth}"
+            Width="850"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom" />
 
