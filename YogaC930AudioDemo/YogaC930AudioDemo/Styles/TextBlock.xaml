@@ -103,7 +103,7 @@
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
 
-    <Style x:Key="NavigationBarDarkBackgroundTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigatinBarLightBackgroundTextStyle}">
+    <Style x:Key="NavigationBarDarkBackgroundTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource NavigationBarDarkBackgroundTextSolidColorBrush}"/>
     </Style>
 

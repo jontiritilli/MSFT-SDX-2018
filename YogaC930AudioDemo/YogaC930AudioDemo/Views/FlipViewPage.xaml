@@ -17,13 +17,13 @@
         </Grid.Background>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource AppCloseHeight}}"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}}"/>
         </Grid.ColumnDefinitions>
 
         <!-- Pages -->
@@ -54,17 +54,17 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Top">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
-                <RowDefinition Height="{StaticResource NavigationBarMargin}"/>
+                <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource NavigationBarMargin}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource NavigationBarMargin}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarMargin}}"/>
                 <ColumnDefinition Width="222"/>
-                <ColumnDefinition Width="{StaticResource NavigationBarSpacer}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}}"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="{StaticResource NavigationBarSpacer}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}}"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="{StaticResource NavigationBarMargin}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarMargin}}"/>
             </Grid.ColumnDefinitions>
 
             <Image x:Name="YogaLogo"

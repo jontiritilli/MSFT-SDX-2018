@@ -9,17 +9,17 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource AppCloseHeight}}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}}"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1"
             Orientation="Vertical"
@@ -39,7 +39,7 @@
             </Image>
             <TextBlock
                 Width="600.96"
-                Style="{StaticResource PageTitleStyle}"     
+                Style="{StaticResource HeadlineTextStyle}"     
                 Text="{x:Bind Path=ViewModel.Headline}"/>
             
             <TextBlock
@@ -49,7 +49,7 @@
             
             <TextBlock
                 Width="600.96"
-                Style="{StaticResource BlueBodyTextStyle}"
+                Style="{StaticResource BodyBlueTextStyle}"
                 Text="{x:Bind Path=ViewModel.BodyBold}"/>
             
             <TextBlock
