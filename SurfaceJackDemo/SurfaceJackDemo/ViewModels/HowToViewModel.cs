@@ -79,6 +79,7 @@ namespace SurfaceJackDemo.ViewModels
         public string Caption3;
         public string Caption4;
         public string Caption5;
+        public string Caption6;
 
 
         public string x_ImageURI = URI_X_IMAGE;

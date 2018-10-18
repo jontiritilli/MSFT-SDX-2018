@@ -9,157 +9,165 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-            <Grid
-                x:Name="LayoutRoot"
-                BorderBrush="{x:Bind Path=BorderBrush}"
-                BorderThickness="{x:Bind Path=BorderThickness}"
-                Background="{x:Bind Path=BackgroundBrush}">
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"/>    <!-- Track Info  -->
-                    <ColumnDefinition Width="0.4*"/>    <!-- Progress Bar -->
-                    <ColumnDefinition Width="0.3*"/>    <!-- Player Buttons -->
-                </Grid.ColumnDefinitions>
+    <Grid
+        x:Name="LayoutRoot"
+        BorderBrush="{x:Bind Path=BorderBrush}"
+        BorderThickness="{x:Bind Path=BorderThickness}"
+        Background="{x:Bind Path=BackgroundBrush}">
 
-                <!-- Song Info Grid -->
-                <Grid x:Name="TrackInfo" Grid.Row="0" Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{x:Bind Path=PlayerLeftMargin}"/>
-                        <ColumnDefinition Width="1*"/> <!-- Artist Name -->
-                        <ColumnDefinition Width="{x:Bind Path=PlayerTrackSpacer}"/>
-                        <ColumnDefinition Width="2*"/> <!-- Track Name -->
-                        <ColumnDefinition Width="{x:Bind Path=PlayerLeftMargin}"/>
-                    </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <!-- Track Info  -->
+            <ColumnDefinition Width="0.4*"/>
+            <!-- Progress Bar -->
+            <ColumnDefinition Width="0.3*"/>
+            <!-- Player Buttons -->
+        </Grid.ColumnDefinitions>
 
-                    <ctrl:TextBlockEx x:Name="ArtistName"
-                                        Grid.Row="0" Grid.Column="1"
-                                        TextStyle="PlayerArtistName"
-                                        HorizontalContentAlignment="Right"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Center"
-                                        TextWrapping="NoWrap"/>
+        <!-- Song Info Grid -->
+        <Grid x:Name="TrackInfo" Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{x:Bind Path=PlayerLeftMargin}"/>
+                <ColumnDefinition Width="1*"/>
+                <!-- Artist Name -->
+                <ColumnDefinition Width="{x:Bind Path=PlayerTrackSpacer}"/>
+                <ColumnDefinition Width="2*"/>
+                <!-- Track Name -->
+                <ColumnDefinition Width="{x:Bind Path=PlayerLeftMargin}"/>
+            </Grid.ColumnDefinitions>
 
-                    <ctrl:TextBlockEx x:Name="TrackTitle"
-                                        Grid.Row="0" Grid.Column="3"
-                                        TextStyle="PlayerTrackName"
-                                        HorizontalContentAlignment="Left"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Center"
-                                        TextWrapping="NoWrap"/>
+            <ctrl:TextBlockEx x:Name="ArtistName"
+                Grid.Row="0" Grid.Column="1"
+                TextStyle="PlayerArtistName"
+                TextAlignment="Right"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                TextWrapping="NoWrap"/>
+            
+            <ctrl:TextBlockEx x:Name="TrackTitle" Grid.Row="0" Grid.Column="3"
+                TextStyle="PlayerTrackName"
+                TextAlignment="Left"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                TextWrapping="NoWrap"/>
 
-                </Grid>
+        </Grid>
 
-                <!-- Scrub Bar -->
-                <ProgressBar x:Name="Scrub" 
-                                Grid.Row="0" Grid.Column="1"
-                                IsIndeterminate="False"
-                                Minimum="0"
-                                Maximum="1"
-                                Value="0"
-                                Background="{StaticResource MusicBarProgressBarBackground}"
-                                Foreground="{StaticResource MusicBarProgressBarForeground}"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Stretch"
-                                Margin="0" Padding="0" />
-                        
-                <!-- Buttons -->
-                <Grid x:Name="PlayerButtons" Grid.Row="0" Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>  <!-- Previous Track -->
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>  <!-- Play/Pause -->
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>  <!-- Next Track -->
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>  <!-- Equalizer -->
-                        <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
-                    </Grid.ColumnDefinitions>
+        <!-- Scrub Bar -->
+        <ProgressBar x:Name="Scrub" 
+                Grid.Row="0" Grid.Column="1"
+                IsIndeterminate="False"
+                Minimum="0"
+                Maximum="1"
+                Value="0"
+                Background="{StaticResource MusicBarProgressBarBackground}"
+                Foreground="{StaticResource MusicBarProgressBarForeground}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Margin="0" Padding="0" />
 
-                    <Button x:Name="PreviousTrackButton" 
-                            Grid.Row="0" Grid.Column="1"
-                            Style="{StaticResource NoInteractionButton}"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Margin="0" Padding="0"
-                            Click="PreviousTrackButton_Click">
-                        <Button.Content>
-                            <ctrl:ImageEx x:Name="PreviousTrackIcon" 
-                                            ImageSource="{x:Bind Path=PreviousTrackIconUri}"
-                                            ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalContentAlignment="Center"
-                                            HorizontalContentAlignment="Center"/>
-                        </Button.Content>
-                    </Button>
+        <!-- Buttons -->
+        <Grid x:Name="PlayerButtons" Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{x:Bind Path=PlayerHeight}"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>
+                <!-- Previous Track -->
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>
+                <!-- Play/Pause -->
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>
+                <!-- Next Track -->
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonWidth}"/>
+                <!-- Equalizer -->
+                <ColumnDefinition Width="{x:Bind Path=PlayerButtonSpacer}"/>
+            </Grid.ColumnDefinitions>
 
-                    <Button x:Name="PlayButton" 
-                            Grid.Row="0" Grid.Column="3"
-                            Style="{StaticResource NoInteractionButton}"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Margin="0" Padding="0"
-                            Click="PlayButton_Click">
-                        <Button.Content>
-                            <ctrl:ImageEx x:Name="PlayIcon" 
-                                            ImageSource="{x:Bind Path=PlayIconUri}"
-                                            ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalContentAlignment="Center"
-                                            HorizontalContentAlignment="Center"/>
-                        </Button.Content>
-                    </Button>
+            <Button x:Name="PreviousTrackButton" 
+                Grid.Row="0" Grid.Column="1"
+                Style="{StaticResource NoInteractionButton}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0" Padding="0"
+                Click="PreviousTrackButton_Click">
+                <Button.Content>
+                    <ctrl:ImageEx x:Name="PreviousTrackIcon" 
+                        ImageSource="{x:Bind Path=PreviousTrackIconUri}"
+                        ImageWidth="{StaticResource PlayerButtonWidth}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"/>
+                </Button.Content>
+            </Button>
 
-                    <Button x:Name="PauseButton" 
-                            Grid.Row="0" Grid.Column="3"
-                            Style="{StaticResource NoInteractionButton}"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Margin="0" Padding="0"
-                            Visibility="Collapsed"
-                            Click="PauseButton_Click">
-                        <Button.Content>
-                            <ctrl:ImageEx x:Name="PauseIcon" 
-                                            ImageSource="{x:Bind Path=PauseIconUri}"
-                                            ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalContentAlignment="Center"
-                                            HorizontalContentAlignment="Center"/>
-                        </Button.Content>
-                    </Button>
-                            
-                    <Button x:Name="NextTrackButton" 
-                            Grid.Row="0" Grid.Column="5"
-                            Style="{StaticResource NoInteractionButton}"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Margin="0" Padding="0"
-                            Click="NextTrackButton_Click">
-                        <Button.Content>
-                            <ctrl:ImageEx x:Name="NextTrackIcon" 
-                                            ImageSource="{x:Bind Path=NextTrackIconUri}"
-                                            ImageWidth="{StaticResource PlayerButtonWidth}"
-                                            VerticalContentAlignment="Center"
-                                            HorizontalContentAlignment="Center"/>
-                        </Button.Content>
-                    </Button>
+            <Button x:Name="PlayButton" 
+                Grid.Row="0" Grid.Column="3"
+                Style="{StaticResource NoInteractionButton}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0" Padding="0"
+                Click="PlayButton_Click">
+                <Button.Content>
+                    <ctrl:ImageEx x:Name="PlayIcon" 
+                        ImageSource="{x:Bind Path=PlayIconUri}"
+                        ImageWidth="{StaticResource PlayerButtonWidth}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"/>
+                </Button.Content>
+            </Button>
 
-                    <ctrl:AnimatedIcon x:Name="EqualizerIcon" 
-                                       Grid.Row="0" Grid.Column="7"
-                                       IconUriStrings="{x:Bind Path=EqualizerUris}"
-                                       IconWidth="{StaticResource PlayerButtonWidth}"
-                                       FrameDurationInMilliseconds="60"
-                                       VerticalContentAlignment="Center"
-                                       HorizontalContentAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"/>
-                </Grid>
+            <Button x:Name="PauseButton" 
+                Grid.Row="0" Grid.Column="3"
+                Style="{StaticResource NoInteractionButton}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0" Padding="0"
+                Visibility="Collapsed"
+                Click="PauseButton_Click">
+                <Button.Content>
+                    <ctrl:ImageEx x:Name="PauseIcon" 
+                        ImageSource="{x:Bind Path=PauseIconUri}"
+                        ImageWidth="{StaticResource PlayerButtonWidth}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"/>
+                </Button.Content>
+            </Button>
 
-            </Grid>
+            <Button x:Name="NextTrackButton" 
+                Grid.Row="0" Grid.Column="5"
+                Style="{StaticResource NoInteractionButton}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0" Padding="0"
+                Click="NextTrackButton_Click">
+                <Button.Content>
+                    <ctrl:ImageEx x:Name="NextTrackIcon" 
+                        ImageSource="{x:Bind Path=NextTrackIconUri}"
+                        ImageWidth="{StaticResource PlayerButtonWidth}"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"/>
+                </Button.Content>
+            </Button>
+
+            <ctrl:AnimatedIcon x:Name="EqualizerIcon" 
+                Grid.Row="0" Grid.Column="7"
+                IconUriStrings="{x:Bind Path=EqualizerUris}"
+                IconWidth="{StaticResource PlayerButtonWidth}"
+                FrameDurationInMilliseconds="60"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+        </Grid>
+
+    </Grid>
 </UserControl>

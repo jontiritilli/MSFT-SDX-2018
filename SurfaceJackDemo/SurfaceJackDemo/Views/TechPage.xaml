@@ -75,7 +75,7 @@
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.31}" 
-                IsLightDismissEnabled="False"
+                IsLightDismissEnabled="True"
                 Opened="BatteryPop_Opened"
                 Closed="BatteryPop_Closed">
                 <Popup.Child>

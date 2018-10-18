@@ -149,6 +149,15 @@
             VerticalAlignment="Bottom"
             Margin="0,0,0,75"
             Opacity="0"/>
+
+        <ctrl:TextBlockEx Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+            x:Name="Caption6"
+            Text="{x:Bind Path=ViewModel.Caption6}"
+            TextStyle="ListHeadlineDark"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,75"
+            Opacity="0"/>
         
         <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
              x:Name="IllustrationCanvas">
