@@ -35,17 +35,17 @@ namespace YogaC930AudioDemo.Views
 
         private void btnLeft_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (this.HingeDesignPopup.IsOpen == false)
+            if (this.SpeakerDesignPagePopup.IsOpen == false)
             {
-                this.HingeDesignPopup.IsOpen = true;
+                this.SpeakerDesignPagePopup.IsOpen = true;
             }
         }
 
         private void btnRight_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (this.SpeakerDesignPagePopup.IsOpen == false)
+            if (this.HingeDesignPopup.IsOpen == false)
             {
-                this.SpeakerDesignPagePopup.IsOpen = true;
+                this.HingeDesignPopup.IsOpen = true;
             }
         }
 
