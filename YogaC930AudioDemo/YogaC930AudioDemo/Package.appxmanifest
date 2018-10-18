@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/windowsTemplateStudio" IgnorableNamespaces="uap mp genTemplate">
-  <Identity Name="B6BED3C2-809D-4F18-8EB2-EFFE4076F8CA" Publisher="CN=Patrick" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="B6BED3C2-809D-4F18-8EB2-EFFE4076F8CA" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="EFMAgency.YogaC930AudioDemo" Publisher="CN=7CAE1DFA-3FB6-42F3-9105-9DC5AD638228" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="c8ac3972-aee8-4c15-92ab-d6f39ea146d5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>YogaC930AudioDemo</DisplayName>
-    <PublisherDisplayName>Patrick</PublisherDisplayName>
+    <PublisherDisplayName>EFM Agency</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -19,6 +19,10 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">

@@ -17,13 +17,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>YogaC930AudioDemo_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>YogaC930AudioDemo_StoreKey.pfx</PackageCertificateKeyFile>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <PackageCertificateThumbprint>48B9659D7234A1BF9FA9BDEDDA19386EB0A26208</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -285,6 +286,7 @@
     <Content Include="Assets\Volume\ui_volumeMax.png" />
     <Content Include="Assets\Volume\ui_volumeMid.png" />
     <Content Include="Assets\Volume\ui_volume_sliderHandle.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -308,6 +310,7 @@
     <None Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="YogaC930AudioDemo_StoreKey.pfx" />
     <None Include="YogaC930AudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
