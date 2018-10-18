@@ -254,9 +254,9 @@ namespace YogaC930AudioDemo.Services
             viewModel.FourKBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_4K_BOLD, "PERFORMANCE_4K_BOLD");
             viewModel.FourKBodyLast = GetStringValue(_languageCurrent.PERFORMANCE_4K_LAST, "PERFORMANCE_4K_LAST");
 
-            viewModel.HoursBodyFirst = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_FIRST, "PERFORMANCE_HOURS_FIRST");
-            viewModel.HoursBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_BOLD, "PERFORMANCE_HOURS_BOLD");
-            viewModel.HoursBodyLast = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_LAST, "PERFORMANCE_HOURS_LAST");
+            viewModel.BatteryBodyFirst = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_FIRST, "PERFORMANCE_HOURS_FIRST");
+            viewModel.BatteryBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_BOLD, "PERFORMANCE_HOURS_BOLD");
+            viewModel.BatteryBodyLast = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_LAST, "PERFORMANCE_HOURS_LAST");
 
             viewModel.FiftySevenBodyFirst = GetStringValue(_languageCurrent.PERFORMANCE_57_FIRST, "PERFORMANCE_57_FIRST");
             viewModel.FiftySevenBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_57_BOLD, "PERFORMANCE_57_BOLD");

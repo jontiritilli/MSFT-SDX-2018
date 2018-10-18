@@ -4,19 +4,19 @@
 
     <!-- Font Styles -->
     <Style x:Key="GothamBoldFontStyle" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Bold.otf#Gotham Bold"/>
+        <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Bold.otf#Gotham Bold,Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
     <Style x:Key="GothamMediumFontStyle" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Medium.otf#Gotham Medium"/>
+        <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Medium.otf#Gotham Medium,Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Medium" />
     </Style>
 
     <Style x:Key="GothamLightFontStyle" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Light.otf#Gotham Light"/>
+        <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Light.otf#Gotham Light,Segoe UI"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Light" />
        

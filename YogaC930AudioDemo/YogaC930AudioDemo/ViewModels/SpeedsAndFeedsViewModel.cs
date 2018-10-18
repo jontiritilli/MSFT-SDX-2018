@@ -36,9 +36,9 @@ namespace YogaC930AudioDemo.ViewModels
         public string FourKBodyBold;
         public string FourKBodyLast;
 
-        public string HoursBodyFirst;
-        public string HoursBodyBold;
-        public string HoursBodyLast;
+        public string BatteryBodyFirst;
+        public string BatteryBodyBold;
+        public string BatteryBodyLast;
 
         public string FiftySevenBodyFirst;
         public string FiftySevenBodyBold;
