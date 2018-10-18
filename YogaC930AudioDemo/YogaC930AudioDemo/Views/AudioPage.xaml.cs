@@ -26,9 +26,11 @@ namespace YogaC930AudioDemo.Views
         {
             this.HingeDesignPopup = FlipViewPage.Current.GetHingDesignPopupPagePopup();
             HingeDesignPopupPage.Current.CloseButton_Clicked+= Close_Left_Clicked;
+
             this.SpeakerDesignPagePopup = FlipViewPage.Current.GetSpeakerPopupPagePopup();
             SpeakerDesignPopupPage.Current.CloseButton_Clicked += Close_Right_Clicked;
 
+            YogaC930AudioDemo.Helpers.TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 3, Windows.UI.Colors.AliceBlue);
         }
 
         private void btnLeft_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
