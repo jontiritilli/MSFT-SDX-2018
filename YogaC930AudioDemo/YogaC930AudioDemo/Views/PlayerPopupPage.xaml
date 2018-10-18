@@ -18,33 +18,35 @@
 
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource CanvasHeight}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.ColumnDefinitions>
-        <MediaPlayerElement Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
-            Name="AttractorLoopPlayer"
+        
+        <ctrl:AttractorLoopPlayer Grid.Row="0" Grid.Column="0"
+            x:Name="LoopPlayer"
             Width="1920"
-            Source="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080.mp4"
+            MediaSourceUri="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.mp4"
             AutoPlay="True"/>
-        <Button
-            x:Name="btnClose"
-            Grid.Column="2"
-            Grid.Row="0"
-            Canvas.ZIndex="100"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Right"
-            Click="btnClose_Click"
-            Width="60">
-            <Image>
-                <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
-                                 DecodePixelWidth="60" DecodePixelType="Logical"/>
-                </Image.Source>
-            </Image>
-        </Button>
+
+        <Canvas Grid.Row="0" Grid.Column="0">
+            <Grid
+                x:Name="btnClose"
+                Width="{StaticResource PopupCloseBtnWidth}"
+                Canvas.Left="1840"
+                Canvas.Top="20"
+                PointerReleased="btnClose_Click">
+
+                <Image>
+                    <Image.Source>
+                        <BitmapImage
+                            UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                            DecodePixelWidth="60"
+                            DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Canvas>
     </Grid>
 </Page>

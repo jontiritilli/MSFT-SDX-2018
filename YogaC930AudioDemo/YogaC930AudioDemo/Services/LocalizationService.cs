@@ -213,8 +213,8 @@ namespace YogaC930AudioDemo.Services
         public void LoadHingeDesignPopupViewModel(HingeDesignPopupViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_HEADLINE, "AUDIO_POP_RIGHT_HEADLINE");
-            viewModel.BodyFirst = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_FIRST, "AUDIO_POP_RIGHT_BODY_FIRST");
-            viewModel.BodyBold = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_BOLD, "AUDIO_POP_RIGHT_BODY_BOLD");
+            viewModel.BodyFirst = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_FIRST, "AUDIO_POP_RIGHT_BODY_FIRST") + "\n";
+            viewModel.BodyBold = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_BOLD, "AUDIO_POP_RIGHT_BODY_BOLD") + "\n";
             viewModel.BodyLast = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_LAST, "AUDIO_POP_RIGHT_BODY_LAST");
         }
 

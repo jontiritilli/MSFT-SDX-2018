@@ -57,15 +57,12 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="{Binding Source={StaticResource FeaturesHeaderLedeSpacerRow}, Converter={StaticResource GridLengthConverter}}"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="{Binding Source={StaticResource FeaturesSpacerRow}, Converter={StaticResource GridLengthConverter}}"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="{Binding Source={StaticResource FeaturesHeaderLedeSpacerRow}, Converter={StaticResource GridLengthConverter}}"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="{Binding Source={StaticResource FeaturesSpacerRow}, Converter={StaticResource GridLengthConverter}}"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="{Binding Source={StaticResource FeaturesHeaderLedeSpacerRow}, Converter={StaticResource GridLengthConverter}}"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="{Binding Source={StaticResource FeaturesSpacerRow}, Converter={StaticResource GridLengthConverter}}"/>
             </Grid.RowDefinitions>
@@ -79,6 +76,7 @@
             <!-- BULLET ONE -->
             <Image Grid.Row="0" Grid.Column="0"
                 x:Name="imgPen"
+                VerticalAlignment="Top"
                 Width="52">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_garagedPen.png"
@@ -92,7 +90,7 @@
                 Text="{x:Bind ViewModel.PenHeadline}"
                 HorizontalAlignment="Left"/>
 
-            <TextBlock Grid.Row="2" Grid.Column="2"
+            <TextBlock Grid.Row="1" Grid.Column="2"
                 Width="{StaticResource HeaderWidth}"
                 Style="{StaticResource BodyTextStyle}">
                 <Run Text="{x:Bind ViewModel.PenBodyFirst}"/>
@@ -103,9 +101,9 @@
             </TextBlock>
             
             <!-- BULLET TWO -->
-            <Image Grid.Row="4" Grid.Column="0"
-                x:Name="imgInk"
-                HorizontalAlignment="Center"                   
+            <Image Grid.Row="3" Grid.Column="0"
+                x:Name="imgInk"          
+                VerticalAlignment="Top"        
                 Width="52">
                 <Image.Source>
                     <BitmapImage
@@ -115,12 +113,12 @@
                 </Image.Source>
             </Image>
 
-            <TextBlock Grid.Row="4" Grid.Column="2"
+            <TextBlock Grid.Row="3" Grid.Column="2"
                 Width="{StaticResource HeaderWidth}" 
                 Style="{StaticResource HeadlineTextStyle}"                
                 Text="{x:Bind ViewModel.InkHeadline}" />
 
-            <TextBlock Grid.Row="6" Grid.Column="2"
+            <TextBlock Grid.Row="4" Grid.Column="2"
                 Width="{StaticResource HeaderWidth}" 
                 Style="{StaticResource BodyTextStyle}">
                 <Run Text="{x:Bind ViewModel.InkBodyFirst}"/>
@@ -131,10 +129,9 @@
             </TextBlock>
             
             <!-- BULLET THREE -->
-            <Image Grid.Row="8" Grid.Column="0"
+            <Image Grid.Row="6" Grid.Column="0"
                 x:Name="imgShutter"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"                   
+                VerticalAlignment="Top"
                 Width="52">
                 <Image.Source>
                     <BitmapImage
@@ -144,12 +141,12 @@
                 </Image.Source>
             </Image>
 
-            <TextBlock Grid.Row="8"  Grid.Column="2"
+            <TextBlock Grid.Row="6"  Grid.Column="2"
                 Width="{StaticResource HeaderWidth}"
                 Style="{StaticResource HeadlineTextStyle}"                  
                 Text="{x:Bind ViewModel.WebCamHeadline}" />
 
-            <TextBlock Grid.Row="10" Grid.Column="2"
+            <TextBlock Grid.Row="7" Grid.Column="2"
                 Width="{StaticResource HeaderWidth}" 
                 Style="{StaticResource BodyTextStyle}">
                 <Run Text="{x:Bind ViewModel.WebCamBodyFirst}"/>

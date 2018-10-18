@@ -24,9 +24,10 @@ namespace YogaC930AudioDemo.Views
             PlayerPopupPage.Current = this;
         }
 
-        private void btnClose_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             CloseButton_Clicked(sender, new RoutedEventArgs());
+            this.LoopPlayer.ResetPlayer();
         }
     }
 }

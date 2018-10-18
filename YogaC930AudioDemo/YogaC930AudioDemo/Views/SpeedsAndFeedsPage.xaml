@@ -36,6 +36,7 @@
                Grid.RowSpan="3"
                Grid.Column="0"
                Grid.ColumnSpan="5"
+               Margin="0,50,0,0"
                HorizontalAlignment="Right"
                Width="1152">
             <Image.Source>
@@ -50,6 +51,7 @@
                Grid.RowSpan="3"
                Grid.Column="0"
                Grid.ColumnSpan="5"
+               Margin="0,50,0,0"
                HorizontalAlignment="Right"
                Width="1152">
             <Image.Source>

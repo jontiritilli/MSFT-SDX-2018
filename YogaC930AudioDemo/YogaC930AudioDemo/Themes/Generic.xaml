@@ -18,6 +18,20 @@
         </Setter>
     </Style>
 
+    <Style TargetType="ctrl:LoopPlayer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ctrl:LoopPlayer">
+                    <Border
+                        x:Name="LayoutRoot"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--<Style TargetType="ctrl:FlipViewEx">
         <Setter Property="Background" Value="{ThemeResource FlipViewBackground}"/>
         <Setter Property="BorderThickness" Value="0"/>

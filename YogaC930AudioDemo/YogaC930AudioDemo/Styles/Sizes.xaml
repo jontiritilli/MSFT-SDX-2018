@@ -26,11 +26,11 @@
     <x:Double x:Key="FeaturesLeftMargin">1086</x:Double>
     <x:Double x:Key="FeaturesTopMargin">178.7</x:Double>
     <x:Double x:Key="FeaturesBottomMargin">178.8</x:Double>
-    <x:Double x:Key="FeaturesRightMargin">162.74</x:Double>
+    <x:Double x:Key="FeaturesRightMargin">150</x:Double>
     <x:Double x:Key="FeaturesBulletGridWidth">765.5</x:Double>
     <x:Double x:Key="FeaturesHeaderLedeSpacerRow">20</x:Double>
     <x:Double x:Key="FeaturesSpacerRow">75.5</x:Double>
-    <x:Double x:Key="FeaturesSpacerCol">35.875</x:Double>
+    <x:Double x:Key="FeaturesSpacerCol">15.875</x:Double>
     <x:Double x:Key="FeaturesIconWidth">108</x:Double>
 
     <x:Double x:Key="PopupTopMargin">69</x:Double>

@@ -28,10 +28,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
             Background="{StaticResource PopupBackgroundSolidColorBrush}">
             <Image
                 x:Name="imgHero"
@@ -50,11 +51,11 @@
             HorizontalAlignment="Right">
             
             <TextBlock
-                Width="{StaticResource PopupHeaderWidth}"
+                Width="515"
                 Style="{StaticResource HeadlineTextStyle}"     
                 Text="{x:Bind Path=ViewModel.Headline}" />
             <TextBlock
-                Width="{StaticResource PopupHeaderWidth}"
+                Width="515"
                 Style="{StaticResource BodyTextStyle}"
                 Text="{x:Bind Path=ViewModel.Body}"/>
         </StackPanel>

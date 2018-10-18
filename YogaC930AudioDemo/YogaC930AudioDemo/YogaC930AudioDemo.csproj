@@ -122,6 +122,7 @@
     <Compile Include="Activation\SchemeActivationData.cs" />
     <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
+    <Compile Include="Controls\LoopPlayer.cs" />
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\ColorHexConverter.cs" />
@@ -262,6 +263,7 @@
     <Content Include="Assets\Audio\audio_hotspot1.png" />
     <Content Include="Assets\Audio\audio_hotspot2.png" />
     <Content Include="Assets\Player\Makeba_Yoga_30s_POS_1920x1080.mp4" />
+    <Content Include="Assets\Player\Makeba_Yoga_30s_POS_1920x1080H264.mp4" />
     <Content Include="Assets\SpeakerDesign\audio_popupHero1.png" />
     <Content Include="Assets\HingeDesign\audio_popupHero2.png" />
     <Content Include="Assets\Features\features_blueBackground.png" />

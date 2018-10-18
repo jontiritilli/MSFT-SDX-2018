@@ -22,7 +22,7 @@
             <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
@@ -50,9 +50,14 @@
                 TextAlignment="Center"
                 HorizontalAlignment="Center"
                 Style="{StaticResource BodyTextStyle}">
-                <Run Text="{x:Bind Path=ViewModel.BodyFirst}"/>
-                <Run Text="{x:Bind Path=ViewModel.BodyBold}" Foreground="{StaticResource BodyBlueTextSolidColorBrush}" FontWeight="SemiBold"/>
-                <Run Text="{x:Bind Path=ViewModel.BodyLast}"/>
+                <Run
+                    Text="{x:Bind Path=ViewModel.BodyFirst}"/>
+                <Run
+                    Text="{x:Bind Path=ViewModel.BodyBold}"
+                    Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
+                    FontWeight="SemiBold"/>
+                <Run
+                    Text="{x:Bind Path=ViewModel.BodyLast}"/>
             </TextBlock>
         </StackPanel>
 
