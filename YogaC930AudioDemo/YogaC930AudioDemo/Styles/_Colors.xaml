@@ -25,6 +25,6 @@
 
     <SolidColorBrush x:Key="PopupBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
 
-    <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#FF082454"/>
+    <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#E6082454"/>
 
 </ResourceDictionary>

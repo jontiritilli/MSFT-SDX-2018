@@ -23,7 +23,7 @@
             <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
             <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5"
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"
                 Background="{StaticResource PopupBackgroundSolidColorBrush}">
         </Canvas>
         <StackPanel Grid.Row="2" Grid.Column="1"
