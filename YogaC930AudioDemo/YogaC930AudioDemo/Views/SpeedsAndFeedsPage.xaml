@@ -61,6 +61,7 @@
                         Width="600.96"
                         Style="{StaticResource BodyTextStyle}"
                         Text="Innovative features, Sleek, stylish design. Every element engineered for the best user experience."/>
+
             <StackPanel
                         Grid.Row="2"
                         Grid.Column="0"
@@ -69,15 +70,15 @@
                         BorderBrush="#ffe5e5e5">
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="Featuring" />
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyBlueTextStyle}"
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
                             Text="Windows 10"/>
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemLastLineTextStyle}"
                             Text="Home Edition"/>
             </StackPanel>
             
@@ -87,15 +88,15 @@
                         Orientation="Vertical">
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="Featuring" />
                 <TextBlock
                 Width="600.96"
-                            Style="{StaticResource BodyBlueTextStyle}"
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
                             Text="Intel Core i7"/>
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemLastLineTextStyle}"
                             Text="Home Edition"/>
             </StackPanel>
 
@@ -105,15 +106,15 @@
                         Orientation="Vertical">
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="Featuring" />
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyBlueTextStyle}"
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
                             Text="Dolby Vision"/>
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemLastLineTextStyle}"
                             Text="Home Edition"/>
             </StackPanel>
             <StackPanel
@@ -122,15 +123,15 @@
                         Orientation="Vertical">
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="Featuring" />
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyBlueTextStyle}"
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
                             Text="4K UHD"/>
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemLastLineTextStyle}"
                             Text="Home Edition"/>
             </StackPanel>
 
@@ -140,15 +141,15 @@
                         Orientation="Vertical">
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="Featuring" />
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyBlueTextStyle}"
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
                             Text="14 HOURS"/>
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemLastLineTextStyle}"
                             Text="Home Edition"/>
             </StackPanel>
 
@@ -158,15 +159,15 @@
                         Orientation="Vertical">
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="Just" />
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyBlueTextStyle}"
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
                             Text="0.57"/>
                 <TextBlock
                             Width="600.96"
-                            Style="{StaticResource BodyTextStyle}"
+                            Style="{StaticResource ListItemLastLineTextStyle}"
                             Text="at its thinnest"/>
             </StackPanel>
         </Grid>
