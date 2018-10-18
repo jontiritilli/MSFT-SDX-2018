@@ -8,16 +8,22 @@
     xmlns:model="using:YogaC930AudioDemo.Models"
     xmlns:views="using:YogaC930AudioDemo.Views"    
     xmlns:ctrl="using:YogaC930AudioDemo.Controls"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     Width="1920"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
+
     <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.ColumnDefinitions>
         <MediaPlayerElement Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
             Name="AttractorLoopPlayer"

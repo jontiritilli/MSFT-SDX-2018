@@ -4,8 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     DataContext="{Binding HingeDesignPopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
     
     <Grid
         x:Name="LayoutRoot"
@@ -14,17 +19,17 @@
         Background="{StaticResource PopupBlueBackgroundSolidColorBrush}">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}}"/>
-            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.ColumnDefinitions>
 
         <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5"
