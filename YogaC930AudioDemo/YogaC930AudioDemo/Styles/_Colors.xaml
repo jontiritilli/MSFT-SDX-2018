@@ -15,14 +15,26 @@
 
     <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="1.0" FallbackColor="#29FFFFFF"/>
 
-    <SolidColorBrush x:Key="NavigationBarLightBackgroundTextSolidColorBrush" Color="#FFA8A8A8"/>
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundNormalTextSolidColorBrush" Color="#FFA8A8A8"/>
 
-    <SolidColorBrush x:Key="NavigationBarDarkBackgroundTextSolidColorBrush" Color="#FFBFBFBF"/>
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundPointerEnteredTextSolidColorBrush" Color="#FF3E8DDD"/>
 
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundPointerPressedTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundPointerReleasedTextSolidColorBrush" Color="#FF3E8DDD"/>
+    
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundNormalTextSolidColorBrush" Color="#FFBFBFBF"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerEnteredTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerPressedTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerReleasedTextSolidColorBrush" Color="#FFFFFFFF"/>
+    
     <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundTextSolidColorBrush" Color="#FF3E8DDD"/>
 
     <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundTextSolidColorBrush" Color="#FFFFFFFF"/>
-
+    
     <SolidColorBrush x:Key="PopupBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
 
     <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#E6082454"/>

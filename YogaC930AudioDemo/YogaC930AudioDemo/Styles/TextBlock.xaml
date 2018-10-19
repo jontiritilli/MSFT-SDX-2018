@@ -100,11 +100,10 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
-
     
     <!-- Navigation Bar Styles -->
-    <Style x:Key="NavigationBarLightBackgroundTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamMediumFontStyle}">
-        <Setter Property="Foreground" Value="{StaticResource NavigationBarLightBackgroundTextSolidColorBrush}"/>
+    <Style x:Key="NavigationBarLightBackgroundNormalTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamMediumFontStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarLightBackgroundNormalTextSolidColorBrush}"/>
         <Setter Property="FontSize" Value="19.5" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
         <Setter Property="LineHeight" Value="19.5" />
@@ -115,10 +114,34 @@
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
 
-    <Style x:Key="NavigationBarDarkBackgroundTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource NavigationBarDarkBackgroundTextSolidColorBrush}"/>
+    <Style x:Key="NavigationBarLightBackgroundPointerEnteredTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarLightBackgroundPointerEnteredTextSolidColorBrush}"/>
     </Style>
 
+    <Style x:Key="NavigationBarLightBackgroundPointerPressedTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarLightBackgroundPointerPressedTextSolidColorBrush}"/>
+    </Style>
+
+    <Style x:Key="NavigationBarLightBackgroundPointerReleasedTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarLightBackgroundPointerReleasedTextSolidColorBrush}"/>
+    </Style>
+    
+    <Style x:Key="NavigationBarDarkBackgroundNormalTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarDarkBackgroundNormalTextSolidColorBrush}"/>
+    </Style>
+
+    <Style x:Key="NavigationBarDarkBackgroundPointerEnteredTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarDarkBackgroundPointerEnteredTextSolidColorBrush}"/>
+    </Style>
+
+    <Style x:Key="NavigationBarDarkBackgroundPointerPressedTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarDarkBackgroundPointerPressedTextSolidColorBrush}"/>
+    </Style>
+
+    <Style x:Key="NavigationBarDarkBackgroundPointerReleasedTextStyle" TargetType="TextBlock" BasedOn="{StaticResource NavigationBarLightBackgroundNormalTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource NavigationBarDarkBackgroundPointerReleasedTextSolidColorBrush}"/>
+    </Style>
+    
     <!-- Play Audio Demo Button Styles-->
     <Style x:Key="PlayAudioDemoLightBackgroundTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamBoldFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource PlayAudioDemoLightBackgroundTextSolidColorBrush}"/>

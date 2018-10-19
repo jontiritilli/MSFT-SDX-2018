@@ -19,6 +19,7 @@
             <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         
@@ -33,7 +34,7 @@
         <!-- Mica Hero Image -->
         <Image x:Name="MicaHero"
                Grid.Row="0"
-               Grid.RowSpan="3"
+               Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
                Margin="0,50,0,0"
@@ -48,7 +49,7 @@
         <!-- Iron Hero Image -->
         <Image x:Name="IronHero"
                Grid.Row="0"
-               Grid.RowSpan="3"
+               Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
                Margin="0,50,0,0"
@@ -71,7 +72,6 @@
                         Style="{StaticResource HeadlineTextStyle}"     
                         Text="{x:Bind Path=ViewModel.Headline}" />
             <TextBlock x:Name="Body"
-                        Width="600.96"
                         Style="{StaticResource BodyTextStyle}"
                         Text="{x:Bind Path=ViewModel.Body}"/>
         </StackPanel>
@@ -86,7 +86,8 @@
             <StackPanel x:Name="Windows10Item"
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
-                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}">
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,0,0,27">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.WindowsBodyFirst}" />
@@ -101,7 +102,8 @@
             <StackPanel x:Name="DolbyVision"
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
-                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}">
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,40,0,27">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.DolbyBodyFirst}" />
@@ -114,7 +116,8 @@
             </StackPanel>
 
             <StackPanel x:Name="Battery"
-                        Orientation="Vertical">
+                        Orientation="Vertical"
+                        Padding="0,40,0,0">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.BatteryBodyFirst}" />
@@ -136,7 +139,8 @@
             <StackPanel x:Name="Intel"
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
-                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}">
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,0,0,27">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.IntelBodyFirst}" />
@@ -151,7 +155,8 @@
             <StackPanel x:Name="FourK"
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
-                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}">
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,40,0,27">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.FourKBodyFirst}" />
@@ -164,7 +169,8 @@
             </StackPanel>
 
             <StackPanel x:Name="FiftySeven"
-                        Orientation="Vertical">
+                        Orientation="Vertical"
+                        Padding="0,40,0,0">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.FiftySevenBodyFirst}" />
@@ -177,11 +183,19 @@
             </StackPanel>
         </StackPanel>
 
+        <TextBlock x:Name="Legal"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Bottom"
+                   Style="{StaticResource LegalTextStyle}"
+                   Text="{x:Bind Path=ViewModel.Footnote}"/>
+
         <!--<Image x:Name="imgHero"
                Grid.Row="1"
-               Grid.RowSpan="6"
+               Grid.RowSpan="5"
                Grid.Column="0"
-               Grid.ColumnSpan="3"
+               Grid.ColumnSpan="5"
                HorizontalAlignment="Right"
                Width="1152">
             <Image.Source>
@@ -193,7 +207,7 @@
         <!-- Intel Core Mark -->
         <Canvas x:Name="IntelCanvas"
                 Grid.Row="0"
-                Grid.RowSpan="3"
+                Grid.RowSpan="5"
                 Grid.Column="0"
                 Grid.ColumnSpan="5">
             <Image x:Name="IntelMark"
