@@ -25,6 +25,12 @@ namespace YogaC930AudioDemo.Controls
 
     public sealed partial class NavigationButton : UserControl
     {
+        #region Private Properties
+
+
+        #endregion
+
+
         #region Public Properties
 
         public Style NormalLightStyle;
@@ -61,6 +67,7 @@ namespace YogaC930AudioDemo.Controls
             this.PointerPressedDarkStyle = GetApplicationStyle("NavigationBarDarkBackgroundPointerPressedTextStyle");
             this.PointerReleasedDarkStyle = GetApplicationStyle("NavigationBarDarkBackgroundPointerReleasedTextStyle");
 
+            SetStyle(this.NormalLightStyle, this.NormalDarkStyle);
         }
 
         #endregion
@@ -70,7 +77,8 @@ namespace YogaC930AudioDemo.Controls
 
         // ColorScheme
         public static readonly DependencyProperty ColorSchemeProperty =
-            DependencyProperty.Register("ColorScheme", typeof(ColorSchemes), typeof(NavigationButton), new PropertyMetadata(ColorSchemes.Light));
+            DependencyProperty.Register("ColorScheme", typeof(ColorSchemes), typeof(NavigationButton),
+                                        new PropertyMetadata(ColorSchemes.Light, OnColorSchemePropertyChanged));
 
         public ColorSchemes ColorScheme
         {
@@ -107,7 +115,20 @@ namespace YogaC930AudioDemo.Controls
 
         #region Event Handlers
 
+        private static void OnColorSchemePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NavigationButton navigationButton)
+            {
+                navigationButton.SetStyle(navigationButton.NormalLightStyle, navigationButton.NormalDarkStyle);
+            }
+        }
+
         private void TheTextBlock_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            SetStyle(this.PointerEnteredLightStyle, this.PointerEnteredDarkStyle);
+        }
+
+        private void TheTextBlock_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
             SetStyle(this.PointerEnteredLightStyle, this.PointerEnteredDarkStyle);
         }

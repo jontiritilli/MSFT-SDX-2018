@@ -11,6 +11,7 @@
         <TextBlock x:Name="TheTextBlock"
                    Style="{x:Bind Path=NormalLightStyle}"
                    PointerEntered="TheTextBlock_PointerEntered"
+                   PointerMoved="TheTextBlock_PointerMoved"
                    PointerExited="TheTextBlock_PointerExited"
                    PointerPressed="TheTextBlock_PointerPressed"
                    PointerReleased="TheTextBlock_PointerReleased">
