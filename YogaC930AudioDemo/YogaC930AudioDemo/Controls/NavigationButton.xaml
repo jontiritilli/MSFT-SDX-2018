@@ -14,11 +14,10 @@
                    PointerMoved="TheTextBlock_PointerMoved"
                    PointerExited="TheTextBlock_PointerExited"
                    PointerPressed="TheTextBlock_PointerPressed"
-                   PointerReleased="TheTextBlock_PointerReleased">
+                   PointerReleased="TheTextBlock_PointerReleased" FontFamily="Segoe UI">
             <Run x:Name="Bullet"
-                 Text="&#xF35A;&#160;"
-                 FontFamily="Assets/Fonts/fa-regular-400.otf#Font Awesome 5 Free Regular"
-                 FontWeight="Normal"/>
+                FontFamily="{StaticResource FontAwesomeFontFamily}"
+                Text="{StaticResource FontAwesomeForwardArrow}"/>
             <Run x:Name="TheCaption"
                  Text="{x:Bind Path=Caption}"/>
         </TextBlock>
