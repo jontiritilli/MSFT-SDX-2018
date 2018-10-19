@@ -2,8 +2,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-
+using Windows.UI.Xaml.Media.Animation;
 using YogaC930AudioDemo.Controls;
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
 
 
@@ -48,7 +49,15 @@ namespace YogaC930AudioDemo.Views
 
         private void FlipViewPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            // set player popup close handler
             PlayerPopupPage.Current.CloseButton_Clicked += Close_Player_Clicked;
+
+            // animate in the play audio demo button
+            AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxis.Vertical,
+                                                -87, -87, -4,
+                                                new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn },
+                                                new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn },
+                                                500, 500);
         }
 
         private void ContentFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
