@@ -122,6 +122,9 @@
     <Compile Include="Activation\SchemeActivationData.cs" />
     <Compile Include="Activation\SchemeActivationHandler.cs" />
     <Compile Include="Controls\AttractorLoopPlayer.cs" />
+    <Compile Include="Controls\NavigationButton.xaml.cs">
+      <DependentUpon>NavigationButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\ColorHexConverter.cs" />
@@ -179,6 +182,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\NavigationButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -269,7 +276,6 @@
     <Content Include="Assets\Features\features_bullet_TrublockPrivacyShutter.png" />
     <Content Include="Assets\Features\features_bullet_windowsInk.png" />
     <Content Include="Assets\Features\features_hero.png" />
-    <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_hero.png" />
     <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_heroIronALT.png" />
     <Content Include="Assets\SpeedsAndFeeds\speedsFeeds_heroMicaALT.png" />
@@ -341,15 +347,11 @@
     <Content Include="Assets\Volume\ui_volumeMax.png" />
     <Content Include="Assets\Volume\ui_volumeMid.png" />
     <Content Include="Assets\Volume\ui_volume_sliderHandle.png" />
+    <Content Include="Assets\Fonts\fa-brands-400.ttf" />
+    <Content Include="Assets\Fonts\fa-regular-400.ttf" />
+    <Content Include="Assets\Fonts\fa-solid-900.ttf" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

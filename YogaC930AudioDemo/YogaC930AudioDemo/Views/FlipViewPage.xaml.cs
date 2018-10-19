@@ -2,6 +2,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+
+using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.ViewModels;
 
 
@@ -22,6 +24,8 @@ namespace YogaC930AudioDemo.Views
         {
             get { return DataContext as FlipViewViewModel; }
         }
+
+        private ColorSchemes ColorScheme = ColorSchemes.Light;
 
         #endregion
 
@@ -47,7 +51,45 @@ namespace YogaC930AudioDemo.Views
             PlayerPopupPage.Current.CloseButton_Clicked += Close_Player_Clicked;
         }
 
-        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ContentFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (null != this.ContentFlipView)
+            {
+                switch (this.ContentFlipView.SelectedIndex)
+                {
+                    case 0:     // audio page
+                        this.ColorScheme = ColorSchemes.Light;
+                        break;
+
+                    case 1:     // features page
+                        this.ColorScheme = ColorSchemes.Dark;
+                        break;
+
+                    case 2:     // speeds and feeds page
+                        this.ColorScheme = ColorSchemes.Light;
+                        break;
+                }
+
+                // update play button
+
+
+                // update navigation buttons
+                if (null != this.NavigationBarExploreWindows) { this.NavigationBarExploreWindows.ColorScheme = this.ColorScheme; }
+                if (null != this.NavigationBarGoToDesktop) { this.NavigationBarGoToDesktop.ColorScheme = this.ColorScheme; }
+            }
+        }
+
+        private void NavigationBarExploreWindows_Click(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            // do something here; launch an rdx uri?
+        }
+
+        private void NavigationBarGoToDesktop_Click(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            // do something here; exit app or just minimize?
+        }
+
+        private void PlayDemoButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             if (this.PlayerPopup.IsOpen == false)
             {
@@ -86,5 +128,6 @@ namespace YogaC930AudioDemo.Views
         }
 
         #endregion
+
     }
 }

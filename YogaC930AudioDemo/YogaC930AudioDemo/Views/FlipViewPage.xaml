@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:views="using:YogaC930AudioDemo.Views"
+    xmlns:ctrl="using:YogaC930AudioDemo.Controls"
     xmlns:conv="using:YogaC930AudioDemo.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -34,7 +35,8 @@
         <!-- Pages -->
         <FlipView x:Name="ContentFlipView"
                   Grid.Row="0" Grid.RowSpan="3"
-                  Grid.Column="0" Grid.ColumnSpan="2">
+                  Grid.Column="0" Grid.ColumnSpan="2"
+                  SelectionChanged="ContentFlipView_SelectionChanged">
             <FlipViewItem x:Uid="FlipViewItem_AudioPage">
                 <Frame>
                     <views:AudioPage/>
@@ -82,15 +84,18 @@
                 </Image.Source>
             </Image>
 
-            <Button x:Name="ExploreWindows"
-                    Grid.Row="1" Grid.Column="3">
-                <TextBlock Text="{x:Bind Path=ViewModel.NavExplore}"/>
-            </Button>
+            <ctrl:NavigationButton x:Name="NavigationBarExploreWindows"
+                                   Grid.Row="1" Grid.Column="3"
+                                   Caption="{x:Bind Path=ViewModel.NavExplore}"
+                                   ColorScheme="{x:Bind Path=ColorScheme}"
+                                   Click="NavigationBarExploreWindows_Click"/>
 
-            <Button x:Name="GoToDesktop"
-                    Grid.Row="1" Grid.Column="5">
-                <TextBlock Text="{x:Bind Path=ViewModel.NavDesktop}"/>
-            </Button>
+            <ctrl:NavigationButton x:Name="NavigationBarGoToDesktop"
+                                   Grid.Row="1" Grid.Column="5"
+                                   Caption="{x:Bind Path=ViewModel.NavExplore}"
+                                   ColorScheme="{x:Bind Path=ColorScheme}"
+                                   Click="NavigationBarGoToDesktop_Click"/>
+                                   
         </Grid>
 
         <!-- Lenovo Logo -->
@@ -113,7 +118,7 @@
             Grid.Column="0" Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Click="Button_Click">
+            Click="PlayDemoButton_Click">
             <Image x:Name="StartDemoButton"           
                    Width="330">
                 <Image.Source>
@@ -126,7 +131,7 @@
         <!-- Player Popup -->
         <Popup x:Name="PlayerPopup"
             IsOpen = "False"
-            IsLightDismissEnabled="true"
+            IsLightDismissEnabled="False"
             HorizontalOffset="0"                
             VerticalOffset="0">
             <Popup.Child>

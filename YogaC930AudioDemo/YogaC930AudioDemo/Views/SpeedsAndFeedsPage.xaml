@@ -191,9 +191,9 @@
 
         <!--<Image x:Name="imgHero"
                Grid.Row="1"
-               Grid.RowSpan="6"
+               Grid.RowSpan="5"
                Grid.Column="0"
-               Grid.ColumnSpan="3"
+               Grid.ColumnSpan="5"
                HorizontalAlignment="Right"
                Width="1152">
             <Image.Source>
