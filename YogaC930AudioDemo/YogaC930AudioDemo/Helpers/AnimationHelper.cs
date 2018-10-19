@@ -19,6 +19,20 @@ namespace YogaC930AudioDemo.Helpers
 
     public static class AnimationHelper
     {
+        public static void PerformAnimation(DependencyObject dependencyObject, string propertyName,
+                                            double defaultValue, double startingValue, double endingValue,
+                                            double duration, double staggerDelay = 0)
+        {
+            Storyboard storyboard = null;
+
+            if (null != dependencyObject)
+            {
+                storyboard = CreateEasingAnimation(dependencyObject, propertyName, defaultValue, startingValue, endingValue, duration, staggerDelay, false, false, new RepeatBehavior(1d));
+
+                storyboard.Begin();
+            }
+        }
+
         public static void PerformFadeIn(DependencyObject dependencyObject, double duration, double staggerDelay = 0)
         {
             Storyboard storyboard = null;
