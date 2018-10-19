@@ -146,14 +146,13 @@ namespace YogaC930AudioDemo.Controls
                 newValue = Math.Max(SLIDER_MINIMUM, newValue);
                 newValue = Math.Min(SLIDER_MAXIMUM, newValue);
 
-                slider.UpdateThumb(newValue);
+                //slider.UpdateThumb(newValue);
+                slider.MoveTo(slider.GetPositionFromVolume(newValue));
                 slider.FadeOutInstruction();
 
                 slider.RaiseValueChangedEvent(slider, new VolumeSliderEventArgs() { NewValue = newValue, OldValue = (double)e.OldValue });
             }
         }
-
-
 
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -270,6 +269,11 @@ namespace YogaC930AudioDemo.Controls
 
         #region Private Methods
 
+        private void RampUpVolume()
+        {
+            AnimationHelper.Double
+        }
+
         private void PerformFadeIn()
         {
             AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxis.Horizontal, 200, 200, 0, 750, 500);
@@ -279,7 +283,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void FadeOutInstruction()
         {
-            if (this.TextBoxContainer.Opacity > 0)
+            if (this.TextBoxContainer.Opacity == 1)
             {
                 AnimationHelper.PerformFadeOut(this.TextBoxContainer, 750, 0);
                 //AnimationHelper.PerformFadeOut(this.RadiateCanvas, 500, 0);
