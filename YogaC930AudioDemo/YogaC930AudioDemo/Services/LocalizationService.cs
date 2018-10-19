@@ -226,7 +226,8 @@ namespace YogaC930AudioDemo.Services
 
         public void LoadPlayerPopupViewModel(PlayerPopupViewModel viewModel)
         {
-            viewModel.Body = GetStringValue(_languageCurrent.AUDIO_POP_DEMO_COPY, "AUDIO_POP_DEMO_COPY");
+            viewModel.BodyFirst = GetStringValue(_languageCurrent.AUDIO_POP_DEMO_COPY_FIRST, "AUDIO_POP_DEMO_COPY_FIRST") + "\n";
+            viewModel.BodyLast = GetStringValue(_languageCurrent.AUDIO_POP_DEMO_COPY_LAST, "AUDIO_POP_DEMO_COPY_LAST");
         }
 
         public void LoadSpeedsAndFeedsViewModel(SpeedsAndFeedsViewModel viewModel)

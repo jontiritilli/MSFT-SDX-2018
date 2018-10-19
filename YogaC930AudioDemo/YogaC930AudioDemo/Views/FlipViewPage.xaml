@@ -174,11 +174,9 @@
 
         <!--<Button
             x:Name="PlayDemoButton"
-            Grid.Row="0" Grid.RowSpan="2"
-            Grid.Column="0" Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Click="PlayDemoButton_Click">
+            PointerReleased="PlayDemoButton_Click">
             <Image x:Name="StartDemoButton"           
                    Width="330">
                 <Image.Source>

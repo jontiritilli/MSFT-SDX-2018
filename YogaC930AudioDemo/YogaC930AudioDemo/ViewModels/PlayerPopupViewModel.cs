@@ -14,7 +14,8 @@ namespace YogaC930AudioDemo.ViewModels
     {
         #region Public Properties
 
-        public string Body;
+        public string BodyFirst;
+        public string BodyLast;
 
         #endregion
 

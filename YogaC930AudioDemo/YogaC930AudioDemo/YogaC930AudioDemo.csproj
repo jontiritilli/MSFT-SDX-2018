@@ -125,10 +125,14 @@
     <Compile Include="Controls\NavigationButton.xaml.cs">
       <DependentUpon>NavigationButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\VolumeSlider.xaml.cs">
+      <DependentUpon>VolumeSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LoopPlayer.cs" />
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
+    <Compile Include="Helpers\AudioHelper.cs" />
     <Compile Include="Helpers\ColorHexConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
@@ -188,6 +192,10 @@
     <Page Include="Controls\NavigationButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VolumeSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>

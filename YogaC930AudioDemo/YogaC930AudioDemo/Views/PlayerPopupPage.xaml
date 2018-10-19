@@ -47,6 +47,14 @@
                     </Image.Source>
                 </Image>
             </Grid>
+
         </Canvas>
+
+        <ctrl:VolumeSlider Grid.Row="0" Grid.Column="0"
+            VolumeControlCaptionTextFirst="{x:Bind Path=ViewModel.BodyFirst}"
+            VolumeControlCaptionTextLast="{x:Bind Path=ViewModel.BodyLast}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Opacity="1.0" />
     </Grid>
 </Page>
