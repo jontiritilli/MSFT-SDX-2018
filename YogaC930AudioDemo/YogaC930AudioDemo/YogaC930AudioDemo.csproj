@@ -127,10 +127,12 @@
     </Compile>
     <Compile Include="Controls\LoopPlayer.cs" />
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\ColorHexConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Models\ConfigurationFile.cs" />
     <Compile Include="Models\LanguageFile.cs" />
@@ -343,6 +345,7 @@
     <Content Include="Assets\Universal\ui_btn_chevronRight_light.png" />
     <Content Include="Assets\Universal\ui_btn_closePopup.png" />
     <Content Include="Assets\Universal\ui_btn_demo.png" />
+    <Content Include="Assets\Universal\ui_btn_demo_playshape.png" />
     <Content Include="Assets\Universal\ui_lenovoLogo.png" />
     <Content Include="Assets\Universal\ui_yogaLogo.png" />
     <Content Include="Assets\Volume\ui_volumeLow.png" />

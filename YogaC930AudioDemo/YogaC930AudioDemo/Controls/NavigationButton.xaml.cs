@@ -13,7 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
+using YogaC930AudioDemo.Helpers;
+
 
 namespace YogaC930AudioDemo.Controls
 {
@@ -57,15 +58,15 @@ namespace YogaC930AudioDemo.Controls
 
         private void NavigationButton_Loaded(object sender, RoutedEventArgs e)
         {
-            this.NormalLightStyle = GetApplicationStyle("NavigationBarLightBackgroundNormalTextStyle");
-            this.PointerEnteredLightStyle = GetApplicationStyle("NavigationBarLightBackgroundPointerEnteredTextStyle");
-            this.PointerPressedLightStyle = GetApplicationStyle("NavigationBarLightBackgroundPointerPressedTextStyle");
-            this.PointerReleasedLightStyle = GetApplicationStyle("NavigationBarLightBackgroundPointerReleasedTextStyle");
+            this.NormalLightStyle = StyleHelper.GetApplicationStyle("NavigationBarLightBackgroundNormalTextStyle");
+            this.PointerEnteredLightStyle = StyleHelper.GetApplicationStyle("NavigationBarLightBackgroundPointerEnteredTextStyle");
+            this.PointerPressedLightStyle = StyleHelper.GetApplicationStyle("NavigationBarLightBackgroundPointerPressedTextStyle");
+            this.PointerReleasedLightStyle = StyleHelper.GetApplicationStyle("NavigationBarLightBackgroundPointerReleasedTextStyle");
 
-            this.NormalDarkStyle = GetApplicationStyle("NavigationBarDarkBackgroundNormalTextStyle");
-            this.PointerEnteredDarkStyle = GetApplicationStyle("NavigationBarDarkBackgroundPointerEnteredTextStyle");
-            this.PointerPressedDarkStyle = GetApplicationStyle("NavigationBarDarkBackgroundPointerPressedTextStyle");
-            this.PointerReleasedDarkStyle = GetApplicationStyle("NavigationBarDarkBackgroundPointerReleasedTextStyle");
+            this.NormalDarkStyle = StyleHelper.GetApplicationStyle("NavigationBarDarkBackgroundNormalTextStyle");
+            this.PointerEnteredDarkStyle = StyleHelper.GetApplicationStyle("NavigationBarDarkBackgroundPointerEnteredTextStyle");
+            this.PointerPressedDarkStyle = StyleHelper.GetApplicationStyle("NavigationBarDarkBackgroundPointerPressedTextStyle");
+            this.PointerReleasedDarkStyle = StyleHelper.GetApplicationStyle("NavigationBarDarkBackgroundPointerReleasedTextStyle");
 
             SetStyle(this.NormalLightStyle, this.NormalDarkStyle);
         }
@@ -161,20 +162,6 @@ namespace YogaC930AudioDemo.Controls
             {
                 this.TheTextBlock.Style = (ColorSchemes.Light == this.ColorScheme) ? lightStyle : darkStyle;
             }
-        }
-
-        public static Style GetApplicationStyle(String name)
-        {
-            Style style = null;
-            try
-            {
-                style = (Style)Application.Current.Resources[name];
-            }
-            catch
-            {
-            }
-
-            return style;
         }
 
         #endregion

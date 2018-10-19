@@ -89,13 +89,21 @@ namespace YogaC930AudioDemo.Views
             // do something here; exit app or just minimize?
         }
 
-        private void PlayDemoButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void PlayAudioDemoBlueBorder_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             if (this.PlayerPopup.IsOpen == false)
             {
                 this.PlayerPopup.IsOpen = true;
             }
         }
+
+        //private void PlayDemoButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    if (this.PlayerPopup.IsOpen == false)
+        //    {
+        //        this.PlayerPopup.IsOpen = true;
+        //    }
+        //}
 
         private void Close_Player_Clicked(object sender, RoutedEventArgs e)
         {
