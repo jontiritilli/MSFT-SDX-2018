@@ -5,10 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ctrl="using:YogaC930AudioDemo.Controls"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     mc:Ignorable="d"
     d:DesignHeight="{StaticResource VolumeControlHeight}" 
     d:DesignWidth="{StaticResource VolumeControlWidth}" >
 
+    <UserControl.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </UserControl.Resources>
+    
     <Grid
         x:Name="LayoutRoot"
         Tapped="Grid_Tapped">
@@ -39,9 +44,7 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="175"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="{Binding Source={StaticResource VolumeControlHeight}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="296.58"/>
@@ -49,63 +52,75 @@
             <ColumnDefinition Width="83.5"/>
         </Grid.ColumnDefinitions>
 
-        <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
-            x:Name="ContainerBG"
-            Background="Black"
-            Opacity=".75">
-        </Canvas>
+        <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+              x:Name="SliderContainer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="175"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+                x:Name="ContainerBG"
+                Background="Black"
+                Opacity=".75">
+            </Canvas>
 
-        <Rectangle Grid.Row="1" Grid.Column="2"
-            x:Name="SliderLine"
-            Height="172.6"
-            Width="4"
-            Fill="Gray"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
+            <Rectangle Grid.Row="1" Grid.Column="2"
+                x:Name="SliderLine"
+                Height="172.6"
+                Width="4"
+                Fill="Gray"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
 
-        <Rectangle Grid.Row="1" Grid.Column="2"
-            x:Name="BlueSliderLine"
-            Height="0"
-            Width="3"
-            Fill="{StaticResource BodyBlueTextSolidColorBrush}"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Center"/>
-        
-        <Canvas Grid.Row="1" Grid.Column="2"
-            x:Name="ContainerCanvas"
-            SizeChanged="ContainerCanvas_SizeChanged">
+            <Rectangle Grid.Row="1" Grid.Column="2"
+                x:Name="BlueSliderLine"
+                Height="0"
+                Width="3"
+                Fill="{StaticResource BodyBlueTextSolidColorBrush}"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"/>
 
-            <Thumb x:Name="Thumb" Canvas.Top="0"
+            <Canvas Grid.Row="1" Grid.Column="2"
+                x:Name="ContainerCanvas"
+                SizeChanged="ContainerCanvas_SizeChanged">
+
+                <Thumb x:Name="Thumb" Canvas.Top="0"
+                    HorizontalAlignment="Center"
+                    ManipulationMode="TranslateY"
+                    ManipulationDelta="Thumb_ManipulationDelta"
+                    ManipulationCompleted="Thumb_ManipulationCompleted">
+                    <Thumb.RenderTransform>
+                        <TranslateTransform x:Name="ManipulationTranslation" />
+                    </Thumb.RenderTransform>
+                </Thumb>
+            </Canvas>
+
+            <TextBlock Grid.Row="0" Grid.Column="2"
+                x:Name="VolumeCaption"
+                Style="{StaticResource GothamMediumFontStyle}"
+                Text="{x:Bind Path=VolumeLevelText}"
+                Foreground="White"
                 HorizontalAlignment="Center"
-                ManipulationMode="TranslateY"
-                ManipulationDelta="Thumb_ManipulationDelta"
-                ManipulationCompleted="Thumb_ManipulationCompleted">
-                <Thumb.RenderTransform>
-                    <TranslateTransform x:Name="ManipulationTranslation" />
-                </Thumb.RenderTransform>
-            </Thumb>
-        </Canvas>
+                VerticalAlignment="Center"/>
 
-        <TextBlock Grid.Row="0" Grid.Column="2"
-            x:Name="VolumeCaption"
-                   Style="{StaticResource GothamMediumFontStyle}"
-            Text="{x:Bind Path=VolumeLevelText}"
-            Foreground="White"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+            <Image Grid.Row="2" Grid.Column="2"
+                x:Name="VolumeIndicator"
+                Width="{StaticResource VolumeHandleWidth}"
+                Source="{x:Bind Path=VolumeImage}">
+            </Image>
+        </Grid>
 
-        <Image Grid.Row="2" Grid.Column="2"
-            x:Name="VolumeIndicator"
-            Width="{StaticResource VolumeHandleWidth}"
-            Source="{x:Bind Path=VolumeImage}">
-        </Image>
-        
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
-            x:Name="TextBoxBG"
+            x:Name="TextBoxContainer"
             VerticalAlignment="Center"
             Width="296.58"
             Height="139.48"
-            Opacity="0">
+            Opacity="1">
             <Canvas
                 Background="Black"
                 Opacity=".75">
@@ -123,6 +138,7 @@
         </Grid>
 
         <Canvas Grid.Row="1" Grid.Column="2"
+            x:Name="RadiateCanvas"
             HorizontalAlignment="Right"
             Opacity="0">
             <Ellipse
@@ -133,7 +149,7 @@
                 StrokeThickness="{StaticResource VolumeHighlightEllipseStrokeThickness}"
                 Opacity=".85">
                 <Ellipse.RenderTransform>
-                    <TranslateTransform X="-60" Y="-15"/>
+                    <TranslateTransform X="-60" Y="157"/>
                 </Ellipse.RenderTransform>
             </Ellipse>
         </Canvas>

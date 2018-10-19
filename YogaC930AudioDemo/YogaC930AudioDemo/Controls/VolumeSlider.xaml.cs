@@ -79,6 +79,7 @@ namespace YogaC930AudioDemo.Controls
             // change the volume level indicator
             SetCurrentVolumeUI();
 
+            PerformFadeIn();
             //TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 8, Colors.Purple);
             //TestHelper.AddGridCellBorders(this.BatteryGrid, 1, 3, Colors.CornflowerBlue);
         }
@@ -146,10 +147,13 @@ namespace YogaC930AudioDemo.Controls
                 newValue = Math.Min(SLIDER_MAXIMUM, newValue);
 
                 slider.UpdateThumb(newValue);
+                slider.FadeOutInstruction();
 
                 slider.RaiseValueChangedEvent(slider, new VolumeSliderEventArgs() { NewValue = newValue, OldValue = (double)e.OldValue });
             }
         }
+
+
 
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -260,6 +264,27 @@ namespace YogaC930AudioDemo.Controls
             };
 
             this.RaiseMovedEvent(daySlider, args);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void PerformFadeIn()
+        {
+            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxis.Horizontal, 200, 200, 0, 750, 500);
+            AnimationHelper.PerformFadeIn(this.TextBoxContainer, 750, 1250);
+            //AnimationHelper.PerformFadeIn(this.RadiateCanvas, 750, 1500);
+        }
+
+        private void FadeOutInstruction()
+        {
+            if (this.TextBoxContainer.Opacity > 0)
+            {
+                AnimationHelper.PerformFadeOut(this.TextBoxContainer, 750, 0);
+                //AnimationHelper.PerformFadeOut(this.RadiateCanvas, 500, 0);
+            }
+            return;
         }
 
         #endregion
