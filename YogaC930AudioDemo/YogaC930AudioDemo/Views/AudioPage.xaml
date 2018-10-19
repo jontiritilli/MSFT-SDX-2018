@@ -58,7 +58,7 @@
                 </Image.Source>
             </Image>
 
-            <Line Width="115" Height="2" Margin="0,25,0,25" Stroke="{StaticResource SeparatorLineSolidColorBrush}" StrokeThickness="2"/>
+            <Line X1="0" X2="115" Y1="0" Y2="0" Stroke="{StaticResource SeparatorLineSolidColorBrush}" StrokeThickness="2" Margin="0,25,0,25"/>
 
             <TextBlock
                 Width="{StaticResource HeaderWidth}"
