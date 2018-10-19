@@ -17,9 +17,12 @@
                    PointerReleased="TheTextBlock_PointerReleased">
             <Run x:Name="Bullet"
                  Text="&#xF35A;&#160;"
-                 FontFamily="Assets/Fonts/fa-solid-900.ttf#Font Awesome 5 Free"/>
+                 FontFamily="Assets/Fonts/Free-Solid-900.otf#Font Awesome 5 Free Solid"
+                 FontWeight="Black"/>
             <Run x:Name="TheCaption"
                  Text="{x:Bind Path=Caption}"/>
         </TextBlock>
     </Grid>
 </UserControl>
+
+<!-- ms-appx:///Assets/Fonts/fa-solid-900.ttf -->
