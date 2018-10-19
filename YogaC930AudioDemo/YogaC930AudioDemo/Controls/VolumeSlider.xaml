@@ -22,13 +22,15 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Thumb">
-                            <Grid>
+                            <Grid
+                                Width="83"
+                                Height="6">
                                 <Image
                                     x:Name="Thumb"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
                                     <Image.RenderTransform>
-                                        <TranslateTransform X="26" Y="0"/>
+                                        <TranslateTransform X="0" Y="0"/>
                                     </Image.RenderTransform>
                                     <Image.Source>
                                         <BitmapImage
