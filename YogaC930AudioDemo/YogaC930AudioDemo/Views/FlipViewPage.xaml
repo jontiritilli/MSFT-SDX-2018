@@ -13,16 +13,16 @@
     <Page.Resources>
         <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
     </Page.Resources>
-    
+
     <Page.Background>
         <SolidColorBrush>White</SolidColorBrush>
     </Page.Background>
-    
+
     <Grid>
         <Grid.Background>
             <SolidColorBrush>White</SolidColorBrush>
         </Grid.Background>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource AppCloseHeight}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="*"/>
@@ -97,10 +97,10 @@
                                    Grid.Row="1" Grid.Column="5"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Top"
-                                   Caption="{x:Bind Path=ViewModel.NavExplore}"
+                                   Caption="{x:Bind Path=ViewModel.NavDesktop}"
                                    ColorScheme="{x:Bind Path=ColorScheme}"
                                    Click="NavigationBarGoToDesktop_Click"/>
-                                   
+
         </Grid>
 
         <!-- Lenovo Logo -->
@@ -116,8 +116,63 @@
             </Image.Source>
         </Image>
 
-        <!-- Start Demo Button -->
-        <Button
+        <!-- Play Audio Demo Button -->
+        <Grid x:Name="PlayAudioDemoButton"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
+            <Border x:Name="BlueBorderShadow"
+                Width="308.25"
+                Height="83.15"
+                CornerRadius="0,0,24,24"
+                Background="Transparent"
+                BorderBrush="{StaticResource PlayAudioDemoBorderShadowSolidColorBrush}"
+                BorderThickness="4"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="BlueBorderShadowTransform" Y="0"/>
+                </Border.RenderTransform>
+            </Border>
+
+            <Border x:Name="PlayAudioDemoBlueBorder"
+                Width="308.25"
+                Height="83.15"
+                CornerRadius="0,0,24,24"
+                Background="{StaticResource PlayAudioDemoLightBackgroundSolidColorBrush}"
+                BorderBrush="{StaticResource PlayAudioDemoBorderSolidColorBrush}"
+                BorderThickness="4"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                PointerReleased="PlayAudioDemoBlueBorder_PointerReleased">
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="BlueBorderTransform" Y="0"/>
+                </Border.RenderTransform>
+
+                <!-- button text -->
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                    <Image x:Name="PlayButton"
+                       Width="34.56"
+                       VerticalAlignment="Center">
+                        <Image.Source>
+                            <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_demo_playshape.png" DecodePixelWidth="34" DecodePixelType="Logical"/>
+                        </Image.Source>
+                    </Image>
+                    <TextBlock x:Name="PlayText"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource PlayAudioDemoLightBackgroundTextStyle}"
+                           Text="{x:Bind Path=ViewModel.NavAudioDemo}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!--<Button
             x:Name="PlayDemoButton"
             Grid.Row="0" Grid.RowSpan="2"
             Grid.Column="0" Grid.ColumnSpan="2"
@@ -131,7 +186,7 @@
                                  DecodePixelWidth="330" DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
-        </Button>
+        </Button>-->
 
         <!-- Player Popup -->
         <Popup x:Name="PlayerPopup"

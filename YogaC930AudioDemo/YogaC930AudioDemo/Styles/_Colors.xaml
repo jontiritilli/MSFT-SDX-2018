@@ -30,7 +30,17 @@
     <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerPressedTextSolidColorBrush" Color="#FFFFFFFF"/>
 
     <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerReleasedTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoBorderSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <!--<SolidColorBrush x:Key="PlayAudioDemoBorderShadowSolidColorBrush" Color="#FFFF00FF"/>-->
+
+    <AcrylicBrush x:Key="PlayAudioDemoBorderShadowSolidColorBrush" TintColor="#FF000000" TintOpacity="0.16" FallbackColor="#FF000000" Opacity="1.0"/>
     
+    <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundSolidColorBrush" Color="#FF3E8DDD"/>
+
     <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundTextSolidColorBrush" Color="#FF3E8DDD"/>
 
     <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundTextSolidColorBrush" Color="#FFFFFFFF"/>
