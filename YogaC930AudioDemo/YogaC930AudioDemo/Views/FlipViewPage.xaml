@@ -124,6 +124,10 @@
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="PlayAudioDemoButtonTransform" Y="-87"/>
+            </Grid.RenderTransform>
+            
             <Border x:Name="BlueBorderShadow"
                 Width="308.25"
                 Height="83.15"
@@ -134,7 +138,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top">
                 <Border.RenderTransform>
-                    <TranslateTransform x:Name="BlueBorderShadowTransform" Y="0"/>
+                    <TranslateTransform x:Name="BlueBorderShadowTransform" Y="3"/>
                 </Border.RenderTransform>
             </Border>
 
@@ -148,9 +152,6 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 PointerReleased="PlayAudioDemoBlueBorder_PointerReleased">
-                <Border.RenderTransform>
-                    <TranslateTransform x:Name="BlueBorderTransform" Y="0"/>
-                </Border.RenderTransform>
 
                 <!-- button text -->
                 <StackPanel Orientation="Horizontal"

@@ -166,6 +166,7 @@
     <Compile Include="Views\FlipViewPage.xaml.cs">
       <DependentUpon>FlipViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\INavigate.cs" />
     <Compile Include="Views\SpeakerDesignPopupPage.xaml.cs">
       <DependentUpon>SpeakerDesignPopupPage.xaml</DependentUpon>
     </Compile>
