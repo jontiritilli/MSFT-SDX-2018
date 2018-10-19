@@ -17,8 +17,8 @@
                    PointerReleased="TheTextBlock_PointerReleased">
             <Run x:Name="Bullet"
                  Text="&#xF35A;&#160;"
-                 FontFamily="Assets/Fonts/Free-Solid-900.otf#Font Awesome 5 Free Solid"
-                 FontWeight="Black"/>
+                 FontFamily="Assets/Fonts/fa-regular-400.otf#Font Awesome 5 Free Regular"
+                 FontWeight="Normal"/>
             <Run x:Name="TheCaption"
                  Text="{x:Bind Path=Caption}"/>
         </TextBlock>

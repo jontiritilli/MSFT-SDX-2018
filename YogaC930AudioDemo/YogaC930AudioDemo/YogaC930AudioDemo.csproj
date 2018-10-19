@@ -360,6 +360,9 @@
     <Content Include="Assets\Volume\ui_volumeMax.png" />
     <Content Include="Assets\Volume\ui_volumeMid.png" />
     <Content Include="Assets\Volume\ui_volume_sliderHandle.png" />
+    <Content Include="Assets\Fonts\fa-brands-regular-400.otf" />
+    <Content Include="Assets\Fonts\fa-regular-400.otf" />
+    <Content Include="Assets\Fonts\fa-solid-900.otf" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
