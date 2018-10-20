@@ -80,6 +80,8 @@ namespace YogaC930AudioDemo.Controls
             SetCurrentVolumeUI();
 
             PerformFadeIn();
+
+            StartVolumeStory();
             //TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 8, Colors.Purple);
             //TestHelper.AddGridCellBorders(this.BatteryGrid, 1, 3, Colors.CornflowerBlue);
         }
@@ -148,7 +150,6 @@ namespace YogaC930AudioDemo.Controls
 
                 //slider.UpdateThumb(newValue);
                 slider.MoveTo(slider.GetPositionFromVolume(newValue));
-                slider.FadeOutInstruction();
 
                 slider.RaiseValueChangedEvent(slider, new VolumeSliderEventArgs() { NewValue = newValue, OldValue = (double)e.OldValue });
             }
@@ -269,9 +270,24 @@ namespace YogaC930AudioDemo.Controls
 
         #region Private Methods
 
+        private void StartVolumeStory()
+        {
+            DispatcherTimer timer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(2000)
+            };
+            timer.Start();
+            timer.Tick += (sender, args) =>
+            {
+                timer.Stop();
+                FadeOutInstruction();
+                RampUpVolume();
+            };
+        }
+
         private void RampUpVolume()
         {
-            AnimationHelper.Double
+            AnimationHelper.PerformAnimation(this, "Volume", SLIDER_DEFAULT, SLIDER_DEFAULT, SLIDER_MAXIMUM, 2000);
         }
 
         private void PerformFadeIn()
