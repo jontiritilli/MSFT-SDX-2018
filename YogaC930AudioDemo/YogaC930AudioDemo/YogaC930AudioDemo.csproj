@@ -388,7 +388,7 @@
     <None Include="default-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="SDA-en-US.json">
+    <None Include="LADA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="YogaC930AudioDemo_StoreKey.pfx" />
