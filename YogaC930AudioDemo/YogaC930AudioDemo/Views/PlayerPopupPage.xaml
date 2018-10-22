@@ -24,7 +24,7 @@
             <ColumnDefinition Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource GridLengthConverter}}"/>
         </Grid.ColumnDefinitions>
         
-        <ctrl:AttractorLoopPlayer Grid.Row="0" Grid.Column="0"
+        <ctrl:LoopPlayer Grid.Row="0" Grid.Column="0"
             x:Name="LoopPlayer"
             Width="1920"
             MediaSourceUri="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.mp4"
