@@ -15,8 +15,8 @@
     </UserControl.Resources>
     
     <Grid
-        x:Name="LayoutRoot"
-        Tapped="Grid_Tapped">
+          x:Name="LayoutRoot"
+          Tapped="Grid_Tapped">
         <Grid.Resources>
             <Style TargetType="Thumb">
                 <Setter Property="Template">
@@ -26,17 +26,17 @@
                                 Width="83"
                                 Height="6">
                                 <Image
-                                    x:Name="Thumb"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                       x:Name="Thumb"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
                                     <Image.RenderTransform>
                                         <TranslateTransform X="0" Y="0"/>
                                     </Image.RenderTransform>
                                     <Image.Source>
                                         <BitmapImage
-                                            UriSource="ms-appx:///Assets/Volume/ui_volume_sliderHandle.png"
-                                            DecodePixelWidth="32"
-                                            DecodePixelType="Logical"/>
+                                                     UriSource="ms-appx:///Assets/Volume/ui_volume_sliderHandle.png"
+                                                     DecodePixelWidth="32"
+                                                     DecodePixelType="Logical"/>
                                     </Image.Source>
                                 </Image>
                             </Grid>
