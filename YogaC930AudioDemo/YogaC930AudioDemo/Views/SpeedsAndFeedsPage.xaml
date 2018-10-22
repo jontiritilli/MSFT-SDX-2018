@@ -212,7 +212,7 @@
                 Grid.ColumnSpan="5">
             <Image x:Name="IntelMark"
                    Canvas.Left="1700"
-                   Canvas.Top="886"
+                   Canvas.Top="911"
                    Width="84">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_intelCoreMark.png"
