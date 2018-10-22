@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -51,6 +52,9 @@ namespace YogaC930AudioDemo.Views
         {
             // set player popup close handler
             PlayerPopupPage.Current.CloseButton_Clicked += Close_Player_Clicked;
+
+            // test only
+            //TestHelper.AddGridCellBorders(this.LayoutRoot, 2, 2, Colors.Red);
 
             // animate in the play audio demo button
             AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxis.Vertical,
