@@ -103,6 +103,18 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
+
+    <Style x:Key="ColorSpecTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
+        <Setter Property="Foreground" Value="{StaticResource BodyTextSolidColorBrush}"/>
+        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="LineHeight" Value="42.5" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="NoWrap" />
+    </Style>
     
     <!-- Navigation Bar Styles -->
     <Style x:Key="NavigationBarLightBackgroundNormalTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamMediumFontStyle}">
