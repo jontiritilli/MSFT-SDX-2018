@@ -40,6 +40,7 @@ namespace YogaC930AudioDemo.Controls
         private const double SLIDER_MINIMUM = 0;
         private const double SLIDER_MAXIMUM = 100;
         private const double SLIDER_DEFAULT = 35;
+
         private static Uri VOLUME_LOW_IMAGE_URI = new Uri("ms-appx:///Assets/Volume/ui_volumeLow.png");
         private static Uri VOLUME_MID_IMAGE_URI = new Uri("ms-appx:///Assets/Volume/ui_volumeMid.png");
         private static Uri VOLUME_MAX_IMAGE_URI = new Uri("ms-appx:///Assets/Volume/ui_volumeMax.png");
@@ -287,7 +288,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void RampUpVolume()
         {
-            AnimationHelper.PerformAnimation(this, "Volume", SLIDER_DEFAULT, SLIDER_DEFAULT, SLIDER_MAXIMUM, 2000);
+            AnimationHelper.PerformAnimation(this, "Volume", SLIDER_DEFAULT / 100, SLIDER_DEFAULT / 100, SLIDER_MAXIMUM / 100, 2000);
         }
 
         private void PerformFadeIn()
