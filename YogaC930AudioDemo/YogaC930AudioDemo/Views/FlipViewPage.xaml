@@ -18,7 +18,7 @@
         <SolidColorBrush>White</SolidColorBrush>
     </Page.Background>
 
-    <Grid>
+    <Grid x:Name="LayoutRoot">
         <Grid.Background>
             <SolidColorBrush>White</SolidColorBrush>
         </Grid.Background>
@@ -114,6 +114,9 @@
                 <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_lenovoLogo.png"
                              DecodePixelWidth="54" DecodePixelType="Logical"/>
             </Image.Source>
+            <Image.RenderTransform>
+                <TranslateTransform Y="62"/>
+            </Image.RenderTransform>
         </Image>
 
         <!-- Play Audio Demo Button -->

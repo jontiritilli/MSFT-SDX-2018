@@ -100,6 +100,8 @@
                         <TranslateTransform x:Name="ManipulationTranslation" />
                     </Thumb.RenderTransform>
                 </Thumb>
+
+                
             </Canvas>
 
             <TextBlock Grid.Row="0" Grid.Column="2"
