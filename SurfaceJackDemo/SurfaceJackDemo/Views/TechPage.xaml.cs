@@ -3,7 +3,7 @@
 using Windows.UI.Xaml.Controls;
 
 using SurfaceJackDemo.ViewModels;
-
+using SDX.Toolkit.Helpers;
 
 namespace SurfaceJackDemo.Views
 {
@@ -62,6 +62,22 @@ namespace SurfaceJackDemo.Views
             this.BatteryLegal.SetOpacity(0);
         }
 
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnLeft.PopupChild && rBtnLeft.PopupChild.IsOpen)
+            {
+                rBtnLeft.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnRight.PopupChild && rBtnRight.PopupChild.IsOpen)
+            {
+                rBtnRight.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
+            {
+                rBtnTop.PopupChild.IsOpen = false;
+            }
+        }
+
         #endregion
 
         #region INavigate Interface
@@ -82,7 +98,7 @@ namespace SurfaceJackDemo.Views
         public void NavigateFromPage()
         {
             // animations out
-            SDX.Toolkit.Helpers.AnimationHelper.PerformPageExitAnimation(this);
+            AnimationHelper.PerformPageExitAnimation(this);
 
             rBtnTop.ResetEntranceAnimation();
             rBtnTop.ResetRadiateAnimation();
@@ -92,6 +108,8 @@ namespace SurfaceJackDemo.Views
 
             rBtnRight.ResetEntranceAnimation();
             rBtnRight.ResetRadiateAnimation();
+
+            ClosePopupsOnExit();
         }
 
         #endregion

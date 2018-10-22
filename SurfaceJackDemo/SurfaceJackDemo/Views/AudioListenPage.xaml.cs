@@ -95,6 +95,7 @@ namespace SurfaceJackDemo.Views
             // get the howto screen popup
             this.HowToScreen = FlipViewPage.Current.GetHowToPagePopup();
             this.rBtnLeft.PopupChild = HowToScreen;
+            HowToScreen.Opened += PerformHowToEntranceAnimation;
             HowToPage.Current.CloseButton_Clicked += HowToCloseButton_Clicked;
 
             // get the music bar
@@ -104,6 +105,11 @@ namespace SurfaceJackDemo.Views
             {
                 AnimatePageEntrance();
             }
+        }
+
+        private void PerformHowToEntranceAnimation(object sender, object e)
+        {
+            HowToPage.Current?.PerformOverViewEntrance();
         }
 
         private void HowToCloseButton_Clicked(object sender, RoutedEventArgs e)

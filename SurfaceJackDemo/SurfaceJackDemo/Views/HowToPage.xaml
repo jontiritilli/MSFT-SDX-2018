@@ -39,6 +39,9 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="{Binding Path=SelectedBGColor}"/>
+                </Grid.Background>
                 <Border Width="48" Height="48">
                     <Image Stretch="UniformToFill">
                         <Image.Source>
@@ -163,44 +166,152 @@
              x:Name="IllustrationCanvas">
 
             <ctrl:ImageEx
-            x:Name="Illustration1"
-            Opacity="1"
-            ImageWidth="{x:Bind Path=ViewModel.Width_Overview}"
-            ImageSource="{x:Bind Path=ViewModel.OverviewIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
-            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"/>
+                x:Name="Illustration1"
+                Opacity="1"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewIllustrationURI}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.50}"/>
                 
             <ctrl:ImageEx
-            x:Name="Illustration2"
-            Opacity="0"
-            ImageWidth="{x:Bind Path=ViewModel.Width_Play_Pause}"
-            ImageSource="{x:Bind Path=ViewModel.PlayIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
-            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
+                x:Name="Illustration2"
+                Opacity="0"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Play_Pause}"
+                ImageSource="{x:Bind Path=ViewModel.PlayIllustrationURI}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.38}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
             
             <ctrl:ImageEx
-            x:Name="Illustration3"
-            Opacity="0"
-            ImageWidth="{x:Bind Path=ViewModel.Width_Skip}"
-            ImageSource="{x:Bind Path=ViewModel.SkipIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
-            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
+                x:Name="Illustration3"
+                Opacity="0"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Skip}"
+                ImageSource="{x:Bind Path=ViewModel.SkipIllustrationURI}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.25}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
 
             <ctrl:ImageEx
-            x:Name="Illustration4"
-            Opacity="0"
-            ImageWidth="{x:Bind Path=ViewModel.Width_Volume}"
-            ImageSource="{x:Bind Path=ViewModel.VolumeIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.095}"
-            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
+                x:Name="Illustration4"
+                Opacity="0"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Volume}"
+                ImageSource="{x:Bind Path=ViewModel.VolumeIllustrationURI}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.095}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
 
             <ctrl:ImageEx
-            x:Name="Illustration5"
-            Opacity="0"
-            ImageWidth="{x:Bind Path=ViewModel.Width_Noise}"
-            ImageSource="{x:Bind Path=ViewModel.NoiseIllustrationURI}"
-            Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.388}"
-            Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
+                x:Name="Illustration5"
+                Opacity="0"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Noise}"
+                ImageSource="{x:Bind Path=ViewModel.NoiseIllustrationURI}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.388}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.46}"/>
+        </Canvas>
+
+        <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="2"
+             x:Name="OverviewLineCanvas"
+            Opacity="1">
+
+            <ctrl:ImageEx
+                x:Name="Overview1"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview_1}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewOverlayURI_1}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.10}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"/>
+
+            <ctrl:TextBlockEx
+                x:Name="OverviewCaption1"
+                Text="{x:Bind Path=ViewModel.OverviewCaption1}"
+                TextStyle="Legal"
+                Width="{x:Bind Path=ViewModel.OverviewCaptionWidth}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.015}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.755}"/>
+
+            <ctrl:ImageEx
+                x:Name="Overview2"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview_2}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewOverlayURI_2}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.414}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.685}"/>
+
+            <ctrl:TextBlockEx
+                x:Name="OverviewCaption2"
+                Text="{x:Bind Path=ViewModel.OverviewCaption2}"
+                TextStyle="Legal"
+                Width="{x:Bind Path=ViewModel.OverviewCaptionWidth}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.64}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.675}"/>
+            
+            <ctrl:ImageEx
+                x:Name="Overview3"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview_3}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewOverlayURI_3}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.545}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.78}"/>
+
+            <ctrl:TextBlockEx
+                x:Name="OverviewCaption3"
+                Text="{x:Bind Path=ViewModel.OverviewCaption3}"
+                TextStyle="Legal"
+                Width="{x:Bind Path=ViewModel.OverviewCaptionWidth}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.64}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.755}"/>
+            
+            <ctrl:ImageEx
+                x:Name="Overview4"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview_4}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewOverlayURI_4}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.502}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.92}"/>
+
+            <ctrl:TextBlockEx
+                x:Name="OverviewCaption4"
+                Text="{x:Bind Path=ViewModel.OverviewCaption4}"
+                TextStyle="Legal"
+                Width="{x:Bind Path=ViewModel.OverviewCaptionWidth}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.938}"/>
+            
+            <ctrl:ImageEx
+                x:Name="Overview5"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview_5}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewOverlayURI_5}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.46}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.903}"/>
+
+            <ctrl:TextBlockEx
+                x:Name="OverviewCaption5"
+                Text="{x:Bind Path=ViewModel.OverviewCaption5}"
+                TextStyle="Legal"
+                Width="{x:Bind Path=ViewModel.OverviewCaptionWidth}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.63}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=1.035}"/>
+            
+            <ctrl:ImageEx
+                x:Name="Overview6"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Overview_6}"
+                ImageSource="{x:Bind Path=ViewModel.OverviewOverlayURI_6}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.401}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.847}"/>
+
+            <ctrl:TextBlockEx
+                x:Name="OverviewCaption6"
+                Text="{x:Bind Path=ViewModel.OverviewCaption6}"
+                TextStyle="Legal"
+                Width="{x:Bind Path=ViewModel.OverviewCaptionWidth}"
+                Opacity="0"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.35}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=1.035}"/>
+
         </Canvas>
         
         <Canvas x:Name="CloseButtonCanvas" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4">

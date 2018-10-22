@@ -224,6 +224,14 @@ namespace SurfaceJackDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_HEADLINE, "AUDIO_TRACK_TRYIT_POPUP_HEADLINE");
             viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
+
+            viewModel.OverviewCaption1 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT");
+            viewModel.OverviewCaption2 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT");
+            viewModel.OverviewCaption3 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT");
+            viewModel.OverviewCaption4 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT");
+            viewModel.OverviewCaption5 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT");
+            viewModel.OverviewCaption6 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID");
+
             viewModel.Caption2 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO_COPY");
             viewModel.Caption3 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY");
             viewModel.Caption4 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY");
