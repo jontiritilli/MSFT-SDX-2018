@@ -46,7 +46,9 @@
     <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundTextSolidColorBrush" Color="#FF3E8DDD"/>
 
     <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundTextSolidColorBrush" Color="#FFFFFFFF"/>
-    
+
+    <SolidColorBrush x:Key="VolumeHightlightEllipseColor" Color="#FFFFFFFF" Opacity="0.85"/>
+
     <SolidColorBrush x:Key="PopupBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
 
     <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#E6082454"/>

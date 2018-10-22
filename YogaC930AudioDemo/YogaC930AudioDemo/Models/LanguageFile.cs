@@ -54,7 +54,7 @@ namespace YogaC930AudioDemo.Models
         public string PERFORMANCE_DOLBY_LAST = "ultravivid imaging";
         public string PERFORMANCE_4K_FIRST = "Up to";
         public string PERFORMANCE_4K_BOLD = "4K UHD";
-        public string PERFORMANCE_4K_LAST = "Up to";
+        public string PERFORMANCE_4K_LAST = "screen resolution";
         public string PERFORMANCE_HOURS_FIRST = "Up to";
         public string PERFORMANCE_HOURS_BOLD = "14 hours*";
         public string PERFORMANCE_HOURS_LAST = "of battery life";
@@ -128,7 +128,7 @@ namespace YogaC930AudioDemo.Models
             languageFile.PERFORMANCE_DOLBY_LAST = "ultravivid imaging";
             languageFile.PERFORMANCE_4K_FIRST = "Up to";
             languageFile.PERFORMANCE_4K_BOLD = "4K UHD";
-            languageFile.PERFORMANCE_4K_LAST = "Up to";
+            languageFile.PERFORMANCE_4K_LAST = "screen resolution";
             languageFile.PERFORMANCE_HOURS_FIRST = "Up to";
             languageFile.PERFORMANCE_HOURS_BOLD = "14 hours*";
             languageFile.PERFORMANCE_HOURS_LAST = "of battery life";

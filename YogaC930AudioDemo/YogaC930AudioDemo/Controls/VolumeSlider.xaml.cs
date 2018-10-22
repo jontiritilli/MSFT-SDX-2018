@@ -288,7 +288,52 @@ namespace YogaC930AudioDemo.Controls
 
         private void RampUpVolume()
         {
-            AnimationHelper.PerformAnimation(this, "Volume", SLIDER_DEFAULT / 100, SLIDER_DEFAULT / 100, SLIDER_MAXIMUM / 100, 2000);
+            const double TIMER_HIGHLIGHT = 300;
+            const double TIMER_VOLUME = 2000;
+
+            // ===========================================================
+            // set up timers
+            // ===========================================================
+            // volume timer
+            // -----------------------------------------------------------
+            DispatcherTimer timerVolume = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(TIMER_VOLUME)
+            };
+            timerVolume.Tick += (sender, args) =>
+            {
+                timerVolume.Stop();
+
+                // fade out the circle
+                AnimationHelper.PerformFadeOut(this.VolumeHighlightEllipse, TIMER_HIGHLIGHT);
+                AnimationHelper.PerformAnimation(this.VolumeHighlightEllipse, "StrokeThickness", 6, 6, 0, TIMER_HIGHLIGHT);
+            };
+
+            // ellipse timer
+            // -----------------------------------------------------------
+            DispatcherTimer timerHighlight = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromMilliseconds(TIMER_HIGHLIGHT)
+            };
+            timerHighlight.Tick += (sender, args) =>
+            {
+                timerHighlight.Stop();
+
+                // animate the volume
+                AnimationHelper.PerformAnimation(this, "Volume", SLIDER_DEFAULT / 100, SLIDER_DEFAULT / 100, SLIDER_MAXIMUM / 100, TIMER_VOLUME);
+
+                // start the next timer
+                timerVolume.Start();
+            };
+            // ===========================================================
+
+            // ===========================================================
+            // now run the animations
+            // ===========================================================
+            // fade in the circle and start its timer
+            AnimationHelper.PerformFadeIn(this.VolumeHighlightEllipse, TIMER_HIGHLIGHT);
+            AnimationHelper.PerformAnimation(this.VolumeHighlightEllipse, "StrokeThickness", 0, 0, 6, TIMER_HIGHLIGHT);
+            timerHighlight.Start();
         }
 
         private void PerformFadeIn()
@@ -402,7 +447,7 @@ namespace YogaC930AudioDemo.Controls
             position = Math.Min(this.SliderLine.ActualHeight, position);
             position = Math.Max(0.0d, position);
 
-            return ((SliderLine.ActualHeight - position)/ SliderLine.ActualHeight);
+            return ((SliderLine.ActualHeight - position) / SliderLine.ActualHeight);
         }
 
         #endregion
