@@ -496,7 +496,6 @@ namespace SDX.Toolkit.Controls
                             ColGrid = new Grid()
                             {
                                 Name = "ColumnGrid",
-                                Opacity = 0
                             };
 
                             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });

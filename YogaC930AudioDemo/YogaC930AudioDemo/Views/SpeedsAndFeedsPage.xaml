@@ -52,7 +52,7 @@
                Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
-               Margin="0,50,0,0"
+               Margin="0,75,0,50"
                HorizontalAlignment="Right"
                Width="1152">
             <Image.Source>
@@ -221,6 +221,24 @@
             </Image>
         </Canvas>
 
+        <!-- Intel Core Mark -->
+        <Canvas x:Name="DeviceColors"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="5">
+            <TextBlock
+                Style="{StaticResource ColorSpecTextStyle}"
+                Text="{x:Bind Path=ViewModel.TopColor}" 
+                Canvas.Left="1070"
+                Canvas.Top="480"/>
+
+            <TextBlock
+                Style="{StaticResource ColorSpecTextStyle}"
+                Text="{x:Bind Path=ViewModel.BottomColor}" 
+                Canvas.Left="1000"
+                Canvas.Top="540"/>
+        </Canvas>
     </Grid>
 
 </Page>
