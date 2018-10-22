@@ -132,6 +132,7 @@
       <DependentUpon>VolumeSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Converters\ScalingConverter.cs" />
     <Compile Include="Helpers\AnimationHelper.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Helpers\AudioHelper.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Helpers\WindowHelper.cs" />
     <Compile Include="Models\ConfigurationFile.cs" />
     <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -282,7 +284,22 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
     <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Styles\4K-100\" />
+    <Folder Include="Styles\4K-125\" />
+    <Folder Include="Styles\4K-150\" />
+    <Folder Include="Styles\4K-175\" />
+    <Folder Include="Styles\4K-200\" />
+    <Folder Include="Styles\4K-225\" />
+    <Folder Include="Styles\4K-250\" />
+    <Folder Include="Styles\HD-100\" />
+    <Folder Include="Styles\HD-125\" />
+    <Folder Include="Styles\HD-150\" />
+    <Folder Include="Styles\HD-175\" />
+    <Folder Include="Styles\HD-200\" />
+    <Folder Include="Styles\HD-225\" />
+    <Folder Include="Styles\HD-250\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AttractorLoop\Lenovo_Yoga_C930_Attract_Loop_240718.mp4" />
     <Content Include="Assets\Audio\audio_blueBackground.png" />
