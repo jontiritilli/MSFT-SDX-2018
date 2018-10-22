@@ -382,15 +382,15 @@
     <Content Include="Assets\Fonts\Gotham-Bold.otf" />
     <Content Include="Assets\Fonts\Gotham-Light.otf" />
     <Content Include="Assets\Fonts\Gotham-Medium.otf" />
-    <None Include="config.json">
+    <Content Include="config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="default-en-US.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="LADA-en-US.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="default-en-US.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LADA-en-US.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="YogaC930AudioDemo_StoreKey.pfx" />
     <None Include="YogaC930AudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
