@@ -115,7 +115,7 @@
                              DecodePixelWidth="54" DecodePixelType="Logical"/>
             </Image.Source>
             <Image.RenderTransform>
-                <TranslateTransform Y="62"/>
+                <TranslateTransform Y="68"/>
             </Image.RenderTransform>
         </Image>
 
