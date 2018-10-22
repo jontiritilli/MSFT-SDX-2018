@@ -15,6 +15,10 @@
     <x:Double x:Key="AppCloseWidth">54</x:Double>
     <x:Double x:Key="AppCloseHeight">54</x:Double>
 
+    <x:Double x:Key="ArrowWidth">36</x:Double>
+    <x:Double x:Key="ArrowHeight">60</x:Double>
+    <x:Double x:Key="ArrowMargin">26</x:Double>
+
     <x:Double x:Key="NavigationBarHeight">37.16</x:Double>
     <x:Double x:Key="NavigationBarLeftMargin">54</x:Double>
     <x:Double x:Key="NavigationBarTopMargin">62.485</x:Double>

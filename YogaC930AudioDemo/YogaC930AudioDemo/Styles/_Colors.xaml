@@ -13,6 +13,8 @@
 
     <SolidColorBrush x:Key="SeparatorLineSolidColorBrush" Color="#FFE5E5E5"/>
 
+    <SolidColorBrush x:Key="AppCloseBorderBrush" Color="#FFDDDDDD" Opacity="1.0"/>
+
     <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="1.0" FallbackColor="#29FFFFFF"/>
 
     <SolidColorBrush x:Key="NavigationBarLightBackgroundNormalTextSolidColorBrush" Color="#FFA8A8A8"/>

@@ -55,32 +55,66 @@ namespace YogaC930AudioDemo.Views
             // animate in the play audio demo button
             AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxis.Vertical,
                                                 -87, -87, -4,
+                                                new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn},
                                                 new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn },
-                                                new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn },
-                                                500, 500);
+                                                2500, 2500);
         }
 
         private void ContentFlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (null != this.ContentFlipView)
             {
+                // based on the current page, set the scheme to light or dark
                 switch (this.ContentFlipView.SelectedIndex)
                 {
                     case 0:     // audio page
                         this.ColorScheme = ColorSchemes.Light;
+
+                        if ((null != this.LeftChevronLight) && (null != LeftChevronDark) && (null != RightChevronLight) && (null != RightChevronDark))
+                        {
+                            // hide the left arrow
+                            this.LeftChevronLight.Visibility = Visibility.Collapsed;
+                            this.LeftChevronDark.Visibility = Visibility.Collapsed;
+
+                            // show the right arrow dark
+                            this.RightChevronLight.Visibility = Visibility.Collapsed;
+                            this.RightChevronDark.Visibility = Visibility.Visible;
+                        }
                         break;
 
                     case 1:     // features page
                         this.ColorScheme = ColorSchemes.Dark;
+
+                        // show the left arrow light
+                        if ((null != this.LeftChevronLight) && (null != LeftChevronDark) && (null != RightChevronLight) && (null != RightChevronDark))
+                        {
+                            this.LeftChevronLight.Visibility = Visibility.Visible;
+                            this.LeftChevronDark.Visibility = Visibility.Collapsed;
+
+                            // show the right arrow dark
+                            this.RightChevronLight.Visibility = Visibility.Collapsed;
+                            this.RightChevronDark.Visibility = Visibility.Visible;
+                        }
                         break;
 
                     case 2:     // speeds and feeds page
                         this.ColorScheme = ColorSchemes.Light;
+
+                        if ((null != this.LeftChevronLight) && (null != LeftChevronDark) && (null != RightChevronLight) && (null != RightChevronDark))
+                        {
+                            // show the left arrow dark
+                            this.LeftChevronLight.Visibility = Visibility.Collapsed;
+                            this.LeftChevronDark.Visibility = Visibility.Visible;
+
+                            // hide the right arrow 
+                            this.RightChevronLight.Visibility = Visibility.Collapsed;
+                            this.RightChevronDark.Visibility = Visibility.Collapsed;
+                        }
                         break;
                 }
 
                 // update play button
-
+                // - play button has no color changes any longer
 
                 // update navigation buttons
                 if (null != this.NavigationBarExploreWindows) { this.NavigationBarExploreWindows.ColorScheme = this.ColorScheme; }
@@ -104,6 +138,12 @@ namespace YogaC930AudioDemo.Views
             {
                 this.PlayerPopup.IsOpen = true;
             }
+        }
+
+        private void AppCloseButtonBorder_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            // ugly, but effective
+            App.Current.Exit();
         }
 
         //private void PlayDemoButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -145,6 +185,5 @@ namespace YogaC930AudioDemo.Views
         }
 
         #endregion
-
     }
 }
