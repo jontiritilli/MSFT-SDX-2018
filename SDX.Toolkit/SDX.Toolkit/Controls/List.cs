@@ -39,6 +39,10 @@ namespace SDX.Toolkit.Controls
 
         private Grid _layoutRoot = null;
 
+        private Grid ColGrid = null;
+
+        private Grid RowGrid = null;
+
         #endregion
 
         #region Constructor
@@ -489,7 +493,11 @@ namespace SDX.Toolkit.Controls
                         for (int col = 0; col < 3; col++)
                         {
                             int rowIndex = 0;
-                            Grid ColGrid = new Grid();
+                            ColGrid = new Grid()
+                            {
+                                Name = "ColumnGrid",
+                                Opacity = 0
+                            };
 
                             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
                             // create the list items and add to the grid
@@ -502,7 +510,10 @@ namespace SDX.Toolkit.Controls
                                     ColGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
                                 }
 
-                                Grid RowGrid = new Grid();
+                                RowGrid = new Grid()
+                                {
+                                    Name = "RowGrid"
+                                };
 
                                 ListItem item = _listItems[Index];
 
@@ -526,6 +537,7 @@ namespace SDX.Toolkit.Controls
                                     VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                     VerticalContentAlignment = VerticalAlignment.Top,
                                     PageEntranceDirection = this.PageEntranceDirection,
+                                    Opacity = 1
                                 };
 
                                 Grid.SetColumn(icon, 0);
@@ -547,6 +559,7 @@ namespace SDX.Toolkit.Controls
                                     HorizontalAlignment = HorizontalAlignment.Left,
                                     VerticalAlignment = VerticalAlignment.Top,
                                     PageEntranceDirection = this.PageEntranceDirection,
+                                    Opacity = 1
                                 };
 
                                 Grid.SetColumn(headline, 2);
@@ -565,8 +578,8 @@ namespace SDX.Toolkit.Controls
                             }
                             Grid.SetColumn(ColGrid, col);
                             Grid.SetRow(ColGrid, 0);
-
                             _layoutRoot.Children.Add(ColGrid);
+
                             rowIndex = 0;
                         }
                     }

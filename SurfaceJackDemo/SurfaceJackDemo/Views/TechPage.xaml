@@ -116,7 +116,6 @@
         </Canvas>
 
         <ctrl:TextBlockEx Grid.Row="3" Grid.Column="1"
-            Grid.ColumnSpan="2"
             x:Name="BatteryLegal" 
             Text="{x:Bind Path=ViewModel.Legal}"
             TextStyle="Legal"

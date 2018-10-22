@@ -394,6 +394,12 @@
     <Content Include="Assets\Controls\overview-device.png" />
     <Content Include="Assets\Controls\overview-selected.png" />
     <Content Include="Assets\Controls\overview.png" />
+    <Content Include="Assets\Controls\OverviewLines\3.5-connection.png" />
+    <Content Include="Assets\Controls\OverviewLines\Mic-mute.png" />
+    <Content Include="Assets\Controls\OverviewLines\Noise-cancellation.png" />
+    <Content Include="Assets\Controls\OverviewLines\Power.png" />
+    <Content Include="Assets\Controls\OverviewLines\Usb-port.png" />
+    <Content Include="Assets\Controls\OverviewLines\Volume.png" />
     <Content Include="Assets\Controls\play-pause-device.png" />
     <Content Include="Assets\Controls\play-pause-illustration.png" />
     <Content Include="Assets\Controls\play-pause-selected.png" />
@@ -415,6 +421,7 @@
     <Content Include="Assets\Experience\design-lifestyle.png" />
     <Content Include="Assets\Experience\joplin_gateway.png" />
     <Content Include="Assets\Experience\joplin_tech.jpg" />
+    <Content Include="Assets\Experience\joplin_tech.png" />
     <Content Include="Assets\Experience\path_cruz.png" />
     <Content Include="Assets\Experience\path_joplin.png" />
     <Content Include="Assets\Experience\productivity-lifestyle.png" />
@@ -492,6 +499,7 @@
     <Content Include="Assets\RadiatingButton\tryit.png" />
     <Content Include="Assets\RadiatingButton\tryit_dot.png" />
     <Content Include="Assets\RadiatingButton\tryit_pen.png" />
+    <Content Include="Assets\Specs\specs-device.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-100.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-125.png" />
     <Content Include="Assets\StoreIcons\PackageLogo50x50.scale-150.png" />

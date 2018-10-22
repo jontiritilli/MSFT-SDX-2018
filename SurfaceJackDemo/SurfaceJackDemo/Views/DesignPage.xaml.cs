@@ -52,8 +52,28 @@ namespace SurfaceJackDemo.Views
             rBtnRight.StartEntranceAnimation();
             rBtnRight.StartRadiateAnimation();
         }
+
         #endregion
 
+        #region Private Methods
+
+        private void ClosePopupsOnExit()
+        {
+            if (null != rBtnLeft.PopupChild && rBtnLeft.PopupChild.IsOpen)
+            {
+                rBtnLeft.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnRight.PopupChild && rBtnRight.PopupChild.IsOpen)
+            {
+                rBtnRight.PopupChild.IsOpen = false;
+            }
+            if (null != rBtnTop.PopupChild && rBtnTop.PopupChild.IsOpen)
+            {
+                rBtnTop.PopupChild.IsOpen = false;
+            }
+        }
+
+        #endregion
 
         #region INavigate Interface
 
@@ -83,6 +103,8 @@ namespace SurfaceJackDemo.Views
 
             rBtnRight.ResetEntranceAnimation();
             rBtnRight.ResetRadiateAnimation();
+
+            ClosePopupsOnExit();
         }
 
         #endregion
