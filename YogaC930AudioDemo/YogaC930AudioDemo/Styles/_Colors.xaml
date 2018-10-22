@@ -13,9 +13,9 @@
 
     <SolidColorBrush x:Key="SeparatorLineSolidColorBrush" Color="#FFE5E5E5"/>
 
-    <SolidColorBrush x:Key="AppCloseBorderBrush" Color="#FFDDDDDD" Opacity="1.0"/>
+    <SolidColorBrush x:Key="AppCloseBorderBrush" Color="#FFDDDDDD" Opacity="0.25"/>
 
-    <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="1.0" FallbackColor="#29FFFFFF"/>
+    <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="0.72" FallbackColor="#29FFFFFF"/>
 
     <SolidColorBrush x:Key="NavigationBarLightBackgroundNormalTextSolidColorBrush" Color="#FFA8A8A8"/>
 
