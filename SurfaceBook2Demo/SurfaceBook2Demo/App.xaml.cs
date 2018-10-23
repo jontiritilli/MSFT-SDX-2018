@@ -114,6 +114,9 @@ namespace SurfaceBook2Demo
                 await ActivationService.ActivateAsync(args);
             }
 
+            // log app start
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.OnLaunchedFired);
+
             // IMPORTANT: THIS CODE IS UNIQUE TO THE SB2 APP BECAUSE THIS APP MUST SUPPORT
             // TWO DIFFERENT DISPLAY SIZES (13.5 VS 15) WITH DIFFERENT RESOLUTIONS.
             // THIS CODE SUPPLEMENTS THE xaml CODE IN App.xaml BY ADDING THE CORRECT
@@ -148,6 +151,38 @@ namespace SurfaceBook2Demo
         protected override async void OnActivated(IActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
+            // IMPORTANT: THIS CODE IS UNIQUE TO THE SB2 APP BECAUSE THIS APP MUST SUPPORT
+            // TWO DIFFERENT DISPLAY SIZES (13.5 VS 15) WITH DIFFERENT RESOLUTIONS.
+            // THIS CODE SUPPLEMENTS THE xaml CODE IN App.xaml BY ADDING THE CORRECT
+            // VERSION OF THE TextBlock.xaml, Sizes.xaml, AND _Thickness.xaml FILES
+            // FROM EITHER THE 13 OR 15 SUBFOLDER OF Styles.
+
+            // Subfolder in Styles directory
+            string path = null;
+
+            // which device are we running on?
+            DeviceType deviceType = WindowHelper.GetDeviceTypeFromResolution();
+
+            switch (deviceType)
+            {
+                case DeviceType.Book15:
+                    path = "15";
+                    break;
+
+                case DeviceType.Book13:
+                    path = "13";
+                    break;
+
+                default:
+                    path = "13";    // for testing, run the 13 version
+                    break;
+            }
+
+            // load the ResourceDictionaries
+            LoadAppResourceDictionaries(path);
+
+            // log app start
+            TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.OnActivatedFired);
         }
 
         #endregion
