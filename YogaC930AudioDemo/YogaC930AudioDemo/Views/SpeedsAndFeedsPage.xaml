@@ -31,14 +31,21 @@
             <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
 
+<!--
+               Margin="{Binding Source='0,50,0,0', Converter={StaticResource ScalingConverter}}"
+               Margin="{Binding Source='0,100,0,35', Converter={StaticResource ScalingConverter}}"
+
+-->
+        
         <!-- Mica Hero Image -->
         <Image x:Name="MicaHero"
                Grid.Row="0"
                Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
-               Margin="{Binding Source='0,50,0,0', Converter={StaticResource ScalingConverter}}"
+               Margin="{Binding Source='0,75,0,0', Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
+               VerticalAlignment="Top"
                Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
@@ -53,8 +60,9 @@
                Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
-               Margin="{Binding Source='0,100,0,35', Converter={StaticResource ScalingConverter}}"
+               Margin="{Binding Source='0,75,0,0', Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
+               VerticalAlignment="Top"
                Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
@@ -224,7 +232,7 @@
             </Image>
         </Canvas>
 
-        <!-- Intel Core Mark -->
+        <!-- Device Colors -->
         <Canvas x:Name="DeviceColors"
                 Grid.Row="0"
                 Grid.RowSpan="5"
@@ -233,14 +241,14 @@
             <TextBlock
                 Style="{StaticResource ColorSpecTextStyle}"
                 Text="{x:Bind Path=ViewModel.TopColor}" 
-                Canvas.Left="{Binding Source=1050, Converter={StaticResource ScalingConverter}}"
-                Canvas.Top="{Binding Source=450, Converter={StaticResource ScalingConverter}}"/>
+                Canvas.Left="{Binding Source=1036.995, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=458.5, Converter={StaticResource ScalingConverter}}"/>
 
             <TextBlock
                 Style="{StaticResource ColorSpecTextStyle}"
                 Text="{x:Bind Path=ViewModel.BottomColor}" 
-                Canvas.Left="{Binding Source=1000, Converter={StaticResource ScalingConverter}}"
-                Canvas.Top="{Binding Source=570, Converter={StaticResource ScalingConverter}}"/>
+                Canvas.Left="{Binding Source=972.5, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=569.135, Converter={StaticResource ScalingConverter}}"/>
         </Canvas>
     </Grid>
 
