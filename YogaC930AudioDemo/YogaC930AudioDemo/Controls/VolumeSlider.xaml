@@ -11,21 +11,19 @@
     d:DesignWidth="{StaticResource VolumeControlWidth}" >
 
     <UserControl.Resources>
-        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
     </UserControl.Resources>
     
-    <Grid
-          x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot">
         <Grid.Resources>
             <Style TargetType="Thumb">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Thumb">
-                            <Grid
-                                Width="84"
-                                Height="6">
+                            <Grid HorizontalAlignment="Center">
                                 <Image
                                     x:Name="Thumb"
+                                    Width="80"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
                                     <Image.RenderTransform>
@@ -33,12 +31,15 @@
                                     </Image.RenderTransform>
                                     <Image.Source>
                                         <BitmapImage
-                                                     UriSource="ms-appx:///Assets/Volume/ui_volume_sliderHandle.png"
-                                                     DecodePixelWidth="30"
-                                                     DecodePixelHeight="6"
+                                                     UriSource="ms-appx:///Assets/Volume/ui_volume_sliderHandle_2.png"
+                                                     DecodePixelWidth="80"
                                                      DecodePixelType="Logical"/>
                                     </Image.Source>
                                 </Image>
+
+                                <Grid.RenderTransform>
+                                    <TranslateTransform Y="-40"/>
+                                </Grid.RenderTransform>
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -46,21 +47,21 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource VolumeControlHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource VolumeControlHeight}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="296.58"/>
-            <ColumnDefinition Width="17"/>
-            <ColumnDefinition Width="83.5"/>
+            <ColumnDefinition Width="{Binding Source=296.58, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=17, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=131.5, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
             x:Name="SliderContainer"
             Tapped="Grid_Tapped">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="175"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="{Binding Source=60, Converter={StaticResource ScalingConverter}}"/>
+                <RowDefinition Height="{Binding Source=175, Converter={StaticResource ScalingConverter}}"/>
+                <RowDefinition Height="{Binding Source=60, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -74,8 +75,8 @@
 
             <Rectangle Grid.Row="1" Grid.Column="2"
                 x:Name="SliderLine"
-                Height="172.6"
-                Width="4"
+                Height="{Binding Source=172.6, Converter={StaticResource ScalingConverter}}"
+                Width="{Binding Source=4, Converter={StaticResource ScalingConverter}}"
                 Fill="Gray"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"/>
@@ -83,7 +84,7 @@
             <Rectangle Grid.Row="1" Grid.Column="2"
                 x:Name="BlueSliderLine"
                 Height="0"
-                Width="3"
+                Width="{Binding Source=3, Converter={StaticResource ScalingConverter}}"
                 Fill="{StaticResource BodyBlueTextSolidColorBrush}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"/>
@@ -103,13 +104,14 @@
                 <Ellipse x:Name="VolumeHighlightEllipse"
                          Canvas.Top="0"
                          HorizontalAlignment="Center"
-                         Width="{StaticResource VolumeHighlightEllipseWidth}"
-                         Height="{StaticResource VolumeHighlightEllipseWidth}"
-                         Stroke="{StaticResource VolumeHightlightEllipseColor}"
+                         Width="{Binding Source={StaticResource VolumeHighlightEllipseWidth}, Converter={StaticResource ScalingConverter}}"
+                         Height="{Binding Source={StaticResource VolumeHighlightEllipseWidth}, Converter={StaticResource ScalingConverter}}"
+                         Stroke="{Binding Source={StaticResource VolumeHightlightEllipseColor}, Converter={StaticResource ScalingConverter}}"
                          StrokeThickness="0"
                          Opacity="0">
                     <Ellipse.RenderTransform>
-                        <TranslateTransform X="23" Y="-15"/>
+                        <TranslateTransform X="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                            Y="{Binding Source=-15, Converter={StaticResource ScalingConverter}}"/>
                     </Ellipse.RenderTransform>
                 </Ellipse>
 
@@ -136,8 +138,8 @@
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
             x:Name="TextBoxContainer"
             VerticalAlignment="Center"
-            Width="296.58"
-            Height="139.48"
+            Width="{Binding Source=296.58, Converter={StaticResource ScalingConverter}}"
+            Height="{Binding Source=139.48, Converter={StaticResource ScalingConverter}}"
             Opacity="1">
             <Canvas
                 Background="Black"

@@ -38,9 +38,9 @@
     <x:Double x:Key="FeaturesSpacerCol">15.875</x:Double>
     <x:Double x:Key="FeaturesIconWidth">108</x:Double>
 
-    <x:Double x:Key="VolumeControlWidth">397.08</x:Double>
+    <x:Double x:Key="VolumeControlWidth">445.08</x:Double>
     <x:Double x:Key="VolumeControlHeight">294.585</x:Double>
-    <x:Double x:Key="VolumeHandleWidth">32</x:Double>
+    <x:Double x:Key="VolumeHandleWidth">80</x:Double>
     <x:Double x:Key="VolumeHighlightEllipseWidth">37</x:Double>
     <x:Double x:Key="VolumeHighlightEllipseStrokeThickness">6</x:Double>  
 

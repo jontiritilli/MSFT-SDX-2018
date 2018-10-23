@@ -377,6 +377,7 @@
     <Content Include="Assets\Fonts\fa-regular-400.otf" />
     <Content Include="Assets\Fonts\fa-solid-900.otf" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Volume\ui_volume_sliderHandle_2.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
