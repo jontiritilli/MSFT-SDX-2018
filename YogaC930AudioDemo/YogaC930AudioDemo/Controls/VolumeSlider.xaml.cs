@@ -171,7 +171,7 @@ namespace YogaC930AudioDemo.Controls
                     Point p = ttv.TransformPoint(tapPoint);
 
                     // get the tap x
-                    double Y = p.Y;
+                    double Y = p.Y + this.ManipulationTranslation.Y;
 
                     // snap to the destination
                     this.MoveTo(Y);
@@ -373,10 +373,10 @@ namespace YogaC930AudioDemo.Controls
 
         public void MoveTo(double YPosition)
         {
-            double normalizedYPosition = GetVolumeFromPosition(YPosition);
+            double newVolume = GetVolumeFromPosition(YPosition);
 
             // save the volume level as a percentage
-            this.Volume = normalizedYPosition;
+            this.Volume = newVolume;
 
             // update the thumb
             UpdateThumb(YPosition, true);
@@ -385,13 +385,13 @@ namespace YogaC930AudioDemo.Controls
             SetCurrentVolumeUI();
 
             // update volume level caption
-            UpdateVolumeLevelText(normalizedYPosition);
+            UpdateVolumeLevelText(newVolume);
 
             // set the volume level
-            AudioHelper.SetVolumeTo(normalizedYPosition);
+            AudioHelper.SetVolumeTo(newVolume);
 
             // raise the snapped event
-            this.RaiseMovedEvent(this, normalizedYPosition);
+            this.RaiseMovedEvent(this, newVolume);
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_PRODUCTROTATION, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
@@ -434,17 +434,14 @@ namespace YogaC930AudioDemo.Controls
             if (volume > volumeMaxPoint)
             {
                 VolumeImage.UriSource = VOLUME_MAX_IMAGE_URI;
-                return;
             }
             else if (volume > volumeMidPoint)
             {
                 VolumeImage.UriSource = VOLUME_MID_IMAGE_URI;
-                return;
             }
-            else if (volume > volumeLowPoint)
+            else // if (volume > volumeLowPoint)
             {
                 VolumeImage.UriSource = VOLUME_LOW_IMAGE_URI;
-                return;
             }
         }
 

@@ -11,7 +11,7 @@
     d:DesignWidth="{StaticResource VolumeControlWidth}" >
 
     <UserControl.Resources>
-        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
     </UserControl.Resources>
     
     <Grid
@@ -26,6 +26,7 @@
                                 Height="6">
                                 <Image
                                     x:Name="Thumb"
+                                    Width="30"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
                                     <Image.RenderTransform>
@@ -46,36 +47,36 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource VolumeControlHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource VolumeControlHeight}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="296.58"/>
-            <ColumnDefinition Width="17"/>
-            <ColumnDefinition Width="83.5"/>
+            <ColumnDefinition Width="{Binding Source=296.58, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=17, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=83.5, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
             x:Name="SliderContainer"
             Tapped="Grid_Tapped">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="175"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="{Binding Source=60, Converter={StaticResource ScalingConverter}}"/>
+                <RowDefinition Height="{Binding Source=175, Converter={StaticResource ScalingConverter}}"/>
+                <RowDefinition Height="{Binding Source=60, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             
-            <Canvas Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
+            <Rectangle Grid.Row="0" Grid.Column="2" Grid.RowSpan="3"
                 x:Name="ContainerBG"
-                Background="Black"
+                Fill="Black"
                 Opacity=".75">
-            </Canvas>
+            </Rectangle>
 
             <Rectangle Grid.Row="1" Grid.Column="2"
                 x:Name="SliderLine"
-                Height="172.6"
-                Width="4"
+                Height="{Binding Source=172.6, Converter={StaticResource ScalingConverter}}"
+                Width="{Binding Source=4, Converter={StaticResource ScalingConverter}}"
                 Fill="Gray"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"/>
@@ -83,7 +84,7 @@
             <Rectangle Grid.Row="1" Grid.Column="2"
                 x:Name="BlueSliderLine"
                 Height="0"
-                Width="3"
+                Width="{Binding Source=3, Converter={StaticResource ScalingConverter}}"
                 Fill="{StaticResource BodyBlueTextSolidColorBrush}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"/>
@@ -98,6 +99,9 @@
                        ManipulationMode="TranslateY"
                        ManipulationDelta="Thumb_ManipulationDelta"
                        ManipulationCompleted="Thumb_ManipulationCompleted">
+                    <Thumb.RenderTransform>
+                        <TranslateTransform X="-8"/>
+                    </Thumb.RenderTransform>
                 </Thumb>
 
                 <Ellipse x:Name="VolumeHighlightEllipse"
@@ -109,7 +113,8 @@
                          StrokeThickness="0"
                          Opacity="0">
                     <Ellipse.RenderTransform>
-                        <TranslateTransform X="23" Y="-15"/>
+                        <TranslateTransform X="{Binding Source=20, Converter={StaticResource ScalingConverter}}"
+                                            Y="{Binding Source=-19, Converter={StaticResource ScalingConverter}}"/>
                     </Ellipse.RenderTransform>
                 </Ellipse>
 
@@ -136,8 +141,8 @@
         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
             x:Name="TextBoxContainer"
             VerticalAlignment="Center"
-            Width="296.58"
-            Height="139.48"
+            Width="{Binding Source=296.58, Converter={StaticResource ScalingConverter}}"
+            Height="{Binding Source=139.48, Converter={StaticResource ScalingConverter}}"
             Opacity="1">
             <Canvas
                 Background="Black"
