@@ -32,8 +32,6 @@ namespace YogaC930AudioDemo
 
             EnteredBackground += App_EnteredBackground;
 
-            SetupNoInteractionTimer();
-
             // we want full screen, but leave this off during dev 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
@@ -78,6 +76,8 @@ namespace YogaC930AudioDemo
                 cw.KeyUp += OnKeyUp;
                 cw.PointerReleased += OnPointerReleased;
             }
+
+            SetupNoInteractionTimer();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
