@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
+using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.ViewModels;
 
 
@@ -33,6 +34,12 @@ namespace YogaC930AudioDemo.Views
         {
             CloseButton_Clicked(sender, new RoutedEventArgs());
             this.LoopPlayer.ResetPlayer();
+            this.VolumeControl.VolumeToDefault();
+        }
+
+        public VolumeSlider GetVolumeControl()
+        {
+            return this.VolumeControl;
         }
     }
 }

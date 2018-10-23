@@ -6,15 +6,21 @@ using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Core;
+
 using YogaC930AudioDemo.Converters;
 using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.Services;
-
+using Windows.UI.Xaml.Controls;
+using YogaC930AudioDemo.Views;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace YogaC930AudioDemo
 {
     public sealed partial class App : Application
     {
+        private DispatcherTimer InteractionTimer = new DispatcherTimer();
+
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService
@@ -66,13 +72,30 @@ namespace YogaC930AudioDemo
                 await ActivationService.ActivateAsync(args);
             }
 
+            CoreWindow cw = CoreWindow.GetForCurrentThread();
+            if (null != cw)
+            {
+                cw.KeyUp += OnKeyUp;
+                cw.PointerReleased += OnPointerReleased;
+            }
+
             // add the font size styles
             LoadStyles();
+        }
+
+            SetupNoInteractionTimer();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
+
+            //CoreWindow cw = CoreWindow.GetForCurrentThread();
+            //if (null != cw)
+            //{
+            //    cw.KeyUp += OnKeyUp;
+            //    cw.PointerReleased += OnPointerReleased;
+            //}
         }
 
         private ActivationService CreateActivationService()

@@ -336,6 +336,7 @@ namespace YogaC930AudioDemo.Controls
             timerHighlight.Start();
         }
 
+
         private void PerformFadeIn()
         {
             AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxis.Horizontal, 200, 200, 0, 750, 500);
@@ -356,6 +357,19 @@ namespace YogaC930AudioDemo.Controls
         #endregion
 
         #region Public Methods
+
+        public void VolumeToDefault()
+        {
+            this.Volume = 0.35d;
+        }
+
+        public void ResetVolume()
+        {
+            const double TIMER_VOLUME = 2000;
+
+            // animate the volume
+            AnimationHelper.PerformAnimation(this, "Volume", this.Volume, this.Volume, SLIDER_DEFAULT / 100, TIMER_VOLUME);
+        }
 
         public void MoveTo(double YPosition)
         {
