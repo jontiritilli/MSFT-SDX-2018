@@ -51,6 +51,7 @@
         </Canvas>
 
         <ctrl:VolumeSlider Grid.Row="0" Grid.Column="0"
+            x:Name="VolumeControl"
             VolumeControlCaptionTextFirst="{x:Bind Path=ViewModel.BodyFirst}"
             VolumeControlCaptionTextLast="{x:Bind Path=ViewModel.BodyLast}"
             HorizontalAlignment="Right"

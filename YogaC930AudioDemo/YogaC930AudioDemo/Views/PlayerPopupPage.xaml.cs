@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.ViewModels;
 
 namespace YogaC930AudioDemo.Views
@@ -18,6 +19,7 @@ namespace YogaC930AudioDemo.Views
         public static PlayerPopupPage Current { get; private set; }
 
         #endregion
+
         public PlayerPopupPage()
         {
             InitializeComponent();
@@ -28,6 +30,12 @@ namespace YogaC930AudioDemo.Views
         {
             CloseButton_Clicked(sender, new RoutedEventArgs());
             this.LoopPlayer.ResetPlayer();
+            this.VolumeControl.VolumeToDefault();
+        }
+
+        public VolumeSlider GetVolumeControl()
+        {
+            return this.VolumeControl;
         }
     }
 }

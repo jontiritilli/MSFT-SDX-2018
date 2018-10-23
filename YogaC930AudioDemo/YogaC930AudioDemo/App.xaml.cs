@@ -5,15 +5,20 @@ using Windows.ApplicationModel.Activation;
 using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Core;
 
 using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.Services;
-
+using Windows.UI.Xaml.Controls;
+using YogaC930AudioDemo.Views;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace YogaC930AudioDemo
 {
     public sealed partial class App : Application
     {
+        private DispatcherTimer InteractionTimer = new DispatcherTimer();
+
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService
@@ -26,6 +31,8 @@ namespace YogaC930AudioDemo
             InitializeComponent();
 
             EnteredBackground += App_EnteredBackground;
+
+            SetupNoInteractionTimer();
 
             // we want full screen, but leave this off during dev 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
@@ -64,11 +71,25 @@ namespace YogaC930AudioDemo
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            CoreWindow cw = CoreWindow.GetForCurrentThread();
+            if (null != cw)
+            {
+                cw.KeyUp += OnKeyUp;
+                cw.PointerReleased += OnPointerReleased;
+            }
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
+
+            //CoreWindow cw = CoreWindow.GetForCurrentThread();
+            //if (null != cw)
+            //{
+            //    cw.KeyUp += OnKeyUp;
+            //    cw.PointerReleased += OnPointerReleased;
+            //}
         }
 
         private ActivationService CreateActivationService()
@@ -81,6 +102,39 @@ namespace YogaC930AudioDemo
             var deferral = e.GetDeferral();
             await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
+        }
+
+        private void OnKeyUp(CoreWindow sender, KeyEventArgs args)
+        {
+            args.Handled = InterruptVideoTimer();
+        }
+
+
+        private void OnPointerReleased(CoreWindow sender, PointerEventArgs args)
+        {
+            args.Handled = InterruptVideoTimer();
+        }
+
+        private bool InterruptVideoTimer()
+        {
+            InteractionTimer.Start();
+
+            return true;
+        }
+
+        private void SetupNoInteractionTimer()
+        {
+            InteractionTimer.Interval = TimeSpan.FromSeconds(35);
+            InteractionTimer.Start();
+            InteractionTimer.Tick += ResetVolume;
+        }
+
+        private void ResetVolume(object sender, object e)
+        {
+            if (FlipViewPage.Current.GetPlayerPopup().IsOpen)
+            {
+                PlayerPopupPage.Current.GetVolumeControl().ResetVolume();
+            }
         }
     }
 }
