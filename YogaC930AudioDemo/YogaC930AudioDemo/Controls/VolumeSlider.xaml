@@ -25,16 +25,17 @@
                                 Width="84"
                                 Height="6">
                                 <Image
-                                       x:Name="Thumb"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center">
+                                    x:Name="Thumb"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
                                     <Image.RenderTransform>
                                         <TranslateTransform X="0" Y="0"/>
                                     </Image.RenderTransform>
                                     <Image.Source>
                                         <BitmapImage
                                                      UriSource="ms-appx:///Assets/Volume/ui_volume_sliderHandle.png"
-                                                     DecodePixelWidth="32"
+                                                     DecodePixelWidth="30"
+                                                     DecodePixelHeight="6"
                                                      DecodePixelType="Logical"/>
                                     </Image.Source>
                                 </Image>
