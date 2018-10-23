@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,6 +34,13 @@ namespace YogaC930AudioDemo.Views
             SpeakerDesignPopupPage.Current.CloseButton_Clicked += Close_Right_Clicked;
 
             //YogaC930AudioDemo.Helpers.TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 3, Windows.UI.Colors.AliceBlue);
+
+            // disable the system back button
+            SystemNavigationManager mgr = SystemNavigationManager.GetForCurrentView();
+            if (null != mgr)
+            {
+                mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            }
         }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)

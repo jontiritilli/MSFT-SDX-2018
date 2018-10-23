@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -26,7 +27,20 @@ namespace YogaC930AudioDemo.Views
         public SpeakerDesignPopupPage()
         {
             InitializeComponent();
+
             SpeakerDesignPopupPage.Current = this;
+
+            this.Loaded += this.SpeakerDesignPopupPage_Loaded;
+        }
+
+        private void SpeakerDesignPopupPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            // disable the system back button
+            SystemNavigationManager mgr = SystemNavigationManager.GetForCurrentView();
+            if (null != mgr)
+            {
+                mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            }
         }
 
         private void CloseButtonImage_PointerReleased(object sender, PointerRoutedEventArgs e)

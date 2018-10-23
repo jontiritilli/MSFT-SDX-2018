@@ -83,7 +83,6 @@ namespace YogaC930AudioDemo
 
             // add the font size styles
             LoadStyles();
-
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
