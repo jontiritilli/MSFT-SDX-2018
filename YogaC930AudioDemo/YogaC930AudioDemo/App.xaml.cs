@@ -131,9 +131,11 @@ namespace YogaC930AudioDemo
 
         private void ResetVolume(object sender, object e)
         {
-            if (FlipViewPage.Current.GetPlayerPopup().IsOpen)
+            Popup PlayerPopup = FlipViewPage.Current?.GetPlayerPopup();
+
+            if (null != PlayerPopup && PlayerPopup.IsOpen)
             {
-                PlayerPopupPage.Current.GetVolumeControl().ResetVolume();
+                PlayerPopupPage.Current?.GetVolumeControl().ResetVolume();
             }
         }
     }
