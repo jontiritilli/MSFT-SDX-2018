@@ -1,7 +1,10 @@
 ﻿using System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
+
 using YogaC930AudioDemo.ViewModels;
 
 namespace YogaC930AudioDemo.Views
@@ -22,28 +25,37 @@ namespace YogaC930AudioDemo.Views
 
         }
 
-        private void AudioPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void AudioPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.HingeDesignPopup = FlipViewPage.Current.GetHingDesignPopupPagePopup();
             HingeDesignPopupPage.Current.CloseButton_Clicked+= Close_Left_Clicked;
+
             this.SpeakerDesignPagePopup = FlipViewPage.Current.GetSpeakerPopupPagePopup();
             SpeakerDesignPopupPage.Current.CloseButton_Clicked += Close_Right_Clicked;
 
-        }
+            //YogaC930AudioDemo.Helpers.TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 3, Windows.UI.Colors.AliceBlue);
 
-        private void btnLeft_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            if (this.HingeDesignPopup.IsOpen == false)
+            // disable the system back button
+            SystemNavigationManager mgr = SystemNavigationManager.GetForCurrentView();
+            if (null != mgr)
             {
-                this.HingeDesignPopup.IsOpen = true;
+                mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
         }
 
-        private void btnRight_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
             if (this.SpeakerDesignPagePopup.IsOpen == false)
             {
                 this.SpeakerDesignPagePopup.IsOpen = true;
+            }
+        }
+
+        private void btnRight_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.HingeDesignPopup.IsOpen == false)
+            {
+                this.HingeDesignPopup.IsOpen = true;
             }
         }
 

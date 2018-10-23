@@ -4,151 +4,158 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     DataContext="{Binding FeaturesViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
+    </Page.Resources>
+    
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource FeaturesTopMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{Binding Source={StaticResource FeaturesBottomMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource FeaturesLeftMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource FeaturesRightMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
-        <!--turn into a grid-->
-        <Grid
-            Grid.Row="0"
-            Grid.Column="1"
-            Grid.RowSpan="6"
-            Width="671.26"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
+
+        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3"
+            x:Name="HeroBackground"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="{Binding Source=960, Converter={StaticResource ScalingConverter}}">
+            <Image.Source>
+                <BitmapImage
+                    UriSource="ms-appx:///Assets/Features/features_blueBackground.png"
+                    DecodePixelWidth="{Binding Source=960, Converter={StaticResource ScalingConverter}}"
+                    DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3"
+            x:Name="imgHero"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Width="{Binding Source=1116, Converter={StaticResource ScalingConverter}}">
+            <Image.Source>
+                <BitmapImage
+                    UriSource="ms-appx:///Assets/Features/features_hero.png"
+                    DecodePixelWidth="{Binding Source=1116, Converter={StaticResource ScalingConverter}}"
+                    DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+        
+        <!--bulleted list -->
+        <Grid Grid.Row="1" Grid.Column="1"
+            Width="{Binding Source={StaticResource FeaturesBulletGridWidth}, Converter={StaticResource ScalingConverter}}"
+            VerticalAlignment="Top">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="{Binding Source={StaticResource FeaturesSpacerRow}, Converter={StaticResource ScalingConverter}}"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="{Binding Source={StaticResource FeaturesSpacerRow}, Converter={StaticResource ScalingConverter}}"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="{Binding Source={StaticResource FeaturesSpacerRow}, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100.64"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource FeaturesIconWidth}, Converter={StaticResource ScalingConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource FeaturesSpacerCol}, Converter={StaticResource ScalingConverter}}"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="imgPen"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   Grid.Row="0"
-                   Grid.Column="0"
-                   Margin="0,0,0,40"
-                   Width="40.845">
+            
+            <!-- BULLET ONE -->
+            <Image Grid.Row="0" Grid.Column="0"
+                x:Name="imgPen"
+                VerticalAlignment="Top"
+                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_garagedPen.png"
-                                 DecodePixelWidth="41" DecodePixelType="Logical"/>
+                                 DecodePixelWidth="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"                
-                Style="{StaticResource PageTitleStyle}"
-                Text="{x:Bind ViewModel.PenHeadline}" />
 
-            <TextBlock Style="{StaticResource BodyTextStyle}"
-                Grid.Row="1"
-                Grid.Column="1">
-                    <Run
-                        Text="{x:Bind ViewModel.PenBodyFirst}"
-                         />
-                    <Run Text="{x:Bind ViewModel.PenBodyBold}"
-                         Foreground="#ff3E8DDD"
-                         FontWeight="SemiBold"/>
-                    <Run Text="{x:Bind ViewModel.PenBodyLast}"/>
+            <TextBlock Grid.Row="0" Grid.Column="2"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
+                Style="{StaticResource HeadlineTextStyle}"
+                Text="{x:Bind ViewModel.PenHeadline}"
+                HorizontalAlignment="Left"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="2"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
+                Style="{StaticResource BodyTextStyle}">
+                <Run Text="{x:Bind ViewModel.PenBodyFirst}"/>
+                <Run Text="{x:Bind ViewModel.PenBodyBold}"
+                        Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
+                        FontWeight="SemiBold"/>
+                <Run Text="{x:Bind ViewModel.PenBodyLast}"/>
             </TextBlock>
-            <Image x:Name="imgInk"
-                   HorizontalAlignment="Center"
-                    Grid.Row="2"
-                    Grid.Column="0"                    
-                   Margin="0,0,0,40"
-                   Width="28">
+            
+            <!-- BULLET TWO -->
+            <Image Grid.Row="3" Grid.Column="0"
+                x:Name="imgInk"          
+                VerticalAlignment="Top"        
+                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_windowsInk.png"
-                                 DecodePixelWidth="54" DecodePixelType="Logical"/>
+                    <BitmapImage
+                        UriSource="ms-appx:///Assets/Features/features_bullet_windowsInk.png"
+                        DecodePixelWidth="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
+                        DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
-            <TextBlock
-                Grid.Row="2"
-                Grid.Column="1"                                  
-                Style="{StaticResource PageTitleStyle}"                
+
+            <TextBlock Grid.Row="3" Grid.Column="2"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
+                Style="{StaticResource HeadlineTextStyle}"                
                 Text="{x:Bind ViewModel.InkHeadline}" />
-                <TextBlock
-                Grid.Row="3"
-                Grid.Column="1"                  
-                Width="600.96">
-                    <Run Text="{x:Bind ViewModel.InkBodyFirst}"/>
-                    <Run Text="{x:Bind ViewModel.InkBodyBold}"
-                         Foreground="#ff3E8DDD"
-                         FontWeight="SemiBold"/>
-                    <Run Text="{x:Bind ViewModel.InkBodyLast}"/>
-                </TextBlock>
-                <Image x:Name="imgShutter"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                    Grid.Row="4"
-                    Grid.Column="0"                    
-                   Margin="0,0,0,40"
-                   Width="32">
+
+            <TextBlock Grid.Row="4" Grid.Column="2"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
+                Style="{StaticResource BodyTextStyle}">
+                <Run Text="{x:Bind ViewModel.InkBodyFirst}"/>
+                <Run Text="{x:Bind ViewModel.InkBodyBold}"
+                     Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
+                     FontWeight="SemiBold"/>
+                <Run Text="{x:Bind ViewModel.InkBodyLast}"/>
+            </TextBlock>
+            
+            <!-- BULLET THREE -->
+            <Image Grid.Row="6" Grid.Column="0"
+                x:Name="imgShutter"
+                VerticalAlignment="Top"
+                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_TrublockPrivacyShutter.png"
-                                 DecodePixelWidth="32" DecodePixelType="Logical"/>
+                    <BitmapImage
+                        UriSource="ms-appx:///Assets/Features/features_bullet_TrublockPrivacyShutter.png"
+                        DecodePixelWidth="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
+                        DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
-            <TextBlock
-                Grid.Row="4"
-                Grid.Column="1"                   
-                Width="600.96"
-                Style="{StaticResource PageTitleStyle}"                  
+
+            <TextBlock Grid.Row="6"  Grid.Column="2"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
+                Style="{StaticResource HeadlineTextStyle}"                  
                 Text="{x:Bind ViewModel.WebCamHeadline}" />
-            <TextBlock
-                Grid.Row="5"
-                Grid.Column="1"                  
-                Width="600.96">
+
+            <TextBlock Grid.Row="7" Grid.Column="2"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
+                Style="{StaticResource BodyTextStyle}">
                 <Run Text="{x:Bind ViewModel.WebCamBodyFirst}"/>
                 <Run Text="{x:Bind ViewModel.WebCamBodyBold}"
-                     Foreground="#ff3E8DDD"
+                     Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
                      FontWeight="SemiBold"/>
                 <Run Text="{x:Bind ViewModel.WebCamBodyLast}"/>
             </TextBlock>
         </Grid>
-        <Image x:Name="HeroBackground"
-               Grid.Row="0"
-               Grid.RowSpan="6"
-               Grid.Column="0"
-               Canvas.ZIndex="-1"
-               Width="960">
-            <Image.Source>
-                <BitmapImage UriSource="ms-appx:///Assets/Features/features_blueBackground.png"
-                                 DecodePixelWidth="960" DecodePixelType="Logical"/>
-            </Image.Source>
-        </Image>
-
-        <Image x:Name="imgHero"
-               Grid.Row="0"
-               Grid.Column="0"
-               Grid.ColumnSpan="2"
-               Grid.RowSpan="6"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Left"
-               Width="1116">
-                <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Features/features_hero.png"
-                                 DecodePixelWidth="1116" DecodePixelType="Logical"/>
-                </Image.Source>
-            </Image>
     </Grid>
 </Page>

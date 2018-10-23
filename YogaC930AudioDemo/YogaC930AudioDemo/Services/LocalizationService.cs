@@ -213,8 +213,8 @@ namespace YogaC930AudioDemo.Services
         public void LoadHingeDesignPopupViewModel(HingeDesignPopupViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_HEADLINE, "AUDIO_POP_RIGHT_HEADLINE");
-            viewModel.BodyFirst = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_FIRST, "AUDIO_POP_RIGHT_BODY_FIRST");
-            viewModel.BodyBold = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_BOLD, "AUDIO_POP_RIGHT_BODY_BOLD");
+            viewModel.BodyFirst = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_FIRST, "AUDIO_POP_RIGHT_BODY_FIRST") + "\n";
+            viewModel.BodyBold = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_BOLD, "AUDIO_POP_RIGHT_BODY_BOLD") + "\n";
             viewModel.BodyLast = GetStringValue(_languageCurrent.AUDIO_POP_RIGHT_BODY_LAST, "AUDIO_POP_RIGHT_BODY_LAST");
         }
 
@@ -226,7 +226,8 @@ namespace YogaC930AudioDemo.Services
 
         public void LoadPlayerPopupViewModel(PlayerPopupViewModel viewModel)
         {
-            viewModel.Body = GetStringValue(_languageCurrent.AUDIO_POP_DEMO_COPY, "AUDIO_POP_DEMO_COPY");
+            viewModel.BodyFirst = GetStringValue(_languageCurrent.AUDIO_POP_DEMO_COPY_FIRST, "AUDIO_POP_DEMO_COPY_FIRST") + "\n";
+            viewModel.BodyLast = GetStringValue(_languageCurrent.AUDIO_POP_DEMO_COPY_LAST, "AUDIO_POP_DEMO_COPY_LAST");
         }
 
         public void LoadSpeedsAndFeedsViewModel(SpeedsAndFeedsViewModel viewModel)
@@ -254,9 +255,9 @@ namespace YogaC930AudioDemo.Services
             viewModel.FourKBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_4K_BOLD, "PERFORMANCE_4K_BOLD");
             viewModel.FourKBodyLast = GetStringValue(_languageCurrent.PERFORMANCE_4K_LAST, "PERFORMANCE_4K_LAST");
 
-            viewModel.HoursBodyFirst = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_FIRST, "PERFORMANCE_HOURS_FIRST");
-            viewModel.HoursBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_BOLD, "PERFORMANCE_HOURS_BOLD");
-            viewModel.HoursBodyLast = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_LAST, "PERFORMANCE_HOURS_LAST");
+            viewModel.BatteryBodyFirst = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_FIRST, "PERFORMANCE_HOURS_FIRST");
+            viewModel.BatteryBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_BOLD, "PERFORMANCE_HOURS_BOLD");
+            viewModel.BatteryBodyLast = GetStringValue(_languageCurrent.PERFORMANCE_HOURS_LAST, "PERFORMANCE_HOURS_LAST");
 
             viewModel.FiftySevenBodyFirst = GetStringValue(_languageCurrent.PERFORMANCE_57_FIRST, "PERFORMANCE_57_FIRST");
             viewModel.FiftySevenBodyBold = GetStringValue(_languageCurrent.PERFORMANCE_57_BOLD, "PERFORMANCE_57_BOLD");

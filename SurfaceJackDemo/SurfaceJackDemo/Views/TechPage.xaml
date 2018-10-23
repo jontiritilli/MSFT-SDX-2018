@@ -75,7 +75,7 @@
                 IsOpen = "False"
                 HorizontalOffset="-1"
                 VerticalOffset="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.31}" 
-                IsLightDismissEnabled="False"
+                IsLightDismissEnabled="True"
                 Opened="BatteryPop_Opened"
                 Closed="BatteryPop_Closed">
                 <Popup.Child>
@@ -116,7 +116,6 @@
         </Canvas>
 
         <ctrl:TextBlockEx Grid.Row="3" Grid.Column="1"
-            Grid.ColumnSpan="2"
             x:Name="BatteryLegal" 
             Text="{x:Bind Path=ViewModel.Legal}"
             TextStyle="Legal"

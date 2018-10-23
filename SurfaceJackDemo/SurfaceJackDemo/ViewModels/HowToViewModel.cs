@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Helpers;
 using SurfaceJackDemo.Services;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -50,10 +51,24 @@ namespace SurfaceJackDemo.ViewModels
         private const string URI_ILLUSTRATION_4 = "ms-appx:///Assets/Controls/volume-illustration.png";
         private const string URI_ILLUSTRATION_5 = "ms-appx:///Assets/Controls/noise-cancellation-illustration.png";
 
+        // overview overlays
+        private const string URI_OVERVIEW_1 = "ms-appx:///Assets/Controls/OverviewLines/Noise-cancellation.png";
+        private const string URI_OVERVIEW_2 = "ms-appx:///Assets/Controls/OverviewLines/Power.png";
+        private const string URI_OVERVIEW_3 = "ms-appx:///Assets/Controls/OverviewLines/Volume.png";
+        private const string URI_OVERVIEW_4 = "ms-appx:///Assets/Controls/OverviewLines/3.5-connection.png";
+        private const string URI_OVERVIEW_5 = "ms-appx:///Assets/Controls/OverviewLines/Usb-port.png";
+        private const string URI_OVERVIEW_6 = "ms-appx:///Assets/Controls/OverviewLines/Mic-mute.png";
 
-        //private const string URI_IMAGE = "ms-appx:///Assets/Experience/joplin_design.png";
+        private const double WIDTH_OVERVIEW_CAPTION = 110;
 
         //no height ? height == width
+        private const double WIDTH_OVERVIEW_1 = 188;
+        private const double WIDTH_OVERVIEW_2 = 550;
+        private const double WIDTH_OVERVIEW_3 = 204;
+        private const double WIDTH_OVERVIEW_4 = 319;
+        private const double WIDTH_OVERVIEW_5 = 434;
+        private const double WIDTH_OVERVIEW_6 = 70;
+
         private const double WIDTH_PLAY_PAUSE_ILLUSTRATION = 215;
         private const double WIDTH_SKIP_ILLUSTRATION = 303;
 
@@ -70,20 +85,33 @@ namespace SurfaceJackDemo.ViewModels
         private const double HEIGHT_IMAGE = 1824;
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
         private const string URI_AS_IMAGE_BACKGROUND = "ms-appx:///Assets/Controls/controls-background.png";
+
         #endregion
 
         #region Public Properties
+
         public string Headline;
         public string Legal;
         public string Caption2;
         public string Caption3;
         public string Caption4;
         public string Caption5;
+        public string Caption6;
 
+        public double OverviewCaptionWidth = WIDTH_OVERVIEW_CAPTION;
+        public string OverviewCaption1;
+        public string OverviewCaption2;
+        public string OverviewCaption3;
+        public string OverviewCaption4;
+        public string OverviewCaption5;
+        public string OverviewCaption6;
 
         public string x_ImageURI = URI_X_IMAGE;
         public string BackgroundUri;
         public string AppSelectorImageBackgroundUri = URI_AS_IMAGE_BACKGROUND;
+
+        public SolidColorBrush SeletedBGColor = new SolidColorBrush(Color.FromArgb(255, 0, 120, 215));
+
         //public string ImageUri = URI_IMAGE;
         public double ImageWidth;
         public double radiatingButtonRadius = StyleHelper.GetApplicationDouble(LayoutSizes.RadiatingButtonEllipseRadius);
@@ -117,6 +145,20 @@ namespace SurfaceJackDemo.ViewModels
         public double Width_Noise = WIDTH_NOISE_ILLUSTRATION;
         public double Height_Noise = HEIGHT_NOISE_ILLUSTRATION;
 
+        public double Width_Overview_1;
+        public double Width_Overview_2;
+        public double Width_Overview_3;
+        public double Width_Overview_4;
+        public double Width_Overview_5;
+        public double Width_Overview_6;
+
+        public string OverviewOverlayURI_1 = URI_OVERVIEW_1;
+        public string OverviewOverlayURI_2 = URI_OVERVIEW_2;
+        public string OverviewOverlayURI_3 = URI_OVERVIEW_3;
+        public string OverviewOverlayURI_4 = URI_OVERVIEW_4;
+        public string OverviewOverlayURI_5 = URI_OVERVIEW_5;
+        public string OverviewOverlayURI_6 = URI_OVERVIEW_6;
+
         #endregion
 
         #region Construction
@@ -137,6 +179,12 @@ namespace SurfaceJackDemo.ViewModels
                     Width_Volume = (WIDTH_VOLUME_ILLUSTRATION / 3) *2;
                     Width_Overview = (WIDTH_OVERVIEW_ILLUSTRATION / 3) *2;
                     Width_Noise = (WIDTH_NOISE_ILLUSTRATION / 3) *2;
+                    Width_Overview_1 = (WIDTH_OVERVIEW_1 / 3) * 2;
+                    Width_Overview_2 = (WIDTH_OVERVIEW_2 / 3) * 2;
+                    Width_Overview_3 = (WIDTH_OVERVIEW_3 / 3) * 2;
+                    Width_Overview_4 = (WIDTH_OVERVIEW_4 / 3) * 2;
+                    Width_Overview_5 = (WIDTH_OVERVIEW_5 / 3) * 2;
+                    Width_Overview_6 = (WIDTH_OVERVIEW_6 / 3) * 2;
                     break;
                 case DeviceType.Studio:
                     BackgroundUri = URI_BACKGROUND_CAPROCK;
@@ -147,6 +195,12 @@ namespace SurfaceJackDemo.ViewModels
                     Width_Volume = WIDTH_VOLUME_ILLUSTRATION / 2;
                     Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
                     Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
+                    Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
+                    Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
+                    Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;
+                    Width_Overview_4 = WIDTH_OVERVIEW_4 / 2;
+                    Width_Overview_5 = WIDTH_OVERVIEW_5 / 2;
+                    Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
                     break;
                 case DeviceType.Book15:
                     BackgroundUri = URI_BACKGROUND_SB2_15;
@@ -157,6 +211,12 @@ namespace SurfaceJackDemo.ViewModels
                     Width_Volume = WIDTH_VOLUME_ILLUSTRATION / 2;
                     Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
                     Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
+                    Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
+                    Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
+                    Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;
+                    Width_Overview_4 = WIDTH_OVERVIEW_4 / 2;
+                    Width_Overview_5 = WIDTH_OVERVIEW_5 / 2;
+                    Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
                     break;
                 case DeviceType.Book13:
                     BackgroundUri = URI_BACKGROUND_SB2_13;
@@ -167,6 +227,12 @@ namespace SurfaceJackDemo.ViewModels
                     Width_Volume = WIDTH_VOLUME_ILLUSTRATION / 2;
                     Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
                     Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
+                    Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
+                    Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
+                    Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;
+                    Width_Overview_4 = WIDTH_OVERVIEW_4 / 2;
+                    Width_Overview_5 = WIDTH_OVERVIEW_5 / 2;
+                    Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
                     break;
                 case DeviceType.Pro:
                     BackgroundUri = URI_BACKGROUND_CRUZ;
@@ -178,6 +244,12 @@ namespace SurfaceJackDemo.ViewModels
                     Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
                     Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
                     Height_Noise = HEIGHT_NOISE_ILLUSTRATION / 2;
+                    Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
+                    Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
+                    Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;
+                    Width_Overview_4 = WIDTH_OVERVIEW_4 / 2;
+                    Width_Overview_5 = WIDTH_OVERVIEW_5 / 2;
+                    Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
                     break;
                 default:
                     ImageSelectorImageWidth = WIDTH_IMAGE / 2;
@@ -187,6 +259,12 @@ namespace SurfaceJackDemo.ViewModels
                     Width_Volume = WIDTH_VOLUME_ILLUSTRATION / 2;
                     Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
                     Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
+                    Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
+                    Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
+                    Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;
+                    Width_Overview_4 = WIDTH_OVERVIEW_4 / 2;
+                    Width_Overview_5 = WIDTH_OVERVIEW_5 / 2;
+                    Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
                     break;
             }
 

@@ -39,6 +39,10 @@ namespace SDX.Toolkit.Controls
 
         private Grid _layoutRoot = null;
 
+        private Grid ColGrid = null;
+
+        private Grid RowGrid = null;
+
         #endregion
 
         #region Constructor
@@ -484,27 +488,31 @@ namespace SDX.Toolkit.Controls
                         int Index = 0;
 
                         int ListLength = _listItems.Count() - 1;
-
+                        var ListContentCount = new List<int> { 4, 2, 3 };
                         double ListTextWidth = StyleHelper.GetApplicationDouble("SpecsListTextWidth");
                         for (int col = 0; col < 3; col++)
                         {
                             int rowIndex = 0;
-                            Grid ColGrid = new Grid();
+                            ColGrid = new Grid()
+                            {
+                                Name = "ColumnGrid",
+                            };
 
                             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-
-                            ColGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                            ColGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
-
-                            ColGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                            ColGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
-
-                            ColGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
                             // create the list items and add to the grid
-                            for (int row = 0; row < 3; row++)
+                            for (int row = 0; row < ListContentCount[col]; row++)
                             {
-                                Grid RowGrid = new Grid();
+                                ColGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                                if(Index < ListLength)
+                                {
+                                    ColGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
+                                }
+
+                                RowGrid = new Grid()
+                                {
+                                    Name = "RowGrid"
+                                };
 
                                 ListItem item = _listItems[Index];
 
@@ -528,9 +536,8 @@ namespace SDX.Toolkit.Controls
                                     VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
                                     VerticalContentAlignment = VerticalAlignment.Top,
                                     PageEntranceDirection = this.PageEntranceDirection,
-                                    Opacity = 0.0
+                                    Opacity = 1
                                 };
-                                _specListElements.Add(icon);
 
                                 Grid.SetColumn(icon, 0);
                                 Grid.SetRow(icon, 0);
@@ -543,6 +550,7 @@ namespace SDX.Toolkit.Controls
                                     Headline = item.Headline,
                                     LedeStyle = TextStyles.SpecItemLede,
                                     Lede = item.Lede,
+                                    IsRowSpacingActive = false,
                                     CTAText = item.CTAText,
                                     CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
                                     Width = ListTextWidth,
@@ -550,14 +558,14 @@ namespace SDX.Toolkit.Controls
                                     HorizontalAlignment = HorizontalAlignment.Left,
                                     VerticalAlignment = VerticalAlignment.Top,
                                     PageEntranceDirection = this.PageEntranceDirection,
-                                    HeadlineOpacity = 0,
-                                    LedeOpacity = 0
+                                    Opacity = 1
                                 };
-                                _specListElements.Add(headline);
 
                                 Grid.SetColumn(headline, 2);
                                 Grid.SetRow(headline, 0);
                                 RowGrid.Children.Add(headline);
+
+                                _specListElements.Add(RowGrid);
 
                                 Grid.SetColumn(RowGrid, col);
                                 Grid.SetRow(RowGrid, RowToAdd);
@@ -570,6 +578,7 @@ namespace SDX.Toolkit.Controls
                             Grid.SetColumn(ColGrid, col);
                             Grid.SetRow(ColGrid, 0);
                             _layoutRoot.Children.Add(ColGrid);
+
                             rowIndex = 0;
                         }
                     }

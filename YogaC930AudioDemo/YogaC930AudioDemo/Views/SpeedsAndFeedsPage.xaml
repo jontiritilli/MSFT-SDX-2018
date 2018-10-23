@@ -4,211 +4,252 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     DataContext="{Binding SpeedsAndFeedsViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+    <Page.Resources>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot"
+          ColumnSpacing="{Binding Source=32, Converter={StaticResource ScalingConverter}}">
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="{StaticResource AppCloseHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource ScalingConverter}}"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=320, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=320, Converter={StaticResource ScalingConverter}}"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
-        <Grid
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.RowSpan="4"
-            Width="671.26"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-            Width="600.96"
-            Style="{StaticResource PageTitleStyle}"     
-            Text="Designed for powerful performance" />
-            <TextBlock
-                Grid.Row="1"
-                Grid.ColumnSpan="2"                    
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Innovative features, Sleek, stylish design. Every element engineered for the best user experience."/>
-            <StackPanel
-                Grid.Row="2"
-                Grid.Column="0"
-                Orientation="Vertical"
-                BorderThickness="0,0,0,5"
-                BorderBrush="#ffe5e5e5">
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Featuring" />
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BlueSemiTextStyle}"
-            Text="Windows 10"/>
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-            Text="Home Edition"/>
-            </StackPanel>
-            <StackPanel
-                Grid.Row="2"
-                Grid.Column="1"
-                Orientation="Vertical">
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Featuring" />
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BlueSemiTextStyle}"
-            Text="Intel Core i7"/>
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-            Text="Home Edition"/>
-            </StackPanel>
-            <StackPanel
-                Grid.Row="3"
-                Grid.Column="0"
-                Orientation="Vertical">
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Featuring" />
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BlueSemiTextStyle}"
-            Text="Dolby Vision"/>
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-            Text="Home Edition"/>
-            </StackPanel>
-            <StackPanel
-                Grid.Row="3"
-                Grid.Column="1"
-                Orientation="Vertical">
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Featuring" />
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BlueSemiTextStyle}"
-            Text="4K UHD"/>
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-            Text="Home Edition"/>
-            </StackPanel>
-            <StackPanel
-                Grid.Row="4"
-                Grid.Column="0"
-                Orientation="Vertical">
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Featuring" />
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BlueSemiTextStyle}"
-            Text="14 HOURS"/>
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-            Text="Home Edition"/>
-            </StackPanel>
-            <StackPanel
-                Grid.Row="4"
-                Grid.Column="1"
-                Orientation="Vertical">
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-                Text="Just" />
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BlueSemiTextStyle}"
-            Text="0.57"/>
-                <TextBlock
-                Width="600.96"
-                Style="{StaticResource BodyTextStyle}"
-            Text="at its thinnest"/>
-            </StackPanel>
-        </Grid>
-        <Image x:Name="imgHero"
-               Grid.Row="1"
-               Grid.RowSpan="6"
+
+<!--
+               Margin="{Binding Source='0,50,0,0', Converter={StaticResource ScalingConverter}}"
+               Margin="{Binding Source='0,100,0,35', Converter={StaticResource ScalingConverter}}"
+
+-->
+        
+        <!-- Mica Hero Image -->
+        <Image x:Name="MicaHero"
+               Grid.Row="0"
+               Grid.RowSpan="5"
                Grid.Column="0"
-               Grid.ColumnSpan="3"
+               Grid.ColumnSpan="5"
+               Margin="{Binding Source='0,75,0,0', Converter={StaticResource ScalingConverter}}"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
+                             DecodePixelWidth="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
+                             DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+        <!-- Iron Hero Image -->
+        <Image x:Name="IronHero"
+               Grid.Row="0"
+               Grid.RowSpan="5"
+               Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Margin="{Binding Source='0,75,0,0', Converter={StaticResource ScalingConverter}}"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
+                             DecodePixelWidth="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
+                             DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+
+        <!-- Headline and Body -->
+        <StackPanel x:Name="HeaderStackPanel"
+                    Margin="{Binding Source='0,0,0,74.79', Converter={StaticResource ScalingConverter}}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2">
+            <TextBlock x:Name="Headline"
+                        Style="{StaticResource HeadlineTextStyle}"     
+                        Text="{x:Bind Path=ViewModel.Headline}" />
+            <TextBlock x:Name="Body"
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{x:Bind Path=ViewModel.Body}"/>
+        </StackPanel>
+
+
+        <!-- Left Items StackPanel -->
+        <StackPanel x:Name="LeftItemsStackPanel"
+                    Orientation="Vertical"
+                    Grid.Row="2"
+                    Grid.Column="1">
+
+            <StackPanel x:Name="Windows10Item"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="{Binding Source='0,0,0,27', Converter={StaticResource ScalingConverter}}">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.WindowsBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.WindowsBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.WindowsBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="DolbyVision"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="{Binding Source='0,40,0,27', Converter={StaticResource ScalingConverter}}">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.DolbyBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.DolbyBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.DolbyBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="Battery"
+                        Orientation="Vertical"
+                        Padding="{Binding Source='0,40,0,0', Converter={StaticResource ScalingConverter}}">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.BatteryBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.BatteryBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.BatteryBodyLast}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right Items StackPanel -->
+        <StackPanel x:Name="RightItemsStackPanel"
+                    Orientation="Vertical"
+                    Grid.Row="2"
+                    Grid.Column="2">
+
+            <StackPanel x:Name="Intel"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="{Binding Source='0,0,0,27', Converter={StaticResource ScalingConverter}}">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.IntelBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.IntelBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.IntelBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="FourK"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="{Binding Source='0,40,0,27', Converter={StaticResource ScalingConverter}}">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FourKBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FourKBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FourKBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="FiftySeven"
+                        Orientation="Vertical"
+                        Padding="{Binding Source='0,40,0,0', Converter={StaticResource ScalingConverter}}">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyLast}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock x:Name="Legal"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Bottom"
+                   Style="{StaticResource LegalTextStyle}"
+                   Text="{x:Bind Path=ViewModel.Footnote}"/>
+
+        <!--<Image x:Name="imgHero"
+               Grid.Row="1"
+               Grid.RowSpan="5"
+               Grid.Column="0"
+               Grid.ColumnSpan="5"
                HorizontalAlignment="Right"
                Width="1152">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_hero.png"
                                  DecodePixelWidth="1152" DecodePixelType="Logical"/>
             </Image.Source>
-        </Image>
-        <Image x:Name="imgLeft"
-               Grid.Row="1"
-               Grid.RowSpan="6"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               HorizontalAlignment="Right"
-               Width="1152">
-                <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
-                                 DecodePixelWidth="1152" DecodePixelType="Logical"/>
-                </Image.Source>
-            </Image>
-            <Image x:Name="imgRight"
-               Grid.Row="1"
-               Grid.RowSpan="6"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               HorizontalAlignment="Right"
-               Width="1152">
-                <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
-                                 DecodePixelWidth="1152" DecodePixelType="Logical"/>
-                </Image.Source>
-            </Image>
-        <Canvas
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.RowSpan="7"
-            Grid.ColumnSpan="2">
-         
-            <Image x:Name="imgIntel"
-                   Canvas.Left="1700"
-                   Canvas.Top="886"
-               Width="84">
+        </Image>-->
+        
+        <!-- Intel Core Mark -->
+        <Canvas x:Name="IntelCanvas"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="5">
+            <Image x:Name="IntelMark"
+                   Canvas.Left="{Binding Source=1700, Converter={StaticResource ScalingConverter}}"
+                   Canvas.Top="{Binding Source=911, Converter={StaticResource ScalingConverter}}"
+                   Width="{Binding Source=84, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_intelCoreMark.png"
-                                 DecodePixelWidth="84" DecodePixelType="Logical"/>
+                                 DecodePixelWidth="{Binding Source=84, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
         </Canvas>
 
+        <!-- Device Colors -->
+        <Canvas x:Name="DeviceColors"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="5">
+            <TextBlock
+                Style="{StaticResource ColorSpecTextStyle}"
+                Text="{x:Bind Path=ViewModel.TopColor}" 
+                Canvas.Left="{Binding Source=1036.995, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=458.5, Converter={StaticResource ScalingConverter}}"/>
+
+            <TextBlock
+                Style="{StaticResource ColorSpecTextStyle}"
+                Text="{x:Bind Path=ViewModel.BottomColor}" 
+                Canvas.Left="{Binding Source=972.5, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=569.135, Converter={StaticResource ScalingConverter}}"/>
+        </Canvas>
     </Grid>
 
 </Page>

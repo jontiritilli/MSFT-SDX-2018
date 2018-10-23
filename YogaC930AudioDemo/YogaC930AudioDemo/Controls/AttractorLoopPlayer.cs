@@ -168,7 +168,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-
+            this.StartPlayer();
         }
 
         private static void OnMediaSourceFileChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -290,7 +290,7 @@ namespace YogaC930AudioDemo.Controls
                 AutoPlay = this.AutoPlay,
                 AreTransportControlsEnabled = false,
                 IsFullWindow = true,
-                Stretch = Stretch.UniformToFill
+                Stretch = Stretch.Uniform
             };
             if (null != this.MediaSourceStorageFile)
             {

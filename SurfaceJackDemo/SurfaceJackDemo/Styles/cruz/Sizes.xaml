@@ -147,9 +147,9 @@
     <x:Double x:Key="SpecsListColumnSpacerWidth">20</x:Double>
     
     <x:Double x:Key="PlayerHeight">50</x:Double>
-    <x:Double x:Key="PlayerLeftMargin">40</x:Double>
+    <x:Double x:Key="PlayerLeftMargin">20</x:Double>
     <x:Double x:Key="PlayerRightMargin">30</x:Double>
-    <x:Double x:Key="PlayerTrackSpacer">20</x:Double>
+    <x:Double x:Key="PlayerTrackSpacer">10</x:Double>
     <x:Double x:Key="PlayerButtonWidth">18</x:Double>
     <x:Double x:Key="PlayerButtonSpacer">30</x:Double>
     <x:Double x:Key="PlayerScrubHeight">6</x:Double>

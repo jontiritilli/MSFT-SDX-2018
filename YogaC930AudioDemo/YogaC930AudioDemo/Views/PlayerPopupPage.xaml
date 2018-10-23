@@ -8,37 +8,53 @@
     xmlns:model="using:YogaC930AudioDemo.Models"
     xmlns:views="using:YogaC930AudioDemo.Views"    
     xmlns:ctrl="using:YogaC930AudioDemo.Controls"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     Width="1920"
     mc:Ignorable="d">
-    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+
+    <Page.Resources>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          Margin="0"
+          Padding="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="{StaticResource NavigationBarHeight}"/>
+            <RowDefinition Height="{StaticResource CanvasHeight}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{StaticResource AppCloseWidth}"/>
+            <ColumnDefinition Width="{StaticResource CanvasWidth}"/>
         </Grid.ColumnDefinitions>
-        <MediaPlayerElement Name="AttractorLoopPlayer"
-                            Width="1920"
-                            Source="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080.mp4"
-                                  AutoPlay="True"/>
-        <Button
-            x:Name="btnClose"
-            Grid.Column="2"
-            Grid.Row="0"
-            Canvas.ZIndex="100"
-            Margin="0,24.54,23.985,0"
-            VerticalAlignment="Top"
+      
+        <ctrl:LoopPlayer Grid.Row="0" Grid.Column="0"
+            x:Name="LoopPlayer"
+            Width="{StaticResource CanvasWidth}"
+            MediaSourceUri="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.mp4"
+            AutoPlay="True"/>
+
+        <Image x:Name="CloseButtonImage"
+               Grid.Row="0" Grid.Column="0"
+               Margin="{Binding Source='0,25,25,0', Converter={StaticResource ScalingConverter}}"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Width="{Binding Source=60, Converter={StaticResource ScalingConverter}}"
+               PointerReleased="CloseButtonImage_PointerReleased">
+            <Image.Source>
+                <BitmapImage
+                    UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                    DecodePixelWidth="{Binding Source=60, Converter={StaticResource ScalingConverter}}"
+                    DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+        <ctrl:VolumeSlider Grid.Row="0" Grid.Column="0"
+            x:Name="VolumeControl"
+            VolumeControlCaptionTextFirst="{x:Bind Path=ViewModel.BodyFirst}"
+            VolumeControlCaptionTextLast="{x:Bind Path=ViewModel.BodyLast}"
+            Margin="{Binding Source='0,0,17,0', Converter={StaticResource ScalingConverter}}"
             HorizontalAlignment="Right"
-            Click="btnClose_Click"
-            Width="60">
-            <Image>
-                <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
-                                 DecodePixelWidth="60" DecodePixelType="Logical"/>
-                </Image.Source>
-            </Image>
-        </Button>
+            VerticalAlignment="Center"
+            Opacity="1.0" />
     </Grid>
 </Page>

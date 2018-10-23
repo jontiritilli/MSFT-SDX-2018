@@ -14,10 +14,23 @@ namespace YogaC930AudioDemo.ViewModels
     {
         #region Public Properties
 
-        public string Body;
+        public string BodyFirst;
+        public string BodyLast;
 
         #endregion
 
+        #region Constants
+
+        //public const string POPUP_VIDEO_URI = "ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.png";
+        public const string POPUP_VIDEO_URI = "ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080.png";
+
+        #endregion
+
+        #region Public Members
+
+        public string PopupVideo_URI = POPUP_VIDEO_URI;
+
+        #endregion
 
         #region Construction
 
