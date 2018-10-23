@@ -79,11 +79,11 @@ namespace YogaC930AudioDemo
                 cw.PointerReleased += OnPointerReleased;
             }
 
+            SetupNoInteractionTimer();
+
             // add the font size styles
             LoadStyles();
-        }
 
-            SetupNoInteractionTimer();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -168,5 +168,41 @@ namespace YogaC930AudioDemo
                 Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
             }
         }
+
+        private void OnKeyUp(CoreWindow sender, KeyEventArgs args)
+        {
+            args.Handled = InterruptVideoTimer();
+        }
+
+
+        private void OnPointerReleased(CoreWindow sender, PointerEventArgs args)
+        {
+            args.Handled = InterruptVideoTimer();
+        }
+
+        private bool InterruptVideoTimer()
+        {
+            InteractionTimer.Start();
+
+            return true;
+        }
+
+        private void SetupNoInteractionTimer()
+        {
+            InteractionTimer.Interval = TimeSpan.FromSeconds(35);
+            InteractionTimer.Start();
+            InteractionTimer.Tick += ResetVolume;
+        }
+
+        private void ResetVolume(object sender, object e)
+        {
+            Popup PlayerPopup = FlipViewPage.Current?.GetPlayerPopup();
+
+            if (null != PlayerPopup && PlayerPopup.IsOpen)
+            {
+                PlayerPopupPage.Current?.GetVolumeControl().ResetVolume();
+            }
+        }
+
     }
 }
