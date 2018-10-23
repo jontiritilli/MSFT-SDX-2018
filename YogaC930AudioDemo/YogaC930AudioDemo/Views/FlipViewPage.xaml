@@ -12,7 +12,7 @@
 
     <Page.Resources>
         <conv:ScalingConverter x:Key="ScalingConverter"/>
-        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+        <!--<conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>-->
     </Page.Resources>
 
     <Page.Background>
@@ -163,12 +163,12 @@
                 <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                    <Image x:Name="PlayButton"
+                    <Image x:Name="PlayIcon"
                        Width="{Binding Source=34.56, Converter={StaticResource ScalingConverter}}"
                        VerticalAlignment="Center">
                         <Image.Source>
                             <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_demo_playshape.png"
-                                         DecodePixelWidth="{Binding Source=34, Converter={StaticResource ScalingConverter}}"
+                                         DecodePixelWidth="{Binding Source=34.56, Converter={StaticResource ScalingConverter}}"
                                          DecodePixelType="Logical"/>
                         </Image.Source>
                     </Image>
@@ -184,7 +184,7 @@
         <!-- App Close Button -->
         <Border x:Name="AppCloseButtonBorder"
                 BorderBrush="{StaticResource AppCloseBorderBrush}"
-                BorderThickness="1"
+                BorderThickness="{Binding Source=1, Converter={StaticResource ScalingConverter}}"
                 Background="{StaticResource AppCloseBackgroundBrush}"
                 Width="{StaticResource AppCloseHeight}"
                 Height="{StaticResource AppCloseWidth}"

@@ -60,7 +60,7 @@
             <Image x:Name="DolbyAtmos"
                 HorizontalAlignment="Left"
                 Margin="0"
-                Width="252">
+                Width="{Binding Source=252, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
@@ -73,7 +73,7 @@
                   X2="{Binding Source=115, Converter={StaticResource ScalingConverter}}"
                   Y1="0" Y2="0" Stroke="{StaticResource SeparatorLineSolidColorBrush}"
                   StrokeThickness="{Binding Source=2, Converter={StaticResource ScalingConverter}}"
-                  Margin="0,25,0,25"/>
+                  Margin="{Binding Source='0,25,0,25', Converter={StaticResource ScalingConverter}}"/>
 
             <TextBlock
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"

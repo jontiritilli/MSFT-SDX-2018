@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,12 @@ namespace YogaC930AudioDemo.Converters
 
         public ScalingConverter()
         {
+            // get pixel width of physical screen
             Size resolution = WindowHelper.GetScreenResolutionInfo();
             _resolutionX = resolution.Width;
             if (resolution.Height > _resolutionX) { _resolutionX = resolution.Height; }
 
+            // get scaling factor
             _scale = WindowHelper.GetRawPixelsPerViewPixel();
         }
 
@@ -37,48 +40,15 @@ namespace YogaC930AudioDemo.Converters
             {
                 if (targetType.Equals(typeof(double)))
                 {
-                    if (value is double valueDouble)
-                    {
-                        return ConvertDouble(valueDouble);
-                    }
-                    else if (value is int valueDoubleInt)
-                    {
-                        return ConvertDouble(valueDoubleInt);
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return ConvertDouble(ParseDouble(value));
                 }
                 else if (targetType.Equals(typeof(int)))
                 {
-                    if (value is double valueDouble2)
-                    {
-                        return (int)ConvertDouble(valueDouble2);
-                    }
-                    else if (value is int valueInt32)
-                    {
-                        return (int)ConvertDouble(valueInt32);
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return (int)ConvertDouble(ParseDouble(value));
                 }
                 else if (targetType.Equals(typeof(GridLength)))
                 {
-                    if (value is double valueGridLength)
-                    {
-                        return new GridLength(ConvertDouble(valueGridLength));
-                    }
-                    else if (value is int valueGridLengthInt)
-                    {
-                        return new GridLength(ConvertDouble(valueGridLengthInt));
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return new GridLength(ConvertDouble(ParseDouble(value)));
                 }
                 else if (targetType.Equals(typeof(Thickness)))
                 {
@@ -106,8 +76,47 @@ namespace YogaC930AudioDemo.Converters
 
         private double ConvertDouble(double doubleValue)
         {
-            // w2 = w1 * (S2 / S1) * (R1 / R2)
-            return doubleValue * (_scale / 1.0) * (DEFAULT_RESOLUTION / _resolutionX);
+            // w2 = w1 * (R1 / S1) * (S2 / R2)
+            double result = doubleValue * (DEFAULT_SCALE / DEFAULT_RESOLUTION) * (_resolutionX / _scale);
+
+            Debug.WriteLine($"Input {doubleValue} resulted in Output {result}.");
+
+            return result;
+        }
+
+        private double ParseDouble(object value)
+        {
+            double result = 0;
+
+            if (value is double valueDouble)
+            {
+                result = valueDouble;
+            }
+            else if (value is float valueFloat)
+            {
+                result = (double)valueFloat;
+            }
+            else if (value is decimal valueDecimal)
+            {
+                result = System.Convert.ToDouble(valueDecimal);
+            }
+            else if (value is int valueInt)
+            {
+                result = (double)valueInt;
+            }
+            else if (value is string valueString)
+            {
+                if (!Double.TryParse(valueString, out result))
+                {
+                    result = 0;
+                }
+            }
+            else
+            {
+                // none of our types
+            }
+
+            return result;
         }
 
         private Thickness ParseThickness(object value)
@@ -127,7 +136,7 @@ namespace YogaC930AudioDemo.Converters
                     thickness = new Thickness(ConvertDouble(thicknesses[0]), ConvertDouble(thicknesses[1]),
                         ConvertDouble(thicknesses[0]), ConvertDouble(thicknesses[1]));
                 }
-                else if (thicknesses.Count == 4)
+                else if (thicknesses.Count >= 4)
                 {
                     thickness = new Thickness(ConvertDouble(thicknesses[0]), ConvertDouble(thicknesses[1]),
                         ConvertDouble(thicknesses[2]), ConvertDouble(thicknesses[3]));
@@ -154,7 +163,7 @@ namespace YogaC930AudioDemo.Converters
                     cornerRadius = new CornerRadius(ConvertDouble(radii[0]), ConvertDouble(radii[1]),
                         ConvertDouble(radii[0]), ConvertDouble(radii[1]));
                 }
-                else if (radii.Count == 4)
+                else if (radii.Count >= 4)
                 {
                     cornerRadius = new CornerRadius(ConvertDouble(radii[0]), ConvertDouble(radii[1]),
                         ConvertDouble(radii[2]), ConvertDouble(radii[3]));

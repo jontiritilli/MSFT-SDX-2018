@@ -24,9 +24,9 @@
     <!-- Headline Styles -->
     <Style x:Key="HeadlineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamMediumFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource HeadlineTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="31" />
+        <Setter Property="FontSize" Value="{StaticResource HeadlineTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="38" />
+        <Setter Property="LineHeight" Value="{StaticResource HeadlineTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -37,9 +37,9 @@
     <!-- Body Text Styles -->
     <Style x:Key="BodyTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource BodyTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontSize" Value="{StaticResource BodyTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />
+        <Setter Property="LineHeight" Value="{StaticResource BodyTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -57,9 +57,9 @@
 
     <Style x:Key="LegalTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource LegalTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="FontSize" Value="{StaticResource LegalTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="15" />
+        <Setter Property="LineHeight" Value="{StaticResource LegalTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -70,9 +70,9 @@
     <!-- Specs List Styles -->
     <Style x:Key="ListItemFirstLineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource BodyTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="17" />
+        <Setter Property="FontSize" Value="{StaticResource ListItemFirstLineTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="42.5" />
+        <Setter Property="LineHeight" Value="{StaticResource ListItemFirstLineTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -82,9 +82,9 @@
 
     <Style x:Key="ListItemHeroLineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamMediumFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource BodyBlueTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="40" />
+        <Setter Property="FontSize" Value="{StaticResource ListItemHeroLineTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="40" />
+        <Setter Property="LineHeight" Value="{StaticResource ListItemHeroLineTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -94,9 +94,9 @@
 
     <Style x:Key="ListItemLastLineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource BodyTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontSize" Value="{StaticResource ListItemLastLineTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="37.5" />
+        <Setter Property="LineHeight" Value="{StaticResource ListItemLastLineTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -106,9 +106,9 @@
 
     <Style x:Key="ColorSpecTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamLightFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource BodyTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="FontSize" Value="{StaticResource ColorSpecTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="42.5" />
+        <Setter Property="LineHeight" Value="{StaticResource ColorSpecTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -119,9 +119,9 @@
     <!-- Navigation Bar Styles -->
     <Style x:Key="NavigationBarLightBackgroundNormalTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamMediumFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource NavigationBarLightBackgroundNormalTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="19.5" />
+        <Setter Property="FontSize" Value="{StaticResource NavigationBarLightBackgroundNormalTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="19.5" />
+        <Setter Property="LineHeight" Value="{StaticResource NavigationBarLightBackgroundNormalTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -160,9 +160,9 @@
     <!-- Play Audio Demo Button Styles-->
     <Style x:Key="PlayAudioDemoLightBackgroundTextStyle" TargetType="TextBlock" BasedOn="{StaticResource GothamBoldFontStyle}">
         <Setter Property="Foreground" Value="{StaticResource PlayAudioDemoLightBackgroundTextSolidColorBrush}"/>
-        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontSize" Value="{StaticResource PlayAudioDemoLightBackgroundTextStyleFontSize}" />
         <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
-        <Setter Property="LineHeight" Value="22" />
+        <Setter Property="LineHeight" Value="{StaticResource PlayAudioDemoLightBackgroundTextStyleLineHeight}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="VerticalAlignment" Value="Top" />
