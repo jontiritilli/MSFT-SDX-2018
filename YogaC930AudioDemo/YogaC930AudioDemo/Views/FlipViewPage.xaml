@@ -11,6 +11,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
         <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
     </Page.Resources>
 
@@ -24,13 +25,13 @@
         </Grid.Background>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource AppCloseHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource AppCloseHeight}, Converter={StaticResource ScalingConverter}}"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource AppCloseWidth}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
 
         <!-- Pages -->
@@ -62,26 +63,27 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding Source={StaticResource NavigationBarTopMargin}, Converter={StaticResource GridLengthConverter}}"/>
-                <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}, Converter={StaticResource GridLengthConverter}}"/>
-                <RowDefinition Height="{Binding Source={StaticResource NavigationBarBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource NavigationBarTopMargin}, Converter={StaticResource ScalingConverter}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource NavigationBarHeight}, Converter={StaticResource ScalingConverter}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource NavigationBarBottomMargin}, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarLeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
-                <ColumnDefinition Width="222"/>
-                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}, Converter={StaticResource GridLengthConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarLeftMargin}, Converter={StaticResource ScalingConverter}}"/>
+                <ColumnDefinition Width="{Binding Source=222, Converter={StaticResource ScalingConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}, Converter={StaticResource ScalingConverter}}"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}, Converter={StaticResource GridLengthConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource NavigationBarSpacer}, Converter={StaticResource ScalingConverter}}"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Image x:Name="YogaLogo"
                    Grid.Row="1" Grid.Column="1"
-                   Width="222">
+                   Width="{Binding Source=222, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_yogaLogo.png"
-                                 DecodePixelWidth="222" DecodePixelType="Logical"/>
+                                 DecodePixelWidth="{Binding Source=222, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
 
@@ -107,15 +109,16 @@
         <Image x:Name="LenovoLogo"
                Grid.Row="1"
                Grid.Column="0" Grid.ColumnSpan="2"
-               Width="54"
+               Width="{Binding Source=54, Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
                VerticalAlignment="Bottom">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_lenovoLogo.png"
-                             DecodePixelWidth="54" DecodePixelType="Logical"/>
+                             DecodePixelWidth="{Binding Source=54, Converter={StaticResource ScalingConverter}}"
+                             DecodePixelType="Logical"/>
             </Image.Source>
             <Image.RenderTransform>
-                <TranslateTransform Y="68"/>
+                <TranslateTransform Y="{Binding Source=68, Converter={StaticResource ScalingConverter}}"/>
             </Image.RenderTransform>
         </Image>
 
@@ -128,30 +131,30 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top">
             <Grid.RenderTransform>
-                <TranslateTransform x:Name="PlayAudioDemoButtonTransform" Y="-87"/>
+                <TranslateTransform x:Name="PlayAudioDemoButtonTransform" Y="{Binding Source=-87, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RenderTransform>
 
             <Border x:Name="BlueBorderShadow"
-                Width="308.25"
-                Height="83.15"
-                CornerRadius="0,0,24,24"
+                Width="{Binding Source=308.25, Converter={StaticResource ScalingConverter}}"
+                Height="{Binding Source=83.15, Converter={StaticResource ScalingConverter}}"
+                CornerRadius="{Binding Source='0,0,24,24', Converter={StaticResource ScalingConverter}}"
                 Background="Transparent"
                 BorderBrush="{StaticResource PlayAudioDemoBorderShadowSolidColorBrush}"
-                BorderThickness="4"
+                BorderThickness="{Binding Source=4, Converter={StaticResource ScalingConverter}}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top">
                 <Border.RenderTransform>
-                    <TranslateTransform x:Name="BlueBorderShadowTransform" Y="3"/>
+                    <TranslateTransform x:Name="BlueBorderShadowTransform" Y="{Binding Source=3, Converter={StaticResource ScalingConverter}}"/>
                 </Border.RenderTransform>
             </Border>
 
             <Border x:Name="PlayAudioDemoBlueBorder"
-                Width="308.25"
-                Height="83.15"
-                CornerRadius="0,0,24,24"
+                Width="{Binding Source=308.25, Converter={StaticResource ScalingConverter}}"
+                Height="{Binding Source=83.15, Converter={StaticResource ScalingConverter}}"
+                CornerRadius="{Binding Source='0,0,24,24', Converter={StaticResource ScalingConverter}}"
                 Background="{StaticResource PlayAudioDemoLightBackgroundSolidColorBrush}"
                 BorderBrush="{StaticResource PlayAudioDemoBorderSolidColorBrush}"
-                BorderThickness="4"
+                BorderThickness="{Binding Source=4, Converter={StaticResource ScalingConverter}}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 PointerReleased="PlayAudioDemoBlueBorder_PointerReleased">
@@ -161,14 +164,16 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                     <Image x:Name="PlayButton"
-                       Width="34.56"
+                       Width="{Binding Source=34.56, Converter={StaticResource ScalingConverter}}"
                        VerticalAlignment="Center">
                         <Image.Source>
-                            <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_demo_playshape.png" DecodePixelWidth="34" DecodePixelType="Logical"/>
+                            <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_demo_playshape.png"
+                                         DecodePixelWidth="{Binding Source=34, Converter={StaticResource ScalingConverter}}"
+                                         DecodePixelType="Logical"/>
                         </Image.Source>
                     </Image>
                     <TextBlock x:Name="PlayText"
-                           Margin="10,0,0,0"
+                           Margin="{Binding Source='10,0,0,0', Converter={StaticResource ScalingConverter}}"
                            VerticalAlignment="Center"
                            Style="{StaticResource PlayAudioDemoLightBackgroundTextStyle}"
                            Text="{x:Bind Path=ViewModel.NavAudioDemo}"/>
@@ -189,11 +194,13 @@
                 VerticalAlignment="Top"
                 PointerReleased="AppCloseButtonBorder_PointerReleased">
             <Image x:Name="AppCloseButtonXImage"
-                   Width="18"
+                   Width="{Binding Source=18, Converter={StaticResource ScalingConverter}}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/close-icon.png" DecodePixelWidth="18" DecodePixelType="Logical"/>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/close-icon.png"
+                                 DecodePixelWidth="{Binding Source=18, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
         </Border>
@@ -206,32 +213,36 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding Source={StaticResource ArrowHeight}, Converter={StaticResource GridLengthConverter}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource ArrowHeight}, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding Source={StaticResource ArrowMargin}, Converter={StaticResource GridLengthConverter}}"/>
-                <ColumnDefinition Width="{Binding Source={StaticResource ArrowWidth}, Converter={StaticResource GridLengthConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource ArrowMargin}, Converter={StaticResource ScalingConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource ArrowWidth}, Converter={StaticResource ScalingConverter}}"/>
             </Grid.ColumnDefinitions>
 
             <!-- light -->
             <Image x:Name="LeftChevronLight"
-                    Width="22.565"
+                    Width="{Binding Source=22.565, Converter={StaticResource ScalingConverter}}"
                     Grid.Row="0"
                     Grid.Column="1"
                     Visibility="Collapsed">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronLeft_light.png" DecodePixelWidth="23" DecodePixelType="Logical"/>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronLeft_light.png"
+                                 DecodePixelWidth="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
 
             <!-- dark -->
             <Image x:Name="LeftChevronDark"
-                    Width="22.565"
+                    Width="{Binding Source=22.565, Converter={StaticResource ScalingConverter}}"
                     Grid.Row="0"
                     Grid.Column="1"
                     Visibility="Collapsed">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronLeft_dark.png" DecodePixelWidth="23" DecodePixelType="Logical"/>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronLeft_dark.png"
+                                 DecodePixelWidth="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
         </Grid>
@@ -244,32 +255,36 @@
               HorizontalAlignment="Right"
               VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="{Binding Source={StaticResource ArrowHeight}, Converter={StaticResource GridLengthConverter}}"/>
+                <RowDefinition Height="{Binding Source={StaticResource ArrowHeight}, Converter={StaticResource ScalingConverter}}"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding Source={StaticResource ArrowWidth}, Converter={StaticResource GridLengthConverter}}"/>
-                <ColumnDefinition Width="{Binding Source={StaticResource ArrowMargin}, Converter={StaticResource GridLengthConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource ArrowWidth}, Converter={StaticResource ScalingConverter}}"/>
+                <ColumnDefinition Width="{Binding Source={StaticResource ArrowMargin}, Converter={StaticResource ScalingConverter}}"/>
             </Grid.ColumnDefinitions>
 
             <!-- light -->
             <Image x:Name="RightChevronLight"
-                    Width="22.565"
+                    Width="{Binding Source=22.565, Converter={StaticResource ScalingConverter}}"
                     Grid.Row="0"
                     Grid.Column="0"
                     Visibility="Collapsed">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronRight_light.png" DecodePixelWidth="23" DecodePixelType="Logical"/>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronRight_light.png"
+                                 DecodePixelWidth="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
 
             <!-- dark -->
             <Image x:Name="RightChevronDark"
-                    Width="22.565"
+                    Width="{Binding Source=22.565, Converter={StaticResource ScalingConverter}}"
                     Grid.Row="0"
                     Grid.Column="0"
                     Visibility="Visible">
                 <Image.Source>
-                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronRight_dark.png" DecodePixelWidth="23" DecodePixelType="Logical"/>
+                    <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronRight_dark.png"
+                                 DecodePixelWidth="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
         </Grid>

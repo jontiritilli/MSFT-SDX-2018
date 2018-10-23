@@ -9,11 +9,12 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
         <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource GridLengthConverter}}"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
@@ -22,7 +23,17 @@
             <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource GridLengthConverter}}"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource ScalingConverter}}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource ScalingConverter}}"/>
+        </Grid.ColumnDefinitions>        
 
         <!-- Background Image -->
         <Image x:Name="HeroBackground"
@@ -34,7 +45,7 @@
             <Image.Source>
                 <BitmapImage
                     UriSource="ms-appx:///Assets/Audio/audio_blueBackground.png"
-                    DecodePixelWidth="960"
+                    DecodePixelWidth="{Binding Source=960, Converter={StaticResource ScalingConverter}}"
                     DecodePixelType="Logical"/>
             </Image.Source>
         </Image>
@@ -53,21 +64,25 @@
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
-                        DecodePixelWidth="252"
+                        DecodePixelWidth="{Binding Source=252, Converter={StaticResource ScalingConverter}}"
                         DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
 
-            <Line X1="0" X2="115" Y1="0" Y2="0" Stroke="{StaticResource SeparatorLineSolidColorBrush}" StrokeThickness="2" Margin="0,25,0,25"/>
+            <Line X1="0"
+                  X2="{Binding Source=115, Converter={StaticResource ScalingConverter}}"
+                  Y1="0" Y2="0" Stroke="{StaticResource SeparatorLineSolidColorBrush}"
+                  StrokeThickness="{Binding Source=2, Converter={StaticResource ScalingConverter}}"
+                  Margin="0,25,0,25"/>
 
             <TextBlock
-                Width="{StaticResource HeaderWidth}"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 HorizontalAlignment="Left"
                 Style="{StaticResource HeadlineTextStyle}"     
                 Text="{x:Bind Path=ViewModel.Headline}"/>
 
             <TextBlock
-                Width="{StaticResource HeaderWidth}"
+                Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 HorizontalAlignment="Left"
                 Style="{StaticResource BodyTextStyle}">
                 <Run Text="{x:Bind Path=ViewModel.BodyFirst}"/>
@@ -80,38 +95,40 @@
 
         <Canvas Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3">
             <Image x:Name="imgHero"
-               Canvas.Left="650"
-               Canvas.Top="-325"
+               Canvas.Left="{Binding Source=650, Converter={StaticResource ScalingConverter}}"
+               Canvas.Top="{Binding Source=-325, Converter={StaticResource ScalingConverter}}"
                Canvas.ZIndex="-1"
-               Width="1254">
+               Width="{Binding Source=1254, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hero.png"
-                                 DecodePixelWidth="1254" DecodePixelType="Logical"/>
+                                 DecodePixelWidth="{Binding Source=1254, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
 
             <Image x:Name="btnLeft"
-                    Canvas.Left="1018"
-                    Canvas.Top="210"
-                    Width="66"
+                    Canvas.Left="{Binding Source=1018, Converter={StaticResource ScalingConverter}}"
+                    Canvas.Top="{Binding Source=210, Converter={StaticResource ScalingConverter}}"
+                    Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
                     Tapped="btnLeft_Click">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Audio/audio_hotspot1.png"
-                        DecodePixelWidth="66"
+                        DecodePixelWidth="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
                         DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
 
             <Image
                 x:Name="btnRight"
-                Canvas.Left="1580"
-                Canvas.Top="170"
-                Width="66"
+                Canvas.Left="{Binding Source=1580, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=170, Converter={StaticResource ScalingConverter}}"
+                Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
                 Tapped="btnRight_Click">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot2.png"
-                                 DecodePixelWidth="66" DecodePixelType="Logical"/>
+                                 DecodePixelWidth="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
         </Canvas>
