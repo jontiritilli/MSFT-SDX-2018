@@ -30,39 +30,10 @@ namespace SurfaceBook2Demo.Activation
         {
             //Log.Trace("We are handling this activation with the DefaultLaunchActivationHandler");
 
-            // get the configuration service
-            ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
+            // load the ResourceDictionaries
+            ActivationHelper.LoadAppResourceDictionaries(ActivationHelper.GetDeviceSignature());
 
-            // if we got it
-            if (null != configurationService)
-            {
-                //Log.Trace("Configuration Service is valid.");
-                // is the attractor loop enabled?
-                if (configurationService.Configuration.IsAttractorLoopEnabled)
-                {
-                    //Log.Trace("The Attractor Loop is ENABLED, so navigating to it.");
-                    // yes, go to it
-                    NavigationService.Navigate(typeof(ViewModels.AttractorLoopViewModel).FullName);
-                }
-                //// is the choose path page enabled?
-                //else if (configurationService.Configuration.IsChoosePathPageEnabled)
-                //{
-                //    // yes, go to it
-                //    NavigationService.Navigate(typeof(ViewModels.ChoosePathViewModel).FullName);
-                //}
-                else
-                {
-                    //Log.Trace("We are navigating to the FlipView.");
-                    // no, go to the root flipview
-                    NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
-                }
-            }
-            else
-            {
-                //Log.Trace("Configuration Service is INVALID, so we are navigating to the FlipView.");
-                // go to the flipview by default
-                NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
-            }
+            ActivationHelper.HandleActivation();
 
             await Task.CompletedTask;
         }
