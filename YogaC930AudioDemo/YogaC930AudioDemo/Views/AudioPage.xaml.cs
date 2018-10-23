@@ -2,6 +2,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
+
 using YogaC930AudioDemo.ViewModels;
 
 namespace YogaC930AudioDemo.Views
@@ -22,7 +24,7 @@ namespace YogaC930AudioDemo.Views
 
         }
 
-        private void AudioPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void AudioPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.HingeDesignPopup = FlipViewPage.Current.GetHingDesignPopupPagePopup();
             HingeDesignPopupPage.Current.CloseButton_Clicked+= Close_Left_Clicked;
@@ -33,7 +35,7 @@ namespace YogaC930AudioDemo.Views
             //YogaC930AudioDemo.Helpers.TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 3, Windows.UI.Colors.AliceBlue);
         }
 
-        private void btnLeft_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
             if (this.SpeakerDesignPagePopup.IsOpen == false)
             {
@@ -41,7 +43,7 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void btnRight_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void btnRight_Click(object sender, RoutedEventArgs e)
         {
             if (this.HingeDesignPopup.IsOpen == false)
             {
