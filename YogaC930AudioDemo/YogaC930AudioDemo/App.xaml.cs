@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -66,7 +67,7 @@ namespace YogaC930AudioDemo
             }
 
             // add the font size styles
-            LoadFontSizes();
+            LoadStyles();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -86,12 +87,18 @@ namespace YogaC930AudioDemo
             deferral.Complete();
         }
 
-        private void LoadFontSizes()
+        private void LoadStyles()
         {
             ScalingConverter converter = new ScalingConverter();
 
             if (null != Application.Current.Resources)
             {
+                // load canvas sizes
+                Size effectiveSize = WindowHelper.GetViewSizeInfo();
+
+                Application.Current.Resources.Add("CanvasWidth", effectiveSize.Width);
+                Application.Current.Resources.Add("CanvasHeight", effectiveSize.Height);
+
                 // load font sizes
 
                 // headline

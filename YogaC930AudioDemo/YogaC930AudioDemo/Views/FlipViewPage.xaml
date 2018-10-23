@@ -12,7 +12,6 @@
 
     <Page.Resources>
         <conv:ScalingConverter x:Key="ScalingConverter"/>
-        <!--<conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>-->
     </Page.Resources>
 
     <Page.Background>

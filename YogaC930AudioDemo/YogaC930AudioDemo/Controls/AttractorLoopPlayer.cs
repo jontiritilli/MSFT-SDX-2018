@@ -290,7 +290,7 @@ namespace YogaC930AudioDemo.Controls
                 AutoPlay = this.AutoPlay,
                 AreTransportControlsEnabled = false,
                 IsFullWindow = true,
-                Stretch = Stretch.UniformToFill
+                Stretch = Stretch.Uniform
             };
             if (null != this.MediaSourceStorageFile)
             {

@@ -2,6 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+<!-- NOTE: The font sizes and line heights are now StaticResources that are created in LoadStyles() in App.xaml.cs. -->
+    
     <!-- Font Styles -->
     <Style x:Key="GothamBoldFontStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Assets/Fonts/Gotham-Bold.otf#Gotham Bold,Segoe UI"/>
