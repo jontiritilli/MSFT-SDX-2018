@@ -168,7 +168,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-
+            this.StartPlayer();
         }
 
         private static void OnMediaSourceFileChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

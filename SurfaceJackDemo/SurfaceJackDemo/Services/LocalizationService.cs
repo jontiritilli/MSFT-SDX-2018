@@ -223,20 +223,33 @@ namespace SurfaceJackDemo.Services
         public void LoadHowToViewModel(HowToViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_HEADLINE, "AUDIO_TRACK_TRYIT_POPUP_HEADLINE");
+            viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
+
+            viewModel.OverviewCaption1 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT");
+            viewModel.OverviewCaption2 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT");
+            viewModel.OverviewCaption3 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT");
+            viewModel.OverviewCaption4 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT");
+            viewModel.OverviewCaption5 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT");
+            viewModel.OverviewCaption6 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID");
+
+            viewModel.Caption2 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO_COPY");
+            viewModel.Caption3 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE_COPY");
+            viewModel.Caption4 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR_COPY");
+            viewModel.Caption5 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE_COPY");
+            viewModel.Caption6 = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX_COPY, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX_COPY");
             viewModel.ListItems[0].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE");
             viewModel.ListItems[1].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO");
             viewModel.ListItems[2].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_THREE");
             viewModel.ListItems[3].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FOUR");
             viewModel.ListItems[4].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_FIVE");
             viewModel.ListItems[5].Message = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_SIX");
-            viewModel.Legal = GetStringValue(_languageCurrent.AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL, "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL");
-
         }
 
         public void LoadTechViewModel(TechViewModel viewModel)
         {
             viewModel.Headline = GetStringValue(_languageCurrent.TECH_TECH_HEADLINE, "TECH_TECH_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.TECH_TECH_COPY, "TECH_TECH_COPY");
+            viewModel.Legal = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_BATTERY_KEGAL, "TECH_TECH_POPLEFT_BATTERY_KEGAL");
             viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_TITLE, "TECH_TECH_POPLEFT_TITLE");
             viewModel.PopLeftLede = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_COPY, "TECH_TECH_POPLEFT_COPY");
             viewModel.PopLeftHR = GetStringValue(_languageCurrent.TECH_TECH_POPLEFT_BATTERY_HR, "TECH_TECH_POPLEFT_BATTERY_HR");
@@ -250,11 +263,11 @@ namespace SurfaceJackDemo.Services
         {
             viewModel.Headline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_HEADLINE, "PRODUCTIVITY_PRODUCTIVITY_HEADLINE");
             viewModel.Lede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_COPY, "PRODUCTIVITY_PRODUCTIVITY_COPY");
-            viewModel.PopLeftHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE");
-            viewModel.PopLeftLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY");
-            viewModel.PopLeftLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL");
-            viewModel.PopRightHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_TITLE, "TECH_TECH_RIGHT_TITLE");
-            viewModel.PopRightLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_COPY, "TECH_TECH_RIGHT_COPY");
+            viewModel.PopTopHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_TITLE");
+            viewModel.PopTopLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_COPY");
+            viewModel.PopTopLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPLEFT_LEGAL");
+            viewModel.PopCenterHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_TITLE, "TECH_TECH_RIGHT_TITLE");
+            viewModel.PopCenterLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPRIGHT_COPY, "TECH_TECH_RIGHT_COPY");
             viewModel.PopBottomHeadline = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_TITLE, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_TITLE");
             viewModel.PopBottomLede = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_COPY, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_COPY");
             viewModel.PopBottomLegal = GetStringValue(_languageCurrent.PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_LEGAL, "PRODUCTIVITY_PRODUCTIVITY_POPBOTTOM_LEGAL");
@@ -278,52 +291,36 @@ namespace SurfaceJackDemo.Services
             string bulletOneCopyBritish = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_COPY_BRT, "SPECS_SPECS_BULLETONE_COPY_BRT");
             string bulletOneCopyMetric = GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_COPY_MET, "SPECS_SPECS_BULLETONE_COPY_MET");
 
-            // bullet one
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 0, // order
                 ListItemIcon.Dimensions, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETONE_TITLE, "SPECS_SPECS_BULLETONE_TITLE"), // order
-                bulletOneCopyBritish, // order  // NOTE - PSS - USING BRITISH FOR NOW SINCE THIS IS US-ONLY
-                null,
-                ""
+                bulletOneCopyBritish + "\n" + bulletOneCopyMetric // order  // NOTE - PSS - USING BRITISH FOR NOW SINCE THIS IS US-ONLY
             ));
-            // ---------------------------------------------------------------------------------------------------------------
 
-            // bullet two
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 1, // order
                 ListItemIcon.Weight, // icon enum name
                 viewModel.ICON_WIDTH, // width
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_TITLE, "SPECS_SPECS_BULLETTWO_TITLE"), // order
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_COPY, "SPECS_SPECS_BULLETTWO_COPY"), // order
-                null,
-                ""
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_TITLE, "SPECS_SPECS_BULLETTWO_TITLE"),
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTWO_COPY, "SPECS_SPECS_BULLETTWO_COPY") // order
             ));
 
-            // bullet three
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 2, // order
                 ListItemIcon.Speaker, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_TITLE, "SPECS_SPECS_BULLETTHREE_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_COPY, "SPECS_SPECS_BULLETTHREE_COPY"), // order
-                null,
-                ""
-                                                                                                // null // custom icon path
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETTHREE_COPY, "SPECS_SPECS_BULLETTTHREE_COPY") // order
             ));
 
-            // bullet four
             viewModel.ItemList.Add(ListItem.CreateListItem(
                 3, // order
                 ListItemIcon.Frequency, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_TITLE, "SPECS_SPECS_BULLETFOUR_TITLE"), // order
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_COPY, "SPECS_SPECS_BULLETFOUR_COPY"), // order
-                null,
-                ""
-
-            // null // custom icon path
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFOUR_COPY, "SPECS_SPECS_BULLETFOUR_COPY") // order
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
@@ -331,9 +328,7 @@ namespace SurfaceJackDemo.Services
                 ListItemIcon.BatteryLife, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_TITLE, "SPECS_SPECS_BULLETFIVE_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_COPY, "SPECS_SPECS_BULLETFIVE_COPY"), // order
-                null,
-                ""
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETFIVE_COPY, "SPECS_SPECS_BULLETFIVE_COPY") // order
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
@@ -341,9 +336,7 @@ namespace SurfaceJackDemo.Services
                 ListItemIcon.NoiseCancellation, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_TITLE, "SPECS_SPECS_BULLETSIX_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_COPY, "SPECS_SPECS_BULLETSIX_COPY"), // order
-                null,
-                ""
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSIX_COPY, "SPECS_SPECS_BULLETSIX_COPY") // order
             ));
 
             viewModel.ItemList.Add(ListItem.CreateListItem(
@@ -351,11 +344,24 @@ namespace SurfaceJackDemo.Services
                 ListItemIcon.Inputs, // icon enum name
                 viewModel.ICON_WIDTH, // width
                 GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_TITLE, "SPECS_SPECS_BULLETSEVEN_TITLE"),
-                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_COPY, "SPECS_SPECS_BULLETSEVEN_COPY"), // order
-                null,
-                ""
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETSEVEN_COPY, "SPECS_SPECS_BULLETSEVEN_COPY") // order
             ));
 
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                7, // order
+                ListItemIcon.Compatibility, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETEIGHT_TITLE, "SPECS_SPECS_BULLETEIGHT_TITLE"), // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETEIGHT_COPY, "SPECS_SPECS_BULLETEIGHT_COPY") // order
+            ));
+
+            viewModel.ItemList.Add(ListItem.CreateListItem(
+                8, // order
+                ListItemIcon.TouchControls, // icon enum name
+                viewModel.ICON_WIDTH, // width
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETNINE_TITLE, "SPECS_SPECS_BULLETNINE_TITLE"), // order
+                GetStringValue(_languageCurrent.SPECS_SPECS_BULLETNINE_COPY, "SPECS_SPECS_BULLETNINE_COPY") // order
+            ));
         }
 
         public void LoadPartnerViewModel(InTheBoxViewModel viewModel)
@@ -413,14 +419,14 @@ namespace SurfaceJackDemo.Services
 
         private string GetStringValue(string value, string name)
         {
-            if (String.IsNullOrWhiteSpace(value))
-            {
-                return String.Format("Missing translation for {0}", name);
-            }
-            else
-            {
+            //if (String.IsNullOrWhiteSpace(value))
+            //{
+            //    return String.Format("Missing translation for {0}", name);
+            //}
+            //else
+            //{
                 return value;
-            }
+            //}
         }
 
         private string GetStringValueToUpper(string value, string name)

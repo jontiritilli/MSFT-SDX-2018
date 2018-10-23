@@ -4,11 +4,78 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     DataContext="{Binding SpeakerDesignPopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
+    
+    <Grid
+        x:Name="LayoutRoot"
+        Width="{StaticResource CanvasWidth}"
+        Height="{StaticResource CanvasHeight}"
+        Background="{StaticResource PopupBlueBackgroundSolidColorBrush}">
 
-    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.ColumnDefinitions>
 
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
+            Background="{StaticResource PopupBackgroundSolidColorBrush}">
+            <Image
+                x:Name="imgHero"
+                Width="{StaticResource PopupWidth}">
+                <Image.Source>
+                    <BitmapImage
+                        UriSource="ms-appx:///Assets/SpeakerDesign/audio_popupHero1.png"
+                        DecodePixelWidth="1774"
+                        DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Canvas>
+        
+        <StackPanel Grid.Row="2" Grid.Column="1"
+            Orientation="Vertical"
+            HorizontalAlignment="Right">
+            
+            <TextBlock
+                Width="515"
+                Style="{StaticResource HeadlineTextStyle}"     
+                Text="{x:Bind Path=ViewModel.Headline}" />
+            <TextBlock
+                Width="515"
+                Style="{StaticResource BodyTextStyle}"
+                Text="{x:Bind Path=ViewModel.Body}"/>
+        </StackPanel>
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
+            <Grid
+                x:Name="btnClose"
+                Width="{StaticResource PopupCloseBtnWidth}"
+                Canvas.Left="{StaticResource PopupCloseBtnSetLeft}"
+                Canvas.Top="{StaticResource PopupCloseBtnSetTop}"
+                PointerReleased="btnClose_Click">
+                <Image>
+                    <Image.Source>
+                        <BitmapImage
+                            UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                            DecodePixelWidth="60"
+                            DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Canvas>
     </Grid>
 
 </Page>

@@ -26,6 +26,7 @@ namespace SDX.Toolkit.Helpers
         PageLedeDark,
         ReadyPageHeadline,
         ListHeadline,
+        ListHeadlineDark,
         ListLede,
         ListLedeBold,
         ListItemHeadlinePenTouch,
@@ -51,8 +52,8 @@ namespace SDX.Toolkit.Helpers
         PlayerTrackName,
         AppSelectorText,
         AppSelectorTextBold,
-        SpecItemHeadlineBestOf,
-        SpecItemLedeBestOf,
+        SpecItemHeadline,
+        SpecItemLede,
     }
 
     public enum LayoutSizes
@@ -193,7 +194,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PAGE_LEDE = "PageLede";
         public const string STYLE_PAGE_LEDE_DARK = "PageLedeDark";
         public const string STYLE_PAGE_READYHEADLINE = "ReadyPageHeadline";
-        public const string STYLE_LIST_HEADLINE = "ListHeadline";
+        public const string STYLE_LIST_HEADLINE = "ListHeadline"; 
+        public const string STYLE_LIST_HEADLINE_DARK = "ListHeadlineDark";
         public const string STYLE_LIST_LEDE = "ListLede";
         public const string STYLE_LIST_LEDE_BOLD = "ListLedeBold";
         public const string STYLE_LISTITEM_HEADLINE_PENTOUCH = "ListItemHeadlinePenTouch";
@@ -219,8 +221,8 @@ namespace SDX.Toolkit.Helpers
         public const string STYLE_PLAYER_TRACKNAME = "PlayerTrackName";
         public const string STYLE_APPSELECTOR_TEXT= "AppSelectorText";
         public const string STYLE_APPSELECTOR_TEXT_BOLD = "AppSelectorTextBold";
-        public const string STYLE_SPECITEM_HEADLINE_BESTOF = "SpecItemHeadlineBestOf";
-        public const string STYLE_SPECITEM_LEDE_BESTOF = "SpecItemLedeBestOf";
+        public const string STYLE_SPECITEM_HEADLINE = "SpecItemHeadline";
+        public const string STYLE_SPECITEM_LEDE = "SpecItemLede";
 
         #endregion
 
@@ -713,6 +715,10 @@ namespace SDX.Toolkit.Helpers
                     style = GetApplicationStyle(STYLE_LIST_HEADLINE);
                     break;
 
+                case TextStyles.ListHeadlineDark:
+                    style = GetApplicationStyle(STYLE_LIST_HEADLINE_DARK);
+                    break; 
+
                 case TextStyles.ListLede:
                     style = GetApplicationStyle(STYLE_LIST_LEDE);
                     break;
@@ -811,12 +817,12 @@ namespace SDX.Toolkit.Helpers
                     style = GetApplicationStyle(STYLE_APPSELECTOR_TEXT_BOLD);
                     break;
 
-                case TextStyles.SpecItemHeadlineBestOf:
-                    style = GetApplicationStyle(STYLE_SPECITEM_HEADLINE_BESTOF);
+                case TextStyles.SpecItemHeadline:
+                    style = GetApplicationStyle(STYLE_SPECITEM_HEADLINE);
                     break;
 
-                case TextStyles.SpecItemLedeBestOf:
-                    style = GetApplicationStyle(STYLE_SPECITEM_LEDE_BESTOF);
+                case TextStyles.SpecItemLede:
+                    style = GetApplicationStyle(STYLE_SPECITEM_LEDE);
                     break;
 
                 default:

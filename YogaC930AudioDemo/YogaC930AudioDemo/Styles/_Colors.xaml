@@ -1,5 +1,56 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">    
-    <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"></SolidColorBrush>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="HeadlineTextSolidColorBrush" Color="#FF000000"/>
+    
+    <SolidColorBrush x:Key="BodyTextSolidColorBrush" Color="#FF000000"/>
+
+    <SolidColorBrush x:Key="BodyBlueTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="LegalTextSolidColorBrush" Color="#FF999999"/>
+
+    <SolidColorBrush x:Key="SeparatorLineSolidColorBrush" Color="#FFE5E5E5"/>
+
+    <SolidColorBrush x:Key="AppCloseBorderBrush" Color="#FFDDDDDD" Opacity="0.25"/>
+
+    <AcrylicBrush x:Key="AppCloseBackgroundBrush" TintColor="#FFFFFFFF" TintOpacity="0.16" Opacity="0.72" FallbackColor="#29FFFFFF"/>
+
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundNormalTextSolidColorBrush" Color="#FFA8A8A8"/>
+
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundPointerEnteredTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundPointerPressedTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="NavigationBarLightBackgroundPointerReleasedTextSolidColorBrush" Color="#FF3E8DDD"/>
+    
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundNormalTextSolidColorBrush" Color="#FFBFBFBF"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerEnteredTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerPressedTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="NavigationBarDarkBackgroundPointerReleasedTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoBorderSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <!--<SolidColorBrush x:Key="PlayAudioDemoBorderShadowSolidColorBrush" Color="#FFFF00FF"/>-->
+
+    <AcrylicBrush x:Key="PlayAudioDemoBorderShadowSolidColorBrush" TintColor="#FF000000" TintOpacity="0.16" FallbackColor="#FF000000" Opacity="0.65"/>
+    
+    <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoLightBackgroundTextSolidColorBrush" Color="#FF3E8DDD"/>
+
+    <SolidColorBrush x:Key="PlayAudioDemoDarkBackgroundTextSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="VolumeHightlightEllipseColor" Color="#FFFFFFFF" Opacity="0.85"/>
+
+    <SolidColorBrush x:Key="PopupBackgroundSolidColorBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="PopupBlueBackgroundSolidColorBrush" Color="#E6082454"/>
+
 </ResourceDictionary>

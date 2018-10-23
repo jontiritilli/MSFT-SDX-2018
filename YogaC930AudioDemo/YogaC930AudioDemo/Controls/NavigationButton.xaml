@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="YogaC930AudioDemo.Controls.NavigationButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:local="using:YogaC930AudioDemo.Controls">
+
+    <Grid>
+        <TextBlock x:Name="TheTextBlock"
+                   Style="{x:Bind Path=NormalLightStyle}"
+                   PointerEntered="TheTextBlock_PointerEntered"
+                   PointerMoved="TheTextBlock_PointerMoved"
+                   PointerExited="TheTextBlock_PointerExited"
+                   PointerPressed="TheTextBlock_PointerPressed"
+                   PointerReleased="TheTextBlock_PointerReleased" FontFamily="Segoe UI">
+            <Run x:Name="Bullet"
+                FontFamily="{StaticResource FontAwesomeFontFamily}"
+                Text="{StaticResource FontAwesomeForwardArrow}"/>
+            <Run x:Name="TheCaption"
+                 Text="{x:Bind Path=Caption}"/>
+        </TextBlock>
+    </Grid>
+</UserControl>
+
+<!-- ms-appx:///Assets/Fonts/fa-solid-900.ttf -->

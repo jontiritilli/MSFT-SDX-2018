@@ -4,11 +4,92 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     DataContext="{Binding HingeDesignPopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+    <Page.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
+    
+    <Grid
+        x:Name="LayoutRoot"
+        Width="{StaticResource CanvasWidth}"
+        Height="{StaticResource CanvasHeight}"
+        Background="{StaticResource PopupBlueBackgroundSolidColorBrush}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.ColumnDefinitions>
 
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="4"
+                Background="{StaticResource PopupBackgroundSolidColorBrush}">
+        </Canvas>
+        <StackPanel Grid.Row="2" Grid.Column="1"
+            HorizontalAlignment="Center">
+
+            <TextBlock
+                Width="{StaticResource PopupHeaderWidth}"
+                TextAlignment="Center"
+                HorizontalAlignment="Center"
+                Style="{StaticResource HeadlineTextStyle}"     
+                Text="{x:Bind Path=ViewModel.Headline}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="1"
+                Width="{StaticResource PopupHeaderWidth}"
+                TextAlignment="Center"
+                HorizontalAlignment="Center"
+                Style="{StaticResource BodyTextStyle}">
+                <Run
+                    Text="{x:Bind Path=ViewModel.BodyFirst}"/>
+                <Run
+                    Text="{x:Bind Path=ViewModel.BodyBold}"
+                    Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
+                    FontWeight="SemiBold"/>
+                <Run
+                    Text="{x:Bind Path=ViewModel.BodyLast}"/>
+            </TextBlock>
+        </StackPanel>
+
+        <Image Grid.Row="4" Grid.Column="1"
+            x:Name="imgHero"
+            VerticalAlignment="Center"
+            Width="1692">
+            <Image.Source>
+                <BitmapImage
+                    UriSource="ms-appx:///Assets/HingeDesign/audio_popupHero2.png"
+                    DecodePixelWidth="1692"
+                    DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
+            <Grid
+                x:Name="btnClose"
+                Width="{StaticResource PopupCloseBtnWidth}"
+                Canvas.Left="{StaticResource PopupCloseBtnSetLeft}"
+                Canvas.Top="{StaticResource PopupCloseBtnSetTop}"
+                PointerReleased="btnClose_Click">
+
+                <Image>
+                    <Image.Source>
+                        <BitmapImage
+                            UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                            DecodePixelWidth="60"
+                            DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+        </Canvas>
     </Grid>
-
 </Page>

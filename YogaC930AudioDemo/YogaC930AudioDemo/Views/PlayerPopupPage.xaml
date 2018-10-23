@@ -5,10 +5,57 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding PlayerPopupViewModel, Source={StaticResource Locator}}"
+    xmlns:model="using:YogaC930AudioDemo.Models"
+    xmlns:views="using:YogaC930AudioDemo.Views"    
+    xmlns:ctrl="using:YogaC930AudioDemo.Controls"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
+    Width="1920"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+    <Page.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
 
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Source={StaticResource CanvasHeight}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={StaticResource CanvasWidth}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.ColumnDefinitions>
+        
+        <ctrl:LoopPlayer Grid.Row="0" Grid.Column="0"
+            x:Name="LoopPlayer"
+            Width="1920"
+            MediaSourceUri="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.mp4"
+            AutoPlay="True"/>
+
+        <Canvas Grid.Row="0" Grid.Column="0">
+            <Grid
+                x:Name="btnClose"
+                Width="{StaticResource PopupCloseBtnWidth}"
+                Canvas.Left="1840"
+                Canvas.Top="20"
+                PointerReleased="btnClose_Click">
+
+                <Image>
+                    <Image.Source>
+                        <BitmapImage
+                            UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                            DecodePixelWidth="60"
+                            DecodePixelType="Logical"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+
+        </Canvas>
+
+        <ctrl:VolumeSlider Grid.Row="0" Grid.Column="0"
+            x:Name="VolumeControl"
+            VolumeControlCaptionTextFirst="{x:Bind Path=ViewModel.BodyFirst}"
+            VolumeControlCaptionTextLast="{x:Bind Path=ViewModel.BodyLast}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Opacity="1.0" />
     </Grid>
-
 </Page>

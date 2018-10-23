@@ -229,6 +229,16 @@ namespace SDX.Toolkit.Controls
             set { SetValue(LedeOpacityProperty, value); }
         }
 
+        // IsRowSpacingActive
+        public static readonly DependencyProperty RowSpacingActiveProperty =
+        DependencyProperty.Register("IsRowSpacingActive", typeof(bool), typeof(Header), new PropertyMetadata(true));
+
+        public bool IsRowSpacingActive
+        {
+            get { return (bool)GetValue(RowSpacingActiveProperty); }
+            set { SetValue(RowSpacingActiveProperty, value); }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -353,7 +363,7 @@ namespace SDX.Toolkit.Controls
             // calculate rows
             GridLength headlineRowHeight = (String.IsNullOrWhiteSpace(this.Headline)) ? new GridLength(0) : GridLength.Auto;
             GridLength ledeRowHeight = (String.IsNullOrWhiteSpace(this.Lede)) ? new GridLength(0) : new GridLength(1.0, GridUnitType.Star);
-            double rowSpacing = (String.IsNullOrWhiteSpace(this.Headline) || String.IsNullOrWhiteSpace(this.Lede)) ? 0d : 10d;
+            double rowSpacing = (String.IsNullOrWhiteSpace(this.Headline) || String.IsNullOrWhiteSpace(this.Lede)) || !this.IsRowSpacingActive ? 0d : 10d;
 
             // create the grid
             _layoutGrid = new Grid()

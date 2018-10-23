@@ -35,7 +35,13 @@ namespace SDX.Toolkit.Controls
 
         private List<ListItem> _listItems = new List<ListItem>();
 
+        private List<UIElement> _specListElements = new List<UIElement>();
+
         private Grid _layoutRoot = null;
+
+        private Grid ColGrid = null;
+
+        private Grid RowGrid = null;
 
         #endregion
 
@@ -473,94 +479,107 @@ namespace SDX.Toolkit.Controls
                     break;
                 case ListStyles.Specs:
                     {
-                        // create a grid of grids. 2 columns and 2 or 3 rows base don # of units. star space them
-                        // and each inner grid handles its icon/text/spacer
-                        double rowPercent = (_listItems.Count > 4 ? 0.333 : 0.5);
-                        double columnPercent = (_listItems.Count > 5 ? 0.333 : 0.5);
-                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnPercent, GridUnitType.Star) });
-                        _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnPercent, GridUnitType.Star) });
-                        if (_listItems.Count > 5)
-                        {//5th item handling
-                            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(columnPercent, GridUnitType.Star) });
-                        }
-                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
-                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
-                        if (_listItems.Count > 4)
-                        {//5th item handling
-                            _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowPercent, GridUnitType.Star) });
-                        }
+                        _layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+
+                        // set row spacing
+                        double rowSpacing = StyleHelper.GetApplicationDouble("CompareRowSpacerHeight");
+
                         // create a counter to know when we reach the end of list
                         int Index = 0;
+
                         int ListLength = _listItems.Count() - 1;
-                        int rowPos = 0;
-                        int colPos = 0;
+                        var ListContentCount = new List<int> { 4, 2, 3 };
                         double ListTextWidth = StyleHelper.GetApplicationDouble("SpecsListTextWidth");
-
-                        // create the list items and add to the grid
-                        foreach (ListItem item in _listItems)
+                        for (int col = 0; col < 3; col++)
                         {
-                            // get correct row to add content, don't want to add to a spacer row
-                            Grid grid = new Grid();
-                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble(LayoutSizes.BestOfMicrosoftColumnSpacerWidth)) });
-                            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                            int RowToAdd = Index == 0 ? item.Order : item.Order + Index;
-
-                            // create the row for content
-                            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                            // create icon image
-                            ImageEx icon = new ImageEx()
+                            int rowIndex = 0;
+                            ColGrid = new Grid()
                             {
-                                Name = String.Format("Icon_{0}", item.Order),
-                                ImageSource = item.IconPath,
-                                ImageWidth = item.IconWidth,
-                                VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
-                                VerticalContentAlignment = VerticalAlignment.Top,
-                                PageEntranceDirection = this.PageEntranceDirection,
-                                Opacity = 0.0
+                                Name = "ColumnGrid",
                             };
 
-                            Grid.SetColumn(icon, 0);
-                            Grid.SetRow(icon, RowToAdd);
-                            grid.Children.Add(icon);
-
-                            // create the headline (bold text) if one is provided
-                            Header headline = new Header()
+                            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+                            // create the list items and add to the grid
+                            for (int row = 0; row < ListContentCount[col]; row++)
                             {
-                                HeadlineStyle = TextStyles.SpecItemHeadlineBestOf,
-                                Headline = item.Headline,
-                                LedeStyle = TextStyles.SpecItemLedeBestOf,
-                                Lede = item.Lede,
-                                CTAText = item.CTAText,
-                                CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
-                                Width = ListTextWidth,
-                                HeaderAlignment = TextAlignment.Left,
-                                HorizontalAlignment = HorizontalAlignment.Left,
-                                VerticalAlignment = VerticalAlignment.Top,
-                                PageEntranceDirection = this.PageEntranceDirection,
-                                HeadlineOpacity = 0,
-                                LedeOpacity = 0
-                            };
-                            Grid.SetColumn(headline, 2);
-                            Grid.SetRow(headline, RowToAdd);
+                                ColGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
-                            grid.Children.Add(headline);
-                            Grid.SetRow(grid, rowPos);
-                            Grid.SetColumn(grid, colPos);
-                            _layoutRoot.Children.Add(grid);
-                            // increment index
-                            Index++;
-                            if (_listItems.Count > 5)
-                            {// handling for 3 columns
-                                rowPos = (Index < 3 ? 0 : (Index < 6 ? 1 : 2));
-                                colPos = (Index % 3 == 0 ? 0 : Index % 3 == 1 ? 1 : 2);
+                                if(Index < ListLength)
+                                {
+                                    ColGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(rowSpacing) });
+                                }
+
+                                RowGrid = new Grid()
+                                {
+                                    Name = "RowGrid"
+                                };
+
+                                ListItem item = _listItems[Index];
+
+                                int RowToAdd = rowIndex == 0 ? 0 : row + rowIndex;
+                                // get correct row to add content, don't want to add to a spacer row
+
+                                RowGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                                RowGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(StyleHelper.GetApplicationDouble("SpecsListColumnSpacerWidth")) });
+
+                                RowGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                                RowGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                                // create icon image
+                                ImageEx icon = new ImageEx()
+                                {
+                                    Name = String.Format("Icon_{0}", item.Order),
+                                    ImageSource = item.IconPath,
+                                    ImageWidth = item.IconWidth,
+                                    VerticalAlignment = VerticalAlignment.Top,  // items align to top when there's a header
+                                    VerticalContentAlignment = VerticalAlignment.Top,
+                                    PageEntranceDirection = this.PageEntranceDirection,
+                                    Opacity = 1
+                                };
+
+                                Grid.SetColumn(icon, 0);
+                                Grid.SetRow(icon, 0);
+                                RowGrid.Children.Add(icon);
+
+                                // create the headline (bold text) if one is provided
+                                Header headline = new Header()
+                                {
+                                    HeadlineStyle = TextStyles.SpecItemHeadline,
+                                    Headline = item.Headline,
+                                    LedeStyle = TextStyles.SpecItemLede,
+                                    Lede = item.Lede,
+                                    IsRowSpacingActive = false,
+                                    CTAText = item.CTAText,
+                                    CTAUri = String.IsNullOrWhiteSpace(item.CTAUri) ? null : new Uri(item.CTAUri),
+                                    Width = ListTextWidth,
+                                    HeaderAlignment = TextAlignment.Left,
+                                    HorizontalAlignment = HorizontalAlignment.Left,
+                                    VerticalAlignment = VerticalAlignment.Top,
+                                    PageEntranceDirection = this.PageEntranceDirection,
+                                    Opacity = 1
+                                };
+
+                                Grid.SetColumn(headline, 2);
+                                Grid.SetRow(headline, 0);
+                                RowGrid.Children.Add(headline);
+
+                                _specListElements.Add(RowGrid);
+
+                                Grid.SetColumn(RowGrid, col);
+                                Grid.SetRow(RowGrid, RowToAdd);
+                                ColGrid.Children.Add(RowGrid);
+
+                                // increment index
+                                Index++;
+                                rowIndex++;
                             }
-                            else
-                            {
-                                rowPos = (Index < 2 ? 0 : (Index < 4 ? 1 : 2));
-                                colPos = (colPos > 0 ? 0 : 1);
-                            }
+                            Grid.SetColumn(ColGrid, col);
+                            Grid.SetRow(ColGrid, 0);
+                            _layoutRoot.Children.Add(ColGrid);
+
+                            rowIndex = 0;
                         }
                     }
                     break;
@@ -590,7 +609,6 @@ namespace SDX.Toolkit.Controls
             {
                 switch (this.ListStyle)
                 {
-                    case ListStyles.Specs:
                     case ListStyles.BestOf: // used for interactive pages with header followed by list of items
                         {
                             foreach (UIElement item in _layoutRoot.Children)
@@ -629,6 +647,8 @@ namespace SDX.Toolkit.Controls
                             }
                         }
                         break;
+                    case ListStyles.Specs:
+                        return _specListElements;
                 }
             }
 

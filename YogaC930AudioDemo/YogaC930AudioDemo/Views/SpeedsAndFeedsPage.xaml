@@ -4,11 +4,241 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:YogaC930AudioDemo.Converters"
     DataContext="{Binding SpeedsAndFeedsViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+    <Page.Resources>
+        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot"
+          ColumnSpacing="32">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource GridLengthConverter}}"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Mica Hero Image -->
+        <Image x:Name="MicaHero"
+               Grid.Row="0"
+               Grid.RowSpan="5"
+               Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Margin="0,50,0,0"
+               HorizontalAlignment="Right"
+               Width="1152">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
+                                DecodePixelWidth="1152" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+        <!-- Iron Hero Image -->
+        <Image x:Name="IronHero"
+               Grid.Row="0"
+               Grid.RowSpan="5"
+               Grid.Column="0"
+               Grid.ColumnSpan="5"
+               Margin="0,100,0,35"
+               HorizontalAlignment="Right"
+               Width="1152">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
+                                DecodePixelWidth="1152" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
+
+
+        <!-- Headline and Body -->
+        <StackPanel x:Name="HeaderStackPanel"
+                    Margin="0,0,0,74.79"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2">
+            <TextBlock x:Name="Headline"
+                        Style="{StaticResource HeadlineTextStyle}"     
+                        Text="{x:Bind Path=ViewModel.Headline}" />
+            <TextBlock x:Name="Body"
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{x:Bind Path=ViewModel.Body}"/>
+        </StackPanel>
+
+
+        <!-- Left Items StackPanel -->
+        <StackPanel x:Name="LeftItemsStackPanel"
+                    Orientation="Vertical"
+                    Grid.Row="2"
+                    Grid.Column="1">
+
+            <StackPanel x:Name="Windows10Item"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,0,0,27">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.WindowsBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.WindowsBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.WindowsBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="DolbyVision"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,40,0,27">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.DolbyBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.DolbyBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.DolbyBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="Battery"
+                        Orientation="Vertical"
+                        Padding="0,40,0,0">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.BatteryBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.BatteryBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.BatteryBodyLast}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right Items StackPanel -->
+        <StackPanel x:Name="RightItemsStackPanel"
+                    Orientation="Vertical"
+                    Grid.Row="2"
+                    Grid.Column="2">
+
+            <StackPanel x:Name="Intel"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,0,0,27">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.IntelBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.IntelBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.IntelBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="FourK"
+                        Orientation="Vertical"
+                        BorderThickness="{StaticResource SeparatorLineBorderThickness}"
+                        BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
+                        Padding="0,40,0,27">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FourKBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FourKBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FourKBodyLast}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="FiftySeven"
+                        Orientation="Vertical"
+                        Padding="0,40,0,0">
+                <TextBlock
+                            Style="{StaticResource ListItemFirstLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyFirst}" />
+                <TextBlock
+                            Style="{StaticResource ListItemHeroLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyBold}"/>
+                <TextBlock
+                            Style="{StaticResource ListItemLastLineTextStyle}"
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyLast}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock x:Name="Legal"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Bottom"
+                   Style="{StaticResource LegalTextStyle}"
+                   Text="{x:Bind Path=ViewModel.Footnote}"/>
+
+        <!--<Image x:Name="imgHero"
+               Grid.Row="1"
+               Grid.RowSpan="5"
+               Grid.Column="0"
+               Grid.ColumnSpan="5"
+               HorizontalAlignment="Right"
+               Width="1152">
+            <Image.Source>
+                <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_hero.png"
+                                 DecodePixelWidth="1152" DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>-->
+        
+        <!-- Intel Core Mark -->
+        <Canvas x:Name="IntelCanvas"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="5">
+            <Image x:Name="IntelMark"
+                   Canvas.Left="1700"
+                   Canvas.Top="911"
+                   Width="84">
+                <Image.Source>
+                    <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_intelCoreMark.png"
+                                 DecodePixelWidth="84" DecodePixelType="Logical"/>
+                </Image.Source>
+            </Image>
+        </Canvas>
+
+        <!-- Intel Core Mark -->
+        <Canvas x:Name="DeviceColors"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="5">
+            <TextBlock
+                Style="{StaticResource ColorSpecTextStyle}"
+                Text="{x:Bind Path=ViewModel.TopColor}" 
+                Canvas.Left="1050"
+                Canvas.Top="450"/>
+
+            <TextBlock
+                Style="{StaticResource ColorSpecTextStyle}"
+                Text="{x:Bind Path=ViewModel.BottomColor}" 
+                Canvas.Left="1000"
+                Canvas.Top="570"/>
+        </Canvas>
     </Grid>
 
 </Page>

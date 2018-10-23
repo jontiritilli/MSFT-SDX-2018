@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Helpers;
+using SDX.Toolkit.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
@@ -30,6 +31,7 @@ namespace SurfaceJackDemo.Views
 
         public Popup ReadyScreen;
         public Popup HowToScreen;
+        public MusicBar MusicBar;
 
         #endregion
 
@@ -88,19 +90,26 @@ namespace SurfaceJackDemo.Views
 
             // get the initial screen cover popup
             this.ReadyScreen = FlipViewPage.Current.GetAudioListenPopup();
-
             AudioListenPopupPage.Current.CloseButton_Clicked += AudioTryItClose_Button_Clicked;
 
             // get the howto screen popup
             this.HowToScreen = FlipViewPage.Current.GetHowToPagePopup();
             this.rBtnLeft.PopupChild = HowToScreen;
-
+            HowToScreen.Opened += PerformHowToEntranceAnimation;
             HowToPage.Current.CloseButton_Clicked += HowToCloseButton_Clicked;
+
+            // get the music bar
+            this.MusicBar = FlipViewPage.Current.GetMusicBar();
 
             if (this.HasNavigatedTo)
             {
                 AnimatePageEntrance();
             }
+        }
+
+        private void PerformHowToEntranceAnimation(object sender, object e)
+        {
+            HowToPage.Current?.PerformOverViewEntrance();
         }
 
         private void HowToCloseButton_Clicked(object sender, RoutedEventArgs e)
@@ -113,6 +122,7 @@ namespace SurfaceJackDemo.Views
             HasInteracted = true;
             HidePopup();
             AnimatePageEntrance();
+            MusicBar.Play();
         }
 
         private void itemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

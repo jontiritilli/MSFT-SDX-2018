@@ -29,12 +29,12 @@ namespace SurfaceJackDemo.ViewModels
         public string BackgroundUri;
         public string Headline;
         public string Lede;
-        public string PopLeftHeadline;
-        public string PopLeftLede;
-        public string PopLeftLegal;
-        public string PopLeftHR;
-        public string PopRightHeadline;
-        public string PopRightLede;
+        public string PopTopHeadline;
+        public string PopTopLede;
+        public string PopTopLegal;
+        public string PopTopHR;
+        public string PopCenterHeadline;
+        public string PopCenterLede;
         public string PopBottomHeadline;
         public string PopBottomLede;
         public string PopBottomLegal;

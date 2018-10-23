@@ -25,7 +25,8 @@ namespace YogaC930AudioDemo.Models
         public string AUDIO_POP_RIGHT_BODY_FIRST = "From laptop to tablet and back, the unique";
         public string AUDIO_POP_RIGHT_BODY_BOLD = "Rotating Soundbar with Dolby Atmos Speaker System";
         public string AUDIO_POP_RIGHT_BODY_LAST = "offers the best performance at any angle.";
-        public string AUDIO_POP_DEMO_COPY = "Get ready for truly immersive audio.";
+        public string AUDIO_POP_DEMO_COPY_FIRST = "Get ready for truly";
+        public string AUDIO_POP_DEMO_COPY_LAST = "immersive audio.";
         public string FEATURES_PLAY_CTA = "PLAY AUDIO DEMO";
         public string FEATURES_PEN_HEADLINE = "Never lose a thought—or your digital pen";
         public string FEATURES_PEN_BODY_FIRST = "With a";
@@ -53,7 +54,7 @@ namespace YogaC930AudioDemo.Models
         public string PERFORMANCE_DOLBY_LAST = "ultravivid imaging";
         public string PERFORMANCE_4K_FIRST = "Up to";
         public string PERFORMANCE_4K_BOLD = "4K UHD";
-        public string PERFORMANCE_4K_LAST = "Up to";
+        public string PERFORMANCE_4K_LAST = "screen resolution";
         public string PERFORMANCE_HOURS_FIRST = "Up to";
         public string PERFORMANCE_HOURS_BOLD = "14 hours*";
         public string PERFORMANCE_HOURS_LAST = "of battery life";
@@ -98,7 +99,8 @@ namespace YogaC930AudioDemo.Models
             languageFile.AUDIO_POP_RIGHT_BODY_FIRST = "From laptop to tablet and back, the unique";
             languageFile.AUDIO_POP_RIGHT_BODY_BOLD = "Rotating Soundbar with Dolby Atmos Speaker System";
             languageFile.AUDIO_POP_RIGHT_BODY_LAST = "offers the best performance at any angle.";
-            languageFile.AUDIO_POP_DEMO_COPY = "Get ready for truly immersive audio.";
+            languageFile.AUDIO_POP_DEMO_COPY_FIRST = "Get ready for truly";
+            languageFile.AUDIO_POP_DEMO_COPY_LAST = "immersive audio.";
             languageFile.FEATURES_PLAY_CTA = "PLAY AUDIO DEMO";
             languageFile.FEATURES_PEN_HEADLINE = "Never lose a thought—or your digital pen";
             languageFile.FEATURES_PEN_BODY_FIRST = "With a";
@@ -126,7 +128,7 @@ namespace YogaC930AudioDemo.Models
             languageFile.PERFORMANCE_DOLBY_LAST = "ultravivid imaging";
             languageFile.PERFORMANCE_4K_FIRST = "Up to";
             languageFile.PERFORMANCE_4K_BOLD = "4K UHD";
-            languageFile.PERFORMANCE_4K_LAST = "Up to";
+            languageFile.PERFORMANCE_4K_LAST = "screen resolution";
             languageFile.PERFORMANCE_HOURS_FIRST = "Up to";
             languageFile.PERFORMANCE_HOURS_BOLD = "14 hours*";
             languageFile.PERFORMANCE_HOURS_LAST = "of battery life";

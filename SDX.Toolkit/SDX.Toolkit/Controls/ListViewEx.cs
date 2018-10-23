@@ -13,12 +13,8 @@ namespace SDX.Toolkit.Controls
 {
     public class ListViewEx : ListView
     {
-        private Brush BackGroundWhiteAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Light);
-            
-        private Brush BackGroundGrayAcrylic = StyleHelper.GetAcrylicBrush(AcrylicColors.Gray);
-
-        public static readonly DependencyProperty HasAltRowsProperty =
-    DependencyProperty.Register("HasAltRows", typeof(Boolean), typeof(ListViewEx), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasAltRowsProperty = 
+            DependencyProperty.Register("HasAltRows", typeof(Boolean), typeof(ListViewEx), new PropertyMetadata(false));
 
         public Boolean HasAltRows
         {
@@ -35,11 +31,11 @@ namespace SDX.Toolkit.Controls
 
                 if (index % 2 == 0)
                 {
-                    listViewItem.Background = BackGroundWhiteAcrylic;
+                    listViewItem.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Light);
                 }
                 else
                 {
-                    listViewItem.Background = BackGroundGrayAcrylic;
+                    listViewItem.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Gray);
                 }
             }
 

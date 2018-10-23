@@ -298,6 +298,11 @@ namespace SurfaceJackDemo.Views
             return this.AudioListenPopup;
         }
 
+        public MusicBar GetMusicBar()
+        {
+            return this.MusicBar;
+        }
+
         public void EnablePageNavigation(object sender, object e)
         {
             this.BottomNavBar.IsNavigationEnabled = true;
