@@ -9,26 +9,26 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot"
-          ColumnSpacing="32">
+          ColumnSpacing="{Binding Source=32, Converter={StaticResource ScalingConverter}}">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource ScalingConverter}}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
-            <ColumnDefinition Width="320"/>
-            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=320, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=320, Converter={StaticResource ScalingConverter}}"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
 
         <!-- Mica Hero Image -->
@@ -37,12 +37,13 @@
                Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
-               Margin="0,50,0,0"
+               Margin="{Binding Source='0,50,0,0', Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
-               Width="1152">
+               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
-                                DecodePixelWidth="1152" DecodePixelType="Logical"/>
+                             DecodePixelWidth="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
+                             DecodePixelType="Logical"/>
             </Image.Source>
         </Image>
 
@@ -52,19 +53,20 @@
                Grid.RowSpan="5"
                Grid.Column="0"
                Grid.ColumnSpan="5"
-               Margin="0,100,0,35"
+               Margin="{Binding Source='0,100,0,35', Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
-               Width="1152">
+               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
-                                DecodePixelWidth="1152" DecodePixelType="Logical"/>
+                             DecodePixelWidth="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
+                             DecodePixelType="Logical"/>
             </Image.Source>
         </Image>
 
 
         <!-- Headline and Body -->
         <StackPanel x:Name="HeaderStackPanel"
-                    Margin="0,0,0,74.79"
+                    Margin="{Binding Source='0,0,0,74.79', Converter={StaticResource ScalingConverter}}"
                     Grid.Row="1"
                     Grid.Column="1"
                     Grid.ColumnSpan="2">
@@ -87,7 +89,7 @@
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
                         BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
-                        Padding="0,0,0,27">
+                        Padding="{Binding Source='0,0,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.WindowsBodyFirst}" />
@@ -103,7 +105,7 @@
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
                         BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
-                        Padding="0,40,0,27">
+                        Padding="{Binding Source='0,40,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.DolbyBodyFirst}" />
@@ -117,7 +119,7 @@
 
             <StackPanel x:Name="Battery"
                         Orientation="Vertical"
-                        Padding="0,40,0,0">
+                        Padding="{Binding Source='0,40,0,0', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.BatteryBodyFirst}" />
@@ -140,7 +142,7 @@
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
                         BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
-                        Padding="0,0,0,27">
+                        Padding="{Binding Source='0,0,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.IntelBodyFirst}" />
@@ -156,7 +158,7 @@
                         Orientation="Vertical"
                         BorderThickness="{StaticResource SeparatorLineBorderThickness}"
                         BorderBrush="{StaticResource SeparatorLineSolidColorBrush}"
-                        Padding="0,40,0,27">
+                        Padding="{Binding Source='0,40,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.FourKBodyFirst}" />
@@ -170,7 +172,7 @@
 
             <StackPanel x:Name="FiftySeven"
                         Orientation="Vertical"
-                        Padding="0,40,0,0">
+                        Padding="{Binding Source='0,40,0,0', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
                             Text="{x:Bind Path=ViewModel.FiftySevenBodyFirst}" />
@@ -211,12 +213,13 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="5">
             <Image x:Name="IntelMark"
-                   Canvas.Left="1700"
-                   Canvas.Top="911"
-                   Width="84">
+                   Canvas.Left="{Binding Source=1700, Converter={StaticResource ScalingConverter}}"
+                   Canvas.Top="{Binding Source=911, Converter={StaticResource ScalingConverter}}"
+                   Width="{Binding Source=84, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_intelCoreMark.png"
-                                 DecodePixelWidth="84" DecodePixelType="Logical"/>
+                                 DecodePixelWidth="{Binding Source=84, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
         </Canvas>
@@ -230,14 +233,14 @@
             <TextBlock
                 Style="{StaticResource ColorSpecTextStyle}"
                 Text="{x:Bind Path=ViewModel.TopColor}" 
-                Canvas.Left="1050"
-                Canvas.Top="450"/>
+                Canvas.Left="{Binding Source=1050, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=450, Converter={StaticResource ScalingConverter}}"/>
 
             <TextBlock
                 Style="{StaticResource ColorSpecTextStyle}"
                 Text="{x:Bind Path=ViewModel.BottomColor}" 
-                Canvas.Left="1000"
-                Canvas.Top="570"/>
+                Canvas.Left="{Binding Source=1000, Converter={StaticResource ScalingConverter}}"
+                Canvas.Top="{Binding Source=570, Converter={StaticResource ScalingConverter}}"/>
         </Canvas>
     </Grid>
 

@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     
     <Page.Resources>
-        <conv:DoubleToGridLengthConverter x:Key="GridLengthConverter"/>
+        <conv:ScalingConverter x:Key="ScalingConverter"/>
     </Page.Resources>
     
     <Grid
@@ -19,28 +19,28 @@
         Background="{StaticResource PopupBlueBackgroundSolidColorBrush}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}, Converter={StaticResource GridLengthConverter}}"/>
-            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupTopMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource HingePopupRowSpacerHeight}, Converter={StaticResource ScalingConverter}}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <RowDefinition Height="{Binding Source={StaticResource PopupBottomMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupLeftMargin}, Converter={StaticResource ScalingConverter}}"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="110"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource GridLengthConverter}}"/>
+            <ColumnDefinition Width="{Binding Source=110, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource PopupRightMargin}, Converter={StaticResource ScalingConverter}}"/>
         </Grid.ColumnDefinitions>
 
         <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
             Background="{StaticResource PopupBackgroundSolidColorBrush}">
             <Image
                 x:Name="imgHero"
-                Width="{StaticResource PopupWidth}">
+                Width="{Binding Source={StaticResource PopupWidth}, Converter={StaticResource ScalingConverter}}">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/SpeakerDesign/audio_popupHero1.png"
-                        DecodePixelWidth="1774"
+                        DecodePixelWidth="{Binding Source={StaticResource PopupWidth}, Converter={StaticResource ScalingConverter}}"
                         DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
@@ -51,31 +51,29 @@
             HorizontalAlignment="Right">
             
             <TextBlock
-                Width="515"
+                Width="{Binding Source=515, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource HeadlineTextStyle}"     
                 Text="{x:Bind Path=ViewModel.Headline}" />
             <TextBlock
-                Width="515"
+                Width="{Binding Source=515, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource BodyTextStyle}"
                 Text="{x:Bind Path=ViewModel.Body}"/>
         </StackPanel>
-        <Canvas Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
-            <Grid
-                x:Name="btnClose"
-                Width="{StaticResource PopupCloseBtnWidth}"
-                Canvas.Left="{StaticResource PopupCloseBtnSetLeft}"
-                Canvas.Top="{StaticResource PopupCloseBtnSetTop}"
-                PointerReleased="btnClose_Click">
-                <Image>
-                    <Image.Source>
-                        <BitmapImage
-                            UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
-                            DecodePixelWidth="60"
-                            DecodePixelType="Logical"/>
-                    </Image.Source>
-                </Image>
-            </Grid>
-        </Canvas>
+        
+        <Image x:Name="CloseButtonImage"
+               Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2"
+               Margin="{Binding Source='0,25,25,0', Converter={StaticResource ScalingConverter}}"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Width="{Binding Source=60, Converter={StaticResource ScalingConverter}}"
+               PointerReleased="CloseButtonImage_PointerReleased">
+            <Image.Source>
+                <BitmapImage
+                    UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
+                    DecodePixelWidth="{Binding Source=60, Converter={StaticResource ScalingConverter}}"
+                    DecodePixelType="Logical"/>
+            </Image.Source>
+        </Image>
     </Grid>
 
 </Page>

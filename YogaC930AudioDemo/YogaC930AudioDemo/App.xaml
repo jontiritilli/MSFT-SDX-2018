@@ -8,7 +8,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <vms:ViewModelLocator x:Key="Locator" />
-            <conv:ScalingConverter x:Key="AppResourcesScalingConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/_Colors.xaml"/>
                 <ResourceDictionary Source="/Styles/_FontSizes.xaml"/>
