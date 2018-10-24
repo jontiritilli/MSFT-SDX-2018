@@ -3,8 +3,10 @@ using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
+
 using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
@@ -134,17 +136,17 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void NavigationBarExploreWindows_Click(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void NavigationBarExploreWindows_Click(object sender, PointerRoutedEventArgs e)
         {
             // do something here; launch an rdx uri?
         }
 
-        private void NavigationBarGoToDesktop_Click(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void NavigationBarGoToDesktop_Click(object sender, PointerRoutedEventArgs e)
         {
             // do something here; exit app or just minimize?
         }
 
-        private void PlayAudioDemoBlueBorder_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void PlayAudioDemoBlueBorder_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             if (this.PlayerPopup.IsOpen == false)
             {
@@ -152,10 +154,32 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void AppCloseButtonBorder_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void AppCloseButtonBorder_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             // ugly, but effective
             App.Current.Exit();
+        }
+
+        private void LeftArrow_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            if (null != this.ContentFlipView)
+            {
+                if (this.ContentFlipView.SelectedIndex > 0)
+                {
+                    this.ContentFlipView.SelectedIndex--;
+                }
+            }
+        }
+
+        private void RightArrow_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            if (null != this.ContentFlipView)
+            {
+                if (this.ContentFlipView.SelectedIndex < 2)
+                {
+                    this.ContentFlipView.SelectedIndex++;
+                }
+            }
         }
 
         //private void PlayDemoButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
