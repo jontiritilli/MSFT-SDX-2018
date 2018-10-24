@@ -143,6 +143,7 @@
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="Models\AnimationTag.cs" />
     <Compile Include="Models\ConfigurationFile.cs" />
     <Compile Include="Models\LanguageFile.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -378,6 +379,7 @@
     <Content Include="Assets\Fonts\fa-regular-400.otf" />
     <Content Include="Assets\Fonts\fa-solid-900.otf" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Volume\ui_volume_sliderHandle_2.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

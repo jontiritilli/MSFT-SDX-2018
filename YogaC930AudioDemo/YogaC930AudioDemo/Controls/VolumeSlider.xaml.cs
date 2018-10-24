@@ -339,7 +339,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void PerformFadeIn()
         {
-            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxis.Horizontal, 200, 200, 0, 750, 500);
+            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxes.Horizontal, 200, 200, 0, 750, 500);
             AnimationHelper.PerformFadeIn(this.TextBoxContainer, 750, 1250);
             //AnimationHelper.PerformFadeIn(this.RadiateCanvas, 750, 1500);
         }

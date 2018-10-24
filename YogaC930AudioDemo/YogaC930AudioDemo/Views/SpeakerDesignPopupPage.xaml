@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:conv="using:YogaC930AudioDemo.Converters"
+    xmlns:mod="using:YogaC930AudioDemo.Models"
     DataContext="{Binding SpeakerDesignPopupViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     
@@ -36,7 +37,9 @@
             Background="{StaticResource PopupBackgroundSolidColorBrush}">
             <Image
                 x:Name="imgHero"
-                Width="{Binding Source={StaticResource PopupWidth}, Converter={StaticResource ScalingConverter}}">
+                Width="{Binding Source={StaticResource PopupWidth}, Converter={StaticResource ScalingConverter}}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Hero">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/SpeakerDesign/audio_popupHero1.png"
@@ -53,11 +56,15 @@
             <TextBlock
                 Width="{Binding Source=515, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource HeadlineTextStyle}"     
-                Text="{x:Bind Path=ViewModel.Headline}" />
+                Text="{x:Bind Path=ViewModel.Headline}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard" />
             <TextBlock
                 Width="{Binding Source=515, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource BodyTextStyle}"
-                Text="{x:Bind Path=ViewModel.Body}"/>
+                Text="{x:Bind Path=ViewModel.Body}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
         </StackPanel>
         
         <Image x:Name="CloseButtonImage"
@@ -66,7 +73,9 @@
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
                Width="{Binding Source=60, Converter={StaticResource ScalingConverter}}"
-               PointerReleased="CloseButtonImage_PointerReleased">
+               PointerReleased="CloseButtonImage_PointerReleased"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
             <Image.Source>
                 <BitmapImage
                     UriSource="ms-appx:///Assets/Universal/ui_btn_closePopup.png"
