@@ -16,6 +16,13 @@ namespace YogaC930AudioDemo.Views
 {
     public sealed partial class FlipViewPage : Page
     {
+        #region Private Properties
+
+        INavigate _previousPage = null;
+
+        #endregion
+
+
         #region Public Static Methods
 
         public static FlipViewPage Current { get; private set; }
@@ -67,7 +74,7 @@ namespace YogaC930AudioDemo.Views
             //TestHelper.AddGridCellBorders(this.LayoutRoot, 2, 2, Colors.Red);
 
             // animate in the play audio demo button
-            AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxis.Vertical,
+            AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxes.Vertical,
                                                 -87, -87, -4,
                                                 new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn},
                                                 new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn },
@@ -78,6 +85,21 @@ namespace YogaC930AudioDemo.Views
         {
             if (null != this.ContentFlipView)
             {
+                // navigate from the previous page
+                if (null != _previousPage)
+                {
+                    _previousPage.NavigateFromPage();
+                }
+
+                // save the current page so we can navigate away from it later
+                _previousPage = GetCurrentlySelectedChildPage();
+
+                // navigate to it
+                if (null != _previousPage)
+                {
+                    _previousPage.NavigateToPage();
+                }
+
                 // based on the current page, set the scheme to light or dark
                 switch (this.ContentFlipView.SelectedIndex)
                 {
@@ -218,6 +240,32 @@ namespace YogaC930AudioDemo.Views
         {
             return this.HingeDesignPopup;
 
+        }
+
+        #endregion
+
+
+        #region Helper Methods
+
+        private INavigate GetCurrentlySelectedChildPage()
+        {
+            INavigate currentPage = null;
+
+            // if we have a flipview
+            if (null != this.ContentFlipView)
+            {
+                // get the selected it
+                FlipViewItem flipViewItem = (FlipViewItem)this.ContentFlipView.SelectedItem;
+
+                // is its content a frame?
+                if (flipViewItem.Content is Frame frame)
+                {
+                    // get the content as our interface
+                    currentPage = (INavigate)frame.Content;
+                }
+            }
+
+            return currentPage;
         }
 
         #endregion

@@ -5,18 +5,33 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
+
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class AudioPage : Page
+    public sealed partial class AudioPage : Page, INavigate
     {
-        public Popup HingeDesignPopup;
-        public Popup SpeakerDesignPagePopup;
+        #region Private Properties
+
         private AudioViewModel ViewModel
         {
             get { return DataContext as AudioViewModel; }
         }
+
+        #endregion
+
+
+        #region Public Properties
+
+        public Popup HingeDesignPopup;
+        public Popup SpeakerDesignPagePopup;
+
+        #endregion
+
+
+        #region Construction / Initialization
 
         public AudioPage()
         {
@@ -41,7 +56,15 @@ namespace YogaC930AudioDemo.Views
             {
                 mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
+
+            // prep for page animation
+            AnimationHelper.PrepForPageAnimation(this);
         }
+
+        #endregion
+
+
+        #region Event Handlers
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -74,5 +97,22 @@ namespace YogaC930AudioDemo.Views
                 this.SpeakerDesignPagePopup.IsOpen = false;
             }
         }
+
+        #endregion
+
+
+        #region INavigate
+
+        public void NavigateToPage()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+        }
+
+        public void NavigateFromPage()
+        {
+            AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        #endregion
     }
 }
