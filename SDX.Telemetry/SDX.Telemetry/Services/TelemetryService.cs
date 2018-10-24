@@ -27,6 +27,8 @@ namespace SDX.Telemetry.Services
         StartPinch,
         EndPinch,
         ComparisonHot,
+        OnLaunchedFired,
+        OnActivatedFired
     }
 
     public class TelemetryService

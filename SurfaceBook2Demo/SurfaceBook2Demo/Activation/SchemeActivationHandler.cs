@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 
 using SurfaceBook2Demo.Services;
 using SurfaceBook2Demo.ViewModels;
-
+using SDX.Telemetry.Services;
 
 namespace SurfaceBook2Demo.Activation
 {
@@ -27,6 +27,10 @@ namespace SurfaceBook2Demo.Activation
         protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)
         {
             //Log.Trace("Entered SchemeActivationHandler.");
+
+            ActivationHelper.LoadAppResourceDictionaries(ActivationHelper.GetDeviceSignature());
+
+            ActivationHelper.HandleActivation();
 
             // Create data from activation Uri in ProtocolActivatedEventArgs
             var data = new SchemeActivationData(args.Uri);
