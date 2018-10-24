@@ -55,14 +55,13 @@ namespace SurfaceJackDemo.Activation
                     break;
 
                 case DeviceType.Laptop:
-                    path = @"cruz";
+                    path = @"foxburg";
                     break;
 
                 default:
                     path = @"cruz";    // for testing, run the cruz version
                     break;
             }
-
             return path;
         }
 

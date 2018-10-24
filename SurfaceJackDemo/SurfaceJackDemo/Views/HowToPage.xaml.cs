@@ -52,7 +52,7 @@ namespace SurfaceJackDemo.Views
         {
             this.InitializeComponent();
             HowToPage.Current = this;
-            this.HowToExtraCoverBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
+            this.HowToExtraCoverBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Dark);
             this.HowToBg.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Lighter);
             this.Loaded += HowToPage_Loaded;
         }

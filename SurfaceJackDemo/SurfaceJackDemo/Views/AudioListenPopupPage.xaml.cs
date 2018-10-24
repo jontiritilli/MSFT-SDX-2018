@@ -58,7 +58,7 @@ namespace SurfaceJackDemo.Views
         {
             this.InitializeComponent();
             AudioListenPopupPage.Current = this;
-            this.AudioListenPagePopup.Background = StyleHelper.GetAcrylicBrush("Dark");
+            this.AudioListenPagePopup.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Dark);
         }
 
         #endregion
