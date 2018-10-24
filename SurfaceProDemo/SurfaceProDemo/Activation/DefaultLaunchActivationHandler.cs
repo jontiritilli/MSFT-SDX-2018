@@ -26,6 +26,8 @@ namespace SurfaceProDemo.Activation
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
+            ActivationHelper.LoadAppResourceDictionaries();
+
             // get the configuration service
             ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
 
