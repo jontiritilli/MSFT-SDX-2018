@@ -229,7 +229,7 @@
                    Visibility="Collapsed">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronLeft_light.png"
-                                 DecodePixelWidth="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelWidth="{Binding Source=22.565, Converter={StaticResource ScalingConverter}}"
                                  DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
@@ -242,7 +242,7 @@
                    Visibility="Collapsed">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Universal/ui_btn_chevronLeft_dark.png"
-                                 DecodePixelWidth="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                 DecodePixelWidth="{Binding Source=22.565, Converter={StaticResource ScalingConverter}}"
                                  DecodePixelType="Logical"/>
                 </Image.Source>
             </Image>
