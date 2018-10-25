@@ -16,12 +16,15 @@ using Newtonsoft.Json;
 
 using YogaC930AudioDemo.Models;
 using YogaC930AudioDemo.Helpers;
-
+using Windows.System.Profile;
+using Windows.System;
 
 namespace YogaC930AudioDemo.Services
 {
     public class ConfigurationService
     {
+        #region Private Constants
+
         private const string LOCALSTATE_SUBFOLDER = "IdleContent";
         private const string URI_ATTRACTOR_DEFAULT = @"ms-appx:///Assets/AttractorLoop/Lenovo_Yoga_C930_Attract_Loop_240718.mp4";
         private const string IMAGE_EXTENSION_1 = ".png";
@@ -29,6 +32,10 @@ namespace YogaC930AudioDemo.Services
         private const string VIDEO_EXTENSION_1 = ".mp4";
         private const string VIDEO_EXTENSION_2 = ".m4v";
 
+        #endregion
+
+
+        #region Public Properties
 
         public bool IsLoading { get; private set; }
 
@@ -36,61 +43,22 @@ namespace YogaC930AudioDemo.Services
 
         public ConfigurationFile Configuration { get; private set; }
 
+        #endregion
+
+
+        #region Public Static Properties
+
         public static ConfigurationService Current { get; private set; }
 
+        #endregion
+
+
+        #region Construction / Initialization
 
         public ConfigurationService()
         {
             // save this instance
             ConfigurationService.Current = this;
-        }
-
-        public StorageFile GetAttractorLoopFile()
-        {
-            // set default
-            StorageFile storageFile = null;
-
-            if (this.IsLoaded)
-            {
-                // get the local folder
-                StorageFolder localFolder = AsyncHelper.RunSync<StorageFolder>(() => GetLocalStorageFolder());
-
-                if (null != localFolder)
-                {
-                    // package extensions
-                    List<string> extensions = new List<string>() { VIDEO_EXTENSION_1, VIDEO_EXTENSION_2 };
-
-                    // get the first file with one of our video file extensions
-                    storageFile = AsyncHelper.RunSync<StorageFile>(() => GetFirstFileWithExtensions(localFolder, extensions));
-
-                    // if we didn't get it
-                    if (null == storageFile)
-                    {
-                        // try to get our embedded video
-                        storageFile = AsyncHelper.RunSync<StorageFile>(() => GetFileFromAppxUri(URI_ATTRACTOR_DEFAULT));
-                    }
-                }
-            }
-
-            return storageFile;
-        }
-
-        public StorageFile GetFileFromLocalStorage(string fileName)
-        {
-            StorageFile file = null;
-
-            if (this.IsLoaded)
-            {
-                StorageFolder localStorage = AsyncHelper.RunSync<StorageFolder>(() => GetLocalStorageFolder());
-
-                if (null != localStorage)
-                {
-                    // try to get our file
-                    file = AsyncHelper.RunSync<StorageFile>(() => GetFileFromLocalStorageAsync(fileName));
-                }
-            }
-
-            return file;
         }
 
         public async Task Initialize()
@@ -161,6 +129,142 @@ namespace YogaC930AudioDemo.Services
             }
 
             return config;
+        }
+
+        #endregion
+
+
+        #region Public Static Methods
+
+        public static bool DoesOSBuildSupportSuspend()
+        {
+            ulong build = GetOSBuild();
+
+            return (build >= 17134);    // 17134 is the build number for v1803
+        }
+
+        public static ulong GetOSBuild()
+        {
+            string deviceFamilyVersion = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
+            ulong version = ulong.Parse(deviceFamilyVersion);
+            ulong major = (version & 0xFFFF000000000000L) >> 48;
+            ulong minor = (version & 0x0000FFFF00000000L) >> 32;
+            ulong build = (version & 0x00000000FFFF0000L) >> 16;
+            ulong revision = (version & 0x000000000000FFFFL);
+            var osVersion = $"{major}.{minor}.{build}.{revision}";
+
+            return build;
+        }
+
+        public static void SuspendApp()
+        {
+            AsyncHelper.RunSync(() => SuspendAppAsync());
+        }
+
+        public static async Task SuspendAppAsync()
+        {
+            AppResourceGroupInfo appResourceGroupInfo = null;
+
+            // for Windows v1803 aka build 17134 and above, we can minimize by suspending
+
+            // figure out if we can suspend and can get the references we need
+            if (ConfigurationService.DoesOSBuildSupportSuspend())
+            {
+                // get app diagnostic information
+                IList<AppDiagnosticInfo> diagnosticInformations = await AppDiagnosticInfo.RequestInfoForAppAsync();
+
+                // if we got them
+                if ((null != diagnosticInformations) && (diagnosticInformations.Count > 0))
+                {
+                    // loop through the informations
+                    foreach (AppDiagnosticInfo diagnosticInformation in diagnosticInformations)
+                    {
+                        // if we find one with Id = "App"
+                        if (0 == String.Compare(diagnosticInformation.AppInfo.Id, "App", true))
+                        {
+                            // get the resource groups from that diagnostic information
+                            IList<AppResourceGroupInfo> resourceGroups = diagnosticInformation.GetResourceGroups();
+
+                            // if we got them
+                            if ((null != resourceGroups) && (resourceGroups.Count > 0))
+                            {
+                                // take the first resource group
+                                appResourceGroupInfo = resourceGroups[0];
+                            }
+                        }
+                    }
+                }
+            }
+
+            // if we got a suspendable object, use it
+            if (null != appResourceGroupInfo)
+            {
+                // we can suspend and got an resource info object to use
+                AppExecutionStateChangeResult result = await appResourceGroupInfo.StartSuspendAsync();
+            }
+            else
+            {
+                // we can't suspend, so must exit
+                App.Current.Exit();
+            }
+        }
+
+        #endregion
+
+
+        #region Configuration Methods
+
+        public StorageFile GetAttractorLoopFile()
+        {
+            // set default
+            StorageFile storageFile = null;
+
+            if (this.IsLoaded)
+            {
+                // get the local folder
+                StorageFolder localFolder = AsyncHelper.RunSync<StorageFolder>(() => GetLocalStorageFolder());
+
+                if (null != localFolder)
+                {
+                    // package extensions
+                    List<string> extensions = new List<string>() { VIDEO_EXTENSION_1, VIDEO_EXTENSION_2 };
+
+                    // get the first file with one of our video file extensions
+                    storageFile = AsyncHelper.RunSync<StorageFile>(() => GetFirstFileWithExtensions(localFolder, extensions));
+
+                    // if we didn't get it
+                    if (null == storageFile)
+                    {
+                        // try to get our embedded video
+                        storageFile = AsyncHelper.RunSync<StorageFile>(() => GetFileFromAppxUri(URI_ATTRACTOR_DEFAULT));
+                    }
+                }
+            }
+
+            return storageFile;
+        }
+
+        #endregion
+
+
+        #region File Helpers
+
+        public StorageFile GetFileFromLocalStorage(string fileName)
+        {
+            StorageFile file = null;
+
+            if (this.IsLoaded)
+            {
+                StorageFolder localStorage = AsyncHelper.RunSync<StorageFolder>(() => GetLocalStorageFolder());
+
+                if (null != localStorage)
+                {
+                    // try to get our file
+                    file = AsyncHelper.RunSync<StorageFile>(() => GetFileFromLocalStorageAsync(fileName));
+                }
+            }
+
+            return file;
         }
 
         public async Task<StorageFolder> GetLocalStorageFolder()
@@ -389,5 +493,7 @@ namespace YogaC930AudioDemo.Services
 
             return foundIt;
         }
+
+        #endregion
     }
 }

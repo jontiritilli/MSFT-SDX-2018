@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -10,12 +13,19 @@ using Windows.UI.Xaml.Media.Animation;
 using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
+using YogaC930AudioDemo.Services;
 
 
 namespace YogaC930AudioDemo.Views
 {
     public sealed partial class FlipViewPage : Page
     {
+        #region Constants
+
+        private const string URI_GOTOWINDOWS = @"rdx-hub:hub\windows";
+
+        #endregion
+
         #region Private Properties
 
         INavigate _previousPage = null;
@@ -158,14 +168,16 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void NavigationBarExploreWindows_Click(object sender, PointerRoutedEventArgs e)
+        private async void NavigationBarExploreWindows_Click(object sender, PointerRoutedEventArgs e)
         {
-            // do something here; launch an rdx uri?
+            // do something here; launch this rdx URI:  rdx-hub:hub\windows
+            await Launcher.LaunchUriAsync(new Uri(URI_GOTOWINDOWS), new LauncherOptions() { DisplayApplicationPicker = false });
         }
 
-        private void NavigationBarGoToDesktop_Click(object sender, PointerRoutedEventArgs e)
+        private async void NavigationBarGoToDesktop_Click(object sender, PointerRoutedEventArgs e)
         {
-            // do something here; exit app or just minimize?
+            // suspend the app
+            ConfigurationService.SuspendApp();
         }
 
         private void PlayAudioDemoBlueBorder_PointerReleased(object sender, PointerRoutedEventArgs e)
