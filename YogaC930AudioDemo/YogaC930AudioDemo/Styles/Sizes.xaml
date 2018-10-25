@@ -41,6 +41,7 @@
     <x:Double x:Key="VolumeControlWidth">445.08</x:Double>
     <x:Double x:Key="VolumeControlHeight">294.585</x:Double>
     <x:Double x:Key="VolumeHandleWidth">80</x:Double>
+    <x:Double x:Key="VolumeIconWidth">30</x:Double>
     <x:Double x:Key="VolumeHighlightEllipseWidth">37</x:Double>
     <x:Double x:Key="VolumeHighlightEllipseStrokeThickness">6</x:Double>  
 

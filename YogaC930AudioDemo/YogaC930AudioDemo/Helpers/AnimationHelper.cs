@@ -42,21 +42,7 @@ namespace YogaC930AudioDemo.Helpers
     {
         public static double DEFAULT_DURATION = 200;
         public static double DEFAULT_TRANSLATE_OFFSET = 30;
-
-        public static void PrepForPageAnimation(Page page)
-        {
-            //if (null != page)
-            //{
-            //    // get all the objects to animate
-            //    List<UIElement> animatables = GetAllAnimatableChildren(page);
-
-            //    // loop through them
-            //    foreach (UIElement animatable in animatables)
-            //    {
-            //        animatable.Opacity = 0.0;
-            //    }
-            //}
-        }
+        public static double DEFAULT_TRANSLATE_HERO_OFFSET = 300;
 
         public static void PerformPageEntranceAnimation(Page page)
         {
@@ -93,21 +79,45 @@ namespace YogaC930AudioDemo.Helpers
                             break;
 
                         case AnimationTypes.Standard:
+                            storyboards.Add(CreateEasingAnimation(animatable, "Opacity", 0.0, 0.0, 1.0,
+                                                                    DEFAULT_DURATION, staggerDelay,
+                                                                    false, false, new RepeatBehavior(1d)));
+
+                            double startValue1 = ((TranslateDirections.FromTop == translateDirection) ||
+                                                 (TranslateDirections.FromLeft == translateDirection))
+                                                 ? -1 * DEFAULT_TRANSLATE_OFFSET : DEFAULT_TRANSLATE_OFFSET;
+
+                            storyboards.Add(CreateTranslateAnimation(animatable, translateAxis, startValue1, startValue1, 0,
+                                                                        easeIn, easeOut, DEFAULT_DURATION, staggerDelay,
+                                                                        false, false, new RepeatBehavior(1d)));
+                            break;
+
                         case AnimationTypes.Hero:
                             storyboards.Add(CreateEasingAnimation(animatable, "Opacity", 0.0, 0.0, 1.0,
                                                                     DEFAULT_DURATION, staggerDelay,
                                                                     false, false, new RepeatBehavior(1d)));
 
-                            double startValue = ((TranslateDirections.FromTop == translateDirection) ||
+                            double startValue2 = ((TranslateDirections.FromTop == translateDirection) ||
                                                  (TranslateDirections.FromLeft == translateDirection))
-                                                 ? -1 * DEFAULT_TRANSLATE_OFFSET : DEFAULT_TRANSLATE_OFFSET;
+                                                 ? -1 * DEFAULT_TRANSLATE_HERO_OFFSET : DEFAULT_TRANSLATE_HERO_OFFSET;
 
-                            storyboards.Add(CreateTranslateAnimation(animatable, translateAxis, startValue, startValue, 0,
+                            storyboards.Add(CreateTranslateAnimation(animatable, translateAxis, startValue2, startValue2, 0,
                                                                         easeIn, easeOut, DEFAULT_DURATION, staggerDelay,
                                                                         false, false, new RepeatBehavior(1d)));
                             break;
 
                         case AnimationTypes.Radiate:
+                            storyboards.Add(CreateEasingAnimation(animatable, "Opacity", 0.0, 0.0, 1.0,
+                                                                    DEFAULT_DURATION * 2, staggerDelay,
+                                                                    false, false, new RepeatBehavior(1d)));
+                            staggerDelay += DEFAULT_DURATION * 2;
+
+                            //storyboards.Add(CreateEasingAnimation(animatable, "Opacity", 0.5, 0.5, 1.0,
+                            //            DEFAULT_DURATION * 2, staggerDelay,
+                            //            false, false, new RepeatBehavior(1d)));
+
+                            //staggerDelay += DEFAULT_DURATION;
+
                             break;
 
                         case AnimationTypes.None:
@@ -129,7 +139,7 @@ namespace YogaC930AudioDemo.Helpers
 
         public static void PerformPageExitAnimation(Page page)
         {
-            PrepForPageAnimation(page);
+            
         }
 
         private static List<UIElement> GetAllAnimatableChildren(UIElement element)

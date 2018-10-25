@@ -109,11 +109,11 @@
                 </Image.Source>
             </Image>
 
-            <Image x:Name="btnLeft"
+            <Image x:Name="ButtonLeft"
                    Canvas.Left="{Binding Source=1018, Converter={StaticResource ScalingConverter}}"
                    Canvas.Top="{Binding Source=210, Converter={StaticResource ScalingConverter}}"
                    Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
-                   Tapped="btnLeft_Click"
+                   Tapped="ButtonLeft_Click"
                    Opacity="0.0"
                    mod:AnimationTag.AnimationType="Radiate">
                 <Image.Source>
@@ -125,11 +125,11 @@
             </Image>
 
             <Image
-                x:Name="btnRight"
+                x:Name="ButtonRight"
                 Canvas.Left="{Binding Source=1580, Converter={StaticResource ScalingConverter}}"
                 Canvas.Top="{Binding Source=170, Converter={StaticResource ScalingConverter}}"
                 Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
-                Tapped="btnRight_Click"
+                Tapped="ButtonRight_Click"
                 Opacity="0.0"
                 mod:AnimationTag.AnimationType="Radiate">
                 <Image.Source>

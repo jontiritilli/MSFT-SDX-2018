@@ -133,7 +133,7 @@
 
             <Image Grid.Row="2" Grid.Column="2"
                 x:Name="VolumeIndicator"
-                Width="{StaticResource VolumeHandleWidth}"
+                Width="{Binding Source={StaticResource VolumeIconWidth}, Converter={StaticResource ScalingConverter}}"
                 Source="{x:Bind Path=VolumeImage}">
             </Image>
         </Grid>
