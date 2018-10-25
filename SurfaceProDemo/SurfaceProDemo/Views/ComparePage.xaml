@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     xmlns:conv="using:SDX.Toolkit.Converters"  
     DataContext="{Binding CompareViewModel, Source={StaticResource Locator}}"
@@ -77,7 +76,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.03}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.655}"                                                    
                 PopupPosition="Right"
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="600"
                 AutoStart = "false"
                 Clicked="RadiatingButton_Clicked"/>
 
@@ -86,7 +85,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.205}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.595}"                                                    
                 PopupPosition="Right"                 
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="800"
                 AutoStart = "false"
                 Clicked="RadiatingButton_Clicked"/>
 
@@ -104,7 +103,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.785}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.635}"                                                    
                 PopupPosition="Left"                 
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="1200"
                 AutoStart = "false"
                 Clicked="RadiatingButton_Clicked"/>
 
@@ -113,7 +112,7 @@
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.897}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.79}"                                                    
                 PopupPosition="Left"                 
-                EntranceStaggerDelayInMilliseconds="1000"
+                EntranceStaggerDelayInMilliseconds="1400"
                 AutoStart = "false"
                 Clicked="RadiatingButton_Clicked"/>
 

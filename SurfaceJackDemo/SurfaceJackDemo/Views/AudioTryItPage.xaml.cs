@@ -53,13 +53,13 @@ namespace SurfaceJackDemo.Views
         public void NavigateToPage(INavigateMoveDirection moveDirection)
         {
             // animations in
-            AnimationHelper.PerformPageEntranceAnimation(this);
+            //AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
             // animations out
-            AnimationHelper.PerformPageExitAnimation(this);
+            //AnimationHelper.PerformPageExitAnimation(this);
         }
 
         #endregion
