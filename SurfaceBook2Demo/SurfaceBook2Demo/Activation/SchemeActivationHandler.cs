@@ -30,8 +30,6 @@ namespace SurfaceBook2Demo.Activation
 
             ActivationHelper.LoadAppResourceDictionaries(ActivationHelper.GetDeviceSignature());
 
-            ActivationHelper.HandleActivation();
-
             // Create data from activation Uri in ProtocolActivatedEventArgs
             var data = new SchemeActivationData(args.Uri);
             if (data.IsValid)
