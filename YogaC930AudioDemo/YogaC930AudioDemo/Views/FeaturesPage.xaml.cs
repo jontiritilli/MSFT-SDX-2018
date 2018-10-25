@@ -2,16 +2,25 @@
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
+
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class FeaturesPage : Page
+    public sealed partial class FeaturesPage : Page, INavigate
     {
+        #region Private Properties
+
         private FeaturesViewModel ViewModel
         {
             get { return DataContext as FeaturesViewModel; }
         }
+
+        #endregion
+
+
+        #region Construction / Initialization
 
         public FeaturesPage()
         {
@@ -29,5 +38,22 @@ namespace YogaC930AudioDemo.Views
                 mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
         }
+
+        #endregion
+
+
+        #region INavigate
+
+        public void NavigateToPage()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+        }
+
+        public void NavigateFromPage()
+        {
+            AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        #endregion
     }
 }

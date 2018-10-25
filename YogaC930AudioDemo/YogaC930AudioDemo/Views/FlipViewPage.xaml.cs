@@ -3,8 +3,10 @@ using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
+
 using YogaC930AudioDemo.Controls;
 using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
@@ -14,6 +16,13 @@ namespace YogaC930AudioDemo.Views
 {
     public sealed partial class FlipViewPage : Page
     {
+        #region Private Properties
+
+        INavigate _previousPage = null;
+
+        #endregion
+
+
         #region Public Static Methods
 
         public static FlipViewPage Current { get; private set; }
@@ -65,7 +74,7 @@ namespace YogaC930AudioDemo.Views
             //TestHelper.AddGridCellBorders(this.LayoutRoot, 2, 2, Colors.Red);
 
             // animate in the play audio demo button
-            AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxis.Vertical,
+            AnimationHelper.PerformTranslateIn(this.PlayAudioDemoButton, TranslateAxes.Vertical,
                                                 -87, -87, -4,
                                                 new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn},
                                                 new BounceEase() { Bounces = 3, Bounciness = 1, EasingMode = EasingMode.EaseIn },
@@ -76,6 +85,21 @@ namespace YogaC930AudioDemo.Views
         {
             if (null != this.ContentFlipView)
             {
+                // navigate from the previous page
+                if (null != _previousPage)
+                {
+                    _previousPage.NavigateFromPage();
+                }
+
+                // save the current page so we can navigate away from it later
+                _previousPage = GetCurrentlySelectedChildPage();
+
+                // navigate to it
+                if (null != _previousPage)
+                {
+                    _previousPage.NavigateToPage();
+                }
+
                 // based on the current page, set the scheme to light or dark
                 switch (this.ContentFlipView.SelectedIndex)
                 {
@@ -134,17 +158,17 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void NavigationBarExploreWindows_Click(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void NavigationBarExploreWindows_Click(object sender, PointerRoutedEventArgs e)
         {
             // do something here; launch an rdx uri?
         }
 
-        private void NavigationBarGoToDesktop_Click(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void NavigationBarGoToDesktop_Click(object sender, PointerRoutedEventArgs e)
         {
             // do something here; exit app or just minimize?
         }
 
-        private void PlayAudioDemoBlueBorder_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void PlayAudioDemoBlueBorder_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             if (this.PlayerPopup.IsOpen == false)
             {
@@ -152,10 +176,32 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void AppCloseButtonBorder_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void AppCloseButtonBorder_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             // ugly, but effective
             App.Current.Exit();
+        }
+
+        private void LeftArrow_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            if (null != this.ContentFlipView)
+            {
+                if (this.ContentFlipView.SelectedIndex > 0)
+                {
+                    this.ContentFlipView.SelectedIndex--;
+                }
+            }
+        }
+
+        private void RightArrow_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            if (null != this.ContentFlipView)
+            {
+                if (this.ContentFlipView.SelectedIndex < 2)
+                {
+                    this.ContentFlipView.SelectedIndex++;
+                }
+            }
         }
 
         //private void PlayDemoButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -194,6 +240,32 @@ namespace YogaC930AudioDemo.Views
         {
             return this.HingeDesignPopup;
 
+        }
+
+        #endregion
+
+
+        #region Helper Methods
+
+        private INavigate GetCurrentlySelectedChildPage()
+        {
+            INavigate currentPage = null;
+
+            // if we have a flipview
+            if (null != this.ContentFlipView)
+            {
+                // get the selected it
+                FlipViewItem flipViewItem = (FlipViewItem)this.ContentFlipView.SelectedItem;
+
+                // is its content a frame?
+                if (flipViewItem.Content is Frame frame)
+                {
+                    // get the content as our interface
+                    currentPage = (INavigate)frame.Content;
+                }
+            }
+
+            return currentPage;
         }
 
         #endregion

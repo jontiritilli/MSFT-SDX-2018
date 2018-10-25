@@ -35,7 +35,7 @@ namespace YogaC930AudioDemo.Controls
 
     public sealed partial class VolumeSlider : UserControl
     {
-        #region Constants
+        #region Private Constants
 
         private const double SLIDER_MINIMUM = 0;
         private const double SLIDER_MAXIMUM = 100;
@@ -46,6 +46,7 @@ namespace YogaC930AudioDemo.Controls
         private static Uri VOLUME_MAX_IMAGE_URI = new Uri("ms-appx:///Assets/Volume/ui_volumeMax.png");
 
         #endregion
+
 
         #region Public Members
 
@@ -60,7 +61,8 @@ namespace YogaC930AudioDemo.Controls
 
         #endregion
 
-        #region Construction
+
+        #region Construction / Initialization
 
         public VolumeSlider()
         {
@@ -136,6 +138,7 @@ namespace YogaC930AudioDemo.Controls
 
         #endregion
 
+
         #region Event Handlers
 
         private static void OnVolumePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -171,7 +174,7 @@ namespace YogaC930AudioDemo.Controls
                     Point p = ttv.TransformPoint(tapPoint);
 
                     // get the tap x
-                    double Y = p.Y;
+                    double Y = p.Y + this.ManipulationTranslation.Y;
 
                     // snap to the destination
                     this.MoveTo(Y);
@@ -269,6 +272,7 @@ namespace YogaC930AudioDemo.Controls
 
         #endregion
 
+
         #region Private Methods
 
         private void StartVolumeStory()
@@ -289,7 +293,7 @@ namespace YogaC930AudioDemo.Controls
         private void RampUpVolume()
         {
             const double TIMER_HIGHLIGHT = 300;
-            const double TIMER_VOLUME = 2000;
+            const double TIMER_VOLUME = 4000;
 
             // ===========================================================
             // set up timers
@@ -339,7 +343,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void PerformFadeIn()
         {
-            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxis.Horizontal, 200, 200, 0, 750, 500);
+            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxes.Horizontal, 200, 200, 0, 750, 500);
             AnimationHelper.PerformFadeIn(this.TextBoxContainer, 750, 1250);
             //AnimationHelper.PerformFadeIn(this.RadiateCanvas, 750, 1500);
         }
@@ -373,10 +377,10 @@ namespace YogaC930AudioDemo.Controls
 
         public void MoveTo(double YPosition)
         {
-            double normalizedYPosition = GetVolumeFromPosition(YPosition);
+            double newVolume = GetVolumeFromPosition(YPosition);
 
             // save the volume level as a percentage
-            this.Volume = normalizedYPosition;
+            this.Volume = newVolume;
 
             // update the thumb
             UpdateThumb(YPosition, true);
@@ -385,13 +389,13 @@ namespace YogaC930AudioDemo.Controls
             SetCurrentVolumeUI();
 
             // update volume level caption
-            UpdateVolumeLevelText(normalizedYPosition);
+            UpdateVolumeLevelText(newVolume);
 
             // set the volume level
-            AudioHelper.SetVolumeTo(normalizedYPosition);
+            AudioHelper.SetVolumeTo(newVolume);
 
             // raise the snapped event
-            this.RaiseMovedEvent(this, normalizedYPosition);
+            this.RaiseMovedEvent(this, newVolume);
 
             // telemetry
             //TelemetryService.Current?.SendTelemetry(TelemetryService.TELEMETRY_PRODUCTROTATION, System.DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture), true, 0);
@@ -434,17 +438,14 @@ namespace YogaC930AudioDemo.Controls
             if (volume > volumeMaxPoint)
             {
                 VolumeImage.UriSource = VOLUME_MAX_IMAGE_URI;
-                return;
             }
             else if (volume > volumeMidPoint)
             {
                 VolumeImage.UriSource = VOLUME_MID_IMAGE_URI;
-                return;
             }
-            else if (volume > volumeLowPoint)
+            else // if (volume > volumeLowPoint)
             {
                 VolumeImage.UriSource = VOLUME_LOW_IMAGE_URI;
-                return;
             }
         }
 

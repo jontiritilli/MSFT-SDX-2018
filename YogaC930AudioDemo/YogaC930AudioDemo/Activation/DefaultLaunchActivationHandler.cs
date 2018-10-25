@@ -29,6 +29,8 @@ namespace YogaC930AudioDemo.Activation
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
+            ActivationHelper.LoadStyles();
+
             // get the configuration service
             ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
 

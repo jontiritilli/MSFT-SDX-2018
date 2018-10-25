@@ -49,17 +49,15 @@ namespace SurfaceProDemo.ViewModels
         private readonly double _maxImageHeight = StyleHelper.GetApplicationDouble("CanvasHeight");
         private readonly double _closeEllipseRightMargin = StyleHelper.GetApplicationDouble("CloseButtonRightMargin");
         private readonly double _closeEllipseTopMargin = StyleHelper.GetApplicationDouble("CloseButtonTopMargin");
-        #endregion
 
+        #endregion
 
         #region Public Properties
 
         public string BackgroundUri = URI_BACKGROUND;
 
-
-        public int ImageSelectorImageWidth;
-        public int ImageSelectorImageHeight;
-
+        public int ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
+        public int ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
 
         public string Headline;
         public string Lede;
@@ -69,8 +67,8 @@ namespace SurfaceProDemo.ViewModels
         public List<AppSelectorData> appSelectorData = new List<AppSelectorData>();
         public List<AppSelectorImageURI> appSelectorImageURIs = new List<AppSelectorImageURI>();
 
-        public int AppSelectorButtonWidth;
-        public int AppSelectorButtonHeight;
+        public int AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
+        public int AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
 
         public string ColoringBookClearButtonURI;
         public double ICON_WIDTH = 96d;
@@ -78,7 +76,7 @@ namespace SurfaceProDemo.ViewModels
         public double radiatingButtonRadius;
         public double closeIconHeight;
 
-        public string CloseButtonXURI;
+        public string CloseButtonXURI = URI_X_IMAGE;
         public double ellipseGridCanvasSetLeft;
         public double closeEllipseTopMargin;
 
@@ -93,45 +91,58 @@ namespace SurfaceProDemo.ViewModels
         }
         #endregion
 
-
         #region Construction
 
         public ExperiencePopupViewModel()
         {
-            // get the localization service
-            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
-            // set the header and lede and colors list for app selector
-            // use the event to handle color changed
-
-            AppSelectorButtonWidth = APPSELECTOR_BUTTON_WIDTH;
-            AppSelectorButtonHeight = APPSELECTOR_BUTTON_HEIGHT;
-            this.ImageSelectorImageWidth = SELECTORIMAGE_IMAGEWIDTH;
-            this.ImageSelectorImageHeight = SELECTORIMAGE_IMAGEHEIGHT;
-            CloseButtonXURI = URI_X_IMAGE;
             closeEllipseTopMargin = _closeEllipseTopMargin;
             ellipseGridCanvasSetLeft = _maxImageWidth - _closeEllipseRightMargin - _radiatingButtonRadius;
             radiatingButtonRadius = _radiatingButtonRadius;
             closeIconHeight = _closeIconHeight;
             ellipseStroke = RadiatingButton.GetSolidColorBrush("#FFD2D2D2");
+
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_1,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_1_SELECTED
             });
+            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_IMAGESELECTOR_IMAGE_1,
+                Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_2,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_2_SELECTED
             });
+            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_IMAGESELECTOR_IMAGE_2,
+                Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_3,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_3_SELECTED
             });
+            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_IMAGESELECTOR_IMAGE_3,
+                Width = SELECTORIMAGE_IMAGEWIDTH
+            });
+
             this.appSelectorData.Add(new AppSelectorData()
             {
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_4,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_4_SELECTED
+            });
+            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
+            {
+                URI = URI_IMAGESELECTOR_IMAGE_4,
+                Width = SELECTORIMAGE_IMAGEWIDTH
             });
 
             this.appSelectorData.Add(new AppSelectorData()
@@ -139,32 +150,14 @@ namespace SurfaceProDemo.ViewModels
                 Source_NotSelectedImage = URI_APPSELECTOR_COLOR_5,
                 Source_SelectedImage = URI_APPSELECTOR_COLOR_5_SELECTED
             });
-
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
-            {
-                URI = URI_IMAGESELECTOR_IMAGE_1,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
-            {
-                URI = URI_IMAGESELECTOR_IMAGE_2,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
-            {
-                URI = URI_IMAGESELECTOR_IMAGE_3,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
-            this.appSelectorImageURIs.Add(new AppSelectorImageURI()
-            {
-                URI = URI_IMAGESELECTOR_IMAGE_4,
-                Width = SELECTORIMAGE_IMAGEWIDTH
-            });
             this.appSelectorImageURIs.Add(new AppSelectorImageURI()
             {
                 URI = URI_IMAGESELECTOR_IMAGE_5,
                 Width = SELECTORIMAGE_IMAGEWIDTH
             });
+
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
             // if we got it
             if (null != localizationService)

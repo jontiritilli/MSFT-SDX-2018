@@ -27,6 +27,8 @@ namespace SDX.Telemetry.Services
         StartPinch,
         EndPinch,
         ComparisonHot,
+        OnLaunchedFired,
+        OnActivatedFired
     }
 
     public class TelemetryService
@@ -96,6 +98,14 @@ namespace SDX.Telemetry.Services
 
 
         #region Public Methods
+
+        //public void LogString(string stringLog)
+        //{
+        //    if (null != TestLog)
+        //    {
+        //        TestLog.Log(LogLevel.Info, stringLog);
+        //    }
+        //}
 
         public void LogTelemetryEvent(TelemetryEvents telemetryEvent)
         {

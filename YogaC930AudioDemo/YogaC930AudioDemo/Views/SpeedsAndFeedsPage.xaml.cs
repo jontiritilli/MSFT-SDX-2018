@@ -2,16 +2,25 @@
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
+
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class SpeedsAndFeedsPage : Page
+    public sealed partial class SpeedsAndFeedsPage : Page, INavigate
     {
+        #region Private Properties
+
         private SpeedsAndFeedsViewModel ViewModel
         {
             get { return DataContext as SpeedsAndFeedsViewModel; }
         }
+
+        #endregion
+
+
+        #region Construction / Initialization
 
         public SpeedsAndFeedsPage()
         {
@@ -29,5 +38,22 @@ namespace YogaC930AudioDemo.Views
                 mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
         }
+
+        #endregion
+
+
+        #region INavigate
+
+        public void NavigateToPage()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+        }
+
+        public void NavigateFromPage()
+        {
+            AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        #endregion
     }
 }

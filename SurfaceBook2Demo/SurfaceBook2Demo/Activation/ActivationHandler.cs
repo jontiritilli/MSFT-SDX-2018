@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDX.Telemetry.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace SurfaceBook2Demo.Activation
@@ -19,6 +20,7 @@ namespace SurfaceBook2Demo.Activation
         public override async Task HandleAsync(object args)
         {
             await HandleInternalAsync(args as T);
+            // this is where the URI launch dies
         }
 
         public override bool CanHandle(object args)

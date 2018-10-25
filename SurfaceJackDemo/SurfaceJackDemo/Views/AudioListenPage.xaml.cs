@@ -80,13 +80,7 @@ namespace SurfaceJackDemo.Views
 
         private void AudioListenPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.itemListView.Background = new SolidColorBrush(Colors.Black);
-
             NavigateFromPage();
-
-            this.itemListView.SelectedIndex = 0;
-
-            this.HasLoaded = true;
 
             // get the initial screen cover popup
             this.ReadyScreen = FlipViewPage.Current.GetAudioListenPopup();
@@ -105,6 +99,15 @@ namespace SurfaceJackDemo.Views
             {
                 AnimatePageEntrance();
             }
+
+            if (null != itemListView)
+            {
+                this.itemListView.Background = new SolidColorBrush(Colors.Black);
+
+                this.itemListView.SelectedIndex = 0;
+            }
+
+            this.HasLoaded = true;
         }
 
         private void PerformHowToEntranceAnimation(object sender, object e)

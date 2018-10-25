@@ -5,25 +5,39 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
 using YogaC930AudioDemo.Controls;
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
 
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class PlayerPopupPage : Page
+    public sealed partial class PlayerPopupPage : Page, INavigate
     {
-        public RoutedEventHandler CloseButton_Clicked;
+        #region Private Properties
 
         private PlayerPopupViewModel ViewModel
         {
             get { return DataContext as PlayerPopupViewModel; }
         }
 
+        #endregion
+
+
+        #region Public Properties
+
+        public RoutedEventHandler CloseButton_Clicked;
+
+        #endregion
+
+
         #region Public Static Properties
 
         public static PlayerPopupPage Current { get; private set; }
 
         #endregion
+
+
+        #region Construction / Initialization
 
         public PlayerPopupPage()
         {
@@ -44,16 +58,58 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void CloseButtonImage_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            CloseButton_Clicked(sender, new RoutedEventArgs());
-            this.LoopPlayer.ResetPlayer();
-            this.VolumeControl.VolumeToDefault();
-        }
+        #endregion
+
+
+        #region Public Methods
 
         public VolumeSlider GetVolumeControl()
         {
             return this.VolumeControl;
         }
+
+        #endregion
+
+
+        #region Event Handlers
+
+        private void LoopPlayer_PlaybackEnded(object sender, EventArgs args)
+        {
+            CloseAndExit();
+        }
+
+        private void CloseButtonImage_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            CloseAndExit();
+        }
+
+        private void CloseAndExit()
+        {
+            var trash = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                CloseButton_Clicked(this, new RoutedEventArgs());
+                this.LoopPlayer.ResetPlayer();
+                this.VolumeControl.VolumeToDefault();
+            });
+        }
+
+        #endregion
+
+
+        #region INavigate
+
+        public void NavigateToPage()
+        {
+            // NOTHING TO ANIMATE
+            //AnimationHelper.PerformPageEntranceAnimation(this);
+        }
+
+        public void NavigateFromPage()
+        {
+            // NOTHING TO ANIMATE
+            //AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        #endregion
     }
 }
