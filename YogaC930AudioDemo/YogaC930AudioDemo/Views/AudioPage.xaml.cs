@@ -5,18 +5,33 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
+using YogaC930AudioDemo.Helpers;
 using YogaC930AudioDemo.ViewModels;
+
 
 namespace YogaC930AudioDemo.Views
 {
-    public sealed partial class AudioPage : Page
+    public sealed partial class AudioPage : Page, INavigate
     {
-        public Popup HingeDesignPopup;
-        public Popup SpeakerDesignPagePopup;
+        #region Private Properties
+
         private AudioViewModel ViewModel
         {
             get { return DataContext as AudioViewModel; }
         }
+
+        #endregion
+
+
+        #region Public Properties
+
+        public Popup HingeDesignPopup;
+        public Popup SpeakerDesignPagePopup;
+
+        #endregion
+
+
+        #region Construction / Initialization
 
         public AudioPage()
         {
@@ -28,10 +43,10 @@ namespace YogaC930AudioDemo.Views
         private void AudioPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.HingeDesignPopup = FlipViewPage.Current.GetHingDesignPopupPagePopup();
-            HingeDesignPopupPage.Current.CloseButton_Clicked+= Close_Left_Clicked;
+            HingeDesignPopupPage.Current.CloseButton_Clicked+= CloseButtonLeft_Clicked;
 
             this.SpeakerDesignPagePopup = FlipViewPage.Current.GetSpeakerPopupPagePopup();
-            SpeakerDesignPopupPage.Current.CloseButton_Clicked += Close_Right_Clicked;
+            SpeakerDesignPopupPage.Current.CloseButton_Clicked += CloseButtonRight_Clicked;
 
             //YogaC930AudioDemo.Helpers.TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 3, Windows.UI.Colors.AliceBlue);
 
@@ -43,7 +58,12 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void btnLeft_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+
+        #region Event Handlers
+
+        private void ButtonLeft_Click(object sender, RoutedEventArgs e)
         {
             if (this.SpeakerDesignPagePopup.IsOpen == false)
             {
@@ -51,7 +71,7 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void btnRight_Click(object sender, RoutedEventArgs e)
+        private void ButtonRight_Click(object sender, RoutedEventArgs e)
         {
             if (this.HingeDesignPopup.IsOpen == false)
             {
@@ -59,7 +79,7 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void Close_Left_Clicked(object sender, RoutedEventArgs e)
+        private void CloseButtonLeft_Clicked(object sender, RoutedEventArgs e)
         {
             if (this.HingeDesignPopup.IsOpen == true)
             {
@@ -67,12 +87,29 @@ namespace YogaC930AudioDemo.Views
             }
         }
 
-        private void Close_Right_Clicked(object sender, RoutedEventArgs e)
+        private void CloseButtonRight_Clicked(object sender, RoutedEventArgs e)
         {
             if (this.SpeakerDesignPagePopup.IsOpen == true)
             {
                 this.SpeakerDesignPagePopup.IsOpen = false;
             }
         }
+
+        #endregion
+
+
+        #region INavigate
+
+        public void NavigateToPage()
+        {
+            AnimationHelper.PerformPageEntranceAnimation(this);
+        }
+
+        public void NavigateFromPage()
+        {
+            AnimationHelper.PerformPageExitAnimation(this);
+        }
+
+        #endregion
     }
 }

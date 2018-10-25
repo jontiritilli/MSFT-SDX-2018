@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:conv="using:YogaC930AudioDemo.Converters"
+    xmlns:mod="using:YogaC930AudioDemo.Models"
     DataContext="{Binding AudioViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -14,16 +15,6 @@
     </Page.Resources>
     
     <Grid x:Name="LayoutRoot">
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource GridLengthConverter}}"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="{Binding Source={StaticResource BottomMargin}, Converter={StaticResource GridLengthConverter}}"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource GridLengthConverter}}"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="{Binding Source={StaticResource RightMargin}, Converter={StaticResource GridLengthConverter}}"/>
-        </Grid.ColumnDefinitions>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="{Binding Source={StaticResource TopMargin}, Converter={StaticResource ScalingConverter}}"/>
             <RowDefinition Height="*"/>
@@ -41,7 +32,9 @@
                Grid.Row="0"
                Grid.RowSpan="3"
                Grid.Column="0"
-               Grid.ColumnSpan="3">
+               Grid.ColumnSpan="3"
+               Opacity="0.0"
+               mod:AnimationTag.AnimationType="Background">
             <Image.Source>
                 <BitmapImage
                     UriSource="ms-appx:///Assets/Audio/audio_blueBackground.png"
@@ -58,9 +51,11 @@
             HorizontalAlignment="Left">
 
             <Image x:Name="DolbyAtmos"
-                HorizontalAlignment="Left"
-                Margin="0"
-                Width="{Binding Source=252, Converter={StaticResource ScalingConverter}}">
+                   HorizontalAlignment="Left"
+                   Margin="0"
+                   Width="{Binding Source=252, Converter={StaticResource ScalingConverter}}"
+                   Opacity="0.0"
+                   mod:AnimationTag.AnimationType="Standard">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Audio/audio_bullet_dolbyAtmos.png"
@@ -73,18 +68,24 @@
                   X2="{Binding Source=115, Converter={StaticResource ScalingConverter}}"
                   Y1="0" Y2="0" Stroke="{StaticResource SeparatorLineSolidColorBrush}"
                   StrokeThickness="{Binding Source=2, Converter={StaticResource ScalingConverter}}"
-                  Margin="{Binding Source='0,25,0,25', Converter={StaticResource ScalingConverter}}"/>
+                  Margin="{Binding Source='0,25,0,25', Converter={StaticResource ScalingConverter}}"
+                  Opacity="0.0"
+                  mod:AnimationTag.AnimationType="Standard"/>
 
             <TextBlock
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 HorizontalAlignment="Left"
                 Style="{StaticResource HeadlineTextStyle}"     
-                Text="{x:Bind Path=ViewModel.Headline}"/>
+                Text="{x:Bind Path=ViewModel.Headline}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
 
             <TextBlock
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 HorizontalAlignment="Left"
-                Style="{StaticResource BodyTextStyle}">
+                Style="{StaticResource BodyTextStyle}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Run Text="{x:Bind Path=ViewModel.BodyFirst}"/>
                 <Run Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
                      FontWeight="SemiBold"
@@ -95,10 +96,12 @@
 
         <Canvas Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3">
             <Image x:Name="imgHero"
-               Canvas.Left="{Binding Source=650, Converter={StaticResource ScalingConverter}}"
-               Canvas.Top="{Binding Source=-325, Converter={StaticResource ScalingConverter}}"
-               Canvas.ZIndex="-1"
-               Width="{Binding Source=1254, Converter={StaticResource ScalingConverter}}">
+                   Canvas.Left="{Binding Source=650, Converter={StaticResource ScalingConverter}}"
+                   Canvas.Top="{Binding Source=-325, Converter={StaticResource ScalingConverter}}"
+                   Canvas.ZIndex="-1"
+                   Width="{Binding Source=1254, Converter={StaticResource ScalingConverter}}"
+                   Opacity="0.0"
+                   mod:AnimationTag.AnimationType="Hero">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hero.png"
                                  DecodePixelWidth="{Binding Source=1254, Converter={StaticResource ScalingConverter}}"
@@ -106,11 +109,13 @@
                 </Image.Source>
             </Image>
 
-            <Image x:Name="btnLeft"
-                    Canvas.Left="{Binding Source=1018, Converter={StaticResource ScalingConverter}}"
-                    Canvas.Top="{Binding Source=210, Converter={StaticResource ScalingConverter}}"
-                    Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
-                    Tapped="btnLeft_Click">
+            <Image x:Name="ButtonLeft"
+                   Canvas.Left="{Binding Source=1018, Converter={StaticResource ScalingConverter}}"
+                   Canvas.Top="{Binding Source=210, Converter={StaticResource ScalingConverter}}"
+                   Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
+                   Tapped="ButtonLeft_Click"
+                   Opacity="0.0"
+                   mod:AnimationTag.AnimationType="Radiate">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Audio/audio_hotspot1.png"
@@ -120,11 +125,13 @@
             </Image>
 
             <Image
-                x:Name="btnRight"
+                x:Name="ButtonRight"
                 Canvas.Left="{Binding Source=1580, Converter={StaticResource ScalingConverter}}"
                 Canvas.Top="{Binding Source=170, Converter={StaticResource ScalingConverter}}"
                 Width="{Binding Source=66, Converter={StaticResource ScalingConverter}}"
-                Tapped="btnRight_Click">
+                Tapped="ButtonRight_Click"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Radiate">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Audio/audio_hotspot2.png"
                                  DecodePixelWidth="{Binding Source=66, Converter={StaticResource ScalingConverter}}"

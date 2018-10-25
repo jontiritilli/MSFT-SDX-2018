@@ -35,7 +35,7 @@ namespace YogaC930AudioDemo.Controls
 
     public sealed partial class VolumeSlider : UserControl
     {
-        #region Constants
+        #region Private Constants
 
         private const double SLIDER_MINIMUM = 0;
         private const double SLIDER_MAXIMUM = 100;
@@ -46,6 +46,7 @@ namespace YogaC930AudioDemo.Controls
         private static Uri VOLUME_MAX_IMAGE_URI = new Uri("ms-appx:///Assets/Volume/ui_volumeMax.png");
 
         #endregion
+
 
         #region Public Members
 
@@ -60,7 +61,8 @@ namespace YogaC930AudioDemo.Controls
 
         #endregion
 
-        #region Construction
+
+        #region Construction / Initialization
 
         public VolumeSlider()
         {
@@ -135,6 +137,7 @@ namespace YogaC930AudioDemo.Controls
         }
 
         #endregion
+
 
         #region Event Handlers
 
@@ -269,6 +272,7 @@ namespace YogaC930AudioDemo.Controls
 
         #endregion
 
+
         #region Private Methods
 
         private void StartVolumeStory()
@@ -289,7 +293,7 @@ namespace YogaC930AudioDemo.Controls
         private void RampUpVolume()
         {
             const double TIMER_HIGHLIGHT = 300;
-            const double TIMER_VOLUME = 2000;
+            const double TIMER_VOLUME = 4000;
 
             // ===========================================================
             // set up timers
@@ -339,7 +343,7 @@ namespace YogaC930AudioDemo.Controls
 
         private void PerformFadeIn()
         {
-            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxis.Horizontal, 200, 200, 0, 750, 500);
+            AnimationHelper.PerformTranslateIn(this.SliderContainer, TranslateAxes.Horizontal, 200, 200, 0, 750, 500);
             AnimationHelper.PerformFadeIn(this.TextBoxContainer, 750, 1250);
             //AnimationHelper.PerformFadeIn(this.RadiateCanvas, 750, 1500);
         }

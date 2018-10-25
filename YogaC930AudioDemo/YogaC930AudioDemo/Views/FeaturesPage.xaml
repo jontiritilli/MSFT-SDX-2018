@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:conv="using:YogaC930AudioDemo.Converters"
+    xmlns:mod="using:YogaC930AudioDemo.Models"
     DataContext="{Binding FeaturesViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -28,7 +29,9 @@
             x:Name="HeroBackground"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Width="{Binding Source=960, Converter={StaticResource ScalingConverter}}">
+            Width="{Binding Source=960, Converter={StaticResource ScalingConverter}}"
+            Opacity="0.0"
+            mod:AnimationTag.AnimationType="Background">
             <Image.Source>
                 <BitmapImage
                     UriSource="ms-appx:///Assets/Features/features_blueBackground.png"
@@ -41,7 +44,9 @@
             x:Name="imgHero"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
-            Width="{Binding Source=1116, Converter={StaticResource ScalingConverter}}">
+            Width="{Binding Source=1116, Converter={StaticResource ScalingConverter}}"
+            Opacity="0.0"
+            mod:AnimationTag.AnimationType="Hero">
             <Image.Source>
                 <BitmapImage
                     UriSource="ms-appx:///Assets/Features/features_hero.png"
@@ -77,7 +82,9 @@
             <Image Grid.Row="0" Grid.Column="0"
                 x:Name="imgPen"
                 VerticalAlignment="Top"
-                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}">
+                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/Features/features_bullet_garagedPen.png"
                                  DecodePixelWidth="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
@@ -89,11 +96,15 @@
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource HeadlineTextStyle}"
                 Text="{x:Bind ViewModel.PenHeadline}"
-                HorizontalAlignment="Left"/>
+                HorizontalAlignment="Left"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
 
             <TextBlock Grid.Row="1" Grid.Column="2"
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
-                Style="{StaticResource BodyTextStyle}">
+                Style="{StaticResource BodyTextStyle}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Run Text="{x:Bind ViewModel.PenBodyFirst}"/>
                 <Run Text="{x:Bind ViewModel.PenBodyBold}"
                         Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
@@ -105,7 +116,9 @@
             <Image Grid.Row="3" Grid.Column="0"
                 x:Name="imgInk"          
                 VerticalAlignment="Top"        
-                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}">
+                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Features/features_bullet_windowsInk.png"
@@ -117,11 +130,15 @@
             <TextBlock Grid.Row="3" Grid.Column="2"
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource HeadlineTextStyle}"                
-                Text="{x:Bind ViewModel.InkHeadline}" />
+                Text="{x:Bind ViewModel.InkHeadline}" 
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
 
             <TextBlock Grid.Row="4" Grid.Column="2"
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
-                Style="{StaticResource BodyTextStyle}">
+                Style="{StaticResource BodyTextStyle}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Run Text="{x:Bind ViewModel.InkBodyFirst}"/>
                 <Run Text="{x:Bind ViewModel.InkBodyBold}"
                      Foreground="{StaticResource BodyBlueTextSolidColorBrush}"
@@ -133,7 +150,9 @@
             <Image Grid.Row="6" Grid.Column="0"
                 x:Name="imgShutter"
                 VerticalAlignment="Top"
-                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}">
+                Width="{Binding Source=52, Converter={StaticResource ScalingConverter}}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Image.Source>
                     <BitmapImage
                         UriSource="ms-appx:///Assets/Features/features_bullet_TrublockPrivacyShutter.png"
@@ -145,11 +164,15 @@
             <TextBlock Grid.Row="6"  Grid.Column="2"
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
                 Style="{StaticResource HeadlineTextStyle}"                  
-                Text="{x:Bind ViewModel.WebCamHeadline}" />
+                Text="{x:Bind ViewModel.WebCamHeadline}" 
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
 
             <TextBlock Grid.Row="7" Grid.Column="2"
                 Width="{Binding Source={StaticResource HeaderWidth}, Converter={StaticResource ScalingConverter}}"
-                Style="{StaticResource BodyTextStyle}">
+                Style="{StaticResource BodyTextStyle}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard">
                 <Run Text="{x:Bind ViewModel.WebCamBodyFirst}"/>
                 <Run Text="{x:Bind ViewModel.WebCamBodyBold}"
                      Foreground="{StaticResource BodyBlueTextSolidColorBrush}"

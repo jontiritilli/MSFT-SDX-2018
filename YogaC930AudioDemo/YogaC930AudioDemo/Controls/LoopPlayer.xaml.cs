@@ -23,12 +23,6 @@ namespace YogaC930AudioDemo.Controls
 {
     public sealed partial class LoopPlayer : UserControl
     {
-        #region Private Properties
-               
-
-        #endregion
-
-
         #region Initialization
 
         public LoopPlayer()
@@ -125,10 +119,32 @@ namespace YogaC930AudioDemo.Controls
         #endregion
 
 
+        #region Public Events
+
+        // PlaybackEnded
+        public delegate void PlaybackEndedEvent(object sender, EventArgs args);
+
+        public event PlaybackEndedEvent PlaybackEnded;
+
+        private void RaisePlaybackEndedEvent()
+        {
+            RaisePlaybackEndedEvent(this, new EventArgs());
+        }
+
+        private void RaisePlaybackEndedEvent(LoopPlayer loopPlayer, EventArgs args)
+        {
+            PlaybackEnded?.Invoke(loopPlayer, args);
+        }
+
+        #endregion
+
+
         #region Event Handlers
 
         private void MediaPlayer_MediaOpened(Windows.Media.Playback.MediaPlayer sender, object args)
         {
+            // don't need this because MediaPlayerElement in XAML already auto starts if
+            // our autostart property is true
             //if (this.AutoPlay)
             //{
             //    this.StartPlayer();
@@ -141,12 +157,17 @@ namespace YogaC930AudioDemo.Controls
 
         private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
         {
-            if (null != sender)
-            {
-                sender.Pause();
-                sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
-                sender.Play();
-            }
+            // no longer want video to repeat
+            //if (null != sender)
+            //{
+            //    sender.Pause();
+            //    sender.PlaybackSession.Position = TimeSpan.FromMilliseconds(1);
+            //    sender.Play();
+            //}
+
+            // instead, we'll reset the player and raise an event
+            this.ResetPlayer();
+            this.RaisePlaybackEndedEvent();
         }
 
         #endregion

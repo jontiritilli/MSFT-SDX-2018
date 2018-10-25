@@ -45,6 +45,17 @@ namespace SurfaceJackDemo
             // save a pointer to ourself
             App.Current = this;
 
+            // register the playlist service and initialize it
+            SimpleIoc.Default.Register<PlaylistService>();
+            PlaylistService playlistService = (PlaylistService)SimpleIoc.Default.GetInstance<PlaylistService>();
+            if (null != playlistService)
+            {
+                // run this async because we don't need it to start the app
+#pragma warning disable CS4014
+                playlistService.Initialize();
+#pragma warning restore CS4014
+            }
+
             InitializeComponent();
 
             // app lifecycle event handlers
@@ -97,17 +108,6 @@ namespace SurfaceJackDemo
                     // log app start
                     TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
                 }
-            }
-
-            // register the playlist service and initialize it
-            SimpleIoc.Default.Register<PlaylistService>();
-            PlaylistService playlistService = (PlaylistService)SimpleIoc.Default.GetInstance<PlaylistService>();
-            if (null != playlistService)
-            {
-                // run this async because we don't need it to start the app
-#pragma warning disable CS4014
-                playlistService.Initialize();
-#pragma warning restore CS4014
             }
         }
 

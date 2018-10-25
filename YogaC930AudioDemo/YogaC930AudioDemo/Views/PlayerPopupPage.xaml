@@ -27,11 +27,12 @@
             <ColumnDefinition Width="{StaticResource CanvasWidth}"/>
         </Grid.ColumnDefinitions>
       
-        <ctrl:LoopPlayer Grid.Row="0" Grid.Column="0"
-            x:Name="LoopPlayer"
-            Width="{StaticResource CanvasWidth}"
-            MediaSourceUri="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.mp4"
-            AutoPlay="True"/>
+        <ctrl:LoopPlayer x:Name="LoopPlayer"
+                         Grid.Row="0" Grid.Column="0"
+                         Width="{StaticResource CanvasWidth}"
+                         MediaSourceUri="ms-appx:///Assets/Player/Makeba_Yoga_30s_POS_1920x1080H264.mp4"
+                         AutoPlay="True"
+                         PlaybackEnded="LoopPlayer_PlaybackEnded"/>
 
         <Image x:Name="CloseButtonImage"
                Grid.Row="0" Grid.Column="0"

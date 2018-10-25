@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:conv="using:YogaC930AudioDemo.Converters"
+    xmlns:mod="using:YogaC930AudioDemo.Models"
     DataContext="{Binding SpeedsAndFeedsViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -46,7 +47,9 @@
                Margin="{Binding Source='0,75,0,0', Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
-               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
+               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
+               Opacity="0.0"
+               mod:AnimationTag.AnimationType="Hero">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroMicaALT.png"
                              DecodePixelWidth="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
@@ -63,7 +66,9 @@
                Margin="{Binding Source='0,75,0,0', Converter={StaticResource ScalingConverter}}"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
-               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}">
+               Width="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
+               Opacity="0.0"
+               mod:AnimationTag.AnimationType="Hero">
             <Image.Source>
                 <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_heroIronALT.png"
                              DecodePixelWidth="{Binding Source=1152, Converter={StaticResource ScalingConverter}}"
@@ -80,10 +85,14 @@
                     Grid.ColumnSpan="2">
             <TextBlock x:Name="Headline"
                         Style="{StaticResource HeadlineTextStyle}"     
-                        Text="{x:Bind Path=ViewModel.Headline}" />
+                        Text="{x:Bind Path=ViewModel.Headline}"
+                        Opacity="0.0"
+                        mod:AnimationTag.AnimationType="Standard" />
             <TextBlock x:Name="Body"
                         Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Bind Path=ViewModel.Body}"/>
+                        Text="{x:Bind Path=ViewModel.Body}"
+                        Opacity="0.0"
+                        mod:AnimationTag.AnimationType="Standard"/>
         </StackPanel>
 
 
@@ -100,13 +109,19 @@
                         Padding="{Binding Source='0,0,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.WindowsBodyFirst}" />
+                            Text="{x:Bind Path=ViewModel.WindowsBodyFirst}" 
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemHeroLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.WindowsBodyBold}"/>
+                            Text="{x:Bind Path=ViewModel.WindowsBodyBold}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemLastLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.WindowsBodyLast}"/>
+                            Text="{x:Bind Path=ViewModel.WindowsBodyLast}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
             </StackPanel>
 
             <StackPanel x:Name="DolbyVision"
@@ -116,13 +131,19 @@
                         Padding="{Binding Source='0,40,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.DolbyBodyFirst}" />
+                            Text="{x:Bind Path=ViewModel.DolbyBodyFirst}" 
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemHeroLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.DolbyBodyBold}"/>
+                            Text="{x:Bind Path=ViewModel.DolbyBodyBold}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemLastLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.DolbyBodyLast}"/>
+                            Text="{x:Bind Path=ViewModel.DolbyBodyLast}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
             </StackPanel>
 
             <StackPanel x:Name="Battery"
@@ -130,13 +151,19 @@
                         Padding="{Binding Source='0,40,0,0', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.BatteryBodyFirst}" />
+                            Text="{x:Bind Path=ViewModel.BatteryBodyFirst}" 
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemHeroLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.BatteryBodyBold}"/>
+                            Text="{x:Bind Path=ViewModel.BatteryBodyBold}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemLastLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.BatteryBodyLast}"/>
+                            Text="{x:Bind Path=ViewModel.BatteryBodyLast}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
             </StackPanel>
         </StackPanel>
 
@@ -153,13 +180,19 @@
                         Padding="{Binding Source='0,0,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.IntelBodyFirst}" />
+                            Text="{x:Bind Path=ViewModel.IntelBodyFirst}" 
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemHeroLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.IntelBodyBold}"/>
+                            Text="{x:Bind Path=ViewModel.IntelBodyBold}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemLastLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.IntelBodyLast}"/>
+                            Text="{x:Bind Path=ViewModel.IntelBodyLast}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
             </StackPanel>
 
             <StackPanel x:Name="FourK"
@@ -169,13 +202,19 @@
                         Padding="{Binding Source='0,40,0,27', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.FourKBodyFirst}" />
+                            Text="{x:Bind Path=ViewModel.FourKBodyFirst}" 
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemHeroLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.FourKBodyBold}"/>
+                            Text="{x:Bind Path=ViewModel.FourKBodyBold}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemLastLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.FourKBodyLast}"/>
+                            Text="{x:Bind Path=ViewModel.FourKBodyLast}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
             </StackPanel>
 
             <StackPanel x:Name="FiftySeven"
@@ -183,13 +222,19 @@
                         Padding="{Binding Source='0,40,0,0', Converter={StaticResource ScalingConverter}}">
                 <TextBlock
                             Style="{StaticResource ListItemFirstLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.FiftySevenBodyFirst}" />
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyFirst}" 
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemHeroLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.FiftySevenBodyBold}"/>
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyBold}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
                 <TextBlock
                             Style="{StaticResource ListItemLastLineTextStyle}"
-                            Text="{x:Bind Path=ViewModel.FiftySevenBodyLast}"/>
+                            Text="{x:Bind Path=ViewModel.FiftySevenBodyLast}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
             </StackPanel>
         </StackPanel>
 
@@ -199,7 +244,9 @@
                    Grid.ColumnSpan="3"
                    VerticalAlignment="Bottom"
                    Style="{StaticResource LegalTextStyle}"
-                   Text="{x:Bind Path=ViewModel.Footnote}"/>
+                   Text="{x:Bind Path=ViewModel.Footnote}"
+                            Opacity="0.0"
+                            mod:AnimationTag.AnimationType="Standard"/>
 
         <!--<Image x:Name="imgHero"
                Grid.Row="1"
@@ -223,7 +270,9 @@
             <Image x:Name="IntelMark"
                    Canvas.Left="{Binding Source=1700, Converter={StaticResource ScalingConverter}}"
                    Canvas.Top="{Binding Source=911, Converter={StaticResource ScalingConverter}}"
-                   Width="{Binding Source=84, Converter={StaticResource ScalingConverter}}">
+                   Width="{Binding Source=84, Converter={StaticResource ScalingConverter}}"
+                   Opacity="0.0"
+                   mod:AnimationTag.AnimationType="Standard">
                 <Image.Source>
                     <BitmapImage UriSource="ms-appx:///Assets/SpeedsAndFeeds/speedsFeeds_intelCoreMark.png"
                                  DecodePixelWidth="{Binding Source=84, Converter={StaticResource ScalingConverter}}"
@@ -242,13 +291,17 @@
                 Style="{StaticResource ColorSpecTextStyle}"
                 Text="{x:Bind Path=ViewModel.TopColor}" 
                 Canvas.Left="{Binding Source=1036.995, Converter={StaticResource ScalingConverter}}"
-                Canvas.Top="{Binding Source=458.5, Converter={StaticResource ScalingConverter}}"/>
+                Canvas.Top="{Binding Source=458.5, Converter={StaticResource ScalingConverter}}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
 
             <TextBlock
                 Style="{StaticResource ColorSpecTextStyle}"
                 Text="{x:Bind Path=ViewModel.BottomColor}" 
                 Canvas.Left="{Binding Source=972.5, Converter={StaticResource ScalingConverter}}"
-                Canvas.Top="{Binding Source=569.135, Converter={StaticResource ScalingConverter}}"/>
+                Canvas.Top="{Binding Source=569.135, Converter={StaticResource ScalingConverter}}"
+                Opacity="0.0"
+                mod:AnimationTag.AnimationType="Standard"/>
         </Canvas>
     </Grid>
 
