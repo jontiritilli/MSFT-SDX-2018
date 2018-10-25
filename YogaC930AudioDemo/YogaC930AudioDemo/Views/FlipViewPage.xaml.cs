@@ -177,7 +177,7 @@ namespace YogaC930AudioDemo.Views
         private async void NavigationBarGoToDesktop_Click(object sender, PointerRoutedEventArgs e)
         {
             // suspend the app
-            ConfigurationService.SuspendApp();
+            await ConfigurationService.SuspendAppAsync();
         }
 
         private void PlayAudioDemoBlueBorder_PointerReleased(object sender, PointerRoutedEventArgs e)
