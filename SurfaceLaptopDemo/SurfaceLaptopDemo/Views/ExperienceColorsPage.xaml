@@ -41,9 +41,9 @@
             URIs="{x:Bind Path=ViewModel.lifeStyleColorSelectorImageURIs}"
             ImageHeight="{StaticResource CanvasHeight}"
             ImageWidth="{StaticResource CanvasWidth}"                               
-            Opacity="0"
+            Opacity="1"
             HasEntranceTranslation="False"
-            HasPageEntranceAnimationEnabled="True"/>
+            HasPageEntranceAnimationEnabled="False"/>
         
         <ctrl:Header Grid.Row="3" Grid.Column="1"
             x:Name="PageHeader" 
