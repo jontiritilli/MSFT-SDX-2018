@@ -56,9 +56,6 @@ namespace YogaC930AudioDemo.Views
             {
                 mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
-
-            //// prepare for page animation
-            //AnimationHelper.PrepForPageAnimation(this);
         }
 
         #endregion
@@ -76,11 +73,24 @@ namespace YogaC930AudioDemo.Views
 
         #region Event Handlers
 
+        private void LoopPlayer_PlaybackEnded(object sender, EventArgs args)
+        {
+            CloseAndExit();
+        }
+
         private void CloseButtonImage_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            CloseButton_Clicked(sender, new RoutedEventArgs());
-            this.LoopPlayer.ResetPlayer();
-            this.VolumeControl.VolumeToDefault();
+            CloseAndExit();
+        }
+
+        private void CloseAndExit()
+        {
+            var trash = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                CloseButton_Clicked(this, new RoutedEventArgs());
+                this.LoopPlayer.ResetPlayer();
+                this.VolumeControl.VolumeToDefault();
+            });
         }
 
         #endregion
@@ -90,11 +100,13 @@ namespace YogaC930AudioDemo.Views
 
         public void NavigateToPage()
         {
+            // NOTHING TO ANIMATE
             //AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
+            // NOTHING TO ANIMATE
             //AnimationHelper.PerformPageExitAnimation(this);
         }
 

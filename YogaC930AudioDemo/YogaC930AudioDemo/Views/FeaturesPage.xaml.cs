@@ -37,9 +37,6 @@ namespace YogaC930AudioDemo.Views
             {
                 mgr.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
-
-            // prepare for animation
-            AnimationHelper.PrepForPageAnimation(this);
         }
 
         #endregion
