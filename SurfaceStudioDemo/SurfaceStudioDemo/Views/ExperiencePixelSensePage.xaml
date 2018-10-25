@@ -7,7 +7,6 @@
     xmlns:local="using:SurfaceStudioDemo.Views"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     xmlns:conv="using:SDX.Toolkit.Converters"  
-    Style="{StaticResource PageStyle}"
     DataContext="{Binding ExperiencePixelSenseViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     
