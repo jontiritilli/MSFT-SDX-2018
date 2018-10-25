@@ -33,6 +33,7 @@ namespace YogaC930AudioDemo
             InitializeComponent();
 
             EnteredBackground += App_EnteredBackground;
+            Resuming += this.App_Resuming;
 
             // we want full screen, but leave this off during dev 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
@@ -62,6 +63,17 @@ namespace YogaC930AudioDemo
                 // async here might lead to a race condition, but no signs so far
                 //localizationService.Initialize();
                 AsyncHelper.RunSync(() => localizationService.Initialize());
+            }
+        }
+
+        private void App_Resuming(object sender, object e)
+        {
+            // when we resume, make sure we're in full screen mode
+            ApplicationView view = ApplicationView.GetForCurrentView();
+
+            if (null != view)
+            {
+                view.TryEnterFullScreenMode();
             }
         }
 

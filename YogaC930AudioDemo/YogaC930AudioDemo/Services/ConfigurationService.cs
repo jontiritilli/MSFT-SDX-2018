@@ -18,6 +18,7 @@ using YogaC930AudioDemo.Models;
 using YogaC930AudioDemo.Helpers;
 using Windows.System.Profile;
 using Windows.System;
+using Windows.UI.ViewManagement;
 
 namespace YogaC930AudioDemo.Services
 {
@@ -166,6 +167,13 @@ namespace YogaC930AudioDemo.Services
             AppResourceGroupInfo appResourceGroupInfo = null;
 
             // for Windows v1803 aka build 17134 and above, we can minimize by suspending
+
+            // cannot minimize a full screen window, so take the app out of full screen
+            ApplicationView view = ApplicationView.GetForCurrentView();
+            if (view.IsFullScreenMode)
+            {
+                view.ExitFullScreenMode();
+            }
 
             // figure out if we can suspend and can get the references we need
             if (ConfigurationService.DoesOSBuildSupportSuspend())
