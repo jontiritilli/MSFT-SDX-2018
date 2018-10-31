@@ -145,6 +145,7 @@
       <DependentUpon>TextBlockEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Converters\ScalingConverter.cs" />
     <Compile Include="Converters\TextBlockHeightConverter.cs" />
     <Compile Include="Converters\MultiplyDoublesConverter.cs" />
     <Compile Include="Converters\PercentageToCanvasLeftConverter.cs" />

@@ -397,7 +397,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="YogaC930AudioDemo_StoreKey.pfx" />
-    <None Include="YogaC930AudioDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

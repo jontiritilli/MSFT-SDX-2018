@@ -26,7 +26,8 @@
                     <Image Stretch="UniformToFill">
                         <Image.Source>
                             <BitmapImage UriSource="{Binding Path=CoverArtSourceUri, Mode=OneTime}"
-                                        DecodePixelWidth="78"/>
+                                         DecodePixelWidth="78"
+                                         DecodePixelType="Logical"/>
                         </Image.Source>
                     </Image>
                 </Border>

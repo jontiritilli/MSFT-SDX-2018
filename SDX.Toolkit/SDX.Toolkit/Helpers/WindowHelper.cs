@@ -118,6 +118,17 @@ namespace SDX.Toolkit.Helpers
             return deviceType;
         }
 
+        public static double GetRawPixelsPerViewPixel()
+        {
+            double scale = 0;
+
+            ApplicationView applicationView = ApplicationView.GetForCurrentView();
+            DisplayInformation displayInformation = DisplayInformation.GetForCurrentView();
+            scale = displayInformation.RawPixelsPerViewPixel;
+
+            return scale;
+        }
+
         #endregion
     }
 }

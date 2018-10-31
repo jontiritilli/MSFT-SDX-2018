@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>SurfaceJackDemo</value>
+    <value>Surface Headphones Demo</value>
     <comment>Application display name</comment>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>SurfaceJackDemo</value>
+    <value>Surface Headphones Demo</value>
     <comment>Application description</comment>
   </data>
   <data name="ExceptionNavigationServiceExPageNotFound" xml:space="preserve">
@@ -141,48 +141,8 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="PivotItem_AttractorLoop.Header" xml:space="preserve">
-    <value>AttractorLoop</value>
-    <comment>Pivot item header for AttractorLoop</comment>
-  </data>
-  <data name="PivotItem_ChoosePath.Header" xml:space="preserve">
-    <value>ChoosePath</value>
-    <comment>Pivot item header for ChoosePath</comment>
-  </data>
-  <data name="PivotItem_AudioTryIt.Header" xml:space="preserve">
-    <value>AudioTryIt</value>
-    <comment>Pivot item header for AudioTryIt</comment>
-  </data>
-  <data name="PivotItem_AudioListen.Header" xml:space="preserve">
-    <value>AudioListen</value>
-    <comment>Pivot item header for AudioListen</comment>
-  </data>
-  <data name="PivotItem_Design.Header" xml:space="preserve">
-    <value>Design</value>
-    <comment>Pivot item header for Design</comment>
-  </data>
-  <data name="PivotItem_Tech.Header" xml:space="preserve">
-    <value>Tech</value>
-    <comment>Pivot item header for Tech</comment>
-  </data>
-  <data name="PivotItem_Productivity.Header" xml:space="preserve">
-    <value>Productivity</value>
-    <comment>Pivot item header for Productivity</comment>
-  </data>
-  <data name="PivotItem_Specs.Header" xml:space="preserve">
-    <value>Specs</value>
-    <comment>Pivot item header for Specs</comment>
-  </data>
-  <data name="PivotItem_Partner.Header" xml:space="preserve">
-    <value>Partner</value>
-    <comment>Pivot item header for Partner</comment>
-  </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>
-  </data>
-  <data name="UriSchemeExample_Title.Text" xml:space="preserve">
-    <value>URI Scheme Example</value>
-    <comment>Page Title for URI Scheme Example</comment>
   </data>
 </root>

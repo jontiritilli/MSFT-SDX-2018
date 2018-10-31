@@ -3,7 +3,7 @@
   <Identity Name="EFMAgency.SurfaceJackDemo" Publisher="CN=7CAE1DFA-3FB6-42F3-9105-9DC5AD638228" Version="3.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="1e1839d6-2ba9-41b1-8f2b-c5282e94b549" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>SurfaceJackDemo</DisplayName>
+    <DisplayName>Surface Headphones Demo</DisplayName>
     <PublisherDisplayName>EFM Agency</PublisherDisplayName>
     <Logo>Assets\StoreIcons\PackageLogo50x50.png</Logo>
   </Properties>
@@ -28,7 +28,7 @@
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="surfacejackdemo">
             <uap:Logo>Assets\StoreIcons\Square44x44Logo-UriScheme.png</uap:Logo>
-            <uap:DisplayName>SurfaceJackDemo</uap:DisplayName>
+            <uap:DisplayName>Surface Headphones Demo</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
       </Extensions>

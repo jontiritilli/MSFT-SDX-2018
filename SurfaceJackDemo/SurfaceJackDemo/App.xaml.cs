@@ -45,17 +45,6 @@ namespace SurfaceJackDemo
             // save a pointer to ourself
             App.Current = this;
 
-            // register the playlist service and initialize it
-            SimpleIoc.Default.Register<PlaylistService>();
-            PlaylistService playlistService = (PlaylistService)SimpleIoc.Default.GetInstance<PlaylistService>();
-            if (null != playlistService)
-            {
-                // run this async because we don't need it to start the app
-#pragma warning disable CS4014
-                playlistService.Initialize();
-#pragma warning restore CS4014
-            }
-
             InitializeComponent();
 
             // app lifecycle event handlers
@@ -74,7 +63,43 @@ namespace SurfaceJackDemo
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
+        }
 
+        #endregion
+
+        #region Base Overrides
+
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        {
+            // initialize our services
+            InitializeServices();
+
+            if (!args.PrelaunchActivated)
+            {
+                await ActivationService.ActivateAsync(args);
+            }
+        }
+
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            // initialize our services
+            InitializeServices();
+
+            await ActivationService.ActivateAsync(args);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private ActivationService CreateActivationService()
+        {
+            // return the flipview by default
+            return new ActivationService(this);
+        }
+
+        private void InitializeServices()
+        {
             // register our configuration service and initialize it
             SimpleIoc.Default.Register<ConfigurationService>();
             ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
@@ -93,6 +118,16 @@ namespace SurfaceJackDemo
                 AsyncHelper.RunSync(() => localizationService.Initialize());
             }
 
+            // register the playlist service and initialize it
+            SimpleIoc.Default.Register<PlaylistService>();
+            PlaylistService playlistService = (PlaylistService)SimpleIoc.Default.GetInstance<PlaylistService>();
+            if (null != playlistService)
+            {
+                //// need this to start, so run sync
+                //AsyncHelper.RunSync(() =>  playlistService.Initialize());
+                playlistService.Initialize();
+            }
+
             // initialize the telemetry service
             SimpleIoc.Default.Register<TelemetryService>();
             TelemetryService telemetryService = (TelemetryService)SimpleIoc.Default.GetInstance<TelemetryService>();
@@ -109,33 +144,6 @@ namespace SurfaceJackDemo
                     TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
                 }
             }
-        }
-
-        #endregion
-
-        #region Base Overrides
-
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
-        {
-            if (!args.PrelaunchActivated)
-            {
-                await ActivationService.ActivateAsync(args);
-            }
-        }
-
-        protected override async void OnActivated(IActivatedEventArgs args)
-        {
-            await ActivationService.ActivateAsync(args);
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private ActivationService CreateActivationService()
-        {
-            // return the flipview by default
-            return new ActivationService(this);
         }
 
         #endregion

@@ -41,6 +41,7 @@ namespace SurfaceJackDemo.Views
         {
             SDX.Toolkit.Helpers.AnimationHelper.PerformPageEntranceAnimation(this);
         }
+
         #endregion
 
         #region INavigate Interface
