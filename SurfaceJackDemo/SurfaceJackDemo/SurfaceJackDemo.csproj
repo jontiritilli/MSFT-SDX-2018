@@ -580,7 +580,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="SurfaceJackDemo_StoreKey.pfx" />
-    <None Include="SurfaceJackDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
