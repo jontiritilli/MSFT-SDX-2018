@@ -1,17 +1,18 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
 
-using YogaC930AudioDemo.Services;
+using Windows.Foundation;
 using Windows.UI.Xaml;
+
+using GalaSoft.MvvmLight.Ioc;
+
 using YogaC930AudioDemo.Converters;
 using YogaC930AudioDemo.Helpers;
-using Windows.Foundation;
+using YogaC930AudioDemo.Services;
+
 
 namespace YogaC930AudioDemo.Activation
 {
