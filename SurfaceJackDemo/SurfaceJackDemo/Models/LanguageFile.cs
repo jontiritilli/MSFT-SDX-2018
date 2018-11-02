@@ -19,6 +19,7 @@ namespace SurfaceJackDemo.Models
         public string TECH = "TECH";
         public string PRODUCTIVITY = "PRODUCTIVITY";
         public string SPECS = "SPECS";
+        public string CONTENTS = "CONTENTS";
         public string TRACKNAV_TITLE_ONE = "[Artist Name]";
         public string TRACKNAV_SUBTITLE_ONE = "[Track title]";
         public string TRACKNAV_TITLE_TWO = "[Artist Name]";
@@ -166,6 +167,7 @@ namespace SurfaceJackDemo.Models
             languageFile.TECH = "TECH";
             languageFile.PRODUCTIVITY = "PRODUCTIVITY";
             languageFile.SPECS = "SPECS";
+            languageFile.CONTENTS = "CONTENTS";
             languageFile.TRACKNAV_TITLE_ONE = "[Artist Name]";
             languageFile.TRACKNAV_SUBTITLE_ONE = "[Track title]";
             languageFile.TRACKNAV_TITLE_TWO = "[Artist Name]";

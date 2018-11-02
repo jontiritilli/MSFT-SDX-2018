@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
     xmlns:ctrl="using:SDX.Toolkit.Controls"
     xmlns:conv="using:SDX.Toolkit.Converters"       
     DataContext="{Binding DesignViewModel, Source={StaticResource Locator}}"
@@ -34,18 +33,19 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
 
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                Headline="{x:Bind Path=ViewModel.Headline}"
-            Lede="{x:Bind Path=ViewModel.Lede}"
-            Width="{StaticResource HeaderWidth}"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
+                     Headline="{x:Bind Path=ViewModel.Headline}"
+                     Lede="{x:Bind Path=ViewModel.Lede}"
+                     Width="{StaticResource HeaderWidth}"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top" />
         
         <Canvas x:Name="ButtonCanvas"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.RowSpan="7"
-            Grid.ColumnSpan="4"
-            Canvas.ZIndex="101">
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.RowSpan="7"
+                Grid.ColumnSpan="4"
+                Canvas.ZIndex="101">
 
             <ctrl:RadiatingButton
                 x:Name="rBtnLeft"

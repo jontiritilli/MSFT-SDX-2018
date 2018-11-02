@@ -51,7 +51,7 @@ namespace SurfaceJackDemo.ViewModels
         public string NavBarTech;
         public string NavBarProductivity;
         public string NavBarSpecs;
-        public string NavBarPartner;
+        public string NavBarContents;
         public double Volume;
 
         // music bar playlist
@@ -192,13 +192,13 @@ namespace SurfaceJackDemo.ViewModels
             };
             this.Sections.Add(sectionSpecs);
 
-            //NavigationSection sectionPartner = new NavigationSection()
-            //{
-            //    Name = "Partner",
-            //    Text = this.NavBarPartner,  // from language file
-            //    Order = 5
-            //};
-            //this.Sections.Add(sectionPartner);
+            NavigationSection sectionContents = new NavigationSection()
+            {
+                Name = "Contents",
+                Text = this.NavBarContents,  // from language file
+                Order = 5
+            };
+            this.Sections.Add(sectionContents);
 
             // =================================================
             // Create the page tree
@@ -279,7 +279,7 @@ namespace SurfaceJackDemo.ViewModels
             // Create Specs pages
             // =================================================
 
-            // ComparePage
+            // SpecsPage
             this.Root.Items.Add(new NavigationPage()
             {
                 Name = "SpecsPage",
@@ -287,12 +287,16 @@ namespace SurfaceJackDemo.ViewModels
                 Section = sectionSpecs,
             });
 
-            // ComparePage
+            // =================================================
+            // Create Contents pages
+            // =================================================
+
+            // InTheBoxPage
             this.Root.Items.Add(new NavigationPage()
             {
-                Name = "PartnerPage",
+                Name = "ContentsPage",
                 Order = 5,
-                Section = sectionSpecs,
+                Section = sectionContents,
             });
         }
     }

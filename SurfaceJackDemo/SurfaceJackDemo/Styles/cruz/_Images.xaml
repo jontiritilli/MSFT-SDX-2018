@@ -7,7 +7,7 @@
     <x:Double x:Key="ColoringBookBitmapImageWidth">855</x:Double>
     <x:Double x:Key="ColoringBookPaletteIconWidth">42</x:Double>
 
-<conv:DoubleToIntConverter x:Key="DoubleToIntConverterKey"/>
+    <conv:DoubleToIntConverter x:Key="DoubleToIntConverterKey"/>
     
     <BitmapImage x:Key="ColoringBookBitmapImage"
                  UriSource="ms-appx:///Assets/Accessories/peacock.png"

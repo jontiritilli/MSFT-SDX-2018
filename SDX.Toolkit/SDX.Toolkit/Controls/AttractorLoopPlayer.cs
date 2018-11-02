@@ -50,7 +50,7 @@ namespace SDX.Toolkit.Controls
             this.DefaultStyleKey = typeof(AttractorLoopPlayer);
 
             this.Loaded += OnLoaded;
-            this.KeyUp += AttractorLoopPlayer_KeyUp;
+            CoreWindow.GetForCurrentThread().KeyDown += this.AttractorLoopPlayer_KeyDown;
         }
 
         protected override void OnApplyTemplate()
@@ -181,21 +181,9 @@ namespace SDX.Toolkit.Controls
 
         }
 
-        private void MediaPlayer_KeyboardInteractionOccurred(object sender, KeyRoutedEventArgs e)
+        private void AttractorLoopPlayer_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
-            e.Handled = HandleKey(e.Key);
-        }
-
-        private void AttractorLoopPlayer_KeyUp(object sender, KeyRoutedEventArgs e)
-        {
-            e.Handled = HandleKey(e.Key);
-        }
-
-        protected override void OnKeyUp(KeyRoutedEventArgs e)
-        {
-            e.Handled = HandleKey(e.Key);
-
-            base.OnKeyUp(e);
+            args.Handled = HandleKey(args.VirtualKey);
         }
 
         private bool HandleKey(VirtualKey key)
@@ -308,7 +296,6 @@ namespace SDX.Toolkit.Controls
 
             // set interaction event handlers
             _mediaPlayerElement.PointerPressed += this.MediaPlayer_PointerInteractionOccurred;
-            _mediaPlayerElement.KeyUp += this.MediaPlayer_KeyboardInteractionOccurred;
 
             _border.Child = _mediaPlayerElement;
         }
