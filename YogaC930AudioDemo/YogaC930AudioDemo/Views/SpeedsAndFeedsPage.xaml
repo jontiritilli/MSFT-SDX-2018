@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{Binding Source={StaticResource LeftMargin}, Converter={StaticResource ScalingConverter}}"/>
+            <ColumnDefinition Width="{Binding Source={StaticResource SpeedsFeedsLeftMargin}, Converter={StaticResource ScalingConverter}}"/>
             <ColumnDefinition Width="{Binding Source=320, Converter={StaticResource ScalingConverter}}"/>
             <ColumnDefinition Width="{Binding Source=320, Converter={StaticResource ScalingConverter}}"/>
             <ColumnDefinition Width="*"/>

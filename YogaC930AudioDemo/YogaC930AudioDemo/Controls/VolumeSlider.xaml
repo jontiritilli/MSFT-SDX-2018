@@ -100,7 +100,7 @@
                        ManipulationDelta="Thumb_ManipulationDelta"
                        ManipulationCompleted="Thumb_ManipulationCompleted">
                     <Thumb.RenderTransform>
-                        <TranslateTransform X="-8"/>
+                        <TranslateTransform X="0"/>
                     </Thumb.RenderTransform>
                 </Thumb>
 
@@ -113,8 +113,8 @@
                          StrokeThickness="0"
                          Opacity="0">
                     <Ellipse.RenderTransform>
-                        <TranslateTransform X="{Binding Source=20, Converter={StaticResource ScalingConverter}}"
-                                            Y="{Binding Source=-19, Converter={StaticResource ScalingConverter}}"/>
+                        <TranslateTransform X="{Binding Source=23, Converter={StaticResource ScalingConverter}}"
+                                            Y="{Binding Source=-15, Converter={StaticResource ScalingConverter}}"/>
                     </Ellipse.RenderTransform>
                 </Ellipse>
 
