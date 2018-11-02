@@ -166,8 +166,8 @@
                 TryItText="{x:Bind Path=ViewModel.TryIt}"
                 RadiatingButtonIcon="Touch"
                 EntranceStaggerDelayInMilliseconds = "600"
-                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.75}"
-                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.55}"                  
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.73}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.52}"                  
                 PopupPosition="Right"                
                 AutoStart = "false"/>
         </Canvas>

@@ -192,6 +192,8 @@ namespace SDX.Toolkit.Controls
 
             RaiseInteractionEvent(this, InteractionTypes.Keyboard);
 
+            CoreWindow.GetForCurrentThread().KeyDown -= this.AttractorLoopPlayer_KeyDown;
+
             return true;
         }
 
@@ -203,6 +205,8 @@ namespace SDX.Toolkit.Controls
         private bool HandlePointer(PointerDeviceType pointerDeviceType)
         { 
             ResetPlayer();
+
+            CoreWindow.GetForCurrentThread().KeyDown -= this.AttractorLoopPlayer_KeyDown;
 
             InteractionTypes interactionType = InteractionTypes.Mouse;
 
