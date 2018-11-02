@@ -5,14 +5,19 @@ using Windows.UI.Xaml.Controls;
 using SurfaceJackDemo.ViewModels;
 using SDX.Toolkit.Helpers;
 using SDX.Toolkit.Controls;
+using Jacumba.Core;
+using Jacumba.Core.Services;
+using Windows.Devices.HumanInterfaceDevice;
+using Windows.ApplicationModel.Core;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 
-namespace SurfaceJackDemo.Views
+namespace SurfaceJackDemo.Views, 
 {
-    public sealed partial class AudioListenPage : Page, INavigate
+    public sealed partial class AudioListenPage : Page, INavigate, IVMUpgradeStatus
     {
         #region Private Members
 
