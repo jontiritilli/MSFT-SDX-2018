@@ -87,7 +87,7 @@
             <ColumnDefinition Width="{StaticResource RightMargin}"/>
         </Grid.ColumnDefinitions>
         
-        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"                     
+        <ctrl:Header x:Name="PageHeader" Grid.Row="1" Grid.Column="1"
             Headline="{x:Bind Path=ViewModel.Headline}"
             Lede="{x:Bind Path=ViewModel.Lede}"
             CTAUri="ms-settings:"
@@ -103,6 +103,18 @@
             Text="{x:Bind Path=ViewModel.BulletListTitle}"
             TextStyle="ListItemHeadlinePenTouch"
             HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
+
+        <ctrl:TextBlockEx Grid.Row="3" Grid.Column="2"
+            x:Name="connectionStatusTextBlock"
+            TextStyle="ListItemHeadlinePenTouch"
+            HorizontalAlignment="right"
+            VerticalAlignment="Top"/>
+        
+        <ctrl:TextBlockEx Grid.Row="5" Grid.Column="2"
+            x:Name="updateStatusTextBlock"
+            TextStyle="ListItemHeadlinePenTouch"
+            HorizontalAlignment="right"
             VerticalAlignment="Top"/>
         
         <ctrl:ListViewEx
