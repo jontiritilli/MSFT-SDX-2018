@@ -12,6 +12,7 @@ namespace SurfaceJackDemo.Models
         public bool IsChoosePathPageEnabled = true;
         public string Language = "en-US";
         public bool IsTelemetryEnabled = false;
+        public bool IsJoplinUpdateEnabled = true;
         public double Volume = 50;
         public TelemetryKeys TelemetryKey = TelemetryKeys.Test;
 
@@ -23,6 +24,7 @@ namespace SurfaceJackDemo.Models
                 IsChoosePathPageEnabled = true,
                 Language = String.Empty,
                 IsTelemetryEnabled = false,
+                IsJoplinUpdateEnabled = true,
                 TelemetryKey = TelemetryKeys.Test,
             };
 

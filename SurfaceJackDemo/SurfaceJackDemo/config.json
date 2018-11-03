@@ -3,6 +3,7 @@
   "IsChoosePathPageEnabled": true,
   "Language": "",
   "IsTelemetryEnabled": true,
+  "IsJoplinUpdateEnabled": true,
   "TelemetryKey": "Test",
   "Volume": 0.50
 }

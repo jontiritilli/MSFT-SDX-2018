@@ -105,6 +105,11 @@ namespace SurfaceJackDemo.Services
             return Volume;
         }
 
+        public bool GetIsJoplinUpdateEnabled()
+        {
+            return this.Configuration.IsJoplinUpdateEnabled;
+        }
+
         public async Task Initialize()
         {
             if (this.IsLoading || this.IsLoaded) { return; }
