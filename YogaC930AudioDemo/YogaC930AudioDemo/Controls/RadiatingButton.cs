@@ -147,7 +147,7 @@ namespace YogaC930AudioDemo.Controls
 
         // RadiateDurationInMilliseconds
         public static readonly DependencyProperty RadiateDurationInMillisecondsProperty =
-            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1450d));
+            DependencyProperty.Register("RadiateDurationInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1250d));
 
         public double RadiateDurationInMilliseconds
         {
@@ -157,7 +157,7 @@ namespace YogaC930AudioDemo.Controls
 
         // RadiateStaggerDelayInMilliseconds
         public static readonly DependencyProperty RadiateStaggerDelayInMillisecondsProperty =
-            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(1450d));
+            DependencyProperty.Register("RadiateStaggerDelayInMilliseconds", typeof(double), typeof(RadiatingButton), new PropertyMetadata(750d));
 
         public double RadiateStaggerDelayInMilliseconds
         {
