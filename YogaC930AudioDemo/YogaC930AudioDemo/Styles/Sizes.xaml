@@ -8,6 +8,7 @@
     <!--<x:Double x:Key="CanvasWidth">1920</x:Double>-->    <!-- Now loaded in LoadStyles() in App.xaml.cs -->
     <!--<x:Double x:Key="CanvasHeight">1080</x:Double>-->
 
+    <x:Double x:Key="SpeedsFeedsLeftMargin">90</x:Double>
     <x:Double x:Key="LeftMargin">147</x:Double>
     <x:Double x:Key="TopMargin">178.5</x:Double>
     <x:Double x:Key="RightMargin">147</x:Double>

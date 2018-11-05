@@ -68,6 +68,7 @@ namespace YogaC930AudioDemo.Views
             if (this.SpeakerDesignPagePopup.IsOpen == false)
             {
                 this.SpeakerDesignPagePopup.IsOpen = true;
+                AnimationHelper.PerformPageEntranceAnimation((Page)this.SpeakerDesignPagePopup.Child);
             }
         }
 
@@ -76,6 +77,7 @@ namespace YogaC930AudioDemo.Views
             if (this.HingeDesignPopup.IsOpen == false)
             {
                 this.HingeDesignPopup.IsOpen = true;
+                AnimationHelper.PerformPageEntranceAnimation((Page)this.HingeDesignPopup.Child);
             }
         }
 
@@ -83,6 +85,7 @@ namespace YogaC930AudioDemo.Views
         {
             if (this.HingeDesignPopup.IsOpen == true)
             {
+                AnimationHelper.PerformPageExitAnimation((Page)this.HingeDesignPopup.Child);
                 this.HingeDesignPopup.IsOpen = false;
             }
         }
@@ -91,6 +94,7 @@ namespace YogaC930AudioDemo.Views
         {
             if (this.SpeakerDesignPagePopup.IsOpen == true)
             {
+                AnimationHelper.PerformPageExitAnimation((Page)this.SpeakerDesignPagePopup.Child);
                 this.SpeakerDesignPagePopup.IsOpen = false;
             }
         }
