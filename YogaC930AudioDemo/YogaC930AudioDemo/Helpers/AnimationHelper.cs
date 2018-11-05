@@ -525,5 +525,143 @@ namespace YogaC930AudioDemo.Helpers
 
             return translateTransform;
         }
+
+        public static Storyboard CreateInOutAnimation(DependencyObject dependencyObject, string propertyName,
+                                                            double defaultValue, double startValue, double endValue,
+                                                            double durationIn, double durationOut,
+                                                            double staggerDelayIn, double restEnd, double staggerDelayOut,
+                                                            bool autoReverse, bool repeatForever, RepeatBehavior repeatBehavior)
+        {
+            // total duration
+            double totalDuration = staggerDelayIn + durationIn + restEnd + staggerDelayOut + durationOut;
+
+            // create the storyboard
+            Storyboard storyboard = new Storyboard()
+            {
+                Duration = TimeSpan.FromMilliseconds(totalDuration),
+                AutoReverse = autoReverse,
+                RepeatBehavior = (repeatForever) ? RepeatBehavior.Forever : repeatBehavior
+            };
+
+            // add frame collection to the storyboard
+            storyboard.Children.Add(
+                CreateInOutKeyFrames(dependencyObject, propertyName, defaultValue, startValue, endValue, durationIn, durationOut, staggerDelayIn, restEnd, staggerDelayOut));
+
+            // set the target of the storyboard
+            Storyboard.SetTarget(storyboard, dependencyObject);
+            Storyboard.SetTargetProperty(storyboard, propertyName);
+
+            return storyboard;
+        }
+
+        public static DoubleAnimationUsingKeyFrames CreateInOutKeyFrames(DependencyObject dependencyObject, string propertyName,
+                                                double defaultValue, double startValue, double endValue,
+                                                double durationIn, double durationOut,
+                                                double staggerDelayIn, double restEnd, double staggerDelayOut)
+        {
+            // total duration
+            double totalDuration = staggerDelayIn + durationIn + restEnd + staggerDelayOut + durationOut;
+
+            // create the key frames holder
+            DoubleAnimationUsingKeyFrames frames = new DoubleAnimationUsingKeyFrames
+            {
+                Duration = TimeSpan.FromMilliseconds(totalDuration),
+                EnableDependentAnimation = true
+            };
+
+            // set the target
+            Storyboard.SetTarget(frames, dependencyObject);
+            Storyboard.SetTargetProperty(frames, propertyName);
+
+            // need cubic easing
+            CubicEase cubicEaseIn = new CubicEase()
+            {
+                EasingMode = EasingMode.EaseIn
+            };
+            CubicEase cubicEaseOut = new CubicEase()
+            {
+                EasingMode = EasingMode.EaseOut
+            };
+
+            // track the timeline time (milliseconds)
+            double frameTime = 0;
+
+            // create frame 0; if we have a stagger delay, then create this frame with the default value
+            EasingDoubleKeyFrame _frameStart = new EasingDoubleKeyFrame
+            {
+                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(frameTime)),
+                Value = (staggerDelayIn > 0) ? defaultValue : startValue,
+                EasingFunction = cubicEaseIn
+            };
+            frames.KeyFrames.Add(_frameStart);
+
+            frameTime += staggerDelayIn;
+
+            // if we have a stagger delay
+            if (staggerDelayIn > 0)
+            {
+                // create stagger frame
+                EasingDoubleKeyFrame _frameStaggerIn = new EasingDoubleKeyFrame
+                {
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(frameTime)),
+                    Value = startValue,
+                    EasingFunction = cubicEaseIn
+                };
+                frames.KeyFrames.Add(_frameStaggerIn);
+            }
+
+            frameTime += durationIn;
+
+            // create frame in
+            EasingDoubleKeyFrame _frameIn = new EasingDoubleKeyFrame
+            {
+                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(frameTime)),
+                Value = endValue,
+                EasingFunction = cubicEaseIn
+            };
+            frames.KeyFrames.Add(_frameIn);
+
+            frameTime += restEnd;
+
+            // create frame rest end
+            if (restEnd > 0)
+            {
+                EasingDoubleKeyFrame _frameRestEnd = new EasingDoubleKeyFrame
+                {
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(frameTime)),
+                    Value = endValue,
+                    EasingFunction = cubicEaseOut
+                };
+                frames.KeyFrames.Add(_frameRestEnd);
+            }
+
+            frameTime += durationOut;
+
+            // create frame our
+            EasingDoubleKeyFrame _frameOut = new EasingDoubleKeyFrame
+            {
+                KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(frameTime)),
+                Value = startValue,
+                EasingFunction = cubicEaseOut
+            };
+            frames.KeyFrames.Add(_frameOut);
+
+            frameTime += staggerDelayOut;
+
+            // if we have a stagger delay
+            if (staggerDelayOut > 0)
+            {
+                // create stagger frame
+                EasingDoubleKeyFrame _frameStaggerOut = new EasingDoubleKeyFrame
+                {
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(frameTime)),
+                    Value = startValue,
+                    EasingFunction = cubicEaseOut
+                };
+                frames.KeyFrames.Add(_frameStaggerOut);
+            }
+
+            return frames;
+        }
     }
 }
