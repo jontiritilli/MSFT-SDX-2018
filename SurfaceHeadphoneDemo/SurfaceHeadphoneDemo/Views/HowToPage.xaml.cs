@@ -105,32 +105,35 @@ namespace SurfaceHeadphoneDemo.Views
             switch (id)
             {
                 case 0: //overview
-                    this.Illustration1.Opacity = 1.0d;
-                    this.OverviewLineCanvas.Opacity = 1.0d;
+                    AnimationHelper.PerformFadeIn(this.Illustration1, 750);
+                    AnimationHelper.PerformFadeIn(this.OverviewLineCanvas, 250);
                     break;
 
                 case 1: //play pause
-                    this.Illustration2.Opacity = 1.0d;
-                    this.Caption2.Opacity = 1.0d;
+                    AnimationHelper.PerformFadeIn(this.Illustration2, 750, 250);
+                    AnimationHelper.PerformFadeIn(this.Caption2, 500);
                     break;
 
                 case 2: //skip
-                    this.Illustration3.Opacity = 1.0d;
-                    this.Caption3.Opacity = 1.0d;
+                    AnimationHelper.PerformFadeIn(this.Illustration3Inner, 750, 250);
+                    AnimationHelper.PerformFadeIn(this.Illustration3Outer, 750, 450);
+                    AnimationHelper.PerformFadeIn(this.Caption3, 500);
                     break;
 
                 case 3: //volume
-                    this.Illustration4.Opacity = 1.0d;
-                    this.Caption4.Opacity = 1.0d;
+                    AnimationHelper.PerformFadeIn(this.Illustration4, 750, 250);
+                    AnimationHelper.PerformTranslateIn(this.Illustration4, TranslateDirection.Right, 15, 750);
+                    AnimationHelper.PerformFadeIn(this.Caption4, 500);
                     break;
 
                 case 4: //noise
-                    this.Illustration5.Opacity = 1.0d;
-                    this.Caption5.Opacity = 1.0d;
+                    AnimationHelper.PerformFadeIn(this.Illustration5, 750, 250);
+                    AnimationHelper.PerformTranslateIn(this.Illustration5, TranslateDirection.Left, 15, 750);
+                    AnimationHelper.PerformFadeIn(this.Caption5, 500);
                     break;
 
                 case 5: //noise
-                    this.Caption6.Opacity = 1.0d;
+                    AnimationHelper.PerformFadeIn(this.Caption6, 250);
                     break;
 
                 default:
@@ -144,32 +147,33 @@ namespace SurfaceHeadphoneDemo.Views
             switch (id)
             {
                 case 0: //overview
-                    this.Illustration1.Opacity = 0.0d;
-                    this.OverviewLineCanvas.Opacity = 0.0d;
+                    AnimationHelper.PerformFadeOut(this.Illustration1, 25);
+                    AnimationHelper.PerformFadeOut(this.OverviewLineCanvas, 25);
                     break;
 
                 case 1: //play pause
-                    this.Illustration2.Opacity = 0.0d;
-                    this.Caption2.Opacity = 0.0d;
+                    AnimationHelper.PerformFadeOut(this.Illustration2, 25);
+                    AnimationHelper.PerformFadeOut(this.Caption2, 25);
                     break;
 
                 case 2: //skip
-                    this.Illustration3.Opacity = 0.0d;
-                    this.Caption3.Opacity = 0.0d;
+                    AnimationHelper.PerformFadeOut(this.Illustration3Inner, 25);
+                    AnimationHelper.PerformFadeOut(this.Illustration3Outer, 25);
+                    AnimationHelper.PerformFadeOut(this.Caption3, 25);
                     break;
 
                 case 3: //volume
-                    this.Illustration4.Opacity = 0.0d;
-                    this.Caption4.Opacity = 0.0d;
+                    AnimationHelper.PerformFadeOut(this.Illustration4, 25);
+                    AnimationHelper.PerformFadeOut(this.Caption4, 25);
                     break;
 
                 case 4: //noise
-                    this.Illustration5.Opacity = 0.0d;
-                    this.Caption5.Opacity = 0.0d;
+                    AnimationHelper.PerformFadeOut(this.Illustration5, 25);
+                    AnimationHelper.PerformFadeOut(this.Caption5, 25);
                     break;
 
                 case 5: //noise
-                    this.Caption6.Opacity = 0.0d;
+                    AnimationHelper.PerformFadeOut(this.Caption6, 25);
                     break;
 
                 default:

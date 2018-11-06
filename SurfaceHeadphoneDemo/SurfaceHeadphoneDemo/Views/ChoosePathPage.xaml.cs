@@ -66,9 +66,20 @@ namespace SurfaceHeadphoneDemo.Views
 
         #region Event Handlers
 
-        private void DeviceOneButton_Click(object sender, RoutedEventArgs e)
+        private async void DeviceOneButton_Click(object sender, RoutedEventArgs e)
         {
             // launch deep-link uri to launch SurfaceProDemo
+            Uri uriPro = new Uri(@"surfacedemo:");
+            bool success = await Windows.System.Launcher.LaunchUriAsync(uriPro);
+
+            if (success)
+            {
+                //telemetry event??
+            }
+            else
+            {
+                //throw exception??
+            }
         }
 
         private void DeviceTwoButton_Click(object sender, RoutedEventArgs e)

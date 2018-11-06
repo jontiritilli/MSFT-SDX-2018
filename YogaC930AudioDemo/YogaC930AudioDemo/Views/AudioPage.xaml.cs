@@ -43,9 +43,11 @@ namespace YogaC930AudioDemo.Views
         private void AudioPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.HingeDesignPopup = FlipViewPage.Current.GetHingDesignPopupPagePopup();
+            this.rBtnLeft.PopupChild = this.HingeDesignPopup;
             HingeDesignPopupPage.Current.CloseButton_Clicked+= CloseButtonLeft_Clicked;
 
             this.SpeakerDesignPagePopup = FlipViewPage.Current.GetSpeakerPopupPagePopup();
+            this.rBtnRight.PopupChild = this.SpeakerDesignPagePopup;
             SpeakerDesignPopupPage.Current.CloseButton_Clicked += CloseButtonRight_Clicked;
 
             //YogaC930AudioDemo.Helpers.TestHelper.AddGridCellBorders(this.LayoutRoot, 3, 3, Windows.UI.Colors.AliceBlue);
@@ -62,24 +64,6 @@ namespace YogaC930AudioDemo.Views
 
 
         #region Event Handlers
-
-        private void ButtonLeft_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.SpeakerDesignPagePopup.IsOpen == false)
-            {
-                this.SpeakerDesignPagePopup.IsOpen = true;
-                AnimationHelper.PerformPageEntranceAnimation((Page)this.SpeakerDesignPagePopup.Child);
-            }
-        }
-
-        private void ButtonRight_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.HingeDesignPopup.IsOpen == false)
-            {
-                this.HingeDesignPopup.IsOpen = true;
-                AnimationHelper.PerformPageEntranceAnimation((Page)this.HingeDesignPopup.Child);
-            }
-        }
 
         private void CloseButtonLeft_Clicked(object sender, RoutedEventArgs e)
         {
@@ -106,11 +90,15 @@ namespace YogaC930AudioDemo.Views
 
         public void NavigateToPage()
         {
+            this.rBtnLeft.StartEntranceAnimation();
+            this.rBtnRight.StartEntranceAnimation();
             AnimationHelper.PerformPageEntranceAnimation(this);
         }
 
         public void NavigateFromPage()
         {
+            this.rBtnLeft.ResetEntranceAnimation();
+            this.rBtnRight.ResetEntranceAnimation();
             AnimationHelper.PerformPageExitAnimation(this);
         }
 
