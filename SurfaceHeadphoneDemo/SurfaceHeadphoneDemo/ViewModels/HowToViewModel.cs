@@ -47,7 +47,8 @@ namespace SurfaceHeadphoneDemo.ViewModels
         // illustration overlays
         private const string URI_ILLUSTRATION_1 = "ms-appx:///Assets/Controls/overview-device-illustration.png";
         private const string URI_ILLUSTRATION_2 = "ms-appx:///Assets/Controls/play-pause-illustration.png";
-        private const string URI_ILLUSTRATION_3 = "ms-appx:///Assets/Controls/skip-illustration.png";
+        private const string URI_ILLUSTRATION_3_INNER = "ms-appx:///Assets/Controls/skip-illustration-inner.png";
+        private const string URI_ILLUSTRATION_3_OUTER = "ms-appx:///Assets/Controls/skip-illustration-outer.png";
         private const string URI_ILLUSTRATION_4 = "ms-appx:///Assets/Controls/volume-illustration.png";
         private const string URI_ILLUSTRATION_5 = "ms-appx:///Assets/Controls/noise-cancellation-illustration.png";
 
@@ -134,7 +135,8 @@ namespace SurfaceHeadphoneDemo.ViewModels
         public string PlayIllustrationURI = URI_ILLUSTRATION_2;
         public double Width_Play_Pause = WIDTH_PLAY_PAUSE_ILLUSTRATION;
 
-        public string SkipIllustrationURI = URI_ILLUSTRATION_3;
+        public string SkipIllustrationInnerURI = URI_ILLUSTRATION_3_INNER;
+        public string SkipIllustrationOuterURI = URI_ILLUSTRATION_3_OUTER;
         public double Width_Skip = WIDTH_SKIP_ILLUSTRATION;
 
         public string VolumeIllustrationURI = URI_ILLUSTRATION_4;

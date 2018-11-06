@@ -182,10 +182,18 @@
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.60}"/>
             
             <ctrl:ImageEx
-                x:Name="Illustration3"
+                x:Name="Illustration3Inner"
                 Opacity="0"
                 ImageWidth="{x:Bind Path=ViewModel.Width_Skip}"
-                ImageSource="{x:Bind Path=ViewModel.SkipIllustrationURI}"
+                ImageSource="{x:Bind Path=ViewModel.SkipIllustrationInnerURI}"
+                Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.26}"
+                Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.56}"/>
+
+            <ctrl:ImageEx
+                x:Name="Illustration3Outer"
+                Opacity="0"
+                ImageWidth="{x:Bind Path=ViewModel.Width_Skip}"
+                ImageSource="{x:Bind Path=ViewModel.SkipIllustrationOuterURI}"
                 Canvas.Left="{Binding Converter={StaticResource CanvasLeftConverter}, ConverterParameter=0.26}"
                 Canvas.Top="{Binding Converter={StaticResource CanvasTopConverter},ConverterParameter=0.56}"/>
 

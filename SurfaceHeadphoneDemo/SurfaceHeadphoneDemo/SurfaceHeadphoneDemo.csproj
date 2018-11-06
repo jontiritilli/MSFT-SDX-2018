@@ -413,7 +413,8 @@
     <Content Include="Assets\Controls\play-pause-selected.png" />
     <Content Include="Assets\Controls\play-pause.png" />
     <Content Include="Assets\Controls\skip-device.png" />
-    <Content Include="Assets\Controls\skip-illustration.png" />
+    <Content Include="Assets\Controls\skip-illustration-inner.png" />
+    <Content Include="Assets\Controls\skip-illustration-outer.png" />
     <Content Include="Assets\Controls\skip-selected.png" />
     <Content Include="Assets\Controls\skip.png" />
     <Content Include="Assets\Controls\spotify-logo.png" />
@@ -429,8 +430,6 @@
     <Content Include="Assets\Experience\audio_spotify.png" />
     <Content Include="Assets\Experience\design-lifestyle.jpg" />
     <Content Include="Assets\Experience\joplin_gateway.png" />
-    <Content Include="Assets\Experience\joplin_tech.jpg" />
-    <Content Include="Assets\Experience\joplin_tech.png" />
     <Content Include="Assets\Experience\path_cruz.png" />
     <Content Include="Assets\Experience\path_joplin.png" />
     <Content Include="Assets\Experience\productivity-lifestyle.png" />
