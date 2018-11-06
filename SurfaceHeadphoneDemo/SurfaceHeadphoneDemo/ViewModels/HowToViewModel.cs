@@ -28,7 +28,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
         private const string URI_IMAGESELECTOR_IMAGE_3 = "ms-appx:///Assets/Controls/skip-device.png";
         private const string URI_IMAGESELECTOR_IMAGE_4 = "ms-appx:///Assets/Controls/volume-device.png";
         private const string URI_IMAGESELECTOR_IMAGE_5 = "ms-appx:///Assets/Controls/noise-cancellation-device.png";
-        private const string URI_IMAGESELECTOR_IMAGE_6 = "ms-appx:///Assets/Controls/answer-lifestyle.png";
+        private const string URI_IMAGESELECTOR_IMAGE_6 = "ms-appx:///Assets/Controls/answer-lifestyle.jpg";
 
         private const string URI_APPSELECTOR_ICON_1 = "ms-appx:///Assets/Controls/overview.png";
         private const string URI_APPSELECTOR_ICON_2 = "ms-appx:///Assets/Controls/play-pause.png";
@@ -72,19 +72,19 @@ namespace SurfaceHeadphoneDemo.ViewModels
         private const double WIDTH_PLAY_PAUSE_ILLUSTRATION = 215;
         private const double WIDTH_SKIP_ILLUSTRATION = 303;
 
-        private const double WIDTH_VOLUME_ILLUSTRATION = 617;
-        private const double HEIGHT_VOLUME_ILLUSTRATION = 390;
+        private const double WIDTH_VOLUME_ILLUSTRATION = 574;
+        private const double HEIGHT_VOLUME_ILLUSTRATION = 363;
 
         private const double WIDTH_OVERVIEW_ILLUSTRATION = 2016;
-        private const double HEIGHT_OVERVIEW_ILLUSTRATION = 1824;
+        private const double HEIGHT_OVERVIEW_ILLUSTRATION = 1640;
 
-        private const double WIDTH_NOISE_ILLUSTRATION = 640;
-        private const double HEIGHT_NOISE_ILLUSTRATION = 449;
+        private const double WIDTH_NOISE_ILLUSTRATION = 622;
+        private const double HEIGHT_NOISE_ILLUSTRATION = 422;
 
         private const double WIDTH_IMAGE = 2016;
-        private const double HEIGHT_IMAGE = 1824;
+        private const double HEIGHT_IMAGE = 1640;
         private const string URI_X_IMAGE = @"ms-appx:///Assets/Universal/close-icon.png";
-        private const string URI_AS_IMAGE_BACKGROUND = "ms-appx:///Assets/Controls/controls-background.png";
+        private const string URI_AS_IMAGE_BACKGROUND = "ms-appx:///Assets/Controls/controls-background.jpg";
 
         #endregion
 
