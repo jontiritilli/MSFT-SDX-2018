@@ -293,6 +293,9 @@ namespace SDX.Toolkit.Controls
                 _mediaPlayerElement.Source = MediaSource.CreateFromUri(this.MediaSourceUri);
             }
 
+            // disable system media transport controls
+            _mediaPlayerElement.MediaPlayer.CommandManager.IsEnabled = false;
+
             // set media player event handlers
             _mediaPlayerElement.MediaPlayer.MediaOpened += this.MediaPlayer_MediaOpened;
             _mediaPlayerElement.MediaPlayer.MediaFailed += this.MediaPlayer_MediaFailed;
