@@ -13,6 +13,7 @@ using SDX.Toolkit.Models;
 using Windows.Media.Playback;
 using Windows.Media.Core;
 using Windows.UI.Core;
+using Windows.Storage.Streams;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -304,6 +305,14 @@ namespace SDX.Toolkit.Controls
                 foreach (PlaylistTrack track in this.PlayerPlaylist.Tracks)
                 {
                     MediaPlaybackItem item = new MediaPlaybackItem(MediaSource.CreateFromUri(new Uri(track.MediaSourceUri)));
+
+                    // set display properties for the item
+                    MediaItemDisplayProperties props = item.GetDisplayProperties();
+                    props.Type = Windows.Media.MediaPlaybackType.Music;
+                    props.MusicProperties.Title = track.TrackTitle;
+                    props.MusicProperties.Artist = track.ArtistName;
+                    props.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(track.CoverArtSourceUri));
+                    item.ApplyDisplayProperties(props);
 
                     // create a MediaPlaybackItem and add it to the playback list
                     this.mediaPlaybackList.Items.Add(item);

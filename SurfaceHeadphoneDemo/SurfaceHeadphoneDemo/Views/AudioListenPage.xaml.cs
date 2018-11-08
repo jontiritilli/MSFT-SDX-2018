@@ -1,26 +1,24 @@
 ﻿using System;
-
-using Windows.UI.Xaml.Controls;
-
-using SurfaceHeadphoneDemo.ViewModels;
-using SDX.Toolkit.Helpers;
-using SDX.Toolkit.Controls;
-using Jacumba.Core;
-using Jacumba.Core.Services;
 using System.Threading.Tasks;
-using Windows.Devices.HumanInterfaceDevice;
-using Windows.ApplicationModel.Core;
+
 using Windows.Storage.Streams;
 using Windows.Storage;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Core;
+
+using SDX.Toolkit.Helpers;
+using SDX.Toolkit.Controls;
+
+using SurfaceHeadphoneDemo.ViewModels;
+
 
 namespace SurfaceHeadphoneDemo.Views
 {
-    public sealed partial class AudioListenPage : Page, INavigate, IVMUpgradeStatus
+    public sealed partial class AudioListenPage : Page, INavigate
     {
         #region Private Members
 
@@ -28,26 +26,17 @@ namespace SurfaceHeadphoneDemo.Views
         {
             get { return DataContext as AudioListenViewModel; }
         }
+
+        private ListView PlayerListView;
+
         private bool HasInteracted = false;
         private bool HasLoaded = false;
         private bool HasNavigatedTo = false;
 
-        // headphone updates
-        private ListView PlayerListView;
-        private HidDeviceManager _hidDeviceManager;
-        private HidRequestManager _hidRequestManager;
-        private int _numberOfRetries;
-        private VMUpgrade _vmUpgrader;
-        private ILoggerService _loggerService;
-        private string _btDeviceId;
-        private byte[] _fileBytes;
-        private CoreDispatcher _dispatcher;
-        private bool _isUpdateCompleted;
-        private bool _isJoplinEnabled;
-
         #endregion
 
-        #region public members
+
+        #region Public Members
 
         public Popup ReadyScreen;
         public Popup HowToScreen;
@@ -55,11 +44,13 @@ namespace SurfaceHeadphoneDemo.Views
 
         #endregion
 
+
         #region Public Static Members
 
         public static AudioListenPage Current { get; private set; }
 
         #endregion
+
 
         #region Construction
 
@@ -67,12 +58,6 @@ namespace SurfaceHeadphoneDemo.Views
         {
             InitializeComponent();
 
-            //setup updater services
-            _loggerService = new Logger("FG", "JLog.txt", null);
-            _hidDeviceManager = new HidDeviceManager(_loggerService, HidDevice.GetDeviceSelector(0xFF01, 0x0000, 0x045E, 0x0A1B));
-            _dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
-
-            this._isJoplinEnabled = Services.ConfigurationService.Current.GetIsJoplinUpdateEnabled();
             AudioListenPage.Current = this;
 
             this.PlayerListView = this.itemListView;
@@ -81,6 +66,7 @@ namespace SurfaceHeadphoneDemo.Views
         }
 
         #endregion
+
 
         #region Public Methods
 
@@ -107,10 +93,6 @@ namespace SurfaceHeadphoneDemo.Views
         private void AudioListenPage_Loaded(object sender, RoutedEventArgs e)
         {
             //NavigateFromPage();
-
-            HidDeviceManager.HidConnectedDeviceStatusChanged -= HidDeviceManager_HidConnectedDeviceStatusChanged;
-
-            HidDeviceManager.HidConnectedDeviceStatusChanged += HidDeviceManager_HidConnectedDeviceStatusChanged;
 
             // get the initial screen cover popup
             this.ReadyScreen = FlipViewPage.Current.GetAudioListenPopup();
@@ -204,131 +186,9 @@ namespace SurfaceHeadphoneDemo.Views
                 ReadyScreen.IsOpen = false;
             }
         }
-        private async void HidDeviceManager_HidConnectedDeviceStatusChanged(object sender, HidDeviceStatusChangedEventArgs e)
-        {
-            if (_isJoplinEnabled)
-            {
-                await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    if (e.HidDeviceConnectionStatus == HidDeviceConnectionStatus.Connected)
-                    {
-                        _numberOfRetries = 0;
-                        _btDeviceId = e.BTDeviceId;
-                        //connectionStatusTextBlock.Text = "Connected";
-                        _hidRequestManager = HidDeviceManager.GetConnectedDevicesRequestManager(_btDeviceId);
-
-                        if (_hidRequestManager == null ||
-                            _hidRequestManager.SoftwareVersion == null)
-                            //|| _hidRequestManager.SoftwareVersion.ToString() == "1.0.3.337.21"
-                            return;
-
-                        StorageFile file = null;
-                        try
-                        {
-                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Assets/shop_mode_feature.ota"));
-                        }
-                        catch { }
-
-                        if (file == null)
-                            return;
-
-                        _fileBytes = null;
-                        using (IRandomAccessStreamWithContentType stream = await file.OpenReadAsync())
-                        {
-                            _fileBytes = new byte[stream.Size];
-                            using (DataReader reader = new DataReader(stream))
-                            {
-                                await reader.LoadAsync((uint)stream.Size);
-                                reader.ReadBytes(_fileBytes);
-                            }
-                        }
-
-                        await StartUpgrade();
-                    }
-                    return;
-                });
-            }
-        }
-
-        private async Task StartUpgrade()
-        {
-            _vmUpgrader = new VMUpgrade(_loggerService,
-                                        _btDeviceId,
-                                        _fileBytes,
-                                        new VMHidTransport(_loggerService, _hidRequestManager),
-                                        this);
-
-            _isUpdateCompleted = false;
-            await _vmUpgrader.BeginUpdateAsync();
-        }
-
-        private async Task EndUpgrade()
-        {
-            if (_vmUpgrader != null)
-            {
-                await _vmUpgrader.PrepareForDisposalAsync();
-
-                VMUpgrade toDispose = _vmUpgrader;
-                _vmUpgrader = null;
-                toDispose.Dispose();
-            }
-        }
 
         #endregion
-        
-        #region IVMUpgradeStatus
 
-        public async void UpgradeError(VMUpgradeError error)
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                // ignore the disconnect message when the upgrade is completed
-                if (_isUpdateCompleted)
-                    return;
-
-                //updateStatusTextBlock.Text = $"Error {error.Status} {error.FWErrorCode}";
-                await EndUpgrade();
-
-                if (_numberOfRetries < 2)
-                {
-                    _numberOfRetries++;
-                    await StartUpgrade();
-                }
-            });
-        }
-
-        public async void UpgradeProgress(uint percentComplete)
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                //updateStatusTextBlock.Text = $"{percentComplete}%";
-            });
-        }
-
-        public async void UpgradeDownloadCompleted()
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                _isUpdateCompleted = true;
-                //updateStatusTextBlock.Text = "Completed";
-                await _vmUpgrader.CommitUpdateAsync();
-                await EndUpgrade();
-            });
-        }
-
-        public async void UpgradeInstallationCompleted()
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                _isUpdateCompleted = true;
-                //updateStatusTextBlock.Text = "Completed";
-                await _vmUpgrader.CommitUpdateAsync();
-                await EndUpgrade();
-            });
-
-        }
-
-        #endregion
 
         #region INavigate Interface
 
@@ -343,23 +203,12 @@ namespace SurfaceHeadphoneDemo.Views
             {
                 this.HasNavigatedTo = true;
             }
-        
-            if (null != _hidDeviceManager)
-            {
-                _hidDeviceManager.StartWatcher();
-            }
         }
 
         public void NavigateFromPage()
         {
             // animations out
             AnimationHelper.PerformPageExitAnimation(this);
-
-            HidDeviceManager.HidConnectedDeviceStatusChanged -= HidDeviceManager_HidConnectedDeviceStatusChanged;
-            if(null != _hidDeviceManager)
-            {
-                _hidDeviceManager.StopWatcherAsync();
-            }
 
             ClosePopupsOnExit();
         }

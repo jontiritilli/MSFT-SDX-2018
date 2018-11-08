@@ -561,7 +561,6 @@
     <Content Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Assets\shop_mode_feature.ota" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Universal\cruz_close_app_button.png" />
     <Content Include="Assets\Universal\fox_close.png" />

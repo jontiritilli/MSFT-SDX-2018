@@ -19,14 +19,21 @@ namespace SurfaceHeadphoneDemo.Views
         }
 
         #endregion
+
+
         #region Public Members
+
         public RoutedEventHandler CloseButton_Clicked;
+
         #endregion
+
+
         #region Public Static Properties
 
         public static AudioTryItPage Current { get; private set; }
 
         #endregion
+
 
         #region Construction
 
@@ -39,6 +46,7 @@ namespace SurfaceHeadphoneDemo.Views
 
         #endregion
 
+
         #region Private Methods
 
         private void PopClose_Click(object sender, PointerRoutedEventArgs e)
@@ -47,6 +55,7 @@ namespace SurfaceHeadphoneDemo.Views
         }
 
         #endregion
+
 
         #region INavigate Interface
 
