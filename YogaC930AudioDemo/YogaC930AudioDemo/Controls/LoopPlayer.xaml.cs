@@ -45,7 +45,7 @@ namespace YogaC930AudioDemo.Controls
             }
 
             // disable system media transport controls
-            _mediaPlayerElement.MediaPlayer.CommandManager.IsEnabled = false;
+            this.MediaLoopPlayer.MediaPlayer.CommandManager.IsEnabled = false;
 
             // set media player event handlers
             this.MediaLoopPlayer.MediaPlayer.MediaOpened += this.MediaPlayer_MediaOpened;
