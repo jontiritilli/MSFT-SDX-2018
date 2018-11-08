@@ -172,12 +172,17 @@ namespace YogaC930AudioDemo.Views
         {
             // do something here; launch this rdx URI:  rdx-hub:hub\windows
             await Launcher.LaunchUriAsync(new Uri(URI_GOTOWINDOWS), new LauncherOptions() { DisplayApplicationPicker = false });
+
+            // exit the app
+            App.Current.Exit();
         }
 
         private async void NavigationBarGoToDesktop_Click(object sender, PointerRoutedEventArgs e)
         {
+            App.Current.Exit();
+            // NOTE: No, we no longer want to minimize; we just want to exit
             // suspend the app
-            await ConfigurationService.SuspendAppAsync();
+            //await ConfigurationService.SuspendAppAsync();
         }
 
         private void PlayAudioDemoBlueBorder_PointerReleased(object sender, PointerRoutedEventArgs e)

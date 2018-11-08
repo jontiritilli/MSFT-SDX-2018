@@ -1,32 +1,28 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Core;
-using Windows.System;
+using Windows.Devices.HumanInterfaceDevice;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.ViewManagement;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
 
 using Jacumba.Core;
+using Jacumba.Core.Services;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
 using SDX.Telemetry.Services;
 using SDX.Toolkit.Helpers;
 
-using SurfaceHeadphoneDemo.Services;
 using SurfaceHeadphoneDemo.ViewModels;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Streams;
+
 
 namespace SurfaceHeadphoneDemo.Views
 {
@@ -401,7 +397,8 @@ namespace SurfaceHeadphoneDemo.Views
                     {
                         // set up for update
                         _numberOfRetries = 0;
-                        _btDeviceId = e.BTDeviceId;
+                        //_btDeviceId = e.BTDeviceId;   // this is Bluetooth, but we're using USB
+                        _btDeviceId = e.HidDeviceId;    // so let's try the USB id
                         _hidRequestManager = HidDeviceManager.GetConnectedDevicesRequestManager(_btDeviceId);
 
                         // if we didn't get what we needed, return
