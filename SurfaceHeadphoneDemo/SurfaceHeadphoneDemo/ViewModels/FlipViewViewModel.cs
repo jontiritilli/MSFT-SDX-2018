@@ -90,6 +90,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
         public FlipViewViewModel()
         {
             this.Volume = ConfigurationService.Current.GetVolume();
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 

@@ -324,15 +324,24 @@ namespace SDX.Toolkit.Controls
                 this.mediaPlayer = new MediaPlayer()
                 {
                     AutoPlay = false,
-                    IsLoopingEnabled = true,
+                    IsLoopingEnabled = false,   // no playlist repeat
                     AudioCategory = MediaPlayerAudioCategory.Media,
                     AudioDeviceType = MediaPlayerAudioDeviceType.Multimedia,
                     //Volume = 0.5    // TODO: Use AudioHelper to set volume instead
                 };
                 SDX.Toolkit.Helpers.AudioHelper.SetVolumeTo(this.Volume);
 
-                // add event handlers
+                // add event handler for the play position tracker to update our UI
                 this.mediaPlayer.PlaybackSession.PositionChanged += this.PlaybackSession_PositionChanged;
+
+                // add event handler to stop track when it ends
+                this.mediaPlayer.MediaEnded += this.MediaPlayer_MediaEnded;
+
+                // add event handlers for System Media Transport Controls
+                this.mediaPlayer.CommandManager.PlayReceived += this.CommandManager_PlayReceived;
+                this.mediaPlayer.CommandManager.PauseReceived += this.CommandManager_PauseReceived;
+                this.mediaPlayer.CommandManager.PreviousReceived += this.CommandManager_PreviousReceived;
+                this.mediaPlayer.CommandManager.NextReceived += this.CommandManager_NextReceived;
 
                 // add the playback list to the mediaplayer
                 this.mediaPlayer.Source = this.mediaPlaybackList;
@@ -405,13 +414,13 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void Play()
+        public void Play(bool fromSMTC = false)
         {
             // if player and playlist are valid
             if ((this.IsPlayerValid) && (this.IsPlaylistValid))
             {
-                // play
-                this.mediaPlayer.Play();
+                // play - only if this is not SMTC
+                if (!fromSMTC) { this.mediaPlayer.Play(); }
 
                 // update player status
                 this.PlayerStatus = PlayerStatii.Playing;
@@ -425,13 +434,13 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void Pause()
+        public void Pause(bool fromSMTC = false)
         {
             // if player and playlist are valid
             if ((this.IsPlayerValid) && (this.IsPlaylistValid))
             {
-                // pause
-                this.mediaPlayer.Pause();
+                // pause - only if not SMTC
+                if (!fromSMTC) { this.mediaPlayer.Pause(); }
 
                 // update player status
                 this.PlayerStatus = PlayerStatii.Paused;
@@ -445,7 +454,7 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void MoveToNextTrack()
+        public void MoveToNextTrack(bool fromSMTC = false)
         {
             // if we have a player and playlist
             if ((this.IsPlayerValid) && (this.IsPlaylistValid))
@@ -453,8 +462,8 @@ namespace SDX.Toolkit.Controls
                 // can we go forward?
                 if (this.CanGoForward)
                 {
-                    // update the media player
-                    this.mediaPlaybackList.MoveNext();
+                    // update the media player - only if not from SMTC
+                    if (!fromSMTC) { this.mediaPlaybackList.MoveNext(); }
 
                     // update our selected index
                     this.PlayerPlaylist.SelectedIndex++;
@@ -470,7 +479,7 @@ namespace SDX.Toolkit.Controls
             }
         }
 
-        public void MoveToPreviousTrack()
+        public void MoveToPreviousTrack(bool fromSMTC = false)
         {
             // if we have a player and a playlist
             if ((this.IsPlayerValid) && (this.IsPlaylistValid))
@@ -479,7 +488,7 @@ namespace SDX.Toolkit.Controls
                 if (this.CanGoBack)
                 {
                     // update the media player
-                    this.mediaPlaybackList.MovePrevious();
+                    if (!fromSMTC) { this.mediaPlaybackList.MovePrevious(); }
 
                     // update our selected index
                     this.PlayerPlaylist.SelectedIndex--;
@@ -500,10 +509,12 @@ namespace SDX.Toolkit.Controls
             // if we have a player and a playlist
             if ((this.IsPlayerValid) && (this.IsPlaylistValid))
             {
-                // update the media player
                 uint uIndex = (uint)Index;
+
                 // update our selected index
                 this.PlayerPlaylist.SelectedIndex = Index;
+
+                // update the media player
                 this.mediaPlaybackList.MoveTo(uIndex);
 
                 // update our UI
@@ -548,9 +559,21 @@ namespace SDX.Toolkit.Controls
 
         }
 
+        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            // when the track ends, stop playback
+            this.Pause();
+        }
+
         private void PreviousTrackButton_Click(object sender, RoutedEventArgs e)
         {
             this.MoveToPreviousTrack();
+        }
+
+        private void CommandManager_PreviousReceived(MediaPlaybackCommandManager sender, MediaPlaybackCommandManagerPreviousReceivedEventArgs args)
+        {
+            // this event is triggered when the system media transport controls are invoked by the user
+            this.MoveToPreviousTrack(true);
         }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
@@ -558,14 +581,33 @@ namespace SDX.Toolkit.Controls
             this.Play();
         }
 
+        private void CommandManager_PlayReceived(MediaPlaybackCommandManager sender, MediaPlaybackCommandManagerPlayReceivedEventArgs args)
+        {
+            // this event is triggered when the system media transport controls are invoked by the user
+            this.Play(true);
+        }
+
+
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Pause();
         }
 
+        private void CommandManager_PauseReceived(MediaPlaybackCommandManager sender, MediaPlaybackCommandManagerPauseReceivedEventArgs args)
+        {
+            // this event is triggered when the system media transport controls are invoked by the user
+            this.Pause(true);
+        }
+
         private void NextTrackButton_Click(object sender, RoutedEventArgs e)
         {
             this.MoveToNextTrack();
+        }
+
+        private void CommandManager_NextReceived(MediaPlaybackCommandManager sender, MediaPlaybackCommandManagerNextReceivedEventArgs args)
+        {
+            // this event is triggered when the system media transport controls are invoked by the user
+            this.MoveToNextTrack(true);
         }
 
         private void EqualizerButton_Click(object sender, RoutedEventArgs e)
@@ -597,23 +639,28 @@ namespace SDX.Toolkit.Controls
                     // and the player did not change selected item by request
                     if (args.Reason == MediaPlaybackItemChangedReason.EndOfStream)
                     {
-                        if (this.CanGoForward)
-                        {
-                            // update the media player
-                            this.mediaPlaybackList.MoveNext();
+                        // requirements have changed; we now want to stop 
+                        // playing after a song ends
+                        this.Pause();
 
-                            // update our selected index
-                            this.PlayerPlaylist.SelectedIndex++;
+                        //if (this.CanGoForward)
+                        //{
+                        //    // update the media player
+                        //    this.mediaPlaybackList.MoveNext();
 
-                        }
-                        else {
-                            // update the media player
-                            this.mediaPlaybackList.MoveTo(0);
+                        //    // update our selected index
+                        //    this.PlayerPlaylist.SelectedIndex++;
 
-                            // update our selected index
-                            this.PlayerPlaylist.SelectedIndex = 0;
-                        }
-                        this.RaiseSelectionChangedEvent(this);
+                        //}
+                        //else
+                        //{
+                        //    // update the media player
+                        //    this.mediaPlaybackList.MoveTo(0);
+
+                        //    // update our selected index
+                        //    this.PlayerPlaylist.SelectedIndex = 0;
+                        //}
+                        //this.RaiseSelectionChangedEvent(this);
                     }
                     this.UpdateUI();
                 }
@@ -657,6 +704,8 @@ namespace SDX.Toolkit.Controls
                 case VirtualKey.Enter:
                     this.Play();
                     break;
+
+                    //case VirtualKey.n
 
                 case VirtualKey.Escape:
 
