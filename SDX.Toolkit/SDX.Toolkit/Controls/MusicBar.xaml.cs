@@ -639,9 +639,11 @@ namespace SDX.Toolkit.Controls
                     // and the player did not change selected item by request
                     if (args.Reason == MediaPlaybackItemChangedReason.EndOfStream)
                     {
+                        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         // requirements have changed; we now want to stop 
                         // playing after a song ends
                         this.Pause();
+                        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                         //if (this.CanGoForward)
                         //{
