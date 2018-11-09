@@ -172,8 +172,10 @@ namespace SurfaceHeadphoneDemo.Services
 
         public void LoadFirmwareUpdateViewModel(FirmwareUpdateViewModel viewModel)
         {
-            viewModel.SearchMessage = GetStringValue(_languageCurrent.FIRMWARE_SEARCH_MESSAGE, "FIRMWARE_SEARCH_MESSAGE");
-            viewModel.UpdateMessage = GetStringValue(_languageCurrent.FIRMWARE_UPDATE_MESSAGE, "FIRMWARE_UPDATE_MESSAGE");
+            // these are commented out because we're no longer using the firmware update page
+            // if it is added back, these should be uncommented. Also uncomment in Models\LanguageFile.cs
+            //viewModel.SearchMessage = GetStringValue(_languageCurrent.FIRMWARE_SEARCH_MESSAGE, "FIRMWARE_SEARCH_MESSAGE");
+            //viewModel.UpdateMessage = GetStringValue(_languageCurrent.FIRMWARE_UPDATE_MESSAGE, "FIRMWARE_UPDATE_MESSAGE");
         }
 
         public void LoadChoosePathViewModel(ChoosePathViewModel viewModel)

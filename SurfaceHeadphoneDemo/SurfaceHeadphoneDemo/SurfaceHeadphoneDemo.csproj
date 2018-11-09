@@ -576,6 +576,9 @@
     <Content Include="Assets\shop_mode_feature.ota">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="default-en-US.json.withfirmwareupdatepage">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Universal\cruz_close_app_button.png" />
     <Content Include="Assets\Universal\fox_close.png" />
@@ -599,6 +602,9 @@
     <Content Include="playlist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="SDA-en-US.json.withfirmwareupdatepage">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SurfaceHeadphoneDemo_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Core;
 using Windows.Devices.HumanInterfaceDevice;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -12,14 +15,8 @@ using Jacumba.Core;
 using Jacumba.Core.Services;
 
 using SurfaceHeadphoneDemo.ViewModels;
-using Windows.Storage;
-using System.Threading.Tasks;
-using Windows.Storage.Streams;
-using GalaSoft.MvvmLight.Views;
-using GalaSoft.MvvmLight.Ioc;
 using SurfaceHeadphoneDemo.Services;
-using Windows.Devices.Usb;
-using Windows.Devices.Enumeration;
+
 
 namespace SurfaceHeadphoneDemo.Views
 {

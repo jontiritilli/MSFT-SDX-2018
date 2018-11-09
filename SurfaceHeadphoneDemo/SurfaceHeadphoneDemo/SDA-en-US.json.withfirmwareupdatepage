@@ -1,4 +1,6 @@
 ﻿{
+  "FIRMWARE_SEARCH_MESSAGE": "Searching for Surface Headphones.",
+  "FIRMWARE_UPDATE_MESSAGE": "Please wait a moment while we make your headphones even better.",
   "INTRO_TITLE_DEVICE_ONE_TITLE": "Meet the new Surface Pro 6",
   "INTRO_TITLE_DEVICE_ONE_CTA": "EXPLORE",
   "INTRO_TITLE_DEVICE_TWO_TITLE": "Take a listen to Surface Headphones",
@@ -48,11 +50,11 @@
   "AUDIO_TRACK_TRYIT_POPUP_HEADLINE": "Learn how to use touch controls",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE": "Overview",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_TITLE": "",
-  "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT": "Noise cancellation/Phone call control",
+  "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LEFT": "Noise cancellation/Playback control",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_MID": "Mic mute",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_BOTTOM_RIGHT": "USB charger port",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_LOWER_RIGHT": "3.5 mm connection",
-  "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT": "Volume dial/Playback control",
+  "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_MID_RIGHT": "Volume/Playback control",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_SPEC_TOP_RIGHT": "Power on/off",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_ONE_LEGAL": "",
   "AUDIO_TRACK_TRYIT_POPUP_BUTTON_TWO": "Play or pause",
@@ -134,8 +136,8 @@
   "SPECS_SPECS_BULLETNINE_LEGAL": "",
   "SPECS_WITB_HEADLINE": "What’s in the box",
   "SPECS_WITB_BULLETONE_TITLE": "Surface Headphones",
-  "SPECS_WITB_BULLETTWO_TITLE": "5\" USB cable for charging",
-  "SPECS_WITB_BULLETTHREE_TITLE": "4.3\" 3.5 mm stereo headphone cord",
+  "SPECS_WITB_BULLETTWO_TITLE": "5’ USB cable",
+  "SPECS_WITB_BULLETTHREE_TITLE": "4.3’ 3.5 mm stereo headphone cord",
   "SPECS_WITB_BULLETFOUR_TITLE": "Hard-shell carrying case",
   "SPECS_WITB_BULLETFIVE_TITLE": "Instructions and documentation"
 }

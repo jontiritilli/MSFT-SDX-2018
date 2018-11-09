@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Core;
@@ -11,8 +10,12 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+
+using Jacumba.Core;
+using Jacumba.Core.Services;
 
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
@@ -20,17 +23,28 @@ using SDX.Telemetry.Services;
 using SDX.Toolkit.Helpers;
 
 using SurfaceHeadphoneDemo.ViewModels;
+using SurfaceHeadphoneDemo.Services;
 
 
 namespace SurfaceHeadphoneDemo.Views
 {
-    public sealed partial class FlipViewPage : Page
+    public sealed partial class FlipViewPage : Page, IVMUpgradeStatus   // if firmware update is moved back to firmwareupdatepage, remove this interface
     {
         #region Private Constants
 
         private const double PAGE_TIMER_DURATION = 5000d;
 
+        // if firmware update is moved back to firmwareupdatepage, remove these
+        private const string URI_FIRMWARE_FEATURE = @"ms-appx:///Assets/shop_mode_feature.ota";
+        private const string URI_FIRMWARE_EQ = @"ms-appx:///Assets/shop_mode_equalizer.ota";
+
+        private const string FIRMWARE_VERSION_EQ = "0.2018.41.10.4";
+
+        private const int UPGRADE_RETRIES = 0;
+        // end if
+
         #endregion
+
 
         #region Private Members
 
@@ -42,6 +56,18 @@ namespace SurfaceHeadphoneDemo.Views
         private DispatcherTimer _pageMoveTimer = null;
 
         private INavigate _previousPage = null;
+
+        // headphone updates - remove these if we move back to firmwareupdatepage
+        private HidDeviceManager _hidDeviceManager;
+        private HidRequestManager _hidRequestManager;
+        private int _numberOfRetries;
+        private VMUpgrade _vmUpgrader;
+        private ILoggerService _loggerService;
+        private string _btDeviceId;
+        private byte[] _fileBytes;
+        private CoreDispatcher _dispatcher;
+        private bool _isUpdateCompleted;
+        private bool _isJoplinEnabled;
 
         #endregion
 
@@ -90,6 +116,14 @@ namespace SurfaceHeadphoneDemo.Views
             this.MusicBar.PlayerPlaylist = ViewModel.Playlist;
             this.MusicBar.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Light);
 
+            // configure for joplin updates
+            _loggerService = new Logger("FG", "JLog.txt", null);
+            _hidDeviceManager = new HidDeviceManager(_loggerService, HidDevice.GetDeviceSelector(0xFF01, 0x0000, 0x045E, 0x0A1B));
+            _dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
+
+            // is joplin enabled?
+            _isJoplinEnabled = Services.ConfigurationService.Current.GetIsJoplinUpdateEnabled();
+
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
             {
@@ -107,8 +141,43 @@ namespace SurfaceHeadphoneDemo.Views
             // move to the next page
             if (null != this.BottomNavBar)
             {
-              //  this.BottomNavBar.MoveToNextPage();
+                //  this.BottomNavBar.MoveToNextPage();
             }
+        }
+
+        #endregion
+
+
+        #region Overrides
+
+        // remove these two overrides if we move back to firmwareupdatepage
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            // add joplin firmware update handler
+            HidDeviceManager.HidConnectedDeviceStatusChanged += HidDeviceManager_HidConnectedDeviceStatusChanged;
+
+            // start joplin watcher
+            if (null != _hidDeviceManager)
+            {
+                _hidDeviceManager.StartWatcher();
+            }
+
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            // remove joplin firmware update handler
+            HidDeviceManager.HidConnectedDeviceStatusChanged -= HidDeviceManager_HidConnectedDeviceStatusChanged;
+
+            // stop joplin watcher
+            if (null != _hidDeviceManager)
+            {
+                _hidDeviceManager.StopWatcherAsync();
+            }
+
+            base.OnNavigatedFrom(e);
         }
 
         #endregion
@@ -323,6 +392,142 @@ namespace SurfaceHeadphoneDemo.Views
             {
                 AudioListenPage.Current.ChangeSelectedTrack(musicBar.PlayerPlaylist.SelectedIndex);
             }
+        }
+
+        #endregion
+
+        // If we move back to doing the firmware update on the FirmwareUpdatePage, remove everything below this.
+
+        #region Joplin Upgrade Event Handlers
+
+        private async void HidDeviceManager_HidConnectedDeviceStatusChanged(object sender, HidDeviceStatusChangedEventArgs e)
+        {
+            if (_isJoplinEnabled)
+            {
+                await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    // if joplin is connected
+                    if (e.HidDeviceConnectionStatus == HidDeviceConnectionStatus.Connected)
+                    {
+                        // set up for update
+                        _numberOfRetries = 0;
+                        _btDeviceId = e.BTDeviceId;
+                        _hidRequestManager = HidDeviceManager.GetConnectedDevicesRequestManager(_btDeviceId);
+
+                        // if we didn't get what we needed, return
+                        if ((null == _hidRequestManager)
+                            || (null == _hidRequestManager.SoftwareVersion)
+                            || (_hidRequestManager.SoftwareVersion.ToString() != FIRMWARE_VERSION_EQ))
+                        {
+                            return;
+                        }
+
+                        // get the firmware file
+                        StorageFile file = null;
+                        try
+                        {
+                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE_EQ));
+                        }
+                        catch { }
+
+                        if (file == null)
+                        {
+                            return;
+                        }
+
+                        // get its contents as a byte array
+                        _fileBytes = null;
+                        using (IRandomAccessStreamWithContentType stream = await file.OpenReadAsync())
+                        {
+                            _fileBytes = new byte[stream.Size];
+                            using (DataReader reader = new DataReader(stream))
+                            {
+                                await reader.LoadAsync((uint)stream.Size);
+                                reader.ReadBytes(_fileBytes);
+                            }
+                        }
+
+                        await StartUpgrade();
+                    }
+                });
+            }
+        }
+
+        private async Task StartUpgrade()
+        {
+            // create the update object
+            _vmUpgrader = new VMUpgrade(_loggerService,
+                                        _btDeviceId,
+                                        _fileBytes,
+                                        new VMHidTransport(_loggerService, _hidRequestManager),
+                                        this);
+
+            _isUpdateCompleted = false;
+
+            // call the update method
+            await _vmUpgrader.BeginUpdateAsync();
+        }
+
+        private async Task EndUpgrade()
+        {
+            if (_vmUpgrader != null)
+            {
+                await _vmUpgrader.PrepareForDisposalAsync();
+
+                VMUpgrade toDispose = _vmUpgrader;
+                _vmUpgrader = null;
+                toDispose.Dispose();
+            }
+        }
+
+        #endregion
+
+
+        #region IVMUpgradeStatus
+
+        public async void UpgradeError(VMUpgradeError error)
+        {
+            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                    // ignore the disconnect message when the update is completed
+                    if (_isUpdateCompleted)
+                    return;
+
+                await EndUpgrade();
+
+                if (_numberOfRetries < UPGRADE_RETRIES)
+                {
+                    _numberOfRetries++;
+                    await StartUpgrade();
+                }
+            });
+        }
+
+        public async void UpgradeProgress(uint percentComplete)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+            });
+        }
+
+        public async void UpgradeDownloadCompleted()
+        {
+            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                _isUpdateCompleted = true;
+                await _vmUpgrader.CommitUpdateAsync();
+                await EndUpgrade();
+            });
+        }
+
+        public async void UpgradeInstallationCompleted()
+        {
+            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                _isUpdateCompleted = true;
+                await _vmUpgrader.CommitUpdateAsync();
+                await EndUpgrade();
+            });
         }
 
         #endregion

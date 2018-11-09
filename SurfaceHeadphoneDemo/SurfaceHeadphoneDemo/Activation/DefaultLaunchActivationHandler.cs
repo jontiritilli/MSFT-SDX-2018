@@ -49,13 +49,15 @@ namespace SurfaceHeadphoneDemo.Activation
                 else
                 {
                     // no, go to the root flipview
-                    NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
+                    //NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
+                    NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
                 }
             }
             else
             {
                 // go to the flipview by default
-                NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
+                //NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
+                NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
             }
 
             await Task.CompletedTask;
