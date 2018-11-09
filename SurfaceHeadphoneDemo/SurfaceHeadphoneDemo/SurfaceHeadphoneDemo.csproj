@@ -7,7 +7,7 @@
     <ProjectGuid>{0A3FF6E6-2A07-450F-969A-E3C2D0516894}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SurfaceJackDemo</RootNamespace>
+    <RootNamespace>SurfaceHeadphoneDemo</RootNamespace>
     <AssemblyName>SurfaceJackDemo</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SurfaceJackDemo_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SurfaceHeadphoneDemo_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>5BB99130E5E2D35DACE0AE14124FBAE8CBD995AA</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
