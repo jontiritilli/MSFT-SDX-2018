@@ -14,7 +14,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="{x:Bind Path=ViewModel.BackgroundUri}"/>
         </Grid.Background>
-        
+
         <!-- Top row is for FlipView and its content, second is for music bar, bottom is for NavBar -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -31,7 +31,7 @@
             <!-- In UWP, you apparently cannot bind a Row/ColumnDefinition to a static
                  resource with a converter. So we have to add the GridLength we want
                  to the ViewModel, which uses StyleHelper to create it with the style value. -->
-            <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>   
+            <ColumnDefinition Width="{x:Bind Path=ViewModel.AppCloseWidth}"/>
         </Grid.ColumnDefinitions>
 
         <!--Host FlipView-->
@@ -116,7 +116,22 @@
             Height="{StaticResource NavigationBarHeight}"
             Canvas.ZIndex="1001"
             Navigate="BottomNavBar_OnNavigation"/>
-        
+
+        <!-- Firmware Status -->
+        <Border x:Name="FirmwareStatusBorder"
+                Background="DarkGray"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Canvas.ZIndex="2000"
+                Visibility="Collapsed">
+            <TextBlock x:Name="FirmwareStatus"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Style="{StaticResource ButtonCaptionDark}"
+                   Text=""/>
+        </Border>
+        <!-- How To Popup -->
         <Popup x:Name="HowToPagePopup"
             IsOpen = "False"
             IsLightDismissEnabled="False"
@@ -127,6 +142,7 @@
             </Popup.Child>
         </Popup>
 
+        <!-- Listen Popup -->
         <Popup x:Name="AudioListenPopup"
             IsOpen = "False"
             IsLightDismissEnabled="False"

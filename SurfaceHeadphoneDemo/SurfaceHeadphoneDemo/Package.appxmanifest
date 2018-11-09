@@ -36,6 +36,14 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="humaninterfacedevice">
+      <Device Id="vidpid:045E 0A1B">
+        <Function Type="usage:ff01 0000" />
+      </Device>
+      <Device Id="vidpid:045E 0A1C">
+        <Function Type="usage:ff00 0001" />
+      </Device>
+    </DeviceCapability>
   </Capabilities>
   <genTemplate:Metadata>
     <genTemplate:Item Name="generator" Value="Windows Template Studio" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Windows.ApplicationModel.Core;
@@ -31,6 +32,11 @@ namespace SurfaceHeadphoneDemo.Views
         #region Private Constants
 
         private const double PAGE_TIMER_DURATION = 5000d;
+
+        private const string URI_FIRMWARE_FEATURE = @"ms-appx:///Assets/shop_mode_feature.ota";
+        private const string URI_FIRMWARE_EQ = @"ms-appx:///Assets/shop_mode_equalizer.ota";
+
+        private const string FIRMWARE_VERSION_EQ = "0.2018.41.10.4";
 
         #endregion
 
@@ -392,26 +398,37 @@ namespace SurfaceHeadphoneDemo.Views
             {
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
+                    //// firmware status
+                    //SetFirmwareStatus("Checking for Surface Headphones...", false);
+
                     // if joplin is connected
                     if (e.HidDeviceConnectionStatus == HidDeviceConnectionStatus.Connected)
                     {
+                        //// firmware status
+                        //SetFirmwareStatus("\rChecking for Surface Headphones...connected.");
+
                         // set up for update
                         _numberOfRetries = 0;
-                        //_btDeviceId = e.BTDeviceId;   // this is Bluetooth, but we're using USB
-                        _btDeviceId = e.HidDeviceId;    // so let's try the USB id
+                        _btDeviceId = e.BTDeviceId;
                         _hidRequestManager = HidDeviceManager.GetConnectedDevicesRequestManager(_btDeviceId);
 
                         // if we didn't get what we needed, return
-                        if (_hidRequestManager == null ||
-                            _hidRequestManager.SoftwareVersion == null)
-                            //|| _hidRequestManager.SoftwareVersion.ToString() == "1.0.3.337.21"
+                        if ((null == _hidRequestManager)
+                            || (null == _hidRequestManager.SoftwareVersion)
+                            || (_hidRequestManager.SoftwareVersion.ToString() == FIRMWARE_VERSION_EQ))
+                        {
+                            // firmware status
+                            string firmwareVersion = _hidRequestManager.SoftwareVersion.ToString();
+                            //SetFirmwareStatus($"No update needed. Firmware version: {firmwareVersion}");
+                            //ClearFirmwareStatus();
                             return;
+                        }
 
                         // get the firmware file
                         StorageFile file = null;
                         try
                         {
-                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Assets/shop_mode_feature.ota"));
+                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE_EQ));
                         }
                         catch { }
 
@@ -430,8 +447,15 @@ namespace SurfaceHeadphoneDemo.Views
                             }
                         }
 
+                        //SetFirmwareStatus("Loaded firmware file.");
+
                         await StartUpgrade();
                     }
+                    //else
+                    //{
+                    //    SetFirmwareStatus("\rChecking for Surface Headphones...not found.");
+                    //    ClearFirmwareStatus();
+                    //}
                     return;
                 });
             }
@@ -439,6 +463,9 @@ namespace SurfaceHeadphoneDemo.Views
 
         private async Task StartUpgrade()
         {
+            // firmware status
+            SetFirmwareStatus("Starting firmware upgrade for Surface Headphones.");
+
             // create the update object
             _vmUpgrader = new VMUpgrade(_loggerService,
                                         _btDeviceId,
@@ -454,6 +481,8 @@ namespace SurfaceHeadphoneDemo.Views
 
         private async Task EndUpgrade()
         {
+            SetFirmwareStatus("Finishing upgrade.");
+
             if (_vmUpgrader != null)
             {
                 await _vmUpgrader.PrepareForDisposalAsync();
@@ -462,6 +491,8 @@ namespace SurfaceHeadphoneDemo.Views
                 _vmUpgrader = null;
                 toDispose.Dispose();
             }
+
+            ClearFirmwareStatus();
         }
 
         #endregion
@@ -481,17 +512,24 @@ namespace SurfaceHeadphoneDemo.Views
                 if (_numberOfRetries < 2)
                 {
                     _numberOfRetries++;
+                    SetFirmwareStatus($"Upgrade failed. Retrying upgrade, retry #{_numberOfRetries}.");
                     await StartUpgrade();
+                }
+                else
+                {
+                    SetFirmwareStatus("Upgrade failed.");
+                    ClearFirmwareStatus();
                 }
             });
         }
 
         public async void UpgradeProgress(uint percentComplete)
         {
-            //await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            //{
-            //    //updateStatusTextBlock.Text = $"{percentComplete}%";
-            //});
+            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                //updateStatusTextBlock.Text = $"{percentComplete}%";
+                SetFirmwareStatus($"\rFirmware upgrade is {percentComplete}% complete.", false);
+            });
         }
 
         public async void UpgradeDownloadCompleted()
@@ -500,6 +538,8 @@ namespace SurfaceHeadphoneDemo.Views
             {
                 _isUpdateCompleted = true;
                 //updateStatusTextBlock.Text = "Completed";
+                SetFirmwareStatus("Firmware upgrade completed.");
+                ClearFirmwareStatus();
                 await _vmUpgrader.CommitUpdateAsync();
                 await EndUpgrade();
             });
@@ -511,6 +551,8 @@ namespace SurfaceHeadphoneDemo.Views
             {
                 _isUpdateCompleted = true;
                 //updateStatusTextBlock.Text = "Completed";
+                SetFirmwareStatus("Firmware upgrade completed.");
+                ClearFirmwareStatus();
                 await _vmUpgrader.CommitUpdateAsync();
                 await EndUpgrade();
             });
@@ -518,5 +560,35 @@ namespace SurfaceHeadphoneDemo.Views
         }
 
         #endregion
+
+        private async void SetFirmwareStatus(string message, bool includeReturn = true)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (Visibility.Collapsed == this.FirmwareStatusBorder.Visibility)
+                {
+                    this.FirmwareStatusBorder.Visibility = Visibility.Visible;
+                }
+
+                // firmware status
+                this.FirmwareStatus.Text = message;
+                if (includeReturn)
+                {
+                    Debug.WriteLine(message);
+                }
+                else
+                {
+                    Debug.Write(message);
+                }
+            });
+        }
+
+        private async void ClearFirmwareStatus()
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                this.FirmwareStatusBorder.Visibility = Visibility.Collapsed;
+            });
+        }
     }
 }
