@@ -117,20 +117,6 @@
             Canvas.ZIndex="1001"
             Navigate="BottomNavBar_OnNavigation"/>
 
-        <!-- Firmware Status -->
-        <Border x:Name="FirmwareStatusBorder"
-                Background="DarkGray"
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Canvas.ZIndex="2000"
-                Visibility="Collapsed">
-            <TextBlock x:Name="FirmwareStatus"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom"
-                   Style="{StaticResource ButtonCaptionDark}"
-                   Text=""/>
-        </Border>
         <!-- How To Popup -->
         <Popup x:Name="HowToPagePopup"
             IsOpen = "False"

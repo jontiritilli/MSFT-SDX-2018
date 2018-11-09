@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ProductivityViewModel.cs" />
     <Compile Include="ViewModels\SpecsViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareUpdateViewModel.cs" />
     <Compile Include="ViewModels\TechViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AudioListenPopupPage.xaml.cs">
@@ -192,6 +193,9 @@
     </Compile>
     <Compile Include="Views\SpecsPage.xaml.cs">
       <DependentUpon>SpecsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirmwareUpdatePage.xaml.cs">
+      <DependentUpon>FirmwareUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TechPage.xaml.cs">
       <DependentUpon>TechPage.xaml</DependentUpon>
@@ -364,6 +368,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FirmwareUpdatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\TechPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -380,6 +388,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Assets\Attractor\attractor.mp4.old" />
     <Content Include="Assets\Attractor\attractor.mp4" />
     <Content Include="Assets\Backgrounds\caprock_generic_bg.jpg" />
     <Content Include="Assets\Backgrounds\cruz_generic_bg.png" />
@@ -590,7 +599,7 @@
     <Content Include="playlist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="SurfaceJackDemo_StoreKey.pfx" />
+    <None Include="SurfaceHeadphoneDemo_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

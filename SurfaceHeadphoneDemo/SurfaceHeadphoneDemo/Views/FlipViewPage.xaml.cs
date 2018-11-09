@@ -14,9 +14,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
 
-using Jacumba.Core;
-using Jacumba.Core.Services;
-
 using SDX.Toolkit.Controls;
 using SDX.Toolkit.Models;
 using SDX.Telemetry.Services;
@@ -27,16 +24,11 @@ using SurfaceHeadphoneDemo.ViewModels;
 
 namespace SurfaceHeadphoneDemo.Views
 {
-    public sealed partial class FlipViewPage : Page, IVMUpgradeStatus
+    public sealed partial class FlipViewPage : Page
     {
         #region Private Constants
 
         private const double PAGE_TIMER_DURATION = 5000d;
-
-        private const string URI_FIRMWARE_FEATURE = @"ms-appx:///Assets/shop_mode_feature.ota";
-        private const string URI_FIRMWARE_EQ = @"ms-appx:///Assets/shop_mode_equalizer.ota";
-
-        private const string FIRMWARE_VERSION_EQ = "0.2018.41.10.4";
 
         #endregion
 
@@ -50,18 +42,6 @@ namespace SurfaceHeadphoneDemo.Views
         private DispatcherTimer _pageMoveTimer = null;
 
         private INavigate _previousPage = null;
-
-        // headphone updates
-        private HidDeviceManager _hidDeviceManager;
-        private HidRequestManager _hidRequestManager;
-        private int _numberOfRetries;
-        private VMUpgrade _vmUpgrader;
-        private ILoggerService _loggerService;
-        private string _btDeviceId;
-        private byte[] _fileBytes;
-        private CoreDispatcher _dispatcher;
-        private bool _isUpdateCompleted;
-        private bool _isJoplinEnabled;
 
         #endregion
 
@@ -110,15 +90,6 @@ namespace SurfaceHeadphoneDemo.Views
             this.MusicBar.PlayerPlaylist = ViewModel.Playlist;
             this.MusicBar.Background = StyleHelper.GetAcrylicBrush(AcrylicColors.Light);
 
-            // configure for joplin updates
-            _loggerService = new Logger("FG", "JLog.txt", null);
-            _hidDeviceManager = new HidDeviceManager(_loggerService, HidDevice.GetDeviceSelector(0xFF01, 0x0000, 0x045E, 0x0A1B));
-            _dispatcher = CoreApplication.MainView.CoreWindow.Dispatcher;
-
-            this._isJoplinEnabled = Services.ConfigurationService.Current.GetIsJoplinUpdateEnabled();
-
-
-
             // configure our page move timer
             _pageMoveTimer = new DispatcherTimer()
             {
@@ -138,39 +109,6 @@ namespace SurfaceHeadphoneDemo.Views
             {
               //  this.BottomNavBar.MoveToNextPage();
             }
-        }
-
-        #endregion
-
-
-        #region Overrides
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            // add joplin firmware update handler
-            HidDeviceManager.HidConnectedDeviceStatusChanged += HidDeviceManager_HidConnectedDeviceStatusChanged;
-
-            // start joplin watcher
-            if (null != _hidDeviceManager)
-            {
-                _hidDeviceManager.StartWatcher();
-            }
-
-            base.OnNavigatedTo(e);
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            // remove joplin firmware update handler
-            HidDeviceManager.HidConnectedDeviceStatusChanged -= HidDeviceManager_HidConnectedDeviceStatusChanged;
-
-            // stop joplin watcher
-            if (null != _hidDeviceManager)
-            {
-                _hidDeviceManager.StopWatcherAsync();
-            }
-
-            base.OnNavigatedFrom(e);
         }
 
         #endregion
@@ -388,207 +326,5 @@ namespace SurfaceHeadphoneDemo.Views
         }
 
         #endregion
-
-
-        #region Joplin Upgrade Event Handlers
-
-        private async void HidDeviceManager_HidConnectedDeviceStatusChanged(object sender, HidDeviceStatusChangedEventArgs e)
-        {
-            if (_isJoplinEnabled)
-            {
-                await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    //// firmware status
-                    //SetFirmwareStatus("Checking for Surface Headphones...", false);
-
-                    // if joplin is connected
-                    if (e.HidDeviceConnectionStatus == HidDeviceConnectionStatus.Connected)
-                    {
-                        //// firmware status
-                        //SetFirmwareStatus("\rChecking for Surface Headphones...connected.");
-
-                        // set up for update
-                        _numberOfRetries = 0;
-                        _btDeviceId = e.BTDeviceId;
-                        _hidRequestManager = HidDeviceManager.GetConnectedDevicesRequestManager(_btDeviceId);
-
-                        // if we didn't get what we needed, return
-                        if ((null == _hidRequestManager)
-                            || (null == _hidRequestManager.SoftwareVersion)
-                            || (_hidRequestManager.SoftwareVersion.ToString() == FIRMWARE_VERSION_EQ))
-                        {
-                            // firmware status
-                            string firmwareVersion = _hidRequestManager.SoftwareVersion.ToString();
-                            //SetFirmwareStatus($"No update needed. Firmware version: {firmwareVersion}");
-                            //ClearFirmwareStatus();
-                            return;
-                        }
-
-                        // get the firmware file
-                        StorageFile file = null;
-                        try
-                        {
-                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE_EQ));
-                        }
-                        catch { }
-
-                        if (file == null)
-                            return;
-
-                        // get its contents as a byte array
-                        _fileBytes = null;
-                        using (IRandomAccessStreamWithContentType stream = await file.OpenReadAsync())
-                        {
-                            _fileBytes = new byte[stream.Size];
-                            using (DataReader reader = new DataReader(stream))
-                            {
-                                await reader.LoadAsync((uint)stream.Size);
-                                reader.ReadBytes(_fileBytes);
-                            }
-                        }
-
-                        //SetFirmwareStatus("Loaded firmware file.");
-
-                        await StartUpgrade();
-                    }
-                    //else
-                    //{
-                    //    SetFirmwareStatus("\rChecking for Surface Headphones...not found.");
-                    //    ClearFirmwareStatus();
-                    //}
-                    return;
-                });
-            }
-        }
-
-        private async Task StartUpgrade()
-        {
-            // firmware status
-            SetFirmwareStatus("Starting firmware upgrade for Surface Headphones.");
-
-            // create the update object
-            _vmUpgrader = new VMUpgrade(_loggerService,
-                                        _btDeviceId,
-                                        _fileBytes,
-                                        new VMHidTransport(_loggerService, _hidRequestManager),
-                                        this);
-
-            _isUpdateCompleted = false;
-
-            // call the update method
-            await _vmUpgrader.BeginUpdateAsync();
-        }
-
-        private async Task EndUpgrade()
-        {
-            SetFirmwareStatus("Finishing upgrade.");
-
-            if (_vmUpgrader != null)
-            {
-                await _vmUpgrader.PrepareForDisposalAsync();
-
-                VMUpgrade toDispose = _vmUpgrader;
-                _vmUpgrader = null;
-                toDispose.Dispose();
-            }
-
-            ClearFirmwareStatus();
-        }
-
-        #endregion
-
-        #region IVMUpgradeStatus
-
-        public async void UpgradeError(VMUpgradeError error)
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                // ignore the disconnect message when the update is completed
-                if (_isUpdateCompleted)
-                    return;
-
-                await EndUpgrade();
-
-                if (_numberOfRetries < 2)
-                {
-                    _numberOfRetries++;
-                    SetFirmwareStatus($"Upgrade failed. Retrying upgrade, retry #{_numberOfRetries}.");
-                    await StartUpgrade();
-                }
-                else
-                {
-                    SetFirmwareStatus("Upgrade failed.");
-                    ClearFirmwareStatus();
-                }
-            });
-        }
-
-        public async void UpgradeProgress(uint percentComplete)
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                //updateStatusTextBlock.Text = $"{percentComplete}%";
-                SetFirmwareStatus($"\rFirmware upgrade is {percentComplete}% complete.", false);
-            });
-        }
-
-        public async void UpgradeDownloadCompleted()
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                _isUpdateCompleted = true;
-                //updateStatusTextBlock.Text = "Completed";
-                SetFirmwareStatus("Firmware upgrade completed.");
-                ClearFirmwareStatus();
-                await _vmUpgrader.CommitUpdateAsync();
-                await EndUpgrade();
-            });
-        }
-
-        public async void UpgradeInstallationCompleted()
-        {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                _isUpdateCompleted = true;
-                //updateStatusTextBlock.Text = "Completed";
-                SetFirmwareStatus("Firmware upgrade completed.");
-                ClearFirmwareStatus();
-                await _vmUpgrader.CommitUpdateAsync();
-                await EndUpgrade();
-            });
-
-        }
-
-        #endregion
-
-        private async void SetFirmwareStatus(string message, bool includeReturn = true)
-        {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                if (Visibility.Collapsed == this.FirmwareStatusBorder.Visibility)
-                {
-                    this.FirmwareStatusBorder.Visibility = Visibility.Visible;
-                }
-
-                // firmware status
-                this.FirmwareStatus.Text = message;
-                if (includeReturn)
-                {
-                    Debug.WriteLine(message);
-                }
-                else
-                {
-                    Debug.Write(message);
-                }
-            });
-        }
-
-        private async void ClearFirmwareStatus()
-        {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                this.FirmwareStatusBorder.Visibility = Visibility.Collapsed;
-            });
-        }
     }
 }

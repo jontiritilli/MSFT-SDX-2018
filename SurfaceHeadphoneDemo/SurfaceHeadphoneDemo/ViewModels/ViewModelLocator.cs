@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Ioc;
 using SurfaceHeadphoneDemo.Services;
 using SurfaceHeadphoneDemo.Views;
 
+
 namespace SurfaceHeadphoneDemo.ViewModels
 {
     [Windows.UI.Xaml.Data.Bindable]
@@ -17,8 +18,9 @@ namespace SurfaceHeadphoneDemo.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
-            Register<FlipViewViewModel, FlipViewPage>();
             Register<AttractorLoopViewModel, AttractorLoopPage>();
+            Register<FirmwareUpdateViewModel, FirmwareUpdatePage>();
+            Register<FlipViewViewModel, FlipViewPage>();
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<AudioTryItViewModel, AudioTryItPage>();
             Register<AudioListenViewModel, AudioListenPage>();
@@ -54,6 +56,8 @@ namespace SurfaceHeadphoneDemo.ViewModels
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
         public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
+
+        public FirmwareUpdateViewModel FirmwareUpdateViewModel => ServiceLocator.Current.GetInstance<FirmwareUpdateViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

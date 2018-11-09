@@ -40,6 +40,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
 
         #endregion
 
+
         #region Construction
 
         public DesignViewModel()

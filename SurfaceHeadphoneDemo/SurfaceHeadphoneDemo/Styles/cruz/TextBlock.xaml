@@ -84,6 +84,7 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="WrapWholeWords" />
     </Style>
+    
     <Style x:Key="Swipe" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FF737373"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>

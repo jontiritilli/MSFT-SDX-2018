@@ -57,14 +57,14 @@ namespace SurfaceHeadphoneDemo.Activation
                     }
                     else
                     {
-                        // no, go to the root flipview
-                        NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                        // no, go to the firmware update
+                        NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
                     }
                 }
                 else
                 {
-                    // go to the flipview by default
-                    NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                    // go to the firmware update by default
+                    NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
                 }
             }
 

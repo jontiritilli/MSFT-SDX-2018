@@ -170,6 +170,12 @@ namespace SurfaceHeadphoneDemo.Services
             return retVal;
         }
 
+        public void LoadFirmwareUpdateViewModel(FirmwareUpdateViewModel viewModel)
+        {
+            viewModel.SearchMessage = GetStringValue(_languageCurrent.FIRMWARE_SEARCH_MESSAGE, "FIRMWARE_SEARCH_MESSAGE");
+            viewModel.UpdateMessage = GetStringValue(_languageCurrent.FIRMWARE_UPDATE_MESSAGE, "FIRMWARE_UPDATE_MESSAGE");
+        }
+
         public void LoadChoosePathViewModel(ChoosePathViewModel viewModel)
         {
             viewModel.DeviceOneTitle = GetStringValue(_languageCurrent.INTRO_TITLE_DEVICE_ONE_TITLE, "INTRO_TITLE_DEVICE_ONE_TITLE");

@@ -59,14 +59,14 @@ namespace SurfaceHeadphoneDemo.Activation
                 {
                     //Log.Trace("We are navigating to the FlipView.");
                     // no, go to the root flipview
-                    NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                    NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
                 }
             }
             else
             {
                 //Log.Trace("Configuration Service is INVALID, so we are navigating to the FlipView.");
                 // go to the flipview by default
-                NavigationService.Navigate(typeof(ViewModels.FlipViewViewModel).FullName);
+                NavigationService.Navigate(typeof(ViewModels.FirmwareUpdateViewModel).FullName);
             }
         }
 

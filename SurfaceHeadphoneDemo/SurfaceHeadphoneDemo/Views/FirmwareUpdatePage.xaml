@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="SurfaceHeadphoneDemo.Views.FirmwareUpdatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding FirmwareUpdateViewModel, Source={StaticResource Locator}}"
+    mc:Ignorable="d"
+    Background="LightGray">
+
+    <Grid x:Name="LayoutRoot" Margin="0" Padding="0">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="{x:Bind ViewModel.BackgroundUri}"/>
+        </Grid.Background>
+
+        <StackPanel x:Name="SearchPanel"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="600"
+                    Visibility="Visible">
+            <TextBlock x:Name="SearchMessage"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource PageHeadline}"
+                       Text="{x:Bind ViewModel.SearchMessage}"/>
+        </StackPanel>
+
+        <StackPanel x:Name="UpdatePanel"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="600"
+                    Visibility="Collapsed">
+
+            <TextBlock x:Name="UpdateMessage"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,100"
+                       Style="{StaticResource PageHeadline}"
+                       Text="{x:Bind ViewModel.UpdateMessage}"/>
+
+            <ProgressBar x:Name="ProgressBar"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Bottom"
+                         Foreground="AliceBlue"
+                         Background="DarkGray"
+                         Width="500"
+                         Value="0"
+                         Maximum="1"/>
+        </StackPanel>
+
+    </Grid>
+
+</Page>
