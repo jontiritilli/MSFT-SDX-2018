@@ -60,7 +60,7 @@
     {
       "ArtistName": "Pierce Fulton",
       "TrackTitle": "Wind Shear",
-      "MediaSourceUri": "ms-appx:///Assets/Playlist/Pierce Fulton - Wind Shear .mp3",
+      "MediaSourceUri": "ms-appx:///Assets/Playlist/Pierce Fulton - Wind Shear.mp3",
       "CoverArtSourceUri": "ms-appx:///Assets/Playlist/pierce.png",
       "SelectedCoverArtSourceUri": "ms-appx:///Assets/Playlist/pierce-selected.png"
     },

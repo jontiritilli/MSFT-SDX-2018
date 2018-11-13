@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>SurfaceHeadphoneDemo_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>5BB99130E5E2D35DACE0AE14124FBAE8CBD995AA</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
@@ -506,7 +506,7 @@
     <Content Include="Assets\Playlist\Jubilee - Sawgrass Expressway.mp3" />
     <Content Include="Assets\Playlist\jubilee-selected.png" />
     <Content Include="Assets\Playlist\jubilee.png" />
-    <Content Include="Assets\Playlist\Pierce Fulton - Wind Shear .mp3" />
+    <Content Include="Assets\Playlist\Pierce Fulton - Wind Shear.mp3" />
     <Content Include="Assets\Playlist\pierce-selected.png" />
     <Content Include="Assets\Playlist\pierce.png" />
     <Content Include="Assets\Playlist\Public Access T.V. - Lost in the Game.mp3" />
