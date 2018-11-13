@@ -93,7 +93,7 @@ namespace SurfaceHeadphoneDemo.Views
             NavigationServiceEx NavigationService = Locator?.NavigationService;
 
             // navigate to the flipview page
-            NavigationService?.Navigate(typeof(FirmwareUpdateViewModel).FullName);
+            NavigationService?.Navigate(typeof(FlipViewViewModel).FullName);
         }
 
         #endregion

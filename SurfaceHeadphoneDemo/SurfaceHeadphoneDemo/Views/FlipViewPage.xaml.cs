@@ -417,7 +417,7 @@ namespace SurfaceHeadphoneDemo.Views
                         // if we didn't get what we needed, return
                         if ((null == _hidRequestManager)
                             || (null == _hidRequestManager.SoftwareVersion)
-                            || (_hidRequestManager.SoftwareVersion.ToString() != FIRMWARE_VERSION_EQ))
+                            || (_hidRequestManager.SoftwareVersion.ToString() == FIRMWARE_VERSION_EQ))
                         {
                             return;
                         }

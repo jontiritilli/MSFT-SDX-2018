@@ -108,7 +108,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
             // load the playlist
             if ((null != PlaylistService.Current) && (PlaylistService.Current.IsLoaded))
             {
-                this.Playlist = PlaylistService.Current.DefaultPlaylist;
+                this.Playlist = PlaylistService.Current.CurrentPlaylist;
             }
 
             // determine background
