@@ -157,7 +157,6 @@
     <Compile Include="ViewModels\FlipViewViewModel.cs" />
     <Compile Include="ViewModels\ProductivityViewModel.cs" />
     <Compile Include="ViewModels\SpecsViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareUpdateViewModel.cs" />
     <Compile Include="ViewModels\TechViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AudioListenPopupPage.xaml.cs">
@@ -193,9 +192,6 @@
     </Compile>
     <Compile Include="Views\SpecsPage.xaml.cs">
       <DependentUpon>SpecsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FirmwareUpdatePage.xaml.cs">
-      <DependentUpon>FirmwareUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TechPage.xaml.cs">
       <DependentUpon>TechPage.xaml</DependentUpon>
@@ -365,10 +361,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SpecsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FirmwareUpdatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -576,9 +568,6 @@
     <Content Include="Assets\shop_mode_feature.ota">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="default-en-US.json.withfirmwareupdatepage">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Universal\cruz_close_app_button.png" />
     <Content Include="Assets\Universal\fox_close.png" />
@@ -602,9 +591,6 @@
     <Content Include="playlist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="SDA-en-US.json.withfirmwareupdatepage">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="SurfaceHeadphoneDemo_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>

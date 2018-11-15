@@ -417,7 +417,7 @@ namespace SurfaceHeadphoneDemo.Views
                         // if we didn't get what we needed, return
                         if ((null == _hidRequestManager)
                             || (null == _hidRequestManager.SoftwareVersion)
-                            || (_hidRequestManager.SoftwareVersion.ToString() == FIRMWARE_VERSION_EQ))
+                            || (_hidRequestManager.SoftwareVersion.ToString() != FIRMWARE_VERSION_EQ))
                         {
                             return;
                         }
@@ -455,6 +455,9 @@ namespace SurfaceHeadphoneDemo.Views
 
         private async Task StartUpgrade()
         {
+            // open the popup
+            this.FirmwareUpdatePopup.IsOpen = true;
+
             // create the update object
             _vmUpgrader = new VMUpgrade(_loggerService,
                                         _btDeviceId,
@@ -470,6 +473,8 @@ namespace SurfaceHeadphoneDemo.Views
 
         private async Task EndUpgrade()
         {
+            this.ProgressBar.Value = 1.75;
+
             if (_vmUpgrader != null)
             {
                 await _vmUpgrader.PrepareForDisposalAsync();
@@ -478,6 +483,9 @@ namespace SurfaceHeadphoneDemo.Views
                 _vmUpgrader = null;
                 toDispose.Dispose();
             }
+
+            // close the popup
+            this.FirmwareUpdatePopup.IsOpen = false;
         }
 
         #endregion
@@ -489,9 +497,9 @@ namespace SurfaceHeadphoneDemo.Views
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                    // ignore the disconnect message when the update is completed
-                    if (_isUpdateCompleted)
-                    return;
+                // ignore the disconnect message when the update is completed
+                if (_isUpdateCompleted)
+                return;
 
                 await EndUpgrade();
 
@@ -507,6 +515,7 @@ namespace SurfaceHeadphoneDemo.Views
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                this.ProgressBar.Value = percentComplete;
             });
         }
 
@@ -514,6 +523,8 @@ namespace SurfaceHeadphoneDemo.Views
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                this.ProgressBar.Value = 1.25;
+
                 _isUpdateCompleted = true;
                 await _vmUpgrader.CommitUpdateAsync();
                 await EndUpgrade();
@@ -524,6 +535,8 @@ namespace SurfaceHeadphoneDemo.Views
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                this.ProgressBar.Value = 1.5;
+
                 _isUpdateCompleted = true;
                 await _vmUpgrader.CommitUpdateAsync();
                 await EndUpgrade();

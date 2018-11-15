@@ -10,9 +10,8 @@ namespace SurfaceHeadphoneDemo.Models
     {
         #region Public Properties
 
-        // these are for the FirmwareUpdatePage which we have removed, so they are commented out; look below too for another set
-        //public string FIRMWARE_SEARCH_MESSAGE = "Searching for Surface Headphones.";
-        //public string FIRMWARE_UPDATE_MESSAGE = "Please wait a moment while we make your headphones even better.";
+        // these are for the Firmware Update Popup
+        public string FIRMWARE_UPDATE_MESSAGE = "Please wait a moment while we make your headphones even better.";
         public string INTRO_TITLE_DEVICE_ONE_TITLE = "Meet the new Surface Pro";
         public string INTRO_TITLE_DEVICE_ONE_CTA = "EXPLORE";
         public string INTRO_TITLE_DEVICE_TWO_TITLE = "Take a listen to Surface Headphone";

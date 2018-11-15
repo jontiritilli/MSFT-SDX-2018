@@ -19,7 +19,6 @@ namespace SurfaceHeadphoneDemo.ViewModels
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             Register<AttractorLoopViewModel, AttractorLoopPage>();
-            Register<FirmwareUpdateViewModel, FirmwareUpdatePage>();
             Register<FlipViewViewModel, FlipViewPage>();
             Register<ChoosePathViewModel, ChoosePathPage>();
             Register<AudioTryItViewModel, AudioTryItPage>();
@@ -56,8 +55,6 @@ namespace SurfaceHeadphoneDemo.ViewModels
         public AttractorLoopViewModel AttractorLoopViewModel => ServiceLocator.Current.GetInstance<AttractorLoopViewModel>();
 
         public FlipViewViewModel FlipViewViewModel => ServiceLocator.Current.GetInstance<FlipViewViewModel>();
-
-        public FirmwareUpdateViewModel FirmwareUpdateViewModel => ServiceLocator.Current.GetInstance<FirmwareUpdateViewModel>();
 
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 

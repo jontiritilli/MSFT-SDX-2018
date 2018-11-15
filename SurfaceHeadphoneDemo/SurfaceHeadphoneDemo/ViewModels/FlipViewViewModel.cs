@@ -57,6 +57,9 @@ namespace SurfaceHeadphoneDemo.ViewModels
         // music bar playlist
         public Playlist Playlist = null;
 
+        // firmware update message
+        public string UpdateMessage;
+
         // This method is a hack because UWP does not support binding a StaticResource
         // with a Converter, so we must add these properties to the ViewModel.
         public GridLength MusicBarHeight
