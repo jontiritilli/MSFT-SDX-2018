@@ -35,11 +35,13 @@ namespace SurfaceHeadphoneDemo.Views
         private const double PAGE_TIMER_DURATION = 5000d;
 
         // if firmware update is moved back to firmwareupdatepage, remove these
-        private const string URI_FIRMWARE_FEATURE = @"ms-appx:///Assets/shop_mode_feature.ota";
-        private const string URI_FIRMWARE_EQ = @"ms-appx:///Assets/shop_mode_equalizer.ota";
+        private const string URI_FIRMWARE_FEATURE = @"ms-appx:///Assets/Firmware/shop_mode_feature.ota";
+        private const string URI_FIRMWARE_EQ = @"ms-appx:///Assets/Firmware/shop_mode_equalizer.ota";
+        private const string URI_FIRMWARE_TEST = @"ms-appx:///Assets/Firmware/NXP-SENSORY_WITH_EXT_FS.ota";
 
-        private const string FIRMWARE_VERSION_EQ = "0.2018.41.10.4";
-
+        //private const string FIRMWARE_VERSION_EQ = "0.2018.41.10.4";
+        private const string FIRMWARE_VERSION_EQ = "";  // test only
+        
         private const int UPGRADE_RETRIES = 0;
         // end if
 
@@ -417,7 +419,7 @@ namespace SurfaceHeadphoneDemo.Views
                         // if we didn't get what we needed, return
                         if ((null == _hidRequestManager)
                             || (null == _hidRequestManager.SoftwareVersion)
-                            || (_hidRequestManager.SoftwareVersion.ToString() != FIRMWARE_VERSION_EQ))
+                            || (_hidRequestManager.SoftwareVersion.ToString() == FIRMWARE_VERSION_EQ))
                         {
                             return;
                         }
@@ -426,7 +428,7 @@ namespace SurfaceHeadphoneDemo.Views
                         StorageFile file = null;
                         try
                         {
-                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE_EQ));
+                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE_TEST));
                         }
                         catch { }
 

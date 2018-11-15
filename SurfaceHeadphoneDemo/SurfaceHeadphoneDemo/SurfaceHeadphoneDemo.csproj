@@ -562,10 +562,13 @@
     <Content Include="SDA-en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\shop_mode_equalizer.ota">
+    <Content Include="Assets\Firmware\shop_mode_equalizer.ota">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\shop_mode_feature.ota">
+    <Content Include="Assets\Firmware\shop_mode_feature.ota">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Firmware\NXP-SENSORY_WITH_EXT_FS.ota">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Package.StoreAssociation.xml" />
