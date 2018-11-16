@@ -66,10 +66,9 @@ namespace SurfaceHeadphoneDemo.ViewModels
                     ImageWidth = WIDTH_IMAGE / 2;
                     break;
                 case DeviceType.Pro:
-                    BackgroundUri = URI_BACKGROUND_CRUZ;
-                    ImageWidth = WIDTH_IMAGE / 2;
-                    break;
+                case DeviceType.Unknown:
                 default:
+                    BackgroundUri = URI_BACKGROUND_CRUZ;
                     ImageWidth = WIDTH_IMAGE / 2;
                     break;
             }

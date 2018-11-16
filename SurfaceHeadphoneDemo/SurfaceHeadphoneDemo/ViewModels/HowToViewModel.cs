@@ -237,6 +237,8 @@ namespace SurfaceHeadphoneDemo.ViewModels
                     Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
                     break;
                 case DeviceType.Pro:
+                case DeviceType.Unknown:
+                default:
                     BackgroundUri = URI_BACKGROUND_CRUZ;
                     ImageSelectorImageWidth = WIDTH_IMAGE / 2;
                     ImageSelectorImageHeight = HEIGHT_IMAGE / 2;
@@ -246,21 +248,6 @@ namespace SurfaceHeadphoneDemo.ViewModels
                     Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
                     Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
                     Height_Noise = HEIGHT_NOISE_ILLUSTRATION / 2;
-                    Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
-                    Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
-                    Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;
-                    Width_Overview_4 = WIDTH_OVERVIEW_4 / 2;
-                    Width_Overview_5 = WIDTH_OVERVIEW_5 / 2;
-                    Width_Overview_6 = WIDTH_OVERVIEW_6 / 2;
-                    break;
-                default:
-                    ImageSelectorImageWidth = WIDTH_IMAGE / 2;
-                    ImageSelectorImageHeight = HEIGHT_IMAGE / 2;
-                    Width_Play_Pause = WIDTH_PLAY_PAUSE_ILLUSTRATION / 2;
-                    Width_Skip = WIDTH_SKIP_ILLUSTRATION / 2;
-                    Width_Volume = WIDTH_VOLUME_ILLUSTRATION / 2;
-                    Width_Overview = WIDTH_OVERVIEW_ILLUSTRATION / 2;
-                    Width_Noise = WIDTH_NOISE_ILLUSTRATION / 2;
                     Width_Overview_1 = WIDTH_OVERVIEW_1 / 2;
                     Width_Overview_2 = WIDTH_OVERVIEW_2 / 2;
                     Width_Overview_3 = WIDTH_OVERVIEW_3 / 2;

@@ -34,16 +34,25 @@ namespace SurfaceHeadphoneDemo.Views
 
         private const double PAGE_TIMER_DURATION = 5000d;
 
-        // if firmware update is moved back to firmwareupdatepage, remove these
+        // available firmware files
         private const string URI_FIRMWARE_FEATURE = @"ms-appx:///Assets/Firmware/shop_mode_feature.ota";
         private const string URI_FIRMWARE_EQ = @"ms-appx:///Assets/Firmware/shop_mode_equalizer.ota";
         private const string URI_FIRMWARE_TEST = @"ms-appx:///Assets/Firmware/NXP-SENSORY_WITH_EXT_FS.ota";
+        private const string URI_FIRMWARE_SHOPMODE = @"ms-appx:///Assets/Firmware/SHOP_MODE_SPR4_EQ_GAIN.ota";
 
-        //private const string FIRMWARE_VERSION_EQ = "0.2018.41.10.4";
-        private const string FIRMWARE_VERSION_EQ = "";  // test only
-        
+        // versions for firmware files
+        private const string VERSION_FIRMWARE_FEATURE = "";
+        private const string VERSION_FIRMWARE_EQ = "0.2018.41.10.4";
+        private const string VERSION_FIRMWARE_TEST = "1.0.4.22.21";
+        private const string VERSION_FIRMWARE_SHOPMODE = "1.0.4.22.4";
+
+        // firmware to use
+        private const string URI_FIRMWARE = URI_FIRMWARE_SHOPMODE;
+        //private const string VERSION_FIRMWARE = VERSION_FIRMWARE_SHOPMODE;
+        private const string VERSION_FIRMWARE = "";
+
+        // number of retries
         private const int UPGRADE_RETRIES = 0;
-        // end if
 
         #endregion
 
@@ -419,7 +428,7 @@ namespace SurfaceHeadphoneDemo.Views
                         // if we didn't get what we needed, return
                         if ((null == _hidRequestManager)
                             || (null == _hidRequestManager.SoftwareVersion)
-                            || (_hidRequestManager.SoftwareVersion.ToString() == FIRMWARE_VERSION_EQ))
+                            || (_hidRequestManager.SoftwareVersion.ToString() == VERSION_FIRMWARE))
                         {
                             return;
                         }
@@ -428,7 +437,7 @@ namespace SurfaceHeadphoneDemo.Views
                         StorageFile file = null;
                         try
                         {
-                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE_TEST));
+                            file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(URI_FIRMWARE));
                         }
                         catch { }
 
@@ -501,7 +510,9 @@ namespace SurfaceHeadphoneDemo.Views
             {
                 // ignore the disconnect message when the update is completed
                 if (_isUpdateCompleted)
-                return;
+                {
+                    return;
+                }
 
                 await EndUpgrade();
 

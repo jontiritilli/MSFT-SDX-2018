@@ -571,6 +571,9 @@
     <Content Include="Assets\Firmware\NXP-SENSORY_WITH_EXT_FS.ota">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Firmware\SHOP_MODE_SPR4_EQ_GAIN.ota">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Universal\cruz_close_app_button.png" />
     <Content Include="Assets\Universal\fox_close.png" />
