@@ -121,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
-    <Compile Include="Activation\ActivationHelper.cs" />
     <Compile Include="Activation\SchemeActivationConfig.cs" />
     <Compile Include="Activation\SchemeActivationData.cs" />
     <Compile Include="Activation\SchemeActivationHandler.cs" />

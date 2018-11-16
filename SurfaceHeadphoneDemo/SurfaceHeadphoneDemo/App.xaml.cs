@@ -15,7 +15,7 @@ using SurfaceHeadphoneDemo.Services;
 
 using SDX.Toolkit.Helpers;
 using SDX.Telemetry.Services;
-
+using Windows.Foundation;
 
 namespace SurfaceHeadphoneDemo
 {
@@ -74,6 +74,9 @@ namespace SurfaceHeadphoneDemo
             // initialize our services
             InitializeServices();
 
+            // load our styles
+            LoadStyles();
+
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
@@ -84,6 +87,9 @@ namespace SurfaceHeadphoneDemo
         {
             // initialize our services
             InitializeServices();
+
+            // load our styles
+            LoadStyles();
 
             await ActivationService.ActivateAsync(args);
         }
@@ -144,6 +150,23 @@ namespace SurfaceHeadphoneDemo
                     TelemetryService.Current?.LogTelemetryEvent(TelemetryEvents.StartApplication);
                 }
             }
+
+
+        }
+
+        private void LoadStyles()
+        {
+            // can't do this because we need nav bar and music bar size calcs
+            // and no time to write that code
+
+            //if (null != Application.Current.Resources)
+            //{
+            //    // load canvas sizes
+            //    Size effectiveSize = WindowHelper.GetViewSizeInfo();
+
+            //    Application.Current.Resources.Add("CanvasWidth", effectiveSize.Width);
+            //    Application.Current.Resources.Add("CanvasHeight", effectiveSize.Height);
+            //}
         }
 
         #endregion

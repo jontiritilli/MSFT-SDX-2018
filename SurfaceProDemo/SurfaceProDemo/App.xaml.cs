@@ -65,6 +65,52 @@ namespace SurfaceProDemo
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
 
+
+        }
+
+        #endregion
+
+
+        #region Base Overrides
+
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        {
+            // initialize config, localization, and telemetry services
+            InitializeServices();
+
+            // load styles
+            LoadAppResourceDictionaries();
+
+            if (!args.PrelaunchActivated)
+            {
+                await ActivationService.ActivateAsync(args);
+            }
+        }
+
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            // initialize config, localization, and telemetry services
+            InitializeServices();
+
+            // load styles
+            LoadAppResourceDictionaries();
+
+            await ActivationService.ActivateAsync(args);
+        }
+
+        #endregion
+
+
+        #region Private Methods
+
+        private ActivationService CreateActivationService()
+        {
+            // return the flipview by default
+            return new ActivationService(this);
+        }
+
+        private void InitializeServices()
+        {
             // register our configuration service and initialize it
             SimpleIoc.Default.Register<ConfigurationService>();
             ConfigurationService configurationService = (ConfigurationService)SimpleIoc.Default.GetInstance<ConfigurationService>();
@@ -102,33 +148,22 @@ namespace SurfaceProDemo
             }
         }
 
-        #endregion
-
-
-        #region Base Overrides
-
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        private void LoadAppResourceDictionaries()
         {
-            if (!args.PrelaunchActivated)
+            // get the localization service
+            LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
+
+            string file = localizationService.IsLanguageJapanese() ? "TextBlock-ja-JP.xaml" : "TextBlock.xaml";
+
+            // calculate uri's for styles 
+            string URI_TEXTBLOCK = String.Format("ms-appx:///Styles/{0}", file);
+
+            // load textblock styles
+            ResourceDictionary resourceDictionary = new ResourceDictionary()
             {
-                await ActivationService.ActivateAsync(args);
-            }
-        }
-
-        protected override async void OnActivated(IActivatedEventArgs args)
-        {
-            await ActivationService.ActivateAsync(args);
-        }
-
-        #endregion
-
-
-        #region Private Methods
-
-        private ActivationService CreateActivationService()
-        {
-            // return the flipview by default
-            return new ActivationService(this);
+                Source = new Uri(URI_TEXTBLOCK, UriKind.Absolute),
+            };
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
 
         #endregion

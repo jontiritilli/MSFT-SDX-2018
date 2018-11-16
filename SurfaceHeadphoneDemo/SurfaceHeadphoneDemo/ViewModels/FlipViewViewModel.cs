@@ -57,6 +57,9 @@ namespace SurfaceHeadphoneDemo.ViewModels
         // music bar playlist
         public Playlist Playlist = null;
 
+        // firmware update message
+        public string UpdateMessage;
+
         // This method is a hack because UWP does not support binding a StaticResource
         // with a Converter, so we must add these properties to the ViewModel.
         public GridLength MusicBarHeight
@@ -90,6 +93,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
         public FlipViewViewModel()
         {
             this.Volume = ConfigurationService.Current.GetVolume();
+
             // get the localization service
             LocalizationService localizationService = SimpleIoc.Default.GetInstance<LocalizationService>();
 
@@ -107,7 +111,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
             // load the playlist
             if ((null != PlaylistService.Current) && (PlaylistService.Current.IsLoaded))
             {
-                this.Playlist = PlaylistService.Current.DefaultPlaylist;
+                this.Playlist = PlaylistService.Current.CurrentPlaylist;
             }
 
             // determine background

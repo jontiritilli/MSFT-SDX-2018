@@ -180,6 +180,8 @@ namespace SurfaceHeadphoneDemo.Services
 
         public void LoadFlipViewViewModel(FlipViewViewModel viewModel)
         {
+            viewModel.UpdateMessage = GetStringValue(_languageCurrent.FIRMWARE_UPDATE_MESSAGE, "FIRMWARE_UPDATE_MESSAGE");
+
             viewModel.NavBarAudio = GetStringValueToUpper(_languageCurrent.AUDIO, "AUDIO");
             viewModel.NavBarDesign = GetStringValueToUpper(_languageCurrent.DESIGN, "DESIGN");
             viewModel.NavBarTech = GetStringValueToUpper(_languageCurrent.TECH, "TECH");

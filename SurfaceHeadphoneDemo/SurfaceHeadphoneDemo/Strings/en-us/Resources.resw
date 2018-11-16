@@ -145,4 +145,8 @@
     <value>File name is null or empty. Specify a valid file name</value>
     <comment>File name is null or empty to save file in settings storage extensions</comment>
   </data>
+  <data name="PivotItem_FirmwareUpdate.Header" xml:space="preserve">
+    <value>FirmwareUpdate</value>
+    <comment>Pivot item header for FirmwareUpdate</comment>
+  </data>
 </root>

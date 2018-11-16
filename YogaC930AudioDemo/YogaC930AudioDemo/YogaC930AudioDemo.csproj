@@ -389,7 +389,7 @@
     <Content Include="Assets\Fonts\Gotham-Light.otf" />
     <Content Include="Assets\Fonts\Gotham-Medium.otf" />
     <Content Include="config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="default-en-US.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

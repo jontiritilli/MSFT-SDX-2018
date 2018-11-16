@@ -153,7 +153,6 @@
 
     <Style x:Key="ListLedeBold" TargetType="TextBlock" BasedOn="{StaticResource ListLede}">
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
 
     <Style x:Key="ListItemHeadlinePenTouch" TargetType="TextBlock">

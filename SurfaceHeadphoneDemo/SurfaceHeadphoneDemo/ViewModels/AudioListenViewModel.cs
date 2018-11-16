@@ -15,8 +15,7 @@ namespace SurfaceHeadphoneDemo.ViewModels
     {
         #region Constants
 
-        //private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/gradient-bg.jpg";
-        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/LancasterFrog.jpg";
+        private const string URI_BACKGROUND = "ms-appx:///Assets/Backgrounds/gradient-bg.jpg";
         private const string URI_IMAGE = "ms-appx:///Assets/Experience/audio_headphones.png";
         private const double WIDTH_IMAGE = 2040;
         private const string URI_SPOTIFYIMAGE = "ms-appx:///Assets/Experience/audio_spotify.png";
